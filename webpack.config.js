@@ -12,7 +12,9 @@ module.exports = {
     filename: "bundle.js",
     publicPath: "/",
   },
-  resolve: { extensions: [".js", ".jsx"] },
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
   module: {
     rules: [
       {
@@ -58,7 +60,7 @@ module.exports = {
     }),
     new Dotenv(),
     // ! discomment for it use
-   /*  new WebpackPwaManifestPlugin({
+    /*  new WebpackPwaManifestPlugin({
       filename: "manifest.webmanifest",
       name: "Synapse - A synapse universe",
       short_name: "Synapse",

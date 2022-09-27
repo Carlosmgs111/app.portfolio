@@ -1,0 +1,8 @@
+{
+  "_id":"string",
+  "title":"string",
+  "body":"string",
+  "created":"integer",
+  "modified":"integer",
+  "tags":"array"
+}

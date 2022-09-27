@@ -1,0 +1,9 @@
+{
+  "_id": "string",
+  "name": "string",
+  "instructor": "string",
+  "uri": "string",
+  "learningRoutes": "array",
+  "created":"integer",
+  "modified":"integer"
+}

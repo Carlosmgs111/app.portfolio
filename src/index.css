@@ -17,7 +17,10 @@ html {
 
 body {
   background-image: var(--background-image);
-  background-color: hsl(215, 50%, 23%);
+  /* background-color: hsl(215, 50%, 23%); */
+  background: #ff00cc;
+  background: -webkit-linear-gradient(to right, #333399, #ff00cc);
+  background: linear-gradient(to top, #333399, #ff00cc);
   background-position: center center;
   background-size: cover;
   background-attachment: fixed;

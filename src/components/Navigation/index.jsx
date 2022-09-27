@@ -1,15 +1,32 @@
-import { ItemsList, NavigateBar, Item, Link, NavbarContainer } from "./styles";
+import {
+  ItemsList,
+  NavigateBar,
+  Item,
+  Link,
+  NavbarContainer,
+  Button,
+} from "./styles";
 import { Children, cloneElement, useEffect } from "react";
+import { useSwitch } from "../../hooks/useSwitch";
 import Draggable from "react-draggable";
 
 export default function Navigation({ children, banner, className }) {
+
   useEffect(() => {}, []);
+
+  const [menu, switchMenu] = useSwitch(
+    { show: false, name: "fas fa-bars p-2 item" },
+    { show: true, name: "fas fa-times p-2 item" }
+  );
+
   const childrens = Children.toArray(children);
+
   return (
-    <NavbarContainer className={className}>
+    <NavbarContainer className={`${className}`}>
       <NavigateBar className={className}>
         {banner && <Link to={banner.to}>{banner.title}</Link>}
-        <ItemsList className={className}>
+        <Button className={`${menu.name}`} id="nav-button" onClick={switchMenu}></Button>
+        <ItemsList className={`${className} navigation-list`} show={menu.show}>
           {children
             ? childrens.map((child, index) => {
                 var LinkedItem = child.props.children.props?.link ? Item : Link;

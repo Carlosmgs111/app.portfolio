@@ -1,0 +1,7 @@
+{
+  "_id":"string",
+  "created":"integer",
+  "modified":"integer",
+  "title":"string",
+  "author":"string"
+}

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { Link as LinkRouter } from "react-router-dom";
 
 export const NavbarContainer = styled.div`
@@ -23,31 +23,60 @@ export const NavbarContainer = styled.div`
 `;
 
 export const NavigateBar = styled.nav`
+  margin-top:4rem;
   z-index: 1;
   &.navbar {
     display: flex;
     justify-content: space-between;
-    align-content: center;
+    align-items: center;
     padding: 0 2vw;
     width: inherit;
     height: inherit;
+    @media (max-width: 1060px) {
+      display: block;
+    }
   }
   &.sidebar {
     width: fit-content;
   }
 `;
 
+const fadeinshow = keyframes`
+from{
+  opacity:0;
+}
+to{
+  opacity:1;
+}
+`
+const fadeoutshow = keyframes`
+from{
+  opacity:1;
+}
+to{
+  opacity:0;
+}
+`
+
 export const ItemsList = styled.ul`
+  -webkit-text-stroke: 0.8px black;
+  color: transparent;
   border: 1px solid black;
-  backdrop-filter: blur(0.6rem);
-  border-radius: 12px;
+  font-size: 3rem;
+  backdrop-filter: blur(10rem);
+  border-radius: 6px;
+  height: auto;
   &.navbar {
-    font-size: 1.8rem;
+    font-size: 3.8rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
     align-content: center;
     padding: 0 8px;
+    @media (max-width: 830px) {
+      animation: 2s ${fadeinshow} ease;
+      display: ${(props) => (props.show ? "block" : "none")};
+    }
   }
   &.sidebar {
     display: block;
@@ -57,25 +86,50 @@ export const ItemsList = styled.ul`
   }
 `;
 
+export const fadein = keyframes`
+  from{
+    color: rgba(0, 0, 0, 0.4);
+  }
+  to{
+    color: black;
+  }
+`;
+export const fadeout = keyframes`
+  to{
+    color: rgba(0, 0, 0, 0.4);
+  }
+  from{
+    color: black;
+  }
+`;
+
 export const Item = styled.li`
+  :focus{
+    color:black
+  }
+  animation: 1.2s ${fadeout} ease;
   z-index: 1;
   list-style: none;
   padding: 0;
   text-decoration: none;
-  color: #16222a;
-  font-size: 1.4rem;
+  -webkit-text-stroke: 0px black;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 2.8rem;
   font-weight: bold;
   font-family: "Quicksand", sans-serif;
   display: block;
   text-align: center;
-  background-color: inherit;
-  color: black;
   font-style: none !important;
   &:hover {
     color: black;
     text-decoration: none;
+    animation: 1.2s ${fadein} ease;
   }
   &.navbar {
+    @media (max-width: 830px) {
+      :after {
+      }
+    }
     padding: 1rem 0.8rem;
     .item {
       margin: 0;
@@ -197,6 +251,17 @@ export const Item = styled.li`
           `
         : null;
     }}
+  }
+`;
+
+export const Button = styled.i`
+  display: none;
+  @media (max-width: 830px) {
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 5.5rem;
+    font-size: 4rem;
   }
 `;
 
