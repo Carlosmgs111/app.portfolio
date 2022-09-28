@@ -7,7 +7,6 @@ import { getContext, CONTEXTS } from "../contexts";
 import { useLocalStorage } from "./useLocalStorage";
 
 function useLogin() {
-  const [, setBackgroundImage] = useLocalStorage("backgroundImage", "");
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -16,14 +15,16 @@ function useLogin() {
   const [label, switchLabel] = useSwitch("signin", "signup");
   const [{ token }, dispatch] = useStateValue();
 
+  console.log({ email, password })
+
   async function onClick() {
     setLoading(true);
     try {
       const data = (
-        await axios.get(
+        await axios.post(
           `${URL_API}/${label === "signup" ? "request" + label : label}`,
           { email, password },
-          { headers: { "Access-Control-Allow-Origin": "*" } }
+          { headers: { "Access-Control-Allow-Origin": "*", "Content-Type":"application/json" } }
         )
       ).data;
       console.log({data})

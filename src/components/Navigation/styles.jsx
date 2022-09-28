@@ -23,7 +23,7 @@ export const NavbarContainer = styled.div`
 `;
 
 export const NavigateBar = styled.nav`
-  margin-top:4rem;
+  margin: 4rem 14rem 0 14rem;
   z-index: 1;
   &.navbar {
     display: flex;
@@ -32,7 +32,19 @@ export const NavigateBar = styled.nav`
     padding: 0 2vw;
     width: inherit;
     height: inherit;
-    @media (max-width: 1060px) {
+    @media (max-width: 1360px) {
+      display: block;
+    }
+    @media (max-width: 1100px) { 
+      margin: 4rem 8rem 0 8rem;
+      display: block;
+    }
+    @media (max-width: 980px) { 
+      margin: 4rem 4rem 0 4rem;
+      display: block;
+    }
+    @media (max-width: 895px) { 
+      margin: 4rem 0 0 0;
       display: block;
     }
   }
@@ -74,7 +86,7 @@ export const ItemsList = styled.ul`
     align-content: center;
     padding: 0 8px;
     @media (max-width: 830px) {
-      animation: 2s ${fadeinshow} ease;
+      animation: .8s ${fadeinshow} ease;
       display: ${(props) => (props.show ? "block" : "none")};
     }
   }
@@ -126,10 +138,6 @@ export const Item = styled.li`
     animation: 1.2s ${fadein} ease;
   }
   &.navbar {
-    @media (max-width: 830px) {
-      :after {
-      }
-    }
     padding: 1rem 0.8rem;
     .item {
       margin: 0;

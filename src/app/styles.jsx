@@ -50,8 +50,10 @@ export const Banner = styled.h1`
 `;
 
 export const Icon = styled.i`
-  color: black;
+  color: ${({ state }) =>
+    state ? "hsl(350, 96%, 43%)" : "hsl(140, 71%, 44%)"};
+  -webkit-text-stroke: 2px black;
   border-radius: 6px;
-  border: 1px solid;
+  border: 1px solid black;
   padding: 3px;
 `;

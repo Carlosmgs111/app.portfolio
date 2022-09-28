@@ -42,9 +42,9 @@ export function App() {
             login: {
               label: () =>
                 token ? (
-                  <Icon className="fa-solid fa-right-from-bracket"></Icon>
+                  <Icon state={true} className="fa-solid fa-right-from-bracket"></Icon>
                 ) : (
-                  <Icon className="fa-sharp fa-solid fa-right-to-bracket"></Icon>
+                  <Icon state={false} className="fa-sharp fa-solid fa-right-to-bracket"></Icon>
                 ),
               onClick: (e) => {
                 e.preventDefault();
