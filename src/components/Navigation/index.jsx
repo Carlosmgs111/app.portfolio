@@ -6,18 +6,18 @@ import {
   NavbarContainer,
   Button,
 } from "./styles";
-import { Children, cloneElement, useEffect } from "react";
+import { Children, cloneElement, useEffect, useState } from "react";
 import { useSwitch } from "../../hooks/useSwitch";
 import Draggable from "react-draggable";
 
 export default function Navigation({ children, banner, className }) {
-
   useEffect(() => {}, []);
 
   const [menu, switchMenu] = useSwitch(
     { show: false, name: "fas fa-bars p-2 item" },
     { show: true, name: "fas fa-times p-2 item" }
   );
+  const [current, setCurrent] = useState(null);
 
   const childrens = Children.toArray(children);
 
@@ -25,7 +25,11 @@ export default function Navigation({ children, banner, className }) {
     <NavbarContainer className={`${className}`}>
       <NavigateBar className={className}>
         {banner && <Link to={banner.to}>{banner.title}</Link>}
-        <Button className={`${menu.name}`} id="nav-button" onClick={switchMenu}></Button>
+        <Button
+          className={`${menu.name}`}
+          id="nav-button"
+          onClick={switchMenu}
+        ></Button>
         <ItemsList className={`${className} navigation-list`} show={menu.show}>
           {children
             ? childrens.map((child, index) => {
@@ -33,7 +37,8 @@ export default function Navigation({ children, banner, className }) {
                 return (
                   //<Draggable grid={[45, 45]} axis="y">
                   <LinkedItem
-                    className={className}
+                    className={`${className}`}
+                    active={current === index}
                     position={
                       childrens.length === 1
                         ? "only"
@@ -44,12 +49,17 @@ export default function Navigation({ children, banner, className }) {
                         : "middle"
                     }
                     type="button"
-                    onClick={child.props.onClick}
+                    onClick={(e) => {
+                      setCurrent(Number(e.target.id));
+                      if(menu.show)switchMenu()
+                      console.log({ target: e.target.id });
+                      child.props.onClick;
+                    }}
                     key={index}
                     to={child.props?.to || "#"}
-                    id={child.props?.id}
+                    id={child.props?.id || index}
                   >
-                    {cloneElement(child, { ...child.props } || {})}
+                    {cloneElement(child, { ...child.props, id: index } || {})}
                   </LinkedItem>
                   //</Draggable>
                 );

@@ -23,7 +23,7 @@ export const NavbarContainer = styled.div`
 `;
 
 export const NavigateBar = styled.nav`
-  margin: 4rem 14rem 0 14rem;
+  margin: 4rem 10rem 0 10rem;
   z-index: 1;
   &.navbar {
     display: flex;
@@ -35,15 +35,15 @@ export const NavigateBar = styled.nav`
     @media (max-width: 1360px) {
       display: block;
     }
-    @media (max-width: 1100px) { 
+    @media (max-width: 1100px) {
       margin: 4rem 8rem 0 8rem;
       display: block;
     }
-    @media (max-width: 980px) { 
+    @media (max-width: 980px) {
       margin: 4rem 4rem 0 4rem;
       display: block;
     }
-    @media (max-width: 895px) { 
+    @media (max-width: 895px) {
       margin: 4rem 0 0 0;
       display: block;
     }
@@ -60,7 +60,7 @@ from{
 to{
   opacity:1;
 }
-`
+`;
 const fadeoutshow = keyframes`
 from{
   opacity:1;
@@ -68,14 +68,13 @@ from{
 to{
   opacity:0;
 }
-`
+`;
 
 export const ItemsList = styled.ul`
-  -webkit-text-stroke: 0.8px black;
   color: transparent;
-  border: 1px solid black;
+  border: 1px solid hsl(67, 100%, 55%);
   font-size: 3rem;
-  backdrop-filter: blur(10rem);
+  backdrop-filter: blur(10rem) brightness(0.4);
   border-radius: 6px;
   height: auto;
   &.navbar {
@@ -86,7 +85,7 @@ export const ItemsList = styled.ul`
     align-content: center;
     padding: 0 8px;
     @media (max-width: 830px) {
-      animation: .8s ${fadeinshow} ease;
+      animation: 0.8s ${fadeinshow} ease;
       display: ${(props) => (props.show ? "block" : "none")};
     }
   }
@@ -100,32 +99,34 @@ export const ItemsList = styled.ul`
 
 export const fadein = keyframes`
   from{
-    color: rgba(0, 0, 0, 0.4);
+    color: color: ${({ active }) =>
+      active ? "rgb(228, 255, 26)" : "rgba(228, 255, 26, .4)"};
   }
   to{
-    color: black;
+    color: rgb(228, 255, 26);
   }
 `;
 export const fadeout = keyframes`
   to{
-    color: rgba(0, 0, 0, 0.4);
+    color: color: ${({ active }) =>
+      active ? "rgb(228, 255, 26)" : "rgba(228, 255, 26, .4)"};
   }
   from{
-    color: black;
+    color: rgb(228, 255, 26);
   }
 `;
 
 export const Item = styled.li`
-  :focus{
-    color:black
+  &.active {
+    color: rgb(228, 255, 26);
   }
   animation: 1.2s ${fadeout} ease;
   z-index: 1;
   list-style: none;
   padding: 0;
   text-decoration: none;
-  -webkit-text-stroke: 0px black;
-  color: rgba(0, 0, 0, 0.4);
+  color: ${({ active }) =>
+    active ? "rgb(228, 255, 26)" : "rgba(228, 255, 26, .4)"};
   font-size: 2.8rem;
   font-weight: bold;
   font-family: "Quicksand", sans-serif;
@@ -133,7 +134,7 @@ export const Item = styled.li`
   text-align: center;
   font-style: none !important;
   &:hover {
-    color: black;
+    color: rgb(228, 255, 26);
     text-decoration: none;
     animation: 1.2s ${fadein} ease;
   }

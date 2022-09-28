@@ -5,7 +5,7 @@ export const Header = styled.header`
   width: 100%;
   height: 10vh;
   justify-items: center;
-  position: fixed;
+  position: sticky;
   z-index: 1;
   top: 0;
   @media (max-width: 420px) {
@@ -44,7 +44,7 @@ export const Footer = styled.footer`
 `;
 
 export const Banner = styled.h1`
-  color: black;
+  color: hsl(67, 100%, 55%);
   font-weight: bold;
   font-size: 5.8rem;
 `;
