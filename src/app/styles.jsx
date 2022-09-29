@@ -8,11 +8,10 @@ export const Header = styled.header`
   position: sticky;
   z-index: 1;
   top: 0;
-  @media (max-width: 420px) {
-    .navbar {
-      /* display: none;
-      border: none; */
-    }
+  backdrop-filter: brightness(40%) blur(0.6rem);
+  @media(max-width: 1360px){
+    position:absolute;
+    z-index: 1000;
   }
 `;
 
@@ -40,13 +39,16 @@ export const Footer = styled.footer`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 10vh;
+  height: 20vh;
 `;
 
 export const Banner = styled.h1`
   color: hsl(67, 100%, 55%);
   font-weight: bold;
   font-size: 5.8rem;
+  @media(max-width:480px){
+    font-size: 3.8rem;
+  }
 `;
 
 export const Icon = styled.i`

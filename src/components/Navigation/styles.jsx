@@ -35,12 +35,12 @@ export const NavigateBar = styled.nav`
     @media (max-width: 1360px) {
       display: block;
     }
-    @media (max-width: 1100px) {
+    @media (max-width: 1035px) {
       margin: 4rem 8rem 0 8rem;
       display: block;
     }
-    @media (max-width: 980px) {
-      margin: 4rem 4rem 0 4rem;
+    @media (max-width: 995px) {
+      margin: 4rem 2rem 0 2rem;
       display: block;
     }
     @media (max-width: 895px) {
@@ -84,6 +84,10 @@ export const ItemsList = styled.ul`
     justify-content: flex-end;
     align-content: center;
     padding: 0 8px;
+    @media (max-width: 1360px) {
+    justify-content: center;
+    align-items: center;
+    }
     @media (max-width: 830px) {
       animation: 0.8s ${fadeinshow} ease;
       display: ${(props) => (props.show ? "block" : "none")};
@@ -99,7 +103,7 @@ export const ItemsList = styled.ul`
 
 export const fadein = keyframes`
   from{
-    color: color: ${({ active }) =>
+    color: ${({ active }) =>
       active ? "rgb(228, 255, 26)" : "rgba(228, 255, 26, .4)"};
   }
   to{
@@ -108,7 +112,7 @@ export const fadein = keyframes`
 `;
 export const fadeout = keyframes`
   to{
-    color: color: ${({ active }) =>
+    color: ${({ active }) =>
       active ? "rgb(228, 255, 26)" : "rgba(228, 255, 26, .4)"};
   }
   from{
@@ -261,6 +265,9 @@ export const Item = styled.li`
         : null;
     }}
   }
+  @media(max-width:480px){
+    font-size: 1.8rem;
+  }
 `;
 
 export const Button = styled.i`
@@ -269,8 +276,15 @@ export const Button = styled.i`
     display: block;
     position: absolute;
     right: 15px;
-    top: 5.5rem;
+    top: 2rem;
     font-size: 4rem;
+  }
+  @media (max-width: 830px) {
+    top: 5.6rem;
+  }
+  @media (max-width: 480px) {
+    top: 4.8rem;
+    font-size: 3rem;
   }
 `;
 

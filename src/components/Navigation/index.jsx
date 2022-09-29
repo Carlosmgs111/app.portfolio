@@ -8,7 +8,6 @@ import {
 } from "./styles";
 import { Children, cloneElement, useEffect, useState } from "react";
 import { useSwitch } from "../../hooks/useSwitch";
-import Draggable from "react-draggable";
 
 export default function Navigation({ children, banner, className }) {
   useEffect(() => {}, []);
@@ -24,7 +23,17 @@ export default function Navigation({ children, banner, className }) {
   return (
     <NavbarContainer className={`${className}`}>
       <NavigateBar className={className}>
-        {banner && <Link to={banner.to}>{banner.title}</Link>}
+        {banner && (
+          <Link
+            onClick={() => {
+              if (menu.show) switchMenu();
+              setCurrent(null);
+            }}
+            to={banner.to}
+          >
+            {banner.title}
+          </Link>
+        )}
         <Button
           className={`${menu.name}`}
           id="nav-button"
@@ -35,7 +44,6 @@ export default function Navigation({ children, banner, className }) {
             ? childrens.map((child, index) => {
                 var LinkedItem = child.props.children.props?.link ? Item : Link;
                 return (
-                  //<Draggable grid={[45, 45]} axis="y">
                   <LinkedItem
                     className={`${className}`}
                     active={current === index}
@@ -51,7 +59,7 @@ export default function Navigation({ children, banner, className }) {
                     type="button"
                     onClick={(e) => {
                       setCurrent(Number(e.target.id));
-                      if(menu.show)switchMenu()
+                      if (menu.show) switchMenu();
                       console.log({ target: e.target.id });
                       child.props.onClick;
                     }}
@@ -61,7 +69,6 @@ export default function Navigation({ children, banner, className }) {
                   >
                     {cloneElement(child, { ...child.props, id: index } || {})}
                   </LinkedItem>
-                  //</Draggable>
                 );
               })
             : null}
