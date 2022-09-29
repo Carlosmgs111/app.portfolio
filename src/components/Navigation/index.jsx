@@ -46,7 +46,7 @@ export default function Navigation({ children, banner, className }) {
                 return (
                   <LinkedItem
                     className={`${className}`}
-                    active={current === index}
+                    selected={current === index}
                     position={
                       childrens.length === 1
                         ? "only"

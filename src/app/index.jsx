@@ -6,46 +6,59 @@ import { getContext, CONTEXTS } from "../contexts";
 import { RoutesFactory, NavigationItemsFactory } from "../utils";
 import { useSwitch } from "../hooks/useSwitch";
 import { useApp } from "../hooks/useApp";
-import {Home} from "../pages/Home"
+import { Home } from "../pages/Home";
+import {Certifications} from "../pages/Certifications"
 
 export function App() {
-  const {  clearAuth } = useApp();
+  const { clearAuth } = useApp();
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
   const [{ token, loading: globalLoading }, dispatch] = useStateValue();
   const [showLogin, switchShowLogin] = useSwitch(false, true);
+
+  const pages = [
+    "projects",
+    "skills",
+    "certifications",
+    "organizations",
+    "blog",
+  ];
+
+  if(token) pages.unshift("profile")
+
   return (
-    <>{showLogin && (
-      <Login
-        {...{
-          embedButton: (
-            <i
-              type="button"
-              onClick={switchShowLogin}
-              className="far fa-times-circle embed-button"
-            />
-          ),
-        }}
-      />
-    )}
+    <>
+      {showLogin && (
+        <Login
+          {...{
+            embedButton: (
+              <i
+                type="button"
+                onClick={switchShowLogin}
+                className="far fa-times-circle embed-button"
+              />
+            ),
+          }}
+        />
+      )}
       <Header>
         <Navigation
           className="navbar"
           banner={{ title: <Banner>Portfolio</Banner>, to: "/" }}
         >
           {NavigationItemsFactory({
-            pages: [
-              "profile",
-              "projects",
-              "certifications",
-              "organizations",
-              "blog",
-            ],
+            pages,
             login: {
               label: () =>
                 token ? (
-                  <Icon state={true} className="fa-solid fa-right-from-bracket"></Icon>
+                  <Icon
+                    state={true}
+                    className="fa-solid fa-fingerprint"
+                  ></Icon>
                 ) : (
-                  <Icon state={false} className="fa-sharp fa-solid fa-right-to-bracket"></Icon>
+                  <Icon
+                    state={false}
+                    className="fa-solid fa-fingerprint"
+                  ></Icon>
                 ),
               onClick: (e) => {
                 e.preventDefault();
@@ -71,7 +84,13 @@ export function App() {
             root: "",
             parameters: ["section"],
             subDomains: ["reset_password/:token"],
-            element: <Home/>,
+            element: <Home />,
+          })}
+          {RoutesFactory({
+            root: "certifications",
+            parameters: ["section"],
+            subDomains: ["reset_password/:token"],
+            element: <Certifications/>,
           })}
         </Routes>
       </Content>

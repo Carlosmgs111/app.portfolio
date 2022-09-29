@@ -18,7 +18,7 @@ export function Home() {
           Aliquip duis elit deserunt ad. Aute id ut tempor duis dolor anim.
         </Text>
       </Section>
-      <Section bgc="hsl(201, 38%, 29%)">
+      <Section bgc="hsla(201, 38%, 29%, .9)">
         <Text>
           Anim ex nostrud exercitation exercitation anim aliqua. Sit Lorem id
           laborum proident eu ad Lorem culpa. Occaecat ipsum exercitation

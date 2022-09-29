@@ -3,12 +3,15 @@ import styled from "styled-components";
 export const Container = styled.div``;
 
 export const Section = styled.article`
-  padding: 8rem 14rem;
+  padding: 8rem 30rem;
   margin: 8rem 0;
   min-height: 80vh;
   height: auto;
   width: 100vw;
-  background-color: ${({bgc})=>bgc?bgc:"white"};
+  background-color: ${({bgc})=>bgc?bgc:"rgba(225,225,225,.9)"};
+  @media(max-width:1360px){
+    padding: 8rem 14rem;
+  }
   @media (max-width: 830px) {
     padding: 4rem 8rem;
   }

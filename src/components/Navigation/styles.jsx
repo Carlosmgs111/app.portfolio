@@ -33,6 +33,7 @@ export const NavigateBar = styled.nav`
     width: inherit;
     height: inherit;
     @media (max-width: 1360px) {
+      justify-content: center;
       display: block;
     }
     @media (max-width: 1035px) {
@@ -72,7 +73,6 @@ to{
 
 export const ItemsList = styled.ul`
   color: transparent;
-  border: 1px solid hsl(67, 100%, 55%);
   font-size: 3rem;
   backdrop-filter: blur(10rem) brightness(0.4);
   border-radius: 6px;
@@ -89,8 +89,12 @@ export const ItemsList = styled.ul`
     align-items: center;
     }
     @media (max-width: 830px) {
+      background-color:rgba(0, 0, 0, .9);
       animation: 0.8s ${fadeinshow} ease;
-      display: ${(props) => (props.show ? "block" : "none")};
+      display: ${(props) => (props.show ? "flex" : "none")};
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid hsl(67, 100%, 55%);
     }
   }
   &.sidebar {
@@ -103,8 +107,8 @@ export const ItemsList = styled.ul`
 
 export const fadein = keyframes`
   from{
-    color: ${({ active }) =>
-      active ? "rgb(228, 255, 26)" : "rgba(228, 255, 26, .4)"};
+    color: ${({ selected }) =>
+      selected ? "rgb(228, 255, 26)" : "rgba(228, 255, 26, .4)"};
   }
   to{
     color: rgb(228, 255, 26);
@@ -112,8 +116,8 @@ export const fadein = keyframes`
 `;
 export const fadeout = keyframes`
   to{
-    color: ${({ active }) =>
-      active ? "rgb(228, 255, 26)" : "rgba(228, 255, 26, .4)"};
+    color: ${({ selected }) =>
+      selected ? "rgb(228, 255, 26)" : "rgba(228, 255, 26, .4)"};
   }
   from{
     color: rgb(228, 255, 26);
@@ -121,7 +125,7 @@ export const fadeout = keyframes`
 `;
 
 export const Item = styled.li`
-  &.active {
+  &.selected {
     color: rgb(228, 255, 26);
   }
   animation: 1.2s ${fadeout} ease;
@@ -129,9 +133,9 @@ export const Item = styled.li`
   list-style: none;
   padding: 0;
   text-decoration: none;
-  color: ${({ active }) =>
-    active ? "rgb(228, 255, 26)" : "rgba(228, 255, 26, .4)"};
-  font-size: 2.8rem;
+  color: ${({ selected }) =>
+    selected ? "rgb(228, 255, 26)" : "rgba(228, 255, 26, .4)"};
+  font-size: 2rem;
   font-weight: bold;
   font-family: "Quicksand", sans-serif;
   display: block;
@@ -265,6 +269,9 @@ export const Item = styled.li`
         : null;
     }}
   }
+  @media(max-width:830px){
+    width:fit-content;
+  }
   @media(max-width:480px){
     font-size: 1.8rem;
   }
@@ -272,6 +279,7 @@ export const Item = styled.li`
 
 export const Button = styled.i`
   display: none;
+  color:white;
   @media (max-width: 830px) {
     display: block;
     position: absolute;
