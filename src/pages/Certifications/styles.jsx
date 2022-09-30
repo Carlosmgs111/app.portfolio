@@ -97,6 +97,8 @@ export const Item = styled.i`
 `;
 
 export const Input = styled.input`
+  -webkit-text-stroke: .1px black;
+  font-weight: normal;
   border-radius: .4rem;
   border:0;
   outline:none;
