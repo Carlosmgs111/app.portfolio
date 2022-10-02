@@ -7,7 +7,7 @@ import { RoutesFactory, NavigationItemsFactory } from "../utils";
 import { useSwitch } from "../hooks/useSwitch";
 import { useApp } from "../hooks/useApp";
 import { Home } from "../pages/Home";
-import {Certifications} from "../pages/Certifications"
+import { Certifications } from "../pages/Certifications";
 
 export function App() {
   const { clearAuth } = useApp();
@@ -23,7 +23,7 @@ export function App() {
     "blog",
   ];
 
-  if(token) pages.unshift("profile")
+  if (token) pages.unshift("profile");
 
   return (
     <>
@@ -48,25 +48,20 @@ export function App() {
           {NavigationItemsFactory({
             pages,
             login: {
-              label: () =>
-                token ? (
-                  <Icon
-                    state={true}
-                    className="fa-solid fa-fingerprint"
-                  ></Icon>
-                ) : (
-                  <Icon
-                    state={false}
-                    className="fa-solid fa-fingerprint"
-                  ></Icon>
-                ),
+              label: () => (
+                <Icon
+                  state={Boolean(token)}
+                  className="fa-solid fa-fingerprint"
+                ></Icon>
+              ),
               onClick: (e) => {
                 e.preventDefault();
                 switchShowLogin();
                 if (token) {
-                  if(window.confirm("Are you sure you want logout?")){
-                  clearAuth();
-                  dispatch({ type: ACTIONS.reset });}
+                  if (window.confirm("Are you sure you want logout?")) {
+                    clearAuth();
+                    dispatch({ type: ACTIONS.reset });
+                  }
                 }
               },
             },
@@ -91,7 +86,7 @@ export function App() {
             root: "certifications",
             parameters: ["section"],
             subDomains: ["reset_password/:token"],
-            element: <Certifications/>,
+            element: <Certifications />,
           })}
         </Routes>
       </Content>

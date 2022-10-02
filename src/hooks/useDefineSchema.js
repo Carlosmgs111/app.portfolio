@@ -6,7 +6,7 @@ import axios from "axios";
 
 const options = ["Platzi", "Fazt Web"]
 
-export function useDefineSchema() {
+export function useDefineSchema({setData}) {
   const _attributes = {
     title: "",
     emitedBy: options[0],
@@ -22,7 +22,7 @@ export function useDefineSchema() {
   const [schema, setSchema] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
 
   useEffect(() => {}, []);
 
@@ -51,7 +51,7 @@ export function useDefineSchema() {
 
   const onClick = async (e) => {
     const { name } = e.target;
-    if (name === "add-button") addDefineAttribute();
+    if (name === "add-button") {addDefineAttribute()};
     if (name === "save-button") {
       setData(
         (
@@ -72,7 +72,6 @@ export function useDefineSchema() {
   };
   console.log({ schema });
   console.log(parseSchema(false));
-  console.log({ data });
   return {
     attributes,
     setAttributes,
@@ -84,6 +83,5 @@ export function useDefineSchema() {
     setLabel,
     loading,
     error,
-    data,
   };
 }

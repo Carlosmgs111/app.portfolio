@@ -21,16 +21,20 @@ export function DefineAttribute({
 }) {
   const [isExpanded, switchIsExpanded] = useSwitch(true, false);
 
-  useEffect(() => {
+  const settingAttributes=()=>{
     const _attributes = {};
     for (var non in nonOptionals) {
       nonOptionals[non] = nonOptionals[non].replace("{", "");
       nonOptionals[non] = nonOptionals[non].replace("~", "");
       _attributes[nonOptionals[non]] = attributes[index][nonOptionals[non]];
     }
+    return _attributes
+  }
+
+  useEffect(() => {
     setSchema({
       ...schema,
-      [index]: { ..._attributes },
+      [index]: { ...settingAttributes() },
     });
   }, []);
 
@@ -42,11 +46,13 @@ export function DefineAttribute({
   };
 
   const onChange = (name, value, target) => {
+    
     setAttributes({
       ...attributes,
       [index]: {
         ...attributes[index],
         ...{
+          // ! gruesome sentence, must be fixed
           [typeof value === "object" ? name.replace("{", "") : name]:
             typeof value === "number"
               ? Number(target.value)
@@ -62,6 +68,7 @@ export function DefineAttribute({
       ...schema,
       [index]: {
         ...schema[index],
+        // ! gruesome sentence, must be fixed
         [typeof value === "object"
           ? name.replace("{", "")
           : name.includes("~")
@@ -138,7 +145,7 @@ export function DefineAttribute({
         <RightSide>
           {typeof value === "string" || typeof value === "number" ? (
             <input
-              style={{width:"89%"}}
+              style={{ width: "90%" }}
               type={
                 name.includes("~")
                   ? "date"
@@ -154,7 +161,7 @@ export function DefineAttribute({
           ) : typeof value === "object" ? (
             <>
               <select
-                style={{ width: "89%", borderRadius: ".5rem" }}
+                style={{ width: "90%", borderRadius: ".5rem" }}
                 name={keyName}
                 defaultValue={value[0]}
                 disabled={!nonOptionals.includes(name)}

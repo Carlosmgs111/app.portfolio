@@ -67,8 +67,8 @@ export const Icon = styled.i`
   color: ${({ state }) =>
     !state ? "hsl(349.9, 95.7%, 36.4%)" : "hsl(140, 71%, 44%)"};
   -webkit-text-stroke: 1.5px black;
-  border-radius: 6px;
-  border: 1px solid black;
+  border-radius: 25px;
+  border: 3px solid black;
   padding: 3px;
   :hover{
     color:hsl(19, 97%, 51%);

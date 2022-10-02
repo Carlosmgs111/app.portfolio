@@ -101,7 +101,7 @@ export function Certifications() {
           ))}
           {token && (
             <Dashboard>
-              <DefineSchema />
+              <DefineSchema setData={(data)=>setCertificates([...certificates, ...data])} />
             </Dashboard>
           )}
         </Main>

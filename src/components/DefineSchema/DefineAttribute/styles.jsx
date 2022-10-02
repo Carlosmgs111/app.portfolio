@@ -22,7 +22,7 @@ export const FormStyle = styled.div`
 `;
 
 export const RightSide = styled.div`
-  width: 50%;
+  width: 65%;
   margin-bottom: .5rem;
   text-align: left;
   input {
@@ -38,7 +38,7 @@ export const RightSide = styled.div`
 
 export const LeftSide = styled.div`
   padding-right: 2rem;
-  width: 50%;
+  width: 35%;
   text-align: right;
 `;
 
