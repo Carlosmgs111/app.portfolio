@@ -25,8 +25,13 @@ export const Button = styled.button`
 export const Dashboard = styled.div`
   width: 100%;
   display: flex;
+  height: fit-content;
   align-items: center;
   justify-content: space-around;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const Sidebar = styled.nav`
@@ -35,10 +40,9 @@ export const Sidebar = styled.nav`
 `;
 
 export const List = styled.ul`
-border-radius: 0 .6rem .6rem 0;
+  border-radius: 0 0.6rem 0.6rem 0;
   height: fit-content;
   display: flex;
-  justify-content: center;
   position: relative;
   flex-wrap: wrap;
   gap: 2.5rem;
@@ -57,11 +61,9 @@ border-radius: 0 .6rem .6rem 0;
 export const fadein = keyframes`
   from {
       opacity:0;
-    
   }
   to{ 
       opacity: 1;
-    
   }
 `;
 
@@ -78,32 +80,31 @@ export const Item = styled.i`
   position: relative;
   display: flex;
   flex-direction: row;
-  left: 8.7rem; 
+  left: 0rem;
   font-size: 3rem;
-  /* animation: 1s ${fadeout} ease; */
   color: hsl(19, 97%, 51%);
   -webkit-text-stroke: 1.5px black;
   height: fit-content;
-  input{
-    opacity:0
+  input {
+    opacity: 0;
     animation: 1.5s ${fadeout} ease;
   }
-  :hover{
-    input{
-      opacity:1;
+  :hover {
+    input {
+      opacity: 1;
       animation: 1.5s ${fadein} ease;
     }
   }
 `;
 
 export const Input = styled.input`
-  -webkit-text-stroke: .1px black;
+  -webkit-text-stroke: 0.1px black;
   font-weight: normal;
-  border-radius: .4rem;
-  border:0;
-  outline:none;
-  position:relative;
+  border-radius: 0.4rem;
+  border: 0;
+  outline: none;
+  position: relative;
   opacity: 0;
-  left:1rem;
-  padding: 0 .8rem;
+  left: 1rem;
+  padding: 0 0.8rem;
 `;

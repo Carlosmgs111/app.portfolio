@@ -63,7 +63,6 @@ export const Banner = styled.h1`
 
 export const Icon = styled.i`
   top: 0;
-  position:fixed;
   font-size:3.5rem;
   color: ${({ state }) =>
     !state ? "hsl(349.9, 95.7%, 36.4%)" : "hsl(140, 71%, 44%)"};

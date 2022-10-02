@@ -33,6 +33,8 @@ export const beutifyLabel = (label) => {
       }
     }
   }
+  label = label.replace("{", "");
+  label = label.replace("~", "");
   return label;
 };
 
@@ -212,11 +214,12 @@ export const NavigationItemsFactory = ({ pages, login }) => {
       </p>
     );
   }
-  if(login)navigationItems.push(
-    <p className="item" to="#" onClick={login.onClick}>
-      {login.label()}
-    </p>
-  );
+  if (login)
+    navigationItems.push(
+      <p className="item" to="#" onClick={login.onClick}>
+        {login.label()}
+      </p>
+    );
   return navigationItems;
 };
 

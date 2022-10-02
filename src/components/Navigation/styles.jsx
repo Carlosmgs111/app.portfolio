@@ -84,10 +84,8 @@ export const ItemsList = styled.ul`
     justify-content: flex-end;
     align-content: center;
     padding: 0 8px;
-    @media (max-width: 1360px) {
     justify-content: center;
     align-items: center;
-    }
     @media (max-width: 830px) {
       background-color:rgba(0, 0, 0, .9);
       animation: 0.8s ${fadeinshow} ease;

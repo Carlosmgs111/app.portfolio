@@ -8,12 +8,12 @@ import { useLocalStorage } from "./useLocalStorage";
 
 function useLogin() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
+  const [{ token }, dispatch] = useStateValue();
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("" || config.email);
   const [password, setPassword] = useState("" || config.password);
   const [label, switchLabel] = useSwitch("signin", "signup");
-  const [{ token }, dispatch] = useStateValue();
 
   console.log({ email, password })
 

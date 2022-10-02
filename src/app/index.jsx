@@ -64,8 +64,9 @@ export function App() {
                 e.preventDefault();
                 switchShowLogin();
                 if (token) {
+                  if(window.confirm("Are you sure you want logout?")){
                   clearAuth();
-                  dispatch({ type: ACTIONS.reset });
+                  dispatch({ type: ACTIONS.reset });}
                 }
               },
             },

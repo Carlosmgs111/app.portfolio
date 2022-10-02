@@ -1,6 +1,10 @@
 import { Certification } from "../../components/Certification";
 import { Modal } from "../../components/Modal";
 import { getContext, CONTEXTS } from "../../contexts";
+import { DefineSchema } from "../../components/DefineSchema";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { URL_API } from "../../services";
 import {
   Container,
   Main,
@@ -11,14 +15,11 @@ import {
   Item,
   Input,
 } from "./styles";
-import { useState } from "react";
 
 export function Certifications() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
   const [{ token, loading: globalLoading }, dispatch] = useStateValue();
-  const [currentModal, setCurrentModal] = useState(null);
-
-  const certificates = [
+  const [certificates, setCertificates] = useState([
     {
       image:
         "https://user-images.githubusercontent.com/41123597/192820934-f5a7f8fc-04e2-42b3-8644-fb0ab1e04053.jpg",
@@ -43,8 +44,27 @@ export function Certifications() {
       image:
         "https://user-images.githubusercontent.com/41123597/192820954-929acdc8-5012-4a95-92fa-6f635aaef161.jpg",
     },
-  ];
+  ]);
+  const [currentModal, setCurrentModal] = useState(null);
 
+  console.log({ token });
+
+  useEffect(() => {
+    const getCetifications = async () => {
+      const { data } = await axios.get(`${URL_API}/certifications`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log({ data });
+      setCertificates(data);
+    };
+    if (token) getCetifications();
+    /* setCertificates(certifications) */
+    return () => {};
+  }, [token]);
+
+  console.log({ certificates });
   return (
     <>
       <Container>
@@ -53,15 +73,23 @@ export function Certifications() {
             <Item id="1" className="fa-solid fa-magnifying-glass">
               <Input></Input>
             </Item>
-            <Item id="1" className="fa-solid fa-street-view">
+            <Item id="1" className="fa-solid fa-plus">
               <Input></Input>
             </Item>
             <Item id="1" className="fa-solid fa-eye">
               <Input></Input>
             </Item>
-            <Item id="1" className="fa-solid fa-fingerprint">
-              <Input></Input>
-            </Item>
+            <Item
+              id="1"
+              className="fa-solid fa-fingerprint"
+              onClick={() => {
+                setCurrentModal(
+                  <Dashboard>
+                    <DefineSchema />
+                  </Dashboard>
+                );
+              }}
+            ></Item>
           </List>
         </Sidebar>
         <Main>
@@ -73,8 +101,7 @@ export function Certifications() {
           ))}
           {token && (
             <Dashboard>
-              <Button>Button 1</Button>
-              <Button>Button 2</Button>
+              <DefineSchema />
             </Dashboard>
           )}
         </Main>
@@ -83,6 +110,14 @@ export function Certifications() {
         {...{
           active: false,
           injected: currentModal,
+          embedButton: (
+            <i
+              id="newNote"
+              type="button"
+              onClick={() => setCurrentModal(null)}
+              className="far fa-times-circle embed-button"
+            ></i>
+          ),
         }}
       />
     </>
