@@ -71,22 +71,32 @@ export function App() {
       <Content>
         <Routes>
           {RoutesFactory({
-            root: "profile",
-            parameters: ["section"],
-            subDomains: ["reset_password/:token"],
-            element: <div>Profile</div>,
-          })}
-          {RoutesFactory({
             root: "",
-            parameters: ["section"],
-            subDomains: ["reset_password/:token"],
             element: <Home />,
           })}
           {RoutesFactory({
+            root: "profile",
+            element: <h1>Profile</h1>,
+          })}
+          {RoutesFactory({
+            root: "projects",
+            element: <h1>Projects</h1>,
+          })}
+          {RoutesFactory({
+            root: "skills",
+            element: <h1>Skills</h1>,
+          })}
+          {RoutesFactory({
             root: "certifications",
-            parameters: ["section"],
-            subDomains: ["reset_password/:token"],
             element: <Certifications />,
+          })}
+          {RoutesFactory({
+            root: "organizations",
+            element: <h1>Organizations</h1>,
+          })}
+          {RoutesFactory({
+            root: "blog",
+            element: <h1>Blog</h1>,
           })}
         </Routes>
       </Content>

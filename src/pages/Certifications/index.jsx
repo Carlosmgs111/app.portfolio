@@ -39,19 +39,11 @@ export function Certifications() {
 
   useEffect(() => {
     const getCetifications = async () => {
-      const { data } = await axios.get(`${URL_API}/certifications`, {
-        headers: {
-          /* Authorization: `Bearer ${token}`, */
-        },
-      })
+      const { data } = await axios.get(`${URL_API}/certifications`)
       setCertificates(data)
     }
     const getInstitutions = async () => {
-      const { data } = await axios.get(`${URL_API}/institutions`, {
-        headers: {
-          /* Authorization: `Bearer ${token}`, */
-        },
-      })
+      const { data } = await axios.get(`${URL_API}/institutions`)
       setCertificationSchema({
         ...certificationSchema,
         emitedBy: data[0].name,
@@ -60,11 +52,8 @@ export function Certifications() {
       setInstitutions(data)
       setLoading(false)
     }
-    // if (token) {
-      getInstitutions()
-      getCetifications()
-    // }
-    /* setCertificates(certifications) */
+    getInstitutions()
+    getCetifications()
     return () => {}
   }, [token])
 

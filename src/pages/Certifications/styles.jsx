@@ -23,7 +23,7 @@ export const Button = styled.button`
 `;
 
 export const Dashboard = styled.div`
-color:white;
+  color:white;
   width: 100%;
   display: flex;
   height: fit-content;

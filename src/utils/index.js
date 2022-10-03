@@ -1,6 +1,7 @@
 import { cloneElement } from "react";
 import { Route } from "react-router-dom";
 import { plural, singular } from "pluralize";
+import {NotFound} from "../components/NotFound"
 /* passing a object with all properties to convert to css format */
 export const formatToCss = (objFormat) => {
   if (typeof objFormat == "object") {
@@ -201,6 +202,7 @@ export const RoutesFactory = ({ element, root, parameters, subDomains }) => {
       );
     }
   routes.push(<Route path={`/${root}`} exact element={element}></Route>);
+  routes.push(<Route path="*" element={<NotFound/>}></Route>);
   return routes;
 };
 
