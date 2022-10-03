@@ -23,11 +23,13 @@ export const Button = styled.button`
 `;
 
 export const Dashboard = styled.div`
+color:white;
   width: 100%;
   display: flex;
   height: fit-content;
   align-items: center;
   justify-content: space-around;
+  backdrop-filter: brightness(60%);
   overflow: scroll;
   &::-webkit-scrollbar {
     display: none;
@@ -76,7 +78,9 @@ export const fadeout = keyframes`
   }
 `;
 
-export const Item = styled.i`
+export const Item = styled.a`
+  cursor: default;
+  text-decoration:none;
   position: relative;
   display: flex;
   flex-direction: row;

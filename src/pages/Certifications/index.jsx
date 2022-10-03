@@ -25,7 +25,7 @@ export function Certifications() {
   const [loading, setLoading] = useState(true)
   const [certificationSchema, setCertificationSchema] = useState({
     title: '',
-    emitedBy: "",
+    emitedBy: '',
     // ? `{` symbol used for mark a select object controller
     'emitedBy{': [],
     emitedAt: new Date().getTime(),
@@ -41,7 +41,7 @@ export function Certifications() {
     const getCetifications = async () => {
       const { data } = await axios.get(`${URL_API}/certifications`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          /* Authorization: `Bearer ${token}`, */
         },
       })
       setCertificates(data)
@@ -49,7 +49,7 @@ export function Certifications() {
     const getInstitutions = async () => {
       const { data } = await axios.get(`${URL_API}/institutions`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          /* Authorization: `Bearer ${token}`, */
         },
       })
       setCertificationSchema({
@@ -60,10 +60,10 @@ export function Certifications() {
       setInstitutions(data)
       setLoading(false)
     }
-    if (token) {
+    // if (token) {
       getInstitutions()
       getCetifications()
-    }
+    // }
     /* setCertificates(certifications) */
     return () => {}
   }, [token])
@@ -74,17 +74,21 @@ export function Certifications() {
       <Container>
         <Sidebar>
           <List>
-            <Item id="1" className="fa-solid fa-magnifying-glass">
+            <Item id="0" className="fa-solid fa-magnifying-glass">
               <Input></Input>
             </Item>
-            <Item id="1" className="fa-solid fa-plus">
-              <Input></Input>
-            </Item>
-            <Item id="1" className="fa-solid fa-eye">
+            {token && (
+              <Item
+                id="1"
+                href="#dashboard"
+                className="fa-solid fa-plus"
+              ></Item>
+            )}
+            <Item id="2" className="fa-solid fa-eye">
               <Input></Input>
             </Item>
             <Item
-              id="1"
+              id="3"
               className="fa-solid fa-fingerprint"
               onClick={() => {
                 setCurrentModal(
@@ -109,11 +113,17 @@ export function Certifications() {
             />
           ))}
           {token && !loading && (
-            <Dashboard>
+            <Dashboard id="dashboard">
               <DefineSchema
                 {...{
-                  baseSchema:certificationSchema,
-                  nonOptionals: ["title", "emitedAt~", "image", "url", "emitedBy{"],
+                  baseSchema: certificationSchema,
+                  nonOptionals: [
+                    'title',
+                    'emitedAt~',
+                    'image',
+                    'url',
+                    'emitedBy{',
+                  ],
                   setData: (data) =>
                     setCertificates([...certificates, ...data]),
                 }}

@@ -38,6 +38,11 @@ export function useDefineSchema({setData, baseSchema=()=>{}}) {
     });
   };
 
+  const reset =()=>{
+    setAttributes({[genRandomId()]: baseSchema})
+    setSchema({})
+  }
+
   const onClick = async (e) => {
     const { name } = e.target;
     if (name === "add-button") {addDefineAttribute()};
@@ -57,6 +62,7 @@ export function useDefineSchema({setData, baseSchema=()=>{}}) {
           )
         ).data
       );
+      reset()
     }
   };
   console.log({ schema });

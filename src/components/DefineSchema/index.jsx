@@ -25,7 +25,7 @@ export function DefineSchema({ availableLabels, setData, baseSchema, nonOptional
       <h2>Define Schema</h2>
       <label hidden={true}>Label:</label>
       <input
-      hidden={true}
+        hidden={true}
         type="text"
         name="Label"
         value={label}
