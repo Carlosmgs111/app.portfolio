@@ -4,18 +4,7 @@ import { URL, URL_API } from "../services/index";
 import { getContext, CONTEXTS } from "../contexts";
 import axios from "axios";
 
-const options = ["Platzi", "Fazt Web"]
-
-export function useDefineSchema({setData}) {
-  const _attributes = {
-    title: "",
-    emitedBy: options[0],
-    "emitedBy{":options,
-    emitedAt: new Date().getTime(),
-    "emitedAt~": "2022",
-    image: "",
-    url: "",
-  };
+export function useDefineSchema({setData, baseSchema=()=>{}}) {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
   const [{ token }, dispatch] = useStateValue();
   const [label, setLabel] = useState("");
@@ -24,7 +13,9 @@ export function useDefineSchema({setData}) {
   const [error, setError] = useState(false);
   // const [data, setData] = useState(null);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setAttributes({[genRandomId()]:baseSchema})
+  }, []);
 
   const parseSchema = (object = true) => {
     const parsedSchema = object ? {} : [];
@@ -36,16 +27,14 @@ export function useDefineSchema({setData}) {
     return parsedSchema;
   };
 
-  const [attributes, setAttributes] = useState({
-    [genRandomId()]: _attributes,
-  });
+  const [attributes, setAttributes] = useState({});
 
   const listOfDefineAttributes = [];
 
   const addDefineAttribute = () => {
     setAttributes({
       ...attributes,
-      [genRandomId()]: _attributes,
+      [genRandomId()]: baseSchema,
     });
   };
 

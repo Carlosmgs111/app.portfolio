@@ -1,4 +1,4 @@
-import { beutifyLabel } from "../../../utils";
+import { beutifyLabel } from '../../../utils'
 import {
   List,
   FormStyle,
@@ -6,9 +6,9 @@ import {
   RightSide,
   DeleteButton,
   ExpandButton,
-} from "./styles";
-import { useEffect } from "react";
-import { useSwitch } from "../../../hooks/useSwitch";
+} from './styles'
+import { useEffect } from 'react'
+import { useSwitch } from '../../../hooks/useSwitch'
 
 export function DefineAttribute({
   index,
@@ -19,14 +19,13 @@ export function DefineAttribute({
   fixed = false,
   nonOptionals = [],
 }) {
-  const [isExpanded, switchIsExpanded] = useSwitch(true, false);
+  const [isExpanded, switchIsExpanded] = useSwitch(true, false)
 
-  const settingAttributes=()=>{
-    const _attributes = {};
+  const settingAttributes = () => {
+    const _attributes = {}
     for (var non in nonOptionals) {
-      nonOptionals[non] = nonOptionals[non].replace("{", "");
-      nonOptionals[non] = nonOptionals[non].replace("~", "");
-      _attributes[nonOptionals[non]] = attributes[index][nonOptionals[non]];
+      const nonOp = nonOptionals[non].replace('{', '').replace('~', '')
+      _attributes[nonOp] = attributes[index][nonOp]
     }
     return _attributes
   }
@@ -35,62 +34,61 @@ export function DefineAttribute({
     setSchema({
       ...schema,
       [index]: { ...settingAttributes() },
-    });
-  }, []);
+    })
+  }, [])
 
   const isControlledValue = (value) => {
     return (
-      new Map(Object.entries(attributes[index])).get(value + "{") ||
-      new Map(Object.entries(attributes[index])).get(value + "~")
-    );
-  };
+      new Map(Object.entries(attributes[index])).get(value + '{') ||
+      new Map(Object.entries(attributes[index])).get(value + '~')
+    )
+  }
 
   const onChange = (name, value, target) => {
-    
     setAttributes({
       ...attributes,
       [index]: {
         ...attributes[index],
         ...{
           // ! gruesome sentence, must be fixed
-          [typeof value === "object" ? name.replace("{", "") : name]:
-            typeof value === "number"
+          [typeof value === 'object' ? name.replace('{', '') : name]:
+            typeof value === 'number'
               ? Number(target.value)
-              : typeof value === "boolean"
-              ? target.value === "true"
+              : typeof value === 'boolean'
+              ? target.value === 'true'
                 ? true
                 : false
               : target.value,
         },
       },
-    });
+    })
     setSchema({
       ...schema,
       [index]: {
         ...schema[index],
         // ! gruesome sentence, must be fixed
-        [typeof value === "object"
-          ? name.replace("{", "")
-          : name.includes("~")
-          ? name.replace("~", "")
-          : name]: name.includes("~")
+        [typeof value === 'object'
+          ? name.replace('{', '')
+          : name.includes('~')
+          ? name.replace('~', '')
+          : name]: name.includes('~')
           ? Number(new Date(target.value).getTime())
-          : typeof value === "object"
+          : typeof value === 'object'
           ? target.value
-          : typeof value === "boolean"
-          ? target.value === "true"
+          : typeof value === 'boolean'
+          ? target.value === 'true'
             ? true
             : false
-          : typeof value === "string"
+          : typeof value === 'string'
           ? target.value
           : Number(target.value),
       },
-    });
-  };
+    })
+  }
 
   const Form = (attribute, onChange) => {
-    const [name, value] = attribute;
-    const keyName = `${index}-${name}`;
+    const [name, value] = attribute
+    const keyName = `${index}-${name}`
     return isControlledValue(name) ? null : (
       <FormStyle className={isExpanded}>
         <LeftSide>
@@ -99,43 +97,43 @@ export function DefineAttribute({
           ) : (
             <label>
               <input
-                style={{ marginRight: "1rem", visibility: "hidden" }}
+                style={{ marginRight: '1rem', visibility: 'hidden' }}
                 className={name}
                 onClick={(e) => {
                   Array(document.getElementsByName(keyName)[0]).forEach(
                     (input) => {
                       if (!e.target.checked) {
                         delete schema[index][
-                          input.name.replace(`${index}-`, "")
-                        ];
-                        setSchema({ ...schema });
+                          input.name.replace(`${index}-`, '')
+                        ]
+                        setSchema({ ...schema })
                       } else {
                         setSchema({
                           ...schema,
                           [index]: {
                             ...schema[index],
                             [name]:
-                              input.type === "number"
+                              input.type === 'number'
                                 ? Number(input.value)
-                                : input.type === "radio"
+                                : input.type === 'radio'
                                 ? input.checked
-                                  ? input.value === "true"
+                                  ? input.value === 'true'
                                     ? true
                                     : false
                                   : true
                                 : input.value,
                           },
-                        });
+                        })
                       }
-                    }
-                  );
+                    },
+                  )
                 }}
                 type="checkbox"
                 id={keyName}
                 onChange={() => {
                   document.getElementsByName(keyName).forEach((input) => {
-                    input.disabled = !input.disabled;
-                  });
+                    input.disabled = !input.disabled
+                  })
                 }}
               />
               {beutifyLabel(name)} :
@@ -143,25 +141,25 @@ export function DefineAttribute({
           )}
         </LeftSide>
         <RightSide>
-          {typeof value === "string" || typeof value === "number" ? (
+          {typeof value === 'string' || typeof value === 'number' ? (
             <input
-              style={{ width: "90%" }}
+              style={{ width: '90%' }}
               type={
-                name.includes("~")
-                  ? "date"
-                  : typeof value === "string"
-                  ? "text"
-                  : "number"
+                name.includes('~')
+                  ? 'date'
+                  : typeof value === 'string'
+                  ? 'text'
+                  : 'number'
               }
               name={keyName}
               value={value}
               onChange={(e) => onChange(name, value, e.target)}
               disabled={!nonOptionals.includes(name)}
             />
-          ) : typeof value === "object" ? (
+          ) : typeof value === 'object' ? (
             <>
               <select
-                style={{ width: "90%", borderRadius: ".5rem" }}
+                style={{ width: '90%', borderRadius: '.5rem' }}
                 name={keyName}
                 defaultValue={value[0]}
                 disabled={!nonOptionals.includes(name)}
@@ -172,7 +170,7 @@ export function DefineAttribute({
                     <option value={item} key={index}>
                       {item}
                     </option>
-                  );
+                  )
                 })}
               </select>
               {/* <input type="text" value="" disabled /> */}
@@ -186,7 +184,7 @@ export function DefineAttribute({
                   type="radio"
                   disabled={true}
                   value={false}
-                  checked={String(value) === "false"}
+                  checked={String(value) === 'false'}
                   onChange={(e) => onChange(name, value, e.target)}
                 />
               </label>
@@ -197,7 +195,7 @@ export function DefineAttribute({
                   type="radio"
                   disabled={true}
                   value={true}
-                  checked={String(value) === "true"}
+                  checked={String(value) === 'true'}
                   onChange={(e) => onChange(name, value, e.target)}
                 />
               </label>
@@ -205,14 +203,14 @@ export function DefineAttribute({
           )}
         </RightSide>
       </FormStyle>
-    );
-  };
-  console.log(Object.entries(attributes[index]).length);
+    )
+  }
+  console.log(Object.entries(attributes[index]).length)
   return (
     <List>
       {Object.entries(attributes[index]).map((attribute, index) => {
         if (index < nonOptionals.length + 1)
-          return <li key={index}> {Form(attribute, onChange)}</li>;
+          return <li key={index}> {Form(attribute, onChange)}</li>
         return (
           <li
             key={index}
@@ -222,16 +220,16 @@ export function DefineAttribute({
           >
             {Form(attribute, onChange)}
           </li>
-        );
+        )
       })}
       {Object.entries(attributes).length > 1 && !fixed ? (
         <DeleteButton
           type="button"
           onClick={() => {
-            delete attributes[index];
-            setAttributes({ ...attributes });
-            delete schema[index];
-            setSchema({ ...schema });
+            delete attributes[index]
+            setAttributes({ ...attributes })
+            delete schema[index]
+            setSchema({ ...schema })
           }}
         >
           Delete
@@ -240,10 +238,10 @@ export function DefineAttribute({
       {Object.entries(attributes[index]).length > 2 ? (
         <ExpandButton
           type="button"
-          className={`fas fa-chevron-${isExpanded ? "down" : "up"} p-2 item`}
+          className={`fas fa-chevron-${isExpanded ? 'down' : 'up'} p-2 item`}
           onClick={switchIsExpanded}
         />
       ) : null}
     </List>
-  );
+  )
 }

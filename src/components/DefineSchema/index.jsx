@@ -4,7 +4,7 @@ import { FormStyle, Content, Button } from "./styles";
 import { useDefineSchema } from "../../hooks/useDefineSchema";
 import { OnError } from "../OnError";
 
-export function DefineSchema({ availableLabels, setData }) {
+export function DefineSchema({ availableLabels, setData, baseSchema, nonOptionals }) {
   const {
     attributes,
     onClick,
@@ -18,7 +18,7 @@ export function DefineSchema({ availableLabels, setData }) {
     error,
     data,
     reset,
-  } = useDefineSchema({setData});
+  } = useDefineSchema({setData, baseSchema});
 
   return (
     <Content>
@@ -42,7 +42,7 @@ export function DefineSchema({ availableLabels, setData }) {
                 setSchema,
                 attributes,
                 setAttributes,
-                nonOptionals: ["title", "emitedAt~", "image", "url", "emitedBy{"],
+                nonOptionals,
               }}
             />
           );
