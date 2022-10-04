@@ -37,8 +37,15 @@ export const Dashboard = styled.div`
 `;
 
 export const Sidebar = styled.nav`
-  left: 7rem;
+  left: 0;
+  top: 10vh;
   position: fixed;
+  @media (max-width: 1360px) {
+    top: 18vh;
+  }
+  @media (max-width: 830px) {
+    top: 14vh;
+  }
 `;
 
 export const List = styled.ul`
@@ -48,16 +55,11 @@ export const List = styled.ul`
   position: relative;
   flex-wrap: wrap;
   gap: 2.5rem;
-  top: -10.6rem;
-  left: -7rem;
   width: 8rem;
   max-height: 60vh;
   padding: 2.5rem;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(6rem);
-  @media (max-width: 1360px) {
-    top: -2.3rem;
-  }
 `;
 
 export const fadein = keyframes`

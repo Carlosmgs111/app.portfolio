@@ -24,11 +24,10 @@ export const Header = styled.header`
 export const Content = styled.div`
   display: flex;
   flex-wrap: wrap;
-  position: relative;
-  align-items: center;
+  align-items: top;
   justify-content: center;
   top: 10vh;
-  max-width: 100vw;
+  width: 100%;
   min-height: 90vh;
   align-self: center;
   padding: 1rem 4vw 18vh 4vw;

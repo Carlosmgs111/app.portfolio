@@ -23,7 +23,7 @@ export const NavbarContainer = styled.div`
 `;
 
 export const NavigateBar = styled.nav`
-  margin: 4rem 10rem 0 10rem;
+  margin: 0 10rem 0 10rem;
   z-index: 1;
   &.navbar {
     display: flex;

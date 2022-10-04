@@ -1,7 +1,7 @@
 import { cloneElement } from "react";
 import { Route } from "react-router-dom";
 import { plural, singular } from "pluralize";
-import {NotFound} from "../components/NotFound"
+import { NotFound } from "../pages/NotFound";
 /* passing a object with all properties to convert to css format */
 export const formatToCss = (objFormat) => {
   if (typeof objFormat == "object") {
@@ -176,54 +176,6 @@ export const setActions = (actions, entity) => {
 };
 
 export const PAIRKV = setActions(["K", "V"]);
-
-export const RoutesFactory = ({ element, root, parameters, subDomains }) => {
-  const routes = [];
-  if (parameters)
-    for (var parameter of parameters) {
-      routes.push(
-        <Route
-          key={parameter}
-          path={`/${root}/?${parameter}:${parameter}`}
-          element={element}
-          exact
-        ></Route>
-      );
-    }
-  if (subDomains)
-    for (var subDomain of subDomains) {
-      routes.push(
-        <Route
-          key={subDomain}
-          path={`/${root}/${subDomain}`}
-          exact
-          element={element}
-        ></Route>
-      );
-    }
-  routes.push(<Route path={`/${root}`} exact element={element}></Route>);
-  routes.push(<Route path="*" element={<NotFound/>}></Route>);
-  return routes;
-};
-
-export const NavigationItemsFactory = ({ pages, login }) => {
-  const navigationItems = [];
-  for (var page of pages) {
-    const label = page.slice(page.indexOf("/") + 1);
-    navigationItems.push(
-      <p key={page} className="item" to={`/${page}`}>
-        {beutifyLabel(label)}
-      </p>
-    );
-  }
-  if (login)
-    navigationItems.push(
-      <p className="item" to="#" onClick={login.onClick}>
-        {login.label()}
-      </p>
-    );
-  return navigationItems;
-};
 
 export const filterAttrs = (obj, toRemove, oclusive = true) => {
   const newObj = {};

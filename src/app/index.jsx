@@ -3,10 +3,11 @@ import Navigation from "../components/Navigation";
 import { Route, Routes, Router } from "react-router-dom";
 import { Login } from "../components/Login";
 import { getContext, CONTEXTS } from "../contexts";
-import { RoutesFactory, NavigationItemsFactory } from "../utils";
+import { RoutesFactory, NavigationItemsFactory } from "../pages";
 import { useSwitch } from "../hooks/useSwitch";
 import { useApp } from "../hooks/useApp";
 import { Home } from "../pages/Home";
+import { Skills } from "../pages/Skills";
 import { Certifications } from "../pages/Certifications";
 
 export function App() {
@@ -84,7 +85,7 @@ export function App() {
           })}
           {RoutesFactory({
             root: "skills",
-            element: <h1>Skills</h1>,
+            element: <Skills/>,
           })}
           {RoutesFactory({
             root: "certifications",

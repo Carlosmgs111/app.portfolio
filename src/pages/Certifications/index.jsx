@@ -1,4 +1,9 @@
-import { Certification } from '../../components/Certification'
+import {
+  Certification,
+  CertificationSkeleton,
+} from '../../components/Certification'
+import { OnLoading } from '../../components/OnLoading'
+import { manyfy } from '../../utils'
 import { Modal } from '../../components/Modal'
 import { getContext, CONTEXTS } from '../../contexts'
 import { DefineSchema } from '../../components/DefineSchema'
@@ -121,6 +126,13 @@ export function Certifications() {
           )}
         </Main>
       </Container>
+      <OnLoading
+        {...{
+          loading,
+          component: Main,
+          contain: manyfy(<CertificationSkeleton />, 12),
+        }}
+      />
       <Modal
         {...{
           active: false,

@@ -1,4 +1,5 @@
 import { Container, Image, Url, Dashboard } from "./styles";
+import {CertificationSkeleton} from "./skeleton"
 
 export function Certification({ src = "", setCurrentModal = () => {} }) {
   return (
@@ -23,3 +24,5 @@ export function Certification({ src = "", setCurrentModal = () => {} }) {
     </Container>
   );
 }
+
+export  {CertificationSkeleton}
