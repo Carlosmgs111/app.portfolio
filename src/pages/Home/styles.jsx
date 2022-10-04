@@ -5,6 +5,7 @@ margin:0;
 `
 
 export const Section = styled.article`
+  border:none;
   padding: 8rem 30rem;
   margin: 8rem 0;
   min-height: 80vh;

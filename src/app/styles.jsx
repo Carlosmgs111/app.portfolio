@@ -27,18 +27,18 @@ export const Content = styled.div`
   align-items: top;
   justify-content: center;
   top: 10vh;
-  width: 100%;
+  width: 99%;
   min-height: 90vh;
   align-self: center;
-  padding: 1rem 4vw 18vh 4vw;
+  padding: 4rem 4vw 18vh 4vw;
   @media (max-width: 1360px) {
-    padding: 10rem 4vw 18vh 4vw;
+    padding: 20rem 4vw 18vh 4vw;
   }
   @media (max-width: 830px) {
-    padding: 6rem 4vw 18vh 4vw;
+    padding: 18rem 4vw 18vh 4vw;
   }
   @media (max-width: 480px) {
-    padding: 6rem 1rem 18vh 1rem;
+    padding: 15rem 1rem 18vh 1rem;
   }
 `;
 

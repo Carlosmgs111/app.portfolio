@@ -13,18 +13,31 @@ export const Main = styled.div`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  width: 100vw;
   margin: 0;
-  padding: 0 0 0 20rem;
+  padding: 0 0 0 22rem;
   @media (max-width: 480px) {
     padding: 0.1rem;
   }
 `
 
 export const CertificationContainer = styled.div`
+  display: flex;
+  flex-direction: ${({ reverse }) => (reverse ? 'row-reverse' : 'row')};
   position: relative;
   min-height: 45rem;
   width: 100%;
-  background-color: rgba(161, 63, 135, 0.5);
+`
+
+export const InnerContain = styled.div`
+  &.image {
+    width: 35%;
+  }
+  &.contain {
+    width: 65%;
+  }
+  height: 40rem;
+  background-color: #dc58589d;
 `
 
 export const Sidebar = styled.nav`
