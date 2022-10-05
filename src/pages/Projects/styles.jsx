@@ -5,15 +5,16 @@ export const Container = styled.div`
 `
 
 export const Title = styled.h1`
+  padding: 4rem ;
   text-align: center;
   width: 100%;
-  font-size: 4rem;
+  font-size: 6rem;
 `
 
 export const Image = styled.img`
-  border-radius: 0.2rem;
+  border-radius: 1rem;
   max-width: 40%;
-  height:fit-content;
+  height: fit-content;
   object-fit: cover;
   object-position: center center;
   @media (max-width: 1360px) {
@@ -31,6 +32,9 @@ export const DescriptionsContainer = styled.div`
   justify-content: space-between;
   gap: 3rem;
   width: 55%;
+  padding: 2rem;
+  background-color: rgba(225, 225, 225, 0.7);
+  border-radius: 1rem;
   @media (max-width: 1360px) {
     width: 100%;
   }
@@ -56,15 +60,15 @@ export const ProjectContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   gap: 3rem;
-  padding: 4rem 8rem;
+  /* border-radius: 1rem;
+  border: 4px solid rgba(0, 0, 0, 0.5); */
+  padding: 1rem;
+  /* padding: 4rem 8rem; */
   min-height: 40rem;
   width: 100%;
-  background-color: rgba(85, 25, 65, 0.5);
+  /* background-color: rgba(85, 25, 65, 0.5); */
   @media (max-width: 1360px) {
     flex-direction: column;
     align-items: center;
-  }
-  @media (max-width: 480px) {
-    padding: 1rem 2rem;
   }
 `
