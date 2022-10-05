@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   margin: 0;
+  width:100vw;
   h1 {
     font-size: 10rem;
   }
@@ -13,9 +14,8 @@ export const Main = styled.div`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  width: 100vw;
-  margin: 0;
-  padding: 0 0 0 22rem;
+  width: calc(100% + 4vw);
+  padding-left: 20rem;
   @media (max-width: 480px) {
     padding: 0.1rem;
   }

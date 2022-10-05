@@ -1,4 +1,4 @@
-import { Text, Container, Section } from "./styles";
+import { Text, Container, Section } from './styles'
 
 export function Home() {
   return (
@@ -34,5 +34,5 @@ export function Home() {
         </Text>
       </Section>
     </Container>
-  );
+  )
 }

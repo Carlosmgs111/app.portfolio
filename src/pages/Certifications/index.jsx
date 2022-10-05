@@ -3,6 +3,7 @@ import {
   CertificationSkeleton,
 } from '../../components/Certification'
 import { OnLoading } from '../../components/OnLoading'
+import { OnError } from '../../components/OnError'
 import { manyfy } from '../../utils'
 import { Modal } from '../../components/Modal'
 import { getContext, CONTEXTS } from '../../contexts'
@@ -28,6 +29,7 @@ export function Certifications() {
   const [certificates, setCertificates] = useState([])
   const [currentModal, setCurrentModal] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [certificationSchema, setCertificationSchema] = useState({
     title: '',
     emitedBy: '',
@@ -44,18 +46,28 @@ export function Certifications() {
 
   useEffect(() => {
     const getCetifications = async () => {
-      const { data } = await axios.get(`${URL_API}/certifications`)
-      setCertificates(data)
+      try {
+        const { data } = await axios.get(`${URL_API}/certifications`)
+        setCertificates(data)
+      } catch (e) {
+        setLoading(false)
+        setError(e)
+      }
     }
     const getInstitutions = async () => {
-      const { data } = await axios.get(`${URL_API}/institutions`)
-      setCertificationSchema({
-        ...certificationSchema,
-        emitedBy: data[0].name,
-        'emitedBy{': data.map((i) => i.name),
-      })
-      setInstitutions(data)
-      setLoading(false)
+      try {
+        const { data } = await axios.get(`${URL_API}/institutions`)
+        setCertificationSchema({
+          ...certificationSchema,
+          emitedBy: data[0].name,
+          'emitedBy{': data.map((i) => i.name),
+        })
+        setInstitutions(data)
+        setLoading(false)
+      } catch (e) {
+        setLoading(false)
+        setError(e)
+      }
     }
     getInstitutions()
     getCetifications()
@@ -133,6 +145,7 @@ export function Certifications() {
           contain: manyfy(<CertificationSkeleton />, 12),
         }}
       />
+      <OnError {...{ error }} />
       <Modal
         {...{
           active: false,

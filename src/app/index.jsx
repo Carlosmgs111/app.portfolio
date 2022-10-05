@@ -8,6 +8,7 @@ import { useSwitch } from "../hooks/useSwitch";
 import { useApp } from "../hooks/useApp";
 import { Home } from "../pages/Home";
 import { Skills } from "../pages/Skills";
+import {Projects}from "../pages/Projects"
 import { Certifications } from "../pages/Certifications";
 
 export function App() {
@@ -81,7 +82,7 @@ export function App() {
           })}
           {RoutesFactory({
             root: "projects",
-            element: <h1>Projects</h1>,
+            element: <Projects/>,
           })}
           {RoutesFactory({
             root: "skills",

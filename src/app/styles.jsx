@@ -27,8 +27,8 @@ export const Content = styled.div`
   align-items: top;
   justify-content: center;
   top: 10vh;
-  width: 99%;
-  min-height: 90vh;
+  width: 100%;
+  min-height: 70vh;
   align-self: center;
   padding: 4rem 4vw 18vh 4vw;
   @media (max-width: 1360px) {

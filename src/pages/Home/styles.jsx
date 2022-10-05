@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-margin:0;
+  margin: 0;
 `
 
 export const Section = styled.article`
-  border:none;
+  border: none;
   padding: 8rem 30rem;
   margin: 8rem 0;
   min-height: 80vh;
