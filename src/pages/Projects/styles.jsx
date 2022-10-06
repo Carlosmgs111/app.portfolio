@@ -11,18 +11,33 @@ export const Title = styled.h1`
   font-size: 6rem;
 `
 
-export const Image = styled.img`
-  border-radius: 1rem;
+export const ImagesContainer = styled.div`
+  display: flex;
+  flex-direction: column wrap;
+  flex-wrap: wrap;
   max-width: 40%;
+  justify-content: left;
+  gap:1.2rem;
+  border-radius: 1rem;
+  @media (max-width: 1360px) {
+    max-width: 100%;
+    justify-content:space-between;
+  }
+`
+
+export const Image = styled.img`
+  width: 100%;
+  border-radius: .4rem;
   height: fit-content;
   object-fit: cover;
   object-position: center center;
   @media (max-width: 1360px) {
-    max-width: 80%;
+    width:47%;
   }
-  @media (max-width: 830px) {
-    max-width: 100%;
+  @media (max-width: 600px) {
+    width:100%;
   }
+ 
 `
 
 export const DescriptionsContainer = styled.div`
