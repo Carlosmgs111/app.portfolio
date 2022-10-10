@@ -41,10 +41,10 @@ export const Sidebar = styled.nav`
   top: 10vh;
   position: fixed;
   @media (max-width: 1360px) {
-    top: 18vh;
+    top: 14vh;
   }
   @media (max-width: 830px) {
-    top: 14vh;
+    top: 10vh;
   }
 `;
 
@@ -54,10 +54,10 @@ export const List = styled.ul`
   display: flex;
   position: relative;
   flex-wrap: wrap;
-  gap: 2.5rem;
-  width: 8rem;
+  padding:1.8rem;
+  gap: 1.5rem;
+  width: 7rem;
   max-height: 60vh;
-  padding: 2.5rem;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(6rem);
 `;
@@ -87,7 +87,7 @@ export const Item = styled.a`
   display: flex;
   flex-direction: row;
   left: 0rem;
-  font-size: 3rem;
+  font-size: 2.8rem;
   color: hsl(19, 97%, 51%);
   -webkit-text-stroke: 1.5px black;
   height: fit-content;

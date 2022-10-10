@@ -5,6 +5,7 @@ import {
   Link,
   NavbarContainer,
   Button,
+  Banner
 } from "./styles";
 import { Children, cloneElement, useEffect, useState } from "react";
 import { useSwitch } from "../../hooks/useSwitch";
@@ -24,7 +25,7 @@ export default function Navigation({ children, banner, className }) {
     <NavbarContainer className={`${className}`}>
       <NavigateBar className={className}>
         {banner && (
-          <Link
+          <Banner
             onClick={() => {
               if (menu.show) switchMenu();
               setCurrent(null);
@@ -32,7 +33,7 @@ export default function Navigation({ children, banner, className }) {
             to={banner.to}
           >
             {banner.title}
-          </Link>
+          </Banner>
         )}
         <Button
           className={`${menu.name}`}

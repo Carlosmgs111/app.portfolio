@@ -11,13 +11,13 @@ export const Header = styled.header`
   backdrop-filter: brightness(40%) blur(0.6rem);
   @media(max-width: 1360px){
     position:absolute;
-    height: 18vh;
-  }
-  @media(max-width: 830px){
     height: 14vh;
   }
+  @media(max-width: 830px){
+    height: 10vh;
+  }
   @media(max-width: 480px){
-    height: 12vh;
+    height: 8vh;
   }
 `;
 
@@ -30,15 +30,16 @@ export const Content = styled.div`
   width: 100%;
   min-height: 70vh;
   align-self: center;
-  padding: 4rem 4vw 18vh 4vw;
+  padding: 4rem 4vw 12vh 4vw;
   @media (max-width: 1360px) {
-    padding: 20rem 4vw 18vh 4vw;
+    min-height: 80vh;
+    padding: 20rem 4vw 12vh 4vw;
   }
   @media (max-width: 830px) {
-    padding: 18rem 4vw 18vh 4vw;
+    padding: 18rem 4vw 12vh 4vw;
   }
   @media (max-width: 480px) {
-    padding: 15rem 1rem 18vh 1rem;
+    padding: 15rem 1rem 12vh 1rem;
   }
 `;
 
@@ -54,15 +55,15 @@ export const Footer = styled.footer`
 export const Banner = styled.h1`
   color: hsl(67, 100%, 55%);
   font-weight: bold;
-  font-size: 5.8rem;
+  font-size: 4.4rem;
   @media(max-width:480px){
-    font-size: 3.8rem;
+    font-size: 2.6rem;
   }
 `;
 
 export const Icon = styled.i`
   top: 0;
-  font-size:3.5rem;
+  font-size: 2.5rem;
   color: ${({ state }) =>
     !state ? "hsl(349.9, 95.7%, 36.4%)" : "hsl(140, 71%, 44%)"};
   -webkit-text-stroke: 1.5px black;

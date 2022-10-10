@@ -10,7 +10,7 @@ export const ModalStyle = styled.div`
   /* background: rgba(240, 38, 223, 0.1); */
   backdrop-filter: blur(5px);
   color: white;
-  z-index: 1;
+  z-index: ${({over})=>over?1:0};
   opacity: 1;
   animation: modal 500ms ease-out forwards;
   transition: transform 1s linear;

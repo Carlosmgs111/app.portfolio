@@ -48,9 +48,9 @@ export const Sidebar = styled.nav`
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   @media (max-width: 1360px) {
-    top: 18vh;
+    top: 14vh;
   }
   @media (max-width: 830px) {
-    top: 14vh;
+    top: 10vh;
   }
 `

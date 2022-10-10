@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  /* width:99%; */
 `
 
 export const Title = styled.h1`
@@ -21,7 +20,7 @@ export const ImagesContainer = styled.div`
   border-radius: 1rem;
   @media (max-width: 1360px) {
     max-width: 100%;
-    justify-content:space-between;
+    justify-content:space-around;
   }
 `
 
@@ -45,10 +44,11 @@ export const DescriptionsContainer = styled.div`
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
+  height:fit-content;
   gap: 3rem;
   width: 55%;
-  padding: 2rem;
-  background-color: rgba(225, 225, 225, 0.7);
+  padding: 5rem;
+  background-color:${({even})=> even ? "rgba(228, 255, 26, .6)": "#ff811a99"} ;
   border-radius: 1rem;
   @media (max-width: 1360px) {
     width: 100%;
@@ -57,7 +57,7 @@ export const DescriptionsContainer = styled.div`
 
 export const Description = styled.article`
   width: 100%;
-  font-size: 2.4rem;
+  font-size: 2rem;
   text-align: left;
   @media (max-width: 830px) {
     width: 100%;
@@ -72,16 +72,12 @@ export const Description = styled.article`
 export const ProjectContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: ${({even})=>even?"row":"row-reverse"};
   justify-content: space-between;
   gap: 3rem;
-  /* border-radius: 1rem;
-  border: 4px solid rgba(0, 0, 0, 0.5); */
   padding: 1rem;
-  /* padding: 4rem 8rem; */
   min-height: 40rem;
   width: 100%;
-  /* background-color: rgba(85, 25, 65, 0.5); */
   @media (max-width: 1360px) {
     flex-direction: column;
     align-items: center;

@@ -29,24 +29,18 @@ export const NavigateBar = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap:2rem;
     padding: 0 2vw;
     width: inherit;
     height: inherit;
     @media (max-width: 1360px) {
-      justify-content: center;
       display: block;
     }
     @media (max-width: 1035px) {
-      margin: 4rem 8rem 0 8rem;
-      display: block;
+      margin: 2rem 8rem 0 8rem;
     }
     @media (max-width: 995px) {
-      margin: 4rem 2rem 0 2rem;
-      display: block;
-    }
-    @media (max-width: 895px) {
-      margin: 4rem 0 0 0;
-      display: block;
+      margin: 2rem 4rem 0 4rem;
     }
   }
   &.sidebar {
@@ -78,13 +72,14 @@ export const ItemsList = styled.ul`
   border-radius: 6px;
   height: auto;
   &.navbar {
-    font-size: 3.8rem;
+    font-size: 2.8rem;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     align-content: center;
-    padding: 0 8px;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     @media (max-width: 830px) {
       background-color:rgba(0, 0, 0, .9);
@@ -126,6 +121,7 @@ export const Item = styled.li`
   &.selected {
     color: rgb(228, 255, 26);
   }
+  margin: 0 auto;
   animation: 1.2s ${fadeout} ease;
   z-index: 1;
   list-style: none;
@@ -133,10 +129,9 @@ export const Item = styled.li`
   text-decoration: none;
   color: ${({ selected }) =>
     selected ? "rgb(228, 255, 26)" : "rgba(228, 255, 26, .4)"};
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 1.8rem;
+  font-weight: 500;
   font-family: "Quicksand", sans-serif;
-  display: block;
   text-align: center;
   font-style: none !important;
   &:hover {
@@ -268,7 +263,7 @@ export const Item = styled.li`
     }}
   }
   @media(max-width:830px){
-    width:fit-content;
+    width: fit-content;
   }
   @media(max-width:480px){
     font-size: 1.8rem;
@@ -286,12 +281,17 @@ export const Button = styled.i`
     font-size: 4rem;
   }
   @media (max-width: 830px) {
-    top: 5.6rem;
+    top: 2rem;
   }
   @media (max-width: 480px) {
-    top: 4.8rem;
+    top: 1.8rem;
     font-size: 3rem;
   }
+`;
+
+export const Banner = styled(LinkRouter)`
+  ${Item.componentStyle.rules}
+  margin:0;
 `;
 
 export const Link = styled(LinkRouter)`

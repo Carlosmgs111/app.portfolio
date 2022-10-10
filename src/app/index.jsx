@@ -1,31 +1,48 @@
-import { Header, Content, Footer, Banner, Icon } from "./styles";
-import Navigation from "../components/Navigation";
-import { Route, Routes, Router } from "react-router-dom";
-import { Login } from "../components/Login";
-import { getContext, CONTEXTS } from "../contexts";
-import { RoutesFactory, NavigationItemsFactory } from "../pages";
-import { useSwitch } from "../hooks/useSwitch";
-import { useApp } from "../hooks/useApp";
-import { Home } from "../pages/Home";
-import { Skills } from "../pages/Skills";
-import {Projects}from "../pages/Projects"
-import { Certifications } from "../pages/Certifications";
+import { Header, Content, Footer, Banner, Icon } from './styles'
+import Navigation from '../components/Navigation'
+import { Route, Routes, Router } from 'react-router-dom'
+import { Login } from '../components/Login'
+import { getContext, CONTEXTS } from '../contexts'
+import { RoutesFactory, NavigationItemsFactory } from '../pages'
+import { useSwitch } from '../hooks/useSwitch'
+import { useApp } from '../hooks/useApp'
+import { Home } from '../pages/Home'
+import { Skills } from '../pages/Skills'
+import { Projects } from '../pages/Projects'
+import { Certifications } from '../pages/Certifications'
+import { Modal } from '../components/Modal'
 
 export function App() {
-  const { clearAuth } = useApp();
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
-  const [{ token, loading: globalLoading }, dispatch] = useStateValue();
-  const [showLogin, switchShowLogin] = useSwitch(false, true);
+  const { clearAuth } = useApp()
+  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
+  const [{ token, loading: globalLoading }, dispatch] = useStateValue()
+  const [showLogin, switchShowLogin] = useSwitch(false, true)
 
   const pages = [
-    "projects",
-    "skills",
-    "certifications",
-    "organizations",
-    "blog",
-  ];
+    'projects',
+    'technologies',
+    'skills',
+    'certifications',
+    'organizations',
+    'blog',
+  ]
 
-  if (token) pages.unshift("profile");
+  if (token) pages.unshift('profile')
+
+  const inConstruction = (
+    <Modal
+      {...{
+        over: false,
+        injected: (
+          <img
+            src={
+              'https://www.dcs.mx/Manual%20de%20usuario/tutoriales/images/5.jpg'
+            }
+          />
+        ),
+      }}
+    />
+  )
 
   return (
     <>
@@ -45,7 +62,7 @@ export function App() {
       <Header>
         <Navigation
           className="navbar"
-          banner={{ title: <Banner>Portfolio</Banner>, to: "/" }}
+          banner={{ title: <Banner>Blogfolio</Banner>, to: '/' }}
         >
           {NavigationItemsFactory({
             pages,
@@ -57,12 +74,12 @@ export function App() {
                 ></Icon>
               ),
               onClick: (e) => {
-                e.preventDefault();
-                switchShowLogin();
+                e.preventDefault()
+                switchShowLogin()
                 if (token) {
-                  if (window.confirm("Are you sure you want logout?")) {
-                    clearAuth();
-                    dispatch({ type: ACTIONS.reset });
+                  if (window.confirm('Are you sure you want logout?')) {
+                    clearAuth()
+                    dispatch({ type: ACTIONS.reset })
                   }
                 }
               },
@@ -73,36 +90,41 @@ export function App() {
       <Content>
         <Routes>
           {RoutesFactory({
-            root: "",
+            root: '',
             element: <Home />,
           })}
           {RoutesFactory({
-            root: "profile",
-            element: <h1>Profile</h1>,
+            root: 'profile',
+            element: inConstruction,
           })}
           {RoutesFactory({
-            root: "projects",
-            element: <Projects/>,
+            root: 'projects',
+            element: <Projects />,
           })}
           {RoutesFactory({
-            root: "skills",
-            element: <Skills/>,
+            root: 'technologies',
+            element: inConstruction,
           })}
           {RoutesFactory({
-            root: "certifications",
+            root: 'skills',
+            element: <Skills />,
+          })}
+          {RoutesFactory({
+            root: 'certifications',
+            subDomains: ['uuid', 'title'],
             element: <Certifications />,
           })}
           {RoutesFactory({
-            root: "organizations",
-            element: <h1>Organizations</h1>,
+            root: 'organizations',
+            element: inConstruction,
           })}
           {RoutesFactory({
-            root: "blog",
-            element: <h1>Blog</h1>,
+            root: 'blog',
+            element: inConstruction,
           })}
         </Routes>
       </Content>
       <Footer></Footer>
     </>
-  );
+  )
 }

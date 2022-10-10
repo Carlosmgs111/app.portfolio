@@ -1,5 +1,10 @@
-import { Children, cloneElement } from "react";
-import { ModalStyle, EmbedButton,NativeEmbedButton, ModalContainer } from "./styles";
+import { Children, cloneElement } from 'react'
+import {
+  ModalStyle,
+  EmbedButton,
+  NativeEmbedButton,
+  ModalContainer,
+} from './styles'
 
 export const Modal = ({
   children,
@@ -8,9 +13,12 @@ export const Modal = ({
   embedButton,
   active = false,
   onClick,
+  over = true,
 }) => {
   return active || children || injected ? (
-    <ModalStyle className={`${className}`} onClick={onClick || null}>
+    <ModalStyle
+      {...{ classname: `${className}`, onClick: onClick || null, over }}
+    >
       {children
         ? Children.toArray(children).map((child) =>
             cloneElement(child, {
@@ -18,12 +26,14 @@ export const Modal = ({
                 <EmbedButton>{child.props.embedButton}</EmbedButton>
               ) : null,
               disabled: true,
-            })
+            }),
           )
         : injected}
-      {embedButton ? <NativeEmbedButton>{embedButton}</NativeEmbedButton> : null}
+      {embedButton ? (
+        <NativeEmbedButton>{embedButton}</NativeEmbedButton>
+      ) : null}
     </ModalStyle>
-  ) : null;
-};
+  ) : null
+}
 
-export { ModalContainer };
+export { ModalContainer }

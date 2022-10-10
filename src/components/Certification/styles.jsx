@@ -7,6 +7,7 @@ export const Container = styled.div`
   height: auto;
   min-width: 45rem;
   max-width: 45rem;
+  min-height: 35rem;
   max-height: 45rem;
   backdrop-filter: blur(6px) brightness(80%);
   display: block;
