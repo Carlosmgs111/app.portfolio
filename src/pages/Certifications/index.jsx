@@ -25,6 +25,7 @@ import {
 export function Certifications() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
   const [{ token, loading: globalLoading }, dispatch] = useStateValue()
+  
   const [institutions, setInstitutions] = useState([])
   const [certificates, setCertificates] = useState([])
   const [currentModal, setCurrentModal] = useState(null)

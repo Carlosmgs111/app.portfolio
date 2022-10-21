@@ -45,7 +45,7 @@ export function useDefineSchema({setData, baseSchema=()=>{}}) {
 
   const onClick = async (e) => {
     const { name } = e.target;
-    if (name === "add-button") {addDefineAttribute()};
+    if (name === "add-button") addDefineAttribute();
     if (name === "save-button") {
       setData(
         (

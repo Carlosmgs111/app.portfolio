@@ -39,7 +39,7 @@ export const Content = styled.div`
     padding: 18rem 4vw 12vh 4vw;
   }
   @media (max-width: 480px) {
-    padding: 15rem 1rem 12vh 1rem;
+    padding: 15rem 0 12vh 0;
   }
 `;
 

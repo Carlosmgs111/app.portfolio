@@ -1,47 +1,104 @@
-import { Container, Title, ProjectContainer, Image,ImagesContainer, Description, DescriptionsContainer, MetaContainer } from './styles'
-
-const projects = [
-  {
-    title:"Synapse",
-    descriptions:["Cillum ex laborum dolore est ut voluptate eu fugiat ad labore in. Aliqua mollit aliqua qui ipsum excepteur duis exercitation. Velit laboris exercitation qui ullamco amet qui dolore laborum ut eu anim deserunt laborum dolor. Elit in Lorem deserunt do. Sunt et dolor laboris sit enim.","Nostrud cillum adipisicing tempor excepteur ad do. In fugiat adipisicing aliqua in laborum fugiat. Nisi veniam ullamco officia proident dolore occaecat incididunt enim deserunt. Occaecat ad cillum culpa dolor fugiat occaecat ullamco veniam consequat laborum culpa ullamco aliquip."],
-    images:["https://user-images.githubusercontent.com/41123597/194403562-b21d983e-9898-4a7b-8b5a-d40f879a68ac.png", "https://user-images.githubusercontent.com/41123597/192820816-3c85f659-a69d-498d-9fa9-7cf2551f86bb.jpg"]
-  }
-  ]
-
-const populate = ()=>{
-  const projectContainers = []
-  projects.map((project, index)=>projectContainers.push(<ProjectContainer even={index%2 === 0}>
-      <Title>{project.title}</Title>
-      <ImagesContainer>{project.images.map((image)=><Image src={image}/>)}</ImagesContainer>
-      <DescriptionsContainer even={index%2 === 0}>{project.descriptions.map((description)=><Description>{description}</Description>)}</DescriptionsContainer>
-    </ProjectContainer>))
-    
-  return projectContainers
-}
+import { useState, useEffect } from 'react'
+import { getContext, CONTEXTS } from '../../contexts'
+import { useSwitch } from '../../hooks/useSwitch'
+import axios from 'axios'
+import { URL_API } from '../../services'
+import {
+  Container,
+  Title,
+  ProjectContainer,
+  Image,
+  ImagesContainer,
+  Description,
+  DescriptionsContainer,
+  MainContainer,
+  Sidebar,
+  SidebarPanel,
+  ItemList,
+  Item,
+} from './styles'
 
 export function Projects() {
+  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
+  const [{ token, loading: globalLoading }, dispatch] = useStateValue()
+
+  const [projects, setProjects] = useState([])
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [expand, switchExpand] = useSwitch(false, true)
+  const [projectSchema, setProjectSchema] = useState({
+    name: '',
+    emitedBy: '',
+    // ? `{` symbol used for mark a select object controller
+    'emitedBy{': [],
+    emitedAt: new Date().getTime(),
+    // ? `~` symbol used for mark a date object controller
+    'emitedAt~': new Date().toISOString().slice(0, 10),
+    image: '',
+    url: '',
+  })
+  console.log({ expand })
+  const populate = (projects) => {
+    const projectContainers = []
+    projects.map((project, index) =>
+      projectContainers.push(
+        <ProjectContainer even={index % 2 === 0}>
+          <Title>{project.name}</Title>
+          <ImagesContainer even={index % 2 === 0}>
+            {project.images.map((image) => (
+              <Image src={image} />
+            ))}
+          </ImagesContainer>
+          <DescriptionsContainer even={index % 2 === 0}>
+            {project.descriptions.map((description) => (
+              <Description>{description}</Description>
+            ))}
+          </DescriptionsContainer>
+        </ProjectContainer>,
+      ),
+    )
+
+    return projectContainers
+  }
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const { data } = await axios.get(`${URL_API}/projects`)
+        setProjects(data)
+        console.log({ data })
+      } catch (e) {
+        setLoading(false)
+        setError(e)
+      }
+    }
+    fetchProjects()
+  }, [token])
+
   return (
     <Container>
-      <ProjectContainer even={1%2 === 0}>
-        <Title>Project</Title>
-        <ImagesContainer>
-        <Image src="https://user-images.githubusercontent.com/41123597/194403562-b21d983e-9898-4a7b-8b5a-d40f879a68ac.png"/>
-        <Image src="https://user-images.githubusercontent.com/41123597/192820816-3c85f659-a69d-498d-9fa9-7cf2551f86bb.jpg"/>
-        <Image src="https://user-images.githubusercontent.com/41123597/192820822-889a1fe2-c265-4e54-846d-6392ee8b2b8a.jpg"/>
-        </ImagesContainer>
-        <DescriptionsContainer even={1%2 === 0}>
-        <Description>Cillum ex laborum dolore est ut voluptate eu fugiat ad labore in. Aliqua mollit aliqua qui ipsum excepteur duis exercitation. Velit laboris exercitation qui ullamco amet qui dolore laborum ut eu anim deserunt laborum dolor. Elit in Lorem deserunt do. Sunt et dolor laboris sit enim.</Description>
-        <Description>Nostrud cillum adipisicing tempor excepteur ad do. In fugiat adipisicing aliqua in laborum fugiat. Nisi veniam ullamco officia proident dolore occaecat incididunt enim deserunt. Occaecat ad cillum culpa dolor fugiat occaecat ullamco veniam consequat laborum culpa ullamco aliquip.</Description>
-        <Description>Nostrud cillum adipisicing tempor excepteur ad do. In fugiat adipisicing aliqua in laborum fugiat. Nisi veniam ullamco officia proident dolore occaecat incididunt enim deserunt. Occaecat ad cillum culpa dolor fugiat occaecat ullamco veniam consequat laborum culpa ullamco aliquip.</Description>
-        <Description>Cillum ex laborum dolore est ut voluptate eu fugiat ad labore in. Aliqua mollit aliqua qui ipsum excepteur duis exercitation. Velit laboris exercitation qui ullamco amet qui dolore laborum ut eu anim deserunt laborum dolor. Elit in Lorem deserunt do. Sunt et dolor laboris sit enim.</Description>
-        <Description>Nostrud cillum adipisicing tempor excepteur ad do. In fugiat adipisicing aliqua in laborum fugiat. Nisi veniam ullamco officia proident dolore occaecat incididunt enim deserunt. Occaecat ad cillum culpa dolor fugiat occaecat ullamco veniam consequat laborum culpa ullamco aliquip.</Description>
-        <Description>Nostrud cillum adipisicing tempor excepteur ad do. In fugiat adipisicing aliqua in laborum fugiat. Nisi veniam ullamco officia proident dolore occaecat incididunt enim deserunt. Occaecat ad cillum culpa dolor fugiat occaecat ullamco veniam consequat laborum culpa ullamco aliquip.</Description>
-        <Description>Cillum ex laborum dolore est ut voluptate eu fugiat ad labore in. Aliqua mollit aliqua qui ipsum excepteur duis exercitation. Velit laboris exercitation qui ullamco amet qui dolore laborum ut eu anim deserunt laborum dolor. Elit in Lorem deserunt do. Sunt et dolor laboris sit enim.</Description>
-        <Description>Nostrud cillum adipisicing tempor excepteur ad do. In fugiat adipisicing aliqua in laborum fugiat. Nisi veniam ullamco officia proident dolore occaecat incididunt enim deserunt. Occaecat ad cillum culpa dolor fugiat occaecat ullamco veniam consequat laborum culpa ullamco aliquip.</Description>
-        <Description>Nostrud cillum adipisicing tempor excepteur ad do. In fugiat adipisicing aliqua in laborum fugiat. Nisi veniam ullamco officia proident dolore occaecat incididunt enim deserunt. Occaecat ad cillum culpa dolor fugiat occaecat ullamco veniam consequat laborum culpa ullamco aliquip.</Description>
-      </DescriptionsContainer>
-      </ProjectContainer>
-      {populate()}
+      <Sidebar>
+        <SidebarPanel id="projects-sidebar-panel">
+          <Item
+            className={`fa-solid ${expand ? 'fa-xmark' : 'fa-bars'}`}
+            onClick={switchExpand}
+          />
+          {token && <Item className="fa-solid fa-plus" />}
+        </SidebarPanel>
+        <ItemList
+          {...{
+            panelHeight: document.getElementById('projects-sidebar-panel')
+              ?.clientHeight,
+          }}
+        >
+          <Item className="fa-regular fa-circle">
+            <Item className="inner" {...{ show: expand }}>
+              Synapse
+            </Item>
+          </Item>
+        </ItemList>
+      </Sidebar>
+      <MainContainer>{populate(projects)}</MainContainer>
     </Container>
   )
 }

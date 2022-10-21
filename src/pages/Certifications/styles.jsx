@@ -13,8 +13,8 @@ export const Main = styled.div`
   gap: 10px;
   flex-wrap: wrap;
   padding: 0 10rem;
-  @media (max-width: 480px) {
-    padding: 0.1rem;
+  @media(max-width: 700px) {
+    padding: 0;
   }
 `;
 
@@ -89,6 +89,7 @@ export const Item = styled.a`
   left: 0rem;
   font-size: 2.8rem;
   color: hsl(19, 97%, 51%);
+  margin:auto;
   -webkit-text-stroke: 1.5px black;
   height: fit-content;
   input {
