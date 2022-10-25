@@ -1,3 +1,4 @@
+
 import { Header, Content, Footer, Banner, Icon } from './styles'
 import Navigation from '../components/Navigation'
 import { Route, Routes, Router } from 'react-router-dom'

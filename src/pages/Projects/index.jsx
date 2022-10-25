@@ -1,31 +1,25 @@
 import { useState, useEffect } from 'react'
 import { getContext, CONTEXTS } from '../../contexts'
-import { useSwitch } from '../../hooks/useSwitch'
 import axios from 'axios'
 import { URL_API } from '../../services'
-import {
-  Container,
-  Title,
-  ProjectContainer,
-  Image,
-  ImagesContainer,
-  Description,
-  DescriptionsContainer,
-  MainContainer,
-  Sidebar,
-  SidebarPanel,
-  ItemList,
-  Item,
-} from './styles'
+import { Project } from '../../containers/Project'
+import { ProjectsSidebar } from '../../components/Sidebars/ProjectsSidebar'
+import { labelCases } from '../../utils'
+import { Container, MainContainer } from './styles'
 
 export function Projects() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
   const [{ token, loading: globalLoading }, dispatch] = useStateValue()
 
-  const [projects, setProjects] = useState([])
+  const [projects, setProjects] = useState([
+    { name: 'Project 1', descriptions: [], images: [] },
+    { name: 'Project 2', descriptions: [], images: [] },
+    { name: 'Project 3', descriptions: [], images: [] },
+    { name: 'Project 4', descriptions: [], images: [] },
+  ])
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [expand, switchExpand] = useSwitch(false, true)
+  const [refs, setRefs] = useState([])
   const [projectSchema, setProjectSchema] = useState({
     name: '',
     emitedBy: '',
@@ -37,35 +31,31 @@ export function Projects() {
     image: '',
     url: '',
   })
-  console.log({ expand })
-  const populate = (projects) => {
-    const projectContainers = []
-    projects.map((project, index) =>
-      projectContainers.push(
-        <ProjectContainer even={index % 2 === 0}>
-          <Title>{project.name}</Title>
-          <ImagesContainer even={index % 2 === 0}>
-            {project.images.map((image) => (
-              <Image src={image} />
-            ))}
-          </ImagesContainer>
-          <DescriptionsContainer even={index % 2 === 0}>
-            {project.descriptions.map((description) => (
-              <Description>{description}</Description>
-            ))}
-          </DescriptionsContainer>
-        </ProjectContainer>,
-      ),
-    )
 
-    return projectContainers
+  const updateRefs = (ref, show) => {
+    if (show && !refs.includes(ref)) refs.push(ref)
+    if (!show && refs.includes(ref)) refs.splice(refs.indexOf(ref), 1)
+    setRefs([...refs])
+  }
+
+  const struct = (projects) => {
+    const projectContainers = []
+    const indexes = []
+    projects.map((project, index) => {
+      projectContainers.push(
+        <Project key={index} {...{ ...project, index, updateRefs }} />,
+      )
+      indexes.push(project.name)
+    })
+
+    return [projectContainers, indexes]
   }
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const { data } = await axios.get(`${URL_API}/projects`)
-        setProjects(data)
+        setProjects([...projects, ...data])
         console.log({ data })
       } catch (e) {
         setLoading(false)
@@ -73,32 +63,18 @@ export function Projects() {
       }
     }
     fetchProjects()
+    return ()=> {
+      setProjects([])
+      updateRefs([])
+    }
   }, [token])
+
+  const [projectContainers, indexes] = struct(projects)
 
   return (
     <Container>
-      <Sidebar>
-        <SidebarPanel id="projects-sidebar-panel">
-          <Item
-            className={`fa-solid ${expand ? 'fa-xmark' : 'fa-bars'}`}
-            onClick={switchExpand}
-          />
-          {token && <Item className="fa-solid fa-plus" />}
-        </SidebarPanel>
-        <ItemList
-          {...{
-            panelHeight: document.getElementById('projects-sidebar-panel')
-              ?.clientHeight,
-          }}
-        >
-          <Item className="fa-regular fa-circle">
-            <Item className="inner" {...{ show: expand }}>
-              Synapse
-            </Item>
-          </Item>
-        </ItemList>
-      </Sidebar>
-      <MainContainer>{populate(projects)}</MainContainer>
+      <ProjectsSidebar {...{ indexes, refs }} />
+      <MainContainer>{projectContainers}</MainContainer>
     </Container>
   )
 }

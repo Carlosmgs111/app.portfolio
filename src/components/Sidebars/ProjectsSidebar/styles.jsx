@@ -1,13 +1,5 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  display: flex;
-`
-
-export const MainContainer = styled.div`
-  width: 80vw;
-`
-
 export const Sidebar = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   height: 65vh;
@@ -34,7 +26,7 @@ export const ItemList = styled.ul`
   flex-direction: column;
   font-size: 2rem;
   overflow: scroll;
-  color:black;
+  color: black;
   height: ${({ panelHeight }) =>
     panelHeight ? `calc(60vh - ${panelHeight}px)` : 'none'};
   &::-webkit-scrollbar {
@@ -50,13 +42,18 @@ export const Item = styled.a`
     color: unset;
   }
   &:hover {
-    color: blue;
+    color: blue !important;
   }
+  color: ${({ active }) => active ? 'green' : 'inherit'} !important;
 `
 export const InnerItem = styled.i`
   ${Item.componentStyle.rules}
+  text-transform: capitalize !important;
   font-style: normal;
   color: black;
-  padding-left: 1.2rem;
-  display: ${({ show }) => (show ? 'flex' : 'none')};
+  white-space: nowrap;
+  width: ${({ show }) => (show ? '180px' : '0px')};
+  position: relative;
+  left: 1.2rem;
+  transition: width 0.8s;
 `

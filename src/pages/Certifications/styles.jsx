@@ -82,14 +82,14 @@ export const fadeout = keyframes`
 
 export const Item = styled.a`
   cursor: default;
-  text-decoration:none;
+  text-decoration: none;
   position: relative;
   display: flex;
   flex-direction: row;
   left: 0rem;
   font-size: 2.8rem;
   color: hsl(19, 97%, 51%);
-  margin:auto;
+  margin: auto;
   -webkit-text-stroke: 1.5px black;
   height: fit-content;
   input {
