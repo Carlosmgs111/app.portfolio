@@ -44,6 +44,7 @@ export const Item = styled.a`
   &:hover {
     color: blue !important;
   }
+  
   color: ${({ active }) => active ? 'green' : 'inherit'} !important;
 `
 export const InnerItem = styled.i`
