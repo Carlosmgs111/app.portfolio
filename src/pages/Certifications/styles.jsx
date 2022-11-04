@@ -1,10 +1,10 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, css } from 'styled-components'
 
 export const Container = styled.div`
   top: 20vh;
   position: sticky;
   display: flex;
-`;
+`
 
 export const Main = styled.div`
   align-items: center;
@@ -13,17 +13,17 @@ export const Main = styled.div`
   gap: 10px;
   flex-wrap: wrap;
   padding: 0 10rem;
-  @media(max-width: 700px) {
+  @media (max-width: 700px) {
     padding: 0;
   }
-`;
+`
 
 export const Button = styled.button`
   margin: auto;
-`;
+`
 
 export const Dashboard = styled.div`
-  color:white;
+  color: white;
   width: 100%;
   display: flex;
   height: fit-content;
@@ -34,7 +34,7 @@ export const Dashboard = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
+`
 
 export const Sidebar = styled.nav`
   left: 0;
@@ -46,7 +46,7 @@ export const Sidebar = styled.nav`
   @media (max-width: 830px) {
     top: 10vh;
   }
-`;
+`
 
 export const List = styled.ul`
   border-radius: 0 0.6rem 0.6rem 0;
@@ -54,31 +54,32 @@ export const List = styled.ul`
   display: flex;
   position: relative;
   flex-wrap: wrap;
-  padding:1.8rem;
+  padding: 1.8rem;
   gap: 1.5rem;
   width: 7rem;
   max-height: 60vh;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(6rem);
-`;
+`
 
-export const fadein = keyframes`
-  from {
-      opacity:0;
-  }
-  to{ 
-      opacity: 1;
-  }
-`;
+const hidden = css`
+  width: 0;
+  opacity: 0;
+`
 
-export const fadeout = keyframes`
+const visible = css`
+  opacity: 1;
+  width: 220px;
+`
+
+const fade = ({ from, to }) => keyframes`
   from {
-      opacity: 1;
+    ${from}
   }
   to{
-      opacity:0;
+    ${to}
   }
-`;
+`
 
 export const Item = styled.a`
   cursor: default;
@@ -93,16 +94,16 @@ export const Item = styled.a`
   -webkit-text-stroke: 1.5px black;
   height: fit-content;
   input {
-    opacity: 0;
-    animation: 1.5s ${fadeout} ease;
+    ${hidden}
+    animation: 1.5s ${fade({ from: visible, to: hidden })} ease;
   }
   :hover {
     input {
-      opacity: 1;
-      animation: 1.5s ${fadein} ease;
+      ${visible}
+      animation: 1.5s ${fade({ from: hidden, to: visible })} ease;
     }
   }
-`;
+`
 
 export const Input = styled.input`
   -webkit-text-stroke: 0.1px black;
@@ -111,7 +112,6 @@ export const Input = styled.input`
   border: 0;
   outline: none;
   position: relative;
-  opacity: 0;
   left: 1rem;
   padding: 0 0.8rem;
-`;
+`
