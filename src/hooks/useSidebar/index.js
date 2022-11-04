@@ -9,6 +9,7 @@ import { ProjectsSidebar } from "../../components/Sidebars/ProjectsSidebar";
  * second element is a function that updates the state of the elements. The third element is a function
  * that updates the state of the refs.
  */
+
 export const useSidebar = (initialElements = [], key) => {
   const indexes = [];
 
@@ -25,6 +26,5 @@ export const useSidebar = (initialElements = [], key) => {
   };
 
   extractIndexes();
-
   return [<ProjectsSidebar {...{ indexes, refs }} />, setElements, updateRefs];
 };
