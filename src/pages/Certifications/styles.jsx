@@ -1,3 +1,4 @@
+import { setFrames } from '../../utils'
 import styled, { keyframes, css } from 'styled-components'
 
 export const Container = styled.div`
@@ -35,6 +36,8 @@ export const Dashboard = styled.div`
     display: none;
   }
 `
+
+// !____________________________________________________ 
 
 export const Sidebar = styled.nav`
   left: 0;
@@ -77,29 +80,6 @@ const interlude = css`
   width:50px;
   background-color:red;
 `
-
-// ? keyframes declaration depending of passed props
-const setFrames = (frames) => {
-  if (frames.length < 2)
-    throw new Error('Must provide an array with at least two values')
-
-  const basePerecentage = 100 / (frames.length - 1)
-
-  let literalKeyframe = ``
-
-  frames.map((frame, index) => {
-    const percentage = Number((basePerecentage * index).toFixed(2))
-    literalKeyframe += `
-      ${percentage}% {
-        ${frame}
-      }
-    `
-  })
-
-  return keyframes`
-    ${literalKeyframe}
-  `
-}
 
 export const Item = styled.a`
   cursor: default;

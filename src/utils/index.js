@@ -1,7 +1,7 @@
+import { keyframes } from "styled-components";
 import { cloneElement } from "react";
-import { Route } from "react-router-dom";
 import { plural, singular } from "pluralize";
-import { NotFound } from "../pages/NotFound";
+
 /* passing a object with all properties to convert to css format */
 export const formatToCss = (objFormat) => {
   if (typeof objFormat == "object") {
@@ -248,4 +248,27 @@ export const manyfy = (element, factor = 6) => {
     }
     return many;
   }
+};
+
+// ? keyframes declaration depending of passed props
+export const setFrames = (frames) => {
+  if (frames.length < 2)
+    throw new Error("Must provide an array with at least two values");
+
+  const basePerecentage = 100 / (frames.length - 1);
+
+  let literalKeyframe = ``;
+
+  frames.map((frame, index) => {
+    const percentage = Number((basePerecentage * index).toFixed(2));
+    literalKeyframe += `
+      ${percentage}% {
+        ${frame}
+      }
+    `;
+  });
+
+  return keyframes`
+    ${literalKeyframe}
+  `;
 };

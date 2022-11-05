@@ -2,16 +2,16 @@ import { Sidebar, SidebarPanel, ItemList, Item, InnerItem } from './styles'
 import { labelCases } from '../../../utils'
 import { useSwitch } from '../../../hooks/useSwitch'
 import { getContext, CONTEXTS } from '../../../contexts'
-import {useEffect} from "react"
+import { useEffect } from 'react'
 
-export const ProjectsSidebar = ({ indexes = [], refs }) => {
+export const ProjectsSidebar = ({ indexes = [], refs = [] }) => {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
   const [{ token, loading: globalLoading }, dispatch] = useStateValue()
 
   const [expand, switchExpand] = useSwitch(false, true)
 
-  useEffect(()=>{}, [])
-  
+  useEffect(() => {}, [])
+
   const indexesList = []
 
   indexes.map((name, index) => {
@@ -23,13 +23,7 @@ export const ProjectsSidebar = ({ indexes = [], refs }) => {
         href={`#${labelCases(name).LS}`}
         className="fa-regular fa-circle-dot"
       >
-        <InnerItem
-          key={index}
-          href={`#${labelCases(name).LS}`}
-          {...{ show: expand }}
-        >
-          {name}
-        </InnerItem>
+        <InnerItem {...{ show: expand }}>{name}</InnerItem>
       </Item>,
     )
   })

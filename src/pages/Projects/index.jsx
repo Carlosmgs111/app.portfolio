@@ -5,19 +5,13 @@ import { URL_API } from '../../services'
 import { Project } from '../../containers/Project'
 import { Container, MainContainer } from './styles'
 import { useSidebar } from '../../hooks/useSidebar'
-import { ProjectsSidebar } from "../../components/Sidebars/ProjectsSidebar";
+import { ProjectsSidebar } from '../../components/Sidebars/ProjectsSidebar'
 
 export function Projects() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
   const [{ token, loading: globalLoading }, dispatch] = useStateValue()
-
   const [projects, setProjects] = useState([])
-
-  const [Sidebar, setElements, updateRefs] = useSidebar(
-    projects,
-    'name',
-    ProjectsSidebar
-  )
+  const [Sidebar, setElements, updateRefs] = useSidebar(ProjectsSidebar)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
   const [projectSchema, setProjectSchema] = useState({
@@ -36,8 +30,8 @@ export function Projects() {
     const fetchProjects = async () => {
       try {
         const { data } = await axios.get(`${URL_API}/projects`)
-        setProjects([...projects, ...data])
-        setElements([...projects, ...data])
+        setProjects([...data])
+        setElements([...data.map((project) => project.name)])
         console.log({ data })
       } catch (e) {
         setLoading(false)
@@ -53,10 +47,15 @@ export function Projects() {
 
   return (
     <Container>
-      {Sidebar /* ? ⬅️ this is a rendered component, so we just put as a variable and it is not called */}
+      {
+        Sidebar /* ? ⬅️ this is a rendered component, so we just put as a variable and it is not called */
+      }
       <MainContainer>
         {projects.map((project, index) => (
-          <Project key={index} {...{ ...project, index, updateRefs }} />
+          <Project
+            key={index}
+            {...{ ...project, even: index % 2 === 0, updateRefs }}
+          />
         ))}
       </MainContainer>
     </Container>
