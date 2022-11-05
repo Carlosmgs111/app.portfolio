@@ -61,25 +61,45 @@ export const List = styled.ul`
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(6rem);
 `
-
+// ? animation initial state
 const hidden = css`
   width: 0;
   opacity: 0;
 `
-
+// ? animation final state
 const visible = css`
   opacity: 1;
   width: 220px;
 `
 
-const fade = ({ from, to }) => keyframes`
-  from {
-    ${from}
-  }
-  to{
-    ${to}
-  }
+const interlude = css`
+  opacity:.3;
+  width:50px;
+  background-color:red;
 `
+
+// ? keyframes declaration depending of passed props
+const setFrames = (frames) => {
+  if (frames.length < 2)
+    throw new Error('Must provide an array with at least two values')
+
+  const basePerecentage = 100 / (frames.length - 1)
+
+  let literalKeyframe = ``
+
+  frames.map((value, index) => {
+    const percentage = Number((basePerecentage * index).toFixed(2))
+    literalKeyframe += `
+      ${percentage}% {
+        ${value}
+      }
+    `
+  })
+
+  return keyframes`
+    ${literalKeyframe}
+  `
+}
 
 export const Item = styled.a`
   cursor: default;
@@ -95,12 +115,12 @@ export const Item = styled.a`
   height: fit-content;
   input {
     ${hidden}
-    animation: 1.5s ${fade({ from: visible, to: hidden })} ease;
+    animation: 1.5s ${setFrames([visible, hidden])} ease;
   }
   :hover {
     input {
       ${visible}
-      animation: 1.5s ${fade({ from: hidden, to: visible })} ease;
+      animation: 1.5s ${setFrames([hidden, visible])} ease;
     }
   }
 `
