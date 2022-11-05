@@ -11,12 +11,7 @@ export function Projects() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
   const [{ token, loading: globalLoading }, dispatch] = useStateValue()
 
-  const [projects, setProjects] = useState([
-    { name: 'Project 1', descriptions: [], images: [] },
-    { name: 'Project 2', descriptions: [], images: [] },
-    { name: 'Project 3', descriptions: [], images: [] },
-    { name: 'Project 4', descriptions: [], images: [] },
-  ])
+  const [projects, setProjects] = useState([])
 
   const [Sidebar, setElements, updateRefs] = useSidebar(
     projects,

@@ -87,11 +87,11 @@ const setFrames = (frames) => {
 
   let literalKeyframe = ``
 
-  frames.map((value, index) => {
+  frames.map((frame, index) => {
     const percentage = Number((basePerecentage * index).toFixed(2))
     literalKeyframe += `
       ${percentage}% {
-        ${value}
+        ${frame}
       }
     `
   })
