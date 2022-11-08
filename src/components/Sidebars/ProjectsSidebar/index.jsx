@@ -3,6 +3,7 @@ import { labelCases } from '../../../utils'
 import { useSwitch } from '../../../hooks/useSwitch'
 import { getContext, CONTEXTS } from '../../../contexts'
 import { useEffect } from 'react'
+import { manyfy } from '../../../utils'
 
 export const ProjectsSidebar = ({ indexes = [], refs = [] }) => {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
@@ -30,16 +31,24 @@ export const ProjectsSidebar = ({ indexes = [], refs = [] }) => {
 
   return (
     <Sidebar>
-      <SidebarPanel id="projects-sidebar-panel">
-        <Item
-          active={false}
-          key="1"
-          className={`fa-solid ${expand ? 'fa-xmark' : 'fa-bars'}`}
-          onClick={switchExpand}
-        />
+      <Item
+        active={false}
+        key="1"
+        className={`fa-solid ${expand ? 'fa-xmark' : 'fa-bars'} sidebar-button`}
+        onClick={switchExpand}
+      />
+      <SidebarPanel
+        id="projects-sidebar-panel"
+        {...{
+          itemListHeight: document.getElementById('projects-sidebar-itemlist')
+            ?.clientHeight,
+        }}
+      >
         {token && <Item className="fa-solid fa-plus" />}
+        {manyfy(<Item className="fa-solid fa-plus" />, 20)}
       </SidebarPanel>
       <ItemList
+        id="projects-sidebar-itemlist"
         {...{
           panelHeight: document.getElementById('projects-sidebar-panel')
             ?.clientHeight,

@@ -6,6 +6,7 @@ import { Project } from '../../containers/Project'
 import { Container, MainContainer } from './styles'
 import { useSidebar } from '../../hooks/useSidebar'
 import { ProjectsSidebar } from '../../components/Sidebars/ProjectsSidebar'
+import { manyfy } from '../../utils'
 
 export function Projects() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
@@ -31,7 +32,7 @@ export function Projects() {
       try {
         const { data } = await axios.get(`${URL_API}/projects`)
         setProjects([...data])
-        setElements([...data.map((project) => project.name)])
+        setElements([...data.map((project) => project.name), /* ...manyfy("Project",20) */])
         console.log({ data })
       } catch (e) {
         setLoading(false)
