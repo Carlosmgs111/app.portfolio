@@ -9,8 +9,10 @@ export const SidebarBody = styled.div`
   border-radius: 0.2rem;
   /* background-color: orangered; */
   min-height: fit-content;
-  max-height: 65vh;
+  max-height: 60vh;
   direction: rtl;
+  height: ${({ active }) => (active ? '60vh' : '0')};
+  transition: height .4s;
   &::-webkit-scrollbar {
     width: 0.4rem;
     display: inside;

@@ -5,7 +5,8 @@ import { useSwitch } from '../../../hooks/useSwitch'
 import { getContext, CONTEXTS } from '../../../contexts'
 import { manyfy } from '../../../utils'
 
-export function TrackSidebar({ indexes = [], refs = [] }) {
+export function TrackSidebar(props) {
+  const { indexes = [], refs = [] } = props
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
   const [{ token, loading: globalLoading }, dispatch] = useStateValue()
 
@@ -30,7 +31,7 @@ export function TrackSidebar({ indexes = [], refs = [] }) {
   })
 
   return (
-    <SidebarBody id="projects-sidebar-itemlist">
+    <SidebarBody {...{ ...props, id: 'projects-sidebar-itemlist' }}>
       <Item
         active={false}
         key="0"

@@ -5,13 +5,14 @@ export const SidebarBody = styled.div`
   flex-direction: column;
   font-size: 2rem;
   position: sticky;
-  width: fit-content;
-  max-height: 65vh;
-  margin: 0 0 1.2rem 0;
+  /* width: fit-content; */
+  height: ${({ active }) => (active ? '60vh' : '0')};
+  max-height: 60vh;
   -webkit-text-stroke: 1.5px black;
   border-radius: 0.2rem;
   overflow: scroll;
   direction: rtl;
+  transition: height 0.4s;
   &::-webkit-scrollbar {
     width: 0.4rem;
     display: inside;
