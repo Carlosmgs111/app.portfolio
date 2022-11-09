@@ -103,7 +103,7 @@ export const from = ({ selected }) => css`
     color: ${selected ? 'rgb(228, 255, 26)' : 'rgba(228, 255, 26, .4)'};
   `
 
-export const to = () => css`
+export const to = css`
   color: rgb(228, 255, 26);
 `
 
@@ -121,7 +121,7 @@ export const Item = styled.li`
   text-align: center;
   font-style: none !important;
   &:hover {
-    ${to()};
+    ${to};
     text-decoration: none;
     animation: 1.2s ${(props) => setFrames([from, to], props)} ease;
   }

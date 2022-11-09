@@ -261,10 +261,11 @@ export const setFrames = (frames, props) => {
   let literalKeyframe = ``;
 
   frames.map((frame, index) => {
+    const rule = frame instanceof Function ? frame(props) : frame
     const percentage = Number((basePercentage * index).toFixed(2));
     literalKeyframe += `
       ${percentage}% {
-        ${frame(props)}
+        ${rule}
       }
     `;
   });
