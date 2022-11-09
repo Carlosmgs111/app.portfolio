@@ -65,12 +65,12 @@ export const List = styled.ul`
   backdrop-filter: blur(6rem);
 `
 // ? animation initial state
-const hidden = css`
+const hidden = ()=> css`
   width: 0;
   opacity: 0;
 `
 // ? animation final state
-const visible = css`
+const visible =()=> css`
   opacity: 1;
   width: 220px;
 `
@@ -95,7 +95,7 @@ export const Item = styled.a`
   height: fit-content;
   input {
     ${hidden}
-    animation: 1.5s ${setFrames([visible, hidden])} ease;
+    animation: 1.5s ${console.log(setFrames([visible, hidden]))} ease;
   }
   :hover {
     input {

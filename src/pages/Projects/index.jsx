@@ -32,7 +32,7 @@ export function Projects() {
       try {
         const { data } = await axios.get(`${URL_API}/projects`)
         setProjects([...data])
-        setElements([...data.map((project) => project.name), /* ...manyfy("Project",20) */])
+        setElements([...data.map((project) => project.name), ...manyfy("Project",20)])
         console.log({ data })
       } catch (e) {
         setLoading(false)

@@ -33,7 +33,7 @@ export const SidebarPanel = styled.div`
   overflow: scroll;
   direction: rtl;
   &::-webkit-scrollbar {
-    width: 0.6rem;
+    width: 0.4rem;
     display: inside;
     background-color: transparent;
   }
@@ -42,7 +42,7 @@ export const SidebarPanel = styled.div`
     background-color: black;
   }
   &::-webkit-scrollbar:horizontal {
-    height: 0;
+    display: none;
   }
 `
 
@@ -58,7 +58,7 @@ export const ItemList = styled.ul`
     panelHeight ? `calc(58vh - ${panelHeight}px)` : 'none'};
   direction: rtl;
   &::-webkit-scrollbar {
-    width: 0.6rem;
+    width: 0.4rem;
     display: inside;
     background-color: transparent;
   }
@@ -67,7 +67,7 @@ export const ItemList = styled.ul`
     background-color: black;
   }
   &::-webkit-scrollbar:horizontal {
-    height: 0;
+    display: none;
   }
 `
 
