@@ -252,7 +252,7 @@ export const manyfy = (element, factor = 6) => {
 
 // ? keyframes declaration depending of passed props
 export const setFrames = (frames, props) => {
-  console.log({props})
+  console.log({ props });
   if (frames.length < 2)
     throw new Error("Must provide an array with at least two values");
 
@@ -261,8 +261,9 @@ export const setFrames = (frames, props) => {
   let literalKeyframe = ``;
 
   frames.map((frame, index) => {
-    const rule = frame instanceof Function ? frame(props) : frame
+    const rule = frame instanceof Function ? frame(props) : frame;
     const percentage = Number((basePercentage * index).toFixed(2));
+
     literalKeyframe += `
       ${percentage}% {
         ${rule}
@@ -274,4 +275,3 @@ export const setFrames = (frames, props) => {
     ${literalKeyframe}
   `;
 };
-

@@ -5,14 +5,14 @@ import { URL_API } from '../../services'
 import { Project } from '../../containers/Project'
 import { Container, MainContainer } from './styles'
 import { useSidebar } from '../../hooks/useSidebar'
-import { ProjectsSidebar } from '../../components/Sidebars/ProjectsSidebar'
+import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
 import { manyfy } from '../../utils'
 
 export function Projects() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
   const [{ token, loading: globalLoading }, dispatch] = useStateValue()
   const [projects, setProjects] = useState([])
-  const [Sidebar, setElements, updateRefs] = useSidebar(ProjectsSidebar)
+  const [Sidebar, setElements, updateRefs] = useSidebar(MultiSidebar)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
   const [projectSchema, setProjectSchema] = useState({

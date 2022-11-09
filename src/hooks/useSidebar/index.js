@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ProjectsSidebar } from "../../components/Sidebars/ProjectsSidebar";
+import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
 // ! As it is imported
-const sidebars = { ProjectsSidebar };
+const sidebars = { MultiSidebar };
 
 /**
  * It returns a rendered sidebar component and two functions to update the state of the sidebar
@@ -15,7 +15,7 @@ const sidebars = { ProjectsSidebar };
 
 export const useSidebar = (
   component = sidebars[
-    "ProjectsSidebar"
+    "MultiSidebar"
   ] /* ! set a fallback sidebar component */
 ) => {
   const indexes = [];

@@ -1,61 +1,15 @@
 import styled from 'styled-components'
 
-export const Sidebar = styled.div`
-  border-radius: 0 0.6rem 0.6rem 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  max-height: 70vh;
-  position: fixed;
-  top: 10vh;
-  left: 0;
-  min-width: 30px;
-  padding: 1.8rem;
-  font-size: 2.4rem;
-  justify-content: center;
-  align-items: center;
-  color: hsl(19, 97%, 51%);
-  .sidebar-button {
-    left: 5px;
-    margin-bottom: .8rem;
-  }
-`
-
-export const SidebarPanel = styled.div`
-  display: flex;
-  flex-direction: column;
-  font-size: 2.4rem;
-  position: sticky;
-  width: fit-content;
-  max-height: ${({ itemListHeight }) =>
-    itemListHeight ? `calc(58vh - ${itemListHeight}px)` : '28vh'};
-  margin: 0 0 1.2rem 0;
-  -webkit-text-stroke: 1.5px black;
-  border-radius: 0.2rem;
-  overflow: scroll;
-  direction: rtl;
-  &::-webkit-scrollbar {
-    width: 0.4rem;
-    display: inside;
-    background-color: transparent;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: black;
-  }
-  &::-webkit-scrollbar:horizontal {
-    display: none;
-  }
-`
-
-export const ItemList = styled.ul`
+export const SidebarBody = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 2rem;
   overflow: scroll;
   color: black;
   border-radius: 0.2rem;
+  /* background-color: orangered; */
   min-height: fit-content;
-  max-height: ${({ panelHeight }) =>
-    panelHeight ? `calc(58vh - ${panelHeight}px)` : 'none'};
+  max-height: 65vh;
   direction: rtl;
   &::-webkit-scrollbar {
     width: 0.4rem;
