@@ -9,7 +9,7 @@ export const Sidebar = styled.div`
   left: 0;
   min-width: 30px;
   padding: 1.4rem;
-  font-size: 2.4rem;
+  font-size: 2.8rem;
   justify-content: center;
   align-items: center;
   color: hsl(19, 97%, 51%);
@@ -22,7 +22,7 @@ export const Body = styled.div`
 export const Header = styled.div`
   display: flex;
   flex-wrap: wrap;
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: bold;
   height: 4vh;
   justify-content: space-around;

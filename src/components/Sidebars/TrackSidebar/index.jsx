@@ -6,7 +6,7 @@ import { getContext, CONTEXTS } from '../../../contexts'
 import { manyfy } from '../../../utils'
 
 export function TrackSidebar(props) {
-  const { indexes = [], refs = [] } = props
+  const { items = [], refs = [] } = props
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
   const [{ token, loading: globalLoading }, dispatch] = useStateValue()
 
@@ -16,7 +16,7 @@ export function TrackSidebar(props) {
 
   const indexesList = []
 
-  indexes.map((name, index) => {
+  items.map((name, index) => {
     const active = refs.includes(labelCases(name).LS)
     indexesList.push(
       <Item
@@ -31,7 +31,7 @@ export function TrackSidebar(props) {
   })
 
   return (
-    <SidebarBody {...{ ...props }}>
+    <SidebarBody {...props}>
       <Item
         active={false}
         key="0"

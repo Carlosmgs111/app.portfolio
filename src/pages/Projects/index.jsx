@@ -4,15 +4,16 @@ import axios from 'axios'
 import { URL_API } from '../../services'
 import { Project } from '../../containers/Project'
 import { Container, MainContainer } from './styles'
-import { useSidebar } from '../../hooks/useSidebar'
+import { useTrackSidebar } from '../../hooks/useTrackSidebar'
 import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
-import { manyfy } from '../../utils'
+import { PanelSidebar } from '../../components/Sidebars/PanelSidebar'
+import { manyfy, injectAttrsToReactElements } from '../../utils'
 
 export function Projects() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
   const [{ token, loading: globalLoading }, dispatch] = useStateValue()
   const [projects, setProjects] = useState([])
-  const [Sidebar, setElements, updateRefs] = useSidebar(MultiSidebar)
+  const [TrackSidebar, setElements, updateRefs] = useTrackSidebar()
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
   const [projectSchema, setProjectSchema] = useState({
@@ -32,7 +33,10 @@ export function Projects() {
       try {
         const { data } = await axios.get(`${URL_API}/projects`)
         setProjects([...data])
-        setElements([...data.map((project) => project.name), ...manyfy("Project",20)])
+        setElements([
+          ...data.map((project) => project.name),
+          ...manyfy('Project', 20),
+        ])
         console.log({ data })
       } catch (e) {
         setLoading(false)
@@ -49,7 +53,19 @@ export function Projects() {
   return (
     <Container>
       {
-        Sidebar /* ? ⬅️ this is a rendered component, so we just put as a variable and it is not called */
+        <MultiSidebar
+          {...{
+            sidebars: [
+              TrackSidebar,
+              <PanelSidebar
+                {...{
+                  id: 'panel-sidebar',
+                }}
+              />,
+              ,
+            ],
+          }}
+        /> /* ? ⬅️ this is a rendered component, so we just put as a variable and it is not called */
       }
       <MainContainer>
         {projects.map((project, index) => (
