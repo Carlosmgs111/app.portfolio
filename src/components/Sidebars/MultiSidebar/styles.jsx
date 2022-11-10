@@ -17,7 +17,6 @@ export const Sidebar = styled.div`
 
 export const Body = styled.div`
   display: flex;
-  flex-direction: ${({ direction }) => direction};
   max-height: 60vh;
 `
 export const Header = styled.div`
@@ -38,7 +37,7 @@ export const Footer = styled.div`
 `
 
 export const Item = styled.a`
-  cursor: hand;
+  cursor: pointer;
   text-decoration: none;
   display: flex;
   padding: 0.2rem;
@@ -53,7 +52,7 @@ export const Item = styled.a`
   }
   &.rotable {
     &:hover {
-      transform: rotate(45deg);
+      transform: rotate(90deg);
     }
   }
   /* background-color: orangered; */

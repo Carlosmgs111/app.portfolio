@@ -152,8 +152,10 @@ export const Mapfy = (object) => new Map(Object.entries(object));
  * @param attr String with name of attribute to modify
  * @return new list with the injected attribute
  */
-export const injectAttrsToReactElements = (items, attr) =>
-  items.map((item, index) => cloneElement(item, { [attr]: index } || {}));
+export const injectAttrsToReactElements = (items, attr, toInject = null) =>
+  items.map((item, index) =>
+    cloneElement(item, { [attr]: toInject || index } || {})
+  );
 
 export const settingName = (value) =>
   "set" + value.slice(0, 1).toUpperCase() + value.slice(1);

@@ -31,7 +31,7 @@ export function TrackSidebar(props) {
   })
 
   return (
-    <SidebarBody {...{ ...props, id: 'projects-sidebar-itemlist' }}>
+    <SidebarBody {...{ ...props }}>
       <Item
         active={false}
         key="0"

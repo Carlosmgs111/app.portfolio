@@ -7,12 +7,13 @@ export const SidebarBody = styled.div`
   position: sticky;
   /* width: fit-content; */
   height: ${({ active }) => (active ? '60vh' : '0')};
+  max-width: ${({ active }) => (active ? '200px' : '0')};
+  transition: height .4s, max-width .2s;
   max-height: 60vh;
   -webkit-text-stroke: 1.5px black;
   border-radius: 0.2rem;
   overflow: scroll;
   direction: rtl;
-  transition: height 0.4s;
   &::-webkit-scrollbar {
     width: 0.4rem;
     display: inside;

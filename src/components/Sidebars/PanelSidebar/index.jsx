@@ -11,7 +11,7 @@ export function PanelSidebar(props) {
 
   const [expand, switchExpand] = useSwitch(false, true)
   return (
-    <SidebarBody {...{ ...props, id: 'projects-sidebar-panel' }}>
+    <SidebarBody {...{ ...props }}>
       <Item
         active={false}
         key="1"

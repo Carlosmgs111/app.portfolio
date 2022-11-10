@@ -12,7 +12,8 @@ export const SidebarBody = styled.div`
   max-height: 60vh;
   direction: rtl;
   height: ${({ active }) => (active ? '60vh' : '0')};
-  transition: height .4s;
+  max-width: ${({ active }) => (active ? '200px' : '0')};
+  transition: height .4s, max-width .4s;
   &::-webkit-scrollbar {
     width: 0.4rem;
     display: inside;
