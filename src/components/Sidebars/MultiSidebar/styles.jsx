@@ -17,23 +17,27 @@ export const Sidebar = styled.div`
 
 export const Body = styled.div`
   display: flex;
-  max-height: 60vh;
+  max-height: 64vh;
 `
 export const Header = styled.div`
+  border-radius: 0.6rem;
   display: flex;
   flex-wrap: wrap;
   font-size: 1.4rem;
   font-weight: bold;
   height: 4vh;
   justify-content: space-around;
+  /* backdrop-filter: brightness(60%); */
 `
 export const Footer = styled.div`
+  border-radius: 0.6rem;
   display: flex;
   flex-wrap: wrap;
   font-size: 1.8rem;
   height: 4vh;
   justify-content: space-around;
   align-items: center;
+  /* backdrop-filter: brightness(60%); */
 `
 
 export const Item = styled.a`

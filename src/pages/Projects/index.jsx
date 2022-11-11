@@ -28,6 +28,19 @@ export function Projects() {
     url: '',
   })
 
+  const sidebars = [
+    TrackSidebar, // ? ⬅️ this is a rendered component, so we just put as a variable and it is not called
+  ]
+
+  if (token)
+    sidebars.push(
+      <PanelSidebar
+        {...{
+          id: 'panel-sidebar',
+        }}
+      />,
+    )
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -55,17 +68,9 @@ export function Projects() {
       {
         <MultiSidebar
           {...{
-            sidebars: [
-              TrackSidebar,
-              <PanelSidebar
-                {...{
-                  id: 'panel-sidebar',
-                }}
-              />,
-              ,
-            ],
+            sidebars,
           }}
-        /> /* ? ⬅️ this is a rendered component, so we just put as a variable and it is not called */
+        />
       }
       <MainContainer>
         {projects.map((project, index) => (

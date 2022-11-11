@@ -6,14 +6,13 @@ export const SidebarBody = styled.div`
   font-size: 2rem;
   overflow: scroll;
   color: black;
-  border-radius: 0.2rem;
-  /* background-color: orangered; */
+  border-radius: 0.6rem;
+  background-color: orangered;
   min-height: fit-content;
-  max-height: 60vh;
   direction: rtl;
-  height: ${({ active }) => (active ? '60vh' : '0')};
+  max-height: ${({ active }) => (active ? '60vh' : '0')};;
   max-width: ${({ active }) => (active ? '200px' : '0')};
-  transition: height .4s, max-width .4s;
+  transition: max-height .4s, max-width .4s;
   &::-webkit-scrollbar {
     width: 0.4rem;
     display: inside;

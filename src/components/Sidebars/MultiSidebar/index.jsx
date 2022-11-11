@@ -15,28 +15,30 @@ export const MultiSidebar = (props) => {
 
   return (
     <Sidebar>
-      <Header>
-        {sidebars.map((sidebar, index) => (
-          <Item
-            key={index}
-            onClick={() => setActiveSidebars([sidebar.props.id])}
-            active={activeSidebars.includes(sidebar.props.id)}
-          >
-            {index + 1}
-          </Item>
-        ))}
-        {activeSidebars.length !== sidebars.length && (
-          <Item
-            key="expand-button"
-            className="fa-solid fa-ellipsis"
-            onClick={() =>
-              setActiveSidebars([
-                ...sidebars.map((sidebar) => sidebar.props.id),
-              ])
-            }
-          />
-        )}
-      </Header>
+      {sidebars.length > 1 && (
+        <Header>
+          {sidebars.map((sidebar, index) => (
+            <Item
+              key={index}
+              onClick={() => setActiveSidebars([sidebar.props.id])}
+              active={activeSidebars.includes(sidebar.props.id)}
+            >
+              {index + 1}
+            </Item>
+          ))}
+          {activeSidebars.length !== sidebars.length && (
+            <Item
+              key="expand-button"
+              className="fa-solid fa-ellipsis"
+              onClick={() =>
+                setActiveSidebars([
+                  ...sidebars.map((sidebar) => sidebar.props.id),
+                ])
+              }
+            />
+          )}
+        </Header>
+      )}
       <Body>
         {sidebars.map((sidebar, index) =>
           injectAttrsToReactElements([sidebar], {

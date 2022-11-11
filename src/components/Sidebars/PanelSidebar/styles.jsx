@@ -5,11 +5,10 @@ export const SidebarBody = styled.div`
   flex-direction: column;
   font-size: 2rem;
   position: sticky;
-  /* width: fit-content; */
-  height: ${({ active }) => (active ? '60vh' : '0')};
+  /* background-color: #cadf2b; */
+  max-height: ${({ active }) => (active ? '60vh' : '0')};
   max-width: ${({ active }) => (active ? '200px' : '0')};
-  transition: height .4s, max-width .2s;
-  max-height: 60vh;
+  transition: max-height 0.4s, max-width 0.2s;
   -webkit-text-stroke: 1.5px black;
   border-radius: 0.2rem;
   overflow: scroll;
@@ -29,7 +28,7 @@ export const SidebarBody = styled.div`
 `
 
 export const Item = styled.a`
-  cursor: hand;
+  cursor: pointer;
   text-decoration: none;
   display: flex;
   padding: 0.8rem;
@@ -42,7 +41,7 @@ export const Item = styled.a`
   &:hover {
     color: rgb(240, 38, 223) !important;
   }
-  /* background-color: orangered; */
+  /* background-color: #cadf2b; */
   color: ${({ active }) =>
     active ? 'hsl(67, 100%, 55%)' : 'inherit'} !important;
   -webkit-text-stroke: 1px black;

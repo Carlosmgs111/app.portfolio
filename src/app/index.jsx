@@ -85,7 +85,9 @@ export function App() {
                 }
               },
             },
-          }).map((page, index)=> injectAttrsToReactElements([page], {key:index}))}
+          }).map((page, index) =>
+            injectAttrsToReactElements([page], { key: index }),
+          )}
         </Navigation>
       </Header>
       <Content>
