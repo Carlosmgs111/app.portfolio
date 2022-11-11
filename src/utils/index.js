@@ -148,14 +148,13 @@ export const pairKV = (object, depth = 0, get, index = 0) => {
 export const Mapfy = (object) => new Map(Object.entries(object));
 
 /**
- * @param items List of react elements
- * @param attr String with name of attribute to modify
- * @return new list with the injected attribute
+ * It takes an array of React elements and an array of arrays of attributes and returns an array of
+ * React elements with the attributes injected
+ * @param items - an array of React elements
+ * @param attrs - [["key", "value"], ["key", "value"]]
  */
-export const injectAttrsToReactElements = (items, attr, toInject = null) =>
-  items.map((item, index) =>
-    cloneElement(item, { [attr]: toInject || index } || {})
-  );
+export const injectAttrsToReactElements = (items, attrs = {}) =>
+  items.map((item, index) => cloneElement(item, { ...attrs }));
 
 export const settingName = (value) =>
   "set" + value.slice(0, 1).toUpperCase() + value.slice(1);

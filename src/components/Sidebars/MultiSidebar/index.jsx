@@ -27,6 +27,7 @@ export const MultiSidebar = (props) => {
         ))}
         {activeSidebars.length !== sidebars.length && (
           <Item
+            key="expand-button"
             className="fa-solid fa-ellipsis"
             onClick={() =>
               setActiveSidebars([
@@ -38,21 +39,14 @@ export const MultiSidebar = (props) => {
       </Header>
       <Body>
         {sidebars.map((sidebar, index) =>
-          injectAttrsToReactElements(
-            [
-              ...injectAttrsToReactElements(
-                [sidebar],
-                'active',
-                activeSidebars.includes(sidebar.props.id),
-              ),
-            ],
-            'key',
-            index,
-          ),
+          injectAttrsToReactElements([sidebar], {
+            active: activeSidebars.includes(sidebar.props.id),
+            key: index,
+          }),
         )}
       </Body>
       <Footer>
-        <Item className="fa-solid fa-gear rotable"></Item>
+        <Item key="settings-button" className="fa-solid fa-gear rotable"></Item>
       </Footer>
     </Sidebar>
   )

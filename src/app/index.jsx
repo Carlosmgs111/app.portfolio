@@ -1,4 +1,3 @@
-
 import { Header, Content, Footer, Banner, Icon } from './styles'
 import Navigation from '../components/Navigation'
 import { Route, Routes, Router } from 'react-router-dom'
@@ -12,6 +11,7 @@ import { Skills } from '../pages/Skills'
 import { Projects } from '../pages/Projects'
 import { Certifications } from '../pages/Certifications'
 import { Modal } from '../components/Modal'
+import { injectAttrsToReactElements } from '../utils'
 
 export function App() {
   const { clearAuth } = useApp()
@@ -85,7 +85,7 @@ export function App() {
                 }
               },
             },
-          })}
+          }).map((page, index)=> injectAttrsToReactElements([page], {key:index}))}
         </Navigation>
       </Header>
       <Content>

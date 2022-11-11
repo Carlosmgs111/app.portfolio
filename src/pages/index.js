@@ -46,8 +46,8 @@ export const RoutesFactory = ({ element, root, parameters, subDomains }) => {
       );
     }
   routes.push(
-    <Route path={`/${root}`} exact element={element}></Route>,
-    <Route path="*" element={<NotFound />}></Route>
+    <Route key="root" path={`/${root}`} exact element={element}></Route>,
+    <Route key="not-found" path="*" element={<NotFound />}></Route>
   );
   return routes;
 };
