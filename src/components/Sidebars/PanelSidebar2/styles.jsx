@@ -11,7 +11,7 @@ export const SidebarBody = styled.div`
   font-size: 2rem;
   max-height: ${({ active }) => (active ? '60vh' : '0')};
   max-width: ${({ active }) => (active ? '260px' : '0')};
-  transition: max-height .4s, max-width .4s;
+  transition: max-height 0.4s, max-width 0.4s;
   &::-webkit-scrollbar {
     width: 0.4rem;
     display: inside;
@@ -55,7 +55,16 @@ left: 0;
 color: hsl(19, 97%, 51%);
 direction: ltr;
 -webkit-text-stroke: 1.5px black;
-height: fit-content;
+height: fit-content; 
+&:visited {
+  color: unset;
+}
+&:hover {
+  color: rgb(240, 38, 223) !important;
+}
+/* background-color: #cadf2b; */
+color: ${({ active }) =>
+  active ? 'hsl(67, 100%, 55%)' : 'inherit'} !important;
 input {
   ${hidden}
   animation: 1.5s ${setFrames([visible, hidden])} ease;

@@ -7,12 +7,12 @@ export const SidebarBody = styled.div`
   overflow: scroll;
   color: black;
   border-radius: 0.6rem;
-  background-color: orangered;
+  /* background-color: orangered; */
   min-height: fit-content;
   direction: rtl;
-  max-height: ${({ active }) => (active ? '60vh' : '0')};;
+  max-height: ${({ active }) => (active ? '60vh' : '0')};
   max-width: ${({ active }) => (active ? '200px' : '0')};
-  transition: max-height .4s, max-width .4s;
+  transition: max-height 0.4s, max-width 0.4s;
   &::-webkit-scrollbar {
     width: 0.4rem;
     display: inside;
@@ -45,16 +45,20 @@ export const Item = styled.a`
   color: ${({ active }) =>
     active ? 'hsl(67, 100%, 55%)' : 'inherit'} !important;
   -webkit-text-stroke: 1px black;
-  transition: max-width 0.6s, padding-right 0.4s, color 0.4s, left 0.6s,
-    opacity 0.6s;
+  transition: max-width 0.6s, padding-right 0.4s, color 0.4s,
+    left 0.6s, opacity 0.6s;
 `
 
-export const InnerItem = styled.i`
+export const InnerItem = styled.a`
   ${Item.componentStyle.rules}
-  -webkit-text-stroke: none;
+  -webkit-text-stroke: .5px black;
   padding: 0;
   text-transform: capitalize !important; /* // ! Don't works */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   position: relative;
+  font-size: 1.4rem;
   font-style: normal;
   white-space: nowrap;
   left: ${({ show }) => (show ? '1.2rem' : '-180px')};

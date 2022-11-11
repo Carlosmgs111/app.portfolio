@@ -48,7 +48,6 @@ export function Projects() {
         setProjects([...data])
         setElements([
           ...data.map((project) => project.name),
-          ...manyfy('Project', 20),
         ])
         console.log({ data })
       } catch (e) {

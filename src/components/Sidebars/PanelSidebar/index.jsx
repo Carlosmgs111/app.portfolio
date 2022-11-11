@@ -1,7 +1,6 @@
 import { SidebarBody, Item, InnerItem } from './styles'
 import { useSwitch } from '../../../hooks/useSwitch'
 import { getContext, CONTEXTS } from '../../../contexts'
-import { manyfy, injectAttrsToReactElements } from '../../../utils'
 
 export function PanelSidebar(props) {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
@@ -17,9 +16,6 @@ export function PanelSidebar(props) {
         onClick={switchExpand}
       />
       {token && <Item key="02" className="fa-solid fa-plus" />}
-      {manyfy(<Item className="fa-solid fa-plus" />, 20).map((item, index) =>
-        injectAttrsToReactElements([item], { key: index }),
-      )}
     </SidebarBody>
   )
 }
