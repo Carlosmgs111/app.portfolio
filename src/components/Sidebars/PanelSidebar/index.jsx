@@ -1,8 +1,6 @@
 import { SidebarBody, Item, InnerItem } from './styles'
-import { labelCases } from '../../../utils'
 import { useSwitch } from '../../../hooks/useSwitch'
 import { getContext, CONTEXTS } from '../../../contexts'
-import { useEffect } from 'react'
 import { manyfy, injectAttrsToReactElements } from '../../../utils'
 
 export function PanelSidebar(props) {

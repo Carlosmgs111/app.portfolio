@@ -1,7 +1,7 @@
 import {
   Certification,
   CertificationSkeleton,
-} from '../../components/Certification'
+} from '../../containers/Certification'
 import { OnLoading } from '../../components/OnLoading'
 import { OnError } from '../../components/OnError'
 import { manyfy } from '../../utils'
@@ -11,26 +11,21 @@ import { DefineSchema } from '../../components/DefineSchema'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { URL_API } from '../../services'
-import {
-  Container,
-  Main,
-  Button,
-  Dashboard,
-  Sidebar,
-  List,
-  Item,
-  Input,
-} from './styles'
+import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
+import { PanelSidebar2 } from '../../components/Sidebars/PanelSidebar2'
+import { useTrackSidebar } from '../../hooks/useTrackSidebar'
+import { Container, Main, Dashboard } from './styles'
 
 export function Certifications() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
   const [{ token, loading: globalLoading }, dispatch] = useStateValue()
-  
+
   const [institutions, setInstitutions] = useState([])
   const [certificates, setCertificates] = useState([])
   const [currentModal, setCurrentModal] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [TrackSidebar, setElements, updateRefs] = useTrackSidebar()
   const [certificationSchema, setCertificationSchema] = useState({
     title: '',
     emitedBy: '',
@@ -43,13 +38,12 @@ export function Certifications() {
     url: '',
   })
 
-  console.log({ token })
-
   useEffect(() => {
-    const getCetifications = async () => {
+    const fetchCetifications = async () => {
       try {
         const { data } = await axios.get(`${URL_API}/certifications`)
         setCertificates(data)
+        setElements([...data.map((project) => project.title)])
       } catch (e) {
         setLoading(false)
         setError(e)
@@ -71,7 +65,7 @@ export function Certifications() {
       }
     }
     getInstitutions()
-    getCetifications()
+    fetchCetifications()
     return () => {}
   }, [token])
 
@@ -79,42 +73,33 @@ export function Certifications() {
   return (
     <>
       <Container>
-        <Sidebar>
-          <List>
-            <Item id="0" className="fa-solid fa-magnifying-glass">
-              <Input></Input>
-            </Item>
-            {token && (
-              <Item
-                id="1"
-                href="#dashboard"
-                className="fa-solid fa-plus"
-              ></Item>
-            )}
-            <Item id="2" className="fa-solid fa-eye">
-              <Input></Input>
-            </Item>
-            <Item
-              id="3"
-              className="fa-solid fa-fingerprint"
-              onClick={() => {
-                setCurrentModal(
-                  <Dashboard>
-                    <DefineSchema
-                      {...{
-                        setData: (data) =>
-                          setCertificates([...certificates, ...data]),
-                      }}
-                    />
-                  </Dashboard>,
-                )
-              }}
-            ></Item>
-          </List>
-        </Sidebar>
+        <MultiSidebar
+          {...{
+            sidebars: [
+              TrackSidebar,
+              <PanelSidebar2
+                id="panel-sidebar"
+                setCurrentModal={() => {
+                  setCurrentModal(
+                    <Dashboard>
+                      <DefineSchema
+                        {...{
+                          setData: (data) =>
+                            setCertificates([...certificates, ...data]),
+                        }}
+                      />
+                    </Dashboard>,
+                  )
+                }}
+              />,
+            ],
+          }}
+        />
         <Main>
           {certificates.map((certificate, index) => (
             <Certification
+              updateRefs={updateRefs}
+              title={certificate.title}
               setCurrentModal={setCurrentModal}
               src={certificate.image}
             />

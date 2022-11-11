@@ -20,6 +20,7 @@ export const MultiSidebar = (props) => {
           {sidebars.map((sidebar, index) => (
             <Item
               key={index}
+              href="#"
               onClick={() => setActiveSidebars([sidebar.props.id])}
               active={activeSidebars.includes(sidebar.props.id)}
             >
@@ -28,6 +29,7 @@ export const MultiSidebar = (props) => {
           ))}
           {activeSidebars.length !== sidebars.length && (
             <Item
+              href="#"
               key="expand-button"
               className="fa-solid fa-ellipsis"
               onClick={() =>
