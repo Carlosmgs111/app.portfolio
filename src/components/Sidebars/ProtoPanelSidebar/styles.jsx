@@ -4,16 +4,15 @@ export const SidebarBody = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 2rem;
-  overflow: scroll;
-  color: black;
-  border-radius: 0.6rem;
-  /* background-color: orangered; */
-  min-height: fit-content;
-  direction: rtl;
+  position: sticky;
+  /* background-color: #cadf2b; */
   max-height: ${({ active }) => (active ? '60vh' : '0')};
-  max-width: ${({ active }) => (active ? '20rem' : '0')};
-  transition: max-height 0.4s, max-width 0.4s;
-  box-shadow: inset 0px 0px 4px 2px rgba(0, 0, 0, 0.2);
+  max-width: ${({ active }) => (active ? '200px' : '0')};
+  transition: max-height 0.4s, max-width 0.2s;
+  -webkit-text-stroke: 1.5px black;
+  border-radius: 0.2rem;
+  overflow: scroll;
+  direction: rtl;
   &::-webkit-scrollbar {
     width: 0.4rem;
     display: inside;
@@ -29,7 +28,7 @@ export const SidebarBody = styled.div`
 `
 
 export const Item = styled.a`
-  cursor: hand;
+  cursor: pointer;
   text-decoration: none;
   display: flex;
   padding: 0.8rem;
@@ -42,29 +41,24 @@ export const Item = styled.a`
   &:hover {
     color: rgb(240, 38, 223) !important;
   }
-  /* background-color: orangered; */
+  /* background-color: #cadf2b; */
   color: ${({ active }) =>
     active ? 'hsl(67, 100%, 55%)' : 'inherit'} !important;
   -webkit-text-stroke: 1px black;
-  transition: max-width 0.6s, max-height 0.4s, padding-right 0.4s, color 0.4s,
-    left 0.6s, opacity 0.6s;
+  transition: max-width 0.6s, padding-right 0.4s, color 0.4s, left 0.6s,
+    opacity 0.6s;
 `
 
-export const InnerItem = styled.a`
+export const InnerItem = styled.i`
   ${Item.componentStyle.rules}
-  -webkit-text-stroke: .5px black;
+  -webkit-text-stroke: none;
   padding: 0;
   text-transform: capitalize !important; /* // ! Don't works */
-  text-overflow: ellipsis;
-  overflow: hidden;
   position: relative;
-  font-size: 1.4rem;
   font-style: normal;
-  white-space: pre-wrap;
-  line-height: 1.8rem;
+  white-space: nowrap;
   left: ${({ show }) => (show ? '1.2rem' : '-180px')};
   opacity: ${({ show }) => (show ? '1' : '0')};
-  max-width: ${({ show }) => (show ? '20rem' : '0')};
-  max-height: ${({ show }) => (show ? '12rem' : '0')};
+  max-width: ${({ show }) => (show ? '180px' : '0')};
   padding-right: ${({ show }) => (show ? '1.2rem' : '0')};
 `

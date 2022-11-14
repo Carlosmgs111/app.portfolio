@@ -12,7 +12,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { URL_API } from '../../services'
 import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
-import { PanelSidebar2 } from '../../components/Sidebars/PanelSidebar2'
+import { PanelSidebar } from '../../components/Sidebars/PanelSidebar'
 import { useTrackSidebar } from '../../hooks/useTrackSidebar'
 import { Container, Main, Dashboard } from './styles'
 
@@ -37,6 +37,26 @@ export function Certifications() {
     image: '',
     url: '',
   })
+
+  const sidebars = [TrackSidebar]
+  if (token)
+    sidebars.push(
+      <PanelSidebar
+        id="panel-sidebar"
+        setCurrentModal={() => {
+          setCurrentModal(
+            <Dashboard>
+              <DefineSchema
+                {...{
+                  setData: (data) =>
+                    setCertificates([...certificates, ...data]),
+                }}
+              />
+            </Dashboard>,
+          )
+        }}
+      />,
+    )
 
   useEffect(() => {
     const fetchCetifications = async () => {
@@ -75,24 +95,7 @@ export function Certifications() {
       <Container>
         <MultiSidebar
           {...{
-            sidebars: [
-              TrackSidebar,
-              <PanelSidebar2
-                id="panel-sidebar"
-                setCurrentModal={() => {
-                  setCurrentModal(
-                    <Dashboard>
-                      <DefineSchema
-                        {...{
-                          setData: (data) =>
-                            setCertificates([...certificates, ...data]),
-                        }}
-                      />
-                    </Dashboard>,
-                  )
-                }}
-              />,
-            ],
+            sidebars,
           }}
         />
         <Main>

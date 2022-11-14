@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { injectAttrsToReactElements } from '../../../utils'
 
 export const MultiSidebar = (props) => {
-  const { sidebars } = props
+  const { sidebars = [] } = props
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
   const [{ token, loading: globalLoading }, dispatch] = useStateValue()
   const [expand, switchExpand] = useSwitch(false, true)

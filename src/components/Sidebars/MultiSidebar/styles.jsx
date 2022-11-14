@@ -13,6 +13,7 @@ export const Sidebar = styled.div`
   justify-content: center;
   align-items: center;
   color: hsl(19, 97%, 51%);
+  z-index:1000;
 `
 
 export const Body = styled.div`
