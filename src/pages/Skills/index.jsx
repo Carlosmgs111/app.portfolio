@@ -31,10 +31,6 @@ export function Skills() {
     },
   ]
 
-  const populate = (skill, index) => {
-    return <Skill {...{ ...skill, index, updateRefs }} />
-  }
-
   useEffect(() => {
     setElements([...skills.map((skill) => skill.title)])
   }, [token])
@@ -45,7 +41,9 @@ export function Skills() {
       <MultiSidebar {...{ sidebars }} />
       <Main>
         <h1>Skills</h1>
-        {skills.map(populate)}
+        {skills.map((skill, index) => (
+          <Skill {...{ ...skill, index, updateRefs }} />
+        ))}
       </Main>
     </Container>
   )

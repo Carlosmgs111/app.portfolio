@@ -4,7 +4,7 @@ import { setFrames } from '../../utils'
 
 export const NavbarContainer = styled.div`
   &.navbar {
-    height: 10vh;
+    height: fit-content;
     display: inline;
     top: -20px;
   }
@@ -23,25 +23,26 @@ export const NavbarContainer = styled.div`
   }
 `
 
+export const NavbarHeader = styled.div`
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  @media (max-width: 830px) {
+    width: 100%;
+  }
+`
+
 export const NavigateBar = styled.nav`
-  margin: 0 10rem 0 10rem;
   z-index: 1;
   &.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
     padding: 0 2vw;
     width: inherit;
     height: inherit;
     @media (max-width: 1360px) {
-      display: block;
-    }
-    @media (max-width: 1035px) {
-      margin: 2rem 8rem 0 8rem;
-    }
-    @media (max-width: 995px) {
-      margin: 2rem 4rem 0 4rem;
+      flex-direction: column;
     }
   }
   &.sidebar {
@@ -50,20 +51,12 @@ export const NavigateBar = styled.nav`
 `
 
 const fadeinshow = keyframes`
-from{
-  opacity:0;
-}
-to{
-  opacity:1;
-}
-`
-const fadeoutshow = keyframes`
-from{
-  opacity:1;
-}
-to{
-  opacity:0;
-}
+  from{
+    opacity:0;
+  }
+  to{
+    opacity:1;
+  }
 `
 
 export const ItemsList = styled.ul`
@@ -82,13 +75,18 @@ export const ItemsList = styled.ul`
     align-content: center;
     justify-content: left;
     align-items: center;
+    transition: max-height 0.4s;
     @media (max-width: 830px) {
-      background-color: rgba(0, 0, 0, 0.9);
       animation: 0.8s ${fadeinshow} ease;
-      display: ${(props) => (props.show ? 'flex' : 'none')};
+      max-height: ${({ show }) => (show ? '40rem' : '0')};
       flex-direction: column;
       align-items: center;
-      border: 1px solid hsl(67, 100%, 55%);
+      position: relative;
+      top: 0;
+      width: 100%;
+    }
+    @media (max-width: 480px) {
+      width: 100%;
     }
   }
   &.sidebar {
@@ -100,22 +98,22 @@ export const ItemsList = styled.ul`
 `
 
 export const from = ({ selected }) => css`
-    color: ${selected ? 'rgb(228, 255, 26)' : 'rgba(228, 255, 26, .4)'};
-  `
+  color: ${selected ? 'rgb(228, 255, 26)' : 'rgba(228, 255, 26, .4)'};
+`
 
 export const to = css`
   color: rgb(228, 255, 26);
 `
 
 export const Item = styled.li`
-  margin: 0 auto;
+  /* margin: 0 auto; */
   animation: 1.2s ${(props) => setFrames([to, from], props)} ease;
   z-index: 1;
   list-style: none;
   padding: 0;
   text-decoration: none;
   ${(props) => from(props)};
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: 500;
   font-family: 'Quicksand', sans-serif;
   text-align: center;
@@ -261,16 +259,11 @@ export const Button = styled.i`
   color: white;
   @media (max-width: 830px) {
     display: block;
-    position: absolute;
     right: 15px;
     top: 2rem;
     font-size: 4rem;
   }
-  @media (max-width: 830px) {
-    top: 2rem;
-  }
   @media (max-width: 480px) {
-    top: 1.8rem;
     font-size: 3rem;
   }
 `

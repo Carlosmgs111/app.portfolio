@@ -11,12 +11,10 @@ const initialState = {
   apiKey: "",
   expire: "",
   loading: true,
+  navbarHeight: null,
 };
 
-export const actionTypes = setActions(
-  ["setAuth", "setLoading"],
-  initialState
-);
+export const actionTypes = setActions(["setAuth", "setLoading","setNavbar"], initialState);
 console.log({ actionTypes });
 
 const reducer = (state, action) => {
@@ -31,6 +29,7 @@ const reducer = (state, action) => {
       loading: false,
     },
     [actionTypes.setLoading]: { ...state, loading: payload },
+    [actionTypes.setNavbarHeight]: { ...state, navbarHeight: payload },
     [actionTypes.reset]: {
       ...state,
       ...initialState,
@@ -43,9 +42,9 @@ const { StateProvider } = addContext("Global", actionTypes);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <Router>
-      <StateProvider {...{ initialState, reducer }}>
-        <App />
-      </StateProvider>
-    </Router>
+  <Router>
+    <StateProvider {...{ initialState, reducer }}>
+      <App />
+    </StateProvider>
+  </Router>
 );

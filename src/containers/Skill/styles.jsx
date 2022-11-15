@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+export const Content = styled.div`
+  width: 100%;
+`
+
 export const Container = styled.div`
   display: flex;
   flex-direction: ${({ reverse }) => (reverse ? 'row-reverse' : 'row')};
@@ -7,6 +11,7 @@ export const Container = styled.div`
   min-height: 45rem;
   width: 100%;
 `
+
 export const Title = styled.h3`
   text-align: center;
   width: 100%;

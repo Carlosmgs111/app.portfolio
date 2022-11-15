@@ -1,6 +1,6 @@
 import { Header, Content, Footer, Banner, Icon } from './styles'
 import Navigation from '../components/Navigation'
-import { Route, Routes, Router } from 'react-router-dom'
+import { Routes } from 'react-router-dom'
 import { Login } from '../components/Login'
 import { getContext, CONTEXTS } from '../contexts'
 import { RoutesFactory, NavigationItemsFactory } from '../pages'
@@ -12,6 +12,7 @@ import { Projects } from '../pages/Projects'
 import { Certifications } from '../pages/Certifications'
 import { Modal } from '../components/Modal'
 import { injectAttrsToReactElements } from '../utils'
+import { useEffect } from 'react'
 
 export function App() {
   const { clearAuth } = useApp()
@@ -44,6 +45,15 @@ export function App() {
       }}
     />
   )
+
+  console.log(document.onscroll /* ("scroll",(e)=>console.log({e})) */)
+
+  useEffect(() => {
+    dispatch({
+      type: ACTIONS.setNavbarHeight,
+      payload: document.getElementById('navbar')?.offsetHeight,
+    })
+  }, [])
 
   return (
     <>

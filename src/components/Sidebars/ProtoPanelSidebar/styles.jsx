@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const SidebarBody = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 2rem;
+  font-size: 1.4rem;
   position: sticky;
   /* background-color: #cadf2b; */
   max-height: ${({ active }) => (active ? '60vh' : '0')};

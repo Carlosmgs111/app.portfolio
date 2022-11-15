@@ -8,7 +8,7 @@ export const SidebarBody = styled.div`
   overflow: scroll;
   min-height: fit-content;
   direction: rtl;
-  font-size: 2rem;
+  font-size: 1.6rem;
   max-height: ${({ active }) => (active ? '60vh' : '0')};
   max-width: ${({ active }) => (active ? '260px' : '0')};
   transition: max-height 0.4s, max-width 0.4s;
@@ -54,7 +54,7 @@ padding: 0.8rem;
 left: 0;
 color: hsl(19, 97%, 51%);
 direction: ltr;
--webkit-text-stroke: 1.5px black;
+-webkit-text-stroke: .6px black;
 height: fit-content; 
 &:visited {
   color: unset;

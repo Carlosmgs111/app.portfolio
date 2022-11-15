@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const SidebarBody = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 2rem;
+  font-size: 1.6rem;
   overflow: scroll;
   color: black;
   border-radius: 0.6rem;
@@ -45,12 +45,12 @@ export const Item = styled.a`
   /* background-color: orangered; */
   color: ${({ active }) =>
     active ? 'hsl(67, 100%, 55%)' : 'inherit'} !important;
-  -webkit-text-stroke: 1px black;
+  -webkit-text-stroke: .6px black;
   transition: max-width 0.6s, max-height 0.4s, padding-right 0.4s, color 0.4s,
     left 0.6s, opacity 0.6s;
 `
 
-export const InnerItem = styled.a`
+export const InnerItem = styled.i`
   ${Item.componentStyle.rules}
   -webkit-text-stroke: .5px black;
   padding: 0;

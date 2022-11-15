@@ -7,14 +7,17 @@ import { injectAttrsToReactElements } from '../../../utils'
 export const MultiSidebar = (props) => {
   const { sidebars = [] } = props
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
-  const [{ token, loading: globalLoading }, dispatch] = useStateValue()
+  const [
+    { token, loading: globalLoading, navbarHeight },
+    dispatch,
+  ] = useStateValue()
   const [expand, switchExpand] = useSwitch(false, true)
   const [activeSidebars, setActiveSidebars] = useState([sidebars[0]?.props.id])
 
   useEffect(() => {}, [])
 
   return (
-    <Sidebar>
+    <Sidebar {...{ navbarHeight }}>
       {sidebars.length > 1 && (
         <Header>
           {sidebars.map((sidebar, index) => (

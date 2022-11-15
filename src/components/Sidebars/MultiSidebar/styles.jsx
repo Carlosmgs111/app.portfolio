@@ -4,16 +4,17 @@ export const Sidebar = styled.div`
   border-radius: 0 0.6rem 0.6rem 0;
   background-color: rgba(0, 0, 0, 0.5);
   max-height: 70vh;
+  height: fit-content;
   position: fixed;
-  top: 10vh;
+  top: ${({ navbarHeight }) => navbarHeight}px;
   left: 0;
-  min-width: 30px;
+  min-width: auto;
   padding: 1.4rem;
   font-size: 2.8rem;
   justify-content: center;
   align-items: center;
   color: hsl(19, 97%, 51%);
-  z-index:1000;
+  z-index: 1000;
 `
 
 export const Body = styled.div`
@@ -34,7 +35,7 @@ export const Footer = styled.div`
   border-radius: 0.6rem;
   display: flex;
   flex-wrap: wrap;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   height: 4vh;
   justify-content: space-around;
   align-items: center;

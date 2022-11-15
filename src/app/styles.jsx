@@ -1,25 +1,15 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components'
 
 export const Header = styled.header`
   font-size: 1.8rem;
   width: 100%;
-  height: 10vh;
+  height: fit-content;
   justify-items: center;
-  position: sticky;
-  z-index: 1;
+  z-index: 1000;
   top: 0;
+  position: sticky;
   backdrop-filter: brightness(40%) blur(0.6rem);
-  @media(max-width: 1360px){
-    position:absolute;
-    height: 14vh;
-  }
-  @media(max-width: 830px){
-    height: 10vh;
-  }
-  @media(max-width: 480px){
-    height: 8vh;
-  }
-`;
+`
 
 export const Content = styled.div`
   display: flex;
@@ -30,18 +20,11 @@ export const Content = styled.div`
   width: 100%;
   min-height: 70vh;
   align-self: center;
-  padding: 4rem 4vw 12vh 4vw;
+  z-index: 1;
   @media (max-width: 1360px) {
     min-height: 80vh;
-    padding: 20rem 4vw 12vh 4vw;
   }
-  @media (max-width: 830px) {
-    padding: 18rem 4vw 12vh 4vw;
-  }
-  @media (max-width: 480px) {
-    padding: 15rem 0 12vh 0;
-  }
-`;
+`
 
 export const Footer = styled.footer`
   backdrop-filter: brightness(40%) blur(0.6rem);
@@ -50,27 +33,27 @@ export const Footer = styled.footer`
   align-items: center;
   justify-content: space-between;
   height: 20vh;
-`;
+`
 
 export const Banner = styled.h1`
   color: hsl(67, 100%, 55%);
   font-weight: bold;
-  font-size: 4.4rem;
-  @media(max-width:480px){
+  font-size: 3.4rem;
+  @media (max-width: 480px) {
     font-size: 2.6rem;
   }
-`;
+`
 
 export const Icon = styled.i`
   top: 0;
   font-size: 2.5rem;
   color: ${({ state }) =>
-    !state ? "hsl(349.9, 95.7%, 36.4%)" : "hsl(140, 71%, 44%)"};
+    !state ? 'hsl(349.9, 95.7%, 36.4%)' : 'hsl(140, 71%, 44%)'};
   -webkit-text-stroke: 1.5px black;
   border-radius: 25px;
   border: 3px solid black;
   padding: 3px;
-  :hover{
-    color:hsl(19, 97%, 51%);
+  :hover {
+    color: hsl(19, 97%, 51%);
   }
-`;
+`
