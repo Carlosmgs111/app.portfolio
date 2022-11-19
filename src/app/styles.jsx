@@ -5,10 +5,12 @@ export const Header = styled.header`
   width: 100%;
   height: fit-content;
   justify-items: center;
-  z-index: 1000;
+  z-index: 2;
   top: 0;
+  padding: ${({ showFixed }) => (showFixed ? '.2rem 2rem' : '2rem')};
   position: sticky;
   backdrop-filter: brightness(40%) blur(0.6rem);
+  transition: padding 0.4s;
 `
 
 export const Content = styled.div`

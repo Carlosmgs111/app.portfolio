@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { DefineAttribute } from "./DefineAttribute/index.jsx";
-import { FormStyle, Content, Button } from "./styles";
-import { useDefineSchema } from "../../hooks/useDefineSchema";
-import { OnError } from "../OnError";
+import { useState } from 'react'
+import { DefineAttribute } from './DefineAttribute/index.jsx'
+import { FormStyle, Content, Button } from './styles'
+import { useDefineSchema } from '../../hooks/useDefineSchema'
+import { OnError } from '../OnError'
+import { OnLoading } from '../OnLoading'
 
-export function DefineSchema({ availableLabels, setData, baseSchema, nonOptionals }) {
+export function DefineSchema({ baseSchema, nonOptionals, cb }) {
   const {
     attributes,
     onClick,
@@ -16,9 +17,10 @@ export function DefineSchema({ availableLabels, setData, baseSchema, nonOptional
     setLabel,
     loading,
     error,
-    data,
     reset,
-  } = useDefineSchema({setData, baseSchema});
+  } = useDefineSchema({ baseSchema, cb })
+
+  // console.log({baseSchema})
 
   return (
     <Content>
@@ -32,20 +34,20 @@ export function DefineSchema({ availableLabels, setData, baseSchema, nonOptional
         onChange={(e) => setLabel(e.target.value)}
       />
       <FormStyle>
-        {new Map(Object.entries(attributes)).forEach((value, key) => {
+        {new Map(Object.entries(attributes)).forEach((_, index) => {
           listOfDefineAttributes.push(
             <DefineAttribute
               {...{
-                key,
-                index: key,
+                key: index,
+                index,
                 schema,
                 setSchema,
                 attributes,
                 setAttributes,
                 nonOptionals,
               }}
-            />
-          );
+            />,
+          )
         })}
         {listOfDefineAttributes}
       </FormStyle>
@@ -53,13 +55,11 @@ export function DefineSchema({ availableLabels, setData, baseSchema, nonOptional
       <Button name="add-button" type="button" onClick={onClick}>
         Add
       </Button>
-      {availableLabels?.map((label, index) => (
-        <p key={index}>{label}</p>
-      ))}
-      {error && <OnError {...{ error, reset }}></OnError>}
+      <OnError {...{ error, reset }}></OnError>
+      <OnLoading {...{ loading, component: Content }}></OnLoading>
       <Button name="save-button" type="button" onClick={onClick}>
         Save
       </Button>
     </Content>
-  );
+  )
 }

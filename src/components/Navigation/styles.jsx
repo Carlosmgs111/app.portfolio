@@ -3,10 +3,13 @@ import { Link as LinkRouter } from 'react-router-dom'
 import { setFrames } from '../../utils'
 
 export const NavbarContainer = styled.div`
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   &.navbar {
     height: fit-content;
     display: inline;
-    top: -20px;
   }
   &.sidebar {
     z-index: 2;
@@ -15,11 +18,7 @@ export const NavbarContainer = styled.div`
     position: fixed;
     top: 10vh;
     left: 2vw;
-    overflow: scroll;
     box-sizing: border-box;
-    &::-webkit-scrollbar {
-      display: none;
-    }
   }
 `
 
@@ -106,14 +105,14 @@ export const to = css`
 `
 
 export const Item = styled.li`
-  /* margin: 0 auto; */
   animation: 1.2s ${(props) => setFrames([to, from], props)} ease;
   z-index: 1;
   list-style: none;
   padding: 0;
   text-decoration: none;
   ${(props) => from(props)};
-  font-size: 1.4rem;
+  font-size: ${({ showfixed }) => (showfixed ? '1.4rem' : '1.8rem')};
+  transition: font-size 0.4s;
   font-weight: 500;
   font-family: 'Quicksand', sans-serif;
   text-align: center;

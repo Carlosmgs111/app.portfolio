@@ -12,13 +12,23 @@ import { Projects } from '../pages/Projects'
 import { Certifications } from '../pages/Certifications'
 import { Modal } from '../components/Modal'
 import { injectAttrsToReactElements } from '../utils'
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 
 export function App() {
   const { clearAuth } = useApp()
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
   const [{ token, loading: globalLoading }, dispatch] = useStateValue()
   const [showLogin, switchShowLogin] = useSwitch(false, true)
+  const [showFixed, setShowFixed] = useState(false)
+
+  useEffect(() => {
+    const onScroll = (e) => {
+      const newShowFixed = window.scrollY > 200
+      showFixed !== newShowFixed &&
+        setTimeout(() => setShowFixed(newShowFixed), 500) // ? delay effect 500 ms
+    }
+    document.addEventListener('scroll', onScroll)
+  }, [showFixed])
 
   const pages = [
     'projects',
@@ -46,8 +56,6 @@ export function App() {
     />
   )
 
-  console.log(document.onscroll /* ("scroll",(e)=>console.log({e})) */)
-
   useEffect(() => {
     dispatch({
       type: ACTIONS.setNavbarHeight,
@@ -70,7 +78,7 @@ export function App() {
           }}
         />
       )}
-      <Header>
+      <Header showFixed={showFixed}>
         <Navigation
           className="navbar"
           banner={{ title: <Banner>Blogfolio</Banner>, to: '/' }}

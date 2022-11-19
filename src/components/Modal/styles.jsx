@@ -6,10 +6,11 @@ export const ModalStyle = styled.div`
   align-items: center;
   justify-content: space-around;
   justify-items: center;
+  position: fixed;
   /* background: rgba(240, 38, 223, 0.1); */
   backdrop-filter: blur(5px);
   color: white;
-  z-index: ${({ over }) => (over ? 1 : 0)};
+  z-index: ${({ over }) => (over ? 1000 : 0)};
   opacity: 1;
   animation: modal 500ms ease-out forwards;
   transition: transform 1s linear;

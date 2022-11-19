@@ -45,7 +45,7 @@ export const Item = styled.a`
   /* background-color: orangered; */
   color: ${({ active }) =>
     active ? 'hsl(67, 100%, 55%)' : 'inherit'} !important;
-  -webkit-text-stroke: .6px black;
+  -webkit-text-stroke: 0.6px black;
   transition: max-width 0.6s, max-height 0.4s, padding-right 0.4s, color 0.4s,
     left 0.6s, opacity 0.6s;
 `
@@ -61,7 +61,7 @@ export const InnerItem = styled.i`
   font-size: 1.4rem;
   font-style: normal;
   white-space: pre-wrap;
-  line-height: 1.8rem;
+  line-height: 2rem;
   left: ${({ show }) => (show ? '1.2rem' : '-180px')};
   opacity: ${({ show }) => (show ? '1' : '0')};
   max-width: ${({ show }) => (show ? '20rem' : '0')};

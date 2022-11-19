@@ -9,12 +9,11 @@ import { Modal } from '../../components/Modal'
 import { getContext, CONTEXTS } from '../../contexts'
 import { DefineSchema } from '../../components/DefineSchema'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
-import { URL_API } from '../../services'
 import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
 import { PanelSidebar } from '../../components/Sidebars/PanelSidebar'
 import { useTrackSidebar } from '../../hooks/useTrackSidebar'
 import { Container, Main, Dashboard } from './styles'
+import { fetchData, methods } from '../../services/fetchData'
 
 export function Certifications() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
@@ -39,7 +38,7 @@ export function Certifications() {
   })
 
   const sidebars = [TrackSidebar]
-  if (token)
+  token &&
     sidebars.push(
       <PanelSidebar
         id="panel-sidebar"
@@ -59,37 +58,31 @@ export function Certifications() {
     )
 
   useEffect(() => {
-    const fetchCetifications = async () => {
-      try {
-        const { data } = await axios.get(`${URL_API}/certifications`)
+    fetchData({
+      setData: (data) => {
         setCertificates(data)
         setElements([...data.map((project) => project.title)])
-      } catch (e) {
-        setLoading(false)
-        setError(e)
-      }
-    }
-    const getInstitutions = async () => {
-      try {
-        const { data } = await axios.get(`${URL_API}/institutions`)
+      },
+      setError,
+      setLoading,
+    }).get('certifications')
+
+    fetchData({
+      setData: (data) => {
         setCertificationSchema({
           ...certificationSchema,
           emitedBy: data[0].name,
           'emitedBy{': data.map((i) => i.name),
         })
         setInstitutions(data)
-        setLoading(false)
-      } catch (e) {
-        setLoading(false)
-        setError(e)
-      }
-    }
-    getInstitutions()
-    fetchCetifications()
+      },
+      setError,
+      setLoading,
+    }).get('institutions')
+
     return () => {}
   }, [token])
 
-  console.log({ certificates })
   return (
     <>
       <Container>
@@ -119,8 +112,25 @@ export function Certifications() {
                     'url',
                     'emitedBy{',
                   ],
-                  setData: (data) =>
-                    setCertificates([...certificates, ...data]),
+                  cb: ({ setError, setLoading, parseSchema, reset }) => {
+                    fetchData({
+                      setData: (data) =>
+                        setCertificates([...certificates, ...data]),
+                      setError,
+                      setLoading,
+                    }).post(
+                      `certifications/certifications`,
+                      { certifications: parseSchema(false) },
+                      {
+                        headers: {
+                          'Access-Control-Allow-Origin': '*',
+                          'Content-Type': 'application/json',
+                          Authorization: `Bearer ${token}`,
+                        },
+                      },
+                    )
+                    reset()
+                  },
                 }}
               />
             </Dashboard>

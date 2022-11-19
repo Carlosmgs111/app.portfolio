@@ -1,20 +1,16 @@
 import { useState, useEffect } from "react";
 import { genRandomId } from "../utils";
-import { URL, URL_API } from "../services/index";
-import { getContext, CONTEXTS } from "../contexts";
-import axios from "axios";
 
-export function useDefineSchema({setData, baseSchema=()=>{}}) {
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
-  const [{ token }, dispatch] = useStateValue();
+export function useDefineSchema({ baseSchema = {}, cb }) {
   const [label, setLabel] = useState("");
   const [schema, setSchema] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  // const [data, setData] = useState(null);
+  const [attributes, setAttributes] = useState({});
+  const listOfDefineAttributes = [];
 
   useEffect(() => {
-    setAttributes({[genRandomId()]:baseSchema})
+    setAttributes({ [genRandomId()]: baseSchema });
   }, []);
 
   const parseSchema = (object = true) => {
@@ -23,13 +19,8 @@ export function useDefineSchema({setData, baseSchema=()=>{}}) {
       if (object) parsedSchema[schema[attr].title] = schema[attr];
       else parsedSchema.push(schema[attr]);
     }
-    console.log({ parsedSchema });
     return parsedSchema;
   };
-
-  const [attributes, setAttributes] = useState({});
-
-  const listOfDefineAttributes = [];
 
   const addDefineAttribute = () => {
     setAttributes({
@@ -38,35 +29,18 @@ export function useDefineSchema({setData, baseSchema=()=>{}}) {
     });
   };
 
-  const reset =()=>{
-    setAttributes({[genRandomId()]: baseSchema})
-    setSchema({})
-  }
+  const reset = () => {
+    setAttributes({ [genRandomId()]: baseSchema });
+    setSchema({});
+  };
 
   const onClick = async (e) => {
     const { name } = e.target;
     if (name === "add-button") addDefineAttribute();
-    if (name === "save-button") {
-      setData(
-        (
-          await axios.post(
-            `${URL_API}/certifications/certifications`,
-            { certifications: parseSchema(false) },
-            {
-              headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          )
-        ).data
-      );
-      reset()
-    }
+    if (name === "save-button")
+      cb({ setError, setLoading, parseSchema, reset });
   };
-  console.log({ schema });
-  console.log(parseSchema(false));
+
   return {
     attributes,
     setAttributes,

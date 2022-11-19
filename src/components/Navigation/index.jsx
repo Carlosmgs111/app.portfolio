@@ -12,13 +12,20 @@ import { Children, cloneElement, useEffect, useState } from 'react'
 import { useSwitch } from '../../hooks/useSwitch'
 
 export default function Navigation({ children, banner, className }) {
-  useEffect(() => {}, [])
-
   const [menu, switchMenu] = useSwitch(
     { show: false, name: 'fas fa-bars p-2 item' },
     { show: true, name: 'fas fa-times p-2 item' },
   )
   const [current, setCurrent] = useState(null)
+  const [showfixed, setShowFixed] = useState(false)
+
+  useEffect(() => {
+    const onScroll = (e) => {
+      const newShowFixed = window.scrollY > 200
+      showfixed !== newShowFixed && setShowFixed(newShowFixed)
+    }
+    document.addEventListener('scroll', onScroll)
+  }, [showfixed])
 
   const childrens = Children.toArray(children)
 
@@ -55,6 +62,7 @@ export default function Navigation({ children, banner, className }) {
                 var LinkedItem = child.props.children.props?.link ? Item : Link
                 return (
                   <LinkedItem
+                    showfixed={showfixed}
                     className={`${className}`}
                     selected={current === index}
                     position={

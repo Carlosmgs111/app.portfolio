@@ -275,3 +275,6 @@ export const setFrames = (frames, props) => {
     ${literalKeyframe}
   `;
 };
+
+export const createEnumFromArray = (array) =>
+  Object.freeze(Object.fromEntries(array.map((item) => [item, item])));

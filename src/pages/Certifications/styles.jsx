@@ -13,7 +13,7 @@ export const Main = styled.div`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  padding: 0 10rem;
+  padding-top: 20rem;
   @media (max-width: 700px) {
     padding: 0;
   }
