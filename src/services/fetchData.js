@@ -16,12 +16,11 @@ export function fetchData({ setData, setLoading, setError } = {}) {
     } catch (e) {
       error = e;
       setError && setError(error);
+    } finally {
       setLoading && setLoading(false);
     }
 
     setData && setData(data);
-    setLoading && setLoading(false);
-
     loading = false;
 
     return { data, loading, error };

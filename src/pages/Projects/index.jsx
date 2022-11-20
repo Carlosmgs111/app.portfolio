@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getContext, CONTEXTS } from '../../contexts'
+import { getContextValue, CONTEXTS } from '../../contexts'
 import axios from 'axios'
 import { URL_API } from '../../services'
 import { Project } from '../../containers/Project'
@@ -7,11 +7,9 @@ import { Container, MainContainer } from './styles'
 import { useTrackSidebar } from '../../hooks/useTrackSidebar'
 import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
 import { PanelSidebar } from '../../components/Sidebars/PanelSidebar'
-import { manyfy, injectAttrsToReactElements } from '../../utils'
 
 export function Projects() {
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
-  const [{ token, loading: globalLoading }, dispatch] = useStateValue()
+  const { token } = getContextValue(CONTEXTS.Global)
   const [projects, setProjects] = useState([])
   const [TrackSidebar, setElements, updateRefs] = useTrackSidebar()
   const [error, setError] = useState(null)

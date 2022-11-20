@@ -6,7 +6,7 @@ import { OnLoading } from '../../components/OnLoading'
 import { OnError } from '../../components/OnError'
 import { manyfy } from '../../utils'
 import { Modal } from '../../components/Modal'
-import { getContext, CONTEXTS } from '../../contexts'
+import { getContextValue, CONTEXTS } from '../../contexts'
 import { DefineSchema } from '../../components/DefineSchema'
 import { useState, useEffect } from 'react'
 import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
@@ -16,8 +16,7 @@ import { Container, Main, Dashboard } from './styles'
 import { fetchData, methods } from '../../services/fetchData'
 
 export function Certifications() {
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
-  const [{ token, loading: globalLoading }, dispatch] = useStateValue()
+  const { token } = getContextValue(CONTEXTS.Global)
 
   const [institutions, setInstitutions] = useState([])
   const [certificates, setCertificates] = useState([])

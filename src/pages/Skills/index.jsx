@@ -3,12 +3,11 @@ import { Skill } from '../../containers/Skill'
 import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
 import { PanelSidebar } from '../../components/Sidebars/PanelSidebar'
 import { useTrackSidebar } from '../../hooks/useTrackSidebar'
-import { getContext, CONTEXTS } from '../../contexts'
+import { getContextValue, CONTEXTS } from '../../contexts'
 import { useEffect } from 'react'
 
 export function Skills() {
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
-  const [{ token, loading: globalLoading }, dispatch] = useStateValue()
+  const { token } = getContextValue(CONTEXTS.Global)
   const [TrackSidebar, setElements, updateRefs] = useTrackSidebar()
 
   const skills = [

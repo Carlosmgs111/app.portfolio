@@ -15,6 +15,11 @@ export const Container = styled.div`
     min-width: 32rem;
     max-width: 32rem;
   }
+  &:hover {
+    #dashboard {
+      opacity: 1;
+    }
+  }
 `
 
 export const Image = styled.img`
@@ -30,9 +35,15 @@ export const Image = styled.img`
 export const Url = styled.a``
 
 export const Dashboard = styled.div`
-  padding: 1.2rem 0;
+  border-radius: 0 0 0.8rem 0.8rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  background-color: #2c2b2b56;
+  position: fixed;
+  bottom: 1.2rem;
   align-items: center;
   width: 100%;
+  padding: 1.2rem 0;
+  opacity: 0;
+  transition: opacity 0.4s;
 `

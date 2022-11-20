@@ -205,7 +205,7 @@ export function DefineAttribute({
       </FormStyle>
     )
   }
-  console.log(Object.entries(attributes[index]).length)
+  
   return (
     <List>
       {Object.entries(attributes[index]).map((attribute, index) => {

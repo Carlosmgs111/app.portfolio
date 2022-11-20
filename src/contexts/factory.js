@@ -34,12 +34,19 @@ export function factory() {
       }
     }
   };
- 
+  const getContextValue = (name) => {
+    if (!Mapfy(CONTEXTS).has(name)) throw new Error(`Context doesn't exist!`);
+    const { useStateValue } = contexts[name];
+    const [contextValue] = useStateValue();
+    return contextValue;
+  };
+
   console.log({ contexts });
   return {
     addContext,
     getContext,
     removeContext,
     cleanContexts,
+    getContextValue,
   };
 }
