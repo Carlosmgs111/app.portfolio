@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { genRandomId } from "../utils";
+import { genRandomId } from "../../utils";
 
 export function useDefineSchema({ baseSchema = {}, cb }) {
   const [label, setLabel] = useState("");

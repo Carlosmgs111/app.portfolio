@@ -111,7 +111,7 @@ export const Item = styled.li`
   padding: 0;
   text-decoration: none;
   ${(props) => from(props)};
-  font-size: ${({ showfixed }) => (showfixed ? '1.4rem' : '1.8rem')};
+  font-size: ${({ showfixed }) => (showfixed ? '1.2rem' : '1.6rem')};
   transition: font-size 0.4s;
   font-weight: 500;
   font-family: 'Quicksand', sans-serif;

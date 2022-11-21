@@ -8,7 +8,8 @@ export const Container = styled.div`
   min-width: 45rem;
   max-width: 45rem;
   min-height: 35rem;
-  max-height: 45rem;
+  max-height: 405rem;
+  text-align: center;
   backdrop-filter: blur(6px) brightness(80%);
   display: block;
   @media (max-width: 500px) {
@@ -16,11 +17,13 @@ export const Container = styled.div`
     max-width: 32rem;
   }
   &:hover {
-    #dashboard {
+    #certification-dashboard {
       opacity: 1;
     }
   }
 `
+
+export const Content = styled.div``
 
 export const Image = styled.img`
   border-radius: 0.8rem;
@@ -32,7 +35,18 @@ export const Image = styled.img`
   cursor: ${({ zoomed }) => (zoomed ? 'zoom-out' : 'zoom-in')};
 `
 
-export const Url = styled.a``
+export const Url = styled.a`
+  cursor: hand;
+  text-decoration: none;
+  padding: 0.8rem;
+  font-size: 1.8rem;
+  position: sticky;
+  right: 0;
+  color: black;
+  &:visited {
+    color: unset;
+  }
+`
 
 export const Dashboard = styled.div`
   border-radius: 0 0 0.8rem 0.8rem;
@@ -46,4 +60,19 @@ export const Dashboard = styled.div`
   padding: 1.2rem 0;
   opacity: 0;
   transition: opacity 0.4s;
+`
+export const Button = styled.button`
+  margin: 4px 12px 4px 12px;
+  padding: 0 12px 0 12px;
+  border: none;
+  border-radius: 4px;
+  &.secondary {
+    background-color: rgb(240, 38, 223);
+  }
+  &.success {
+    background-color: rgb(33, 218, 9);
+  }
+  &.danger {
+    background-color: rgb(240, 59, 38);
+  }
 `

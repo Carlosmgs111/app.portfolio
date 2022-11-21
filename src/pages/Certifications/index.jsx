@@ -13,7 +13,7 @@ import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
 import { PanelSidebar } from '../../components/Sidebars/PanelSidebar'
 import { useTrackSidebar } from '../../hooks/useTrackSidebar'
 import { Container, Main, Dashboard } from './styles'
-import { fetchData, methods } from '../../services/fetchData'
+import { runRequest } from '../../services/runRequest'
 
 export function Certifications() {
   const { token } = getContextValue(CONTEXTS.Global)
@@ -57,7 +57,7 @@ export function Certifications() {
     )
 
   useEffect(() => {
-    fetchData({
+    runRequest({
       setData: (data) => {
         setCertificates(data)
         setElements([...data.map((project) => project.title)])
@@ -66,7 +66,7 @@ export function Certifications() {
       setLoading,
     }).get('certifications')
 
-    fetchData({
+    runRequest({
       setData: (data) => {
         setCertificationSchema({
           ...certificationSchema,
@@ -93,10 +93,7 @@ export function Certifications() {
         <Main>
           {certificates.map((certificate, index) => (
             <Certification
-              updateRefs={updateRefs}
-              title={certificate.title}
-              setCurrentModal={setCurrentModal}
-              src={certificate.image}
+              {...{ certificate, updateRefs, setCurrentModal }}
             />
           ))}
           {token && !loading && (
@@ -112,7 +109,7 @@ export function Certifications() {
                     'emitedBy{',
                   ],
                   cb: ({ setError, setLoading, parseSchema, reset }) => {
-                    fetchData({
+                    runRequest({
                       setData: (data) =>
                         setCertificates([...certificates, ...data]),
                       setError,

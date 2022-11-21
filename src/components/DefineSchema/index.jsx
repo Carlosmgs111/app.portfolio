@@ -1,11 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { DefineAttribute } from './DefineAttribute/index.jsx'
 import { FormStyle, Content, Button } from './styles'
-import { useDefineSchema } from '../../hooks/useDefineSchema'
+import { useDefineSchema } from './useDefineSchema'
 import { OnError } from '../OnError'
 import { OnLoading } from '../OnLoading'
 
-export function DefineSchema({ baseSchema, nonOptionals, cb }) {
+export function DefineSchema({
+  baseSchema,
+  nonOptionals,
+  cb,
+  buttons = ['add', 'save'],
+}) {
   const {
     attributes,
     onClick,
@@ -51,15 +56,18 @@ export function DefineSchema({ baseSchema, nonOptionals, cb }) {
         })}
         {listOfDefineAttributes}
       </FormStyle>
-
-      <Button name="add-button" type="button" onClick={onClick}>
-        Add
-      </Button>
+      {buttons.includes('add') && (
+        <Button name="add-button" type="button" onClick={onClick}>
+          Add
+        </Button>
+      )}
       <OnError {...{ error, reset }}></OnError>
       <OnLoading {...{ loading, component: Content }}></OnLoading>
-      <Button name="save-button" type="button" onClick={onClick}>
-        Save
-      </Button>
+      {buttons.includes('save') && (
+        <Button name="save-button" type="button" onClick={onClick}>
+          Save
+        </Button>
+      )}
     </Content>
   )
 }
