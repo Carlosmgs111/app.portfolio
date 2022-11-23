@@ -14,12 +14,14 @@ import { PanelSidebar } from '../../components/Sidebars/PanelSidebar'
 import { useTrackSidebar } from '../../hooks/useTrackSidebar'
 import { Container, Main, Dashboard } from './styles'
 import { runRequest } from '../../services/runRequest'
+import { headers } from '../../services/configs'
 
 export function Certifications() {
   const { token } = getContextValue(CONTEXTS.Global)
+  const requestHeaders = headers()
 
   const [institutions, setInstitutions] = useState([])
-  const [certificates, setCertificates] = useState([])
+  const [certifications, setCertifications] = useState([])
   const [currentModal, setCurrentModal] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -47,7 +49,7 @@ export function Certifications() {
               <DefineSchema
                 {...{
                   setData: (data) =>
-                    setCertificates([...certificates, ...data]),
+                    setCertifications([...certifications, ...data]),
                 }}
               />
             </Dashboard>,
@@ -56,10 +58,12 @@ export function Certifications() {
       />,
     )
 
+  const updateCertifications = (cb) => cb(certifications, setCertifications)
+
   useEffect(() => {
     runRequest({
       setData: (data) => {
-        setCertificates(data)
+        setCertifications(data)
         setElements([...data.map((project) => project.title)])
       },
       setError,
@@ -91,9 +95,14 @@ export function Certifications() {
           }}
         />
         <Main>
-          {certificates.map((certificate, index) => (
+          {certifications.map((certificate, index) => (
             <Certification
-              {...{ certificate, updateRefs, setCurrentModal }}
+              {...{
+                certificate,
+                updateRefs,
+                setCurrentModal,
+                updateCertifications,
+              }}
             />
           ))}
           {token && !loading && (
@@ -108,21 +117,19 @@ export function Certifications() {
                     'url',
                     'emitedBy{',
                   ],
-                  cb: ({ setError, setLoading, parseSchema, reset }) => {
+                  onClickHandler: (params) => {
+                    const { setError, setLoading, parsedSchema, reset } = params
+                    console.log({parsedSchema})
                     runRequest({
                       setData: (data) =>
-                        setCertificates([...certificates, ...data]),
+                        setCertifications([...certifications, ...data]),
                       setError,
                       setLoading,
                     }).post(
                       `certifications/certifications`,
-                      { certifications: parseSchema(false) },
+                      { certifications: parsedSchema },
                       {
-                        headers: {
-                          'Access-Control-Allow-Origin': '*',
-                          'Content-Type': 'application/json',
-                          Authorization: `Bearer ${token}`,
-                        },
+                        ...requestHeaders,
                       },
                     )
                     reset()

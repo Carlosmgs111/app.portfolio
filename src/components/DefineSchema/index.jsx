@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react'
 import { DefineAttribute } from './DefineAttribute/index.jsx'
 import { FormStyle, Content, Button } from './styles'
-import { useDefineSchema } from './useDefineSchema'
+import { hook } from './hook'
 import { OnError } from '../OnError'
 import { OnLoading } from '../OnLoading'
 
 export function DefineSchema({
   baseSchema,
   nonOptionals,
-  cb,
+  onClickHandler,
   buttons = ['add', 'save'],
+  highOrderCallback,
 }) {
   const {
     attributes,
@@ -23,7 +24,7 @@ export function DefineSchema({
     loading,
     error,
     reset,
-  } = useDefineSchema({ baseSchema, cb })
+  } = hook({ baseSchema, onClickHandler, highOrderCallback })
 
   // console.log({baseSchema})
 

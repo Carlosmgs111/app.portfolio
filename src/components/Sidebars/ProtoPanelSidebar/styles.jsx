@@ -45,7 +45,7 @@ export const Item = styled.a`
   color: ${({ active }) =>
     active ? 'hsl(67, 100%, 55%)' : 'inherit'} !important;
   -webkit-text-stroke: 1px black;
-  transition: max-width 0.6s, padding-right 0.4s, color 0.4s, left 0.6s,
+  transition: max-width 0.6s ease-in-out, padding-right 0.4s, color 0.4s, left 0.6s,
     opacity 0.6s;
 `
 

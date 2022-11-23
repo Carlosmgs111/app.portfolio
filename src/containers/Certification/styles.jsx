@@ -54,7 +54,8 @@ export const Dashboard = styled.div`
   justify-content: space-around;
   background-color: #2c2b2b56;
   position: fixed;
-  bottom: 1.2rem;
+  left: 0;
+  bottom: 0;
   align-items: center;
   width: 100%;
   padding: 1.2rem 0;

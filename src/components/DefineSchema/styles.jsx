@@ -16,6 +16,7 @@ export const Content = styled.div`
     margin-bottom: 4rem;
   }
 `
+
 export const FormStyle = styled.form`
   display: flex;
   flex-wrap: wrap;

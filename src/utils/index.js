@@ -278,3 +278,9 @@ export const setFrames = (frames, props) => {
 
 export const createEnumFromArray = (array) =>
   Object.freeze(Object.fromEntries(array.map((item) => [item, item])));
+
+export const runButtonBehavior = (e, behaviors) => {
+  const { class: className, name, title, id } = e.target;
+  const buttonId = name || title || id || className;
+  behaviors[buttonId]();
+};

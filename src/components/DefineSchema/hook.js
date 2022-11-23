@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
 import { genRandomId } from "../../utils";
+import { runButtonBehavior } from "../../utils";
 
-export function useDefineSchema({ baseSchema = {}, cb }) {
+export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
   const [label, setLabel] = useState("");
   const [schema, setSchema] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [attributes, setAttributes] = useState({});
   const listOfDefineAttributes = [];
+  console.log({})
+
+  if (highOrderCallback) onClickHandler = highOrderCallback;
 
   useEffect(() => {
     setAttributes({ [genRandomId()]: baseSchema });
@@ -35,11 +39,26 @@ export function useDefineSchema({ baseSchema = {}, cb }) {
   };
 
   const onClick = async (e) => {
-    const { name } = e.target;
-    if (name === "add-button") addDefineAttribute();
-    if (name === "save-button")
-      cb({ setError, setLoading, parseSchema, reset });
+    const behaviors = {
+      "add-button": addDefineAttribute,
+      "save-button": () =>
+        onClickHandler({
+          setError,
+          setLoading,
+          parsedSchema: parseSchema(false),
+          reset,
+        }),
+    };
+    runButtonBehavior(e, behaviors);
   };
+
+  if (highOrderCallback)
+    highOrderCallback({
+      setError,
+      setLoading,
+      parsedSchema: parseSchema(false),
+      reset,
+    });
 
   return {
     attributes,
