@@ -4,7 +4,7 @@ import {
 } from '../../containers/Certification'
 import { OnLoading } from '../../components/OnLoading'
 import { OnError } from '../../components/OnError'
-import { manyfy } from '../../utils'
+import { manyfy, injectAttrsToReactElements } from '../../utils'
 import { Modal } from '../../components/Modal'
 import { getContextValue, CONTEXTS } from '../../contexts'
 import { DefineSchema } from '../../components/DefineSchema'
@@ -95,13 +95,15 @@ export function Certifications() {
           }}
         />
         <Main>
-          {certifications.map((certificate, index) => (
+          {certifications.map((certification, index) => (
             <Certification
               {...{
-                certificate,
+                key: certification.uuid,
+                initialCertification: certification,
                 updateRefs,
                 setCurrentModal,
                 updateCertifications,
+                institutions,
               }}
             />
           ))}
@@ -119,7 +121,7 @@ export function Certifications() {
                   ],
                   onClickHandler: (params) => {
                     const { setError, setLoading, parsedSchema, reset } = params
-                    console.log({parsedSchema})
+                    console.log({ parsedSchema })
                     runRequest({
                       setData: (data) =>
                         setCertifications([...certifications, ...data]),
@@ -144,7 +146,9 @@ export function Certifications() {
         {...{
           loading,
           component: Main,
-          contain: manyfy(<CertificationSkeleton />, 12),
+          contain: manyfy(<CertificationSkeleton />, 12).map((c, index) =>
+            injectAttrsToReactElements([c], { key: index }),
+          ),
         }}
       />
       <OnError {...{ error }} />

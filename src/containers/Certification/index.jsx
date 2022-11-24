@@ -12,14 +12,15 @@ import { headers } from '../../services/configs'
 import { runButtonBehavior } from '../../utils'
 
 export function Certification({
-  certificate,
+  initialCertification,
   setCurrentModal = () => {},
   updateRefs,
   updateCertifications,
+  institutions,
 }) {
   const requestHeaders = headers()
   const [beingEdited, switchBeingEdited] = useSwitch(false, true)
-  const [certification, setCertification] = useState(certificate)
+  const [certification, setCertification] = useState(initialCertification)
   const { uuid, title, image = '', emitedAt, emitedBy, url } = certification
   const { token } = getContextValue(CONTEXTS.Global)
   const [show, ref] = useNearScreen(false, updateRefs)
@@ -58,7 +59,7 @@ export function Certification({
 
   const onClick = (e) => {
     const onClickHandlerCallback = getOnClickHandler()
-    console.log({onClickHandlerCallback})
+    console.log({ onClickHandlerCallback })
     const behaviors = {
       primary: () => {
         beingEdited
@@ -110,7 +111,7 @@ export function Certification({
               title,
               emitedBy,
               // ? `{` symbol used for mark a select object controller
-              'emitedBy{': ['Platzi'],
+              'emitedBy{': institutions.map((i) => i.name),
               emitedAt,
               // ? `~` symbol used for mark a date object controller
               'emitedAt~': new Date().toISOString().slice(0, 10),
@@ -119,7 +120,7 @@ export function Certification({
             },
             nonOptionals: ['title', 'emitedAt~', 'image', 'url', 'emitedBy{'],
             highOrderCallback: (params) => setOnClickHandler(params),
-            buttons: [],
+            buttons: ['save'],
           }}
         ></DefineSchema>
       )}

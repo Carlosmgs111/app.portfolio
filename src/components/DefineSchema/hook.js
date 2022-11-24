@@ -9,7 +9,7 @@ export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
   const [error, setError] = useState(false);
   const [attributes, setAttributes] = useState({});
   const listOfDefineAttributes = [];
-  console.log({})
+  
 
   if (highOrderCallback) onClickHandler = highOrderCallback;
 

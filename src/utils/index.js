@@ -147,11 +147,11 @@ export const pairKV = (object, depth = 0, get, index = 0) => {
 
 export const Mapfy = (object) => new Map(Object.entries(object));
 
+
 /**
- * It takes an array of React elements and an array of arrays of attributes and returns an array of
- * React elements with the attributes injected
+ * It takes an array of React elements and injects the same attributes to all of them
  * @param items - an array of React elements
- * @param attrs - [["key", "value"], ["key", "value"]]
+ * @param [attrs] - The attributes you want to inject into the React elements.
  */
 export const injectAttrsToReactElements = (items, attrs = {}) =>
   items.map((item, index) => cloneElement(item, { ...attrs }));
