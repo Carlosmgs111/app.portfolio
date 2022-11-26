@@ -1,45 +1,46 @@
 import {
   Certification,
   CertificationSkeleton,
-} from '../../containers/Certification'
-import { OnLoading } from '../../components/OnLoading'
-import { OnError } from '../../components/OnError'
-import { manyfy, injectAttrsToReactElements } from '../../utils'
-import { Modal } from '../../components/Modal'
-import { getContextValue, CONTEXTS } from '../../contexts'
-import { DefineSchema } from '../../components/DefineSchema'
-import { useState, useEffect } from 'react'
-import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
-import { PanelSidebar } from '../../components/Sidebars/PanelSidebar'
-import { useTrackSidebar } from '../../hooks/useTrackSidebar'
-import { Container, Main, Dashboard } from './styles'
-import { runRequest } from '../../services/runRequest'
-import { headers } from '../../services/configs'
-import { Banner } from '../../components/Banner'
+} from "../../containers/Certification";
+import { OnLoading } from "../../components/OnLoading";
+import { OnError } from "../../components/OnError";
+import { manyfy, injectAttrsToReactElements } from "../../utils";
+import { Modal } from "../../components/Modal";
+import { getContextValue, CONTEXTS } from "../../contexts";
+import { DefineSchema } from "../../components/DefineSchema";
+import { useState, useEffect } from "react";
+import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
+import { PanelSidebar } from "../../components/Sidebars/PanelSidebar";
+import { useTrackSidebar } from "../../hooks/useTrackSidebar";
+import { Container, Main, Dashboard } from "./styles";
+import { runRequest } from "../../services/runRequest";
+import { headers } from "../../services/configs";
+import { Banner } from "../../components/Banner";
+import { Page } from "../../components/Page";
 
 export function Certifications() {
-  const { token } = getContextValue(CONTEXTS.Global)
-  const requestHeaders = headers()
+  const { token } = getContextValue(CONTEXTS.Global);
+  const requestHeaders = headers();
 
-  const [institutions, setInstitutions] = useState([])
-  const [certifications, setCertifications] = useState([])
-  const [currentModal, setCurrentModal] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const [TrackSidebar, setElements, updateRefs] = useTrackSidebar()
+  const [institutions, setInstitutions] = useState([]);
+  const [certifications, setCertifications] = useState([]);
+  const [currentModal, setCurrentModal] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [TrackSidebar, setElements, updateRefs] = useTrackSidebar();
   const [certificationSchema, setCertificationSchema] = useState({
-    title: '',
-    emitedBy: '',
+    title: "",
+    emitedBy: "",
     // ? `{` symbol used for mark a select object controller
-    'emitedBy{': [],
+    "emitedBy{": [],
     emitedAt: new Date().getTime(),
     // ? `~` symbol used for mark a date object controller
-    'emitedAt~': new Date().toISOString().slice(0, 10),
-    image: '',
-    url: '',
-  })
+    "emitedAt~": new Date().toISOString().slice(0, 10),
+    image: "",
+    url: "",
+  });
 
-  const sidebars = [TrackSidebar]
+  const sidebars = [TrackSidebar];
   token &&
     sidebars.push(
       <PanelSidebar
@@ -53,53 +54,52 @@ export function Certifications() {
                     setCertifications([...certifications, ...data]),
                 }}
               />
-            </Dashboard>,
-          )
+            </Dashboard>
+          );
         }}
-      />,
-    )
+      />
+    );
 
-  const updateCertifications = (cb) => cb(certifications, setCertifications)
+  const updateCertifications = (cb) => cb(certifications, setCertifications);
 
   useEffect(() => {
     runRequest({
       setData: (data) => {
-        setCertifications(data)
-        setElements([...data.map((project) => project.title)])
+        setCertifications(data);
+        setElements([...data.map((project) => project.title)]);
       },
       setError,
       setLoading,
-    }).get('certifications')
+    }).get("certifications");
 
     runRequest({
       setData: (data) => {
         setCertificationSchema({
           ...certificationSchema,
           emitedBy: data[0].name,
-          'emitedBy{': data.map((i) => i.name),
-        })
-        setInstitutions(data)
+          "emitedBy{": data.map((i) => i.name),
+        });
+        setInstitutions(data);
       },
       setError,
       setLoading,
-    }).get('institutions')
+    }).get("institutions");
 
-    return () => {}
-  }, [token])
+    return () => {};
+  }, [token]);
 
   return (
-    <div
+    <Page
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'left',
-        justifyContent: 'left',
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
       }}
     >
       <Banner
         {...{
           config: {
-            background: 'linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c)',
+            background: "linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c)",
           },
         }}
       >
@@ -130,15 +130,16 @@ export function Certifications() {
                 {...{
                   baseSchema: certificationSchema,
                   nonOptionals: [
-                    'title',
-                    'emitedAt~',
-                    'image',
-                    'url',
-                    'emitedBy{',
+                    "title",
+                    "emitedAt~",
+                    "image",
+                    "url",
+                    "emitedBy{",
                   ],
                   onClickHandler: (params) => {
-                    const { setError, setLoading, parsedSchema, reset } = params
-                    console.log({ parsedSchema })
+                    const { setError, setLoading, parsedSchema, reset } =
+                      params;
+                    console.log({ parsedSchema });
                     runRequest({
                       setData: (data) =>
                         setCertifications([...certifications, ...data]),
@@ -149,9 +150,9 @@ export function Certifications() {
                       { certifications: parsedSchema },
                       {
                         ...requestHeaders,
-                      },
-                    )
-                    reset()
+                      }
+                    );
+                    reset();
                   },
                 }}
               />
@@ -164,7 +165,7 @@ export function Certifications() {
           loading,
           component: Main,
           contain: manyfy(<CertificationSkeleton />, 12).map((c, index) =>
-            injectAttrsToReactElements([c], { key: index }),
+            injectAttrsToReactElements([c], { key: index })
           ),
         }}
       />
@@ -183,6 +184,6 @@ export function Certifications() {
           ),
         }}
       />
-    </div>
-  )
+    </Page>
+  );
 }

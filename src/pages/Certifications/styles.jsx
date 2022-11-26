@@ -1,11 +1,10 @@
-import { setFrames } from '../../utils'
-import styled, { keyframes, css } from 'styled-components'
+import styled from "styled-components";
 
 export const Container = styled.div`
   top: 20vh;
   position: sticky;
   display: flex;
-`
+`;
 
 export const Main = styled.div`
   align-items: center;
@@ -14,10 +13,11 @@ export const Main = styled.div`
   gap: 10px;
   flex-wrap: wrap;
   padding-top: 10rem;
+  width: 100%;
   @media (max-width: 700px) {
     padding: 0;
   }
-`
+`;
 
 export const Banner = styled.div`
   width: 100%;
@@ -27,7 +27,7 @@ export const Banner = styled.div`
   justify-content: center;
   position: sticky;
   top: -24rem;
-  left :0;
+  left: 0;
   z-index: 1;
   background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);
   h1 {
@@ -36,11 +36,11 @@ export const Banner = styled.div`
     -webkit-text-stroke: 0.15rem black;
     color: #11111199;
   }
-`
+`;
 
 export const Button = styled.button`
   margin: auto;
-`
+`;
 
 export const Dashboard = styled.div`
   color: white;
@@ -54,4 +54,4 @@ export const Dashboard = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`
+`;

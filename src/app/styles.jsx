@@ -12,14 +12,9 @@ export const Header = styled.header`
 `
 
 export const Content = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: top;
   justify-content: center;
-  top: 10vh;
   width: 100%;
   min-height: 75vh;
-  align-self: center;
   z-index: 1;
   @media (max-width: 1360px) {
     min-height: 80vh;
@@ -45,7 +40,7 @@ export const Banner = styled.h1`
     font-size: 2.6rem;
   }
   :hover {
-    color: rgb(240, 38, 223);
+    color: #f026df;
   }
   transition: color 0.4s;
 `
