@@ -12,7 +12,7 @@ import { useState, useEffect } from 'react'
 import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
 import { PanelSidebar } from '../../components/Sidebars/PanelSidebar'
 import { useTrackSidebar } from '../../hooks/useTrackSidebar'
-import { Container, Main, Dashboard } from './styles'
+import { Container, Main, Dashboard, Banner } from './styles'
 import { runRequest } from '../../services/runRequest'
 import { headers } from '../../services/configs'
 
@@ -87,13 +87,16 @@ export function Certifications() {
   }, [token])
 
   return (
-    <>
+    <div style={{display:"flex", flexDirection:"column", alignItems:"left", justifyContent:"left"}}>
+      <Banner>
+        <h1>Certifications</h1>
+      </Banner>
+      <MultiSidebar
+        {...{
+          sidebars,
+        }}
+      />
       <Container>
-        <MultiSidebar
-          {...{
-            sidebars,
-          }}
-        />
         <Main>
           {certifications.map((certification, index) => (
             <Certification
@@ -166,6 +169,6 @@ export function Certifications() {
           ),
         }}
       />
-    </>
+    </div>
   )
 }

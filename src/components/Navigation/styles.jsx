@@ -8,7 +8,7 @@ export const NavbarContainer = styled.div`
     display: none;
   }
   &.navbar {
-    height: fit-content;
+    height: auto;
     display: inline;
   }
   &.sidebar {
@@ -33,6 +33,8 @@ export const NavbarHeader = styled.div`
 
 export const NavigateBar = styled.nav`
   z-index: 1;
+  /* backdrop-filter: brightness(60%); */
+  /* background-color: black; */
   &.navbar {
     display: flex;
     justify-content: space-between;
@@ -61,9 +63,10 @@ const fadeinshow = keyframes`
 export const ItemsList = styled.ul`
   color: transparent;
   font-size: 3rem;
-  backdrop-filter: blur(10rem) brightness(0.4);
+  /* backdrop-filter: blur(10rem) brightness(0.4); */
   border-radius: 6px;
-  height: auto;
+  max-height: ${({ showfixed }) => (showfixed ? '10rem' : '10rem')};
+  transition: max-height 0.5s;
   &.navbar {
     font-size: 2.8rem;
     display: flex;
@@ -111,7 +114,7 @@ export const Item = styled.li`
   padding: 0;
   text-decoration: none;
   ${(props) => from(props)};
-  font-size: ${({ showfixed }) => (showfixed ? '1.2rem' : '1.6rem')};
+  font-size: 1.2rem;
   transition: font-size 0.4s;
   font-weight: 500;
   font-family: 'Quicksand', sans-serif;

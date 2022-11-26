@@ -1,4 +1,4 @@
-import { Header, Content, Footer, Banner, Icon } from './styles'
+import { Header, Content, Footer, Banner, Icon, ContentBanner } from './styles'
 import Navigation from '../components/Navigation'
 import { Routes } from 'react-router-dom'
 import { Login } from '../components/Login'
@@ -13,6 +13,7 @@ import { Certifications } from '../pages/Certifications'
 import { Modal } from '../components/Modal'
 import { injectAttrsToReactElements } from '../utils'
 import { useEffect, useLayoutEffect, useState } from 'react'
+import { useScroll } from '../hooks/useScroll'
 
 export function App() {
   const { clearAuth } = useApp()
@@ -20,6 +21,7 @@ export function App() {
   const [{ token, loading: globalLoading }, dispatch] = useStateValue()
   const [showLogin, switchShowLogin] = useSwitch(false, true)
   const [showFixed, setShowFixed] = useState(false)
+  // useScroll()
 
   useEffect(() => {
     const onScroll = (e) => {
@@ -56,12 +58,6 @@ export function App() {
     />
   )
 
-  useEffect(() => {
-    dispatch({
-      type: ACTIONS.setNavbarHeight,
-      payload: document.getElementById('navbar')?.offsetHeight,
-    })
-  }, [])
 
   return (
     <>
@@ -107,8 +103,10 @@ export function App() {
             injectAttrsToReactElements([page], { key: index }),
           )}
         </Navigation>
+        {/* <h1 id="box">°</h1> */}
       </Header>
       <Content>
+        {/* <ContentBanner></ContentBanner> */}
         <Routes>
           {RoutesFactory({
             root: '',

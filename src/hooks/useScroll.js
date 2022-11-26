@@ -1,7 +1,5 @@
-import { useSwitch } from "./useSwitch";
 
-export function useScroll(element) {
-  const [direction, switchDirection] = useSwitch(-1, 1);
+export function useScroll() {
 
   let scrollPos = 0;
   window.addEventListener("scroll", function () {
@@ -14,5 +12,4 @@ export function useScroll(element) {
     scrollPos = currentPos;
   });
 
-  return [direction];
 }

@@ -3,14 +3,18 @@ import styled from 'styled-components'
 export const Container = styled.div`
   padding: 1.2rem;
   border-radius: 0.8rem;
-  /* border: 1px solid black; */
+  border: 0.4rem solid black;
   height: auto;
   min-width: 45rem;
   max-width: 45rem;
   min-height: 35rem;
   max-height: 405rem;
   text-align: center;
-  backdrop-filter: blur(6px) brightness(80%);
+  background: linear-gradient(
+    to right,
+    #333399,
+    #ff00cc
+  );
   display: block;
   @media (max-width: 500px) {
     min-width: 32rem;
@@ -27,7 +31,7 @@ export const Content = styled.div``
 
 export const Image = styled.img`
   border-radius: 0.8rem;
-  border: 0.4rem solid black;
+  border: 0.1rem solid black;
   max-width: 100%;
   max-height: 80%;
   object-fit: cover;
@@ -45,6 +49,9 @@ export const Url = styled.a`
   color: black;
   &:visited {
     color: unset;
+  }
+  &:hover {
+    color: rgb(240, 38, 223) !important;
   }
 `
 

@@ -3,7 +3,7 @@ import { getContextValue, CONTEXTS } from '../../contexts'
 import axios from 'axios'
 import { URL_API } from '../../services'
 import { Project } from '../../containers/Project'
-import { Container, MainContainer } from './styles'
+import { Container, MainContainer, Banner } from './styles'
 import { useTrackSidebar } from '../../hooks/useTrackSidebar'
 import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
 import { PanelSidebar } from '../../components/Sidebars/PanelSidebar'
@@ -35,6 +35,7 @@ export function Projects() {
       <PanelSidebar
         {...{
           id: 'panel-sidebar',
+          currentModal: <h1>Hola</h1>,
         }}
       />,
     )
@@ -44,9 +45,7 @@ export function Projects() {
       try {
         const { data } = await axios.get(`${URL_API}/projects`)
         setProjects([...data])
-        setElements([
-          ...data.map((project) => project.name),
-        ])
+        setElements([...data.map((project) => project.name)])
         console.log({ data })
       } catch (e) {
         setLoading(false)
@@ -61,22 +60,25 @@ export function Projects() {
   }, [token])
 
   return (
-    <Container>
-      {
-        <MultiSidebar
-          {...{
-            sidebars,
-          }}
-        />
-      }
-      <MainContainer>
-        {projects.map((project, index) => (
-          <Project
-            key={index}
-            {...{ ...project, even: index % 2 === 0, updateRefs }}
+    <>
+      <Banner />
+      <Container>
+        {
+          <MultiSidebar
+            {...{
+              sidebars,
+            }}
           />
-        ))}
-      </MainContainer>
-    </Container>
+        }
+        <MainContainer>
+          {projects.map((project, index) => (
+            <Project
+              key={index}
+              {...{ ...project, even: index % 2 === 0, updateRefs }}
+            />
+          ))}
+        </MainContainer>
+      </Container>
+    </>
   )
 }

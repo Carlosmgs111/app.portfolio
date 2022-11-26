@@ -1,4 +1,4 @@
-import { Container, Main } from './styles'
+import { Container, Main, Banner } from './styles'
 import { Skill } from '../../containers/Skill'
 import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
 import { PanelSidebar } from '../../components/Sidebars/PanelSidebar'
@@ -36,14 +36,18 @@ export function Skills() {
 
   const sidebars = [TrackSidebar, <PanelSidebar />]
   return (
-    <Container>
-      <MultiSidebar {...{ sidebars }} />
-      <Main>
+    <>
+      <Banner>
         <h1>Skills</h1>
-        {skills.map((skill, index) => (
-          <Skill {...{ ...skill, index, updateRefs }} />
-        ))}
-      </Main>
-    </Container>
+      </Banner>
+      <Container>
+        <MultiSidebar {...{ sidebars }} />
+        <Main>
+          {skills.map((skill, index) => (
+            <Skill {...{ ...skill, index, updateRefs }} />
+          ))}
+        </Main>
+      </Container>
+    </>
   )
 }

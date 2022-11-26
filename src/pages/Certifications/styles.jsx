@@ -13,9 +13,28 @@ export const Main = styled.div`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  padding: 20rem 10rem;
+  padding-top: 10rem;
   @media (max-width: 700px) {
     padding: 0;
+  }
+`
+
+export const Banner = styled.div`
+  width: 100%;
+  height: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: -24rem;
+  left :0;
+  z-index: 1;
+  background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);
+  h1 {
+    text-align: center;
+    font-size: 8rem;
+    -webkit-text-stroke: 0.15rem black;
+    color: #11111199;
   }
 `
 

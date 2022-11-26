@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import { setFrames } from '../../../utils'
 
 export const SidebarBody = styled.div`
-  border-radius: 0 0.6rem 0.6rem 0;
+  border-radius: 0.6rem;
   display: flex;
   flex-direction: column;
   overflow: scroll;
@@ -11,7 +11,8 @@ export const SidebarBody = styled.div`
   font-size: 1.6rem;
   max-height: ${({ active }) => (active ? '60vh' : '0')};
   max-width: ${({ active }) => (active ? '260px' : '0')};
-  transition: max-height 0.4s, max-width 0.4s;
+  transition: max-height 0.4s, max-width 0.4s, padding-right 0.4s;
+  box-shadow: inset 0px 0px 4px 2px rgba(0, 0, 0, 0.2);
   &::-webkit-scrollbar {
     width: 0.4rem;
     display: inside;
@@ -53,6 +54,7 @@ export const Item = styled.a`
       width: 18rem;
       opacity: 1;
       padding: 0 0.8rem;
+      margin-right: 1rem;
     }
   }
 `
@@ -69,5 +71,5 @@ export const Input = styled.input`
   width: 0;
   opacity: 0;
   padding: 0;
-  transition: width 0.5s, opacity 0.5s, padding 0.5s;
+  transition: width 0.5s, opacity 0.5s, padding 0.5s, margin-right 0.5s;
 `

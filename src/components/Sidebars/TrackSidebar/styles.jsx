@@ -11,7 +11,7 @@ export const SidebarBody = styled.div`
   min-height: fit-content;
   direction: rtl;
   max-height: ${({ active }) => (active ? '60vh' : '0')};
-  max-width: ${({ active }) => (active ? '20rem' : '0')};
+  max-width: ${({ active }) => (active ? '25rem' : '0')};
   transition: max-height 0.4s, max-width 0.4s;
   box-shadow: inset 0px 0px 4px 2px rgba(0, 0, 0, 0.2);
   &::-webkit-scrollbar {
@@ -52,19 +52,19 @@ export const Item = styled.a`
 
 export const InnerItem = styled.i`
   ${Item.componentStyle.rules}
-  -webkit-text-stroke: .5px black;
+  -webkit-text-stroke: .3px black;
   padding: 0;
   text-transform: capitalize !important; /* // ! Don't works */
   text-overflow: ellipsis;
   overflow: hidden;
   position: relative;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-style: normal;
   white-space: pre-wrap;
   line-height: 2rem;
   left: ${({ show }) => (show ? '1.2rem' : '-180px')};
   opacity: ${({ show }) => (show ? '1' : '0')};
-  max-width: ${({ show }) => (show ? '20rem' : '0')};
-  max-height: ${({ show }) => (show ? '12rem' : '0')};
+  max-width: ${({ show }) => (show ? '25rem' : '0')};
+  max-height: ${({ show }) => (show ? '20rem' : '0')};
   padding-right: ${({ show }) => (show ? '1.2rem' : '0')};
 `

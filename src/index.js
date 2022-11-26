@@ -11,10 +11,9 @@ const initialState = {
   apiKey: "",
   expire: "",
   loading: true,
-  navbarHeight: null,
 };
 
-export const actionTypes = setActions(["setAuth", "setLoading","setNavbar"], initialState);
+export const actionTypes = setActions(["setAuth", "setLoading"], initialState);
 console.log({ actionTypes });
 
 const reducer = (state, action) => {
@@ -29,7 +28,6 @@ const reducer = (state, action) => {
       loading: false,
     },
     [actionTypes.setLoading]: { ...state, loading: payload },
-    [actionTypes.setNavbarHeight]: { ...state, navbarHeight: payload },
     [actionTypes.reset]: {
       ...state,
       ...initialState,

@@ -56,13 +56,16 @@ export default function Navigation({ children, banner, className }) {
             onClick={switchMenu}
           ></Button>
         </NavbarHeader>
-        <ItemsList className={`${className} navigation-list`} show={menu.show}>
+        <ItemsList
+          showfixed={showfixed}
+          className={`${className} navigation-list`}
+          show={menu.show}
+        >
           {children
             ? childrens.map((child, index) => {
                 var LinkedItem = child.props.children.props?.link ? Item : Link
                 return (
                   <LinkedItem
-                    showfixed={showfixed}
                     className={`${className}`}
                     selected={current === index}
                     position={

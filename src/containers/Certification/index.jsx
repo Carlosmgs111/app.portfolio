@@ -120,7 +120,7 @@ export function Certification({
             },
             nonOptionals: ['title', 'emitedAt~', 'image', 'url', 'emitedBy{'],
             highOrderCallback: (params) => setOnClickHandler(params),
-            buttons: ['save'],
+            buttons: [],
           }}
         ></DefineSchema>
       )}
