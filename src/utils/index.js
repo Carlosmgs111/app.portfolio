@@ -3,11 +3,14 @@ import { cloneElement } from "react";
 import { plural, singular } from "pluralize";
 
 /* passing a object with all properties to convert to css format */
-export const formatToCss = (objFormat) => {
+export const formatToCss = (objFormat = {}, important = false) => {
   if (typeof objFormat == "object") {
     const s = (objFormat) => {
       var s = "/* start props */";
-      objFormat.forEach((value, key) => (s += `\n${key} : ${value};`));
+      objFormat.forEach(
+        (value, key) =>
+          (s += `\n${key} : ${value} ${important && "!important"};`)
+      );
       return s;
     };
     return `
@@ -146,7 +149,6 @@ export const pairKV = (object, depth = 0, get, index = 0) => {
 };
 
 export const Mapfy = (object) => new Map(Object.entries(object));
-
 
 /**
  * It takes an array of React elements and injects the same attributes to all of them

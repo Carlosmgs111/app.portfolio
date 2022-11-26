@@ -12,9 +12,10 @@ import { useState, useEffect } from 'react'
 import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
 import { PanelSidebar } from '../../components/Sidebars/PanelSidebar'
 import { useTrackSidebar } from '../../hooks/useTrackSidebar'
-import { Container, Main, Dashboard, Banner } from './styles'
+import { Container, Main, Dashboard } from './styles'
 import { runRequest } from '../../services/runRequest'
 import { headers } from '../../services/configs'
+import { Banner } from '../../components/Banner'
 
 export function Certifications() {
   const { token } = getContextValue(CONTEXTS.Global)
@@ -87,9 +88,22 @@ export function Certifications() {
   }, [token])
 
   return (
-    <div style={{display:"flex", flexDirection:"column", alignItems:"left", justifyContent:"left"}}>
-      <Banner>
-        <h1>Certifications</h1>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'left',
+        justifyContent: 'left',
+      }}
+    >
+      <Banner
+        {...{
+          config: {
+            background: 'linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c)',
+          },
+        }}
+      >
+        Certifications
       </Banner>
       <MultiSidebar
         {...{

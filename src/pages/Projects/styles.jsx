@@ -5,13 +5,6 @@ export const Container = styled.div`
   position: sticky;
 `
 
-export const Banner = styled.div`
-  width: 100%;
-  height: 30rem;
-  background-image: url('https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/Y2RBROL56RCODAPA3AF2MWUCRU.jpg');
-  background-position: center;
-`
-
 export const MainContainer = styled.div`
   align-items: center;
   justify-content: center;

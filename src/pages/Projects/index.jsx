@@ -3,10 +3,11 @@ import { getContextValue, CONTEXTS } from '../../contexts'
 import axios from 'axios'
 import { URL_API } from '../../services'
 import { Project } from '../../containers/Project'
-import { Container, MainContainer, Banner } from './styles'
+import { Container, MainContainer } from './styles'
 import { useTrackSidebar } from '../../hooks/useTrackSidebar'
 import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
 import { PanelSidebar } from '../../components/Sidebars/PanelSidebar'
+import { Banner } from '../../components/Banner'
 
 export function Projects() {
   const { token } = getContextValue(CONTEXTS.Global)
@@ -61,7 +62,14 @@ export function Projects() {
 
   return (
     <>
-      <Banner />
+      <Banner
+        config={{
+          'background-image':
+            "url('https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/Y2RBROL56RCODAPA3AF2MWUCRU.jpg')",
+        }}
+      >
+        Projects
+      </Banner>
       <Container>
         {
           <MultiSidebar

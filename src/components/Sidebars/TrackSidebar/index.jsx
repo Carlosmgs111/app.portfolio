@@ -35,7 +35,7 @@ export function TrackSidebar(props) {
       <Item
         active={false}
         key="0"
-        href="#"
+        // href="#"
         className={`fa-solid ${expand ? 'fa-xmark' : 'fa-bars'} sidebar-button`}
         onClick={switchExpand}
       />

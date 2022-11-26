@@ -9,7 +9,7 @@ export const Sidebar = styled.div`
   position: sticky;
   top: 6rem;
   left: 0;
-  min-width: auto;
+  min-width: fit-content;
   padding: 0.8rem;
   display: flex;
   flex-direction: column;

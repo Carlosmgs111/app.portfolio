@@ -12,7 +12,7 @@ export const List = styled.ul`
   height: fit-content;
   padding-bottom: 2rem;
   /* background-color: rgba(225,225,225,.5); */
-  backdrop-filter: blur(5px) invert(80%);
+  /* backdrop-filter: blur(5px) invert(80%); */
 `;
 
 export const FormStyle = styled.div`

@@ -1,4 +1,5 @@
-import { Container, Main, Banner } from './styles'
+import { Container, Main } from './styles'
+import { Banner } from '../../components/Banner'
 import { Skill } from '../../containers/Skill'
 import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
 import { PanelSidebar } from '../../components/Sidebars/PanelSidebar'
@@ -37,8 +38,15 @@ export function Skills() {
   const sidebars = [TrackSidebar, <PanelSidebar />]
   return (
     <>
-      <Banner>
-        <h1>Skills</h1>
+      <Banner
+        {...{
+          config: {
+            'background-image':
+              "url('https://img.freepik.com/vector-premium/plantilla-diseno-banner-fondo-abstracto-formas-geometricas-patrones-hexagonales-pequenos-puntos-ilustracion-vectorial-diseno-tecnologia-o-ciencia_73749-706.jpg?w=2000')",
+          },
+        }}
+      >
+        Skills
       </Banner>
       <Container>
         <MultiSidebar {...{ sidebars }} />

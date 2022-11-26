@@ -10,11 +10,8 @@ export const Container = styled.div`
   min-height: 35rem;
   max-height: 405rem;
   text-align: center;
-  background: linear-gradient(
-    to right,
-    #333399,
-    #ff00cc
-  );
+  position: sticky;
+  background: linear-gradient(to right, #333399, #ff00cc);
   display: block;
   @media (max-width: 500px) {
     min-width: 32rem;
@@ -60,7 +57,7 @@ export const Dashboard = styled.div`
   display: flex;
   justify-content: space-around;
   background-color: #2c2b2b56;
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
   align-items: center;
