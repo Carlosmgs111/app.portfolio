@@ -11,7 +11,7 @@ export const List = styled.ul`
   border-radius: .5rem;
   height: fit-content;
   padding-bottom: 2rem;
-  /* background-color: rgba(225,225,225,.5); */
+  /* background-color: #e1e1e17f; */
   /* backdrop-filter: blur(5px) invert(80%); */
 `;
 
@@ -47,7 +47,7 @@ export const DeleteButton = styled.button`
   padding: 0.2rem 1.2rem;
   border-radius: 0.4rem;
   border: none;
-  background-color: rgb(240, 59, 38);
+  background-color: #f03b26;
   width: fit-content;
   font-weight: bold;
 `;

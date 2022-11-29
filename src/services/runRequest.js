@@ -20,7 +20,7 @@ export function runRequest({ setData, setLoading, setError } = {}) {
       setLoading && setLoading(false);
     }
 
-    setData && setData(data);
+    setData && !error && setData(data);
     loading = false;
 
     return { data, loading, error };

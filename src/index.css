@@ -18,20 +18,6 @@ html {
 }
 
 body {
-  /* background-color: hsl(215, 50%, 23%); */
-  /*  */
-  /* background: #ff00cc;
-  background: -webkit-linear-gradient(to right, #333399, #ff00cc);
-  background: linear-gradient(to top, #333399, #ff00cc); */
-  /*  */
-  /* 
-  background: #485563;
-  background: -webkit-linear-gradient(to right, #29323c, #485563);
-  background: linear-gradient(to top, #29323c, #485563); 
-  */
-  /*  */
-  /* background-image: var(--background-image); */
-  /*  */
   /* ? scheme_color: darker */
   background-color: #121f25;
   /* ? schema_color: lighter */

@@ -44,12 +44,14 @@ export const Url = styled.a`
   position: sticky;
   right: 0;
   color: black;
+  -webkit-text-stroke:  black .05rem;
   &:visited {
     color: unset;
   }
   &:hover {
-    color: rgb(240, 38, 223) !important;
+    color: #f026df !important;
   }
+  transition: color 0.4s;
 `
 
 export const Dashboard = styled.div`
@@ -66,18 +68,27 @@ export const Dashboard = styled.div`
   opacity: 0;
   transition: opacity 0.4s;
 `
+
 export const Button = styled.button`
   margin: 4px 12px 4px 12px;
   padding: 0 12px 0 12px;
   border: none;
   border-radius: 4px;
-  &.secondary {
-    background-color: rgb(240, 38, 223);
+  padding: 0.6rem 1.2rem;
+  color: #fffbff;
+  background-color: #121f25;
+  border: solid black 0.1rem;
+  &:hover {
+    color: #121f25;
+    &.secondary {
+      background-color: #f026df;
+    }
+    &.success {
+      background-color: #21da09;
+    }
+    &.danger {
+      background-color: #f03b26;
+    }
   }
-  &.success {
-    background-color: rgb(33, 218, 9);
-  }
-  &.danger {
-    background-color: rgb(240, 59, 38);
-  }
+  transition: background-color 0.2s, color 0.2s;
 `

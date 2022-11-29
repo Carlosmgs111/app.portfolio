@@ -32,7 +32,7 @@ export const Button = styled.button`
   padding: 0.2rem 1.2rem;
   border-radius: 0.4rem;
   border: none;
-  background-color: rgb(33, 218, 9);
+  background-color: #21da09;
   align-self: center;
   width: fit-content;
   font-weight: bold;

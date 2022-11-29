@@ -10,8 +10,8 @@ export const Section = styled.article`
   margin: 8rem 0;
   min-height: 80vh;
   height: auto;
-  width: 100vw;
-  background-color: ${({ bgc }) => (bgc ? bgc : 'rgba(225,225,225,.9)')};
+  width: 100%;
+  background-color: ${({ bgc }) => (bgc ? bgc : '#e1e1e1e5')};
   @media (max-width: 1360px) {
     padding: 8rem 14rem;
   }

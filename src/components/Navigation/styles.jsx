@@ -100,11 +100,11 @@ export const ItemsList = styled.ul`
 `
 
 export const from = ({ selected }) => css`
-  color: ${selected ? 'rgb(228, 255, 26)' : 'rgba(228, 255, 26, .4)'};
+  color: ${selected ? '#e4ff1a' : '#e4ff1a66'};
 `
 
 export const to = css`
-  color: rgb(228, 255, 26);
+  color: #e4ff1a;
 `
 
 export const Item = styled.li`

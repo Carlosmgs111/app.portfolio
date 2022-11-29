@@ -35,7 +35,7 @@ export const Item = styled.a`
   flex-direction: row;
   padding: 0.8rem;
   left: 0;
-  color: hsl(19, 97%, 51%);
+  color: #fb5609;
   direction: ltr;
   -webkit-text-stroke: 0.6px black;
   height: fit-content;
@@ -43,11 +43,11 @@ export const Item = styled.a`
     color: unset;
   }
   &:hover {
-    color: rgb(240, 38, 223) !important;
+    color: #f026df !important;
   }
   /* background-color: #cadf2b; */
   color: ${({ active }) =>
-    active ? 'hsl(67, 100%, 55%)' : 'inherit'} !important;
+    active ? '#e4ff1a' : 'inherit'} !important;
 
   :hover {
     input {
@@ -62,7 +62,6 @@ export const Item = styled.a`
 export const Input = styled.input`
   -webkit-text-stroke: 0.1px black;
   font-weight: normal;
-  border-radius: 0.4rem;
   height: 2.2rem;
   border: 0;
   outline: none;
@@ -72,4 +71,6 @@ export const Input = styled.input`
   opacity: 0;
   padding: 0;
   transition: width 0.5s, opacity 0.5s, padding 0.5s, margin-right 0.5s;
+  background-color: transparent;
+  border-bottom: solid black 0.1rem;
 `

@@ -61,7 +61,7 @@ export const DescriptionsContainer = styled.div`
   width: 55%;
   padding: 5rem;
   background-color: ${({ even }) =>
-    even ? 'rgba(228, 255, 26, .6)' : '#ff811a99'};
+    even ? '#e4ff1a99' : '#ff811a99'};
   border-radius: 1rem;
   @media (max-width: 1360px) {
     width: 100%;

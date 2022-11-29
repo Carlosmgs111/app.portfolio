@@ -37,13 +37,20 @@ export function Certification({
   // ? callback to be passed as parameter to setup function
   const defineSchemaCallback = (params) => () => {
     const { setError, setLoading, parsedSchema, reset } = params
+    const toUpdate = {}
+    console.log(parsedSchema[0])
+    for (var attr in parsedSchema[0]) {
+      console.log({ attr })
+      if (parsedSchema[0][attr] !== certification[attr])
+        toUpdate[attr] = parsedSchema[0][attr]
+    }
     runRequest({
       setData: (data) => setCertification({ ...data }),
       setError,
       setLoading,
     }).patch(
       `certifications`,
-      { ...parsedSchema[0], uuid },
+      { ...toUpdate, uuid },
       {
         ...requestHeaders,
       },
@@ -133,17 +140,7 @@ export function Certification({
             name="primary"
             onClick={onClick}
           >
-            <i
-              title="primary"
-              id={uuid}
-              className={
-                beingEdited
-                  ? uuid
-                    ? 'fas fa-save' // to save
-                    : 'fas fa-plus-square' // to create
-                  : 'fas fa-trash-alt' // to delete
-              }
-            ></i>
+            {beingEdited ? (uuid ? 'Guardar' : 'Crear') : 'Eliminar'}
           </Button>
           <Button
             className="secondary"
@@ -152,17 +149,7 @@ export function Certification({
             button="secondary"
             onClick={onClick}
           >
-            <i
-              title="secondary"
-              id={uuid}
-              className={
-                beingEdited
-                  ? uuid
-                    ? 'fas fa-ban' // to cancel
-                    : 'fas fa-eraser' // to clean
-                  : 'fas fa-edit' // to edit
-              }
-            ></i>
+            {beingEdited ? (uuid ? 'Cancelar' : 'Limpiar') : 'Editar'}
           </Button>
         </Dashboard>
       )}

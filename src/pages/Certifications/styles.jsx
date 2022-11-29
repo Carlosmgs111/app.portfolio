@@ -1,23 +1,24 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   top: 20vh;
   position: sticky;
   display: flex;
-`;
+  flex-direction: column;
+`
 
 export const Main = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
-  gap: 10px;
+  gap: 6rem;
   flex-wrap: wrap;
-  padding-top: 10rem;
+  padding: 10rem 20rem;
   width: 100%;
   @media (max-width: 700px) {
     padding: 0;
   }
-`;
+`
 
 export const Banner = styled.div`
   width: 100%;
@@ -36,11 +37,11 @@ export const Banner = styled.div`
     -webkit-text-stroke: 0.15rem black;
     color: #11111199;
   }
-`;
+`
 
 export const Button = styled.button`
   margin: auto;
-`;
+`
 
 export const Dashboard = styled.div`
   color: white;
@@ -54,4 +55,4 @@ export const Dashboard = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
+`

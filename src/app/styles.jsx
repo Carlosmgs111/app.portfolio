@@ -33,7 +33,7 @@ export const Footer = styled.footer`
 `
 
 export const Banner = styled.h1`
-  color: hsl(67, 100%, 55%);
+  color: #e4ff1a;
   font-weight: bold;
   font-size: 3.4rem;
   @media (max-width: 480px) {
@@ -58,13 +58,12 @@ export const ContentBanner = styled.div`
 export const Icon = styled.i`
   top: 0;
   font-size: 2.5rem;
-  color: ${({ state }) =>
-    !state ? 'hsl(349.9, 95.7%, 36.4%)' : 'hsl(140, 71%, 44%)'};
+  color: ${({ state }) => (!state ? '#b30525' : '#21c056')};
   -webkit-text-stroke: 1.5px black;
   border-radius: 25px;
   border: 3px solid black;
   padding: 3px;
   :hover {
-    color: hsl(19, 97%, 51%);
+    color: #fb5609;
   }
 `

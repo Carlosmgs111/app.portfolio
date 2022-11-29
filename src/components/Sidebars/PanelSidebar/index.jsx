@@ -1,29 +1,36 @@
+import { Children, cloneElement } from 'react'
 import { SidebarBody, Item, Input } from './styles'
-import { DefineSchema } from '../../DefineSchema'
-import { getContext, CONTEXTS } from '../../../contexts'
+
+export const innerItems = Object.freeze({
+  Input: ({ onChange }) => <Input {...{ onChange }}></Input>,
+})
 
 export function PanelSidebar(props) {
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
-  const [{ token, loading: globalLoading }, dispatch] = useStateValue()
-
-  const { setCurrentModal } = props
+  const { children = [], items = [] } = props
 
   return (
     <SidebarBody {...props}>
-      <Item id="0" className="fa-solid fa-magnifying-glass">
-        <Input></Input>
-      </Item>
-      {token && (
-        <Item id="1" href="#dashboard" className="fa-solid fa-plus"></Item>
+      {items.map(
+        (
+          {
+            innerItem = null,
+            className,
+            onClick = () => {},
+            onChange = () => {},
+            visibility = true,
+            href = null,
+          },
+          index,
+        ) =>
+          visibility && (
+            <Item {...{ className, onClick, key: index, href }}>
+              {innerItem && innerItem({ onChange })}
+            </Item>
+          ),
       )}
-      <Item id="2" className="fa-solid fa-eye">
-        <Input></Input>
-      </Item>
-      <Item
-        id="3"
-        className="fa-solid fa-fingerprint"
-        onClick={setCurrentModal}
-      ></Item>
+      {Children.toArray(children).map((child) =>
+        cloneElement(<Item>{child}</Item>),
+      )}
     </SidebarBody>
   )
 }

@@ -1,5 +1,14 @@
 import styled from 'styled-components'
 
+export const FloatContainer = styled.div`
+  position: sticky;
+  top: 6rem;
+  left: 0;
+  height: 0;
+  width: fit-content;
+  z-index: 1;
+`
+
 export const Sidebar = styled.div`
   border-radius: 0 0.6rem 0.6rem 0;
   background-color: #2b4e79;
@@ -16,7 +25,7 @@ export const Sidebar = styled.div`
   font-size: 2.8rem;
   justify-content: center;
   align-items: center;
-  color: hsl(19, 97%, 51%);
+  color: #fb5609;
   z-index: 1000;
   :hover {
     border: solid #00ffc8 1px;
@@ -64,7 +73,7 @@ export const Item = styled.a`
     color: unset;
   }
   &:hover {
-    color: rgb(240, 38, 223) !important;
+    color: #f026df !important;
   }
   &.rotable {
     &:hover {
@@ -73,7 +82,7 @@ export const Item = styled.a`
   }
   /* background-color: orangered; */
   color: ${({ active }) =>
-    active ? 'hsl(67, 100%, 55%)' : 'inherit'} !important;
+    active ? '#e4ff1a' : 'inherit'} !important;
   -webkit-text-stroke: 0.4px black;
   transition: transform 0.4s, max-width 0.6s, padding-right 0.4s, color 0.4s,
     left 0.6s, opacity 0.6s;
