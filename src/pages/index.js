@@ -2,7 +2,7 @@ import { Route } from "react-router-dom";
 import { beutifyLabel } from "../utils";
 import { NotFound } from "./NotFound";
 
-export const NavigationItemsFactory = ({ pages=[], login }) => {
+export const NavigationItemsFactory = ({ pages = [], login }) => {
   const navigationItems = [];
   for (var page of pages) {
     const label = page.slice(page.indexOf("/") + 1);

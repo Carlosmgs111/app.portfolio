@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react'
 import {
   Certification,
   CertificationSkeleton,
 } from '../../containers/Certification'
-import { Page } from '../../components/Page'
-import { Banner } from '../../components/Banner'
-import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
 import {
   PanelSidebar,
   innerItems,
 } from '../../components/Sidebars/PanelSidebar'
+import { Page } from '../../components/Page'
+import { Banner } from '../../components/Banner'
+import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
+import { useState, useEffect } from 'react'
 import { useTrackSidebar } from '../../hooks/useTrackSidebar'
 import { OnLoading } from '../../components/OnLoading'
 import { OnError } from '../../components/OnError'
