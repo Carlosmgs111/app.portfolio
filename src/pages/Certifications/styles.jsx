@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const Main = styled.div`
   top: 20vh;
   position: sticky;
   display: flex;
   flex-direction: column;
 `
 
-export const Main = styled.div`
+export const Container = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
@@ -19,6 +19,8 @@ export const Main = styled.div`
     padding: 0;
   }
 `
+
+
 
 export const Banner = styled.div`
   width: 100%;

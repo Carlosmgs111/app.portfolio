@@ -58,7 +58,6 @@ export function App() {
     />
   )
 
-
   return (
     <>
       {showLogin && (
@@ -82,12 +81,12 @@ export function App() {
           {NavigationItemsFactory({
             pages,
             login: {
-              label: () => (
-                <Icon
-                  state={Boolean(token)}
-                  className="fa-solid fa-fingerprint"
-                ></Icon>
-              ),
+              label: () =>
+                token ? 'Logout' : 'Login',
+                // <Icon
+                //   state={Boolean(token)}
+                //   className="fa-solid fa-fingerprint"
+                // ></Icon>
               onClick: (e) => {
                 e.preventDefault()
                 switchShowLogin()
@@ -121,10 +120,6 @@ export function App() {
             element: <Projects />,
           })}
           {RoutesFactory({
-            root: 'technologies',
-            element: inConstruction,
-          })}
-          {RoutesFactory({
             root: 'skills',
             element: <Skills />,
           })}
@@ -132,10 +127,6 @@ export function App() {
             root: 'certifications',
             subDomains: ['uuid', 'title'],
             element: <Certifications />,
-          })}
-          {RoutesFactory({
-            root: 'organizations',
-            element: inConstruction,
           })}
           {RoutesFactory({
             root: 'blog',

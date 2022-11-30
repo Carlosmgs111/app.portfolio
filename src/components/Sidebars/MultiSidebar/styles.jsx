@@ -11,7 +11,7 @@ export const FloatContainer = styled.div`
 
 export const Sidebar = styled.div`
   border-radius: 0 0.6rem 0.6rem 0;
-  background-color: #2b4e79;
+  backdrop-filter: blur(6px);
   border: solid transparent 1px;
   max-height: 70vh;
   height: fit-content;
@@ -31,6 +31,17 @@ export const Sidebar = styled.div`
     border: solid #00ffc8 1px;
   }
   transition: border 0.4s;
+  &::before {
+    content: '';
+    border-radius: 0 0.6rem 0.6rem 0;
+    background-color: #2b4e79;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
 `
 
 export const Body = styled.div`
@@ -81,8 +92,7 @@ export const Item = styled.a`
     }
   }
   /* background-color: orangered; */
-  color: ${({ active }) =>
-    active ? '#e4ff1a' : 'inherit'} !important;
+  color: ${({ active }) => (active ? '#e4ff1a' : 'inherit')} !important;
   -webkit-text-stroke: 0.4px black;
   transition: transform 0.4s, max-width 0.6s, padding-right 0.4s, color 0.4s,
     left 0.6s, opacity 0.6s;

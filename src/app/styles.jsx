@@ -1,10 +1,9 @@
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 export const Header = styled.header`
   font-size: 1.8rem;
   width: 100%;
   min-height: 6rem;
-  justify-items: center;
   z-index: 2;
   top: 0;
   position: sticky;

@@ -14,7 +14,7 @@ import { useTrackSidebar } from '../../hooks/useTrackSidebar'
 import { OnLoading } from '../../components/OnLoading'
 import { OnError } from '../../components/OnError'
 import { Modal } from '../../components/Modal'
-import { Container, Main, Dashboard } from './styles'
+import { Main, Container, Dashboard } from './styles'
 import { DefineSchema } from '../../components/DefineSchema'
 import { manyfy, injectAttrsToReactElements } from '../../utils'
 import { getContextValue, CONTEXTS } from '../../contexts'
@@ -43,6 +43,12 @@ export function Certifications() {
     image: '',
     url: '',
   })
+  const instititionSchema = {
+    name: '',
+    businessName: '',
+    descriptions: [],
+    urls: [],
+  }
 
   const sidebars = [TrackSidebar]
   // token &&
@@ -71,11 +77,16 @@ export function Certifications() {
             ]),
         },
         {
+          innerItem: innerItems.InnerItem,
+          content: 'Agregar Diploma',
           className: 'fa-solid fa-plus',
           href: '#dashboard',
           visibility: token,
+          onClick: () => console.log('Agregar diploma'),
         },
         {
+          innerItem: innerItems.InnerItem,
+          content: 'Agregar Institucion',
           className: 'fa-solid fa-fingerprint',
           visibility: token,
           onClick: () => {
@@ -83,8 +94,29 @@ export function Certifications() {
               <Dashboard>
                 <DefineSchema
                   {...{
-                    setData: (data) =>
-                      setCertifications([...certifications, ...data]),
+                    baseSchema: instititionSchema,
+                    nonOptionals: [
+                      'name',
+                      'businessName',
+                      'descriptions',
+                      'urls',
+                    ],
+                    onClickHandler: ({
+                      setError,
+                      setLoading,
+                      parsedSchema,
+                      reset,
+                    }) => {
+                      runRequest({
+                        setData: (data) =>
+                          setCertifications([...certifications, ...data]),
+                        setError,
+                        setLoading,
+                      }).post(`institutions`, parsedSchema[0], {
+                        ...requestHeaders,
+                      })
+                      reset()
+                    },
                   }}
                 />
               </Dashboard>,
@@ -142,8 +174,8 @@ export function Certifications() {
         }}
       />
       {/* // ? ⬆️ End optionals components */}
-      <Container>
-        <Main>
+      <Main>
+        <Container>
           {visibleCertifications.map((certification, index) => (
             <Certification
               {...{
@@ -156,7 +188,7 @@ export function Certifications() {
               }}
             />
           ))}
-        </Main>
+        </Container>
         {/* // ? ⬇️ Start main content support components */}
         {token && !loading && (
           <Dashboard id="dashboard">
@@ -172,7 +204,6 @@ export function Certifications() {
                 ],
                 onClickHandler: (params) => {
                   const { setError, setLoading, parsedSchema, reset } = params
-                  console.log({ parsedSchema })
                   runRequest({
                     setData: (data) =>
                       setCertifications([...certifications, ...data]),
@@ -192,12 +223,12 @@ export function Certifications() {
           </Dashboard>
         )}
         {/* // ? ⬆️ End main content support components */}
-      </Container>
+      </Main>
       {/* // ? ⬇️ Start page support components */}
       <OnLoading
         {...{
           loading,
-          component: Main,
+          component: Container,
           contain: manyfy(<CertificationSkeleton />, 12).map((c, index) =>
             injectAttrsToReactElements([c], { key: index }),
           ),

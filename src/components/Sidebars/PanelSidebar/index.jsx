@@ -1,8 +1,9 @@
 import { Children, cloneElement } from 'react'
-import { SidebarBody, Item, Input } from './styles'
+import { SidebarBody, Item, Input, InnerItem } from './styles'
 
 export const innerItems = Object.freeze({
   Input: ({ onChange }) => <Input {...{ onChange }}></Input>,
+  InnerItem: ({ content }) => <InnerItem>{content}</InnerItem>,
 })
 
 export function PanelSidebar(props) {
@@ -19,12 +20,13 @@ export function PanelSidebar(props) {
             onChange = () => {},
             visibility = true,
             href = null,
+            content = '',
           },
           index,
         ) =>
           visibility && (
             <Item {...{ className, onClick, key: index, href }}>
-              {innerItem && innerItem({ onChange })}
+              {innerItem && innerItem({ onChange, content })}
             </Item>
           ),
       )}

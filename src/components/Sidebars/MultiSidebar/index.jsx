@@ -9,7 +9,9 @@ export const MultiSidebar = (props) => {
   const [expand, switchExpand] = useSwitch(false, true)
   const [activeSidebars, setActiveSidebars] = useState([sidebars[0]?.props.id])
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    // setActiveSidebars([...activeSidebars, sidebars[1]?.props.id])
+  }, [])
 
   const main = (
     <Sidebar>
