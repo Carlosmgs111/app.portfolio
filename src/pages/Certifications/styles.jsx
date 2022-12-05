@@ -20,27 +20,6 @@ export const Container = styled.div`
   }
 `
 
-
-
-export const Banner = styled.div`
-  width: 100%;
-  height: 30rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: sticky;
-  top: -24rem;
-  left: 0;
-  z-index: 1;
-  background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);
-  h1 {
-    text-align: center;
-    font-size: 8rem;
-    -webkit-text-stroke: 0.15rem black;
-    color: #11111199;
-  }
-`
-
 export const Button = styled.button`
   margin: auto;
 `
@@ -52,7 +31,7 @@ export const Dashboard = styled.div`
   height: fit-content;
   align-items: center;
   justify-content: space-around;
-  backdrop-filter: brightness(60%);
+  background-color: #2b4e79;
   overflow: scroll;
   &::-webkit-scrollbar {
     display: none;

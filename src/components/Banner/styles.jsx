@@ -9,7 +9,7 @@ export const Body = styled.div`
   position: sticky;
   top: -24rem;
   left: 0;
-  z-index: 1 !important;
+  z-index: 1 ;
   background: linear-gradient(to right, #f026df, #e4ff1a, #fb5609, #00ffc8);
   ${({ styles }) => styles}
   background-position: center;

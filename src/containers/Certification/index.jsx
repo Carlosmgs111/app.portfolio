@@ -109,7 +109,7 @@ export function Certification({
               )
             }
           ></Image>
-          <Url href={url} className="fa-solid fa-link"></Url>
+          <Url target="_blank" href={url} className="fa-solid fa-link"></Url>
         </Content>
       ) : (
         <DefineSchema

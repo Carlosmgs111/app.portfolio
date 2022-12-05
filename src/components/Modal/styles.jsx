@@ -14,14 +14,16 @@ export const ModalStyle = styled.div`
   opacity: 1;
   animation: modal 500ms ease-out forwards;
   transition: transform 1s linear;
-  width: 100vw;
-  height: 100vh;
-  min-height: 100vh;
-  max-height: 100vh;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   padding: 0;
   margin: 0;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   /*  @media (max-width: 1600px) {
     display: block;
   } */

@@ -34,10 +34,8 @@ export function App() {
 
   const pages = [
     'projects',
-    'technologies',
     'skills',
     'certifications',
-    'organizations',
     'blog',
   ]
 

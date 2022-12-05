@@ -78,6 +78,19 @@ export function Certifications() {
         },
         {
           innerItem: innerItems.InnerItem,
+          content: 'Ver Instituciones',
+          className: 'fa-solid fa-building-columns',
+          onClick: () =>
+            !currentModal
+              ? setCurrentModal(
+                  <div style={{ position: 'absolute', right: 0 }}>
+                    <h1>Hola</h1>
+                  </div>,
+                )
+              : setCurrentModal(null),
+        },
+        {
+          innerItem: innerItems.InnerItem,
           content: 'Agregar Diploma',
           className: 'fa-solid fa-plus',
           href: '#dashboard',
@@ -89,39 +102,41 @@ export function Certifications() {
           content: 'Agregar Institucion',
           className: 'fa-solid fa-fingerprint',
           visibility: token,
-          onClick: () => {
-            setCurrentModal(
-              <Dashboard>
-                <DefineSchema
-                  {...{
-                    baseSchema: instititionSchema,
-                    nonOptionals: [
-                      'name',
-                      'businessName',
-                      'descriptions',
-                      'urls',
-                    ],
-                    onClickHandler: ({
-                      setError,
-                      setLoading,
-                      parsedSchema,
-                      reset,
-                    }) => {
-                      runRequest({
-                        setData: (data) =>
-                          setCertifications([...certifications, ...data]),
-                        setError,
-                        setLoading,
-                      }).post(`institutions`, parsedSchema[0], {
-                        ...requestHeaders,
-                      })
-                      reset()
-                    },
-                  }}
-                />
-              </Dashboard>,
-            )
-          },
+          onClick: () =>
+            !currentModal
+              ? setCurrentModal(
+                  <Dashboard>
+                    <DefineSchema
+                      {...{
+                        title: 'Add New Institution(s)',
+                        baseSchema: instititionSchema,
+                        nonOptionals: [
+                          'name',
+                          'businessName',
+                          'descriptions',
+                          'urls',
+                        ],
+                        onClickHandler: ({
+                          setError,
+                          setLoading,
+                          parsedSchema,
+                          reset,
+                        }) => {
+                          runRequest({
+                            setData: (data) =>
+                              setCertifications([...certifications, ...data]),
+                            setError,
+                            setLoading,
+                          }).post(`institutions`, parsedSchema[0], {
+                            ...requestHeaders,
+                          })
+                          reset()
+                        },
+                      }}
+                    />
+                  </Dashboard>,
+                )
+              : setCurrentModal(null),
         },
       ]}
     ></PanelSidebar>,
@@ -191,9 +206,12 @@ export function Certifications() {
         </Container>
         {/* // ? ⬇️ Start main content support components */}
         {token && !loading && (
-          <Dashboard id="dashboard">
+          <Dashboard
+            id="dashboard" // style={{ backgroundColor: '#9fbe05' }}
+          >
             <DefineSchema
               {...{
+                title: 'Add New Certifications(s)',
                 baseSchema: certificationSchema,
                 nonOptionals: [
                   'title',

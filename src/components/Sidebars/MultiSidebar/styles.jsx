@@ -35,6 +35,7 @@ export const Sidebar = styled.div`
     content: '';
     border-radius: 0 0.6rem 0.6rem 0;
     background-color: #2b4e79;
+    box-shadow: 2px 2px 4px 2px #00000033;
     width: 100%;
     height: 100%;
     position: absolute;

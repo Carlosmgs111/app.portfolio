@@ -6,6 +6,7 @@ import { OnError } from '../OnError'
 import { OnLoading } from '../OnLoading'
 
 export function DefineSchema({
+  title = 'Define Schema',
   baseSchema,
   nonOptionals,
   onClickHandler,
@@ -30,7 +31,7 @@ export function DefineSchema({
 
   return (
     <Content>
-      <h2>Define Schema</h2>
+      <h2>{title}</h2>
       <label hidden={true}>Label:</label>
       <input
         hidden={true}
