@@ -31,7 +31,7 @@ export function Certifications() {
   const [currentModal, setCurrentModal] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [TrackSidebar, setElements, updateRefs] = useTrackSidebar()
+  const [TrackSidebar, setElements, updateRefs] = useTrackSidebar({innerItems:false})
   const [certificationSchema, setCertificationSchema] = useState({
     title: '',
     emitedBy: '',

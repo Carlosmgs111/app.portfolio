@@ -6,7 +6,7 @@ import { getContext, CONTEXTS } from '../../../contexts'
 import { manyfy } from '../../../utils'
 
 export function TrackSidebar(props) {
-  const { items = [], refs = [] } = props
+  const { items = [], refs = [], innerItems = true } = props
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
   const [{ token, loading: globalLoading }, dispatch] = useStateValue()
 
@@ -25,20 +25,24 @@ export function TrackSidebar(props) {
         href={`#${labelCases(name).LS}`}
         className="fa-regular fa-circle-dot"
       >
-        <InnerItem {...{ show: expand }}>{name}</InnerItem>
+        {innerItems && <InnerItem {...{ show: expand }}>{name}</InnerItem>}
       </Item>,
     )
   })
 
   return (
     <SidebarBody {...props}>
-      <Item
-        active={false}
-        key="0"
-        // href="#"
-        className={`fa-solid ${expand ? 'fa-xmark' : 'fa-bars'} sidebar-button`}
-        onClick={switchExpand}
-      />
+      {innerItems && (
+        <Item
+          active={false}
+          key="0"
+          // href="#"
+          className={`fa-solid ${
+            expand ? 'fa-xmark' : 'fa-bars'
+          } sidebar-button`}
+          onClick={switchExpand}
+        />
+      )}
       {indexesList}
     </SidebarBody>
   )

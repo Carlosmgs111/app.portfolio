@@ -1,13 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  padding: 1.2rem;
   border-radius: 0.8rem;
-  border: 0.4rem solid black;
   height: auto;
   min-width: 45rem;
   max-width: 45rem;
-  min-height: 35rem;
+  min-height: 5rem;
   max-height: 405rem;
   text-align: center;
   position: sticky;
@@ -21,19 +19,49 @@ export const Container = styled.div`
     #certification-dashboard {
       opacity: 1;
     }
+    a,
+    i {
+      opacity: 1;
+    }
+  }
+  transition: max-width 0.4s;
+`
+
+export const Content = styled.div`
+  border-radius: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
   }
 `
 
-export const Content = styled.div``
-
 export const Image = styled.img`
-  border-radius: 0.8rem;
-  border: 0.1rem solid black;
+  position: absolute;
+  position: sticky;
   max-width: 100%;
   max-height: 80%;
   object-fit: cover;
   object-position: center center;
   cursor: ${({ zoomed }) => (zoomed ? 'zoom-out' : 'zoom-in')};
+  opacity: ${({ details }) => (!details ? '1' : '0')};
+  transition: opacity 0.4s;
+`
+
+export const Details = styled.div`
+  opacity: ${({ details }) => (details ? '1' : '0')};
+  z-index: ${({ details }) => (details ? '0' : '-1')};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: opacity 0.4s;
 `
 
 export const Url = styled.a`
@@ -41,17 +69,25 @@ export const Url = styled.a`
   text-decoration: none;
   padding: 0.8rem;
   font-size: 1.8rem;
-  position: sticky;
-  right: 0;
-  color: black;
-  -webkit-text-stroke:  black .05rem;
+  position: absolute;
+  bottom: 1.2rem;
+  right: 1.2rem;
+  color: #00ffc8 !important;
+  -webkit-text-stroke: black 0.1rem;
   &:visited {
     color: unset;
   }
   &:hover {
     color: #f026df !important;
   }
-  transition: color 0.4s;
+  opacity: 0;
+  transition: color 0.4s, opacity 0.4s;
+`
+
+export const Displacement = styled.i`
+  ${Url.componentStyle.rules}
+  width:fit-content;
+  left: 1.2rem;
 `
 
 export const Dashboard = styled.div`

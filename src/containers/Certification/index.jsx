@@ -1,4 +1,13 @@
-import { Container, Content, Image, Url, Dashboard, Button } from './styles'
+import {
+  Container,
+  Content,
+  Image,
+  Details,
+  Url,
+  Displacement,
+  Dashboard,
+  Button,
+} from './styles'
 import { CertificationSkeleton } from './skeleton'
 import { useNearScreen } from '../../hooks/useNearScreen'
 import { useEffect } from 'react'
@@ -20,10 +29,12 @@ export function Certification({
 }) {
   const requestHeaders = headers()
   const [beingEdited, switchBeingEdited] = useSwitch(false, true)
+  const [details, switchDetails] = useSwitch(false, true)
   const [certification, setCertification] = useState(initialCertification)
   const { uuid, title, image = '', emitedAt, emitedBy, url } = certification
   const { token } = getContextValue(CONTEXTS.Global)
   const [show, ref] = useNearScreen(false, updateRefs)
+  console.log({ certification })
 
   // ? closure function that return function that set the callback provided
   const onClickHandler = (cb) => {
@@ -91,29 +102,50 @@ export function Certification({
     runButtonBehavior(e, behaviors)
   }
 
-  useEffect(() => {}, [show, ref, token])
+  // useEffect(() => {}, [show, ref, token])
 
   return (
     <Container ref={ref} id={labelCases(title).LS}>
       {!beingEdited ? (
         <Content>
           <Image
-            src={image}
-            onClick={() =>
-              setCurrentModal(
-                <Image
-                  zoomed={true}
-                  onClick={() => setCurrentModal(null)}
-                  src={image}
-                />,
-              )
-            }
+            {...{
+              details,
+              src: image,
+              onClick: () =>
+                setCurrentModal(
+                  <Image
+                    zoomed={true}
+                    onClick={() => setCurrentModal(null)}
+                    src={image}
+                  />,
+                ),
+            }}
           ></Image>
-          <Url target="_blank" href={url} className="fa-solid fa-link"></Url>
+          <Details {...{ details }}>
+            <h1>Details</h1>
+            <>
+              <h2>Title</h2>
+              <p>{title}</p>
+            </>
+            <>
+              <h2>Emited By</h2>
+              <p>{emitedBy}</p>
+            </>
+            <>
+              <h2>Emited At</h2>
+              <p>{emitedAt}</p>
+            </>
+          </Details>
+          <Displacement
+            {...{ className: 'fa-solid fa-ellipsis', onClick: switchDetails }}
+          />
+          <Url target="_blank" href={url} className="fa-solid fa-link" />
         </Content>
       ) : (
         <DefineSchema
           {...{
+            title: `Update ${title}`,
             baseSchema: {
               title,
               emitedBy,

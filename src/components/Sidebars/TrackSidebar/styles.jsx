@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const SidebarBody = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ direction = 'column' }) => direction};
   font-size: 1.6rem;
   overflow: scroll;
   color: black;
@@ -43,8 +43,7 @@ export const Item = styled.a`
     color: #f026df !important;
   }
   /* background-color: orangered; */
-  color: ${({ active }) =>
-    active ? '#e4ff1a' : 'inherit'} !important;
+  color: ${({ active }) => (active ? '#e4ff1a' : 'inherit')} !important;
   -webkit-text-stroke: 0.6px black;
   transition: max-width 0.6s, max-height 0.4s, margin-right 0.4s, color 0.4s,
     left 0.6s, opacity 0.6s;
