@@ -161,7 +161,11 @@ export function DefineAttribute({
               <select
                 style={{ width: '90%', borderRadius: '.5rem' }}
                 name={keyName}
-                defaultValue={value[0]}
+                defaultValue={value.find(
+                  (v) =>
+                    v ===
+                    Object.entries(attributes)[0][1][name.replace('{', '')],
+                )}
                 disabled={!nonOptionals.includes(name)}
                 onChange={(e) => onChange(name, value, e.target)}
               >
@@ -205,7 +209,7 @@ export function DefineAttribute({
       </FormStyle>
     )
   }
-  
+
   return (
     <List>
       {Object.entries(attributes[index]).map((attribute, index) => {

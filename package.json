@@ -22,6 +22,7 @@
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
     "intersection-observer": "^0.12.0",
+    "moment": "^2.29.4",
     "nth-check": "^2.1.1",
     "os": "^0.1.2",
     "path": "^0.12.7",
@@ -39,6 +40,7 @@
     "react-scripts": "^5.0.1",
     "react-select": "^5.2.2",
     "styled-components": "^5.3.3",
+    "timeago": "^1.6.7",
     "timeago.js": "^4.0.2",
     "web-vitals": "^1.0.1"
   },

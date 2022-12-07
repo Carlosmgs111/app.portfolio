@@ -23,7 +23,7 @@ export function runRequest({ setData, setLoading, setError } = {}) {
     setData && !error && setData(data);
     loading = false;
 
-    return { data, loading, error };
+    return [data, loading, error];
   };
 
   return Object.fromEntries(

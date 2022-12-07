@@ -31,7 +31,9 @@ export function Certifications() {
   const [currentModal, setCurrentModal] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [TrackSidebar, setElements, updateRefs] = useTrackSidebar({innerItems:false})
+  const [TrackSidebar, setElements, updateRefs] = useTrackSidebar({
+    innerItems: false,
+  })
   const [certificationSchema, setCertificationSchema] = useState({
     title: '',
     emitedBy: '',
@@ -124,7 +126,7 @@ export function Certifications() {
                         }) => {
                           runRequest({
                             setData: (data) =>
-                              setCertifications([...certifications, ...data]),
+                              setInstitutions([...institutions, ...data]),
                             setError,
                             setLoading,
                           }).post(`institutions`, parsedSchema[0], {
@@ -142,11 +144,24 @@ export function Certifications() {
     ></PanelSidebar>,
   )
 
-  const updateCertifications = (cb) => cb(certifications, setCertifications)
+  const updateCertifications = (cb) => cb(certifications, setCertifications, setVisibleCertifications)
 
   useEffect(() => {
     runRequest({
       setData: (data) => {
+        runRequest({
+          setData: (data) => {
+            setCertificationSchema({
+              ...certificationSchema,
+              emitedBy: data[0].name,
+              'emitedBy{': data.map((i) => i.name),
+            })
+            setInstitutions(data)
+          },
+          setError,
+          setLoading,
+        }).get('institutions')
+
         setCertifications(data)
         setVisibleCertifications(data)
         setElements([...data.map((project) => project.title)])
@@ -154,19 +169,6 @@ export function Certifications() {
       setError,
       setLoading,
     }).get('certifications')
-
-    runRequest({
-      setData: (data) => {
-        setCertificationSchema({
-          ...certificationSchema,
-          emitedBy: data[0].name,
-          'emitedBy{': data.map((i) => i.name),
-        })
-        setInstitutions(data)
-      },
-      setError,
-      setLoading,
-    }).get('institutions')
 
     return () => {}
   }, [token])
@@ -223,8 +225,10 @@ export function Certifications() {
                 onClickHandler: (params) => {
                   const { setError, setLoading, parsedSchema, reset } = params
                   runRequest({
-                    setData: (data) =>
-                      setCertifications([...certifications, ...data]),
+                    setData: (data) => {
+                      setCertifications([...certifications, ...data])
+                      setVisibleCertifications([...certifications, ...data])
+                    },
                     setError,
                     setLoading,
                   }).post(

@@ -19,6 +19,7 @@ import { useState } from 'react'
 import { useSwitch } from '../../hooks/useSwitch'
 import { headers } from '../../services/configs'
 import { runButtonBehavior } from '../../utils'
+import { format } from 'timeago.js'
 
 export function Certification({
   initialCertification,
@@ -34,7 +35,6 @@ export function Certification({
   const { uuid, title, image = '', emitedAt, emitedBy, url } = certification
   const { token } = getContextValue(CONTEXTS.Global)
   const [show, ref] = useNearScreen(false, updateRefs)
-  console.log({ certification })
 
   // ? closure function that return function that set the callback provided
   const onClickHandler = (cb) => {
@@ -85,13 +85,20 @@ export function Certification({
           : runRequest({
               setData: (data) => {
                 console.log({ data })
-                updateCertifications((certifications, setCertifications) => {
-                  const newCertifications = certifications.filter(
-                    (c) => c.uuid !== data.uuid,
-                  )
-                  console.log({ newCertifications })
-                  setCertifications(newCertifications)
-                })
+                updateCertifications(
+                  (
+                    certifications,
+                    setCertifications,
+                    setVisibleCertifications,
+                  ) => {
+                    const newCertifications = certifications.filter(
+                      (c) => c.uuid !== data.uuid,
+                    )
+                    console.log({ newCertifications })
+                    setCertifications(newCertifications)
+                    setVisibleCertifications(newCertifications)
+                  },
+                )
               },
             }).delete(`certifications/${uuid}`, {
               ...requestHeaders,
@@ -134,7 +141,7 @@ export function Certification({
             </>
             <>
               <h2>Emited At</h2>
-              <p>{emitedAt}</p>
+              <p>{format(emitedAt)}</p>
             </>
           </Details>
           <Displacement
@@ -151,9 +158,9 @@ export function Certification({
               emitedBy,
               // ? `{` symbol used for mark a select object controller
               'emitedBy{': institutions.map((i) => i.name),
-              emitedAt,
+              emitedAt: new Date(emitedAt).getTime(),
               // ? `~` symbol used for mark a date object controller
-              'emitedAt~': new Date().toISOString().slice(0, 10),
+              'emitedAt~': new Date(emitedAt).toISOString().slice(0, 10),
               image,
               url,
             },
