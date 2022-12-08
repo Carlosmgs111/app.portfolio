@@ -16,7 +16,7 @@ import { OnError } from '../../components/OnError'
 import { Modal } from '../../components/Modal'
 import { Main, Container, Dashboard } from './styles'
 import { DefineSchema } from '../../components/DefineSchema'
-import { manyfy, injectAttrsToReactElements } from '../../utils'
+import { manyfy, injectAttrsToReactElements, normalize } from '../../utils'
 import { getContextValue, CONTEXTS } from '../../contexts'
 import { runRequest } from '../../services/runRequest'
 import { headers } from '../../services/configs'
@@ -45,6 +45,15 @@ export function Certifications() {
     image: '',
     url: '',
   })
+
+  const expSchema = {
+    string: '',
+    number: 0,
+    enum: '',
+    'enum{': ['Uno', 'Dos'],
+    empty: false,
+  }
+
   const instititionSchema = {
     name: '',
     businessName: '',
@@ -74,7 +83,7 @@ export function Certifications() {
           onChange: (e) =>
             setVisibleCertifications([
               ...certifications.filter((c) =>
-                c.title.toLowerCase().includes(e.target.value),
+                normalize(c.title.toLowerCase()).includes(e.target.value),
               ),
             ]),
         },
@@ -144,7 +153,8 @@ export function Certifications() {
     ></PanelSidebar>,
   )
 
-  const updateCertifications = (cb) => cb(certifications, setCertifications, setVisibleCertifications)
+  const updateCertifications = (cb) =>
+    cb(certifications, setCertifications, setVisibleCertifications)
 
   useEffect(() => {
     runRequest({
@@ -214,7 +224,7 @@ export function Certifications() {
             <DefineSchema
               {...{
                 title: 'Add New Certifications(s)',
-                baseSchema: certificationSchema,
+                baseSchema: !expSchema || certificationSchema,
                 nonOptionals: [
                   'title',
                   'emitedAt~',

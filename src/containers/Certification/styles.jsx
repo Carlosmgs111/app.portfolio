@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   border-radius: 0.8rem;
   height: auto;
-  min-width: 45rem;
+  min-width: 40rem;
   max-width: 45rem;
   min-height: 5rem;
   max-height: 405rem;
@@ -11,6 +11,7 @@ export const Container = styled.div`
   position: sticky;
   background: linear-gradient(to right, #333399, #ff00cc);
   display: block;
+  overflow: hidden;
   @media (max-width: 500px) {
     min-width: 32rem;
     max-width: 32rem;

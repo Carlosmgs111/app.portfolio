@@ -1,4 +1,4 @@
-import { beutifyLabel } from '../../../utils'
+import { beutifyLabel, Mapfy } from '../../../utils'
 import {
   List,
   FormStyle,
@@ -9,6 +9,11 @@ import {
 } from './styles'
 import { useEffect } from 'react'
 import { useSwitch } from '../../../hooks/useSwitch'
+
+// * '{' mark an array value as controller of value with same name but without te symbol '{'
+// * e.g. enums := controlled value, enums{ := controller
+// * '~' mark a date input html node as controller of of value with same name but without te symbol '~'
+// * e.g. expiration := controlled value, expiration~ := controller
 
 export function DefineAttribute({
   index,
@@ -39,49 +44,44 @@ export function DefineAttribute({
 
   const isControlledValue = (value) => {
     return (
-      new Map(Object.entries(attributes[index])).get(value + '{') ||
-      new Map(Object.entries(attributes[index])).get(value + '~')
+      Mapfy(attributes[index]).get(value + '{') ||
+      Mapfy(attributes[index]).get(value + '~')
     )
   }
 
-  const onChange = (name, value, target) => {
+  const onChange = (name, currentValue, target) => {
+    let { value } = target
+    let controllerName = null
+    let controllerValue = null
+
+    if (name.includes('~')) {
+      controllerName = name
+      name = name.replace('~', '')
+      controllerValue = value
+      value = Number(new Date(value).getTime())
+    }
+    if (Array.isArray(currentValue)) {
+      name = name.replace('{', '')
+    }
+    if (typeof currentValue === 'number') {
+      value = Number(value)
+    }
+    if (typeof currentValue === 'boolean') {
+      value = value === 'true' ? true : false
+    }
+
     setAttributes({
       ...attributes,
       [index]: {
         ...attributes[index],
-        ...{
-          // ! gruesome sentence, must be fixed
-          [typeof value === 'object' ? name.replace('{', '') : name]:
-            typeof value === 'number'
-              ? Number(target.value)
-              : typeof value === 'boolean'
-              ? target.value === 'true'
-                ? true
-                : false
-              : target.value,
-        },
+        ...{ [controllerName || name]: controllerValue || value },
       },
     })
     setSchema({
       ...schema,
       [index]: {
         ...schema[index],
-        // ! gruesome sentence, must be fixed
-        [typeof value === 'object'
-          ? name.replace('{', '')
-          : name.includes('~')
-          ? name.replace('~', '')
-          : name]: name.includes('~')
-          ? Number(new Date(target.value).getTime())
-          : typeof value === 'object'
-          ? target.value
-          : typeof value === 'boolean'
-          ? target.value === 'true'
-            ? true
-            : false
-          : typeof value === 'string'
-          ? target.value
-          : Number(target.value),
+        [name]: value,
       },
     })
   }
