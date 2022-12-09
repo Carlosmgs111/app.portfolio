@@ -286,3 +286,14 @@ export const runButtonBehavior = (e, behaviors) => {
   const buttonId = name || title || id || className;
   behaviors[buttonId]();
 };
+
+export const getDispatchSetFunctions = (dispatch, actionTypes) => {
+  let functions = {};
+  for (let actionType in actionTypes) {
+    functions = {
+      ...functions,
+      [actionType]: (data) => dispatch({ type: actionType, payload: data }),
+    };
+  }
+  return functions;
+};

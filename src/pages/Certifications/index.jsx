@@ -1,66 +1,102 @@
 import {
   Certification,
   CertificationSkeleton,
-} from '../../containers/Certification'
+} from "../../containers/Certification";
 import {
   PanelSidebar,
   innerItems,
-} from '../../components/Sidebars/PanelSidebar'
-import { Page } from '../../components/Page'
-import { Banner } from '../../components/Banner'
-import { MultiSidebar } from '../../components/Sidebars/MultiSidebar'
-import { useState, useEffect } from 'react'
-import { useTrackSidebar } from '../../hooks/useTrackSidebar'
-import { OnLoading } from '../../components/OnLoading'
-import { OnError } from '../../components/OnError'
-import { Modal } from '../../components/Modal'
-import { Main, Container, Dashboard } from './styles'
-import { DefineSchema } from '../../components/DefineSchema'
-import { manyfy, injectAttrsToReactElements, normalize } from '../../utils'
-import { getContextValue, CONTEXTS } from '../../contexts'
-import { runRequest } from '../../services/runRequest'
-import { headers } from '../../services/configs'
+} from "../../components/Sidebars/PanelSidebar";
+import { Page } from "../../components/Page";
+import { Banner } from "../../components/Banner";
+import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
+import { useState, useEffect, useReducer } from "react";
+import { useTrackSidebar } from "../../hooks/useTrackSidebar";
+import { OnLoading } from "../../components/OnLoading";
+import { OnError } from "../../components/OnError";
+import { Modal } from "../../components/Modal";
+import { Main, Container, Dashboard } from "./styles";
+import { DefineSchema } from "../../components/DefineSchema";
+import {
+  manyfy,
+  injectAttrsToReactElements,
+  normalize,
+  settingName,
+  setActions,
+  getDispatchSetFunctions,
+} from "../../utils";
+import { getContextValue, CONTEXTS } from "../../contexts";
+import { runRequest } from "../../services/runRequest";
+import { headers } from "../../services/configs";
 
 export function Certifications() {
-  const { token } = getContextValue(CONTEXTS.Global)
-  const requestHeaders = headers()
+  const { token } = getContextValue(CONTEXTS.Global);
+  const requestHeaders = headers();
 
-  const [institutions, setInstitutions] = useState([])
-  const [certifications, setCertifications] = useState([])
-  const [currentModal, setCurrentModal] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const initialState = {
+    institutions: [],
+    certifications: [],
+    currentModal: null,
+    loading: true,
+    error: null,
+  };
+
+  const actionTypes = setActions([], initialState);
+
+  const reducer = (state, dispatch) => {
+    const { type, payload } = dispatch;
+    const actions = {};
+    for (let s in initialState) {
+      actions[settingName(s)] = { ...state, [s]: payload };
+    }
+    return actions[type] || state;
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const { institutions, certifications, currentModal, loading, error } = state;
+
+  const setFunctions = getDispatchSetFunctions(dispatch, actionTypes);
+
+  const {
+    setCertifications,
+    setInstitutions,
+    setCurrentModal,
+    setLoading,
+    setError,
+  } = setFunctions;
+
   const [TrackSidebar, setElements, updateRefs] = useTrackSidebar({
-    innerItems: !false,
-  })
+    innerItems: true,
+  });
+
   const [certificationSchema, setCertificationSchema] = useState({
-    title: '',
-    emitedBy: '',
+    title: "",
+    emitedBy: "",
     // ? `{` symbol used for mark a select object controller
-    'emitedBy{': [],
+    "emitedBy{": [],
     emitedAt: new Date().getTime(),
     // ? `~` symbol used for mark a date object controller
-    'emitedAt~': new Date().toISOString().slice(0, 10),
-    image: '',
-    url: '',
-  })
+    "emitedAt~": new Date().toISOString().slice(0, 10),
+    image: "",
+    url: "",
+  });
 
   const expSchema = {
-    string: '',
+    string: "",
     number: 0,
-    enum: '',
-    'enum{': ['Uno', 'Dos'],
+    enum: "",
+    "enum{": ["Uno", "Dos"],
     empty: false,
-  }
+  };
 
-  const instititionSchema = {
-    name: '',
-    businessName: '',
+  const institutionSchema = {
+    name: "",
+    businessName: "",
     descriptions: [],
     urls: [],
-  }
+  };
 
-  const sidebars = [TrackSidebar]
+  const sidebars = [TrackSidebar];
   // token &&
   sidebars.push(
     <PanelSidebar
@@ -68,52 +104,52 @@ export function Certifications() {
       items={[
         {
           innerItem: innerItems.Input,
-          className: 'fa-solid fa-magnifying-glass',
+          className: "fa-solid fa-magnifying-glass",
           onChange: (e) =>
             console.log(
               certifications.filter((c) =>
-                c.title.toLowerCase().includes(e.target.value),
-              ),
+                c.title.toLowerCase().includes(e.target.value)
+              )
             ),
         },
         {
           innerItem: innerItems.Input,
-          className: 'fa-solid fa-eye',
+          className: "fa-solid fa-eye",
           onChange: (e) =>
             setCertifications([
               ...certifications.map((c) => ({
                 ...c,
                 visible: normalize(c.title.toLowerCase()).includes(
-                  e.target.value,
+                  e.target.value
                 ),
               })),
             ]),
         },
         {
           innerItem: innerItems.InnerItem,
-          content: 'Ver Instituciones',
-          className: 'fa-solid fa-building-columns',
+          content: "Ver Instituciones",
+          className: "fa-solid fa-building-columns",
           onClick: () =>
             !currentModal
               ? setCurrentModal(
-                  <div style={{ position: 'absolute', right: 0 }}>
+                  <div style={{ position: "absolute", right: 0 }}>
                     <h1>Hola</h1>
-                  </div>,
+                  </div>
                 )
               : setCurrentModal(null),
         },
         {
           innerItem: innerItems.InnerItem,
-          content: 'Agregar Diploma',
-          className: 'fa-solid fa-plus',
-          href: '#dashboard',
+          content: "Agregar Diploma",
+          className: "fa-solid fa-plus",
+          href: "#dashboard",
           visibility: token,
-          onClick: () => console.log('Agregar diploma'),
+          onClick: () => console.log("Agregar diploma"),
         },
         {
           innerItem: innerItems.InnerItem,
-          content: 'Agregar Institucion',
-          className: 'fa-solid fa-fingerprint',
+          content: "Agregar Institucion",
+          className: "fa-solid fa-fingerprint",
           visibility: token,
           onClick: () =>
             !currentModal
@@ -121,13 +157,13 @@ export function Certifications() {
                   <Dashboard>
                     <DefineSchema
                       {...{
-                        title: 'Add New Institution(s)',
-                        baseSchema: instititionSchema,
+                        title: "Add New Institution(s)",
+                        baseSchema: institutionSchema,
                         nonOptionals: [
-                          'name',
-                          'businessName',
-                          'descriptions',
-                          'urls',
+                          "name",
+                          "businessName",
+                          "descriptions",
+                          "urls",
                         ],
                         onClickHandler: ({
                           setError,
@@ -142,48 +178,55 @@ export function Certifications() {
                             setLoading,
                           }).post(`institutions`, parsedSchema[0], {
                             ...requestHeaders,
-                          })
-                          reset()
+                          });
+                          reset();
                         },
                       }}
                     />
-                  </Dashboard>,
+                  </Dashboard>
                 )
               : setCurrentModal(null),
         },
       ]}
-    ></PanelSidebar>,
-  )
+    ></PanelSidebar>
+  );
 
-  const updateCertifications = (cb) =>
-    cb(certifications, setCertifications, (data) =>
-      setElements(data.map((d) => d.title)),
-    )
+  const updateState = (cb) =>
+    cb({
+      state,
+      dispatch,
+      actionTypes,
+      auxCallback: (data) => {
+        console.log({ data });
+        setElements(data.map((d) => d.title));
+      },
+      ...setFunctions,
+    });
 
   useEffect(() => {
     runRequest({
       setData: (data) => {
-        setCertifications(data.map((d) => ({ ...d, visible: true })))
-        setElements([...data.map((project) => project.title)])
+        setCertifications(data.map((d) => ({ ...d, visible: true })));
+        setElements([...data.map((project) => project.title)]);
       },
       setError,
       setLoading,
-    }).get('certifications')
+    }).get("certifications");
     runRequest({
       setData: (data) => {
         setCertificationSchema({
           ...certificationSchema,
           emitedBy: data[0].name,
-          'emitedBy{': data.map((i) => i.name),
-        })
-        setInstitutions(data)
+          "emitedBy{": data.map((i) => i.name),
+        });
+        setInstitutions(data);
       },
       setError,
       setLoading,
-    }).get('institutions')
+    }).get("institutions");
 
-    return () => {}
-  }, [token])
+    return () => {};
+  }, [token]);
 
   return (
     <Page>
@@ -191,7 +234,7 @@ export function Certifications() {
       <Banner
         {...{
           config: {
-            background: 'linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c)',
+            background: "linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c)",
           },
         }}
       >
@@ -214,11 +257,11 @@ export function Certifications() {
                     initialCertification: certification,
                     updateRefs,
                     setCurrentModal,
-                    updateCertifications,
+                    updateState,
                     institutions,
                   }}
                 />
-              ),
+              )
           )}
         </Container>
         {/* // ? ⬇️ Start main content support components */}
@@ -228,27 +271,27 @@ export function Certifications() {
           >
             <DefineSchema
               {...{
-                title: 'Add New Certifications(s)',
+                title: "Add New Certifications(s)",
                 baseSchema: !expSchema || certificationSchema,
                 nonOptionals: [
-                  'title',
-                  'emitedAt~',
-                  'image',
-                  'url',
-                  'emitedBy{',
+                  "title",
+                  "emitedAt~",
+                  "image",
+                  "url",
+                  "emitedBy{",
                 ],
                 onClickHandler: (params) => {
-                  const { setError, setLoading, parsedSchema, reset } = params
+                  const { setError, setLoading, parsedSchema, reset } = params;
                   runRequest({
                     setData: (data) => {
                       setCertifications([
                         ...certifications,
                         ...data.map((d) => ({ ...d, visible: true })),
-                      ])
+                      ]);
                       setElements([
                         ...certifications.map((project) => project.title),
                         ...data.map((project) => project.title),
-                      ])
+                      ]);
                     },
                     setError,
                     setLoading,
@@ -257,9 +300,9 @@ export function Certifications() {
                     { certifications: parsedSchema },
                     {
                       ...requestHeaders,
-                    },
-                  )
-                  reset()
+                    }
+                  );
+                  reset();
                 },
               }}
             />
@@ -273,7 +316,7 @@ export function Certifications() {
           loading,
           component: Container,
           contain: manyfy(<CertificationSkeleton />, 12).map((c, index) =>
-            injectAttrsToReactElements([c], { key: index }),
+            injectAttrsToReactElements([c], { key: index })
           ),
         }}
       />
@@ -294,5 +337,5 @@ export function Certifications() {
       />
       {/* // ? ⬆️ End page support components */}
     </Page>
-  )
+  );
 }
