@@ -27,12 +27,11 @@ export function Certifications() {
 
   const [institutions, setInstitutions] = useState([])
   const [certifications, setCertifications] = useState([])
-  const [visibleCertifications, setVisibleCertifications] = useState([])
   const [currentModal, setCurrentModal] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [TrackSidebar, setElements, updateRefs] = useTrackSidebar({
-    innerItems: false,
+    innerItems: !false,
   })
   const [certificationSchema, setCertificationSchema] = useState({
     title: '',
@@ -81,10 +80,13 @@ export function Certifications() {
           innerItem: innerItems.Input,
           className: 'fa-solid fa-eye',
           onChange: (e) =>
-            setVisibleCertifications([
-              ...certifications.filter((c) =>
-                normalize(c.title.toLowerCase()).includes(e.target.value),
-              ),
+            setCertifications([
+              ...certifications.map((c) => ({
+                ...c,
+                visible: normalize(c.title.toLowerCase()).includes(
+                  e.target.value,
+                ),
+              })),
             ]),
         },
         {
@@ -154,31 +156,31 @@ export function Certifications() {
   )
 
   const updateCertifications = (cb) =>
-    cb(certifications, setCertifications, setVisibleCertifications)
+    cb(certifications, setCertifications, (data) =>
+      setElements(data.map((d) => d.title)),
+    )
 
   useEffect(() => {
     runRequest({
       setData: (data) => {
-        runRequest({
-          setData: (data) => {
-            setCertificationSchema({
-              ...certificationSchema,
-              emitedBy: data[0].name,
-              'emitedBy{': data.map((i) => i.name),
-            })
-            setInstitutions(data)
-          },
-          setError,
-          setLoading,
-        }).get('institutions')
-
-        setCertifications(data)
-        setVisibleCertifications(data)
+        setCertifications(data.map((d) => ({ ...d, visible: true })))
         setElements([...data.map((project) => project.title)])
       },
       setError,
       setLoading,
     }).get('certifications')
+    runRequest({
+      setData: (data) => {
+        setCertificationSchema({
+          ...certificationSchema,
+          emitedBy: data[0].name,
+          'emitedBy{': data.map((i) => i.name),
+        })
+        setInstitutions(data)
+      },
+      setError,
+      setLoading,
+    }).get('institutions')
 
     return () => {}
   }, [token])
@@ -203,18 +205,21 @@ export function Certifications() {
       {/* // ? ⬆️ End optionals components */}
       <Main>
         <Container>
-          {visibleCertifications.map((certification, index) => (
-            <Certification
-              {...{
-                key: certification.uuid,
-                initialCertification: certification,
-                updateRefs,
-                setCurrentModal,
-                updateCertifications,
-                institutions,
-              }}
-            />
-          ))}
+          {certifications.map(
+            (certification, index) =>
+              certification.visible && (
+                <Certification
+                  {...{
+                    key: certification.uuid,
+                    initialCertification: certification,
+                    updateRefs,
+                    setCurrentModal,
+                    updateCertifications,
+                    institutions,
+                  }}
+                />
+              ),
+          )}
         </Container>
         {/* // ? ⬇️ Start main content support components */}
         {token && !loading && (
@@ -236,8 +241,14 @@ export function Certifications() {
                   const { setError, setLoading, parsedSchema, reset } = params
                   runRequest({
                     setData: (data) => {
-                      setCertifications([...certifications, ...data])
-                      setVisibleCertifications([...certifications, ...data])
+                      setCertifications([
+                        ...certifications,
+                        ...data.map((d) => ({ ...d, visible: true })),
+                      ])
+                      setElements([
+                        ...certifications.map((project) => project.title),
+                        ...data.map((project) => project.title),
+                      ])
                     },
                     setError,
                     setLoading,

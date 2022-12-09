@@ -49,9 +49,7 @@ export function Certification({
   const defineSchemaCallback = (params) => () => {
     const { setError, setLoading, parsedSchema, reset } = params
     const toUpdate = {}
-    console.log(parsedSchema[0])
     for (var attr in parsedSchema[0]) {
-      console.log({ attr })
       if (parsedSchema[0][attr] !== certification[attr])
         toUpdate[attr] = parsedSchema[0][attr]
     }
@@ -77,26 +75,19 @@ export function Certification({
 
   const onClick = (e) => {
     const onClickHandlerCallback = getOnClickHandler()
-    console.log({ onClickHandlerCallback })
     const behaviors = {
       primary: () => {
         beingEdited
           ? onClickHandlerCallback()
           : runRequest({
               setData: (data) => {
-                console.log({ data })
                 updateCertifications(
-                  (
-                    certifications,
-                    setCertifications,
-                    setVisibleCertifications,
-                  ) => {
+                  (certifications, setCertifications, auxCallback) => {
                     const newCertifications = certifications.filter(
                       (c) => c.uuid !== data.uuid,
                     )
-                    console.log({ newCertifications })
                     setCertifications(newCertifications)
-                    setVisibleCertifications(newCertifications)
+                    auxCallback(newCertifications)
                   },
                 )
               },
