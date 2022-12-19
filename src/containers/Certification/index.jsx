@@ -20,7 +20,6 @@ import { useSwitch } from "../../hooks/useSwitch";
 import { headers } from "../../services/configs";
 import { runButtonBehavior } from "../../utils";
 import { format } from "timeago.js";
-import { updateLocale } from "moment/moment";
 
 export function Certification({
   initialCertification,
@@ -33,8 +32,16 @@ export function Certification({
   const [beingEdited, switchBeingEdited] = useSwitch(false, true);
   const [details, switchDetails] = useSwitch(false, true);
   const [certification, setCertification] = useState(initialCertification);
-  const { uuid, title, image = "", emitedAt, emitedBy, url } = certification;
-  const { token } = getContextValue(CONTEXTS.Global);
+  const {
+    uuid,
+    title,
+    image = "",
+    emitedAt,
+    emitedBy,
+    url,
+    grantedTo,
+  } = certification;
+  const { token, username } = getContextValue(CONTEXTS.Global);
   const [show, ref] = useNearScreen(false, updateRefs);
 
   // ? closure function that return function that set the callback provided
@@ -57,6 +64,16 @@ export function Certification({
     runRequest({
       setData: (data) => {
         setCertification({ ...data });
+        updateState(({ state, auxCallback }) => {
+          const newCertifications = state.certifications;
+          auxCallback(
+            newCertifications.map((c) => {
+              if (c.uuid === data.uuid) c.title = title;
+              return c;
+            })
+          );
+          console.log({ newCertifications });
+        });
       },
       setError,
       setLoading,
@@ -160,7 +177,7 @@ export function Certification({
         ></DefineSchema>
       )}
 
-      {token && (
+      {token && username === grantedTo && (
         <Dashboard id="certification-dashboard">
           <Button
             className={beingEdited ? "success" : "danger"}

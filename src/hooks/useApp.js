@@ -7,7 +7,6 @@ import { useAuth } from "./useAuth";
 import { useLocalStorage } from "./useLocalStorage";
 
 export function useApp() {
- 
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
   const { token, apiKey, expire, setAuth, clearAuth } = useAuth();
   const [state, dispatch] = useStateValue();
@@ -24,13 +23,11 @@ export function useApp() {
         apiKey: state.apiKey,
         token: state.token,
         expire: state.expire,
+        username: state.username,
       });
       //  setBackgroundImage(defaultBackgroundImage);
     }
-  }, [
-    state.token,
-    token,
-  ]);
+  }, [state.token, token]);
 
-  return {  clearAuth };
+  return { clearAuth };
 }

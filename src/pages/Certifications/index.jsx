@@ -95,7 +95,7 @@ export function Certifications() {
     descriptions: [],
     urls: [],
   };
-
+  
   const sidebars = [TrackSidebar];
   // token &&
   sidebars.push(
@@ -211,7 +211,7 @@ export function Certifications() {
       },
       setError,
       setLoading,
-    }).get("certifications");
+    }).get("certifications" /* , { ...requestHeaders } */);
     runRequest({
       setData: (data) => {
         setCertificationSchema({

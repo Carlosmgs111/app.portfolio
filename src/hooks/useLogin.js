@@ -4,6 +4,7 @@ import axios from "axios";
 import config from "../config/config";
 import { URL, URL_API } from "../services/index";
 import { getContext, CONTEXTS } from "../contexts";
+import { decodeJwt } from "jose";
 import { useLocalStorage } from "./useLocalStorage";
 
 function useLogin() {
@@ -15,28 +16,33 @@ function useLogin() {
   const [password, setPassword] = useState("" || config.password);
   const [label, switchLabel] = useSwitch("signin", "signup");
 
-  console.log({ email, password })
-
   async function onClick() {
     setLoading(true);
     try {
       const data = (
         await axios.post(
-          `${URL_API}/${label === "signup" ? "request" + label : label}`,
+          `${URL_API}/${label === "signup" ? /* "request" + */ label : label}`,
           { email, password },
-          { headers: { "Access-Control-Allow-Origin": "*", "Content-Type":"application/json" } }
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+            },
+          }
         )
       ).data;
-      console.log({data})
+      console.log({ data });
       if (label === "signin") {
         const { token, apiKey, expire } = data;
+        const { username, exp } = decodeJwt(token);
+        console.log({ username, exp });
         dispatch({
           type: ACTIONS.setAuth,
-          payload: { token, apiKey, expire },
+          payload: { token, apiKey, expire: exp, username },
         });
         setLoading(false);
-      }else{
-        console.log(data.message)
+      } else {
+        console.log(data.message);
         setLoading(false);
         setError(false);
       }
@@ -48,12 +54,8 @@ function useLogin() {
   }
 
   function onInputChange(e) {
-    if (e.target.name === "password") {
-      setPassword(e.target.value);
-    }
-    if (e.target.name === "email") {
-      setEmail(e.target.value);
-    }
+    if (e.target.name === "password") setPassword(e.target.value);
+    if (e.target.name === "email") setEmail(e.target.value);
   }
 
   return {

@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useLocalStorage } from "./useLocalStorage";
-import {getContext, CONTEXTS} from "../contexts"
+import { getContext, CONTEXTS } from "../contexts";
 
 function useAuth() {
-  const [{useStateValue}, ACTIONS] = getContext(CONTEXTS.Global)
+  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
   const [token, setToken] = useLocalStorage("token", "");
   const [apiKey, setApiKey] = useLocalStorage("apiKey", "");
   const [expire, setExpire] = useLocalStorage("expire", "");
+  const [username, setUsername] = useLocalStorage("username", "");
 
   const [{}, dispatch] = useStateValue();
 
@@ -15,7 +16,10 @@ function useAuth() {
       window.alert("Session expired!");
       clearAuth();
     }
-    dispatch({ type: ACTIONS.setAuth, payload: { token, apiKey, expire } });
+    dispatch({
+      type: ACTIONS.setAuth,
+      payload: { token, apiKey, expire, username },
+    });
   }, [token, apiKey]);
 
   const expireValidation = (expire) => {
@@ -23,17 +27,19 @@ function useAuth() {
     return currentDateTime < expire;
   };
 
-  const setAuth = ({ token, apiKey, expire }) => {
+  const setAuth = ({ token, apiKey, expire, username }) => {
     if (expire) expire = Date.parse(new Date(Date.now())) + Number(expire);
     setToken(token);
     setApiKey(apiKey);
     setExpire(expire);
+    setUsername(username);
   };
 
   const clearAuth = () => {
     setToken("");
     setApiKey("");
     setExpire("");
+    setUsername("");
   };
 
   return { token, apiKey, setAuth, clearAuth };
