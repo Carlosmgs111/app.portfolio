@@ -67,7 +67,7 @@ export const Details = styled.div`
 
 export const Url = styled.a`
   cursor: hand;
-  text-decoration: none;
+  text-decoration: none !important;
   padding: 0.8rem;
   font-size: 1.8rem;
   position: absolute;

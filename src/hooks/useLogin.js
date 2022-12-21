@@ -21,7 +21,7 @@ function useLogin() {
     try {
       const data = (
         await axios.post(
-          `${URL_API}/${label === "signup" ? /* "request" + */ label : label}`,
+          `${URL_API}/${label === "signup" ? "request" + label : label}`,
           { email, password },
           {
             headers: {

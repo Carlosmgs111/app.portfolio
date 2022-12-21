@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const FloatContainer = styled.div`
   position: sticky;
-  top: 6rem;
+  top: 10rem;
   left: 0;
   height: 0;
   width: fit-content;
@@ -34,7 +34,7 @@ export const Sidebar = styled.div`
   &::before {
     content: '';
     border-radius: 0 0.6rem 0.6rem 0;
-    background-color: #2b4e79;
+    background-color: #2b4e7933;
     box-shadow: 2px 2px 4px 2px #00000033;
     width: 100%;
     height: 100%;
@@ -94,7 +94,6 @@ export const Item = styled.a`
   }
   /* background-color: orangered; */
   color: ${({ active }) => (active ? '#e4ff1a' : 'inherit')} !important;
-  -webkit-text-stroke: 0.4px black;
   transition: transform 0.4s, max-width 0.6s, padding-right 0.4s, color 0.4s,
     left 0.6s, opacity 0.6s;
 `

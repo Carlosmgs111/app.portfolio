@@ -95,7 +95,7 @@ export function Certifications() {
     descriptions: [],
     urls: [],
   };
-  
+
   const sidebars = [TrackSidebar];
   // token &&
   sidebars.push(
@@ -205,25 +205,25 @@ export function Certifications() {
 
   useEffect(() => {
     runRequest({
-      setData: (data) => {
+      setData: async (data) => {
         setCertifications(data.map((d) => ({ ...d, visible: true })));
         setElements([...data.map((project) => project.title)]);
+        await runRequest({
+          setData: (data) => {
+            setCertificationSchema({
+              ...certificationSchema,
+              emitedBy: data[0].name,
+              "emitedBy{": data.map((i) => i.name),
+            });
+            setInstitutions(data);
+          },
+          setError,
+          setLoading,
+        }).get("institutions");
       },
       setError,
       setLoading,
     }).get("certifications" /* , { ...requestHeaders } */);
-    runRequest({
-      setData: (data) => {
-        setCertificationSchema({
-          ...certificationSchema,
-          emitedBy: data[0].name,
-          "emitedBy{": data.map((i) => i.name),
-        });
-        setInstitutions(data);
-      },
-      setError,
-      setLoading,
-    }).get("institutions");
 
     return () => {};
   }, [token]);

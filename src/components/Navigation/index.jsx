@@ -68,15 +68,6 @@ export default function Navigation({ children, banner, className }) {
                   <LinkedItem
                     className={`${className}`}
                     selected={current === index}
-                    position={
-                      childrens.length === 1
-                        ? 'only'
-                        : index === 0
-                        ? 'first'
-                        : index === childrens.length - 1
-                        ? 'last'
-                        : 'middle'
-                    }
                     type="button"
                     onClick={(e) => {
                       setCurrent(Number(e.target.id))

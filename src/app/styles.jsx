@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Header = styled.header`
   font-size: 1.8rem;
   width: 100%;
-  min-height: 6rem;
+  height: 10rem;
   z-index: 2;
   top: 0;
   position: sticky;

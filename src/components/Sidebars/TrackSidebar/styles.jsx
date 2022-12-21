@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const SidebarBody = styled.div`
   display: flex;
-  flex-direction: ${({ direction = 'column' }) => direction};
+  flex-direction: ${({ direction = "column" }) => direction};
   font-size: 1.6rem;
   overflow: scroll;
   color: black;
@@ -10,8 +10,8 @@ export const SidebarBody = styled.div`
   /* background-color: orangered; */
   min-height: fit-content;
   direction: rtl;
-  max-height: ${({ active }) => (active ? '60vh' : '0')};
-  max-width: ${({ active }) => (active ? '25rem' : '0')};
+  max-height: ${({ active }) => (active ? "60vh" : "0")};
+  max-width: ${({ active }) => (active ? "25rem" : "0")};
   transition: max-height 0.4s, max-width 0.4s;
   box-shadow: inset 0px 0px 4px 2px #00000033;
   &::-webkit-scrollbar {
@@ -26,11 +26,11 @@ export const SidebarBody = styled.div`
   &::-webkit-scrollbar:horizontal {
     display: none;
   }
-`
+`;
 
 export const Item = styled.a`
   cursor: hand;
-  text-decoration: none;
+  text-decoration: none !important;
   display: flex;
   padding: 0.8rem;
   align-items: center;
@@ -43,11 +43,11 @@ export const Item = styled.a`
     color: #f026df !important;
   }
   /* background-color: orangered; */
-  color: ${({ active }) => (active ? '#e4ff1a' : 'inherit')} !important;
+  color: ${({ active }) => (active ? "#e4ff1a" : "inherit")} !important;
   -webkit-text-stroke: 0.6px black;
   transition: max-width 0.6s, max-height 0.4s, margin-right 0.4s, color 0.4s,
     left 0.6s, opacity 0.6s;
-`
+`;
 
 export const InnerItem = styled.i`
   ${Item.componentStyle.rules}
@@ -61,9 +61,9 @@ export const InnerItem = styled.i`
   font-style: normal;
   white-space: pre-wrap;
   line-height: 2rem;
-  left: ${({ show }) => (show ? '1.2rem' : '-180px')};
-  opacity: ${({ show }) => (show ? '1' : '0')};
-  max-width: ${({ show }) => (show ? '25rem' : '0')};
-  max-height: ${({ show }) => (show ? '20rem' : '0')};
-  margin-right: ${({ show }) => (show ? '1.2rem' : '0')};
-`
+  left: ${({ show }) => (show ? "1.2rem" : "-180px")};
+  opacity: ${({ show }) => (show ? "1" : "0")};
+  max-width: ${({ show }) => (show ? "25rem" : "0")};
+  max-height: ${({ show }) => (show ? "20rem" : "0")};
+  margin-right: ${({ show }) => (show ? "1.2rem" : "0")};
+`;

@@ -1,6 +1,6 @@
-import styled, { css, keyframes } from 'styled-components'
-import { Link as LinkRouter } from 'react-router-dom'
-import { setFrames } from '../../utils'
+import styled, { css, keyframes } from "styled-components";
+import { Link as LinkRouter } from "react-router-dom";
+import { setFrames } from "../../utils";
 
 export const NavbarContainer = styled.div`
   overflow: scroll;
@@ -20,7 +20,7 @@ export const NavbarContainer = styled.div`
     left: 2vw;
     box-sizing: border-box;
   }
-`
+`;
 
 export const NavbarHeader = styled.div`
   justify-content: space-between;
@@ -29,16 +29,15 @@ export const NavbarHeader = styled.div`
   @media (max-width: 830px) {
     width: 100%;
   }
-`
+`;
 
 export const NavigateBar = styled.nav`
   z-index: 1;
-  /* backdrop-filter: brightness(60%); */
-  /* background-color: black; */
   &.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    align-content: center;
     padding: 0 2vw;
     width: inherit;
     height: inherit;
@@ -49,7 +48,7 @@ export const NavigateBar = styled.nav`
   &.sidebar {
     width: fit-content;
   }
-`
+`;
 
 const fadeinshow = keyframes`
   from{
@@ -58,14 +57,14 @@ const fadeinshow = keyframes`
   to{
     opacity:1;
   }
-`
+`;
 
 export const ItemsList = styled.ul`
   color: transparent;
   font-size: 3rem;
   /* backdrop-filter: blur(10rem) brightness(0.4); */
   border-radius: 6px;
-  max-height: ${({ showfixed }) => (showfixed ? '10rem' : '10rem')};
+  max-height: ${({ showfixed }) => (showfixed ? "10rem" : "10rem")};
   transition: max-height 0.5s;
   &.navbar {
     font-size: 2.8rem;
@@ -80,7 +79,7 @@ export const ItemsList = styled.ul`
     transition: max-height 0.4s;
     @media (max-width: 830px) {
       animation: 0.8s ${fadeinshow} ease;
-      max-height: ${({ show }) => (show ? '40rem' : '0')};
+      max-height: ${({ show }) => (show ? "40rem" : "0")};
       flex-direction: column;
       align-items: center;
       position: relative;
@@ -97,15 +96,15 @@ export const ItemsList = styled.ul`
     font-size: 1.8rem;
     position: relative;
   }
-`
+`;
 
 export const from = ({ selected }) => css`
-  color: ${selected ? '#e4ff1a' : '#e4ff1a66'};
-`
+  color: ${selected ? "#e4ff1a" : "#e4ff1a66"};
+`;
 
 export const to = css`
   color: #e4ff1a;
-`
+`;
 
 export const Item = styled.li`
   animation: 1.2s ${(props) => setFrames([to, from], props)} ease;
@@ -117,7 +116,7 @@ export const Item = styled.li`
   font-size: 1.2rem;
   transition: font-size 0.4s;
   font-weight: 500;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   text-align: center;
   font-style: none !important;
   &:hover {
@@ -133,23 +132,7 @@ export const Item = styled.li`
     }
     &:hover {
       width: auto;
-      /* box-shadow: inset -4px -8px 8px rgba(38, 45, 4, 0.6); */
     }
-    ${(props) => {
-      return props.position === 'first'
-        ? css`
-            border-radius: var(--border-radius) 0 0 var(--border-radius);
-          `
-        : props.position === 'last'
-        ? css`
-            border-radius: 0 var(--border-radius) var(--border-radius) 0;
-          `
-        : props.position === 'only'
-        ? css`
-            border-radius: var(--border-radius);
-          `
-        : null
-    }}
   }
   &.sidebar {
     min-width: 6rem;
@@ -171,33 +154,13 @@ export const Item = styled.li`
     }
     &:hover {
       color: black;
-      /* box-shadow: -4px -6px 8px rgba(38, 45, 4, 0.6);  */
       width: fit-content;
       border-radius: 0 var(--border-radius) var(--border-radius) 0;
       background-color: #ef9305;
       .inner {
         padding-left: 10px;
         display: inline;
-        font-family: 'Quicksand', sans-serif;
       }
-
-      ${(props) => {
-        return props.position === 'first'
-          ? css`
-              border-radius: var(--border-radius) var(--border-radius)
-                var(--border-radius) 0;
-            `
-          : props.position === 'last'
-          ? css`
-              border-radius: 0 var(--border-radius) var(--border-radius)
-                var(--border-radius);
-            `
-          : props.position === 'only'
-          ? css`
-              border-radius: var(--border-radius);
-            `
-          : null
-      }}
     }
 
     &:focus {
@@ -210,43 +173,8 @@ export const Item = styled.li`
       .inner {
         padding-left: 10px;
         display: inline;
-        font-family: 'Quicksand', sans-serif;
       }
-
-      ${(props) => {
-        return props.position === 'first'
-          ? css`
-              border-radius: var(--border-radius) var(--border-radius)
-                var(--border-radius) 0;
-            `
-          : props.position === 'last'
-          ? css`
-              border-radius: 0 var(--border-radius) var(--border-radius)
-                var(--border-radius);
-            `
-          : props.position === 'only'
-          ? css`
-              border-radius: var(--border-radius);
-            `
-          : null
-      }}
     }
-
-    ${(props) => {
-      return props.position === 'first'
-        ? css`
-            border-radius: var(--border-radius) var(--border-radius) 0 0;
-          `
-        : props.position === 'last'
-        ? css`
-            border-radius: 0 0 var(--border-radius) var(--border-radius);
-          `
-        : props.position === 'only'
-        ? css`
-            border-radius: var(--border-radius);
-          `
-        : null
-    }}
   }
   @media (max-width: 830px) {
     width: fit-content;
@@ -254,7 +182,7 @@ export const Item = styled.li`
   @media (max-width: 480px) {
     font-size: 1.8rem;
   }
-`
+`;
 
 export const Button = styled.i`
   display: none;
@@ -268,13 +196,13 @@ export const Button = styled.i`
   @media (max-width: 480px) {
     font-size: 3rem;
   }
-`
+`;
 
 export const Banner = styled(LinkRouter)`
   ${Item.componentStyle.rules}
   margin:0;
-`
+`;
 
 export const Link = styled(LinkRouter)`
   ${Item.componentStyle.rules}
-`
+`;

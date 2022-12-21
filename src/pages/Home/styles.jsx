@@ -11,7 +11,7 @@ export const Section = styled.article`
   min-height: 80vh;
   height: auto;
   width: 100%;
-  background-color: ${({ bgc }) => (bgc ? bgc : '#e1e1e1e5')};
+  background-color: ${({ bgc }) => (bgc ? bgc : '#f26161e4')};
   @media (max-width: 1360px) {
     padding: 8rem 14rem;
   }
