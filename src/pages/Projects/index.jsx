@@ -48,7 +48,6 @@ export function Projects() {
         const { data } = await axios.get(`${URL_API}/projects`);
         setProjects([...data]);
         setElements([...data.map((project) => project.name)]);
-        console.log({ data });
       } catch (e) {
         setLoading(false);
         setError(e);

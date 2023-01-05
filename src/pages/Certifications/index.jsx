@@ -27,10 +27,12 @@ import {
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
+import { useSwitch } from "../../hooks/useSwitch";
 
 export function Certifications() {
-  const { token } = getContextValue(CONTEXTS.Global);
+  const { token, username } = getContextValue(CONTEXTS.Global);
   const requestHeaders = headers();
+  const [owned, switchOwned] = useSwitch(false, true);
 
   const initialState = {
     institutions: [],
@@ -108,22 +110,36 @@ export function Certifications() {
           onChange: (e) =>
             console.log(
               certifications.filter((c) =>
-                c.title.toLowerCase().includes(e.target.value)
+                c.title.toLowerCase().includes(e.target.value.toLowerCase())
               )
             ),
         },
         {
           innerItem: innerItems.Input,
-          className: "fa-solid fa-eye",
+          className: "fa-solid fa-filter",
           onChange: (e) =>
             setCertifications([
               ...certifications.map((c) => ({
                 ...c,
                 visible: normalize(c.title.toLowerCase()).includes(
-                  e.target.value
+                  e.target.value.toLowerCase()
                 ),
               })),
             ]),
+        },
+        {
+          innerItem: innerItems.InnerItem,
+          content: owned ? "Todas" : "Propias",
+          className: owned ? "fa-solid fa-eye" : "fa-solid fa-eye-slash",
+          onClick: () => {
+            switchOwned();
+            setCertifications([
+              ...certifications.map((c) => ({
+                ...c,
+                visible: owned || c.grantedTo === username,
+              })),
+            ]);
+          },
         },
         {
           innerItem: innerItems.InnerItem,

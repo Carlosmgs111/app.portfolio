@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const FloatContainer = styled.div`
   position: sticky;
@@ -7,7 +7,7 @@ export const FloatContainer = styled.div`
   height: 0;
   width: fit-content;
   z-index: 1;
-`
+`;
 
 export const Sidebar = styled.div`
   border-radius: 0 0.6rem 0.6rem 0;
@@ -32,7 +32,7 @@ export const Sidebar = styled.div`
   }
   transition: border 0.4s;
   &::before {
-    content: '';
+    content: "";
     border-radius: 0 0.6rem 0.6rem 0;
     background-color: #2b4e7933;
     box-shadow: 2px 2px 4px 2px #00000033;
@@ -43,14 +43,14 @@ export const Sidebar = styled.div`
     left: 0;
     z-index: -1;
   }
-`
+`;
 
 export const Body = styled.div`
   display: flex;
-  column-gap: ${({ active }) => (active ? '0.8rem' : '0')};
+  column-gap: ${({ active }) => (active ? "0.8rem" : "0")};
   max-height: 64vh;
   transition: column-gap 0.4s;
-`
+`;
 export const Header = styled.div`
   border-radius: 0.6rem;
   display: flex;
@@ -61,7 +61,7 @@ export const Header = styled.div`
   justify-content: space-around;
   width: 100%;
   /* backdrop-filter: brightness(60%); */
-`
+`;
 export const Footer = styled.div`
   border-radius: 0.6rem;
   display: flex;
@@ -71,7 +71,7 @@ export const Footer = styled.div`
   justify-content: space-around;
   align-items: center;
   /* backdrop-filter: brightness(60%); */
-`
+`;
 
 export const Item = styled.a`
   cursor: pointer;
@@ -93,7 +93,7 @@ export const Item = styled.a`
     }
   }
   /* background-color: orangered; */
-  color: ${({ active }) => (active ? '#e4ff1a' : 'inherit')} !important;
+  color: ${({ active }) => (active ? "#e4ff1a" : "inherit")} !important;
   transition: transform 0.4s, max-width 0.6s, padding-right 0.4s, color 0.4s,
     left 0.6s, opacity 0.6s;
-`
+`;

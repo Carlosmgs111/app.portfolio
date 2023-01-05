@@ -32,7 +32,7 @@ export const Item = styled.a`
   cursor: hand;
   text-decoration: none !important;
   display: flex;
-  padding: 0.8rem;
+  padding: 0.6rem;
   align-items: center;
   position: relative;
   direction: ltr;
@@ -40,27 +40,26 @@ export const Item = styled.a`
     color: unset;
   }
   &:hover {
-    color: #f026df !important;
+    color: #f80be4 !important;
   }
   /* background-color: orangered; */
   color: ${({ active }) => (active ? "#e4ff1a" : "inherit")} !important;
-  -webkit-text-stroke: 0.6px black;
   transition: max-width 0.6s, max-height 0.4s, margin-right 0.4s, color 0.4s,
     left 0.6s, opacity 0.6s;
 `;
 
 export const InnerItem = styled.i`
   ${Item.componentStyle.rules}
-  -webkit-text-stroke: .3px black;
+  font-family: "Quicksand" !important;
   padding: 0;
-  text-transform: capitalize !important; /* // ! Don't works */
   text-overflow: ellipsis;
   overflow: hidden;
   position: relative;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-style: normal;
+  font-weight: 1000;
   white-space: pre-wrap;
-  line-height: 2rem;
+  line-height: 1.6rem;
   left: ${({ show }) => (show ? "1.2rem" : "-180px")};
   opacity: ${({ show }) => (show ? "1" : "0")};
   max-width: ${({ show }) => (show ? "25rem" : "0")};

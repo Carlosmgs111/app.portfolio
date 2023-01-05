@@ -113,7 +113,7 @@ export const Item = styled.li`
   padding: 0;
   text-decoration: none;
   ${(props) => from(props)};
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   transition: font-size 0.4s;
   font-weight: 500;
   font-family: "Quicksand", sans-serif;
@@ -162,14 +162,12 @@ export const Item = styled.li`
         display: inline;
       }
     }
-
     &:focus {
       color: black;
       box-shadow: 0px 4px 8px rgba(38, 45, 4, 0.6);
       width: fit-content;
       border-radius: 0 var(--border-radius) var(--border-radius) 0;
       background-color: #ef9305;
-      // background-color: rgba(240, 38, 223, 0.1);
       .inner {
         padding-left: 10px;
         display: inline;

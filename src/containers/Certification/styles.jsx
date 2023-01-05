@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Container = styled.div`
   border-radius: 0.8rem;
@@ -26,10 +26,9 @@ export const Container = styled.div`
     }
   }
   transition: max-width 0.4s;
-`
+`;
 
 export const Content = styled.div`
-  border-radius: 0.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +37,7 @@ export const Content = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`
+`;
 
 export const Image = styled.img`
   position: absolute;
@@ -47,14 +46,14 @@ export const Image = styled.img`
   max-height: 80%;
   object-fit: cover;
   object-position: center center;
-  cursor: ${({ zoomed }) => (zoomed ? 'zoom-out' : 'zoom-in')};
-  opacity: ${({ details }) => (!details ? '1' : '0')};
+  cursor: ${({ zoomed }) => (zoomed ? "zoom-out" : "zoom-in")};
+  opacity: ${({ details }) => (!details ? "1" : "0")};
   transition: opacity 0.4s;
-`
+`;
 
 export const Details = styled.div`
-  opacity: ${({ details }) => (details ? '1' : '0')};
-  z-index: ${({ details }) => (details ? '0' : '-1')};
+  opacity: ${({ details }) => (details ? "1" : "0")};
+  z-index: ${({ details }) => (details ? "0" : "-1")};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,7 +62,7 @@ export const Details = styled.div`
   height: 100%;
   position: absolute;
   transition: opacity 0.4s;
-`
+`;
 
 export const Url = styled.a`
   cursor: hand;
@@ -83,13 +82,13 @@ export const Url = styled.a`
   }
   opacity: 0;
   transition: color 0.4s, opacity 0.4s;
-`
+`;
 
 export const Displacement = styled.i`
   ${Url.componentStyle.rules}
   width:fit-content;
   left: 1.2rem;
-`
+`;
 
 export const Dashboard = styled.div`
   border-radius: 0 0 0.8rem 0.8rem;
@@ -104,7 +103,7 @@ export const Dashboard = styled.div`
   padding: 1.2rem 0;
   opacity: 0;
   transition: opacity 0.4s;
-`
+`;
 
 export const Button = styled.button`
   margin: 4px 12px 4px 12px;
@@ -128,4 +127,4 @@ export const Button = styled.button`
     }
   }
   transition: background-color 0.2s, color 0.2s;
-`
+`;

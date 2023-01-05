@@ -98,19 +98,25 @@ export function Certification({
       primary: () => {
         beingEdited
           ? onClickHandlerCallback()
-          : runRequest({
-              setData: (data) => {
-                updateState(({ setCertifications, state }) =>
-                  setCertifications(
-                    state.certifications.filter((c) => c.uuid !== data.uuid)
-                  )
-                );
-              },
-            }).delete(`certifications/${uuid}`, {
-              ...requestHeaders,
-            });
+          : (() => {
+              const result = window.confirm(
+                `Are you sure you want to delete certification ${title}`
+              );
+              result &&
+                runRequest({
+                  setData: (data) => {
+                    updateState(({ setCertifications, state }) =>
+                      setCertifications(
+                        state.certifications.filter((c) => c.uuid !== data.uuid)
+                      )
+                    );
+                  },
+                }).delete(`certifications/${uuid}`, {
+                  ...requestHeaders,
+                });
+            })();
       },
-      secondary: () => switchBeingEdited(),
+      secondary: switchBeingEdited,
     };
     runButtonBehavior(e, behaviors);
   };
@@ -136,7 +142,6 @@ export function Certification({
             }}
           ></Image>
           <Details {...{ details }}>
-            <h1>Details</h1>
             <>
               <h2>Title</h2>
               <p>{title}</p>
@@ -146,7 +151,7 @@ export function Certification({
               <p>{emitedBy}</p>
             </>
             <>
-              <h2>Emited At</h2>
+              <h2>Granted</h2>
               <p>{format(emitedAt)}</p>
             </>
           </Details>
@@ -188,7 +193,7 @@ export function Certification({
             {beingEdited ? (uuid ? "Guardar" : "Crear") : "Eliminar"}
           </Button>
           <Button
-            className="secondary"
+            className={beingEdited ? "danger" : "secondary"}
             name="secondary"
             id={uuid}
             button="secondary"

@@ -55,7 +55,7 @@ export const Button = styled.button`
 
 export const EmbedButton = styled.i`
   font-size: 1.8rem;
-  color: rgb(240, 38, 223);
+  color: #f026df;
   position: relative;
   left: 120px;
 `;
