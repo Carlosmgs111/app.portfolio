@@ -60,7 +60,7 @@ export const Item = styled.a`
       left: 1.2rem;
       opacity: 1;
       max-width: 25rem;
-      max-height: 1.5rem;
+      max-height: 1.8rem;
       margin-right: 1.2rem;
     }
   }
@@ -80,6 +80,7 @@ export const Input = styled.input`
   width: 0;
   opacity: 0;
   padding: 0;
+  color: #cacaca;
   transition: width 0.5s, opacity 0.5s, padding 0.5s, margin-right 0.5s;
   background-color: transparent;
   border-bottom: solid black 0.1rem;
@@ -87,6 +88,7 @@ export const Input = styled.input`
 
 export const InnerItem = styled.i`
   ${Item.componentStyle.rules}
+  font-family: "Quicksand" !important;
   padding: 0;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -94,7 +96,7 @@ export const InnerItem = styled.i`
   font-size: 1.4rem;
   font-style: normal;
   white-space: pre-wrap;
-  line-height: 2rem;
+  line-height: 1.6rem;
   left: 0;
   opacity: 0;
   max-width: 0;

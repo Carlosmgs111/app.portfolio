@@ -6,14 +6,19 @@ import { Project } from "../../containers/Project";
 import { Container, MainContainer } from "./styles";
 import { useTrackSidebar } from "../../hooks/useTrackSidebar";
 import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
-import { PanelSidebar } from "../../components/Sidebars/PanelSidebar";
+import {
+  PanelSidebar,
+  innerItems,
+} from "../../components/Sidebars/PanelSidebar";
 import { Banner } from "../../components/Banner";
 import { Page } from "../../components/Page";
+import { Modal } from "../../components/Modal";
 
 export function Projects() {
   const { token } = getContextValue(CONTEXTS.Global);
   const [projects, setProjects] = useState([]);
   const [TrackSidebar, setElements, updateRefs] = useTrackSidebar();
+  const [currentModal, setCurrentModal] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [projectSchema, setProjectSchema] = useState({
@@ -37,7 +42,20 @@ export function Projects() {
       <PanelSidebar
         {...{
           id: "panel-sidebar",
-          currentModal: <h1>Hola</h1>,
+          items: [
+            {
+              innerItem: innerItems.InnerItem,
+              className: "fa-solid fa-plus",
+              content: "Agregar Proyecto",
+              onClick: () => {
+                setCurrentModal(
+                  <div style={{ position: "absolute", right: 0 }}>
+                    <h1>Hola</h1>
+                  </div>
+                )
+              },
+            },
+          ],
         }}
       />
     );
@@ -85,6 +103,20 @@ export function Projects() {
           ))}
         </MainContainer>
       </Container>
+      <Modal
+        {...{
+          active: false,
+          injected: currentModal,
+          embedButton: (
+            <i
+              id="newNote"
+              type="button"
+              onClick={() => setCurrentModal(null)}
+              className="far fa-times-circle embed-button"
+            ></i>
+          ),
+        }}
+      />
     </Page>
   );
 }
