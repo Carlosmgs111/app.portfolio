@@ -13,6 +13,10 @@ import {
 import { Banner } from "../../components/Banner";
 import { Page } from "../../components/Page";
 import { Modal } from "../../components/Modal";
+import { runRequest } from "../../services/runRequest";
+import { Dashboard } from "./styles";
+import { DefineSchema } from "../../components/DefineSchema";
+import { headers } from "../../services/configs";
 
 export function Projects() {
   const { token } = getContextValue(CONTEXTS.Global);
@@ -21,6 +25,7 @@ export function Projects() {
   const [currentModal, setCurrentModal] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const requestHeaders = headers();
   const [projectSchema, setProjectSchema] = useState({
     name: "",
     emitedBy: "",
@@ -49,10 +54,45 @@ export function Projects() {
               content: "Agregar Proyecto",
               onClick: () => {
                 setCurrentModal(
-                  <div style={{ position: "absolute", right: 0 }}>
-                    <h1>Hola</h1>
-                  </div>
-                )
+                  // <Dashboard>
+                  <DefineSchema
+                    {...{
+                      title: "Add New Institution(s)",
+                      baseSchema: {
+                        name: "",
+                        "descriptions+": [""],
+                        images: [""],
+                        tags: [""],
+                        uri: "",
+                        version: "",
+                      },
+                      nonOptionals: [
+                        "name",
+                        "descriptions",
+                        "images",
+                        "tags",
+                        "uri",
+                      ],
+                      onClickHandler: ({
+                        setError,
+                        setLoading,
+                        parsedSchema,
+                        reset,
+                      }) => {
+                        runRequest({
+                          setData: (data) =>
+                            setProjects([...projects, ...data]),
+                          setError,
+                          setLoading,
+                        }).post(`projects`, parsedSchema[0], {
+                          ...requestHeaders,
+                        });
+                        reset();
+                      },
+                    }}
+                  />
+                  // </Dashboard>
+                );
               },
             },
           ],
@@ -100,7 +140,48 @@ export function Projects() {
               key={index}
               {...{ ...project, even: index % 2 === 0, updateRefs }}
             />
-          ))}
+          ))}{" "}
+          <Dashboard>
+            <DefineSchema
+              {...{
+                title: "Add New Institution(s)",
+                baseSchema: {
+                  name: "",
+                  descriptions: ["Primera", "Segunda"],
+                  images: [
+                    "https://p4.wallpaperbetter.com/wallpaper/454/418/529/halo-infinite-4k-wallpaper-preview.jpg",
+                  ],
+                  tags: [""],
+                  uri: "https://p4.wallpaperbetter.com/wallpaper/454/418/529/halo-infinite-4k-wallpaper-preview.jpg",
+                  version: "0.1.0",
+                },
+                nonOptionals: [
+                  "name",
+                  "descriptions",
+                  "images",
+                  "tags",
+                  "uri",
+                  "version",
+                ],
+                onClickHandler: ({
+                  setError,
+                  setLoading,
+                  parsedSchema,
+                  reset,
+                }) => {
+                  console.log({ parsedSchema });
+                  runRequest({
+                    setData: (data) => setProjects([...projects, data]),
+                    setError,
+                    setLoading,
+                  }).post(`projects`, parsedSchema[0], {
+                    ...requestHeaders,
+                  });
+                  reset();
+                },
+              }}
+            />
+          </Dashboard>
         </MainContainer>
       </Container>
       <Modal

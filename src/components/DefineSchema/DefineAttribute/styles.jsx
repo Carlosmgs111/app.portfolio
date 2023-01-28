@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const List = styled.ul`
-  font-size:1.4rem;
+  font-size: 1.4rem;
   border: 1px solid black;
   min-width: 42rem;
   padding: 2rem 0 0 0;
-  align-items:center;
-  text-align:center;
+  align-items: center;
+  text-align: center;
   list-style: none;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   height: fit-content;
   padding-bottom: 2rem;
   /* background-color: #e1e1e17f; */
@@ -23,12 +23,12 @@ export const FormStyle = styled.div`
 
 export const RightSide = styled.div`
   width: 65%;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   text-align: left;
   input {
-    height:2rem;
-    position:relative;
-    left:-2rem;
+    height: 2rem;
+    position: relative;
+    left: -2rem;
     border-radius: 0.6rem;
     border: none;
     padding: 0 0.8rem;
@@ -40,6 +40,8 @@ export const LeftSide = styled.div`
   padding-right: 2rem;
   width: 35%;
   text-align: right;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 export const DeleteButton = styled.button`

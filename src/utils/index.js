@@ -39,6 +39,7 @@ export const beutifyLabel = (label) => {
   }
   label = label.replace("{", "");
   label = label.replace("~", "");
+  label = label.replace("+", "");
   return label;
 };
 
