@@ -6,6 +6,8 @@ import {
   RightSide,
   DeleteButton,
   ExpandButton,
+  AddButton,
+  MultiInputContainer,
 } from "./styles";
 import { useEffect } from "react";
 import { useSwitch } from "../../../hooks/useSwitch";
@@ -72,26 +74,10 @@ export function DefineAttribute({
       value = value === "true" ? true : false;
     }
     if (Array.isArray(currentValue)) {
-      attributes[index][currentName][name] = value;
-      /*  setAttributes({
-        ...attributes,
-        [index]: {
-          ...attributes[index],
-          ...{
-            [currentName]: attributes[index][currentName]
-          },
-        },
-      }); */
-      setSchema({
-        ...schema,
-        [index]: {
-          ...schema[index],
-          [currentName]: attributes[index][currentName],
-        },
-      });
-      return;
+      const list = [...attributes[index][currentName]];
+      list[name] = value;
+      value = [...list];
     }
-
     setAttributes({
       ...attributes,
       [index]: {
@@ -208,19 +194,62 @@ export function DefineAttribute({
                 </>
               );
             if (Array.isArray(value)) {
-              console.log({ value });
-              const inputs = [,];
-              value.forEach((text, index) =>
+              const inputs = [];
+              value.forEach((text, i) =>
                 inputs.push(
-                  <textarea
-                    style={{ width: "90%" }}
-                    name={index}
-                    value={text}
-                    onChange={(e) => onChange(name, value, e.target)}
-                  />
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                    }}
+                  >
+                    <textarea
+                      style={{ width: "90%", borderRadius: "0.4rem" }}
+                      name={i}
+                      value={text}
+                      onChange={(e) => onChange(name, value, e.target)}
+                    />
+                    <DeleteButton
+                      style={{ padding: "0 0.8rem", height: "fit-content" }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const list = [...attributes[index][name]];
+                        list.splice(i, 1);
+                        setAttributes({
+                          ...attributes,
+                          [index]: {
+                            ...attributes[index],
+                            [name]: [...list],
+                          },
+                        });
+                      }}
+                    >
+                      -
+                    </DeleteButton>
+                  </div>
                 )
               );
-              return inputs;
+              return (
+                <MultiInputContainer>
+                  {inputs}
+                  <AddButton
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const list = [...attributes[index][name]];
+                      list.push("");
+                      setAttributes({
+                        ...attributes,
+                        [index]: {
+                          ...attributes[index],
+                          [name]: [...list],
+                        },
+                      });
+                    }}
+                  >
+                    +
+                  </AddButton>
+                </MultiInputContainer>
+              );
             }
             if (typeof value === "boolean")
               return (

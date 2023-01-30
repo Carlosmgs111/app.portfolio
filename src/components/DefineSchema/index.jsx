@@ -27,7 +27,7 @@ export function DefineSchema({
     reset,
   } = hook({ baseSchema, onClickHandler, highOrderCallback })
 
-  // console.log({baseSchema})
+  console.log({baseSchema})
 
   return (
     <Content>

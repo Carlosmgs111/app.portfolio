@@ -32,7 +32,12 @@ export const RightSide = styled.div`
     border-radius: 0.6rem;
     border: none;
     padding: 0 0.8rem;
+  }
+  textarea {
     outline: none;
+    padding: 0 0.8rem;
+    overflow: hidden;
+    resize: vertical;
   }
 `;
 
@@ -63,4 +68,23 @@ export const ExpandButton = styled.button`
   :focus {
     outline: none;
   }
+`;
+
+export const AddButton = styled.button`
+  padding: 0 1.8rem;
+  border-radius: 0.4rem;
+  border: none;
+  background-color: #21da09;
+  align-self: center;
+  width: fit-content;
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin: 1rem 0;
+`;
+
+export const MultiInputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 1px black solid;
+  border-radius: 0.4rem;
 `;

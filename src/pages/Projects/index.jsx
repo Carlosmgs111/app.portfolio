@@ -53,46 +53,46 @@ export function Projects() {
               className: "fa-solid fa-plus",
               content: "Agregar Proyecto",
               onClick: () => {
-                setCurrentModal(
-                  // <Dashboard>
-                  <DefineSchema
-                    {...{
-                      title: "Add New Institution(s)",
-                      baseSchema: {
-                        name: "",
-                        "descriptions+": [""],
-                        images: [""],
-                        tags: [""],
-                        uri: "",
-                        version: "",
-                      },
-                      nonOptionals: [
-                        "name",
-                        "descriptions",
-                        "images",
-                        "tags",
-                        "uri",
-                      ],
-                      onClickHandler: ({
-                        setError,
-                        setLoading,
-                        parsedSchema,
-                        reset,
-                      }) => {
-                        runRequest({
-                          setData: (data) =>
-                            setProjects([...projects, ...data]),
-                          setError,
-                          setLoading,
-                        }).post(`projects`, parsedSchema[0], {
-                          ...requestHeaders,
-                        });
-                        reset();
-                      },
-                    }}
-                  />
-                  // </Dashboard>
-                );
+                !currentModal
+                  ? setCurrentModal(
+                      <DefineSchema
+                        {...{
+                          title: "Add New Institution(s)",
+                          baseSchema: {
+                            name: "",
+                            descriptions: [""],
+                            images: [""],
+                            tags: [""],
+                            uri: "",
+                            version: "",
+                          },
+                          nonOptionals: [
+                            "name",
+                            "descriptions",
+                            "images",
+                            "tags",
+                            "uri",
+                          ],
+                          onClickHandler: ({
+                            setError,
+                            setLoading,
+                            parsedSchema,
+                            reset,
+                          }) => {
+                            runRequest({
+                              setData: (data) =>
+                                setProjects([...projects, ...data]),
+                              setError,
+                              setLoading,
+                            }).post(`projects`, parsedSchema[0], {
+                              ...requestHeaders,
+                            });
+                            reset();
+                          },
+                        }}
+                      />
+                    )
+                  : setCurrentModal(null);
               },
             },
           ],
@@ -144,16 +144,14 @@ export function Projects() {
           <Dashboard>
             <DefineSchema
               {...{
-                title: "Add New Institution(s)",
+                title: "Add New Project(s)",
                 baseSchema: {
                   name: "",
-                  descriptions: ["Primera", "Segunda"],
-                  images: [
-                    "https://p4.wallpaperbetter.com/wallpaper/454/418/529/halo-infinite-4k-wallpaper-preview.jpg",
-                  ],
+                  descriptions: [""],
+                  images: [""],
                   tags: [""],
-                  uri: "https://p4.wallpaperbetter.com/wallpaper/454/418/529/halo-infinite-4k-wallpaper-preview.jpg",
-                  version: "0.1.0",
+                  uri: "",
+                  version: "",
                 },
                 nonOptionals: [
                   "name",
@@ -171,7 +169,13 @@ export function Projects() {
                 }) => {
                   console.log({ parsedSchema });
                   runRequest({
-                    setData: (data) => setProjects([...projects, data]),
+                    setData: (data) => {
+                      setProjects([...projects, data]);
+                      setElements([
+                        ...projects.map((p) => p.name),
+                        ...data.map((p) => p.name),
+                      ]);
+                    },
                     setError,
                     setLoading,
                   }).post(`projects`, parsedSchema[0], {
@@ -188,6 +192,7 @@ export function Projects() {
         {...{
           active: false,
           injected: currentModal,
+          over: false,
           embedButton: (
             <i
               id="newNote"
