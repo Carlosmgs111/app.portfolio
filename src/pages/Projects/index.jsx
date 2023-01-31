@@ -198,7 +198,7 @@ export function Projects() {
               id="newNote"
               type="button"
               onClick={() => setCurrentModal(null)}
-              className="far fa-times-circle embed-button"
+              className="fa-solid fa-arrow-left-long-to-line"
             ></i>
           ),
         }}

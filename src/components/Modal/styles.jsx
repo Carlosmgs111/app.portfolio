@@ -37,7 +37,7 @@ export const EmbedButton = styled.i`
 `
 
 export const NativeEmbedButton = styled.i`
-  font-size: 4rem;
+  font-size: 2rem;
   color: rgb(240, 38, 223);
   position: fixed;
   right: 2%;
