@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const ModalStyle = styled.div`
   display: flex;
@@ -27,22 +27,23 @@ export const ModalStyle = styled.div`
   /*  @media (max-width: 1600px) {
     display: block;
   } */
-`
+`;
 
 export const EmbedButton = styled.i`
   font-size: 4rem;
   color: rgb(240, 38, 223);
   position: relative;
   right: -6%;
-`
+`;
 
 export const NativeEmbedButton = styled.i`
   font-size: 2rem;
-  color: rgb(240, 38, 223);
+  color: #f03b26;
+  -webkit-text-stroke: 0.8px black;
   position: fixed;
   right: 2%;
   top: 2%;
-`
+`;
 
 export const ModalContainer = styled.div`
   z-index: 1;
@@ -70,4 +71,4 @@ export const ModalContainer = styled.div`
     display: none;
   }
   box-shadow: inset 0px 0px 10px 20px rgba(48, 48, 48, 0.687);
-`
+`;

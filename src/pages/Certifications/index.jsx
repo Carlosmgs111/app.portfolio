@@ -91,8 +91,7 @@ export function Certifications() {
     urls: [""],
   };
 
-  const addCertification = Object.assign(
-    { modalName: "addCertification" },
+  const addCertification = (
     <Dashboard style={{ backgroundColor: "#9fbe05" }}>
       <DefineSchema
         {...{
@@ -128,8 +127,7 @@ export function Certifications() {
     </Dashboard>
   );
 
-  const addInstitution = Object.assign(
-    { modalName: "addInstitution" },
+  const addInstitution = (
     <Dashboard>
       <DefineSchema
         {...{

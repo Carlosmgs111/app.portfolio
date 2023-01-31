@@ -55,42 +55,51 @@ export function Projects() {
               onClick: () => {
                 !currentModal
                   ? setCurrentModal(
-                      <DefineSchema
-                        {...{
-                          title: "Add New Institution(s)",
-                          baseSchema: {
-                            name: "",
-                            descriptions: [""],
-                            images: [""],
-                            tags: [""],
-                            uri: "",
-                            version: "",
-                          },
-                          nonOptionals: [
-                            "name",
-                            "descriptions",
-                            "images",
-                            "tags",
-                            "uri",
-                          ],
-                          onClickHandler: ({
-                            setError,
-                            setLoading,
-                            parsedSchema,
-                            reset,
-                          }) => {
-                            runRequest({
-                              setData: (data) =>
-                                setProjects([...projects, ...data]),
+                      <Dashboard>
+                        <DefineSchema
+                          {...{
+                            title: "Add New Project(s)",
+                            baseSchema: {
+                              name: "",
+                              descriptions: [""],
+                              images: [""],
+                              tags: [""],
+                              uri: "",
+                              version: "",
+                            },
+                            nonOptionals: [
+                              "name",
+                              "descriptions",
+                              "images",
+                              "tags",
+                              "uri",
+                              "version",
+                            ],
+                            onClickHandler: ({
                               setError,
                               setLoading,
-                            }).post(`projects`, parsedSchema[0], {
-                              ...requestHeaders,
-                            });
-                            reset();
-                          },
-                        }}
-                      />
+                              parsedSchema,
+                              reset,
+                            }) => {
+                              console.log({ parsedSchema });
+                              runRequest({
+                                setData: (data) => {
+                                  setProjects([...projects, data]);
+                                  setElements([
+                                    ...projects.map((p) => p.name),
+                                    ...data.map((p) => p.name),
+                                  ]);
+                                },
+                                setError,
+                                setLoading,
+                              }).post(`projects`, parsedSchema[0], {
+                                ...requestHeaders,
+                              });
+                              reset();
+                            },
+                          }}
+                        />
+                      </Dashboard>
                     )
                   : setCurrentModal(null);
               },
@@ -140,52 +149,7 @@ export function Projects() {
               key={index}
               {...{ ...project, even: index % 2 === 0, updateRefs }}
             />
-          ))}{" "}
-          <Dashboard>
-            <DefineSchema
-              {...{
-                title: "Add New Project(s)",
-                baseSchema: {
-                  name: "",
-                  descriptions: [""],
-                  images: [""],
-                  tags: [""],
-                  uri: "",
-                  version: "",
-                },
-                nonOptionals: [
-                  "name",
-                  "descriptions",
-                  "images",
-                  "tags",
-                  "uri",
-                  "version",
-                ],
-                onClickHandler: ({
-                  setError,
-                  setLoading,
-                  parsedSchema,
-                  reset,
-                }) => {
-                  console.log({ parsedSchema });
-                  runRequest({
-                    setData: (data) => {
-                      setProjects([...projects, data]);
-                      setElements([
-                        ...projects.map((p) => p.name),
-                        ...data.map((p) => p.name),
-                      ]);
-                    },
-                    setError,
-                    setLoading,
-                  }).post(`projects`, parsedSchema[0], {
-                    ...requestHeaders,
-                  });
-                  reset();
-                },
-              }}
-            />
-          </Dashboard>
+          ))}
         </MainContainer>
       </Container>
       <Modal
@@ -198,7 +162,7 @@ export function Projects() {
               id="newNote"
               type="button"
               onClick={() => setCurrentModal(null)}
-              className="fa-solid fa-arrow-left-long-to-line"
+              className="fa-solid fa-arrow-up-right-from-square"
             ></i>
           ),
         }}
