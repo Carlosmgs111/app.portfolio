@@ -42,6 +42,10 @@ export function DefineAttribute({
       ...schema,
       [index]: { ...settingAttributes() },
     });
+    return ()=>{
+      setAttributes({})
+      setSchema({})
+    }
   }, []);
 
   const isControlledValue = (value) => {
@@ -55,8 +59,6 @@ export function DefineAttribute({
     let { name, value } = target;
     let controllerName = null;
     let controllerValue = null;
-
-    console.log({ currentName, currentValue, name, value });
 
     if (currentName.includes("~")) {
       controllerName = currentName;
@@ -198,6 +200,7 @@ export function DefineAttribute({
               value.forEach((text, i) =>
                 inputs.push(
                   <div
+                    key={i}
                     style={{
                       display: "flex",
                       flexDirection: "row",

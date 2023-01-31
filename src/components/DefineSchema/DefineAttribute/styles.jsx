@@ -36,7 +36,7 @@ export const RightSide = styled.div`
   textarea {
     outline: none;
     padding: 0 0.8rem;
-    overflow: hidden;
+    overflow: auto;
     resize: vertical;
   }
 `;

@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react'
-import { DefineAttribute } from './DefineAttribute/index.jsx'
-import { FormStyle, Content, Button } from './styles'
-import { hook } from './hook'
-import { OnError } from '../OnError'
-import { OnLoading } from '../OnLoading'
+import { DefineAttribute } from "./DefineAttribute/index.jsx";
+import { FormStyle, Content, Button } from "./styles";
+import { hook } from "./hook";
+import { OnError } from "../OnError";
+import { OnLoading } from "../OnLoading";
+import { Mapfy } from "../../utils/index.js";
 
 export function DefineSchema({
-  title = 'Define Schema',
+  title = "Define Schema",
   baseSchema,
   nonOptionals,
   onClickHandler,
-  buttons = ['add', 'save'],
+  buttons = ["add", "save"],
   highOrderCallback,
 }) {
   const {
@@ -25,9 +25,7 @@ export function DefineSchema({
     loading,
     error,
     reset,
-  } = hook({ baseSchema, onClickHandler, highOrderCallback })
-
-  console.log({baseSchema})
+  } = hook({ baseSchema, onClickHandler, highOrderCallback });
 
   return (
     <Content>
@@ -41,7 +39,7 @@ export function DefineSchema({
         onChange={(e) => setLabel(e.target.value)}
       />
       <FormStyle>
-        {new Map(Object.entries(attributes)).forEach((_, index) => {
+        {Mapfy(attributes).forEach((_, index) => {
           listOfDefineAttributes.push(
             <DefineAttribute
               {...{
@@ -53,23 +51,26 @@ export function DefineSchema({
                 setAttributes,
                 nonOptionals,
               }}
-            />,
-          )
+            />
+          );
         })}
         {listOfDefineAttributes}
       </FormStyle>
-      {buttons.includes('add') && (
+      {buttons.includes("add") && (
         <Button name="add-button" type="button" onClick={onClick}>
           Add
         </Button>
       )}
       <OnError {...{ error, reset }}></OnError>
       <OnLoading {...{ loading, component: Content }}></OnLoading>
-      {buttons.includes('save') && (
+      {buttons.includes("save") && (
         <Button name="save-button" type="button" onClick={onClick}>
           Save
         </Button>
       )}
     </Content>
-  )
+  );
 }
+
+export const newDefineSchema = (props = {}) =>
+  new Object(Object.assign({}, DefineSchema(props)));

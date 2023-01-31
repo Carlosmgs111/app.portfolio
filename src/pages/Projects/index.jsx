@@ -192,7 +192,7 @@ export function Projects() {
         {...{
           active: false,
           injected: currentModal,
-          over: false,
+          over: !false,
           embedButton: (
             <i
               id="newNote"

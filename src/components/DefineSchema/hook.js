@@ -10,11 +10,11 @@ export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
   const [attributes, setAttributes] = useState({});
   const listOfDefineAttributes = [];
   
-
   if (highOrderCallback) onClickHandler = highOrderCallback;
 
   useEffect(() => {
     setAttributes({ [genRandomId()]: baseSchema });
+    return () => reset();
   }, []);
 
   const parseSchema = (object = true) => {
@@ -59,7 +59,7 @@ export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
       parsedSchema: parseSchema(false),
       reset,
     });
-
+    
   return {
     attributes,
     setAttributes,
