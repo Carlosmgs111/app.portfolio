@@ -17,9 +17,9 @@ import { runButtonBehavior } from "../../utils";
 import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
 
-export const Project = ({ even, updateRefs, initialState, updateState }) => {
+export const Project = ({ even, refreshRefs, initialState, updateState }) => {
   const requestHeaders = headers();
-  const [show, ref] = useNearScreen(false, updateRefs);
+  const [show, ref] = useNearScreen(false, refreshRefs);
   const [beingEdited, switchBeingEdited] = useSwitch(false, true);
   const [project, setProject] = useState(initialState);
   const { uuid, name, images, descriptions, uri, version } = project;

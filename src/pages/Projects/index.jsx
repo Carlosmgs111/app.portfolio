@@ -21,7 +21,7 @@ import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
 
 export function Projects() {
   const { token } = getContextValue(CONTEXTS.Global);
-  const [TrackSidebar, setElements, updateRefs] = useTrackSidebar();
+  const [TrackSidebar, setElements, refreshRefs] = useTrackSidebar();
   const requestHeaders = headers();
   const [projectSchema, setProjectSchema] = useState({
     name: "",
@@ -154,7 +154,7 @@ export function Projects() {
     fetchProjects();
     return () => {
       setProjects([]);
-      updateRefs([]);
+      refreshRefs([]);
     };
   }, [token]);
 
@@ -181,7 +181,7 @@ export function Projects() {
               {...{
                 initialState: project,
                 even: index % 2 === 0,
-                updateRefs,
+                refreshRefs,
                 updateState,
               }}
             />

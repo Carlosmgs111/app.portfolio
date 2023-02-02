@@ -24,7 +24,7 @@ import { format } from "timeago.js";
 export function Certification({
   initialCertification,
   setCurrentModal = () => {},
-  updateRefs,
+  refreshRefs,
   updateState,
   institutions,
 }) {
@@ -42,7 +42,7 @@ export function Certification({
     grantedTo,
   } = certification;
   const { token, username } = getContextValue(CONTEXTS.Global);
-  const [show, ref] = useNearScreen(false, updateRefs);
+  const [show, ref] = useNearScreen(false, refreshRefs);
 
   // ? 1️⃣ closure function that return function that set the callback provided
   const onClickHandler = (cb) => {
@@ -66,13 +66,16 @@ export function Certification({
         setCertification({ ...data });
         updateState(({ state, auxCallback }) => {
           const newCertifications = [...state.certifications];
+          const currentRef = labelCases(title).LS;
+          const newRef = labelCases(data.title).LS;
           newCertifications.splice(
             newCertifications.findIndex((c) => c.uuid === data.uuid),
             1,
             data
           );
-          auxCallback(newCertifications);
-          console.log({ newCertifications });
+          auxCallback({
+            certifications: newCertifications,
+          });
         });
       },
       setError,
@@ -105,11 +108,17 @@ export function Certification({
               result &&
                 runRequest({
                   setData: (data) => {
-                    updateState(({ setCertifications, state }) =>
-                      setCertifications(
-                        state.certifications.filter((c) => c.uuid !== data.uuid)
-                      )
-                    );
+                    updateState(({ setCertifications, state, auxCallback }) => {
+                      const newCertifications = [...state.certifications];
+                      newCertifications.splice(
+                        newCertifications.findIndex(
+                          (c) => c.uuid === data.uuid
+                        ),
+                        1
+                      );
+                      setCertifications(newCertifications);
+                      auxCallback({ certifications: newCertifications });
+                    });
                   },
                 }).delete(`certifications/${uuid}`, {
                   ...requestHeaders,

@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 export function Skills() {
   const { token } = getContextValue(CONTEXTS.Global);
-  const [TrackSidebar, setElements, updateRefs] = useTrackSidebar();
+  const [TrackSidebar, setElements, refreshRefs] = useTrackSidebar();
 
   const skills = [
     {
@@ -58,7 +58,7 @@ export function Skills() {
       <Container>
         <Main>
           {skills.map((skill, index) => (
-            <Skill {...{ ...skill, index, updateRefs }} />
+            <Skill {...{ ...skill, index, refreshRefs }} />
           ))}
         </Main>
       </Container>

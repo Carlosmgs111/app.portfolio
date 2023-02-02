@@ -6,7 +6,8 @@ export const useTrackSidebar = (props) => {
   const [elements, setElements] = useState([]);
   const [refs, setRefs] = useState([]);
 
-  const updateRefs = (ref, show) => {
+  const refreshRefs = (ref, show) => {
+    console.log({ refs });
     if (show && !refs.includes(ref)) refs.push(ref);
     if (!show && refs.includes(ref)) refs.splice(refs.indexOf(ref), 1);
     setRefs([...refs]);
@@ -17,6 +18,6 @@ export const useTrackSidebar = (props) => {
   return [
     <TrackSidebar {...{ ...props, items, refs, id: "track-sidebar" }} />,
     setElements,
-    updateRefs,
+    refreshRefs,
   ];
 };

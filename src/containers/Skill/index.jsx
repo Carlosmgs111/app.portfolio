@@ -3,8 +3,8 @@ import { useNearScreen } from '../../hooks/useNearScreen'
 import { labelCases } from '../../utils'
 import { useEffect } from 'react'
 
-export function Skill({ index, title, image, description, updateRefs }) {
-  const [show, ref] = useNearScreen(false, updateRefs)
+export function Skill({ index, title, image, description, refreshRefs }) {
+  const [show, ref] = useNearScreen(false, refreshRefs)
   useEffect(() => {}, [show, ref])
   return (
     <Content ref={ref} id={labelCases(title).LS}>

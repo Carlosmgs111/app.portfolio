@@ -68,7 +68,7 @@ export function Certifications() {
     setError,
   } = setFunctions;
 
-  const [TrackSidebar, setElements, updateRefs] = useTrackSidebar({
+  const [TrackSidebar, setElements, refreshRefs] = useTrackSidebar({
     innerItems: true,
   });
 
@@ -250,9 +250,9 @@ export function Certifications() {
       state,
       dispatch,
       actionTypes,
-      auxCallback: (data) => {
-        console.log({ data });
-        setElements(data.map((d) => d.title));
+      auxCallback: ({ certifications }) => {
+        console.log({ certifications });
+        setElements(certifications.map((d) => d.title));
       },
       ...setFunctions,
     });
@@ -309,7 +309,7 @@ export function Certifications() {
                   {...{
                     key: certification.uuid,
                     initialCertification: certification,
-                    updateRefs,
+                    refreshRefs,
                     setCurrentModal,
                     updateState,
                     institutions,
