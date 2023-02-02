@@ -42,10 +42,6 @@ export function DefineAttribute({
       ...schema,
       [index]: { ...settingAttributes() },
     });
-    return ()=>{
-      setAttributes({})
-      setSchema({})
-    }
   }, []);
 
   const isControlledValue = (value) => {

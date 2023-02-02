@@ -44,7 +44,7 @@ export function Certification({
   const { token, username } = getContextValue(CONTEXTS.Global);
   const [show, ref] = useNearScreen(false, updateRefs);
 
-  // ? closure function that return function that set the callback provided
+  // ? 1️⃣ closure function that return function that set the callback provided
   const onClickHandler = (cb) => {
     let onClickHandlerCallback = null;
     return [
@@ -53,7 +53,7 @@ export function Certification({
     ];
   };
 
-  // ? callback to be passed as parameter to setup function
+  // ? 2️⃣ callback to be passed as parameter to setup function
   const defineSchemaCallback = (params) => () => {
     const { setError, setLoading, parsedSchema, reset } = params;
     const toUpdate = {};
@@ -65,13 +65,13 @@ export function Certification({
       setData: (data) => {
         setCertification({ ...data });
         updateState(({ state, auxCallback }) => {
-          const newCertifications = state.certifications;
-          auxCallback(
-            newCertifications.map((c) => {
-              if (c.uuid === data.uuid) c.title = title;
-              return c;
-            })
+          const newCertifications = [...state.certifications];
+          newCertifications.splice(
+            newCertifications.findIndex((c) => c.uuid === data.uuid),
+            1,
+            data
           );
+          auxCallback(newCertifications);
           console.log({ newCertifications });
         });
       },
@@ -88,7 +88,7 @@ export function Certification({
     switchBeingEdited();
   };
 
-  // ? function to set callback
+  // ? 3️⃣ function to set callback
   const [setOnClickHandler, getOnClickHandler] =
     onClickHandler(defineSchemaCallback);
 

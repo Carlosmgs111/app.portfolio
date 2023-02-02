@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import axios from "axios";
 import { URL_API } from "../../services";
@@ -17,14 +17,11 @@ import { runRequest } from "../../services/runRequest";
 import { Dashboard } from "./styles";
 import { DefineSchema } from "../../components/DefineSchema";
 import { headers } from "../../services/configs";
+import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
 
 export function Projects() {
   const { token } = getContextValue(CONTEXTS.Global);
-  const [projects, setProjects] = useState([]);
   const [TrackSidebar, setElements, updateRefs] = useTrackSidebar();
-  const [currentModal, setCurrentModal] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
   const requestHeaders = headers();
   const [projectSchema, setProjectSchema] = useState({
     name: "",
@@ -38,9 +35,44 @@ export function Projects() {
     url: "",
   });
 
+  const initialState = {
+    projects: [],
+    currentModal: null,
+    loading: false,
+    error: null,
+  };
+
+  const actionTypes = setActions([], initialState);
+
+  const reducer = (state, dispatch) => {
+    const { type, payload } = dispatch;
+    const actions = {};
+    for (let s in initialState) {
+      actions[settingName(s)] = { ...state, [s]: payload };
+    }
+    return actions[type] || state;
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { projects, currentModal, loading, error } = state;
+  const setFunctions = getDispatchSetFunctions(dispatch, actionTypes);
+  const { setProjects, setCurrentModal, setLoading, setError } = setFunctions;
+
   const sidebars = [
     TrackSidebar, // ? ⬅️ this is a rendered component, so we just put as a variable and it is not called
   ];
+
+  const updateState = (cb) =>
+    cb({
+      state,
+      dispatch,
+      actionTypes,
+      auxCallback: (data) => {
+        console.log({ data });
+        setElements(data.map((d) => d.name));
+      },
+      setProjects,
+    });
 
   if (token)
     sidebars.push(
@@ -81,13 +113,12 @@ export function Projects() {
                               parsedSchema,
                               reset,
                             }) => {
-                              console.log({ parsedSchema });
                               runRequest({
                                 setData: (data) => {
                                   setProjects([...projects, data]);
                                   setElements([
                                     ...projects.map((p) => p.name),
-                                    ...data.map((p) => p.name),
+                                    data.name,
                                   ]);
                                 },
                                 setError,
@@ -147,7 +178,12 @@ export function Projects() {
           {projects.map((project, index) => (
             <Project
               key={index}
-              {...{ ...project, even: index % 2 === 0, updateRefs }}
+              {...{
+                initialState: project,
+                even: index % 2 === 0,
+                updateRefs,
+                updateState,
+              }}
             />
           ))}
         </MainContainer>

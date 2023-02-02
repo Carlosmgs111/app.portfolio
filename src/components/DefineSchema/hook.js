@@ -9,7 +9,7 @@ export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
   const [error, setError] = useState(false);
   const [attributes, setAttributes] = useState({});
   const listOfDefineAttributes = [];
-  
+
   if (highOrderCallback) onClickHandler = highOrderCallback;
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
       parsedSchema: parseSchema(false),
       reset,
     });
-    
+
   return {
     attributes,
     setAttributes,
