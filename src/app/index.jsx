@@ -1,45 +1,58 @@
-import { Header, Content, Footer, Banner, Icon, ContentBanner } from './styles'
-import Navigation from '../components/Navigation'
-import { Routes } from 'react-router-dom'
-import { Login } from '../components/Login'
-import { getContext, CONTEXTS } from '../contexts'
-import { RoutesFactory, NavigationItemsFactory } from '../pages'
-import { useSwitch } from '../hooks/useSwitch'
-import { useApp } from '../hooks/useApp'
-import { Home } from '../pages/Home'
-import { Skills } from '../pages/Skills'
-import { Projects } from '../pages/Projects'
-import { Certifications } from '../pages/Certifications'
-import { Modal } from '../components/Modal'
-import { injectAttrsToReactElements } from '../utils'
-import { useEffect, useLayoutEffect, useState } from 'react'
-import { useScroll } from '../hooks/useScroll'
+import {
+  Header,
+  Content,
+  Footer,
+  Banner,
+  Avatar,
+  Icon,
+  ContentBanner,
+} from "./styles";
+import Navigation from "../components/Navigation";
+import { Routes } from "react-router-dom";
+import { Login } from "../components/Login";
+import { getContext, CONTEXTS } from "../contexts";
+import { RoutesFactory, NavigationItemsFactory } from "../pages";
+import { useSwitch } from "../hooks/useSwitch";
+import { useApp } from "../hooks/useApp";
+import { Home } from "../pages/Home";
+import { Skills } from "../pages/Skills";
+import { Projects } from "../pages/Projects";
+import { Certifications } from "../pages/Certifications";
+import { Modal } from "../components/Modal";
+import { injectAttrsToReactElements } from "../utils";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { useScroll } from "../hooks/useScroll";
 
 export function App() {
-  const { clearAuth } = useApp()
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
-  const [{ token, loading: globalLoading }, dispatch] = useStateValue()
-  const [showLogin, switchShowLogin] = useSwitch(false, true)
-  const [showFixed, setShowFixed] = useState(false)
+  const { clearAuth } = useApp();
+  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
+  const [{ token, loading: globalLoading }, dispatch] = useStateValue();
+  const [showLogin, switchShowLogin] = useSwitch(false, true);
+  const [showFixed, setShowFixed] = useState(false);
   // useScroll()
 
   useEffect(() => {
     const onScroll = (e) => {
-      const newShowFixed = window.scrollY > 200
+      const newShowFixed = window.scrollY > 200;
       showFixed !== newShowFixed &&
-        setTimeout(() => setShowFixed(newShowFixed), 500) // ? delay effect 500 ms
-    }
-    document.addEventListener('scroll', onScroll)
-  }, [showFixed])
+        setTimeout(() => setShowFixed(newShowFixed), 500); // ? delay effect 500 ms
+    };
+    document.addEventListener("scroll", onScroll);
+  }, [showFixed]);
 
-  const pages = [
-    'projects',
-    'skills',
-    'certifications',
-    'blog',
-  ]
+  const pages = ["projects", "certifications", "skills", "blog"];
 
-  if (token) pages.unshift('profile')
+  if (token)
+    pages.push({
+      item: (
+        <Avatar
+          src={
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMtM9yWp0z-6aT3YCq3tQiMdrygEhbrJcEt8AfiCEJUEzLCn42bS6zODLu0_rkLCjp-1w&usqp=CAU"
+          }
+        />
+      ),
+      path: "profile",
+    });
 
   const inConstruction = (
     <Modal
@@ -48,13 +61,13 @@ export function App() {
         injected: (
           <img
             src={
-              'https://www.dcs.mx/Manual%20de%20usuario/tutoriales/images/5.jpg'
+              "https://www.dcs.mx/Manual%20de%20usuario/tutoriales/images/5.jpg"
             }
           />
         ),
       }}
     />
-  )
+  );
 
   return (
     <>
@@ -74,30 +87,25 @@ export function App() {
       <Header showFixed={showFixed}>
         <Navigation
           className="navbar"
-          banner={{ title: <Banner>Blogfolio</Banner>, to: '/' }}
+          banner={{ title: <Banner>Blogfolio</Banner>, to: "/" }}
         >
           {NavigationItemsFactory({
             pages,
             login: {
-              label: () =>
-                token ? 'Logout' : 'Login',
-                // <Icon
-                //   state={Boolean(token)}
-                //   className="fa-solid fa-fingerprint"
-                // ></Icon>
+              label: () => (token ? <span>Logout</span> : <span>Login</span>),
               onClick: (e) => {
-                e.preventDefault()
-                switchShowLogin()
+                e.preventDefault();
+                switchShowLogin();
                 if (token) {
-                  if (window.confirm('Are you sure you want logout?')) {
-                    clearAuth()
-                    dispatch({ type: ACTIONS.reset })
+                  if (window.confirm("Are you sure you want logout?")) {
+                    clearAuth();
+                    dispatch({ type: ACTIONS.reset });
                   }
                 }
               },
             },
           }).map((page, index) =>
-            injectAttrsToReactElements([page], { key: index }),
+            injectAttrsToReactElements([page], { key: index })
           )}
         </Navigation>
         {/* <h1 id="box">°</h1> */}
@@ -106,33 +114,33 @@ export function App() {
         {/* <ContentBanner></ContentBanner> */}
         <Routes>
           {RoutesFactory({
-            root: '',
+            root: "",
             element: <Home />,
           })}
           {RoutesFactory({
-            root: 'profile',
+            root: "profile",
             element: inConstruction,
           })}
           {RoutesFactory({
-            root: 'projects',
+            root: "projects",
             element: <Projects />,
           })}
           {RoutesFactory({
-            root: 'skills',
+            root: "skills",
             element: <Skills />,
           })}
           {RoutesFactory({
-            root: 'certifications',
-            subDomains: ['uuid', 'title'],
+            root: "certifications",
+            subDomains: ["uuid", "title"],
             element: <Certifications />,
           })}
           {RoutesFactory({
-            root: 'blog',
+            root: "blog",
             element: inConstruction,
           })}
         </Routes>
       </Content>
       <Footer></Footer>
     </>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Header = styled.header`
   font-size: 1.8rem;
@@ -8,7 +8,7 @@ export const Header = styled.header`
   top: 0;
   position: sticky;
   backdrop-filter: brightness(40%) blur(0.6rem);
-`
+`;
 
 export const Content = styled.div`
   justify-content: center;
@@ -18,7 +18,7 @@ export const Content = styled.div`
   @media (max-width: 1360px) {
     min-height: 80vh;
   }
-`
+`;
 
 export const Footer = styled.footer`
   display: flex;
@@ -29,7 +29,7 @@ export const Footer = styled.footer`
   position: relative;
   margin-top: 20rem;
   bottom: 0;
-`
+`;
 
 export const Banner = styled.h1`
   color: #e4ff1a;
@@ -42,22 +42,22 @@ export const Banner = styled.h1`
     color: #f026df;
   }
   transition: color 0.4s;
-`
+`;
 
 export const ContentBanner = styled.div`
   width: 100%;
   height: 30rem;
-  background-image: url('https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/Y2RBROL56RCODAPA3AF2MWUCRU.jpg');
+  background-image: url("https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/Y2RBROL56RCODAPA3AF2MWUCRU.jpg");
   background-position: center;
   position: sticky;
   top: -25rem;
   z-index: 1;
-`
+`;
 
 export const Icon = styled.i`
   top: 0;
   font-size: 2.5rem;
-  color: ${({ state }) => (!state ? '#b30525' : '#21c056')};
+  color: ${({ state }) => (!state ? "#b30525" : "#21c056")};
   -webkit-text-stroke: 1.5px black;
   border-radius: 25px;
   border: 3px solid black;
@@ -65,4 +65,12 @@ export const Icon = styled.i`
   :hover {
     color: #fb5609;
   }
-`
+`;
+export const Avatar = styled.img`
+  height: 3.4rem;
+  width: 3.4rem;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 4rem;
+  border: 2px solid black;
+`;

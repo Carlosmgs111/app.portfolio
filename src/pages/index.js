@@ -5,12 +5,22 @@ import { NotFound } from "./NotFound";
 export const NavigationItemsFactory = ({ pages = [], login }) => {
   const navigationItems = [];
   for (var page of pages) {
-    const label = page.slice(page.indexOf("/") + 1);
-    navigationItems.push(
-      <p key={page} className="item" to={`/${page}`}>
-        {beutifyLabel(label)}
-      </p>
-    );
+    if (page instanceof Object) {
+      const { path, item } = page;
+      navigationItems.push(
+        <p key={path} className="item" to={`/${path}`}>
+          {item}
+        </p>
+      );
+    }
+    if (typeof page === "string") {
+      const label = page.slice(page.indexOf("/") + 1);
+      navigationItems.push(
+        <p key={page} className="item" to={`/${page}`}>
+          {beutifyLabel(label)}
+        </p>
+      );
+    }
   }
   if (login)
     navigationItems.push(
