@@ -7,7 +7,6 @@ export const useTrackSidebar = (props) => {
   const [refs, setRefs] = useState([]);
 
   const refreshRefs = (ref, show) => {
-    console.log({ refs });
     if (show && !refs.includes(ref)) refs.push(ref);
     if (!show && refs.includes(ref)) refs.splice(refs.indexOf(ref), 1);
     setRefs([...refs]);

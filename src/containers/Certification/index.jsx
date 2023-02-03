@@ -64,18 +64,15 @@ export function Certification({
     runRequest({
       setData: (data) => {
         setCertification({ ...data });
-        updateState(({ state, auxCallback }) => {
+        updateState(({ state, setElements, setCertifications }) => {
           const newCertifications = [...state.certifications];
-          const currentRef = labelCases(title).LS;
-          const newRef = labelCases(data.title).LS;
           newCertifications.splice(
             newCertifications.findIndex((c) => c.uuid === data.uuid),
             1,
             data
           );
-          auxCallback({
-            certifications: newCertifications,
-          });
+          // setCertifications([...newCertifications]); // ? to check
+          setElements(newCertifications.map((d) => d.title));
         });
       },
       setError,
@@ -108,7 +105,7 @@ export function Certification({
               result &&
                 runRequest({
                   setData: (data) => {
-                    updateState(({ setCertifications, state, auxCallback }) => {
+                    updateState(({ setCertifications, state, setElements }) => {
                       const newCertifications = [...state.certifications];
                       newCertifications.splice(
                         newCertifications.findIndex(
@@ -117,7 +114,7 @@ export function Certification({
                         1
                       );
                       setCertifications(newCertifications);
-                      auxCallback({ certifications: newCertifications });
+                      setElements(newCertifications.map((d) => d.title));
                     });
                   },
                 }).delete(`certifications/${uuid}`, {

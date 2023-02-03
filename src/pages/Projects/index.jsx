@@ -67,10 +67,7 @@ export function Projects() {
       state,
       dispatch,
       actionTypes,
-      auxCallback: (data) => {
-        console.log({ data });
-        setElements(data.map((d) => d.name));
-      },
+      setElements,
       setProjects,
     });
 

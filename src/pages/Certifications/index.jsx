@@ -250,10 +250,7 @@ export function Certifications() {
       state,
       dispatch,
       actionTypes,
-      auxCallback: ({ certifications }) => {
-        console.log({ certifications });
-        setElements(certifications.map((d) => d.title));
-      },
+      setElements,
       ...setFunctions,
     });
 

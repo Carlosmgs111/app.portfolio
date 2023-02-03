@@ -46,15 +46,14 @@ export const Project = ({ even, refreshRefs, initialState, updateState }) => {
     runRequest({
       setData: (data) => {
         setProject({ ...data });
-        updateState(({ state, auxCallback }) => {
-          const newProjects = state.projects;
-          auxCallback(
-            newProjects.map((p) => {
-              if (p.uuid === data.uuid) p.name = name;
-              return p;
-            })
+        updateState(({ state, setElements }) => {
+          const newProjects = [...state.projects];
+          newProjects.splice(
+            newProjects.findIndex((c) => c.uuid === data.uuid),
+            1,
+            data
           );
-          console.log({ newProjects });
+          setElements(newProjects.map((p) => p.name));
         });
       },
       setError,
@@ -87,11 +86,17 @@ export const Project = ({ even, refreshRefs, initialState, updateState }) => {
               result &&
                 runRequest({
                   setData: (data) => {
-                    updateState(({ setProjects, state }) =>
-                      setProjects(
-                        state.projects.filter((c) => c.uuid !== data.uuid)
-                      )
-                    );
+                    updateState(({ setProjects, state, setElements }) => {
+                      const newProjects = [...state.projects];
+                      newProjects.splice(
+                        newProjects.findIndex(
+                          (c) => c.uuid === data.uuid
+                        ),
+                        1,
+                      );
+                      setProjects(newProjects);
+                      setElements(newProjects.map((p) => p.name));
+                    });
                   },
                 }).delete(`projects/${uuid}`, {
                   ...requestHeaders,
