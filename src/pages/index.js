@@ -24,7 +24,7 @@ export const NavigationItemsFactory = ({ pages = [], login }) => {
   }
   if (login)
     navigationItems.push(
-      <p className="item" to="#" onClick={login.onClick}>
+      <p hidden={login.hidden} className="item" to="#" onClick={login.onClick}>
         {login.label()}
       </p>
     );

@@ -1,13 +1,18 @@
-import { Children, cloneElement } from 'react'
-import { SidebarBody, Item, Input, InnerItem } from './styles'
+import { Children, cloneElement } from "react";
+import { SidebarBody, Item, Input, InnerItem, Separator } from "./styles";
 
 export const innerItems = Object.freeze({
-  Input: ({ onChange }) => <Input {...{ onChange }}></Input>,
-  InnerItem: ({ content }) => <InnerItem>{content}</InnerItem>,
-})
+  Input: ({ onChange, expanded }) => (
+    <Input {...{ onChange, expanded }}></Input>
+  ),
+  InnerItem: ({ content, expanded }) => (
+    <InnerItem {...{ expanded }}>{content}</InnerItem>
+  ),
+  Separator: () => <Separator />,
+});
 
 export function PanelSidebar(props) {
-  const { children = [], items = [] } = props
+  const { children = [], items = [], expanded = false } = props;
 
   return (
     <SidebarBody {...props}>
@@ -20,19 +25,19 @@ export function PanelSidebar(props) {
             onChange = () => {},
             visibility = true,
             href = null,
-            content = '',
+            content = "",
           },
-          index,
+          index
         ) =>
           visibility && (
             <Item {...{ className, onClick, key: index, href }}>
-              {innerItem && innerItem({ onChange, content })}
+              {innerItem && innerItem({ onChange, content, expanded })}
             </Item>
-          ),
+          )
       )}
       {Children.toArray(children).map((child) =>
-        cloneElement(<Item>{child}</Item>),
+        cloneElement(<Item>{child}</Item>)
       )}
     </SidebarBody>
-  )
+  );
 }

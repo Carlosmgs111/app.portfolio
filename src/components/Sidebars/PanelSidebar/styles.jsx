@@ -97,11 +97,17 @@ export const InnerItem = styled.i`
   font-style: normal;
   white-space: pre-wrap;
   line-height: 1.6rem;
-  left: 0;
-  opacity: 0;
-  max-width: 0;
-  max-height: 0;
-  margin-right: 0;
+  left: ${({ expanded }) => (expanded ? "1.2rem" : "0")};
+  opacity: ${({ expanded }) => (expanded ? "1" : "0")};
+  max-width: ${({ expanded }) => (expanded ? "25rem" : "0")};
+  max-height: ${({ expanded }) => (expanded ? "1.8rem" : "0")};
+  margin-right: ${({ expanded }) => (expanded ? "1.2rem" : "0")};
   content: ${({ content }) => content};
   /* */
+`;
+
+export const Separator = styled.div`
+  height: 1px;
+  width: 100%;
+  background-color: black;
 `;

@@ -18,6 +18,7 @@ import { Home } from "../pages/Home";
 import { Skills } from "../pages/Skills";
 import { Projects } from "../pages/Projects";
 import { Certifications } from "../pages/Certifications";
+import { Profile } from "../pages/Profile";
 import { Modal } from "../components/Modal";
 import { injectAttrsToReactElements } from "../utils";
 import { useEffect, useLayoutEffect, useState } from "react";
@@ -92,17 +93,12 @@ export function App() {
           {NavigationItemsFactory({
             pages,
             login: {
-              label: () => (token ? <span>Logout</span> : <span>Login</span>),
+              label: () => <span>Login</span>,
               onClick: (e) => {
                 e.preventDefault();
                 switchShowLogin();
-                if (token) {
-                  if (window.confirm("Are you sure you want logout?")) {
-                    clearAuth();
-                    dispatch({ type: ACTIONS.reset });
-                  }
-                }
               },
+              hidden: Boolean(token),
             },
           }).map((page, index) =>
             injectAttrsToReactElements([page], { key: index })
@@ -119,7 +115,7 @@ export function App() {
           })}
           {RoutesFactory({
             root: "profile",
-            element: inConstruction,
+            element: <Profile {...{ clearAuth }} />,
           })}
           {RoutesFactory({
             root: "projects",
