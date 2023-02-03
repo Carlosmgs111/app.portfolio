@@ -48,17 +48,15 @@ export const ImagesContainer = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 100%;
-  border-radius: 0.4rem;
-  height: fit-content;
+  position: absolute;
+  position: sticky;
+  max-width: 100%;
+  max-height: 80%;
   object-fit: cover;
   object-position: center center;
-  @media (max-width: 1360px) {
-    width: 47%;
-  }
-  @media (max-width: 600px) {
-    width: 100%;
-  }
+  cursor: ${({ zoomed }) => (zoomed ? "zoom-out" : "zoom-in")};
+  opacity: ${({ details }) => (!details ? "1" : "0")};
+  transition: opacity 0.4s;
 `;
 
 export const DescriptionsContainer = styled.div`

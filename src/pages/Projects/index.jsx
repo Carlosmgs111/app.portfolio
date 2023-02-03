@@ -160,7 +160,7 @@ export function Projects() {
       <Banner
         config={{
           "background-image":
-            "url('https://arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/Y2RBROL56RCODAPA3AF2MWUCRU.jpg')",
+            "url('https://images.pexels.com/photos/5186869/pexels-photo-5186869.jpeg?cs=srgb&dl=pexels-fiona-art-5186869.jpg&fm=jpg')",
         }}
       >
         Projects
@@ -180,6 +180,7 @@ export function Projects() {
                 even: index % 2 === 0,
                 refreshRefs,
                 updateState,
+                setCurrentModal,
               }}
             />
           ))}

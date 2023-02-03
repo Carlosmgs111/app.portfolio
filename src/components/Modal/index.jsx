@@ -15,6 +15,13 @@ export const Modal = ({
   onClick,
   over = true,
 }) => {
+  // $(document).keypress(function (e) {
+  //   if (e.shiftKey && e.keyCode === 87) {
+  //     // capital W
+  //     alert("UP");
+  //   }
+  // });
+  // document.keypress()
   return active || children || injected ? (
     <ModalStyle
       {...{ classname: `${className}`, onClick: onClick || null, over }}

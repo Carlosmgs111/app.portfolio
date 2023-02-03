@@ -19,5 +19,7 @@ export const Title = styled.h1`
   text-align: center;
   font-size: 8rem;
   font-weight: 1000;
-  color: #111111bb;
+  color: #111111;
+  backdrop-filter: invert(100%) blur(1px);
+  border-radius: 2rem;
 `;

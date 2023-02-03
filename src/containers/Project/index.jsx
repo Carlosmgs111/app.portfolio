@@ -17,7 +17,13 @@ import { runButtonBehavior } from "../../utils";
 import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
 
-export const Project = ({ even, refreshRefs, initialState, updateState }) => {
+export const Project = ({
+  even,
+  refreshRefs,
+  initialState,
+  updateState,
+  setCurrentModal,
+}) => {
   const requestHeaders = headers();
   const [show, ref] = useNearScreen(false, refreshRefs);
   const [beingEdited, switchBeingEdited] = useSwitch(false, true);
@@ -89,10 +95,8 @@ export const Project = ({ even, refreshRefs, initialState, updateState }) => {
                     updateState(({ setProjects, state, setElements }) => {
                       const newProjects = [...state.projects];
                       newProjects.splice(
-                        newProjects.findIndex(
-                          (c) => c.uuid === data.uuid
-                        ),
-                        1,
+                        newProjects.findIndex((c) => c.uuid === data.uuid),
+                        1
                       );
                       setProjects(newProjects);
                       setElements(newProjects.map((p) => p.name));
@@ -114,7 +118,19 @@ export const Project = ({ even, refreshRefs, initialState, updateState }) => {
           <Title>{name}</Title>
           <ImagesContainer even={even}>
             {images.map((image, index) => (
-              <Image key={index} src={image} />
+              <Image
+                key={index}
+                src={image}
+                onClick={() => {
+                  setCurrentModal(
+                    <Image
+                      zoomed={true}
+                      src={image}
+                      onClick={() => setCurrentModal(null)}
+                    />
+                  );
+                }}
+              />
             ))}
           </ImagesContainer>
           <DescriptionsContainer even={even}>

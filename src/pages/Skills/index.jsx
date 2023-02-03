@@ -48,7 +48,7 @@ export function Skills() {
         {...{
           config: {
             "background-image":
-              "url('https://img.freepik.com/vector-premium/plantilla-diseno-banner-fondo-abstracto-formas-geometricas-patrones-hexagonales-pequenos-puntos-ilustracion-vectorial-diseno-tecnologia-o-ciencia_73749-706.jpg?w=2000')",
+              "url('https://wallpaperaccess.com/full/806282.jpg')",
           },
         }}
       >
