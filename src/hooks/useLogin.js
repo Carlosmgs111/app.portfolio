@@ -33,12 +33,20 @@ function useLogin() {
       ).data;
       console.log({ data });
       if (label === "signin") {
-        const { token, apiKey, expire } = data;
-        const { username, exp } = decodeJwt(token);
-        console.log({ username, exp });
+        const { token, apiKey } = data;
+        const { email, createdAt, privilege, username, exp } = decodeJwt(token);
+        console.log({ email, createdAt, username, exp });
         dispatch({
           type: ACTIONS.setAuth,
-          payload: { token, apiKey, expire: exp, username },
+          payload: {
+            token,
+            apiKey,
+            expire: exp,
+            username,
+            createdAt,
+            email,
+            privilege,
+          },
         });
         setLoading(false);
       } else {

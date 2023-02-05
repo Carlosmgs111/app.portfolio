@@ -11,6 +11,9 @@ const initialState = {
   apiKey: "",
   expire: "",
   username: "",
+  email: "",
+  createdAt: "",
+  privilege: "",
   loading: true,
 };
 
@@ -27,6 +30,9 @@ const reducer = (state, action) => {
       token: payload?.token,
       expire: payload?.expire,
       username: payload?.username,
+      email: payload?.email,
+      createdAt: payload?.createdAt,
+      privilege: payload?.privilege,
       loading: false,
     },
     [actionTypes.setLoading]: { ...state, loading: payload },

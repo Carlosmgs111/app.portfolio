@@ -109,5 +109,5 @@ export const InnerItem = styled.i`
 export const Separator = styled.div`
   height: 1px;
   width: 100%;
-  background-color: black;
+  backdrop-filter: invert(100%);
 `;

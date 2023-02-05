@@ -5,20 +5,43 @@ import {
   PanelSidebar,
   innerItems,
 } from "../../components/Sidebars/PanelSidebar";
+import { MyState, Settings, ProfileHome } from "./content";
 import { getContext, CONTEXTS } from "../../contexts";
 import { useNavigate } from "react-router-dom";
+import { Container, MainContainer } from "./styles";
+import { useState } from "react";
 
 export function Profile({ clearAuth }) {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
-  const [{ token, loading: globalLoading, username }, dispatch] =
-    useStateValue();
+  const [
+    { token, loading: globalLoading, username, email, createdAt, privilege },
+    dispatch,
+  ] = useStateValue();
+  const [currentContent, setCurrentContent] = useState(<ProfileHome />);
 
   const navigate = useNavigate();
   const panelSidebarItems = [
     {
       innerItem: innerItems.InnerItem,
+      className: "fa-solid fa-house-user",
+      content: "Principal",
+      onClick: () => setCurrentContent(<ProfileHome />),
+    },
+    { innerItem: innerItems.Separator },
+    {
+      innerItem: innerItems.InnerItem,
       className: "fa-solid fa-building-columns",
-      content: "Ver Mis Estados",
+      content: "Ver Mi Estado",
+      onClick: () =>
+        setCurrentContent(
+          <MyState {...{ username, email, createdAt, privilege }} />
+        ),
+    },
+    {
+      innerItem: innerItems.InnerItem,
+      className: "fa-solid fa-wrench",
+      content: "Configurar Mi Cuenta",
+      onClick: () => setCurrentContent(<Settings />),
     },
     { innerItem: innerItems.Separator },
     {
@@ -48,11 +71,15 @@ export function Profile({ clearAuth }) {
       >
         {username}
       </Banner>
-      <MultiSidebar
-        {...{
-          sidebars,
-        }}
-      />
+      <Container>
+        <MultiSidebar
+          {...{
+            sidebars,
+            float: false,
+          }}
+        />
+        <MainContainer>{currentContent}</MainContainer>
+      </Container>
     </Page>
   );
 }

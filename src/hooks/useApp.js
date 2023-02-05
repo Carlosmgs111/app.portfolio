@@ -24,6 +24,9 @@ export function useApp() {
         token: state.token,
         expire: state.expire,
         username: state.username,
+        email: state.email,
+        createdAt: state.createdAt,
+        privilege: state.privilege,
       });
       //  setBackgroundImage(defaultBackgroundImage);
     }

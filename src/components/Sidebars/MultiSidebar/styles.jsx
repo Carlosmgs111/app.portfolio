@@ -16,7 +16,7 @@ export const Sidebar = styled.div`
   max-height: 70vh;
   height: fit-content;
   position: sticky;
-  top: 6rem;
+  top: 10rem;
   left: 0;
   min-width: fit-content;
   padding: 0.8rem;

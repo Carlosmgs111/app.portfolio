@@ -10,7 +10,6 @@ import {
 } from "./styles";
 import { CertificationSkeleton } from "./skeleton";
 import { useNearScreen } from "../../hooks/useNearScreen";
-import { useEffect } from "react";
 import { labelCases } from "../../utils";
 import { DefineSchema } from "../../components/DefineSchema";
 import { getContextValue, CONTEXTS } from "../../contexts";
