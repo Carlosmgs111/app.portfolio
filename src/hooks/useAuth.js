@@ -11,6 +11,7 @@ function useAuth() {
   const [email, setEmail] = useLocalStorage("email", "");
   const [createdAt, setCreatedAt] = useLocalStorage("createdAt", "");
   const [privilege, setPrivilege] = useLocalStorage("privilege", "");
+  const [avatar, setAvatar] = useLocalStorage("avatar", "");
 
   const [{}, dispatch] = useStateValue();
 
@@ -21,7 +22,16 @@ function useAuth() {
     }
     dispatch({
       type: ACTIONS.setAuth,
-      payload: { token, apiKey, expire, username, email, createdAt, privilege },
+      payload: {
+        token,
+        apiKey,
+        expire,
+        username,
+        email,
+        createdAt,
+        privilege,
+        avatar,
+      },
     });
   }, [token, apiKey]);
 
@@ -38,6 +48,7 @@ function useAuth() {
     email,
     createdAt,
     privilege,
+    avatar,
   }) => {
     if (expire) expire = Date.parse(new Date(Date.now())) + Number(expire);
     setToken(token);
@@ -47,6 +58,7 @@ function useAuth() {
     setCreatedAt(createdAt);
     setEmail(email);
     setPrivilege(privilege);
+    setAvatar(avatar);
   };
 
   const clearAuth = () => {
@@ -57,6 +69,7 @@ function useAuth() {
     setEmail("");
     setCreatedAt("");
     setPrivilege("");
+    setAvatar("");
   };
 
   return { token, apiKey, setAuth, clearAuth };

@@ -34,7 +34,8 @@ function useLogin() {
       console.log({ data });
       if (label === "signin") {
         const { token, apiKey } = data;
-        const { email, createdAt, privilege, username, exp } = decodeJwt(token);
+        const { email, createdAt, privilege, username, exp, avatar } =
+          decodeJwt(token);
         console.log({ email, createdAt, username, exp });
         dispatch({
           type: ACTIONS.setAuth,
@@ -46,6 +47,7 @@ function useLogin() {
             createdAt,
             email,
             privilege,
+            avatar,
           },
         });
         setLoading(false);

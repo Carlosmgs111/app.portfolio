@@ -27,6 +27,7 @@ export function useApp() {
         email: state.email,
         createdAt: state.createdAt,
         privilege: state.privilege,
+        avatar: state.avatar,
       });
       //  setBackgroundImage(defaultBackgroundImage);
     }

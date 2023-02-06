@@ -27,7 +27,7 @@ import { useScroll } from "../hooks/useScroll";
 export function App() {
   const { clearAuth } = useApp();
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
-  const [{ token, loading: globalLoading }, dispatch] = useStateValue();
+  const [{ token, loading: globalLoading, avatar }, dispatch] = useStateValue();
   const [showLogin, switchShowLogin] = useSwitch(false, true);
   const [showFixed, setShowFixed] = useState(false);
   // useScroll()
@@ -45,13 +45,7 @@ export function App() {
 
   if (token)
     pages.push({
-      item: (
-        <Avatar
-          src={
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMtM9yWp0z-6aT3YCq3tQiMdrygEhbrJcEt8AfiCEJUEzLCn42bS6zODLu0_rkLCjp-1w&usqp=CAU"
-          }
-        />
-      ),
+      item: <Avatar src={avatar} />,
       path: "profile",
     });
 

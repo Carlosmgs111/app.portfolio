@@ -100,7 +100,9 @@ export function DefineAttribute({
       <FormStyle className={isExpanded}>
         <LeftSide>
           {nonOptionals.includes(name) ? (
-            <label>{beutifyLabel(name)} : </label>
+            <label style={{ width: "fit-content" }}>
+              {beutifyLabel(name)} :{" "}
+            </label>
           ) : (
             <label>
               <input
@@ -152,7 +154,7 @@ export function DefineAttribute({
             if (typeof value === "string" || typeof value === "number")
               return (
                 <input
-                  style={{ width: "90%" }}
+                  style={{ minWidth: "24rem" }}
                   type={
                     name.includes("~")
                       ? "date"

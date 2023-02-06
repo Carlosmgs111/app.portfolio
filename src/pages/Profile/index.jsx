@@ -14,7 +14,15 @@ import { useState } from "react";
 export function Profile({ clearAuth }) {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
   const [
-    { token, loading: globalLoading, username, email, createdAt, privilege },
+    {
+      token,
+      loading: globalLoading,
+      username,
+      email,
+      createdAt,
+      privilege,
+      avatar,
+    },
     dispatch,
   ] = useStateValue();
   const [currentContent, setCurrentContent] = useState(<ProfileHome />);
@@ -65,8 +73,7 @@ export function Profile({ clearAuth }) {
     <Page>
       <Banner
         config={{
-          "background-image":
-            "url('https://i.pinimg.com/originals/89/2c/e7/892ce71c1c9d8fc3ff802049ac854f40.jpg')",
+          "background-image": `url('${avatar}')`,
         }}
       >
         {username}

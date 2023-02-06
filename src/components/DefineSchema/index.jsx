@@ -3,14 +3,14 @@ import { FormStyle, Content, Button } from "./styles";
 import { hook } from "./hook";
 import { OnError } from "../OnError";
 import { OnLoading } from "../OnLoading";
-import { Mapfy } from "../../utils/index.js";
+import { labelCases, Mapfy } from "../../utils/index.js";
 
 export function DefineSchema({
   title = "Define Schema",
   baseSchema,
   nonOptionals,
   onClickHandler,
-  buttons = ["add", "save"],
+  buttons = { add: "add", main: "save" },
   highOrderCallback,
 }) {
   const {
@@ -56,16 +56,16 @@ export function DefineSchema({
         })}
         {listOfDefineAttributes}
       </FormStyle>
-      {buttons.includes("add") && (
-        <Button name="add-button" type="button" onClick={onClick}>
-          Add
+      {Mapfy(buttons).has("add") && (
+        <Button name="add" type="button" onClick={onClick}>
+          {labelCases(buttons.add).CS}
         </Button>
       )}
       <OnError {...{ error, reset }}></OnError>
       <OnLoading {...{ loading, component: Content }}></OnLoading>
-      {buttons.includes("save") && (
-        <Button name="save-button" type="button" onClick={onClick}>
-          Save
+      {Mapfy(buttons).has("main") && (
+        <Button name="main" type="button" onClick={onClick}>
+          {labelCases(buttons.main).CS}
         </Button>
       )}
     </Content>

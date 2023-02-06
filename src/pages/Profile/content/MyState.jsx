@@ -1,6 +1,5 @@
-
 import { format } from "timeago.js";
-export function MyState({username, email, privilege, createdAt}) {
+export function MyState({ username, email, privilege, createdAt }) {
   return (
     <div
       style={{
@@ -9,6 +8,7 @@ export function MyState({username, email, privilege, createdAt}) {
         flexDirection: "column",
         justifyContent: "center",
         backgroundColor: "#ffffff51",
+        alignItems: "center",
       }}
     >
       <h1>Username: {username}</h1>

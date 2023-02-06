@@ -1,5 +1,5 @@
 :root {
-  --border-radius: .6rem;
+  --border-radius: 0.6rem;
   --background-image: url("https://armsystem.com.mx/img/intro-carousel/4.jpg");
   --background-color: black;
 }
@@ -13,31 +13,25 @@
 html {
   margin: 0;
   padding: 0;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-size: 62.5%;
 }
 
 body {
-  /* background-color: hsl(215, 50%, 23%); */
-  /*  */
-  background: #ff00cc;
-  background: -webkit-linear-gradient(to right, #333399, #ff00cc);
-  background: linear-gradient(to top, #333399, #ff00cc);
-  /*  */
-  /* background: #485563;
-  background: -webkit-linear-gradient(to right, #29323c, #485563);
-  background: linear-gradient(to top, #29323c, #485563); */
-  /*  */
-  background-image: var(--background-image);
-  /*  */
+  /* ? scheme_color: darker */
+  background-color: #121f25;
+  /* ? schema_color: lighter */
+  /* background-color: #fffbff; */
   background-position: center center;
   background-size: cover;
   background-attachment: fixed;
   margin: 0;
   padding: 0;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #e2e2e2;
+  /* transform-style: preserve-3d;  */ /* ⬅️ delete the effect of backdrop filter */
 }
 
 code {
@@ -45,6 +39,3 @@ code {
     monospace;
 }
 
-p {
-  /* white-space: normal !important; */
-}

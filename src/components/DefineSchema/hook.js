@@ -2,11 +2,7 @@ import { useState, useEffect } from "react";
 import { genRandomId } from "../../utils";
 import { runButtonBehavior } from "../../utils";
 
-export function hook({
-  baseSchema = {},
-  onClickHandler,
-  highOrderCallback,
-}) {
+export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
   const [label, setLabel] = useState("");
   const [schema, setSchema] = useState({});
   const [loading, setLoading] = useState(false);
@@ -44,8 +40,8 @@ export function hook({
 
   const onClick = async (e) => {
     const behaviors = {
-      "add-button": addDefineAttribute,
-      "save-button": () =>
+      add: addDefineAttribute,
+      main: () =>
         onClickHandler({
           setError,
           setLoading,

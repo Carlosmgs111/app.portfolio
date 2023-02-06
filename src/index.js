@@ -14,6 +14,7 @@ const initialState = {
   email: "",
   createdAt: "",
   privilege: "",
+  avatar: "",
   loading: true,
 };
 
@@ -33,6 +34,7 @@ const reducer = (state, action) => {
       email: payload?.email,
       createdAt: payload?.createdAt,
       privilege: payload?.privilege,
+      avatar: payload?.avatar,
       loading: false,
     },
     [actionTypes.setLoading]: { ...state, loading: payload },

@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const List = styled.ul`
   font-size: 1.4rem;
   border: 1px solid black;
-  min-width: 42rem;
-  padding: 2rem 0 0 0;
+  padding: 2rem;
   align-items: center;
   text-align: center;
   list-style: none;
