@@ -7,8 +7,7 @@ export const ModalStyle = styled.div`
   justify-content: space-around;
   justify-items: center;
   position: fixed;
-  /* background: rgba(240, 38, 223, 0.1); */
-  backdrop-filter: blur(5px);
+  backdrop-filter:  blur(1px);
   color: white;
   z-index: ${({ over }) => (over ? 1000 : 0)};
   opacity: 1;

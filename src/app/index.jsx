@@ -1,12 +1,4 @@
-import {
-  Header,
-  Content,
-  Footer,
-  Banner,
-  Avatar,
-  Icon,
-  ContentBanner,
-} from "./styles";
+import { Header, Content, Footer, BannerStyle, Avatar } from "./styles";
 import Navigation from "../components/Navigation";
 import { Routes } from "react-router-dom";
 import { Login } from "../components/Login";
@@ -22,7 +14,6 @@ import { Profile } from "../pages/Profile";
 import { Modal } from "../components/Modal";
 import { injectAttrsToReactElements } from "../utils";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { useScroll } from "../hooks/useScroll";
 
 export function App() {
   const { clearAuth } = useApp();
@@ -45,7 +36,7 @@ export function App() {
 
   if (token)
     pages.push({
-      item: <Avatar src={avatar} />,
+      item: <Avatar id="nonMark" src={avatar} />,
       path: "profile",
     });
 
@@ -82,7 +73,10 @@ export function App() {
       <Header showFixed={showFixed}>
         <Navigation
           className="navbar"
-          banner={{ title: <Banner>Blogfolio</Banner>, to: "/" }}
+          banner={{
+            title: <BannerStyle>Blogfolio</BannerStyle>,
+            to: "/",
+          }}
         >
           {NavigationItemsFactory({
             pages,

@@ -49,7 +49,7 @@ export function Profile({ clearAuth }) {
       innerItem: innerItems.InnerItem,
       className: "fa-solid fa-wrench",
       content: "Configurar Mi Cuenta",
-      onClick: () => setCurrentContent(<Settings />),
+      onClick: () => setCurrentContent(<Settings {...{ avatar }} />),
     },
     { innerItem: innerItems.Separator },
     {

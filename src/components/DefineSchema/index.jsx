@@ -71,6 +71,3 @@ export function DefineSchema({
     </Content>
   );
 }
-
-export const newDefineSchema = (props = {}) =>
-  new Object(Object.assign({}, DefineSchema(props)));

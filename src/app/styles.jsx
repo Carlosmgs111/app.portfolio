@@ -31,8 +31,8 @@ export const Footer = styled.footer`
   bottom: 0;
 `;
 
-export const Banner = styled.h1`
-  color: #e4ff1a;
+export const BannerStyle = styled.h1`
+  color: #00deae;
   font-weight: bold;
   font-size: 3.4rem;
   @media (max-width: 480px) {
@@ -73,4 +73,7 @@ export const Avatar = styled.img`
   object-position: center center;
   border-radius: 4rem;
   border: 2px solid black;
+  &:hover {
+    border: 2px solid #e4ff1a;
+  }
 `;

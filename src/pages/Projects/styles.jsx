@@ -26,7 +26,7 @@ export const Dashboard = styled.div`
   height: fit-content;
   align-items: center;
   justify-content: space-around;
-  /* background-color: #2b3f79; */
+  background-color: #2b3f79;
   overflow: scroll;
   &::-webkit-scrollbar {
     display: none;

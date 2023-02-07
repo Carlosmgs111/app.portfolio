@@ -99,11 +99,11 @@ export const ItemsList = styled.ul`
 `;
 
 export const from = ({ selected }) => css`
-  color: ${selected ? "#e4ff1a" : "#e4ff1a66"};
+  color: ${selected ? "#ffffff" : "#ffffffb8"};
 `;
 
 export const to = css`
-  color: #e4ff1a;
+  color: #ffffff;
 `;
 
 export const Item = styled.li`
@@ -115,15 +115,23 @@ export const Item = styled.li`
   ${(props) => from(props)};
   font-size: 1.4rem;
   transition: font-size 0.4s;
-  font-weight: 500;
+  font-weight: 1000;
   font-family: "Quicksand", sans-serif;
   text-align: center;
   font-style: none !important;
+  border-bottom: ${({ selected, id }) =>
+    selected && id !== "nonMark" ? "solid #e4ff1a 1px" : "transparent"};
+  top: ${({ selected, id }) => (selected && id !== "nonMark" ? "-6px" : "0")};
   &:hover {
     ${to};
     text-decoration: none;
+    top: ${({ id }) => (id !== "nonMark" ? "-6px" : "0")};
+    border-bottom: ${({ id }) =>
+      id !== "nonMark" ? "solid #e4ff1a 1px" : "none"};
     animation: 1.2s ${(props) => setFrames([from, to], props)} ease;
+    transition: top 0.4s, border-bottom 0.8s;
   }
+
   &.navbar {
     padding: 1rem 0.8rem;
     .item {
@@ -198,7 +206,10 @@ export const Button = styled.i`
 
 export const Banner = styled(LinkRouter)`
   ${Item.componentStyle.rules}
-  margin:0;
+  &:hover {
+    border-bottom: none;
+  }
+  margin: 0;
 `;
 
 export const Link = styled(LinkRouter)`

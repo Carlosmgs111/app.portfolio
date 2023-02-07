@@ -104,6 +104,7 @@ export function Projects() {
                               "uri",
                               "version",
                             ],
+                            buttons: { add: "agregar", main: "Guardar" },
                             onClickHandler: ({
                               setError,
                               setLoading,

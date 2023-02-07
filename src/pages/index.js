@@ -6,9 +6,13 @@ export const NavigationItemsFactory = ({ pages = [], login }) => {
   const navigationItems = [];
   for (var page of pages) {
     if (page instanceof Object) {
-      const { path, item } = page;
+      const {
+        path,
+        item,
+      } = page;
+      console.log({ item });
       navigationItems.push(
-        <p key={path} className="item" to={`/${path}`}>
+        <p id={item.props.id} key={path} className="item" to={`/${path}`}>
           {item}
         </p>
       );
@@ -22,10 +26,10 @@ export const NavigationItemsFactory = ({ pages = [], login }) => {
       );
     }
   }
-  if (login)
+  if (login && !login?.hidden)
     navigationItems.push(
-      <p hidden={login.hidden} className="item" to="#" onClick={login.onClick}>
-        {login.label()}
+      <p className="item" to="#" onClick={login?.onClick}>
+        {login?.label()}
       </p>
     );
   return navigationItems;

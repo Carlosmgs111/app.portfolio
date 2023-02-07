@@ -15,30 +15,19 @@ export const Modal = ({
   onClick,
   over = true,
 }) => {
-  // $(document).keypress(function (e) {
-  //   if (e.shiftKey && e.keyCode === 87) {
-  //     // capital W
-  //     alert("UP");
-  //   }
-  // });
-  // document.keypress()
   return active || children || injected ? (
     <ModalStyle
       {...{ classname: `${className}`, onClick: onClick || null, over }}
     >
-      {
-        /* children
-        ? */ Children.toArray(children || injected).map((child) =>
-          cloneElement(child, {
-            ...child.props,
-            embedButton: child?.props?.embedButton ? (
-              <EmbedButton>{child.props.embedButton}</EmbedButton>
-            ) : null,
-            disabled: true,
-          })
-        )
-        /* : injected */
-      }
+      {Children.toArray(children || injected).map((child) =>
+        cloneElement(child, {
+          ...child.props,
+          embedButton: child?.props?.embedButton ? (
+            <EmbedButton>{child.props.embedButton}</EmbedButton>
+          ) : null,
+          disabled: true,
+        })
+      )}
       {embedButton ? (
         <NativeEmbedButton>{embedButton}</NativeEmbedButton>
       ) : null}
