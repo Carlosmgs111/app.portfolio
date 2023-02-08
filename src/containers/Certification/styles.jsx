@@ -10,6 +10,10 @@ export const Container = styled.div`
   text-align: center;
   position: sticky;
   background: linear-gradient(to right, #333399, #ff00cc);
+  /* background: url("https://content.wepik.com/statics/4633832/preview-page0.jpg"); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   display: block;
   overflow: hidden;
   @media (max-width: 500px) {

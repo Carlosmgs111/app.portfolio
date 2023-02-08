@@ -5,7 +5,7 @@ import {
   PanelSidebar,
   innerItems,
 } from "../../components/Sidebars/PanelSidebar";
-import { MyState, Settings, ProfileHome } from "./content";
+import { MyState, Settings, ProfileHome } from "./sections";
 import { getContext, CONTEXTS } from "../../contexts";
 import { useNavigate } from "react-router-dom";
 import { Container, MainContainer } from "./styles";

@@ -76,4 +76,5 @@ export const Avatar = styled.img`
   &:hover {
     border: 2px solid #e4ff1a;
   }
+  transition: border 0.4s;
 `;

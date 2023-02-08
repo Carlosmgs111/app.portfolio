@@ -1,5 +1,5 @@
 import { MyState } from "./MyState";
-import { Settings } from "./settings";
+import { Settings } from "./Settings";
 
 function ProfileHome() {
   return (

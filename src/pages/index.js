@@ -10,7 +10,6 @@ export const NavigationItemsFactory = ({ pages = [], login }) => {
         path,
         item,
       } = page;
-      console.log({ item });
       navigationItems.push(
         <p id={item.props.id} key={path} className="item" to={`/${path}`}>
           {item}

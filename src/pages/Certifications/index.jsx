@@ -82,6 +82,7 @@ export function Certifications() {
     "emitedAt~": new Date().toISOString().slice(0, 10),
     image: "",
     url: "",
+    tags: [""],
   });
 
   const institutionSchema = {
@@ -97,7 +98,14 @@ export function Certifications() {
         {...{
           title: "Add New Certifications(s)",
           baseSchema: certificationSchema,
-          nonOptionals: ["title", "emitedAt~", "image", "url", "emitedBy{"],
+          nonOptionals: [
+            "title",
+            "emitedAt~",
+            "image",
+            "url",
+            "emitedBy{",
+            "tags",
+          ],
           onClickHandler: (params) => {
             const { setError, setLoading, parsedSchema, reset } = params;
             runRequest({
@@ -285,7 +293,8 @@ export function Certifications() {
       <Banner
         {...{
           config: {
-            "background-image": "url(https://wallpaperaccess.com/full/53928.jpg)",
+            "background-image":
+              "url(https://wallpaperaccess.com/full/53928.jpg)",
           },
         }}
       >

@@ -55,8 +55,17 @@ export function DefineAttribute({
     let { name, value } = target;
     let controllerName = null;
     let controllerValue = null;
+    if (
+      Array.isArray(currentValue) &&
+      !currentName.includes("~") &&
+      !currentName.includes("{")
+    ) {
+      const list = [...attributes[index][currentName]];
+      list[name] = value;
+      value = [...list];
+    }
 
-    if (currentName.includes("~")) {
+    if (Array.isArray(currentValue) && currentName.includes("~")) {
       controllerName = currentName;
       currentName = currentName.replace("~", "");
       controllerValue = value;
@@ -71,11 +80,7 @@ export function DefineAttribute({
     if (typeof currentValue === "boolean") {
       value = value === "true" ? true : false;
     }
-    if (Array.isArray(currentValue)) {
-      const list = [...attributes[index][currentName]];
-      list[name] = value;
-      value = [...list];
-    }
+
     setAttributes({
       ...attributes,
       [index]: {
@@ -220,6 +225,13 @@ export function DefineAttribute({
                           ...attributes,
                           [index]: {
                             ...attributes[index],
+                            [name]: [...list],
+                          },
+                        });
+                        setSchema({
+                          ...schema,
+                          [index]: {
+                            ...schema[index],
                             [name]: [...list],
                           },
                         });

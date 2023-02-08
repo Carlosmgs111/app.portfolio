@@ -38,6 +38,7 @@ export function Certification({
     emitedAt,
     emitedBy,
     url,
+    tags,
     grantedTo,
   } = certification;
   const { token, username } = getContextValue(CONTEXTS.Global);
@@ -178,6 +179,7 @@ export function Certification({
               // ? `~` symbol used for mark a date object controller
               "emitedAt~": new Date(emitedAt).toISOString().slice(0, 10),
               image,
+              tags,
               url,
             },
             nonOptionals: ["title", "emitedAt~", "image", "url", "emitedBy{"],

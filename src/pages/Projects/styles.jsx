@@ -10,14 +10,13 @@ export const MainContainer = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
-  /* gap: 10px; */
+  gap: 10rem;
   flex-wrap: wrap;
   width: 100%;
   @media (max-width: 480px) {
     padding: 0.1rem;
   }
 `;
-
 
 export const Dashboard = styled.div`
   color: white;

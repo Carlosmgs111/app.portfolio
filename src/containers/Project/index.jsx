@@ -6,6 +6,8 @@ import {
   Description,
   DescriptionsContainer,
   Dashboard,
+  DashboardTitle,
+  ButtonsSection,
   Button,
 } from "./styles";
 import { DefineSchema } from "../../components/DefineSchema";
@@ -121,6 +123,9 @@ export const Project = ({
               <Image
                 key={index}
                 src={image}
+                big={
+                  images.length >= 6 ? false : !(images.length > 2 && index > 0)
+                }
                 onClick={() => {
                   setCurrentModal(
                     <Image
@@ -135,7 +140,9 @@ export const Project = ({
           </ImagesContainer>
           <DescriptionsContainer even={even}>
             {descriptions.map((description, index) => (
-              <Description key={index}>{description}</Description>
+              <Description even={even} key={index}>
+                {description}
+              </Description>
             ))}
           </DescriptionsContainer>
         </>
@@ -157,23 +164,26 @@ export const Project = ({
         />
       )}
       <Dashboard id="project-dashboard">
-        <Button
-          className={beingEdited ? "success" : "danger"}
-          id={uuid}
-          name="primary"
-          onClick={onClick}
-        >
-          {beingEdited ? (uuid ? "Guardar" : "Crear") : "Eliminar"}
-        </Button>
-        <Button
-          className={beingEdited ? "danger" : "secondary"}
-          name="secondary"
-          id={uuid}
-          button="secondary"
-          onClick={onClick}
-        >
-          {beingEdited ? (uuid ? "Cancelar" : "Limpiar") : "Editar"}
-        </Button>
+        <DashboardTitle>{name}</DashboardTitle>
+        <ButtonsSection>
+          <Button
+            className={beingEdited ? "success" : "danger"}
+            id={uuid}
+            name="primary"
+            onClick={onClick}
+          >
+            {beingEdited ? (uuid ? "Guardar" : "Crear") : "Eliminar"}
+          </Button>
+          <Button
+            className={beingEdited ? "danger" : "secondary"}
+            name="secondary"
+            id={uuid}
+            button="secondary"
+            onClick={onClick}
+          >
+            {beingEdited ? (uuid ? "Cancelar" : "Limpiar") : "Editar"}
+          </Button>
+        </ButtonsSection>
       </Dashboard>
     </ProjectContainer>
   );
