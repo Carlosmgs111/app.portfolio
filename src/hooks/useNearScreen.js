@@ -4,8 +4,6 @@ typeof window.IntersectionObserver !== "undefined"
   ? window.IntersectionObserver
   : import("intersection-observer");
 
-console.log(window.IntersectionObserver)
-
 export const useNearScreen = (initialState = null, cb) => {
   const ref = useRef(null);
   const [show, setShow] = useState(initialState);

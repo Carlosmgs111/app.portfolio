@@ -113,6 +113,7 @@ export const Project = ({
     };
     runButtonBehavior(e, behaviors);
   };
+  
   return (
     <ProjectContainer ref={ref} id={labelCases(name).LS} even={even}>
       {!beingEdited ? (

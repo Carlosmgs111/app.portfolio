@@ -32,7 +32,12 @@ export function App() {
     document.addEventListener("scroll", onScroll);
   }, [showFixed]);
 
-  const pages = ["projects", "certifications", "skills", "blog"];
+  const pages = [
+    { label: "proyectos", path: "projects" },
+    { label: "Certificados", path: "certifications" },
+    { label: "Habilidades", path: "skills" },
+    "blog",
+  ];
 
   if (token)
     pages.push({

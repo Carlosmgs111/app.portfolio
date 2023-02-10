@@ -6,13 +6,11 @@ export const NavigationItemsFactory = ({ pages = [], login }) => {
   const navigationItems = [];
   for (var page of pages) {
     if (page instanceof Object) {
-      const {
-        path,
-        item,
-      } = page;
+      const { path, item = <></>, label } = page;
+      const content = label ? beutifyLabel(label) : item;
       navigationItems.push(
         <p id={item.props.id} key={path} className="item" to={`/${path}`}>
-          {item}
+          {content}
         </p>
       );
     }

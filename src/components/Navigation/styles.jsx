@@ -122,14 +122,15 @@ export const Item = styled.li`
   border-bottom: ${({ selected, id }) =>
     selected && id !== "nonMark" ? "solid #e4ff1a 1px" : "transparent"};
   top: ${({ selected, id }) => (selected && id !== "nonMark" ? "-6px" : "0")};
-  &:hover {
+  transition: top 0.4s, border-bottom 0.8s;
+  &:hover,
+  &:focus {
     ${to};
     text-decoration: none;
     top: ${({ id }) => (id !== "nonMark" ? "-6px" : "0")};
     border-bottom: ${({ id }) =>
       id !== "nonMark" ? "solid #e4ff1a 1px" : "none"};
     animation: 1.2s ${(props) => setFrames([from, to], props)} ease;
-    transition: top 0.4s, border-bottom 0.8s;
   }
 
   &.navbar {

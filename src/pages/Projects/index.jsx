@@ -55,8 +55,8 @@ export function Projects() {
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const { projects, currentModal, loading, error } = state;
-  const setFunctions = getDispatchSetFunctions(dispatch, actionTypes);
-  const { setProjects, setCurrentModal, setLoading, setError } = setFunctions;
+  const { setProjects, setCurrentModal, setLoading, setError } =
+    getDispatchSetFunctions(dispatch, actionTypes);
 
   const sidebars = [
     TrackSidebar, // ? ⬅️ this is a rendered component, so we just put as a variable and it is not called
@@ -113,17 +113,21 @@ export function Projects() {
                             }) => {
                               runRequest({
                                 setData: (data) => {
-                                  setProjects([...projects, data]);
+                                  setProjects([...projects, ...data]);
                                   setElements([
                                     ...projects.map((p) => p.name),
-                                    data.name,
+                                    ...data.name,
                                   ]);
                                 },
                                 setError,
                                 setLoading,
-                              }).post(`projects`, parsedSchema[0], {
-                                ...requestHeaders,
-                              });
+                              }).post(
+                                `projects/projects`,
+                                { projects: parsedSchema },
+                                {
+                                  ...requestHeaders,
+                                }
+                              );
                               reset();
                             },
                           }}
@@ -164,7 +168,7 @@ export function Projects() {
             "url('https://images.pexels.com/photos/5186869/pexels-photo-5186869.jpeg?cs=srgb&dl=pexels-fiona-art-5186869.jpg&fm=jpg')",
         }}
       >
-        Projects
+        Proyectos
       </Banner>
       <MultiSidebar
         {...{

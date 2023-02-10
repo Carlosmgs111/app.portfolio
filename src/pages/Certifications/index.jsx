@@ -298,7 +298,7 @@ export function Certifications() {
           },
         }}
       >
-        Certifications
+        Certificados
       </Banner>
       <MultiSidebar
         {...{

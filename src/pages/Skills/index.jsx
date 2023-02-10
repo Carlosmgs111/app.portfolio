@@ -1,43 +1,138 @@
-import { Container, Main } from "./styles";
+import { Container, Main, Dashboard } from "./styles";
 import { Banner } from "../../components/Banner";
 import { Skill } from "../../containers/Skill";
 import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
-import { PanelSidebar } from "../../components/Sidebars/PanelSidebar";
+import {
+  PanelSidebar,
+  innerItems,
+} from "../../components/Sidebars/PanelSidebar";
 import { useTrackSidebar } from "../../hooks/useTrackSidebar";
 import { getContextValue, CONTEXTS } from "../../contexts";
-import { useEffect } from "react";
+import { useEffect, useReducer } from "react";
+import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
+import { DefineSchema } from "../../components/DefineSchema";
+import { Modal } from "../../components/Modal";
+import { Page } from "../../components/Page";
+import { runRequest } from "../../services/runRequest";
+import { headers } from "../../services/configs";
 
 export function Skills() {
   const { token } = getContextValue(CONTEXTS.Global);
+  const requestHeaders = headers();
   const [TrackSidebar, setElements, refreshRefs] = useTrackSidebar();
 
-  const skills = [
-    {
-      title: "Hexagonal Architecture",
-      image:
-        "https://herbertograca.files.wordpress.com/2018/11/100-explicit-architecture-svg.png",
-      description: "Desarrollo de proyectos backend con arquitectura Hexagonal",
-    },
-    {
-      title: "Clean Architecture",
-      image:
-        "https://velog.velcdn.com/images%2Fitssweetrain%2Fpost%2F4aa1d07d-9e43-4316-80ef-109c0e090111%2Fimage.png",
-      description: "Desarrollo de proyectos backend con arquitectura Limpia",
-    },
-    {
-      title: "Desarrollo con styled components",
-      image: "https://styled-components.com/atom.png",
-      description: "Desarrollo de componentes con styled components",
-    },
-  ];
+  const initialState = {
+    skills: [],
+    currentModal: null,
+    loading: false,
+    error: null,
+  };
+
+  const actionTypes = setActions([], initialState);
+
+  const reducer = (state, dispatch) => {
+    const { type, payload } = dispatch;
+    const actions = {};
+    for (let s in initialState) {
+      actions[settingName(s)] = { ...state, [s]: payload };
+    }
+    return actions[type] || state;
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { skills, currentModal, loading, error } = state;
+  const { setSkills, setCurrentModal, setLoading, setError } =
+    getDispatchSetFunctions(dispatch, actionTypes);
+
+  const updateState = (cb) =>
+    cb({
+      state,
+      dispatch,
+      actionTypes,
+      setElements,
+      setSkills,
+    });
 
   useEffect(() => {
-    setElements([...skills.map((skill) => skill.title)]);
+    runRequest({
+      setData: async (data) => {
+        setSkills(data.map((d) => ({ ...d, visible: true })));
+        setElements([...data.map((c) => c.name)]);
+      },
+      setError,
+      setLoading,
+    }).get("skills" /* , { ...requestHeaders } */);
+
+    return () => {};
   }, [token]);
 
-  const sidebars = [TrackSidebar, <PanelSidebar />];
+  const sidebars = [
+    TrackSidebar,
+    <PanelSidebar
+      {...{
+        id: "panel-sidebar",
+        items: [
+          {
+            innerItem: innerItems.InnerItem,
+            className: "fa-solid fa-plus",
+            content: "Agregar Habilidad",
+            onClick: () => {
+              !currentModal
+                ? setCurrentModal(
+                    <Dashboard>
+                      <DefineSchema
+                        {...{
+                          title: "Agregar Nueva(s) Habilidad(es)",
+                          baseSchema: {
+                            name: "",
+                            description: "",
+                            image: "",
+                            tags: [""],
+                          },
+                          nonOptionals: [
+                            "name",
+                            "description",
+                            "image",
+                            "tags",
+                          ],
+                          buttons: { add: "agregar", main: "Guardar" },
+                          onClickHandler: ({
+                            setError,
+                            setLoading,
+                            parsedSchema,
+                            reset,
+                          }) => {
+                            runRequest({
+                              setData: (data) => {
+                                setSkills([...skills, ...data]);
+                                setElements([
+                                  ...skills.map((p) => p.name),
+                                  ...data.map((p) => p.name),
+                                ]);
+                              },
+                              setError,
+                              setLoading,
+                            }).post(
+                              `skills/skills`,
+                              { skills: parsedSchema },
+                              {
+                                ...requestHeaders,
+                              }
+                            );
+                            reset();
+                          },
+                        }}
+                      />
+                    </Dashboard>
+                  )
+                : setCurrentModal(null);
+            },
+          },
+        ],
+      }}
+    />,
+  ];
   return (
-    <div
+    <Page
       style={{
         display: "flex",
         flexDirection: "column",
@@ -52,16 +147,33 @@ export function Skills() {
           },
         }}
       >
-        Skills
+        Habilidades
       </Banner>
       <MultiSidebar {...{ sidebars }} />
       <Container>
         <Main>
           {skills.map((skill, index) => (
-            <Skill {...{ ...skill, index, refreshRefs }} />
+            <Skill
+              {...{ initialState: skill, index, refreshRefs, updateState, state }}
+            />
           ))}
         </Main>
       </Container>
-    </div>
+      <Modal
+        {...{
+          active: false,
+          injected: currentModal,
+          over: !false,
+          embedButton: (
+            <i
+              id="newNote"
+              type="button"
+              onClick={() => setCurrentModal(null)}
+              className="fa-solid fa-arrow-up-right-from-square"
+            ></i>
+          ),
+        }}
+      />
+    </Page>
   );
 }
