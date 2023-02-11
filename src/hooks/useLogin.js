@@ -13,23 +13,23 @@ function useLogin() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("" || config.email);
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("" || config.password);
   const [label, switchLabel] = useSwitch("signin", "signup");
+
+  const signPack = { password, username };
+  if (email) signPack.email = email;
 
   async function onClick() {
     setLoading(true);
     try {
       const data = (
-        await axios.post(
-          `${URL_API}/${label}`,
-          { email, password },
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Content-Type": "application/json",
-            },
-          }
-        )
+        await axios.post(`${URL_API}/${label}`, signPack, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
       ).data;
       console.log({ data });
       if (label === "signin") {
@@ -65,11 +65,13 @@ function useLogin() {
 
   function onInputChange(e) {
     if (e.target.name === "password") setPassword(e.target.value);
+    if (e.target.name === "username") setUsername(e.target.value);
     if (e.target.name === "email") setEmail(e.target.value);
   }
 
   return {
     email,
+    username,
     password,
     label,
     switchLabel,
