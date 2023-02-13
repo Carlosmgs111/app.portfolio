@@ -65,7 +65,7 @@ export function DefineAttribute({
       value = [...list];
     }
 
-    if (Array.isArray(currentValue) && currentName.includes("~")) {
+    if (typeof currentValue === "string" && currentName.includes("~")) {
       controllerName = currentName;
       currentName = currentName.replace("~", "");
       controllerValue = value;
@@ -106,7 +106,7 @@ export function DefineAttribute({
         <LeftSide>
           {nonOptionals.includes(name) ? (
             <label style={{ width: "fit-content" }}>
-              {beutifyLabel(name)} :{" "}
+              {beutifyLabel(name)} :
             </label>
           ) : (
             <label>
