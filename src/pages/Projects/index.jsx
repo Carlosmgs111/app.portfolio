@@ -116,7 +116,7 @@ export function Projects() {
                                   setProjects([...projects, ...data]);
                                   setElements([
                                     ...projects.map((p) => p.name),
-                                    ...data.name,
+                                    ...data.map((p) => p.name),
                                   ]);
                                 },
                                 setError,
