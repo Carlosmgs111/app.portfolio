@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { runButtonBehavior } from "../../utils";
 import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
+import { getContextValue, CONTEXTS } from "../../contexts";
 
 export const Project = ({
   even,
@@ -30,7 +31,8 @@ export const Project = ({
   const [show, ref] = useNearScreen(false, refreshRefs);
   const [beingEdited, switchBeingEdited] = useSwitch(false, true);
   const [project, setProject] = useState(initialState);
-  const { uuid, name, images, descriptions, uri, version } = project;
+  const { uuid, name, images, descriptions, uri, version, buildedBy } = project;
+  const { token, username } = getContextValue(CONTEXTS.Global);
 
   useEffect(() => {}, [show, ref]);
 
@@ -113,7 +115,7 @@ export const Project = ({
     };
     runButtonBehavior(e, behaviors);
   };
-  
+
   return (
     <ProjectContainer ref={ref} id={labelCases(name).LS} even={even}>
       {!beingEdited ? (
@@ -164,28 +166,30 @@ export const Project = ({
           }}
         />
       )}
-      <Dashboard id="project-dashboard">
-        <DashboardTitle>{name}</DashboardTitle>
-        <ButtonsSection>
-          <Button
-            className={beingEdited ? "success" : "danger"}
-            id={uuid}
-            name="primary"
-            onClick={onClick}
-          >
-            {beingEdited ? (uuid ? "Guardar" : "Crear") : "Eliminar"}
-          </Button>
-          <Button
-            className={beingEdited ? "danger" : "secondary"}
-            name="secondary"
-            id={uuid}
-            button="secondary"
-            onClick={onClick}
-          >
-            {beingEdited ? (uuid ? "Cancelar" : "Limpiar") : "Editar"}
-          </Button>
-        </ButtonsSection>
-      </Dashboard>
+      {token && buildedBy.includes(username) && (
+        <Dashboard id="project-dashboard">
+          <DashboardTitle>{name}</DashboardTitle>
+          <ButtonsSection>
+            <Button
+              className={beingEdited ? "success" : "danger"}
+              id={uuid}
+              name="primary"
+              onClick={onClick}
+            >
+              {beingEdited ? (uuid ? "Guardar" : "Crear") : "Eliminar"}
+            </Button>
+            <Button
+              className={beingEdited ? "danger" : "secondary"}
+              name="secondary"
+              id={uuid}
+              button="secondary"
+              onClick={onClick}
+            >
+              {beingEdited ? (uuid ? "Cancelar" : "Limpiar") : "Editar"}
+            </Button>
+          </ButtonsSection>
+        </Dashboard>
+      )}
     </ProjectContainer>
   );
 };

@@ -14,7 +14,9 @@ export const Body = styled.div`
   ${({ styles }) => styles}
   background-position: center;
   background-size: cover;
+  box-shadow: 10px 12px 15px black;
 `;
+
 export const Title = styled.h1`
   text-align: center;
   font-size: 8rem;

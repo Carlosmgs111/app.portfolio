@@ -109,7 +109,7 @@ export const Description = styled.article`
 
 export const Dashboard = styled.div`
   border-radius: 0 0 0.8rem 0.8rem;
-  backdrop-filter: blur(4px);
+  backdrop-filter: brightness(40%) blur(4px);
   position: fixed;
   left: 0;
   bottom: 0;
@@ -119,10 +119,10 @@ export const Dashboard = styled.div`
   opacity: 0;
   transition: opacity 0.4s;
   bottom: -100px;
+  transition: background-color 0.4s, bottom 0.4s;
   &:hover {
     background-color: #00deae51;
   }
-  transition: background-color 0.4s, bottom 0.4s;
 `;
 
 export const DashboardTitle = styled.h2`

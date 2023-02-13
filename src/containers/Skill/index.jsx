@@ -18,6 +18,7 @@ import { DefineSchema } from "../../components/DefineSchema";
 import { runButtonBehavior } from "../../utils";
 import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
+import { getContextValue, CONTEXTS } from "../../contexts";
 
 export function Skill({
   state,
@@ -30,7 +31,8 @@ export function Skill({
   const requestHeaders = headers();
   const [beingEdited, switchBeingEdited] = useSwitch(false, true);
   const [skill, setSkill] = useState(initialState);
-  const { uuid, name, image, description, tags } = skill;
+  const { uuid, name, image, description, tags, dominatedBy } = skill;
+  const { token, username } = getContextValue(CONTEXTS.Global);
 
   useEffect(() => {}, [show, ref]);
 
@@ -144,31 +146,33 @@ export function Skill({
           }}
         />
       )}
-      <Dashboard id="skill-dashboard">
-        <HideButton
-          className="fa-solid fa-caret-down"
-          onClick={() => console.log("DOWN!")}
-        />
-        <ButtonsSection>
-          <Button
-            className={beingEdited ? "success" : "danger"}
-            id={uuid}
-            name="primary"
-            onClick={onClick}
-          >
-            {beingEdited ? (uuid ? "Guardar" : "Crear") : "Eliminar"}
-          </Button>
-          <Button
-            className={beingEdited ? "danger" : "secondary"}
-            name="secondary"
-            id={uuid}
-            button="secondary"
-            onClick={onClick}
-          >
-            {beingEdited ? (uuid ? "Cancelar" : "Limpiar") : "Editar"}
-          </Button>
-        </ButtonsSection>
-      </Dashboard>
+      {token && dominatedBy.includes(username) && (
+        <Dashboard id="skill-dashboard">
+          <HideButton
+            className="fa-solid fa-caret-down"
+            onClick={() => console.log("DOWN!")}
+          />
+          <ButtonsSection>
+            <Button
+              className={beingEdited ? "success" : "danger"}
+              id={uuid}
+              name="primary"
+              onClick={onClick}
+            >
+              {beingEdited ? (uuid ? "Guardar" : "Crear") : "Eliminar"}
+            </Button>
+            <Button
+              className={beingEdited ? "danger" : "secondary"}
+              name="secondary"
+              id={uuid}
+              button="secondary"
+              onClick={onClick}
+            >
+              {beingEdited ? (uuid ? "Cancelar" : "Limpiar") : "Editar"}
+            </Button>
+          </ButtonsSection>
+        </Dashboard>
+      )}
     </Content>
   );
 }
