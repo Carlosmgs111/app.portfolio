@@ -28,8 +28,13 @@ import { runRequest } from "../../services/runRequest";
 import { useSwitch } from "../../hooks/useSwitch";
 import { Mapfy } from "../../utils";
 import { addCertification, addInstitution } from "./sections";
+import { useSearchParams, useLocation } from "react-router-dom";
 
 export function Certifications() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchedUsername, setSearchedUsername] = useState(
+    searchParams.get("username")
+  );
   const { token, username } = getContextValue(CONTEXTS.Global);
   const [owned, switchOwned] = useSwitch(false, true);
 
@@ -140,15 +145,29 @@ export function Certifications() {
     {
       innerItem: innerItems.Input,
       className: "fa-solid fa-filter",
-      onChange: (e) =>
+      onChange: (e) => {
+        const isIncluded = (c) =>
+          normalize(c.title.toLowerCase()).includes(
+            e.target.value.toLowerCase()
+          );
+        const isTagIncluded = (c) =>
+          Boolean(
+            c.tags.filter((tag) =>
+              tag.includes(e.target.value.toLowerCase())
+            )[0]
+          );
         setCertifications([
           ...certifications.map((c) => ({
             ...c,
-            visible: normalize(c.title.toLowerCase()).includes(
-              e.target.value.toLowerCase()
-            ),
+            visible: isIncluded(c) || isTagIncluded(c),
           })),
-        ]),
+        ]);
+        setElements([
+          ...certifications
+            .filter((c) => isIncluded(c) || isTagIncluded(c))
+            .map((c) => c.title),
+        ]);
+      },
     },
   ];
 
@@ -231,10 +250,6 @@ export function Certifications() {
     return () => {};
   }, [token]);
 
-  const DummyTitle = ({ dummyTitle }) => {
-    return dummyTitle && <h1>{dummyTitle}</h1>;
-  };
-
   return (
     <Page name="certifications">
       {/* // ? ⬇️ Start optionals components */}
@@ -248,7 +263,6 @@ export function Certifications() {
       >
         Certificados
       </Banner>
-      <DummyTitle />
       <MultiSidebar
         {...{
           sidebars,
@@ -277,7 +291,21 @@ export function Certifications() {
         {/* {addCertification}
         {addInstitution} */}
         {/* // ? ⬆️ End main content support components */}
+        {(username || searchedUsername) && (
+          <Banner
+            {...{
+              customeMessage: false,
+              config: {
+                "background-image":
+                  "url(https://wallpaperaccess.com/full/53928.jpg)",
+              },
+            }}
+          >
+            Certificados de la comunidad
+          </Banner>
+        )}
       </Main>
+
       {/* // ? ⬇️ Start page support components */}
       <OnLoading
         {...{

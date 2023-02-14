@@ -72,6 +72,7 @@ export function Profile({ clearAuth }) {
   return (
     <Page>
       <Banner
+        customeMessage={false}
         config={{
           "background-image": `url('${avatar}')`,
         }}

@@ -7,24 +7,30 @@ import {
   Button,
   Banner,
   NavbarHeader,
+  SearchForm,
+  SearchInput,
+  SubmitSearch,
 } from "./styles";
 import { Children, cloneElement, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useSwitch } from "../../hooks/useSwitch";
+import { runRequest } from "../../services/runRequest";
 
 export default function Navigation({ children, banner, className }) {
+  const location = useLocation();
   const [menu, switchMenu] = useSwitch(
     { show: false, name: "fas fa-bars p-2 item" },
     { show: true, name: "fas fa-times p-2 item" }
   );
   const [current, setCurrent] = useState(null);
   const [showfixed, setShowFixed] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [indexedElements, setIndexedElements] = useState([]);
 
   useEffect(() => {
-    const onScroll = (e) => {
-      const newShowFixed = window.scrollY > 200;
-      showfixed !== newShowFixed && setShowFixed(newShowFixed);
-    };
-    document.addEventListener("scroll", onScroll);
+    runRequest({
+      setData: (data) => setIndexedElements([...indexedElements, ...data]),
+    }).get("users/username/all");
   }, [showfixed]);
 
   const onClick = (e) => {
@@ -63,6 +69,29 @@ export default function Navigation({ children, banner, className }) {
             onClick={switchMenu}
           ></Button>
         </NavbarHeader>
+        <SearchForm action="">
+          <i className="fa-solid fa-magnifying-glass"></i>
+          <SearchInput
+            type="search"
+            value={searchValue}
+            list="indexed_elements"
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          <SubmitSearch
+            type="submit"
+            value="Buscar"
+            onClick={(e) => {
+              console.log({ searchValue });
+              setSearchValue("");
+              e.preventDefault();
+            }}
+          />
+        </SearchForm>
+        <datalist id="indexed_elements">
+          {indexedElements.map((iE, idx) => (
+            <option value={iE} key={idx} />
+          ))}
+        </datalist>
         <ItemsList
           showfixed={showfixed}
           className={`${className} navigation-list`}
@@ -75,7 +104,10 @@ export default function Navigation({ children, banner, className }) {
                   <LinkedItem
                     className={`${className}`}
                     selected={
-                      current === child.props.id || current === String(index)
+                      location.pathname
+                        ? child.props.to === location.pathname
+                        : current === child.props.id ||
+                          current === String(index)
                     }
                     type="button"
                     onClick={(e) => {

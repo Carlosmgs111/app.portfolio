@@ -49,7 +49,7 @@ export const Item = styled.a`
   transition: max-width 0.6s, max-height 0.4s, margin-right 0.4s, color 0.4s,
     left 0.6s, opacity 0.6s;
 
-  :hover {
+  &:hover {
     input {
       width: 18rem;
       opacity: 1;
@@ -84,6 +84,12 @@ export const Input = styled.input`
   transition: width 0.5s, opacity 0.5s, padding 0.5s, margin-right 0.5s;
   background-color: transparent;
   border-bottom: solid black 0.1rem;
+  &:focus {
+    width: 18rem;
+    opacity: 1;
+    padding: 0 0.8rem;
+    margin-right: 1rem;
+  }
 `;
 
 export const InnerItem = styled.i`
@@ -111,3 +117,4 @@ export const Separator = styled.div`
   width: 100%;
   backdrop-filter: invert(100%);
 `;
+

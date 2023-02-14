@@ -154,7 +154,14 @@ export function Skills() {
         <Main>
           {skills.map((skill, index) => (
             <Skill
-              {...{ initialState: skill, index, refreshRefs, updateState, state }}
+              {...{
+                initialState: skill,
+                key: index,
+                index,
+                refreshRefs,
+                updateState,
+                state,
+              }}
             />
           ))}
         </Main>

@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   position: sticky;
   width: 100%;
+  z-index: 100;
 `;
 
 export const MainContainer = styled.div`

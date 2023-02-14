@@ -216,3 +216,26 @@ export const Banner = styled(LinkRouter)`
 export const Link = styled(LinkRouter)`
   ${Item.componentStyle.rules}
 `;
+
+export const SearchForm = styled.form`
+  border: solid white 1px;
+  border-radius: 4rem;
+  padding: 0.8rem;
+  &:focus {
+    border: solid green 1px;
+  }
+`;
+
+export const SearchInput = styled.input`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: whitesmoke;
+  padding: 0 1rem;
+`;
+
+export const SubmitSearch = styled.input`
+  background-color: transparent;
+  color: whitesmoke;
+  border: none;
+`;

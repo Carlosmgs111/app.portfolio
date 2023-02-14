@@ -13,12 +13,13 @@ import { Certifications } from "../pages/Certifications";
 import { Profile } from "../pages/Profile";
 import { Modal } from "../components/Modal";
 import { injectAttrsToReactElements } from "../utils";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function App() {
   const { clearAuth } = useApp();
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
-  const [{ token, loading: globalLoading, avatar }, dispatch] = useStateValue();
+  const [{ token, loading: globalLoading, avatar, username }, dispatch] =
+    useStateValue();
   const [showLogin, switchShowLogin] = useSwitch(false, true);
   const [showFixed, setShowFixed] = useState(false);
   // useScroll()
@@ -33,9 +34,18 @@ export function App() {
   }, [showFixed]);
 
   const pages = [
-    { label: "proyectos", path: "projects" },
-    { label: "Certificados", path: "certifications" },
-    { label: "Habilidades", path: "skills" },
+    {
+      label: "proyectos",
+      path: `projects${username && `?username=${username}`}`,
+    },
+    {
+      label: "Certificados",
+      path: `certifications${username && `?username=${username}`}`,
+    },
+    {
+      label: "Habilidades",
+      path: `skills${username && `?username=${username}`}`,
+    },
     "blog",
   ];
 
