@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-  BrowserRouter as Router,
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { addContext } from "./contexts";
 import "./index.css";
 import { App } from "./app";
@@ -18,6 +16,7 @@ const initialState = {
   privilege: "",
   avatar: "",
   loading: true,
+  searchedUsername: "",
 };
 
 export const actionTypes = setActions(["setAuth", "setLoading"], initialState);
@@ -40,6 +39,7 @@ const reducer = (state, action) => {
       loading: false,
     },
     [actionTypes.setLoading]: { ...state, loading: payload },
+    [actionTypes.setSearchedUsername]: { ...state, searchedUsername: payload },
     [actionTypes.reset]: {
       ...state,
       ...initialState,

@@ -18,8 +18,10 @@ import { useEffect, useState } from "react";
 export function App() {
   const { clearAuth } = useApp();
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
-  const [{ token, loading: globalLoading, avatar, username }, dispatch] =
-    useStateValue();
+  const [
+    { token, loading: globalLoading, avatar, username, searchedUsername },
+    dispatch,
+  ] = useStateValue();
   const [showLogin, switchShowLogin] = useSwitch(false, true);
   const [showFixed, setShowFixed] = useState(false);
   // useScroll()
@@ -36,15 +38,17 @@ export function App() {
   const pages = [
     {
       label: "proyectos",
-      path: `projects${username && `?username=${username}`}`,
+      path: `projects${searchedUsername && `?username=${searchedUsername}`}`,
     },
     {
       label: "Certificados",
-      path: `certifications${username && `?username=${username}`}`,
+      path: `certifications${
+        searchedUsername && `?username=${searchedUsername}`
+      }`,
     },
     {
       label: "Habilidades",
-      path: `skills${username && `?username=${username}`}`,
+      path: `skills${searchedUsername && `?username=${searchedUsername}`}`,
     },
     "blog",
   ];

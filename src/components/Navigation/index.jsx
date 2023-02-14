@@ -15,9 +15,13 @@ import { Children, cloneElement, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useSwitch } from "../../hooks/useSwitch";
 import { runRequest } from "../../services/runRequest";
+import { getContext, CONTEXTS } from "../../contexts";
 
 export default function Navigation({ children, banner, className }) {
   const location = useLocation();
+  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
+  const [{ searchedUsername }, dispatch] = useStateValue();
+
   const [menu, switchMenu] = useSwitch(
     { show: false, name: "fas fa-bars p-2 item" },
     { show: true, name: "fas fa-times p-2 item" }
@@ -75,13 +79,18 @@ export default function Navigation({ children, banner, className }) {
             type="search"
             value={searchValue}
             list="indexed_elements"
-            onChange={(e) => setSearchValue(e.target.value)}
+            onChange={(e) => {
+              setSearchValue(e.target.value);
+            }}
           />
           <SubmitSearch
             type="submit"
             value="Buscar"
             onClick={(e) => {
-              console.log({ searchValue });
+              dispatch({
+                type: ACTIONS.setSearchedUsername,
+                payload: searchValue,
+              });
               setSearchValue("");
               e.preventDefault();
             }}
