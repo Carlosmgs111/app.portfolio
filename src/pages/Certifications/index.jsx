@@ -6,16 +6,6 @@ import {
   PanelSidebar,
   innerItems,
 } from "../../components/Sidebars/PanelSidebar";
-import { Page } from "../../components/Page";
-import { Banner } from "../../components/Banner";
-import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
-import { useState, useEffect, useReducer } from "react";
-import { useTrackSidebar } from "../../hooks/useTrackSidebar";
-import { OnLoading } from "../../components/OnLoading";
-import { OnError } from "../../components/OnError";
-import { Modal } from "../../components/Modal";
-import { Main, Container, Dashboard } from "./styles";
-import { DefineSchema } from "../../components/DefineSchema";
 import {
   manyfy,
   injectAttrsToReactElements,
@@ -24,15 +14,23 @@ import {
   setActions,
   getDispatchSetFunctions,
 } from "../../utils";
+import { Page } from "../../components/Page";
+import { Banner } from "../../components/Banner";
+import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
+import { useState, useEffect, useReducer } from "react";
+import { useTrackSidebar } from "../../hooks/useTrackSidebar";
+import { OnLoading } from "../../components/OnLoading";
+import { OnError } from "../../components/OnError";
+import { Modal } from "../../components/Modal";
+import { Main, Container } from "./styles";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { runRequest } from "../../services/runRequest";
-import { headers } from "../../services/configs";
 import { useSwitch } from "../../hooks/useSwitch";
 import { Mapfy } from "../../utils";
+import { addCertification, addInstitution } from "./sections";
 
 export function Certifications() {
   const { token, username } = getContextValue(CONTEXTS.Global);
-  const requestHeaders = headers();
   const [owned, switchOwned] = useSwitch(false, true);
 
   const initialState = {
@@ -92,79 +90,24 @@ export function Certifications() {
     urls: [""],
   };
 
-  const addCertification = (
-    <Dashboard style={{ backgroundColor: "#9fbe05" }}>
-      <DefineSchema
-        {...{
-          title: "Add New Certifications(s)",
-          baseSchema: certificationSchema,
-          nonOptionals: [
-            "title",
-            "emitedAt~",
-            "image",
-            "url",
-            "emitedBy{",
-            "tags",
-          ],
-          onClickHandler: (params) => {
-            const { setError, setLoading, parsedSchema, reset } = params;
-            runRequest({
-              setData: (data) => {
-                setCertifications([
-                  ...certifications,
-                  ...data.map((c) => ({ ...c, visible: true })),
-                ]);
-                setElements([
-                  ...certifications.map((c) => c.title),
-                  ...data.map((c) => c.title),
-                ]);
-              },
-              setError,
-              setLoading,
-            }).post(
-              `certifications/certifications`,
-              { certifications: parsedSchema },
-              {
-                ...requestHeaders,
-              }
-            );
-            reset();
-          },
-        }}
-      />
-    </Dashboard>
-  );
-
-  const addInstitution = (
-    <Dashboard>
-      <DefineSchema
-        {...{
-          title: "Add New Institution(s)",
-          baseSchema: institutionSchema,
-          nonOptionals: ["name", "businessName", "descriptions", "urls"],
-          onClickHandler: ({ setError, setLoading, parsedSchema, reset }) => {
-            runRequest({
-              setData: (data) => setInstitutions([...institutions, ...data]),
-              setError,
-              setLoading,
-            }).post(`institutions`, parsedSchema[0], {
-              ...requestHeaders,
-            });
-            reset();
-          },
-        }}
-      />
-    </Dashboard>
-  );
-
   const modals = {
     institutions: (
       <div style={{ position: "absolute", right: 0 }}>
         <h1>Hola</h1>
       </div>
     ),
-    addCertification,
-    addInstitution,
+    addCertification: addCertification({
+      certificationSchema,
+      setElements,
+      setCertifications,
+      certifications,
+    }),
+    addInstitution: addInstitution({
+      institutionSchema,
+      setElements,
+      setInstitutions,
+      institutions,
+    }),
   };
 
   Mapfy(modals).forEach(
@@ -212,6 +155,7 @@ export function Certifications() {
   if (token && !loading)
     items = [
       ...items,
+      { innerItem: innerItems.Separator },
       {
         innerItem: innerItems.InnerItem,
         content: owned ? "Todas" : "Propias",
@@ -287,8 +231,12 @@ export function Certifications() {
     return () => {};
   }, [token]);
 
+  const DummyTitle = ({ dummyTitle }) => {
+    return dummyTitle && <h1>{dummyTitle}</h1>;
+  };
+
   return (
-    <Page>
+    <Page name="certifications">
       {/* // ? ⬇️ Start optionals components */}
       <Banner
         {...{
@@ -300,6 +248,7 @@ export function Certifications() {
       >
         Certificados
       </Banner>
+      <DummyTitle />
       <MultiSidebar
         {...{
           sidebars,
