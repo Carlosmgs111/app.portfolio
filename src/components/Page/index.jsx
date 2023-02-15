@@ -7,7 +7,6 @@ export function Page({ children, name }) {
   const childrens = Children.toArray(children);
   const location = useLocation();
   const { searchedUsername } = getContextValue(CONTEXTS.Global);
-  console.log({searchedUsername})
   const [searchParams, setSearchParams] = useSearchParams();
  /*  const [searchedUsername, setSearchedUsername] = useState(
     searchParams.get("username")

@@ -2,12 +2,12 @@ import styled, { css } from "styled-components";
 
 export const Body = styled.div`
   width: 100%;
-  height: 30rem;
+  height: 20rem;
   display: flex;
   align-items: center;
   justify-content: center;
   position: sticky;
-  top: -20rem;
+  top: -12rem;
   left: 0;
   z-index: 1;
   background: linear-gradient(to right, #f026df, #e4ff1a, #fb5609, #00ffc8);
@@ -19,9 +19,9 @@ export const Body = styled.div`
 
 export const Title = styled.h1`
   text-align: center;
-  font-size: 8rem;
+  font-size: 5.2rem;
   font-weight: 1000;
   color: #111111;
-  backdrop-filter: invert(100%) blur(1px);
+  /* backdrop-filter: invert(100%) blur(1px); */
   border-radius: 2rem;
 `;

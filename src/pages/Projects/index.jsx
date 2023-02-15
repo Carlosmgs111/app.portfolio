@@ -164,8 +164,7 @@ export function Projects() {
     <Page>
       <Banner
         config={{
-          "background-image":
-            "url('https://images.pexels.com/photos/5186869/pexels-photo-5186869.jpeg?cs=srgb&dl=pexels-fiona-art-5186869.jpg&fm=jpg')",
+          background: "linear-gradient(to right, #e4ff1a, #fb5609)",
         }}
       >
         Proyectos
@@ -205,7 +204,7 @@ export function Projects() {
             ></i>
           ),
         }}
-      />
+      ></Modal>
     </Page>
   );
 }

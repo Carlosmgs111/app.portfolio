@@ -20,7 +20,7 @@ export const MainContainer = styled.div`
 
 export const Dashboard = styled.div`
   color: white;
-  width: 100%;
+  width: 100px;
   display: flex;
   height: fit-content;
   align-items: center;

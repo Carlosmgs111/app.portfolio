@@ -3,11 +3,11 @@ import styled from "styled-components";
 export const Header = styled.header`
   font-size: 1.8rem;
   width: 100%;
-  height: 10rem;
+  height: fit-content;
   z-index: 2;
   top: 0;
   position: sticky;
-  backdrop-filter: brightness(40%) blur(0.6rem);
+  /* backdrop-filter: brightness(40%) blur(0.6rem); */
 `;
 
 export const Content = styled.div`
@@ -24,7 +24,7 @@ export const Footer = styled.footer`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 20vh;
+  height: 20rem;
   background-color: #0f2843;
   position: relative;
   margin-top: 20rem;

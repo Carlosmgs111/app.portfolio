@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const FloatContainer = styled.div`
   position: sticky;
-  top: 10rem;
+  top: 8rem;
   left: 0;
   height: 0;
   width: fit-content;

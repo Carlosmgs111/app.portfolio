@@ -1,12 +1,18 @@
 import styled from "styled-components";
 
 export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
   width: fit-content;
   height: fit-content;
   font-size: 2rem;
-  background-color: #232526;
+  background-color: #232526ce;
   padding: 15px;
   border-radius: 15px;
+  gap: 1.2rem;
+  align-items: center;
+  padding: 4rem;
+  z-index: 1000;
 `;
 
 export const Title = styled.a`
@@ -32,9 +38,11 @@ export const Input = styled.input`
   background-color: inherit;
   color: black;
   display: block;
-  background-color: #929292;
-  border-radius: 4px;
-  &[disabled] {
+  background-color: transparent;
+  border: solid black 1px;
+  border-radius: 4rem;
+  padding: 0.8rem;
+  &:disabled {
     opacity: 0.3;
   }
 `;
@@ -51,11 +59,12 @@ export const Button = styled.button`
   &[disabled] {
     opacity: 0.3;
   }
+  transition: background-color 0.4s, color 0.4s;
 `;
 
 export const EmbedButton = styled.i`
-  font-size: 1.8rem;
+  font-size: 2.8rem;
   color: #f026df;
   position: relative;
-  left: 120px;
+  left: 12rem;
 `;

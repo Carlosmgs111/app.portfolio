@@ -142,8 +142,7 @@ export function Skills() {
       <Banner
         {...{
           config: {
-            "background-image":
-              "url('https://wallpaperaccess.com/full/806282.jpg')",
+            background: "linear-gradient(to right, #f026df, #fb5609)",
           },
         }}
       >

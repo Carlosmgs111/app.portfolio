@@ -15,8 +15,6 @@ export function useApp() {
     apiKey: state.apiKey,
   };
 
-  console.log({ state });
-
   useEffect(() => {
     if (!token) {
       setAuth({

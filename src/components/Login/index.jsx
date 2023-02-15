@@ -3,7 +3,7 @@ import { beutifyLabel } from "../../utils";
 import { Modal } from "../Modal";
 import { Form, Title, Button, Input, EmbedButton } from "./styles";
 
-function Login({ setAuth, embedButton }) {
+function Login({ setAuth, embedButton, onBodyClick }) {
   const {
     email,
     username,
@@ -18,34 +18,35 @@ function Login({ setAuth, embedButton }) {
   } = useLogin(setAuth);
 
   const handleSubmit = (e) => {
-    console.log("Submit!");
     e.preventDefault();
     onClick();
   };
   return (
     !token && (
-      <Modal>
-        <Form embedButton={embedButton}>
+      <Modal >
+        <Form>
           <Title href="#" type="button" onClick={switchLabel}>
             {beutifyLabel(label)}
-            {<EmbedButton>{embedButton}</EmbedButton>}
+            {embedButton && <EmbedButton>{embedButton}</EmbedButton>}
           </Title>
           <Input
             name="username"
-            placeholder="username"
+            placeholder={`username ${!label === "signin" ? "o email" : ""}`}
             value={username}
             onSubmit={handleSubmit}
             onChange={onInputChange}
             disabled={loading}
           />
-          <Input
-            name="email"
-            placeholder="Email (Optional)"
-            value={email}
-            onSubmit={handleSubmit}
-            onChange={onInputChange}
-            disabled={loading}
-          />
+          {label === "signup" && (
+            <Input
+              name="email"
+              placeholder="Email (Optional)"
+              value={email}
+              onSubmit={handleSubmit}
+              onChange={onInputChange}
+              disabled={loading}
+            />
+          )}
           <Input
             type="password"
             name="password"

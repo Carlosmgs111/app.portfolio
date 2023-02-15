@@ -91,7 +91,6 @@ export function App() {
       )}
       <Header showFixed={showFixed}>
         <Navigation
-          className="navbar"
           banner={{
             title: <BannerStyle>Blogfolio</BannerStyle>,
             to: "/",

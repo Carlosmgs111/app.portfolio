@@ -41,7 +41,6 @@ export function factory() {
     return contextValue;
   };
 
-  console.log({ contexts });
   return {
     addContext,
     getContext,

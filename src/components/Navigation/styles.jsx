@@ -4,22 +4,13 @@ import { setFrames } from "../../utils";
 
 export const NavbarContainer = styled.div`
   overflow: scroll;
+  height: fit-content;
   &::-webkit-scrollbar {
     display: none;
   }
-  &.navbar {
-    height: auto;
-    display: inline;
-  }
-  &.sidebar {
-    z-index: 2;
-    height: 80vh;
-    width: fit-content;
-    position: fixed;
-    top: 10vh;
-    left: 2vw;
-    box-sizing: border-box;
-  }
+  height: 8rem;
+  display: inline;
+  backdrop-filter: blur(10rem) brightness(80%);
 `;
 
 export const NavbarHeader = styled.div`
@@ -33,20 +24,15 @@ export const NavbarHeader = styled.div`
 
 export const NavigateBar = styled.nav`
   z-index: 1;
-  &.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    padding: 0 2vw;
-    width: inherit;
-    height: inherit;
-    @media (max-width: 1360px) {
-      flex-direction: column;
-    }
-  }
-  &.sidebar {
-    width: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 0 2vw;
+  width: inherit;
+  height: inherit;
+  @media (max-width: 1360px) {
+    flex-direction: column;
   }
 `;
 
@@ -62,39 +48,34 @@ const fadeinshow = keyframes`
 export const ItemsList = styled.ul`
   color: transparent;
   font-size: 3rem;
+  margin: 0;
   /* backdrop-filter: blur(10rem) brightness(0.4); */
   border-radius: 6px;
-  max-height: ${({ showfixed }) => (showfixed ? "10rem" : "10rem")};
+  /* max-height: ${({ showfixed }) => (showfixed ? "10rem" : "10rem")}; */
   transition: max-height 0.5s;
-  &.navbar {
-    font-size: 2.8rem;
-    display: flex;
-    overflow-y: scroll;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    align-content: center;
-    justify-content: left;
-    align-items: center;
-    transition: max-height 0.4s;
-    @media (max-width: 830px) {
-      animation: 0.8s ${fadeinshow} ease;
-      max-height: ${({ show }) => (show ? "40rem" : "0")};
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      top: 0;
-      width: 100%;
-    }
-    @media (max-width: 480px) {
-      width: 100%;
-    }
+  font-size: 2.8rem;
+  display: flex;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
   }
-  &.sidebar {
-    display: block;
-    width: inherit;
-    font-size: 1.8rem;
+  height: inherit;
+  align-content: center;
+  justify-content: left;
+  align-items: center;
+  transition: max-height 0.4s;
+  padding: 0 0.4rem;
+  @media (max-width: 830px) {
+    animation: 0.8s ${fadeinshow} ease;
+    max-height: ${({ show }) => (show ? "40rem" : "0")};
+    flex-direction: column;
+    align-items: center;
     position: relative;
+    top: 0;
+    width: 100%;
+  }
+  @media (max-width: 480px) {
+    width: 100%;
   }
 `;
 
@@ -119,6 +100,9 @@ export const Item = styled.li`
   font-family: "Quicksand", sans-serif;
   text-align: center;
   font-style: none !important;
+  position: relative;
+  align-items: center;
+  justify-content: center;
   border-bottom: ${({ selected, id }) =>
     selected && id !== "nonMark" ? "solid #e4ff1a 1px" : "transparent"};
   top: ${({ selected, id }) => (selected && id !== "nonMark" ? "-6px" : "0")};
@@ -132,56 +116,12 @@ export const Item = styled.li`
       id !== "nonMark" ? "solid #e4ff1a 1px" : "none"};
     animation: 1.2s ${(props) => setFrames([from, to], props)} ease;
   }
-
-  &.navbar {
-    padding: 1rem 0.8rem;
-    .item {
-      margin: 0;
-      font-style: none !important;
-    }
-    &:hover {
-      width: auto;
-    }
+  padding: 1rem 0.8rem;
+  &:hover {
+    width: auto;
   }
-  &.sidebar {
-    min-width: 6rem;
-    border-radius: 0;
-    background-color: #ef9305;
-    width: fit-content;
-    white-space: nowrap;
-    color: #161a03;
-    padding: 1.2rem;
-    .item {
-      font-size: inherit;
-      display: inline-flex;
-    }
-    .inner {
-      padding: 0;
-      margin: 0;
-      font-size: inherit;
-      display: none;
-    }
-    &:hover {
-      color: black;
-      width: fit-content;
-      border-radius: 0 var(--border-radius) var(--border-radius) 0;
-      background-color: #ef9305;
-      .inner {
-        padding-left: 10px;
-        display: inline;
-      }
-    }
-    &:focus {
-      color: black;
-      box-shadow: 0px 4px 8px rgba(38, 45, 4, 0.6);
-      width: fit-content;
-      border-radius: 0 var(--border-radius) var(--border-radius) 0;
-      background-color: #ef9305;
-      .inner {
-        padding-left: 10px;
-        display: inline;
-      }
-    }
+  p {
+    margin: 0;
   }
   @media (max-width: 830px) {
     width: fit-content;
@@ -217,13 +157,14 @@ export const Link = styled(LinkRouter)`
   ${Item.componentStyle.rules}
 `;
 
-export const SearchForm = styled.form`
-  border: solid white 1px;
-  border-radius: 4rem;
-  padding: 0.8rem;
-  &:focus {
-    border: solid green 1px;
-  }
+export const SearchForm = styled.form``;
+
+export const SearchIcon = styled.i`
+  color: ${({ selected }) => (selected ? "#00deae" : "#ffffff")};
+  transition: color 0.4s;
+  font-weight: 1000;
+  position: relative;
+  right: 3rem;
 `;
 
 export const SearchInput = styled.input`
@@ -232,10 +173,19 @@ export const SearchInput = styled.input`
   outline: none;
   color: whitesmoke;
   padding: 0 1rem;
+  border: solid white 1px;
+  border-radius: 4rem;
+  padding: 0.8rem 3rem 0.8rem 2rem;
+  transition: border 0.4s, width 0.4s;
+  width: 25rem;
+  &:focus {
+    border: solid #00deae 1px;
+    width: 30rem;
+  }
 `;
 
 export const SubmitSearch = styled.input`
   background-color: transparent;
-  color: whitesmoke;
   border: none;
+  width: 0;
 `;

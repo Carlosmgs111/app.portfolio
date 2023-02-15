@@ -256,8 +256,9 @@ export function Certifications() {
       <Banner
         {...{
           config: {
-            "background-image":
-              "url(https://wallpaperaccess.com/full/53928.jpg)",
+            "background":
+              "linear-gradient(to right, #f026df,  #00ffc8)",
+
           },
         }}
       >

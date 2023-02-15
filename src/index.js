@@ -20,11 +20,9 @@ const initialState = {
 };
 
 export const actionTypes = setActions(["setAuth", "setLoading"], initialState);
-console.log({ actionTypes });
 
 const reducer = (state, action) => {
   const { payload, type } = action;
-  console.log({ payload, type });
   const actions = {
     [actionTypes.setAuth]: {
       ...state,

@@ -10,6 +10,7 @@ import {
   SearchForm,
   SearchInput,
   SubmitSearch,
+  SearchIcon,
 } from "./styles";
 import { Children, cloneElement, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -30,11 +31,15 @@ export default function Navigation({ children, banner, className }) {
   const [showfixed, setShowFixed] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [indexedElements, setIndexedElements] = useState([]);
+  const [selected, setSelected] = useState(false);
 
   useEffect(() => {
     runRequest({
       setData: (data) => setIndexedElements([...indexedElements, ...data]),
     }).get("users/username/all");
+    const searchInput = document.getElementsByName("search-input")[0];
+    searchInput.addEventListener("focusin", () => setSelected(true));
+    searchInput.addEventListener("focusout", () => setSelected(false));
   }, [showfixed]);
 
   const onClick = (e) => {
@@ -74,18 +79,21 @@ export default function Navigation({ children, banner, className }) {
           ></Button>
         </NavbarHeader>
         <SearchForm action="">
-          <i className="fa-solid fa-magnifying-glass"></i>
           <SearchInput
             type="search"
+            name="search-input"
             value={searchValue}
             list="indexed_elements"
             onChange={(e) => {
               setSearchValue(e.target.value);
             }}
           />
+          <SearchIcon
+            className="fa-solid fa-magnifying-glass"
+            selected={selected}
+          />
           <SubmitSearch
             type="submit"
-            value="Buscar"
             onClick={(e) => {
               dispatch({
                 type: ACTIONS.setSearchedUsername,
