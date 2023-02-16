@@ -49,12 +49,13 @@ export const Body = styled.div`
   display: flex;
   column-gap: ${({ active }) => (active ? "0.8rem" : "0")};
   max-height: 64vh;
+  width: max-content;
   transition: column-gap 0.4s;
 `;
 export const Header = styled.div`
   border-radius: 0.6rem;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   font-size: 1.4rem;
   font-weight: bold;
   height: 4vh;

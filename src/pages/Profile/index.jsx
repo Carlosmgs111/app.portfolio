@@ -83,7 +83,6 @@ export function Profile({ clearAuth }) {
         <MultiSidebar
           {...{
             sidebars,
-            float: false,
           }}
         />
         <MainContainer>{currentContent}</MainContainer>

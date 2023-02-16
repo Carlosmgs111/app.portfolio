@@ -3,7 +3,7 @@ import { getContextValue, CONTEXTS } from "../../contexts";
 import axios from "axios";
 import { URL_API } from "../../services";
 import { Project } from "../../containers/Project";
-import { Container, MainContainer } from "./styles";
+import { Container, MainContainer, Dashboard } from "./styles";
 import { useTrackSidebar } from "../../hooks/useTrackSidebar";
 import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
 import {
@@ -14,7 +14,6 @@ import { Banner } from "../../components/Banner";
 import { Page } from "../../components/Page";
 import { Modal } from "../../components/Modal";
 import { runRequest } from "../../services/runRequest";
-import { Dashboard } from "./styles";
 import { DefineSchema } from "../../components/DefineSchema";
 import { headers } from "../../services/configs";
 import { setActions, getDispatchSetFunctions, settingName } from "../../utils";

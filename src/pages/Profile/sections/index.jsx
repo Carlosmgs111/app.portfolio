@@ -5,6 +5,8 @@ function ProfileHome() {
   return (
     <div
       style={{
+        display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",

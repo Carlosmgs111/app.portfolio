@@ -1,4 +1,4 @@
-import { Container, Main, Dashboard } from "./styles";
+import { Container, MainContainer, Dashboard } from "./styles";
 import { Banner } from "../../components/Banner";
 import { Skill } from "../../containers/Skill";
 import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
@@ -150,7 +150,7 @@ export function Skills() {
       </Banner>
       <MultiSidebar {...{ sidebars }} />
       <Container>
-        <Main>
+        <MainContainer>
           {skills.map((skill, index) => (
             <Skill
               {...{
@@ -163,7 +163,7 @@ export function Skills() {
               }}
             />
           ))}
-        </Main>
+        </MainContainer>
       </Container>
       <Modal
         {...{

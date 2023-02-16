@@ -12,27 +12,27 @@ export const Modal = ({
   injected,
   embedButton,
   active = false,
-  onClick,
+  onClick = null,
   over = true,
 }) => {
-  return active || children || injected ? (
-    <ModalStyle
-      {...{ classname: `${className}`, onClick: onClick || null, over }}
-    >
-      {Children.toArray(children || injected).map((child) =>
-        cloneElement(child, {
-          ...child.props,
-          embedButton: child?.props?.embedButton ? (
-            <EmbedButton>{child.props.embedButton}</EmbedButton>
-          ) : null,
-          disabled: true,
-        })
-      )}
-      {embedButton ? (
-        <NativeEmbedButton>{embedButton}</NativeEmbedButton>
-      ) : null}
-    </ModalStyle>
-  ) : null;
+  return (
+    active ||
+    children ||
+    (injected && (
+      <ModalStyle {...{ classname: `${className}`, onClick: onClick, over }}>
+        {Children.toArray(children || injected).map((child) =>
+          cloneElement(child, {
+            ...child.props,
+            embedButton: child?.props?.embedButton && (
+              <EmbedButton>{child.props.embedButton}</EmbedButton>
+            ),
+            disabled: true,
+          })
+        )}
+        {embedButton && <NativeEmbedButton>{embedButton}</NativeEmbedButton>}
+      </ModalStyle>
+    ))
+  );
 };
 
 export { ModalContainer };

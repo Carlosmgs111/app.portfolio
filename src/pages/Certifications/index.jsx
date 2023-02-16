@@ -22,7 +22,7 @@ import { useTrackSidebar } from "../../hooks/useTrackSidebar";
 import { OnLoading } from "../../components/OnLoading";
 import { OnError } from "../../components/OnError";
 import { Modal } from "../../components/Modal";
-import { Main, Container } from "./styles";
+import { Container, MainContainer } from "./styles";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { runRequest } from "../../services/runRequest";
 import { useSwitch } from "../../hooks/useSwitch";
@@ -251,14 +251,12 @@ export function Certifications() {
   }, [token]);
 
   return (
-    <Page name="certifications">
+    <Page /* name="certifications" */>
       {/* // ? ⬇️ Start optionals components */}
       <Banner
         {...{
           config: {
-            "background":
-              "linear-gradient(to right, #f026df,  #00ffc8)",
-
+            background: "linear-gradient(to right, #f026df,  #00ffc8)",
           },
         }}
       >
@@ -270,8 +268,8 @@ export function Certifications() {
         }}
       />
       {/* // ? ⬆️ End optionals components */}
-      <Main>
-        <Container>
+      <Container>
+        <MainContainer>
           {certifications.map(
             (certification, index) =>
               certification.visible && (
@@ -287,31 +285,31 @@ export function Certifications() {
                 />
               )
           )}
-        </Container>
+          {(username || searchedUsername) && (
+            <Banner
+              {...{
+                customeMessage: false,
+                config: {
+                  "background-image":
+                    "url(https://wallpaperaccess.com/full/53928.jpg)",
+                },
+              }}
+            >
+              Certificados de la comunidad
+            </Banner>
+          )}
+        </MainContainer>
         {/* // ? ⬇️ Start main content support components */}
         {/* {addCertification}
         {addInstitution} */}
         {/* // ? ⬆️ End main content support components */}
-        {(username || searchedUsername) && (
-          <Banner
-            {...{
-              customeMessage: false,
-              config: {
-                "background-image":
-                  "url(https://wallpaperaccess.com/full/53928.jpg)",
-              },
-            }}
-          >
-            Certificados de la comunidad
-          </Banner>
-        )}
-      </Main>
+      </Container>
 
       {/* // ? ⬇️ Start page support components */}
       <OnLoading
         {...{
           loading,
-          component: Container,
+          component: MainContainer,
           contain: manyfy(<CertificationSkeleton />, 12).map((c, index) =>
             injectAttrsToReactElements([c], { key: index })
           ),

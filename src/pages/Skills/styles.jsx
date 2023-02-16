@@ -7,7 +7,7 @@ export const Container = styled.div`
   position: sticky;
 `;
 
-export const Main = styled.div`
+export const MainContainer = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
