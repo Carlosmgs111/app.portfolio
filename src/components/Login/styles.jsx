@@ -61,10 +61,3 @@ export const Button = styled.button`
   }
   transition: background-color 0.4s, color 0.4s;
 `;
-
-export const EmbedButton = styled.i`
-  font-size: 2.8rem;
-  color: #f026df;
-  position: relative;
-  left: 12rem;
-`;

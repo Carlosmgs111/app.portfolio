@@ -24,6 +24,7 @@ export function App() {
   ] = useStateValue();
   const [showLogin, switchShowLogin] = useSwitch(false, true);
   const [showFixed, setShowFixed] = useState(false);
+  const [currentModal, setCurrentModal] = useState(null);
   // useScroll()
 
   useEffect(() => {
@@ -76,19 +77,6 @@ export function App() {
 
   return (
     <>
-      {showLogin && (
-        <Login
-          {...{
-            embedButton: (
-              <i
-                type="button"
-                onClick={switchShowLogin}
-                className="far fa-times-circle embed-button"
-              />
-            ),
-          }}
-        />
-      )}
       <Header showFixed={showFixed}>
         <Navigation
           banner={{
@@ -102,7 +90,8 @@ export function App() {
               label: () => <span>Login</span>,
               onClick: (e) => {
                 e.preventDefault();
-                switchShowLogin();
+                // switchShowLogin();
+                setCurrentModal(<Login {...{onLogged:()=>setCurrentModal(null)}} />);
               },
               hidden: Boolean(token),
             },
@@ -142,6 +131,21 @@ export function App() {
           })}
         </Routes>
       </Content>
+      <Modal
+        {...{
+          active: false,
+          injected: currentModal,
+          over: !false,
+          embedButton: (
+            <i
+              id="newNote"
+              type="button"
+              onClick={() => setCurrentModal(null)}
+              className="fa-solid fa-arrow-up-right-from-square"
+            ></i>
+          ),
+        }}
+      />
       <Footer></Footer>
     </>
   );

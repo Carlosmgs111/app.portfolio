@@ -1,9 +1,8 @@
 import { useLogin } from "../../hooks/useLogin";
 import { beutifyLabel } from "../../utils";
-import { Modal } from "../Modal";
 import { Form, Title, Button, Input, EmbedButton } from "./styles";
 
-function Login({ setAuth, embedButton, onBodyClick }) {
+function Login({ onLogged,  }) {
   const {
     email,
     username,
@@ -15,19 +14,19 @@ function Login({ setAuth, embedButton, onBodyClick }) {
     loading,
     error,
     token,
-  } = useLogin(setAuth);
+  } = useLogin();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onClick();
   };
+  token && onLogged && onLogged()
   return (
     !token && (
-      <Modal >
         <Form>
           <Title href="#" type="button" onClick={switchLabel}>
             {beutifyLabel(label)}
-            {embedButton && <EmbedButton>{embedButton}</EmbedButton>}
+            
           </Title>
           <Input
             name="username"
@@ -65,7 +64,6 @@ function Login({ setAuth, embedButton, onBodyClick }) {
             {beutifyLabel(label)}
           </Button>
         </Form>
-      </Modal>
     )
   );
 }
