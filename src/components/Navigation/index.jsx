@@ -147,6 +147,7 @@ export default function Navigation({ children, banner, className }) {
             : null}
         </ItemsList>
       </NavigateBar>
+      {/* <div style={{ width: "100%", height: "50px" }}></div> */}
     </NavbarContainer>
   );
 }

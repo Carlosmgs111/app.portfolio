@@ -25,7 +25,7 @@ export function Profile({ clearAuth }) {
     },
     dispatch,
   ] = useStateValue();
-  const [currentContent, setCurrentContent] = useState(<ProfileHome />);
+  const [currentContent, setCurrentContent] = useState(<Settings {...{ avatar }} />);
 
   const navigate = useNavigate();
   const panelSidebarItems = [

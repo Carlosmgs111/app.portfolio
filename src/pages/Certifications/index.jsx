@@ -262,13 +262,13 @@ export function Certifications() {
       >
         Certificados
       </Banner>
-      <MultiSidebar
+      
+      {/* // ? ⬆️ End optionals components */}
+      <Container><MultiSidebar
         {...{
           sidebars,
         }}
       />
-      {/* // ? ⬆️ End optionals components */}
-      <Container>
         <MainContainer>
           {certifications.map(
             (certification, index) =>

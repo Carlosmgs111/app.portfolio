@@ -8,7 +8,7 @@ export const NavbarContainer = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  height: 8rem;
+  height: 6rem;
   display: inline;
   backdrop-filter: blur(10rem) brightness(80%);
 `;
@@ -95,7 +95,6 @@ export const Item = styled.li`
   text-decoration: none;
   ${(props) => from(props)};
   font-size: 1.4rem;
-  transition: font-size 0.4s;
   font-weight: 1000;
   font-family: "Quicksand", sans-serif;
   text-align: center;
@@ -175,7 +174,7 @@ export const SearchInput = styled.input`
   padding: 0 1rem;
   border: solid white 1px;
   border-radius: 4rem;
-  padding: 0.8rem 3rem 0.8rem 2rem;
+  padding: 0.4rem 3rem 0.4rem 2rem;
   transition: border 0.4s, width 0.4s;
   width: 25rem;
   &:focus {

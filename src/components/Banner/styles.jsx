@@ -7,7 +7,7 @@ export const Body = styled.div`
   align-items: center;
   justify-content: center;
   position: sticky;
-  top: -12rem;
+  top: -14rem;
   left: 0;
   z-index: 1;
   background: linear-gradient(to right, #f026df, #e4ff1a, #fb5609, #00ffc8);

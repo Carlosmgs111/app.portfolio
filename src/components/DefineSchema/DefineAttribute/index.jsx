@@ -1,4 +1,4 @@
-import { beutifyLabel, Mapfy } from "../../../utils";
+import { beutifyLabel, labelCases, Mapfy } from "../../../utils";
 import {
   List,
   FormStyle,
@@ -66,6 +66,7 @@ export function DefineAttribute({
     }
 
     if (typeof currentValue === "string" && currentName.includes("~")) {
+      value = Boolean(value) ? value : new Date().toISOString().slice(0, 10);
       controllerName = currentName;
       currentName = currentName.replace("~", "");
       controllerValue = value;
@@ -103,120 +104,69 @@ export function DefineAttribute({
     const isControlled = isControlledValue(name);
     return isControlled ? null : (
       <FormStyle className={isExpanded}>
-        <LeftSide>
-          {nonOptionals.includes(name) ? (
-            <label style={{ width: "fit-content" }}>
-              {beutifyLabel(name)} :
-            </label>
-          ) : (
-            <label>
+        {(() => {
+          if (typeof value === "string" || typeof value === "number")
+            return (
               <input
-                style={{ marginRight: "1rem", visibility: "hidden" }}
-                className={name}
-                onClick={(e) => {
-                  Array(document.getElementsByName(keyName)[0]).forEach(
-                    (input) => {
-                      if (!e.target.checked) {
-                        delete schema[index][
-                          input.name.replace(`${index}-`, "")
-                        ];
-                        setSchema({ ...schema });
-                      } else {
-                        setSchema({
-                          ...schema,
-                          [index]: {
-                            ...schema[index],
-                            [name]:
-                              input.type === "number"
-                                ? Number(input.value)
-                                : input.type === "radio"
-                                ? input.checked
-                                  ? input.value === "true"
-                                    ? true
-                                    : false
-                                  : true
-                                : input.value,
-                          },
-                        });
-                      }
-                    }
-                  );
-                }}
-                type="checkbox"
-                id={keyName}
-                onChange={() => {
-                  document.getElementsByName(keyName).forEach((input) => {
-                    input.disabled = !input.disabled;
-                  });
-                }}
+                type={
+                  name.includes("~")
+                    ? "date"
+                    : typeof value === "string"
+                    ? "text"
+                    : "number"
+                }
+                name={keyName}
+                value={value}
+                onChange={(e) => onChange(name, value, e.target)}
+                disabled={!nonOptionals.includes(name)}
+                placeholder={beutifyLabel(name)}
               />
-              {beutifyLabel(name)} :
-            </label>
-          )}
-        </LeftSide>
-        <RightSide>
-          {(() => {
-            if (typeof value === "string" || typeof value === "number")
-              return (
-                <input
-                  style={{ minWidth: "24rem" }}
-                  type={
-                    name.includes("~")
-                      ? "date"
-                      : typeof value === "string"
-                      ? "text"
-                      : "number"
-                  }
+            );
+          if (Array.isArray(value) && name.includes("{"))
+            return (
+              <>
+                <select
                   name={keyName}
-                  value={value}
-                  onChange={(e) => onChange(name, value, e.target)}
+                  defaultValue={value.find(
+                    (v) =>
+                      v ===
+                      Object.entries(attributes)[0][1][name.replace("{", "")]
+                  )}
                   disabled={!nonOptionals.includes(name)}
-                />
-              );
-            if (Array.isArray(value) && name.includes("{"))
-              return (
-                <>
-                  <select
-                    style={{ width: "90%", borderRadius: ".5rem" }}
-                    name={keyName}
-                    defaultValue={value.find(
-                      (v) =>
-                        v ===
-                        Object.entries(attributes)[0][1][name.replace("{", "")]
-                    )}
-                    disabled={!nonOptionals.includes(name)}
+                  onChange={(e) => onChange(name, value, e.target)}
+                >
+                  {value.map((item, index) => {
+                    return (
+                      <option value={item} key={index}>
+                        {item}
+                      </option>
+                    );
+                  })}
+                </select>
+                {/* <input type="text" value="" disabled /> */}
+              </>
+            );
+          if (Array.isArray(value)) {
+            const inputs = [];
+            value.forEach((text, i) =>
+              inputs.push(
+                <div
+                  key={i}
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: ".4rem",
+                  }}
+                >
+                  <textarea
+                    name={i}
+                    value={text}
                     onChange={(e) => onChange(name, value, e.target)}
-                  >
-                    {value.map((item, index) => {
-                      return (
-                        <option value={item} key={index}>
-                          {item}
-                        </option>
-                      );
-                    })}
-                  </select>
-                  {/* <input type="text" value="" disabled /> */}
-                </>
-              );
-            if (Array.isArray(value)) {
-              const inputs = [];
-              value.forEach((text, i) =>
-                inputs.push(
-                  <div
-                    key={i}
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                    }}
-                  >
-                    <textarea
-                      style={{ width: "90%", borderRadius: "0.4rem" }}
-                      name={i}
-                      value={text}
-                      onChange={(e) => onChange(name, value, e.target)}
-                    />
+                    placeholder={beutifyLabel(labelCases(name).CS)}
+                  />
+                  <label className="label">{beutifyLabel(name)}</label>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
                     <DeleteButton
-                      style={{ padding: "0 0.8rem", height: "fit-content" }}
                       onClick={(e) => {
                         e.preventDefault();
                         const list = [...attributes[index][name]];
@@ -239,60 +189,107 @@ export function DefineAttribute({
                     >
                       -
                     </DeleteButton>
+                    <AddButton
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const list = [...attributes[index][name]];
+                        list.splice(i + 1, 0, "");
+                        setAttributes({
+                          ...attributes,
+                          [index]: {
+                            ...attributes[index],
+                            [name]: [...list],
+                          },
+                        });
+                      }}
+                    >
+                      +
+                    </AddButton>
                   </div>
-                )
-              );
-              return (
-                <MultiInputContainer>
-                  {inputs}
-                  <AddButton
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const list = [...attributes[index][name]];
-                      list.push("");
-                      setAttributes({
-                        ...attributes,
+                </div>
+              )
+            );
+            return (
+              <MultiInputContainer>
+                {inputs}
+                <label className="label">{beutifyLabel(name)}</label>
+              </MultiInputContainer>
+            );
+          }
+          if (typeof value === "boolean")
+            return (
+              <>
+                <label>
+                  false
+                  <input
+                    name={keyName}
+                    type="radio"
+                    disabled={true}
+                    value={false}
+                    checked={String(value) === "false"}
+                    onChange={(e) => onChange(name, value, e.target)}
+                  />
+                </label>
+                <label>
+                  true
+                  <input
+                    name={keyName}
+                    type="radio"
+                    disabled={true}
+                    value={true}
+                    checked={String(value) === "true"}
+                    onChange={(e) => onChange(name, value, e.target)}
+                  />
+                </label>
+              </>
+            );
+        })()}
+        {/*  */}
+        {nonOptionals.includes(name) ? (
+          <label className="label">{beutifyLabel(name)}</label>
+        ) : (
+          <label>
+            <input
+              style={{ width: "fit-content", visibility: "hidden" }}
+              className={name}
+              onClick={(e) => {
+                Array(document.getElementsByName(keyName)[0]).forEach(
+                  (input) => {
+                    if (!e.target.checked) {
+                      delete schema[index][input.name.replace(`${index}-`, "")];
+                      setSchema({ ...schema });
+                    } else {
+                      setSchema({
+                        ...schema,
                         [index]: {
-                          ...attributes[index],
-                          [name]: [...list],
+                          ...schema[index],
+                          [name]:
+                            input.type === "number"
+                              ? Number(input.value)
+                              : input.type === "radio"
+                              ? input.checked
+                                ? input.value === "true"
+                                  ? true
+                                  : false
+                                : true
+                              : input.value,
                         },
                       });
-                    }}
-                  >
-                    +
-                  </AddButton>
-                </MultiInputContainer>
-              );
-            }
-            if (typeof value === "boolean")
-              return (
-                <>
-                  <label>
-                    false
-                    <input
-                      name={keyName}
-                      type="radio"
-                      disabled={true}
-                      value={false}
-                      checked={String(value) === "false"}
-                      onChange={(e) => onChange(name, value, e.target)}
-                    />
-                  </label>
-                  <label>
-                    true
-                    <input
-                      name={keyName}
-                      type="radio"
-                      disabled={true}
-                      value={true}
-                      checked={String(value) === "true"}
-                      onChange={(e) => onChange(name, value, e.target)}
-                    />
-                  </label>
-                </>
-              );
-          })()}
-        </RightSide>
+                    }
+                  }
+                );
+              }}
+              type="checkbox"
+              id={keyName}
+              onChange={() => {
+                document.getElementsByName(keyName).forEach((input) => {
+                  input.disabled = !input.disabled;
+                });
+              }}
+            />
+            {beutifyLabel(name)}
+          </label>
+        )}
       </FormStyle>
     );
   };

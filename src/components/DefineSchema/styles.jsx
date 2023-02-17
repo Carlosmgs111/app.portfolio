@@ -7,9 +7,9 @@ export const Content = styled.div`
   width: available;
   padding: 2rem;
   margin: 2rem;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   font-weight: bold;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   h2 {
     font-size: 2.4rem;
     font-weight: bold;
