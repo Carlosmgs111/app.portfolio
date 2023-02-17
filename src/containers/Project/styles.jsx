@@ -117,9 +117,9 @@ export const Dashboard = styled.div`
   width: 100%;
   padding: 1.2rem 0;
   opacity: 0;
-  transition: opacity 0.4s;
+  transition: 0.4s;
   bottom: -100px;
-  transition: background-color 0.4s, bottom 0.4s;
+  /* transition: background-color 0.4s, bottom 0.4s; */
   &:hover {
     background-color: #00deae51;
   }
