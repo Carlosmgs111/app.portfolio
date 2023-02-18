@@ -121,8 +121,18 @@ export const FormStyle = styled.div`
   }
 `;
 
+export const ButtonsSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  opacity: 0;
+  right: 0.2rem;
+  gap: 0.2rem;
+  transition: 0.4s;
+`;
+
 export const DeleteButton = styled.button`
-  margin: 0.4rem 0;
+  margin: 0;
   padding: 0 0.8rem;
   height: fit-content;
   border-radius: 0.4rem;
@@ -133,7 +143,7 @@ export const DeleteButton = styled.button`
 `;
 
 export const AddButton = styled.button`
-  margin: 0.4rem 0;
+  margin: 0;
   padding: 0 0.7rem;
   height: fit-content;
   border-radius: 0.4rem;
@@ -151,6 +161,18 @@ export const ExpandButton = styled.button`
   border: none;
   :focus {
     outline: none;
+  }
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0.4rem;
+  overflow: hidden;
+  &:hover {
+    div {
+      opacity: 1;
+    }
   }
 `;
 

@@ -2,12 +2,12 @@ import { beutifyLabel, labelCases, Mapfy } from "../../../utils";
 import {
   List,
   FormStyle,
-  LeftSide,
-  RightSide,
+  ButtonsSection,
   DeleteButton,
-  ExpandButton,
   AddButton,
+  ExpandButton,
   MultiInputContainer,
+  InputContainer,
 } from "./styles";
 import { useEffect } from "react";
 import { useSwitch } from "../../../hooks/useSwitch";
@@ -150,14 +150,7 @@ export function DefineAttribute({
             const inputs = [];
             value.forEach((text, i) =>
               inputs.push(
-                <div
-                  key={i}
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: ".4rem",
-                  }}
-                >
+                <InputContainer key={i}>
                   <textarea
                     name={i}
                     value={text}
@@ -165,7 +158,7 @@ export function DefineAttribute({
                     placeholder={beutifyLabel(labelCases(name).CS)}
                   />
                   <label className="label">{beutifyLabel(name)}</label>
-                  <div style={{ display: "flex", flexDirection: "column" }}>
+                  <ButtonsSection>
                     <DeleteButton
                       onClick={(e) => {
                         e.preventDefault();
@@ -205,14 +198,33 @@ export function DefineAttribute({
                     >
                       +
                     </AddButton>
-                  </div>
-                </div>
+                  </ButtonsSection>
+                </InputContainer>
               )
             );
             return (
               <MultiInputContainer>
                 {inputs}
                 <label className="label">{beutifyLabel(name)}</label>
+                {inputs.length === 0 && (
+                  <AddButton
+                    style={{ width: "100%" }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const list = [...attributes[index][name]];
+                      list.push("");
+                      setAttributes({
+                        ...attributes,
+                        [index]: {
+                          ...attributes[index],
+                          [name]: [...list],
+                        },
+                      });
+                    }}
+                  >
+                    +
+                  </AddButton>
+                )}
               </MultiInputContainer>
             );
           }
