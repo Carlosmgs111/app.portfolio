@@ -8,7 +8,7 @@ export function Settings() {
   const requestHeaders = headers();
   console.log({ data });
   return (
-    <div>
+    <div style={{ width: "30%", alignSelf:"center" }}>
       <DefineSchema
         {...{
           title: "Usuario",

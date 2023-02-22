@@ -106,6 +106,7 @@ export function Certifications() {
       setElements,
       setCertifications,
       certifications,
+      setCurrentModal,
     }),
     addInstitution: addInstitution({
       institutionSchema,
@@ -262,13 +263,14 @@ export function Certifications() {
       >
         Certificados
       </Banner>
-      
+
       {/* // ? ⬆️ End optionals components */}
-      <Container><MultiSidebar
-        {...{
-          sidebars,
-        }}
-      />
+      <Container>
+        <MultiSidebar
+          {...{
+            sidebars,
+          }}
+        />
         <MainContainer>
           {certifications.map(
             (certification, index) =>

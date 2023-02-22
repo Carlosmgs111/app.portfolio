@@ -18,7 +18,6 @@ export const Content = styled.div`
     #skill-dashboard {
       opacity: 1;
       bottom: 0;
-      transition: background-color 0.4s, opacity 0.4s, bottom 0.4s;
     }
   }
 `;
@@ -87,7 +86,7 @@ export const Dashboard = styled.div`
   width: 100%;
   padding: 0 0 1.2rem 0;
   opacity: 0;
-  transition: background-color 0.4s, opacity 0.4s;
+  transition: background-color 0.4s, opacity 0.4s, bottom 0.4s;
   &:hover {
     background-color: #00deae51;
   }

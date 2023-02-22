@@ -83,10 +83,14 @@ export function Projects() {
               onClick: () => {
                 !currentModal
                   ? setCurrentModal(
-                      <Dashboard>
+                      <div
+                        style={{
+                          width: "60rem",
+                        }}
+                      >
                         <DefineSchema
                           {...{
-                            title: "Add New Project(s)",
+                            title: "Agregar nuevo(s) proyecto(s)",
                             baseSchema: {
                               name: "",
                               descriptions: [""],
@@ -131,7 +135,7 @@ export function Projects() {
                             },
                           }}
                         />
-                      </Dashboard>
+                      </div>
                     )
                   : setCurrentModal(null);
               },
@@ -191,7 +195,6 @@ export function Projects() {
       </Container>
       <Modal
         {...{
-          active: false,
           injected: currentModal,
           over: !false,
           embedButton: (

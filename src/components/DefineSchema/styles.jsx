@@ -18,8 +18,10 @@ export const Content = styled.div`
 `;
 
 export const FormStyle = styled.form`
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
   gap: 2rem;
   justify-content: center;
   input {

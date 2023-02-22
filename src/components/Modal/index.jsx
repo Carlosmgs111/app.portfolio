@@ -1,4 +1,4 @@
-import { Children, cloneElement } from "react";
+import { Children, cloneElement, useState } from "react";
 import {
   ModalStyle,
   EmbedButton,
@@ -15,23 +15,22 @@ export const Modal = ({
   onClick = null,
   over = true,
 }) => {
+  const isActive = active || Boolean(children) || Boolean(injected);
   return (
-    active ||
-    children ||
-    (injected && (
-      <ModalStyle {...{ classname: `${className}`, onClick: onClick, over }}>
-        {Children.toArray(children || injected).map((child) =>
-          cloneElement(child, {
-            ...child.props,
-            embedButton: child?.props?.embedButton && (
-              <EmbedButton>{child.props.embedButton}</EmbedButton>
-            ),
-            disabled: true,
-          })
-        )}
-        {embedButton && <NativeEmbedButton>{embedButton}</NativeEmbedButton>}
-      </ModalStyle>
-    ))
+    <ModalStyle
+      {...{ classname: `${className}`, onClick: onClick, over, isActive }}
+    >
+      {Children.toArray(children || injected).map((child) =>
+        cloneElement(child, {
+          ...child.props,
+          embedButton: child?.props?.embedButton && (
+            <EmbedButton>{child.props.embedButton}</EmbedButton>
+          ),
+          disabled: true,
+        })
+      )}
+      {embedButton && <NativeEmbedButton>{embedButton}</NativeEmbedButton>}
+    </ModalStyle>
   );
 };
 

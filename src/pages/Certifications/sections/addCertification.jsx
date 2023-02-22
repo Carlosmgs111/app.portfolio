@@ -8,13 +8,14 @@ export const addCertification = ({
   setElements,
   setCertifications,
   certifications,
+  setCurrentModal,
 }) => {
   const requestHeaders = headers();
   return (
     <Dashboard style={{ backgroundColor: "#9fbe05" }}>
       <DefineSchema
         {...{
-          title: "Add New Certifications(s)",
+          title: "",
           baseSchema: certificationSchema,
           nonOptionals: [
             "title",
@@ -46,6 +47,7 @@ export const addCertification = ({
                 ...requestHeaders,
               }
             );
+            setCurrentModal(null);
             reset();
           },
         }}

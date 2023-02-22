@@ -7,7 +7,7 @@ export const ModalStyle = styled.div`
   justify-content: space-around;
   justify-items: center;
   position: fixed;
-  backdrop-filter:  blur(1px);
+  backdrop-filter: brightness(50%);
   color: white;
   z-index: ${({ over }) => (over ? 1000 : 0)};
   opacity: 1;
@@ -16,10 +16,11 @@ export const ModalStyle = styled.div`
   width: 100%;
   height: 100%;
   top: 0;
-  left: 0;
+  left: ${({ isActive }) => (isActive ? "0%" : "100%")};
   padding: 0;
   margin: 0;
   overflow: scroll;
+  transition: left 0.4s;
   &::-webkit-scrollbar {
     display: none;
   }

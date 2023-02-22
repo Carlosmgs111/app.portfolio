@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { setFrames } from "../../../utils";
 
 export const List = styled.ul`
   font-size: 1.4rem;
@@ -103,6 +102,8 @@ export const FormStyle = styled.div`
     width: 100%;
     border-radius: 0.5rem;
     padding: 0 1.2rem;
+    border: 2px solid transparent;
+    transition: 0.4s;
     &:focus + .label,
     &:hover + .label {
       top: -0.7rem;
