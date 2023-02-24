@@ -52,6 +52,42 @@ export const FormStyle = styled.div`
       }
     }
   }
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 1rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 5px;
+    background-color: #ff4500;
+    &:focus + .label,
+    &:hover + .label {
+      top: -1.6rem;
+      left: 2rem;
+      z-index: 1;
+      font-size: 14px;
+      font-weight: 600;
+      color: purple;
+      font-size: 1rem;
+      opacity: 1;
+    }
+    ::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 2rem;
+      width: 2rem;
+      border-radius: 50%;
+      background: #ff4500;
+      cursor: ew-resize;
+      box-shadow: 0 0 2px 0 #555;
+      transition: background 0.3s ease-in-out;
+    }
+    ::-webkit-slider-runnable-track {
+      -webkit-appearance: none;
+      box-shadow: none;
+      border: none;
+      background: transparent;
+    }
+  }
+
   textarea {
     outline: none;
     padding: 0 1.2rem;

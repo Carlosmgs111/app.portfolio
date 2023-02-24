@@ -8,7 +8,7 @@ export function Settings() {
   const requestHeaders = headers();
   console.log({ data });
   return (
-    <div style={{ width: "30%", alignSelf:"center" }}>
+    <div style={{ width: "30%", alignSelf: "center" }}>
       <DefineSchema
         {...{
           title: "Usuario",
@@ -16,6 +16,8 @@ export function Settings() {
             evento: "",
             cantidad: 0.1,
             etiquetas: [""],
+            rango: 20,
+            "rango<": [[0, 100]],
             opcion: "",
             "opcion{": ["uno", "dos"],
             fecha: new Date().getTime(),
@@ -27,6 +29,7 @@ export function Settings() {
             "cantidad",
             "tags",
             "opcion{",
+            "rango<",
             "fecha~",
             "activo",
           ],

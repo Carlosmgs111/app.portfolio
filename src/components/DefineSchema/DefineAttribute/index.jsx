@@ -31,7 +31,10 @@ export function DefineAttribute({
   const settingAttributes = () => {
     const _attributes = {};
     for (var non in nonOptionals) {
-      const nonOp = nonOptionals[non].replace("{", "").replace("~", "");
+      const nonOp = nonOptionals[non]
+        .replace("{", "")
+        .replace("~", "")
+        .replace("<", "");
       _attributes[nonOp] = attributes[index][nonOp];
     }
     return _attributes;
@@ -47,7 +50,8 @@ export function DefineAttribute({
   const isControlledValue = (value) => {
     return (
       Mapfy(attributes[index]).get(value + "{") ||
-      Mapfy(attributes[index]).get(value + "~")
+      Mapfy(attributes[index]).get(value + "~") ||
+      Mapfy(attributes[index]).get(value + "<")
     );
   };
 
@@ -58,7 +62,8 @@ export function DefineAttribute({
     if (
       Array.isArray(currentValue) &&
       !currentName.includes("~") &&
-      !currentName.includes("{")
+      !currentName.includes("{") &&
+      !currentName.includes("<")
     ) {
       const list = [...attributes[index][currentName]];
       list[name] = value;
@@ -74,6 +79,10 @@ export function DefineAttribute({
     }
     if (Array.isArray(currentValue) && currentName.includes("{")) {
       currentName = currentName.replace("{", "");
+    }
+    if (Array.isArray(currentValue) && currentName.includes("<")) {
+      currentName = currentName.replace("<", "");
+      value = Number(value);
     }
     if (typeof currentValue === "number") {
       value = Number(value);
@@ -124,28 +133,51 @@ export function DefineAttribute({
             );
           if (Array.isArray(value) && name.includes("{"))
             return (
+              <select
+                name={keyName}
+                defaultValue={value.find(
+                  (v) =>
+                    v ===
+                    Object.entries(attributes)[0][1][name.replace("{", "")]
+                )}
+                disabled={!nonOptionals.includes(name)}
+                onChange={(e) => onChange(name, value, e.target)}
+              >
+                {value.map((item, index) => {
+                  return (
+                    <option value={item} key={index}>
+                      {item}
+                    </option>
+                  );
+                })}
+              </select>
+            );
+          if (Array.isArray(value) && name.includes("<")) {
+            const [min, max] = value[0];
+            return (
               <>
-                <select
+                <input
+                  style={{ padding: 0 }}
+                  type="range"
+                  id={name}
+                  min={min}
+                  max={max}
                   name={keyName}
-                  defaultValue={value.find(
-                    (v) =>
-                      v ===
-                      Object.entries(attributes)[0][1][name.replace("{", "")]
-                  )}
-                  disabled={!nonOptionals.includes(name)}
+                  defaultValue={
+                    Object.entries(attributes)[0][1][name.replace("<", "")]
+                  }
+                  // value={value}
                   onChange={(e) => onChange(name, value, e.target)}
-                >
-                  {value.map((item, index) => {
-                    return (
-                      <option value={item} key={index}>
-                        {item}
-                      </option>
-                    );
-                  })}
-                </select>
-                {/* <input type="text" value="" disabled /> */}
+                  disabled={!nonOptionals.includes(name)}
+                  placeholder={beutifyLabel(name)}
+                ></input>
+                <label htmlFor={name} className="label">
+                  {beutifyLabel(name)} :{" "}
+                  {Object.entries(attributes)[0][1][name.replace("<", "")]}
+                </label>
               </>
             );
+          }
           if (Array.isArray(value)) {
             const inputs = [];
             value.forEach((text, i) =>
