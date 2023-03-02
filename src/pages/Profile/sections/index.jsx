@@ -1,5 +1,6 @@
 import { MyState } from "./MyState";
 import { Settings } from "./Settings";
+import { TestsSection } from "./TestsSection";
 
 function ProfileHome() {
   return (
@@ -17,4 +18,4 @@ function ProfileHome() {
   );
 }
 
-export { MyState, Settings, ProfileHome };
+export { MyState, Settings, ProfileHome, TestsSection };

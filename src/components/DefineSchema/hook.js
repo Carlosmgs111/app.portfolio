@@ -23,7 +23,6 @@ export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
       if (object) parsedSchema[schema[attr].title] = schema[attr];
       else parsedSchema.push(schema[attr]);
     }
-    console.log({parsedSchema})
     return parsedSchema;
   };
 

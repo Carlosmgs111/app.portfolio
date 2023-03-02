@@ -5,7 +5,7 @@ import {
   PanelSidebar,
   innerItems,
 } from "../../components/Sidebars/PanelSidebar";
-import { MyState, Settings, ProfileHome } from "./sections";
+import { MyState, Settings, ProfileHome, TestsSection } from "./sections";
 import { getContext, CONTEXTS } from "../../contexts";
 import { useNavigate } from "react-router-dom";
 import { Container, MainContainer } from "./styles";
@@ -25,7 +25,9 @@ export function Profile({ clearAuth }) {
     },
     dispatch,
   ] = useStateValue();
-  const [currentContent, setCurrentContent] = useState(<Settings {...{ avatar }} />);
+  const [currentContent, setCurrentContent] = useState(
+    <TestsSection/>
+  );
 
   const navigate = useNavigate();
   const panelSidebarItems = [
@@ -50,6 +52,13 @@ export function Profile({ clearAuth }) {
       className: "fa-solid fa-wrench",
       content: "Configurar Mi Cuenta",
       onClick: () => setCurrentContent(<Settings {...{ avatar }} />),
+    },
+    { innerItem: innerItems.Separator },
+    {
+      innerItem: innerItems.InnerItem,
+      className: "fa-solid fa-flask-vial",
+      content: "Pruebas",
+      onClick: () => setCurrentContent(<TestsSection />),
     },
     { innerItem: innerItems.Separator },
     {
