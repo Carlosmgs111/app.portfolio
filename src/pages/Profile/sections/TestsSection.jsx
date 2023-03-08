@@ -3,20 +3,104 @@ import { runRequest } from "../../../services/runRequest";
 import { headers } from "../../../services/configs";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
+import { socket } from "../../../services";
+import { DefineSchema } from "../../../components/DefineSchema";
 
 export function TestsSection() {
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState(null);
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
+  const [settings, setSettings] = useState(null);
+
+  socket.on("generatedImages", (images) => {
+    setLoading(false);
+    setImages(images);
+  });
+
+  const skeletons = [];
+  for (let i = 0; i < settings?.numeroDeResultados; i++) {
+    skeletons.push(
+      <Skeleton
+        key={i}
+        animation="wave"
+        variant="rounded"
+        sx={{
+          backdropFilter: "brightness(80%) blur(0.8rem); ",
+          width: `${settings?.ancho}px`,
+          height: `${settings?.alto}px`,
+          borderRadius: "0.8rem",
+        }}
+      />
+    );
+  }
 
   const requestHeaders = headers();
-  useEffect(() => {}, []);
+
+  const onClickHandler = (cb) => {
+    let onClickHandlerCallback = null;
+    return [
+      (params) => (onClickHandlerCallback = cb(params)),
+      () => onClickHandlerCallback,
+    ];
+  };
+
+  const generateImageCallback = (params) => () => {
+    const { parsedSchema, reset } = params;
+    const { alto, ancho, numeroDeResultados, pasosDeInferencia, guiaDeEscala } =
+      parsedSchema[0];
+    setSettings({
+      ...settings,
+      ancho: Number(ancho),
+      alto: Number(alto),
+      numeroDeResultados: Number(numeroDeResultados),
+    });
+    setLoading(true);
+    socket.emit("generateImage", {
+      prompt,
+      options: {
+        width: Number(ancho),
+        height: Number(alto),
+        num_outputs: Number(numeroDeResultados),
+        num_inference_steps: Number(pasosDeInferencia),
+        guidance_scale: Number(guiaDeEscala),
+      },
+    });
+  };
+
+  const [setOnClickHandler, getOnClickHandler] = onClickHandler(
+    generateImageCallback
+  );
+
+  useEffect(() => {
+    runRequest({
+      setData: (data) => {
+        const { outputs, sizes, inferenceSteps, guidanceScale } = data;
+        setSettings({
+          numeroDeResultados: 1,
+          "numeroDeResultados{": outputs,
+          ancho: 512,
+          "ancho{": sizes,
+          alto: 512,
+          "alto{": sizes,
+          numeroDeResultados: 1,
+          pasosDeInferencia: 50,
+          "pasosDeInferencia<": [[inferenceSteps.min, inferenceSteps.max]],
+          guiaDeEscala: 7,
+          "guiaDeEscala<": [[guidanceScale.min, guidanceScale.max]],
+        });
+      },
+      setLoading,
+    }).get(`images/availablesettings`, {
+      ...requestHeaders,
+    });
+  }, []);
+
   return (
     <div
       style={{
         padding: "2rem",
         display: "flex",
-        width: "30%",
+        // width: "30%",
         alignSelf: "center",
         minHeight: "30rem",
         flexDirection: "column",
@@ -27,25 +111,43 @@ export function TestsSection() {
     >
       <h1 style={{ width: "100%", textAlign: "center" }}>Seccion de pruebas</h1>
       {loading && (
-        <Stack spacing={1}>
-          <Skeleton
-            animation="wave"
-            variant="rounded"
-            sx={{
-              backdropFilter: "brightness(80%) blur(0.8rem);",
-              width: "768px",
-              height: "768px",
-              borderRadius: "0.8rem",
-            }}
-          />
+        <Stack
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "calc(512px*2)",
+          }}
+        >
+          {skeletons}
         </Stack>
       )}
-      {image && !loading && (
-        <img
-          style={{ width: "768px", height: "768px" }}
-          src={`data:image/png;base64,${image}`}
-        />
-      )}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          alignItems: "center",
+          width: `calc(${settings?.ancho}px*2)`,
+        }}
+      >
+        {images &&
+          !loading &&
+          images.map((image, i) => (
+            <img
+              key={i}
+              style={{
+                width: `${settings?.ancho}px`,
+                height: `${settings?.alto}px`,
+                borderRadius: "0.8rem",
+              }}
+              src={`data:image/png;base64,${image.encoded_image}`}
+            />
+          ))}
+      </div>
       <textarea
         style={{ width: "100%", height: "fit-content", fontSize: "1.4rem" }}
         type="text"
@@ -53,22 +155,30 @@ export function TestsSection() {
         spellCheck="false"
         onChange={(e) => setPrompt(e.target.value)}
       />
+      {settings && (
+        <DefineSchema
+          {...{
+            title: "",
+            baseSchema: settings,
+            nonOptionals: [
+              "numeroDeResultados{",
+              "alto{",
+              "ancho{",
+              "pasosDeInferencia<",
+              "guiaDeEscala<",
+            ],
+            buttons: {},
+            highOrderCallback: (params) => setOnClickHandler(params),
+          }}
+        />
+      )}
       <button
         style={{
           width: "fit-content",
           fontSize: "1.4rem",
         }}
-        onClick={async () => {
-          await runRequest({
-            setData: setImage,
-            setLoading,
-          }).post(
-            "images/generate",
-            {
-              prompt,
-            },
-            { ...requestHeaders }
-          );
+        onClick={(e) => {
+          getOnClickHandler()();
         }}
       >
         Generate Image

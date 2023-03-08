@@ -153,7 +153,7 @@ export function DefineAttribute({
               </select>
             );
           if (Array.isArray(value) && name.includes("<")) {
-            const [min, max] = value[0];
+            const [min, max, step] = value[0];
             return (
               <>
                 <input
@@ -170,6 +170,7 @@ export function DefineAttribute({
                   onChange={(e) => onChange(name, value, e.target)}
                   disabled={!nonOptionals.includes(name)}
                   placeholder={beutifyLabel(name)}
+                  step={step}
                 ></input>
                 <label htmlFor={name} className="label">
                   {beutifyLabel(name)} :{" "}
