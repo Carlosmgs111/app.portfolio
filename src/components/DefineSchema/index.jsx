@@ -71,3 +71,12 @@ export function DefineSchema({
     </Content>
   );
 }
+
+export const getOnClickPack = (cb) => {
+  let onClickHandlerCallback = null;
+  return [
+    (params) => (onClickHandlerCallback = () => cb(params)),
+    () => onClickHandlerCallback(),
+  ];
+};
+

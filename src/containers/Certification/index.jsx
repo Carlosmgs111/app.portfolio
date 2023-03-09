@@ -11,7 +11,10 @@ import {
 import { CertificationSkeleton } from "./skeleton";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { labelCases } from "../../utils";
-import { DefineSchema } from "../../components/DefineSchema";
+import {
+  DefineSchema,
+  getOnClickPack,
+} from "../../components/DefineSchema";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { runRequest } from "../../services/runRequest";
 import { useState } from "react";
@@ -44,17 +47,8 @@ export function Certification({
   const { token, username } = getContextValue(CONTEXTS.Global);
   const [show, ref] = useNearScreen(false, refreshRefs);
 
-  // ? 1️⃣ closure function that return function that set the callback provided
-  const onClickHandler = (cb) => {
-    let onClickHandlerCallback = null;
-    return [
-      (params) => (onClickHandlerCallback = cb(params)),
-      () => onClickHandlerCallback,
-    ];
-  };
-
   // ? 2️⃣ callback to be passed as parameter to setup function
-  const defineSchemaCallback = (params) => () => {
+  const defineSchemaCallback = (params) => {
     const { setError, setLoading, parsedSchema, reset } = params;
     const toUpdate = {};
     for (var attr in parsedSchema[0]) {
@@ -89,15 +83,14 @@ export function Certification({
   };
 
   // ? 3️⃣ function to set callback
-  const [setOnClickHandler, getOnClickHandler] =
-    onClickHandler(defineSchemaCallback);
+  const [highOrderCallback, onClickHandler] =
+    getOnClickPack(defineSchemaCallback);
 
   const onClick = (e) => {
-    const onClickHandlerCallback = getOnClickHandler();
     const behaviors = {
       primary: () => {
         beingEdited
-          ? onClickHandlerCallback()
+          ? onClickHandler()
           : (() => {
               const result = window.confirm(
                 `Are you sure you want to delete certification ${title}`
@@ -183,7 +176,7 @@ export function Certification({
               url,
             },
             nonOptionals: ["title", "emitedAt~", "image", "url", "emitedBy{"],
-            highOrderCallback: (params) => setOnClickHandler(params),
+            highOrderCallback,
             buttons: [],
           }}
         ></DefineSchema>

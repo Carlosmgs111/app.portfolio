@@ -14,7 +14,10 @@ import { useNearScreen } from "../../hooks/useNearScreen";
 import { labelCases } from "../../utils";
 import { useEffect, useState } from "react";
 import { useSwitch } from "../../hooks/useSwitch";
-import { DefineSchema } from "../../components/DefineSchema";
+import {
+  DefineSchema,
+  getOnClickPack,
+} from "../../components/DefineSchema";
 import { runButtonBehavior } from "../../utils";
 import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
@@ -36,17 +39,8 @@ export function Skill({
 
   useEffect(() => {}, [show, ref]);
 
-  // ? 1️⃣ closure function that return function that set the callback provided
-  const onClickHandler = (cb) => {
-    let onClickHandlerCallback = null;
-    return [
-      (params) => (onClickHandlerCallback = cb(params)),
-      () => onClickHandlerCallback,
-    ];
-  };
-
   // ? 2️⃣ callback to be passed as parameter to setup function
-  const defineSchemaCallback = (params) => () => {
+  const defineSchemaCallback = (params) => {
     const { setError, setLoading, parsedSchema, reset } = params;
     const toUpdate = {};
     for (var attr in parsedSchema[0]) {
@@ -80,15 +74,14 @@ export function Skill({
   };
 
   // ? 3️⃣ function to set callback
-  const [setOnClickHandler, getOnClickHandler] =
-    onClickHandler(defineSchemaCallback);
+  const [highOrderCallback, onClickHandler] =
+    getOnClickPack(defineSchemaCallback);
 
   const onClick = (e) => {
-    const onClickHandlerCallback = getOnClickHandler();
     const behaviors = {
       primary: () => {
         beingEdited
-          ? onClickHandlerCallback()
+          ? onClickHandler()
           : (() => {
               const result = window.confirm(
                 `Are you sure you want to delete project ${name}`
@@ -141,7 +134,7 @@ export function Skill({
               tags,
             },
             nonOptionals: ["name", "description", "image", "tags"],
-            highOrderCallback: (params) => setOnClickHandler(params),
+            highOrderCallback,
             buttons: [],
           }}
         />

@@ -8,7 +8,7 @@ export const ProjectContainer = styled.div`
   align-items: center;
   gap: 3rem;
   padding: 1rem;
-  min-height: 40rem;
+  min-height: 70vh;
   width: 100%;
   position: sticky;
   /* background-color: ${({ even }) => (even ? "#e4ff1a3b" : "#ff811a99")}; */

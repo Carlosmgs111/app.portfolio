@@ -1,12 +1,15 @@
-import { useState, useEffect } from "react";
-import { runRequest } from "../../../services/runRequest";
-import { headers } from "../../../services/configs";
+import { useState, useEffect, useCallback } from "react";
+import { runRequest } from "../../../../services/runRequest";
+import { headers } from "../../../../services/configs";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
-import { socket } from "../../../services";
-import { DefineSchema } from "../../../components/DefineSchema";
+import { socket } from "../../../../services";
+import {
+  DefineSchema,
+  getOnClickPack,
+} from "../../../../components/DefineSchema";
 
-export function TestsSection() {
+export function GenerateImage() {
   const [images, setImages] = useState(null);
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
@@ -36,18 +39,16 @@ export function TestsSection() {
 
   const requestHeaders = headers();
 
-  const onClickHandler = (cb) => {
-    let onClickHandlerCallback = null;
-    return [
-      (params) => (onClickHandlerCallback = cb(params)),
-      () => onClickHandlerCallback,
-    ];
-  };
-
-  const generateImageCallback = (params) => () => {
+  const generateImageCallback = (params) => {
     const { parsedSchema, reset } = params;
-    const { alto, ancho, numeroDeResultados, pasosDeInferencia, guiaDeEscala } =
-      parsedSchema[0];
+    const {
+      alto,
+      ancho,
+      numeroDeResultados,
+      pasosDeInferencia,
+      guiaDeEscala,
+      semilla,
+    } = parsedSchema[0];
     setSettings({
       ...settings,
       ancho: Number(ancho),
@@ -63,11 +64,14 @@ export function TestsSection() {
         num_outputs: Number(numeroDeResultados),
         num_inference_steps: Number(pasosDeInferencia),
         guidance_scale: Number(guiaDeEscala),
+        seed: Boolean(semilla)
+          ? Number(semilla)
+          : Number(String(Math.random()).replace("0.", "")),
       },
     });
   };
 
-  const [setOnClickHandler, getOnClickHandler] = onClickHandler(
+  const [highOrderCallback, onClickHandler] = getOnClickPack(
     generateImageCallback
   );
 
@@ -87,6 +91,7 @@ export function TestsSection() {
           "pasosDeInferencia<": [[inferenceSteps.min, inferenceSteps.max]],
           guiaDeEscala: 7,
           "guiaDeEscala<": [[guidanceScale.min, guidanceScale.max]],
+          semilla: 0,
         });
       },
       setLoading,
@@ -94,7 +99,6 @@ export function TestsSection() {
       ...requestHeaders,
     });
   }, []);
-
   return (
     <div
       style={{
@@ -109,7 +113,7 @@ export function TestsSection() {
         // justifyContent: "center",
       }}
     >
-      <h1 style={{ width: "100%", textAlign: "center" }}>Seccion de pruebas</h1>
+      <h2 style={{ width: "100%", textAlign: "center" }}>Generar Imagenes</h2>
       {loading && (
         <Stack
           style={{
@@ -166,9 +170,10 @@ export function TestsSection() {
               "ancho{",
               "pasosDeInferencia<",
               "guiaDeEscala<",
+              "semilla",
             ],
             buttons: {},
-            highOrderCallback: (params) => setOnClickHandler(params),
+            highOrderCallback,
           }}
         />
       )}
@@ -178,7 +183,7 @@ export function TestsSection() {
           fontSize: "1.4rem",
         }}
         onClick={(e) => {
-          getOnClickHandler()();
+          onClickHandler();
         }}
       >
         Generate Image

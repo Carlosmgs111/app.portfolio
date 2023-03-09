@@ -10,7 +10,10 @@ import {
   ButtonsSection,
   Button,
 } from "./styles";
-import { DefineSchema } from "../../components/DefineSchema";
+import {
+  DefineSchema,
+  getOnClickPack,
+} from "../../components/DefineSchema";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { useSwitch } from "../../hooks/useSwitch";
 import { labelCases } from "../../utils";
@@ -36,17 +39,8 @@ export const Project = ({
 
   useEffect(() => {}, [show, ref]);
 
-  // ? 1️⃣ closure function that return function that set the callback provided
-  const onClickHandler = (cb) => {
-    let onClickHandlerCallback = null;
-    return [
-      (params) => (onClickHandlerCallback = cb(params)),
-      () => onClickHandlerCallback,
-    ];
-  };
-
   // ? 2️⃣ callback to be passed as parameter to setup function
-  const defineSchemaCallback = (params) => () => {
+  const defineSchemaCallback = (params) => {
     const { setError, setLoading, parsedSchema, reset } = params;
     const toUpdate = {};
     for (var attr in parsedSchema[0]) {
@@ -80,15 +74,14 @@ export const Project = ({
   };
 
   // ? 3️⃣ function to set callback
-  const [setOnClickHandler, getOnClickHandler] =
-    onClickHandler(defineSchemaCallback);
+  const [highOrderCallback, OnClickHandler] =
+    getOnClickPack(defineSchemaCallback);
 
   const onClick = (e) => {
-    const onClickHandlerCallback = getOnClickHandler();
     const behaviors = {
       primary: () => {
         beingEdited
-          ? onClickHandlerCallback()
+          ? OnClickHandler()
           : (() => {
               const result = window.confirm(
                 `Are you sure you want to delete project ${name}`
@@ -161,7 +154,7 @@ export const Project = ({
               version,
             },
             nonOptionals: ["name", "descriptions", "images", "uri", "version"],
-            highOrderCallback: (params) => setOnClickHandler(params),
+            highOrderCallback,
             buttons: [],
           }}
         />
