@@ -193,6 +193,7 @@ export function DefineAttribute({
                   <label className="label">{beutifyLabel(name)}</label>
                   <ButtonsSection>
                     <DeleteButton
+                      className="fa-solid fa-trash"
                       onClick={(e) => {
                         e.preventDefault();
                         const list = [...attributes[index][name]];
@@ -212,10 +213,9 @@ export function DefineAttribute({
                           },
                         });
                       }}
-                    >
-                      -
-                    </DeleteButton>
+                    />
                     <AddButton
+                      className="fa-solid fa-plus"
                       onClick={(e) => {
                         e.preventDefault();
                         const list = [...attributes[index][name]];
@@ -228,9 +228,7 @@ export function DefineAttribute({
                           },
                         });
                       }}
-                    >
-                      +
-                    </AddButton>
+                    />
                   </ButtonsSection>
                 </InputContainer>
               )
@@ -241,6 +239,7 @@ export function DefineAttribute({
                 <label className="label">{beutifyLabel(name)}</label>
                 {inputs.length === 0 && (
                   <AddButton
+                    className="fa-solid fa-plus"
                     style={{ width: "100%" }}
                     onClick={(e) => {
                       e.preventDefault();
@@ -254,9 +253,7 @@ export function DefineAttribute({
                         },
                       });
                     }}
-                  >
-                    +
-                  </AddButton>
+                  />
                 )}
               </MultiInputContainer>
             );

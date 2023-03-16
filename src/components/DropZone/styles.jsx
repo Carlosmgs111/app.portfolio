@@ -6,7 +6,7 @@ export const DropzoneBody = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
   text-align: center;
@@ -42,10 +42,11 @@ export const DropzoneLabel = styled.label`
 `;
 
 export const FilePreview = styled.embed`
-  width: 20rem;
-  height: 15rem;
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
   border-radius: 0.8rem;
   object-fit: cover;
   pointer-events: none;
   z-index: -1;
+  transition: 0.2s;
 `;

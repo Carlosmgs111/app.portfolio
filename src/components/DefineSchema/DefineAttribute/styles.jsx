@@ -37,16 +37,15 @@ export const FormStyle = styled.div`
     &:hover + .label {
       top: -0.7rem;
       left: 2rem;
-      z-index: 1;
       font-size: 14px;
       font-weight: 600;
-      color: purple;
+      color: black;
       font-size: 1rem;
       opacity: 1;
     }
     &:focus,
     &:hover {
-      border: 2px solid purple;
+      border: 2px solid #01cda1;
       ::placeholder {
         color: transparent;
       }
@@ -63,10 +62,9 @@ export const FormStyle = styled.div`
     &:hover + .label {
       top: -1.6rem;
       left: 2rem;
-      z-index: 1;
       font-size: 14px;
       font-weight: 600;
-      color: purple;
+      color: black;
       font-size: 1rem;
       opacity: 1;
     }
@@ -103,15 +101,14 @@ export const FormStyle = styled.div`
     &:focus + .label {
       top: -0.7rem;
       left: 2rem;
-      z-index: 1;
       font-size: 14px;
       font-weight: 600;
-      color: purple;
+      color: black;
       font-size: 1rem;
       opacity: 1;
     }
     &:focus {
-      border: 2px solid purple;
+      border: 2px solid #01cda1;
       ::placeholder {
         color: transparent;
       }
@@ -123,15 +120,15 @@ export const FormStyle = styled.div`
     color: black;
     position: absolute;
     white-space: nowrap;
-    background-color: white;
+    background-color: #01cda1;
     border-radius: 0.5rem;
     left: 2.6rem;
     top: 0.6rem;
     padding: 0 4px;
     transition: 0.4s;
     opacity: 0;
-    z-index: -1;
     margin: 0;
+    pointer-events: none;
   }
   select {
     height: 2.8rem;
@@ -147,47 +144,65 @@ export const FormStyle = styled.div`
       z-index: 10;
       font-size: 14px;
       font-weight: 600;
-      color: purple;
+      color: black;
       font-size: 1rem;
       opacity: 1;
     }
     &:focus,
     &:hover {
-      border: 2px solid purple;
+      border: 2px solid #01cda1;
     }
   }
 `;
 
 export const ButtonsSection = styled.div`
+  padding: 0.4rem;
   display: flex;
   flex-direction: row;
   position: absolute;
   opacity: 0;
   right: 0.2rem;
-  gap: 0.2rem;
+  gap: 0.6rem;
   transition: 0.4s;
+  font-size: 1.4rem;
 `;
 
 export const DeleteButton = styled.button`
   margin: 0;
-  padding: 0 0.8rem;
   height: fit-content;
   border-radius: 0.4rem;
   border: none;
-  background-color: #f03b26;
+  background-color: transparent;
+  -webkit-text-stroke: 1px black;
+  color: #f03b26;
   width: fit-content;
   font-weight: bold;
+  transition: 0.2s;
+  :focus {
+    outline: none;
+  }
+  :hover {
+    font-size: 1.8rem;
+  }
 `;
 
 export const AddButton = styled.button`
   margin: 0;
-  padding: 0 0.7rem;
   height: fit-content;
   border-radius: 0.4rem;
   border: none;
-  background-color: #21da09;
+  background-color: transparent;
+  -webkit-text-stroke: 1px black;
+  color: #21da09;
   width: fit-content;
   font-weight: bold;
+  transition: 0.2s;
+  :focus {
+    outline: none;
+  }
+  :hover {
+    font-size: 1.8rem;
+  }
 `;
 
 export const ExpandButton = styled.button`
@@ -224,10 +239,9 @@ export const MultiInputContainer = styled.div`
     .label {
       top: -0.7rem;
       left: 2rem;
-      z-index: 10;
       font-size: 14px;
       font-weight: 600;
-      color: purple;
+      color: black;
       font-size: 1rem;
       opacity: 1;
     }

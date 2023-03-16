@@ -130,5 +130,8 @@ export const Button = styled.button`
       background-color: #f03b26;
     }
   }
+  :focus {
+    outline: none;
+  }
   transition: background-color 0.2s, color 0.2s;
 `;
