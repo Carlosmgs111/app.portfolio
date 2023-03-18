@@ -53,62 +53,62 @@ export default function Navigation({ children, banner, className }) {
 
   return (
     <NavbarContainer className={`${className}`}>
-      <NavigateBar className={className}>
-        <NavbarHeader
-          style={{
-            justifyContent: "space-between",
-            display: "flex",
-            flexDirection: "row",
+      <NavbarHeader
+        style={{
+          justifyContent: "space-between",
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        {banner && (
+          <Banner
+            onClick={() => {
+              if (menu.show) switchMenu();
+              setCurrent(null);
+            }}
+            to={banner.to}
+          >
+            {banner.title}
+          </Banner>
+        )}
+      </NavbarHeader>
+      <SearchForm action="">
+        <SearchInput
+          type="search"
+          name="search-input"
+          value={searchValue}
+          list="indexed_elements"
+          onChange={(e) => {
+            setSearchValue(e.target.value);
           }}
-        >
-          {banner && (
-            <Banner
-              onClick={() => {
-                if (menu.show) switchMenu();
-                setCurrent(null);
-              }}
-              to={banner.to}
-            >
-              {banner.title}
-            </Banner>
-          )}
-          <Button
-            className={`${menu.name}`}
-            id="nav-button"
-            onClick={switchMenu}
-          ></Button>
-        </NavbarHeader>
-        <SearchForm action="">
-          <SearchInput
-            type="search"
-            name="search-input"
-            value={searchValue}
-            list="indexed_elements"
-            onChange={(e) => {
-              setSearchValue(e.target.value);
-            }}
-          />
-          <SearchIcon
-            className="fa-solid fa-magnifying-glass"
-            selected={selected}
-          />
-          <SubmitSearch
-            type="submit"
-            onClick={(e) => {
-              dispatch({
-                type: ACTIONS.setSearchedUsername,
-                payload: searchValue,
-              });
-              setSearchValue("");
-              e.preventDefault();
-            }}
-          />
-        </SearchForm>
-        <datalist id="indexed_elements">
-          {indexedElements.map((iE, idx) => (
-            <option value={iE} key={idx} />
-          ))}
-        </datalist>
+        />
+        <SearchIcon
+          className="fa-solid fa-magnifying-glass"
+          selected={selected}
+        />
+        <SubmitSearch
+          type="submit"
+          onClick={(e) => {
+            dispatch({
+              type: ACTIONS.setSearchedUsername,
+              payload: searchValue,
+            });
+            setSearchValue("");
+            e.preventDefault();
+          }}
+        />
+      </SearchForm>
+      <datalist id="indexed_elements">
+        {indexedElements.map((iE, idx) => (
+          <option value={iE} key={idx} />
+        ))}
+      </datalist>
+      <NavigateBar className={className}>
+        <Button
+          className={`${menu.name}`}
+          id="nav-button"
+          onClick={switchMenu}
+        ></Button>
         <ItemsList
           showfixed={showfixed}
           className={`${className} navigation-list`}

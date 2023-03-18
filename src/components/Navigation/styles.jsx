@@ -5,21 +5,23 @@ import { setFrames } from "../../utils";
 export const NavbarContainer = styled.div`
   overflow: scroll;
   height: fit-content;
+  /* height: 6rem; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(10rem) brightness(80%);
   &::-webkit-scrollbar {
     display: none;
   }
-  height: 6rem;
-  display: inline;
-  backdrop-filter: blur(10rem) brightness(80%);
+  @media (max-width: 830px) {
+    backdrop-filter: none;
+  }
 `;
 
 export const NavbarHeader = styled.div`
   justify-content: space-between;
   display: flex;
   flex-direction: row;
-  @media (max-width: 830px) {
-    width: 100%;
-  }
 `;
 
 export const NavigateBar = styled.nav`
@@ -32,7 +34,7 @@ export const NavigateBar = styled.nav`
   width: inherit;
   height: inherit;
   @media (max-width: 1360px) {
-    flex-direction: column;
+    /* flex-direction: column; */
   }
 `;
 
@@ -49,10 +51,8 @@ export const ItemsList = styled.ul`
   color: transparent;
   font-size: 3rem;
   margin: 0;
-  /* backdrop-filter: blur(10rem) brightness(0.4); */
   border-radius: 6px;
   /* max-height: ${({ showfixed }) => (showfixed ? "10rem" : "10rem")}; */
-  transition: max-height 0.5s;
   font-size: 2.8rem;
   display: flex;
   overflow-y: scroll;
@@ -63,16 +63,18 @@ export const ItemsList = styled.ul`
   align-content: center;
   justify-content: left;
   align-items: center;
-  transition: max-height 0.4s;
+  transition: 0.4s;
   padding: 0 0.4rem;
   @media (max-width: 830px) {
-    animation: 0.8s ${fadeinshow} ease;
-    max-height: ${({ show }) => (show ? "40rem" : "0")};
+    backdrop-filter: blur(10rem) brightness(0.4);
     flex-direction: column;
     align-items: center;
-    position: relative;
+    position: fixed;
     top: 0;
+    right: 0;
     width: 100%;
+    padding-top: ${({ show }) => (show ? "2rem" : "0")};
+    height: ${({ show }) => (show ? "100%" : "0")};
   }
   @media (max-width: 480px) {
     width: 100%;
@@ -134,6 +136,7 @@ export const Button = styled.i`
   display: none;
   color: white;
   @media (max-width: 830px) {
+    z-index: 10;
     display: block;
     right: 15px;
     top: 2rem;
@@ -177,9 +180,15 @@ export const SearchInput = styled.input`
   padding: 0.4rem 3rem 0.4rem 2rem;
   transition: border 0.4s, width 0.4s;
   width: 25rem;
-  &:focus {
+  @media (max-width: 1100px) {
+    width: 15rem;
+  }
+  :focus {
     border: solid #00deae 1px;
     width: 30rem;
+    @media (max-width: 1100px) {
+      width: 25rem;
+    }
   }
 `;
 

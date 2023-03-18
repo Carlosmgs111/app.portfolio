@@ -20,7 +20,9 @@ export const Container = styled.div`
     min-width: 32rem;
     max-width: 32rem;
   }
-  &:hover {
+  :hover,
+  :focus,
+  :active {
     #certification-dashboard {
       opacity: 1;
     }
