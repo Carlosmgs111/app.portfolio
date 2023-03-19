@@ -132,13 +132,7 @@ export function Skills() {
     />,
   ];
   return (
-    <Page
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-      }}
-    >
+    <Page>
       <Banner
         {...{
           config: {
@@ -148,8 +142,7 @@ export function Skills() {
       >
         Habilidades
       </Banner>
-      <MultiSidebar {...{ sidebars }} />
-      <Container>
+      <MultiSidebar {...{ sidebars }}>
         <MainContainer>
           {skills.map((skill, index) => (
             <Skill
@@ -164,7 +157,7 @@ export function Skills() {
             />
           ))}
         </MainContainer>
-      </Container>
+      </MultiSidebar>
       <Modal
         {...{
           active: false,

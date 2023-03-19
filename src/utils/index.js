@@ -340,6 +340,5 @@ export const getSizesDisposition = (i) => {
   }
   sizes = sizes.sort(() => Math.random() - 0.5);
   sizes = sizes.flat();
-  console.log({ sizes });
   return sizes;
 };

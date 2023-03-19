@@ -77,4 +77,12 @@ export const Avatar = styled.img`
     border: 2px solid #e4ff1a;
   }
   transition: border 0.4s;
+  @media (max-width: 830px) {
+    height: 5.4rem;
+    width: 5.4rem;
+  }
+  @media (max-width: 480px) {
+    height: 5rem;
+    width: 5rem;
+  }
 `;

@@ -265,12 +265,11 @@ export function Certifications() {
       </Banner>
 
       {/* // ? ⬆️ End optionals components */}
-      <Container>
-        <MultiSidebar
-          {...{
-            sidebars,
-          }}
-        />
+      <MultiSidebar
+        {...{
+          sidebars,
+        }}
+      >
         <MainContainer>
           {certifications.map(
             (certification, index) =>
@@ -301,12 +300,7 @@ export function Certifications() {
             </Banner>
           )}
         </MainContainer>
-        {/* // ? ⬇️ Start main content support components */}
-        {/* {addCertification}
-        {addInstitution} */}
-        {/* // ? ⬆️ End main content support components */}
-      </Container>
-
+      </MultiSidebar>
       {/* // ? ⬇️ Start page support components */}
       <OnLoading
         {...{

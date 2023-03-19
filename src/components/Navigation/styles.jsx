@@ -15,6 +15,7 @@ export const NavbarContainer = styled.div`
   }
   @media (max-width: 830px) {
     backdrop-filter: none;
+    background-color: #00000065;
   }
 `;
 
@@ -126,9 +127,10 @@ export const Item = styled.li`
   }
   @media (max-width: 830px) {
     width: fit-content;
+    font-size: 2.8rem;
   }
   @media (max-width: 480px) {
-    font-size: 1.8rem;
+    font-size: 2.4rem;
   }
 `;
 

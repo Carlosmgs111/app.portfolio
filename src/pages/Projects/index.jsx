@@ -176,8 +176,7 @@ export function Projects() {
         {...{
           sidebars,
         }}
-      />
-      <Container>
+      >
         <MainContainer>
           {projects.map((project, index) => (
             <Project
@@ -192,7 +191,7 @@ export function Projects() {
             />
           ))}
         </MainContainer>
-      </Container>
+      </MultiSidebar>
       <Modal
         {...{
           injected: currentModal,

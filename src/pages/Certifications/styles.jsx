@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  top: 20vh;
+  /* top: 20vh; */
   display: flex;
   position: sticky;
   width: 100%;

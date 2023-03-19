@@ -33,7 +33,7 @@ export const ProjectContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  margin: 4rem;
+  padding: 4rem;
   text-align: center;
   width: 100%;
   font-size: 6rem;
@@ -71,6 +71,10 @@ export const Image = styled.img`
     border: solid 1px #f026df;
   }
   transition: border 0.6s;
+  @media (max-width: 1360px) {
+    max-width: 32%;
+    justify-content: space-around;
+  }
 `;
 
 export const DescriptionsContainer = styled.div`

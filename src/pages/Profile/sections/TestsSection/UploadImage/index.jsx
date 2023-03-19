@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Dropzone } from "../../../../../components/DropZone";
+import { runRequest } from "../../../../../services/runRequest";
+import { headers } from "../../../../../services/configs";
 
 export function MyDropzone() {
   const [files, setFiles] = useState([]);
+  const requestHeaders = headers();
 
   return (
     <div
@@ -16,6 +19,19 @@ export function MyDropzone() {
       }}
     >
       <Dropzone {...{ files, setFiles }} />
+      <button
+        onClick={() => {
+          runRequest().post(
+            "images/modifyimages",
+            { images: files.map((file) => file.split(",")[1]) },
+            {
+              ...requestHeaders,
+            }
+          );
+        }}
+      >
+        Send
+      </button>
     </div>
   );
 }
