@@ -1,3 +1,4 @@
+import { useEffect, useState, Children, cloneElement } from "react";
 import {
   FloatContainer,
   SettingsDashboard,
@@ -13,7 +14,6 @@ import {
   Slider,
 } from "./styles";
 import { useSwitch } from "../../../hooks/useSwitch";
-import { useEffect, useState, Children, cloneElement } from "react";
 import { injectAttrsToReactElements } from "../../../utils";
 
 export const MultiSidebar = (props) => {
@@ -75,7 +75,7 @@ export const MultiSidebar = (props) => {
         <SettingsContainer>
           <SettingsDashboard show={settingsDashboard}>
             <form>
-              <label>Fijo: </label>
+              <label>Flotante: </label>
               <Switch className="switch ">
                 <input
                   checked={float}

@@ -193,7 +193,7 @@ export function DefineAttribute({
                   <label className="label">{beutifyLabel(name)}</label>
                   <ButtonsSection>
                     <DeleteButton
-                      className="fa-solid fa-trash"
+                      className="fa-solid fa-trash mini"
                       onClick={(e) => {
                         e.preventDefault();
                         const list = [...attributes[index][name]];
@@ -215,7 +215,7 @@ export function DefineAttribute({
                       }}
                     />
                     <AddButton
-                      className="fa-solid fa-plus"
+                      className="fa-solid fa-plus mini"
                       onClick={(e) => {
                         e.preventDefault();
                         const list = [...attributes[index][name]];
@@ -239,7 +239,7 @@ export function DefineAttribute({
                 <label className="label">{beutifyLabel(name)}</label>
                 {inputs.length === 0 && (
                   <AddButton
-                    className="fa-solid fa-plus"
+                    className="fa-solid fa-plus mini"
                     style={{ width: "100%" }}
                     onClick={(e) => {
                       e.preventDefault();
@@ -354,6 +354,7 @@ export function DefineAttribute({
       })}
       {Object.entries(attributes).length > 1 && !fixed ? (
         <DeleteButton
+          className="fa-solid fa-trash main"
           type="button"
           onClick={() => {
             delete attributes[index];
@@ -361,9 +362,7 @@ export function DefineAttribute({
             delete schema[index];
             setSchema({ ...schema });
           }}
-        >
-          Delete
-        </DeleteButton>
+        />
       ) : null}
       {Object.entries(attributes[index]).length > 2 ? (
         <ExpandButton

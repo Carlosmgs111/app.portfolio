@@ -140,21 +140,21 @@ export const Switch = styled.label`
     height: 0;
   }
   input:checked + .slider {
-    background-color: rgb(240, 38, 223);
+    background-color: #00ffc8;
     &.direction {
       background-color: #f28c0f;
     }
   }
 
   input:focus + .slider {
-    box-shadow: rgb(240, 38, 223);
+    box-shadow: #00ffc8;
     &.direction {
       box-shadow: 0 0 1px #f28c0f;
     }
   }
 
   input:checked + .slider:before {
-    transform: translateX(12px);
+    transform: translateX(13px);
   }
 `;
 
@@ -167,14 +167,14 @@ export const Slider = styled.span`
   bottom: 0;
   background-color: #cccccc;
   transition: 0.4s;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: black;
   &:before {
     position: absolute;
     height: 10px;
     width: 6px;
     left: 2px;
-    bottom: 2px;
+    top: 2px;
     transition: 0.4s;
     background-color: transparent;
   }

@@ -322,7 +322,7 @@ export function Certifications() {
               id="newNote"
               type="button"
               onClick={() => setCurrentModal(null)}
-              className="fa-solid fa-arrow-up-right-from-square"
+              className="fa-solid fa-xmark"
             ></i>
           ),
         }}

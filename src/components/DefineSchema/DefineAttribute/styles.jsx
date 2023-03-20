@@ -172,17 +172,23 @@ export const DeleteButton = styled.button`
   height: fit-content;
   border-radius: 0.4rem;
   border: none;
-  background-color: transparent;
-  -webkit-text-stroke: 1px black;
-  color: #f03b26;
   width: fit-content;
   font-weight: bold;
   transition: 0.2s;
+  background-color: transparent;
+  -webkit-text-stroke: 1px black;
+  color: #f03b26;
+  :hover {
+    font-size: 1.8rem;
+  }
   :focus {
     outline: none;
   }
-  :hover {
-    font-size: 1.8rem;
+  &.main {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 2rem;
   }
 `;
 
@@ -191,17 +197,20 @@ export const AddButton = styled.button`
   height: fit-content;
   border-radius: 0.4rem;
   border: none;
-  background-color: transparent;
-  -webkit-text-stroke: 1px black;
-  color: #21da09;
+  background-color: #21da09;
   width: fit-content;
   font-weight: bold;
   transition: 0.2s;
   :focus {
     outline: none;
   }
-  :hover {
-    font-size: 1.8rem;
+  &.mini {
+    -webkit-text-stroke: 1px black;
+    color: #21da09;
+    background-color: transparent;
+    :hover {
+      font-size: 1.8rem;
+    }
   }
 `;
 

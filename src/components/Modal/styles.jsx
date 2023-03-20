@@ -37,12 +37,17 @@ export const EmbedButton = styled.i`
 `;
 
 export const NativeEmbedButton = styled.i`
-  font-size: 2rem;
+  font-size: 2.4rem;
   color: #f03b26;
   -webkit-text-stroke: 0.8px black;
   position: fixed;
   right: 2%;
   top: 2%;
+  transition: 0.2s;
+  font-weight: 1000;
+  :hover {
+    font-size: 2.8rem;
+  }
 `;
 
 export const ModalContainer = styled.div`
