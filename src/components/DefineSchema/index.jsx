@@ -72,7 +72,7 @@ export function DefineSchema({
   );
 }
 
-export const getOnClickPack = (cb) => {
+export const getHOCAndTrigger = (cb) => {
   let onClickHandlerCallback = null;
   return [
     (params) => (onClickHandlerCallback = () => cb(params)),

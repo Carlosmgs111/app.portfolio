@@ -10,7 +10,7 @@ As a developer you can make the decision if you leave it up to the user how you 
 
   - Fixed:
   
-    ```html
+    ```jsx
     // these styles are important so as not to break the display of the component
     <div style={{ display: "flex", position: "sticky" }}>
       // pass the MultiSidebar component an array of the sidebars to include,
@@ -24,7 +24,7 @@ As a developer you can make the decision if you leave it up to the user how you 
 
   - Floating:
 
-    ```html
+    ```jsx
     // pass the MultiSidebar component an array of the sidebars to include,
     // in this case with the variable `sidebars`
     <MultiSidebar sidebars={sidebars}/>
@@ -38,7 +38,7 @@ As a developer you can make the decision if you leave it up to the user how you 
 
 
 - Let the user decide:
-  ```html
+  ```jsx
     // same as the previous case, only now the content to be controlled 
     // by the MultiSidebar must be wrapped by the component
     <MultiSidebar sidebars={sidebars}>

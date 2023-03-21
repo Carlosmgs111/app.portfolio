@@ -45,7 +45,7 @@ export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
         onClickHandler({
           setError,
           setLoading,
-          parsedSchema: parseSchema(false),
+          data: parseSchema(false),
           reset,
         }),
     };
@@ -56,7 +56,7 @@ export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
     highOrderCallback({
       setError,
       setLoading,
-      parsedSchema: parseSchema(false),
+      data: parseSchema(false),
       reset,
     });
 

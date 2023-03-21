@@ -14,10 +14,7 @@ import { useNearScreen } from "../../hooks/useNearScreen";
 import { labelCases } from "../../utils";
 import { useEffect, useState } from "react";
 import { useSwitch } from "../../hooks/useSwitch";
-import {
-  DefineSchema,
-  getOnClickPack,
-} from "../../components/DefineSchema";
+import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
 import { runButtonBehavior } from "../../utils";
 import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
@@ -39,26 +36,29 @@ export function Skill({
 
   useEffect(() => {}, [show, ref]);
 
-  // ? 2️⃣ callback to be passed as parameter to setup function
-  const defineSchemaCallback = (params) => {
-    const { setError, setLoading, parsedSchema, reset } = params;
+  // ? 1️⃣ Define the callback to be passed as high order callback
+  const updateHOC = (params) => {
+    const { setError, setLoading, data, reset } = params;
     const toUpdate = {};
-    for (var attr in parsedSchema[0]) {
-      if (parsedSchema[0][attr] !== skill[attr])
-        toUpdate[attr] = parsedSchema[0][attr];
+    for (var attr in data[0]) {
+      if (data[0][attr] !== skill[attr])
+        toUpdate[attr] = data[0][attr];
     }
     runRequest({
-      setData: (data) => {
-        setSkill({ ...data });
-        updateState(({ state, setElements }) => {
-          const newSkills = [...state.skills];
-          newSkills.splice(
-            newSkills.findIndex((s) => s.uuid === data.uuid),
-            1,
-            data
-          );
-          setElements(newSkills.map((s) => s.name));
-        });
+      setData: ({ updated }) => {
+        if (updated) {
+          const skillUpdated = { ...skill, ...data[0] };
+          setSkill({ ...skillUpdated });
+          updateState(({ state, setElements }) => {
+            const newSkills = [...state.skills];
+            newSkills.splice(
+              newSkills.findIndex((s) => s.uuid === skillUpdated.uuid),
+              1,
+              skillUpdated
+            );
+            setElements(newSkills.map((s) => s.name));
+          });
+        }
       },
       setError,
       setLoading,
@@ -73,15 +73,15 @@ export function Skill({
     switchBeingEdited();
   };
 
-  // ? 3️⃣ function to set callback
-  const [highOrderCallback, onClickHandler] =
-    getOnClickPack(defineSchemaCallback);
+  // ? 2️⃣ Function to obtain the provided callback as the high order callback to be passed to
+  // ? DefineSchema component as argument 'hightOrderCallback' and its respective trigger
+  const [highOrderCallback, HOCTrigger] = getHOCAndTrigger(updateHOC);
 
   const onClick = (e) => {
     const behaviors = {
       primary: () => {
         beingEdited
-          ? onClickHandler()
+          ? HOCTrigger()
           : (() => {
               const result = window.confirm(
                 `Are you sure you want to delete project ${name}`

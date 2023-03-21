@@ -319,7 +319,6 @@ export function Certifications() {
           over: !false,
           embedButton: (
             <i
-              id="newNote"
               type="button"
               onClick={() => setCurrentModal(null)}
               className="fa-solid fa-xmark"

@@ -10,10 +10,7 @@ import {
   ButtonsSection,
   Button,
 } from "./styles";
-import {
-  DefineSchema,
-  getOnClickPack,
-} from "../../components/DefineSchema";
+import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { useSwitch } from "../../hooks/useSwitch";
 import { labelCases } from "../../utils";
@@ -39,26 +36,29 @@ export const Project = ({
 
   useEffect(() => {}, [show, ref]);
 
-  // ? 2️⃣ callback to be passed as parameter to setup function
-  const defineSchemaCallback = (params) => {
-    const { setError, setLoading, parsedSchema, reset } = params;
+  // ? 1️⃣ Define the callback to be passed as high order callback
+  const updateHOC = (params) => {
+    const { setError, setLoading, data, reset } = params;
     const toUpdate = {};
-    for (var attr in parsedSchema[0]) {
-      if (parsedSchema[0][attr] !== project[attr])
-        toUpdate[attr] = parsedSchema[0][attr];
+    for (var attr in data[0]) {
+      if (data[0][attr] !== project[attr])
+        toUpdate[attr] = data[0][attr];
     }
     runRequest({
-      setData: (data) => {
-        setProject({ ...data });
-        updateState(({ state, setElements }) => {
-          const newProjects = [...state.projects];
-          newProjects.splice(
-            newProjects.findIndex((c) => c.uuid === data.uuid),
-            1,
-            data
-          );
-          setElements(newProjects.map((p) => p.name));
-        });
+      setData: ({ updated }) => {
+        if (updated) {
+          const projectUpdated = { ...project, ...data[0] };
+          setProject({ ...projectUpdated });
+          updateState(({ state, setElements }) => {
+            const newProjects = [...state.projects];
+            newProjects.splice(
+              newProjects.findIndex((c) => c.uuid === projectUpdated.uuid),
+              1,
+              projectUpdated
+            );
+            setElements(newProjects.map((p) => p.name));
+          });
+        }
       },
       setError,
       setLoading,
@@ -73,15 +73,15 @@ export const Project = ({
     switchBeingEdited();
   };
 
-  // ? 3️⃣ function to set callback
-  const [highOrderCallback, OnClickHandler] =
-    getOnClickPack(defineSchemaCallback);
+  // ? 2️⃣ Function to obtain the provided callback as the high order callback to be passed to 
+  // ? DefineSchema component as argument 'hightOrderCallback' and its respective trigger 
+  const [highOrderCallback, HOCTrigger] = getHOCAndTrigger(updateHOC);
 
   const onClick = (e) => {
     const behaviors = {
       primary: () => {
         beingEdited
-          ? OnClickHandler()
+          ? HOCTrigger()
           : (() => {
               const result = window.confirm(
                 `Are you sure you want to delete project ${name}`

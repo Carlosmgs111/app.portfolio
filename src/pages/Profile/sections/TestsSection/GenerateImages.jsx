@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import { socket } from "../../../../services";
 import {
   DefineSchema,
-  getOnClickPack,
+  getHOCAndTrigger,
 } from "../../../../components/DefineSchema";
 
 export function GenerateImage() {
@@ -39,8 +39,9 @@ export function GenerateImage() {
 
   const requestHeaders = headers();
 
+  // ? 1️⃣ Define the callback to be passed as high order callback
   const generateImageCallback = (params) => {
-    const { parsedSchema, reset } = params;
+    const { data, reset } = params;
     const {
       alto,
       ancho,
@@ -48,7 +49,7 @@ export function GenerateImage() {
       pasosDeInferencia,
       guiaDeEscala,
       semilla,
-    } = parsedSchema[0];
+    } = data[0];
     setSettings({
       ...settings,
       ancho: Number(ancho),
@@ -71,7 +72,9 @@ export function GenerateImage() {
     });
   };
 
-  const [highOrderCallback, onClickHandler] = getOnClickPack(
+  // ? 2️⃣ Function to obtain the provided callback as the high order callback to be passed to
+  // ? DefineSchema component as argument 'hightOrderCallback' and its respective trigger
+  const [highOrderCallback, onClickHandler] = getHOCAndTrigger(
     generateImageCallback
   );
 
