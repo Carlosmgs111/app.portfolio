@@ -37,7 +37,7 @@ export const Project = ({
   useEffect(() => {}, [show, ref]);
 
   // ? 1️⃣ Define the callback to be passed as high order callback
-  const updateHOC = (params) => {
+  const updateCallback = (params) => {
     const { setError, setLoading, data, reset } = params;
     const toUpdate = {};
     for (var attr in data[0]) {
@@ -75,7 +75,7 @@ export const Project = ({
 
   // ? 2️⃣ Function to obtain the provided callback as the high order callback to be passed to 
   // ? DefineSchema component as argument 'hightOrderCallback' and its respective trigger 
-  const [highOrderCallback, HOCTrigger] = getHOCAndTrigger(updateHOC);
+  const [highOrderCallback, HOCTrigger] = getHOCAndTrigger(updateCallback);
 
   const onClick = (e) => {
     const behaviors = {

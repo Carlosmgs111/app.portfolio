@@ -37,7 +37,7 @@ export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
     setAttributes({ [genRandomId()]: baseSchema });
     setSchema({});
   };
-
+  
   const onClick = async (e) => {
     const behaviors = {
       add: addDefineAttribute,

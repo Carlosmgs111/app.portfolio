@@ -1,8 +1,6 @@
 import { useEffect, useState, Children, cloneElement } from "react";
 import {
   FloatContainer,
-  SettingsDashboard,
-  SettingsContainer,
   Wrapper,
   Sidebar,
   Body,
@@ -10,9 +8,8 @@ import {
   Footer,
   Item,
   Main,
-  Switch,
-  Slider,
 } from "./styles";
+import { SettingsDashboard } from "./SettingsDashboard";
 import { useSwitch } from "../../../hooks/useSwitch";
 import { injectAttrsToReactElements } from "../../../utils";
 
@@ -72,24 +69,14 @@ export const MultiSidebar = (props) => {
             ></Item>
           </Footer>
         </Sidebar>
-        <SettingsContainer>
-          <SettingsDashboard show={settingsDashboard}>
-            <form>
-              <label>Flotante: </label>
-              <Switch className="switch ">
-                <input
-                  checked={float}
-                  type="checkbox"
-                  name="based-on"
-                  onChange={switchFloat}
-                ></input>
-                <Slider
-                  className={`slider round fa-solid fa-circle-dot`}
-                ></Slider>
-              </Switch>
-            </form>
-          </SettingsDashboard>
-        </SettingsContainer>
+        <SettingsDashboard
+          {...{
+            float,
+            switchFloat,
+            settingsDashboard,
+            switchSettingsDashboard,
+          }}
+        />
       </Main>
     </FloatContainer>
   );

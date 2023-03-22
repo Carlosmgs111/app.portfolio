@@ -1,4 +1,4 @@
-import { URL_API } from ".";
+import { URL_API } from "..";
 import axios from "axios";
 
 const methods = Object.freeze(["get", "post", "put", "patch", "delete"]);
