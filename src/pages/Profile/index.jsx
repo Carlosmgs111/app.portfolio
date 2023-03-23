@@ -26,7 +26,7 @@ export function Profile({ clearAuth }) {
     dispatch,
   ] = useStateValue();
   const [currentContent, setCurrentContent] = useState(
-    <TestsSection/>
+    <Settings {...{ avatar }} />
   );
 
   const navigate = useNavigate();

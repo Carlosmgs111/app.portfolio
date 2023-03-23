@@ -10,6 +10,8 @@ export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
   const [attributes, setAttributes] = useState({});
   const listOfDefineAttributes = [];
 
+  console.log({ schema, attributes });
+
   if (highOrderCallback) onClickHandler = highOrderCallback;
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
     setAttributes({ [genRandomId()]: baseSchema });
     setSchema({});
   };
-  
+
   const onClick = async (e) => {
     const behaviors = {
       add: addDefineAttribute,

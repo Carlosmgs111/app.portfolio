@@ -1,4 +1,4 @@
-import { DefineAttribute } from "./DefineAttribute/index.jsx";
+import { InputForm } from "./InputForm/index.jsx";
 import { FormStyle, Content, Button } from "./styles";
 import { hook } from "./hook";
 import { OnError } from "../OnError";
@@ -41,7 +41,7 @@ export function DefineSchema({
       <FormStyle>
         {Mapfy(attributes).forEach((_, index) => {
           listOfDefineAttributes.push(
-            <DefineAttribute
+            <InputForm
               {...{
                 key: index,
                 index,
@@ -79,4 +79,3 @@ export const getHOCAndTrigger = (cb) => {
     () => onClickHandlerCallback(),
   ];
 };
-
