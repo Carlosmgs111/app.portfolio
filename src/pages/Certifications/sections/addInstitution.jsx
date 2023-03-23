@@ -16,12 +16,12 @@ export const addInstitution = ({
           title: "Add New Institution(s)",
           baseSchema: institutionSchema,
           nonOptionals: ["name", "businessName", "descriptions", "urls"],
-          onClickHandler: ({ setError, setLoading, parsedSchema, reset }) => {
+          onClickHandler: ({ setError, setLoading, data, reset }) => {
             runRequest({
               setData: (data) => setInstitutions([...institutions, ...data]),
               setError,
               setLoading,
-            }).post(`institutions`, parsedSchema[0], {
+            }).post(`institutions`, data[0], {
               ...requestHeaders,
             });
             reset();

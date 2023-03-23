@@ -81,6 +81,7 @@ export function GenerateImage() {
   useEffect(() => {
     runRequest({
       setData: (data) => {
+        console.log({data})
         const { outputs, sizes, inferenceSteps, guidanceScale } = data;
         setSettings({
           numeroDeResultados: 1,

@@ -26,7 +26,7 @@ export const addCertification = ({
             "tags",
           ],
           onClickHandler: (params) => {
-            const { setError, setLoading, parsedSchema, reset } = params;
+            const { setError, setLoading, data, reset } = params;
             runRequest({
               setData: (data) => {
                 setCertifications([
@@ -42,7 +42,7 @@ export const addCertification = ({
               setLoading,
             }).post(
               `certifications/certifications`,
-              { certifications: parsedSchema },
+              { certifications: data },
               {
                 ...requestHeaders,
               }

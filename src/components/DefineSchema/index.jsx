@@ -1,5 +1,5 @@
 import { InputForm } from "./InputForm/index.jsx";
-import { FormStyle, Content, Button } from "./styles";
+import { FormStyle, Content, Button, SubmitButton } from "./styles";
 import { hook } from "./hook";
 import { OnError } from "../OnError";
 import { OnLoading } from "../OnLoading";
@@ -26,7 +26,7 @@ export function DefineSchema({
     error,
     reset,
   } = hook({ baseSchema, onClickHandler, highOrderCallback });
-
+  console.log(Mapfy(schema).size);
   return (
     <Content>
       <h2>{title}</h2>
@@ -38,7 +38,7 @@ export function DefineSchema({
         value={label}
         onChange={(e) => setLabel(e.target.value)}
       />
-      <FormStyle>
+      <FormStyle name="main" onSubmit={onClick}>
         {Mapfy(attributes).forEach((_, index) => {
           listOfDefineAttributes.push(
             <InputForm
@@ -55,6 +55,11 @@ export function DefineSchema({
           );
         })}
         {listOfDefineAttributes}
+        <SubmitButton
+          name="main"
+          type="submit"
+          disabled={Mapfy(schema).size > 1}
+        ></SubmitButton>
       </FormStyle>
       {Mapfy(buttons).has("add") && (
         <Button name="add" type="button" onClick={onClick}>

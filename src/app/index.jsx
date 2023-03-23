@@ -136,7 +136,7 @@ export function App() {
           active: false,
           injected: currentModal,
           over: !false,
-          embedButton: (
+          embedbutton: (
             <i
               id="newNote"
               type="button"

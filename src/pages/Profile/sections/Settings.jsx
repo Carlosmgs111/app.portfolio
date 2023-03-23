@@ -34,8 +34,8 @@ export function Settings() {
             "activo",
           ],
           buttons: { main: "Cambiar" },
-          onClickHandler: ({ setError, setLoading, parsedSchema, reset }) => {
-            const { nombreDeUsuario: newUsername } = parsedSchema[0];
+          onClickHandler: ({ setError, setLoading, data, reset }) => {
+            const { nombreDeUsuario: newUsername } = data[0];
             runRequest({
               setData,
             }).patch(
@@ -57,8 +57,8 @@ export function Settings() {
           },
           nonOptionals: ["nombreDeUsuario"],
           buttons: { main: "Cambiar" },
-          onClickHandler: ({ setError, setLoading, parsedSchema, reset }) => {
-            const { nombreDeUsuario: newUsername } = parsedSchema[0];
+          onClickHandler: ({ setError, setLoading, data, reset }) => {
+            const { nombreDeUsuario: newUsername } = data[0];
             runRequest({
               setData,
             }).patch(
@@ -80,8 +80,8 @@ export function Settings() {
           },
           nonOptionals: ["nuevoAvatar"],
           buttons: { main: "Cambiar" },
-          onClickHandler: ({ setError, setLoading, parsedSchema, reset }) => {
-            const { nuevoAvatar: newAvatar } = parsedSchema[0];
+          onClickHandler: ({ setError, setLoading, data, reset }) => {
+            const { nuevoAvatar: newAvatar } = data[0];
             runRequest({
               setData,
             }).patch(
@@ -104,9 +104,9 @@ export function Settings() {
           },
           nonOptionals: ["contraseña", "nuevaContraseña"],
           buttons: { main: "Cambiar" },
-          onClickHandler: ({ setError, setLoading, parsedSchema, reset }) => {
+          onClickHandler: ({ setError, setLoading, data, reset }) => {
             const { contraseña: oldPassword, nuevaContraseña: newPassword } =
-              parsedSchema[0];
+              data[0];
             runRequest({
               setData,
             }).patch(

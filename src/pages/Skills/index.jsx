@@ -98,9 +98,11 @@ export function Skills() {
                           onClickHandler: ({
                             setError,
                             setLoading,
-                            parsedSchema,
+                            data,
                             reset,
                           }) => {
+                            console.log("🚀 ~ file: index.jsx:104 ~ Skills ~ data:", data)
+                            
                             runRequest({
                               setData: (data) => {
                                 setSkills([...skills, ...data]);
@@ -113,7 +115,7 @@ export function Skills() {
                               setLoading,
                             }).post(
                               `skills/skills`,
-                              { skills: parsedSchema },
+                              { skills: data },
                               {
                                 ...requestHeaders,
                               }
@@ -163,7 +165,7 @@ export function Skills() {
           active: false,
           injected: currentModal,
           over: !false,
-          embedButton: (
+          embedbutton: (
             <i
               id="newNote"
               type="button"

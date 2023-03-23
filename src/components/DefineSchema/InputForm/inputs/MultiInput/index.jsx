@@ -3,12 +3,14 @@ import { AddButton, DeleteButton, ButtonsSection } from "../../styles";
 import { beutifyLabel, labelCases } from "../../../../../utils";
 
 export const MultiInput = ({
-  keyName,
   value,
   name,
   onChange,
-  nonOptionals,
+  index,
   attributes,
+  setAttributes,
+  schema,
+  setSchema,
 }) => {
   const inputs = [];
   value.forEach((text, i) =>
@@ -24,6 +26,7 @@ export const MultiInput = ({
         <ButtonsSection>
           <DeleteButton
             className="fa-solid fa-trash mini"
+            type="button"
             onClick={(e) => {
               e.preventDefault();
               const list = [...attributes[index][name]];
@@ -46,6 +49,7 @@ export const MultiInput = ({
           />
           <AddButton
             className="fa-solid fa-plus mini"
+            type="button"
             onClick={(e) => {
               e.preventDefault();
               const list = [...attributes[index][name]];
@@ -71,6 +75,7 @@ export const MultiInput = ({
         <AddButton
           className="fa-solid fa-plus mini"
           style={{ width: "100%" }}
+          type="button"
           onClick={(e) => {
             e.preventDefault();
             const list = [...attributes[index][name]];

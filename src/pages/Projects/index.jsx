@@ -111,7 +111,7 @@ export function Projects() {
                             onClickHandler: ({
                               setError,
                               setLoading,
-                              parsedSchema,
+                              data,
                               reset,
                             }) => {
                               runRequest({
@@ -126,7 +126,7 @@ export function Projects() {
                                 setLoading,
                               }).post(
                                 `projects/projects`,
-                                { projects: parsedSchema },
+                                { projects: data },
                                 {
                                   ...requestHeaders,
                                 }
@@ -196,7 +196,7 @@ export function Projects() {
         {...{
           injected: currentModal,
           over: !false,
-          embedButton: (
+          embedbutton: (
             <i
               id="newNote"
               type="button"

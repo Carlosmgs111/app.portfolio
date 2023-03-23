@@ -41,3 +41,13 @@ export const Button = styled.button`
   font-size: 1.6rem;
   margin: 1rem 0;
 `;
+
+export const SubmitButton = styled.button`
+  border: none;
+  z-index: -1;
+  :focus,
+  :active,
+  :hover {
+    outline: none;
+  }
+`;

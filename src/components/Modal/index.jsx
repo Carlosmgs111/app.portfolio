@@ -10,7 +10,7 @@ export const Modal = ({
   children,
   className,
   injected,
-  embedButton,
+  embedbutton,
   active = false,
   onClick = null,
   over = true,
@@ -23,13 +23,13 @@ export const Modal = ({
       {Children.toArray(children || injected).map((child) =>
         cloneElement(child, {
           ...child.props,
-          embedButton: child?.props?.embedButton && (
-            <EmbedButton>{child.props.embedButton}</EmbedButton>
+          embedbutton: child?.props?.embedbutton && (
+            <EmbedButton>{child.props.embedbutton}</EmbedButton>
           ),
           disabled: true,
         })
       )}
-      {embedButton && <NativeEmbedButton>{embedButton}</NativeEmbedButton>}
+      {embedbutton && <NativeEmbedButton>{embedbutton}</NativeEmbedButton>}
     </ModalStyle>
   );
 };

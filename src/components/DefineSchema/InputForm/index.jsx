@@ -147,12 +147,14 @@ export function InputForm({
             return (
               <MultiInput
                 {...{
-                  keyName,
                   value,
                   name,
                   onChange,
-                  nonOptionals,
+                  index,
                   attributes,
+                  setAttributes,
+                  schema,
+                  setSchema,
                 }}
               />
             );

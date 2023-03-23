@@ -38,11 +38,14 @@ export function Skill({
 
   // ? 1️⃣ Define the callback to be passed as high order callback
   const updateCallback = (params) => {
+    console.log(
+      "🚀 ~ file: index.jsx:41 ~ updateCallback ~ updateCallback:",
+      updateCallback
+    );
     const { setError, setLoading, data, reset } = params;
     const toUpdate = {};
     for (var attr in data[0]) {
-      if (data[0][attr] !== skill[attr])
-        toUpdate[attr] = data[0][attr];
+      if (data[0][attr] !== skill[attr]) toUpdate[attr] = data[0][attr];
     }
     runRequest({
       setData: ({ updated }) => {

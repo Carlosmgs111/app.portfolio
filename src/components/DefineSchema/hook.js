@@ -12,8 +12,6 @@ export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
 
   console.log({ schema, attributes });
 
-  if (highOrderCallback) onClickHandler = highOrderCallback;
-
   useEffect(() => {
     setAttributes({ [genRandomId()]: baseSchema });
     return () => reset();
@@ -28,6 +26,19 @@ export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
     return parsedSchema;
   };
 
+  const reset = () => {
+    setAttributes({ [genRandomId()]: baseSchema });
+    setSchema({});
+  };
+
+  if (highOrderCallback)
+    onClickHandler = highOrderCallback({
+      setError,
+      setLoading,
+      data: parseSchema(false),
+      reset,
+    });
+
   const addDefineAttribute = () => {
     setAttributes({
       ...attributes,
@@ -35,12 +46,8 @@ export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
     });
   };
 
-  const reset = () => {
-    setAttributes({ [genRandomId()]: baseSchema });
-    setSchema({});
-  };
-
   const onClick = async (e) => {
+    e.preventDefault();
     const behaviors = {
       add: addDefineAttribute,
       main: () =>

@@ -317,7 +317,7 @@ export function Certifications() {
           active: false,
           injected: currentModal,
           over: !false,
-          embedButton: (
+          embedbutton: (
             <i
               type="button"
               onClick={() => setCurrentModal(null)}
