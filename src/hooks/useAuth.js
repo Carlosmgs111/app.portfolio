@@ -6,7 +6,7 @@ function useAuth() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
   const [token, setToken] = useLocalStorage("token", "");
   const [apiKey, setApiKey] = useLocalStorage("apiKey", "");
-  const [expire, setExpire] = useLocalStorage("expire", "");
+  const [expire, setExpire] = useLocalStorage("expire", 0);
   const [username, setUsername] = useLocalStorage("username", "");
   const [email, setEmail] = useLocalStorage("email", "");
   const [createdAt, setCreatedAt] = useLocalStorage("createdAt", "");
@@ -16,9 +16,10 @@ function useAuth() {
   const [{}, dispatch] = useStateValue();
 
   useEffect(() => {
-    if (!expireValidation(expire) && expire) {
-      window.alert("Session expired!");
+    if (expire && !expireValidation(expire)) {
       clearAuth();
+      window.alert("Session expired!");
+      return;
     }
     setAuth({
       token,
@@ -30,11 +31,11 @@ function useAuth() {
       privilege,
       avatar,
     });
-  }, [token, apiKey]);
+  }, []);
 
   const expireValidation = (expire) => {
     const currentDateTime = Date.parse(new Date(Date.now()));
-    return currentDateTime < expire;
+    return currentDateTime < expire * 1000;
   };
 
   const setAuth = ({
@@ -60,7 +61,7 @@ function useAuth() {
         avatar,
       },
     });
-    if (expire) expire = Date.parse(new Date(Date.now())) + Number(expire);
+    // if (expire) expire = Date.parse(new Date(Date.now())) + Number(expire);
     setToken(token);
     setApiKey(apiKey);
     setExpire(expire);
@@ -74,7 +75,7 @@ function useAuth() {
   const clearAuth = () => {
     setToken("");
     setApiKey("");
-    setExpire("");
+    setExpire(0);
     setUsername("");
     setEmail("");
     setCreatedAt("");

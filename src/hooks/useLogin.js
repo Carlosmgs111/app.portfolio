@@ -12,8 +12,8 @@ function useLogin() {
   const [{ token }] = useStateValue();
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("" || config.email);
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("" /* || config.email */);
+  const [username, setUsername] = useState(""|| config.username);
   const [password, setPassword] = useState("" || config.password);
   const [label, switchLabel] = useSwitch("signin", "signup");
   const { setAuth } = useAuth();
