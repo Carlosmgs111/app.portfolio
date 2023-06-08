@@ -195,6 +195,7 @@ export function Projects() {
       <Modal
         {...{
           injected: currentModal,
+          setInjected: setCurrentModal,
           over: !false,
           embedbutton: (
             <i

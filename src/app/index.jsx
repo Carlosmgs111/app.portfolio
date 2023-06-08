@@ -91,7 +91,9 @@ export function App() {
               onClick: (e) => {
                 e.preventDefault();
                 // switchShowLogin();
-                setCurrentModal(<Login {...{onLogged:()=>setCurrentModal(null)}} />);
+                setCurrentModal(
+                  <Login {...{ onLogged: () => setCurrentModal(null) }} />
+                );
               },
               hidden: Boolean(token),
             },
@@ -135,6 +137,7 @@ export function App() {
         {...{
           active: false,
           injected: currentModal,
+          setInjected: setCurrentModal,
           over: !false,
           embedbutton: (
             <i

@@ -26,15 +26,7 @@ const reducer = (state, action) => {
   const actions = {
     [actionTypes.setAuth]: {
       ...state,
-      apiKey: payload?.apiKey,
-      token: payload?.token,
-      expire: payload?.expire,
-      username: payload?.username,
-      email: payload?.email,
-      createdAt: payload?.createdAt,
-      privilege: payload?.privilege,
-      avatar: payload?.avatar,
-      loading: false,
+      ...payload,
     },
     [actionTypes.setLoading]: { ...state, loading: payload },
     [actionTypes.setSearchedUsername]: { ...state, searchedUsername: payload },

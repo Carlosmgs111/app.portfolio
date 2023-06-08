@@ -20,18 +20,15 @@ function useAuth() {
       window.alert("Session expired!");
       clearAuth();
     }
-    dispatch({
-      type: ACTIONS.setAuth,
-      payload: {
-        token,
-        apiKey,
-        expire,
-        username,
-        email,
-        createdAt,
-        privilege,
-        avatar,
-      },
+    setAuth({
+      token,
+      apiKey,
+      expire,
+      username,
+      email,
+      createdAt,
+      privilege,
+      avatar,
     });
   }, [token, apiKey]);
 
@@ -50,6 +47,19 @@ function useAuth() {
     privilege,
     avatar,
   }) => {
+    dispatch({
+      type: ACTIONS.setAuth,
+      payload: {
+        token,
+        apiKey,
+        expire,
+        username,
+        email,
+        createdAt,
+        privilege,
+        avatar,
+      },
+    });
     if (expire) expire = Date.parse(new Date(Date.now())) + Number(expire);
     setToken(token);
     setApiKey(apiKey);

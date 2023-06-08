@@ -164,6 +164,7 @@ export function Skills() {
         {...{
           active: false,
           injected: currentModal,
+          setInjected: setCurrentModal,
           over: !false,
           embedbutton: (
             <i

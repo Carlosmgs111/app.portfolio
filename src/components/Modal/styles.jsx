@@ -7,20 +7,26 @@ export const ModalStyle = styled.div`
   justify-content: space-around;
   justify-items: center;
   position: fixed;
-  backdrop-filter: brightness(50%);
+  backdrop-filter: brightness(30%);
   color: white;
-  z-index: ${({ over }) => (over ? 1000 : 0)};
-  opacity: 1;
   animation: modal 500ms ease-out forwards;
   transition: transform 1s linear;
   width: 100%;
   height: 100%;
   top: 0;
+  z-index: ${({ over }) => (over ? 1000 : 0)};
+  z-index: ${({ isActive, over }) => {
+    if (isActive && over) return 1000;
+    if (isActive && !over) return 0;
+    return -1;
+  }};
+  opacity: ${({ isActive }) => (isActive ? 1 : 0)};
   left: ${({ isActive }) => (isActive ? "0%" : "100%")};
+  left: 0;
   padding: 0;
   margin: 0;
   overflow: scroll;
-  transition: left 0.4s;
+  transition: 0.4s;
   &::-webkit-scrollbar {
     display: none;
   }

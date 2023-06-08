@@ -52,7 +52,7 @@ export const FormStyle = styled.div`
     }
   }
   input[type="range"] {
-    -webkit-appearance: none;
+    appearance: none;
     width: 100%;
     height: 1rem;
     background: rgba(255, 255, 255, 0.6);

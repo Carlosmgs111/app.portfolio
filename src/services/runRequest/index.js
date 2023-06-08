@@ -4,7 +4,7 @@ import axios from "axios";
 const methods = Object.freeze(["get", "post", "put", "patch", "delete"]);
 
 export function runRequest({ setData, setLoading, setError } = {}) {
-  const fetch = async (method, ...args) => {
+  const _fetch = async (method, ...args) => {
     let data = null;
     let error = null;
     let loading = true;
@@ -29,7 +29,7 @@ export function runRequest({ setData, setLoading, setError } = {}) {
   return Object.fromEntries(
     methods.map((method) => [
       method,
-      (...args) => fetch(axios[method], ...args),
+      (...args) => _fetch(axios[method], ...args),
     ])
   );
 }

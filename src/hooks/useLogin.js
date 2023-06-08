@@ -5,17 +5,18 @@ import config from "../config/config";
 import { URL, URL_API } from "../services/index";
 import { getContext, CONTEXTS } from "../contexts";
 import { decodeJwt } from "jose";
-import { useLocalStorage } from "./useLocalStorage";
+import { useAuth } from "./useAuth";
 
 function useLogin() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
-  const [{ token }, dispatch] = useStateValue();
+  const [{ token }] = useStateValue();
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("" || config.email);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("" || config.password);
   const [label, switchLabel] = useSwitch("signin", "signup");
+  const { setAuth } = useAuth();
 
   const signPack = { password, username };
   if (email) signPack.email = email;
@@ -31,33 +32,26 @@ function useLogin() {
           },
         })
       ).data;
-      console.log({ data });
       if (label === "signin") {
-        const { token, apiKey } = data;
-        const { email, createdAt, privilege, username, exp, avatar } =
+        const { token } = data;
+        const { email, createdAt, privilege, username, exp, avatar, apiKey } =
           decodeJwt(token);
-        console.log({ email, createdAt, username, exp });
-        dispatch({
-          type: ACTIONS.setAuth,
-          payload: {
-            token,
-            apiKey,
-            expire: exp,
-            username,
-            createdAt,
-            email,
-            privilege,
-            avatar,
-          },
+        setAuth({
+          token,
+          apiKey,
+          expire: exp,
+          username,
+          createdAt,
+          email,
+          privilege,
+          avatar,
         });
         setLoading(false);
       } else {
-        console.log(data.message);
         setLoading(false);
         setError(false);
       }
     } catch (e) {
-      console.log(e);
       setLoading(false);
       setError(true);
     }

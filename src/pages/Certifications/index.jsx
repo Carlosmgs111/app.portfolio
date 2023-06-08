@@ -316,6 +316,7 @@ export function Certifications() {
         {...{
           active: false,
           injected: currentModal,
+          setInjected: setCurrentModal,
           over: !false,
           embedbutton: (
             <i
