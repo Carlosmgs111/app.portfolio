@@ -26,7 +26,7 @@ export function DefineSchema({
     error,
     reset,
   } = hook({ baseSchema, onClickHandler, highOrderCallback });
-  console.log(Mapfy(schema).size);
+  
   return (
     <Content>
       <h2>{title}</h2>

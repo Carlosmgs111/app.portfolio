@@ -1,26 +1,24 @@
 import { Children, cloneElement } from "react";
 import {
   ModalStyle,
-  EmbedButton,
-  NativeEmbedButton,
-  ModalContainer,
+  CloseButton,
+  ButtonContainer,
+  MainContainer,
 } from "./styles";
 
 export const Modal = ({
   children,
-  className,
   injected,
   setInjected = () => {},
-  embedbutton,
   active = false,
   onClick = null,
   over = true,
+  showCloseButton = true,
 }) => {
   const isActive = active || Boolean(children) || Boolean(injected);
   return (
     <ModalStyle
       {...{
-        classname: `${className}`,
         onClick: (e) => {
           if (e.target.id === "modal_body") setInjected(null);
         },
@@ -29,18 +27,23 @@ export const Modal = ({
         id: "modal_body",
       }}
     >
-      {Children.toArray(children || injected).map((child) =>
-        cloneElement(child, {
-          ...child.props,
-          embedbutton: child?.props?.embedbutton && (
-            <EmbedButton>{child.props.embedbutton}</EmbedButton>
-          ),
-          disabled: true,
-        })
-      )}
-      {embedbutton && <NativeEmbedButton>{embedbutton}</NativeEmbedButton>}
+      <MainContainer>
+        {Children.toArray(children || injected).map((child) =>
+          cloneElement(child, {
+            ...child.props,
+            disabled: true,
+            style: { maxHeight: "90vh" },
+          })
+        )}
+        {showCloseButton && (
+          <ButtonContainer>
+            <CloseButton
+              className="fa-solid fa-xmark"
+              onClick={() => setInjected(null)}
+            />
+          </ButtonContainer>
+        )}
+      </MainContainer>
     </ModalStyle>
   );
 };
-
-export { ModalContainer };

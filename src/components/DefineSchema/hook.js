@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { genRandomId } from "../../utils";
 import { runButtonBehavior } from "../../utils";
 
 export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
   const [label, setLabel] = useState("");
-  const [schema, setSchema] = useState({});
+  const [schema, setSchema] = useState(useMemo(() => ({})));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [attributes, setAttributes] = useState({});

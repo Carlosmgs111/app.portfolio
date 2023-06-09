@@ -58,19 +58,20 @@ export const ImagesContainer = styled.div`
 export const Image = styled.img`
   position: absolute;
   position: sticky;
-  max-width: ${({ big }) => (big ? "100%" : "48%")};
+  max-width: ${({ big, zoomed }) => {
+    return big ? "100%" : zoomed ? "100%" : "48%";
+  }};
   max-height: 80%;
   object-fit: cover;
   border-radius: 0.8rem;
   object-position: center center;
   cursor: ${({ zoomed }) => (zoomed ? "zoom-out" : "zoom-in")};
   opacity: ${({ details }) => (!details ? "1" : "0")};
-  transition: opacity 0.4s;
   border: solid 1px transparent;
+  transition: 0.6s;
   &:hover {
     border: solid 1px #f026df;
   }
-  transition: border 0.6s;
   @media (max-width: 1360px) {
     max-width: 32%;
     justify-content: space-around;

@@ -197,14 +197,6 @@ export function Projects() {
           injected: currentModal,
           setInjected: setCurrentModal,
           over: !false,
-          embedbutton: (
-            <i
-              id="newNote"
-              type="button"
-              onClick={() => setCurrentModal(null)}
-              className="fa-solid fa-arrow-up-right-from-square"
-            ></i>
-          ),
         }}
       ></Modal>
     </Page>
