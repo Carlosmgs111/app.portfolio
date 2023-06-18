@@ -1,8 +1,10 @@
 // importar la biblioteca socket.io-client
-const io = require("socket.io-client");
+const { connect } = require("socket.io-client");
+// const { SocketService } = require("./SocketService");
+// const ss = new SocketService();
 
 // crear una instancia del cliente SocketIO
-const socket = io("http://127.0.0.1:8765");
+const socket = connect("http://127.0.0.1:8765");
 
 const readline = require("readline");
 
@@ -37,7 +39,7 @@ const rl = readline.createInterface({
 
 function preguntar() {
   rl.question("Ingresa un texto: \n", (texto) => {
-    socket.emit("process_message", { response: "jsResponse", payload: texto });
+    socket.emit("process_message", { jsResponse: texto });
     preguntar(); // Volvemos a llamar a la función para seguir preguntando
   });
 }

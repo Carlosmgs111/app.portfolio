@@ -14,6 +14,8 @@ import { Profile } from "../pages/Profile";
 import { Modal } from "../components/Modal";
 import { injectAttrsToReactElements } from "../utils";
 import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function App() {
   const { clearAuth } = useApp();
@@ -78,6 +80,7 @@ export function App() {
 
   return (
     <>
+      <ToastContainer />
       <Header showFixed={showFixed}>
         <Navigation
           banner={{

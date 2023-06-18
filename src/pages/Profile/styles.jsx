@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   position: sticky;
-  width: 100%;
+  max-width: 100% ;
+  min-width: 100%;
 `;
 
 export const MainContainer = styled.div`

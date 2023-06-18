@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 import { getContext, CONTEXTS } from "../contexts";
+import { toast } from "react-toastify";
 
 function useAuth() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
@@ -14,11 +15,22 @@ function useAuth() {
   const [avatar, setAvatar] = useLocalStorage("avatar", "");
 
   const [{}, dispatch] = useStateValue();
+  const notify = () =>
+    toast.info("Session Expired!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
 
   useEffect(() => {
     if (expire && !expireValidation(expire)) {
       clearAuth();
-      window.alert("Session expired!");
+      notify();
       return;
     }
     setAuth({
