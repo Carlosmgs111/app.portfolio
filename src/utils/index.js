@@ -152,6 +152,8 @@ export const pairKV = (object, depth = 0, get, index = 0) => {
 
 export const Mapfy = (object) => new Map(Object.entries(object));
 
+export const UnMapfy = (map) => Object.fromEntries(map.entries());
+
 /**
  * It takes an array of React elements and injects the same attributes to all of them
  * @param items - an array of React elements

@@ -1,41 +1,46 @@
-const { Server } = require("socket.io");
-const { Mapfy, UnMapfy } = require("../../utils");
+import { connect } from "socket.io-client";
+import { Mapfy } from "../../utils";
 
-module.exports = class SocketService {
-  server = new Server(8765, {
-    cors: {
-      origin: "*",
-    },
-  });
-  sockets = {};
-  events = [];
+export class SocketService {
+  clients = {};
 
-  constructor() {
-    this.server.on("connection", (socket) => {
-      console.log(`${socket.id} Connected!`.green);
-      this.sockets[socket.id] = socket;
-      this.setEvents(socket);
-
-      socket.on("disconnect", () => {
-        console.log(`${socket.id} Disconnected!`.red);
-        const newSockets = Mapfy(this.sockets);
-        newSockets.delete(socket.id);
-        this.sockets = UnMapfy(newSockets);
-      });
-    });
+  constructor(clients = []) {
+    if (clients) {
+      for (let client of clients) {
+        this.addClient(client);
+      }
+    }
+    return this;
   }
 
-  addEvent = (event) => this.events.push(event);
-
-  setEvents = (socket) => {
-    this.events.forEach((event) => {
-      const [name, cb] = Mapfy(event).entries().next().value;
-      socket.addListener(name, (data) => {
-        cb(data, (_result) => {
-          const [response, result] = Mapfy(_result).entries().next().value;
-          socket.emit(response, result);
-        });
-      });
+  addClient = (client) => {
+    const [alias, address] = Mapfy(client).entries().next().value;
+    this.clients[alias] = connect(address);
+    this.clients[alias].on("connect", () => {
+      console.log("Conexión establecida con el servidor.");
     });
+    this.clients[alias].on("disconnect", () => {
+      console.log("Conexión perdida con el servidor.");
+    });
+    this.clients[alias].on("message", (message) => {
+      console.log(`Mensaje recibido del servidor: ${message.payload}`);
+    });
+    this.clients[alias].on("connect_error", (error) => {
+      console.error("Error de conexión:", error);
+    });
+    return this;
   };
-};
+
+  sendMessage = (payload, receiverFunc) => {
+    const [client, _params] = Mapfy(payload).entries().next().value;
+    if (Mapfy(this.clients).size && this.clients[client]) {
+      const [sendTo, ...params] = Mapfy(_params).entries().next().value;
+      let responseName = "receiver_function_not_provided";
+      if (receiverFunc) {
+        responseName = receiverFunc.name;
+        this.clients[client].on(responseName, receiverFunc);
+      }
+      this.clients[client].emit(sendTo, { [responseName]: [...params] });
+    }
+  };
+}

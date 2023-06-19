@@ -3,7 +3,7 @@ import { runRequest } from "../../../../services/runRequest";
 import { headers } from "../../../../services/configs";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
-import { socket } from "../../../../services";
+import { SocketService } from "../../../../services";
 import {
   DefineSchema,
   getHOCAndTrigger,
@@ -14,11 +14,6 @@ export function GenerateImage() {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const [settings, setSettings] = useState(null);
-
-  socket.on("generatedImages", (images) => {
-    setLoading(false);
-    setImages(images);
-  });
 
   const skeletons = [];
   for (let i = 0; i < settings?.numeroDeResultados; i++) {
@@ -39,6 +34,11 @@ export function GenerateImage() {
 
   const requestHeaders = headers();
 
+  function generatedImages(images) {
+    setLoading(false);
+    setImages(images);
+  }
+
   // ? 1️⃣ Define the callback to be passed as high order callback
   const generateImageCallback = (params) => {
     const { data, reset } = params;
@@ -57,19 +57,27 @@ export function GenerateImage() {
       numeroDeResultados: Number(numeroDeResultados),
     });
     setLoading(true);
-    socket.emit("generateImage", {
-      prompt,
-      options: {
-        width: Number(ancho),
-        height: Number(alto),
-        num_outputs: Number(numeroDeResultados),
-        num_inference_steps: Number(pasosDeInferencia),
-        guidance_scale: Number(guiaDeEscala),
-        seed: Boolean(semilla)
-          ? Number(semilla)
-          : Number(String(Math.random()).replace("0.", "")),
+
+    SocketService.sendMessage(
+      {
+        imageService: {
+          generateImage: {
+            prompt,
+            options: {
+              width: Number(ancho),
+              height: Number(alto),
+              num_outputs: Number(numeroDeResultados),
+              num_inference_steps: Number(pasosDeInferencia),
+              guidance_scale: Number(guiaDeEscala),
+              seed: Boolean(semilla)
+                ? Number(semilla)
+                : Number(String(Math.random()).replace("0.", "")),
+            },
+          },
+        },
       },
-    });
+      generatedImages
+    );
   };
 
   // ? 2️⃣ Function to obtain the provided callback as the high order callback to be passed to

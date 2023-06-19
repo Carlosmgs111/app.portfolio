@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 import { getContext, CONTEXTS } from "../contexts";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function useAuth() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
@@ -13,6 +14,7 @@ function useAuth() {
   const [createdAt, setCreatedAt] = useLocalStorage("createdAt", "");
   const [privilege, setPrivilege] = useLocalStorage("privilege", "");
   const [avatar, setAvatar] = useLocalStorage("avatar", "");
+  const navigate = useNavigate();
 
   const [{}, dispatch] = useStateValue();
   const notify = () =>
@@ -31,6 +33,7 @@ function useAuth() {
     if (expire && !expireValidation(expire)) {
       clearAuth();
       notify();
+      navigate("/");
       return;
     }
     setAuth({

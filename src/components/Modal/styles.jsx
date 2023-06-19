@@ -39,8 +39,8 @@ export const MainContainer = styled.div`
 
 export const ButtonContainer = styled.div`
   position: absolute; // Posicion absoluta con respecto a su contenedor
-  top: -2rem;
-  right: -2rem;
+  top: 1rem;
+  right: 1rem;
   align-items: center;
   justify-content: center;
   display: flex;

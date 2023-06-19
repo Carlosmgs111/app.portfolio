@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSwitch } from "./useSwitch";
 import axios from "axios";
-import config from "../config/config";
+import config from "../config";
 import { URL, URL_API } from "../services/index";
 import { getContext, CONTEXTS } from "../contexts";
 import { decodeJwt } from "jose";
@@ -13,7 +13,7 @@ function useLogin() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("" /* || config.email */);
-  const [username, setUsername] = useState(""|| config.username);
+  const [username, setUsername] = useState("" || config.username);
   const [password, setPassword] = useState("" || config.password);
   const [label, switchLabel] = useSwitch("signin", "signup");
   const { setAuth } = useAuth();
