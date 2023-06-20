@@ -34,13 +34,13 @@ export class SocketService {
   sendMessage = (payload, receiverFunc) => {
     const [client, _params] = Mapfy(payload).entries().next().value;
     if (Mapfy(this.clients).size && this.clients[client]) {
-      const [sendTo, ...params] = Mapfy(_params).entries().next().value;
+      const [sendTo, params] = Mapfy(_params).entries().next().value;
       let responseName = "receiver_function_not_provided";
       if (receiverFunc) {
         responseName = receiverFunc.name;
         this.clients[client].on(responseName, receiverFunc);
       }
-      this.clients[client].emit(sendTo, { [responseName]: [...params] });
+      this.clients[client].emit(sendTo, { [responseName]: params });
     }
   };
 }

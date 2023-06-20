@@ -10,6 +10,7 @@ import {
 } from "../../../../components/DefineSchema";
 
 export function GenerateImage() {
+  // console.log({ SocketService });
   const [images, setImages] = useState(null);
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
@@ -61,19 +62,21 @@ export function GenerateImage() {
     SocketService.sendMessage(
       {
         imageService: {
-          generateImage: {
-            prompt,
-            options: {
-              width: Number(ancho),
-              height: Number(alto),
-              num_outputs: Number(numeroDeResultados),
-              num_inference_steps: Number(pasosDeInferencia),
-              guidance_scale: Number(guiaDeEscala),
-              seed: Boolean(semilla)
-                ? Number(semilla)
-                : Number(String(Math.random()).replace("0.", "")),
+          generateImages: [
+            {
+              prompt,
+              options: {
+                width: Number(ancho),
+                height: Number(alto),
+                num_outputs: Number(numeroDeResultados),
+                num_inference_steps: Number(pasosDeInferencia),
+                guidance_scale: Number(guiaDeEscala),
+                seed: Boolean(semilla)
+                  ? Number(semilla)
+                  : Number(String(Math.random()).replace("0.", "")),
+              },
             },
-          },
+          ],
         },
       },
       generatedImages
