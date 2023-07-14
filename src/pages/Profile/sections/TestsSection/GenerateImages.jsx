@@ -38,10 +38,11 @@ export function GenerateImage() {
   function generatedImages(images) {
     setLoading(false);
     setImages(images);
+    return "OK!";
   }
 
   // ? 1️⃣ Define the callback to be passed as high order callback
-  const generateImageCallback = (params) => {
+  const generateImageCallback = async (params) => {
     const { data, reset } = params;
     const {
       alto,
@@ -59,7 +60,7 @@ export function GenerateImage() {
     });
     setLoading(true);
 
-    SocketService.sendMessage(
+    const messageResult = await SocketService.sendMessage(
       {
         imageService: {
           generateImages: [
@@ -81,6 +82,7 @@ export function GenerateImage() {
       },
       generatedImages
     );
+    console.log({ messageResult });
   };
 
   // ? 2️⃣ Function to obtain the provided callback as the high order callback to be passed to

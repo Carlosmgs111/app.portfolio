@@ -32,15 +32,20 @@ export class SocketService {
   };
 
   sendMessage = (payload, receiverFunc) => {
-    const [client, _params] = Mapfy(payload).entries().next().value;
-    if (Mapfy(this.clients).size && this.clients[client]) {
-      const [sendTo, params] = Mapfy(_params).entries().next().value;
-      let responseName = "receiver_function_not_provided";
-      if (receiverFunc) {
-        responseName = receiverFunc.name;
-        this.clients[client].on(responseName, receiverFunc);
+    return new Promise((resolve, reject) => {
+      const [client, _params] = Mapfy(payload).entries().next().value;
+      if (Mapfy(this.clients).size && this.clients[client]) {
+        const [sendTo, params] = Mapfy(_params).entries().next().value;
+        let responseName = "receiver_function_not_provided";
+        if (receiverFunc) {
+          responseName = receiverFunc.name;
+          this.clients[client].on(responseName, (data) => {
+            console.log({ data });
+            resolve(receiverFunc(data));
+          });
+        }
+        this.clients[client].emit(sendTo, { [responseName]: params });
       }
-      this.clients[client].emit(sendTo, { [responseName]: params });
-    }
+    });
   };
 }
