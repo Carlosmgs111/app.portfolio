@@ -32,20 +32,43 @@ export class SocketService {
   };
 
   sendMessage = (payload, receiverFunc) => {
-    return new Promise((resolve, reject) => {
-      const [client, _params] = Mapfy(payload).entries().next().value;
-      if (Mapfy(this.clients).size && this.clients[client]) {
-        const [sendTo, params] = Mapfy(_params).entries().next().value;
-        let responseName = "receiver_function_not_provided";
-        if (receiverFunc) {
-          responseName = receiverFunc.name;
-          this.clients[client].on(responseName, (data) => {
-            console.log({ data });
-            resolve(receiverFunc(data));
-          });
-        }
-        this.clients[client].emit(sendTo, { [responseName]: params });
+    const [client, sendTo, params, receiverFunctionName] =
+      this.extractRemoteHandlersSpecs(payload, receiverFunc);
+    if (Mapfy(this.clients).size && this.clients[client]) {
+      this.clients[client].emit(sendTo, { [receiverFunctionName]: params });
+      if (receiverFunc) {
+        return this.receiveMessage(receiverFunc, client);
       }
+    }
+    return this;
+  };
+
+  receiveMessage = (payload, client) => {
+    let [functionName, cb] = this.extractFunctionSpecs(payload);
+    return new Promise((resolve, reject) => {
+      this.clients[client].on(functionName, (data) => {
+        resolve(cb(data));
+      });
     });
+  };
+
+  extractRemoteHandlersSpecs = (object, receiverFunc) => {
+    let specs = [];
+    const [client, _payload] = Mapfy(object).entries().next().value;
+    const [sendTo, params] = Mapfy(_payload).entries().next().value;
+    specs = [client, sendTo, params];
+    if (receiverFunc)
+      specs = [...specs, this.extractFunctionSpecs(receiverFunc)[0]];
+    return specs;
+  };
+
+  extractFunctionSpecs = (object) => {
+    let [functionName, cb] = ["function_not_provided", (...[]) => {}];
+    if (object instanceof Function) {
+      [functionName, cb] = [object.name, object];
+    } else if (cb instanceof Object) {
+      [functionName, cb] = Mapfy(object).entries().next().value;
+    }
+    return [functionName, cb];
   };
 }
