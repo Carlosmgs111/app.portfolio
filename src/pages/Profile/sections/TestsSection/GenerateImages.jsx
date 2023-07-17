@@ -80,8 +80,12 @@ export function GenerateImage() {
           ],
         },
       },
+      //"generatedImages"
       { generatedImages: (images) => images }
     );
+    /* const messageResult = await SocketService.receiveMessage({
+      imageService: { generatedImages: (images) => images },
+    }); */
     setLoading(false);
     setImages(messageResult);
     console.log({ messageResult });
