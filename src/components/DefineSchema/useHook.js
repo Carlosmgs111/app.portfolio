@@ -2,20 +2,18 @@ import { useState, useEffect, useMemo } from "react";
 import { genRandomId } from "../../utils";
 import { runButtonBehavior } from "../../utils";
 
-export function hook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
+export function useHook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
   const [label, setLabel] = useState("");
   const [schema, setSchema] = useState(useMemo(() => ({})));
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
   const [attributes, setAttributes] = useState({});
   const listOfDefineAttributes = [];
-
-  console.log({ schema, attributes });
 
   useEffect(() => {
     setAttributes({ [genRandomId()]: baseSchema });
     return () => reset();
-  }, []);
+  }, [error]);
 
   const parseSchema = (object = true) => {
     const parsedSchema = object ? {} : [];

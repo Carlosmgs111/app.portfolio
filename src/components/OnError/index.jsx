@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { Message } from './styles'
+import { useEffect } from "react";
+import { Message } from "./styles";
 
 export function OnError({
   error = null,
@@ -8,14 +8,15 @@ export function OnError({
   delay = 3000,
   message,
 }) {
+  console.log({error})
   useEffect(() => {
-    reset && setTimeout(() => reset(), delay)
-    error && useAlert && window.alert(error)
-  }, [error])
+    error && reset && setTimeout(() => reset(), delay);
+    error && useAlert && window.alert(error);
+  }, [error]);
 
   return error ? (
     <Message>
       <p>{message ? message : error.message}</p>
     </Message>
-  ) : null
+  ) : null;
 }

@@ -19,7 +19,7 @@ function useAuth() {
   const [{}, dispatch] = useStateValue();
   const notify = () =>
     toast.info("Session Expired!", {
-      position: "top-right",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -30,7 +30,7 @@ function useAuth() {
     });
 
   useEffect(() => {
-    if (expire && !expireValidation(expire)) {
+    if (expire && isExpired(expire)) {
       clearAuth();
       notify();
       navigate("/");
@@ -48,9 +48,10 @@ function useAuth() {
     });
   }, []);
 
-  const expireValidation = (expire) => {
-    const currentDateTime = Date.parse(new Date(Date.now()));
-    return currentDateTime < expire * 1000;
+  const isExpired = (expire) => {
+    expire = Number(expire) * 1000;
+    const currentDateTime = Date.now();
+    return expire < currentDateTime;
   };
 
   const setAuth = ({

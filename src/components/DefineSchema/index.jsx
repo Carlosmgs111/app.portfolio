@@ -1,6 +1,6 @@
 import { InputForm } from "./InputForm/index.jsx";
 import { FormStyle, Content, Button, SubmitButton } from "./styles";
-import { hook } from "./hook";
+import { useHook } from "./useHook";
 import { OnError } from "../OnError";
 import { OnLoading } from "../OnLoading";
 import { labelCases, Mapfy } from "../../utils/index.js";
@@ -25,7 +25,7 @@ export function DefineSchema({
     loading,
     error,
     reset,
-  } = hook({ baseSchema, onClickHandler, highOrderCallback });
+  } = useHook({ baseSchema, onClickHandler, highOrderCallback });
   
   return (
     <Content>

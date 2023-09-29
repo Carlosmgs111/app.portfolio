@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from "styled-components";
+import styled, { css } from "styled-components";
 import { Link as LinkRouter } from "react-router-dom";
 import { setFrames } from "../../utils";
 
@@ -36,15 +36,6 @@ export const NavigateBar = styled.nav`
   height: inherit;
   @media (max-width: 1360px) {
     /* flex-direction: column; */
-  }
-`;
-
-const fadeinshow = keyframes`
-  from{
-    opacity:0;
-  }
-  to{
-    opacity:1;
   }
 `;
 
@@ -92,6 +83,7 @@ export const to = css`
 
 export const Item = styled.li`
   animation: 1.2s ${(props) => setFrames([to, from], props)} ease;
+  color: ${({ className }) => className?.includes("login") && "#e4ff1a !important"};
   z-index: 1;
   list-style: none;
   padding: 0;

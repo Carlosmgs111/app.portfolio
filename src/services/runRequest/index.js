@@ -8,6 +8,7 @@ export function runRequest({ setData, setLoading, setError } = {}) {
     let data = null;
     let error = null;
     let loading = true;
+    // setError({ message: "ERROR" });
 
     setLoading && setLoading(true);
     args[0] = `${URL_API}/${args[0]}`;

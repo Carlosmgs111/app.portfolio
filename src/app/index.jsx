@@ -4,7 +4,6 @@ import { Routes } from "react-router-dom";
 import { Login } from "../components/Login";
 import { getContext, CONTEXTS } from "../contexts";
 import { RoutesFactory, NavigationItemsFactory } from "../pages";
-import { useSwitch } from "../hooks/useSwitch";
 import { useApp } from "../hooks/useApp";
 import { Home } from "../pages/Home";
 import { Skills } from "../pages/Skills";
@@ -19,12 +18,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 export function App() {
   const { clearAuth } = useApp();
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
+  const [{ useStateValue }] = getContext(CONTEXTS.Global);
   const [
-    { token, loading: globalLoading, avatar, username, searchedUsername },
-    dispatch,
+    { token, avatar, searchedUsername },
   ] = useStateValue();
-  const [showLogin, switchShowLogin] = useSwitch(false, true);
   const [showFixed, setShowFixed] = useState(false);
   const [currentModal, setCurrentModal] = useState(null);
   // useScroll()
@@ -69,6 +66,7 @@ export function App() {
         showCloseButton: false,
         injected: (
           <img
+            alt="work restrictional signal"
             src={
               "https://www.dcs.mx/Manual%20de%20usuario/tutoriales/images/5.jpg"
             }

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { DropzoneBody, DropzoneLabel, FilePreview } from "./styles";
 import { useDropzone } from "react-dropzone";
 import { getSizesDisposition } from "../../utils";
@@ -19,10 +19,9 @@ export function Dropzone({ files, setFiles }) {
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
-
+  
   // * Use reverse method only with 'flex-direction: row'
   const filePreviewSizes = getSizesDisposition(files.length);
-  console.log({ filePreviewSizes });
 
   return (
     <DropzoneBody {...getRootProps()}>
@@ -38,7 +37,7 @@ export function Dropzone({ files, setFiles }) {
             />
           )
       )}
-      <input {...getInputProps()} />
+      <input style={{ overflow: "hidden" }} {...getInputProps()} />
       <DropzoneLabel fileIn={files.length > 0}>
         {isDragActive
           ? "Suelta el archivo aqui ..."

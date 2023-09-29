@@ -46,7 +46,6 @@ export default function Navigation({ children, banner, className }) {
     setCurrent(Number(e.target.id));
     if (menu.show) switchMenu();
     console.log({ target: e.target.id });
-    child.props.onClick;
   };
 
   const childrens = Children.toArray(children);
@@ -119,7 +118,7 @@ export default function Navigation({ children, banner, className }) {
                 var LinkedItem = child.props.children.props?.link ? Item : Link;
                 return (
                   <LinkedItem
-                    className={`${className}`}
+                    className={`${child.props.className || ""}`}
                     selected={
                       location.pathname
                         ? child.props.to === location.pathname
@@ -139,7 +138,10 @@ export default function Navigation({ children, banner, className }) {
                   >
                     {cloneElement(
                       child,
-                      { ...child.props, id: child.props?.id || index } || {}
+                      {
+                        ...child.props,
+                        id: child.props?.id || index,
+                      } || {}
                     )}
                   </LinkedItem>
                 );

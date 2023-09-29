@@ -17,6 +17,7 @@ export const DropzoneBody = styled.div`
   position: relative;
   border: black 0.2rem solid;
   transition: 0.4s;
+  overflow: hidden;
   &:hover {
     border: #00ffc8 0.2rem solid;
     label {
@@ -48,5 +49,5 @@ export const FilePreview = styled.embed`
   object-fit: cover;
   pointer-events: none;
   z-index: -1;
-  transition: 0.2s;
+  transition: 0.6s;
 `;

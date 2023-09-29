@@ -27,6 +27,7 @@ export const addCertification = ({
           ],
           onClickHandler: (params) => {
             const { setError, setLoading, data, reset } = params;
+
             runRequest({
               setData: (data) => {
                 setCertifications([
@@ -37,6 +38,8 @@ export const addCertification = ({
                   ...certifications.map((c) => c.title),
                   ...data.map((c) => c.title),
                 ]);
+                setCurrentModal(null);
+                reset();
               },
               setError,
               setLoading,
@@ -47,8 +50,6 @@ export const addCertification = ({
                 ...requestHeaders,
               }
             );
-            setCurrentModal(null);
-            reset();
           },
         }}
       />
