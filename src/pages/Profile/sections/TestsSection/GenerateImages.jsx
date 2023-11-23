@@ -87,7 +87,7 @@ export function GenerateImage() {
       imageService: { generatedImages: (images) => images },
     }); */
     setLoading(false);
-    setImages(messageResult);
+    if (Array.isArray(messageResult)) setImages(messageResult);
     console.log({ messageResult });
   };
 
@@ -109,7 +109,6 @@ export function GenerateImage() {
           "ancho{": sizes,
           alto: 512,
           "alto{": sizes,
-          numeroDeResultados: 1,
           pasosDeInferencia: 50,
           "pasosDeInferencia<": [[inferenceSteps.min, inferenceSteps.max]],
           guiaDeEscala: 7,
@@ -172,6 +171,7 @@ export function GenerateImage() {
                 borderRadius: "0.8rem",
               }}
               src={`data:image/png;base64,${image.encoded_image}`}
+              alt="retrieved"
             />
           ))}
       </div>

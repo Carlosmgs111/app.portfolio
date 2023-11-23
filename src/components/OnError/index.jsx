@@ -8,7 +8,6 @@ export function OnError({
   delay = 3000,
   message,
 }) {
-  console.log({error})
   useEffect(() => {
     error && reset && setTimeout(() => reset(), delay);
     error && useAlert && window.alert(error);

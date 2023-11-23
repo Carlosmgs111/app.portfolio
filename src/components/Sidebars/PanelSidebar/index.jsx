@@ -1,8 +1,6 @@
 import { Children, cloneElement } from "react";
 import { SidebarBody, Item, Input, InnerItem, Separator } from "./styles";
 
-
-
 export const innerItems = Object.freeze({
   Input: ({ onChange, expanded }) => (
     <Input {...{ onChange, expanded }}></Input>

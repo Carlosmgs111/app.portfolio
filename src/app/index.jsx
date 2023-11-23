@@ -68,7 +68,7 @@ export function App() {
           <img
             alt="work restrictional signal"
             src={
-              "https://www.dcs.mx/Manual%20de%20usuario/tutoriales/images/5.jpg"
+              "https://cdn.pixabay.com/photo/2017/10/26/17/51/under-construction-2891888_1280.jpg"
             }
           />
         ),

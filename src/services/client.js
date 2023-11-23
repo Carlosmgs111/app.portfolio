@@ -46,7 +46,7 @@ class SocketService {
   };
 }
 
-const socket = new SocketService([{ imageService: "http://127.0.0.1:8765" }]);
+const socketService = new SocketService([{ imageService: "http://127.0.0.1:8765" }]);
 
 const readline = require("readline");
 
@@ -62,7 +62,7 @@ const jsResponse = (message) => {
 
 function preguntar() {
   rl.question("Ingresa un texto: \n", (texto) => {
-    socket.sendMessage(
+    socketService.sendMessage(
       {
         imageService: { process_message: [{ message: texto }, 2] },
       },

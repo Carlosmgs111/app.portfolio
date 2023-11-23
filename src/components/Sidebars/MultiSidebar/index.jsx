@@ -24,7 +24,7 @@ export const MultiSidebar = (props) => {
 
   const main = (
     <FloatContainer>
-      <Main>
+      <Main {...{ float }}>
         <Sidebar>
           {sidebars.length > 1 && (
             <Header>
@@ -82,17 +82,14 @@ export const MultiSidebar = (props) => {
   );
 
   return children ? (
-    <>
-      {float && main}
-      <Wrapper>
-        {!float && main}
-        {Children.toArray(children).map((child) =>
-          cloneElement(child, {
-            ...child.props,
-          })
-        )}
-      </Wrapper>
-    </>
+    <Wrapper>
+      {main}
+      {Children.toArray(children).map((child) =>
+        cloneElement(child, {
+          ...child.props,
+        })
+      )}
+    </Wrapper>
   ) : (
     main
   );

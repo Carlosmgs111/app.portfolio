@@ -10,6 +10,7 @@ export const FloatContainer = styled.div`
 `;
 
 export const Main = styled.div`
+  position: ${({ float }) => (float ? "absolute" : "relative")};
   display: flex;
   left: 0;
 `;

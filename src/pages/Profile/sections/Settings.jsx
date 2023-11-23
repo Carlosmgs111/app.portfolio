@@ -6,7 +6,7 @@ import { headers } from "../../../services/configs";
 export function Settings() {
   const [data, setData] = useState(null);
   const requestHeaders = headers();
-  console.log({ data });
+  
   return (
     <div style={{ width: "30%", alignSelf: "center" }}>
       <DefineSchema
