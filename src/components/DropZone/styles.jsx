@@ -1,5 +1,14 @@
 import styled from "styled-components";
 
+export const DropzoneContainer = styled.div`
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
 export const DropzoneBody = styled.div`
   width: 46rem;
   height: 36rem;
@@ -20,7 +29,7 @@ export const DropzoneBody = styled.div`
   overflow: hidden;
   &:hover {
     border: #00ffc8 0.2rem solid;
-    label {
+    + label {
       top: -1.5rem;
       font-size: 1.2rem;
       background-color: #00ffc8;
@@ -38,8 +47,9 @@ export const DropzoneLabel = styled.label`
   font-weight: 1000;
   border: none;
   position: absolute;
-  top: 46%;
+  top: 50%;
   transition: 0.4s;
+  transform: translate(0, -50%);
 `;
 
 export const FilePreview = styled.embed`
