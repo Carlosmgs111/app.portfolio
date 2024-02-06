@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSwitch } from "./useSwitch";
+import { useToggle } from "./useToggle";
 import axios from "axios";
 import config from "../config";
 import { URL, URL_API } from "../services/index";
@@ -15,7 +15,7 @@ function useLogin() {
   const [email, setEmail] = useState("" /* || config.email */);
   const [username, setUsername] = useState("" || config.username);
   const [password, setPassword] = useState("" || config.password);
-  const [label, switchLabel] = useSwitch("signin", "signup");
+  const [label, switchLabel] = useToggle("signin", "signup");
   const { setAuth } = useAuth();
 
   const signPack = { password, username };

@@ -15,7 +15,7 @@ import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { runRequest } from "../../services/runRequest";
 import { useState } from "react";
-import { useSwitch } from "../../hooks/useSwitch";
+import { useToggle } from "../../hooks/useToggle";
 import { headers } from "../../services/configs";
 import { runButtonBehavior } from "../../utils";
 import { format } from "timeago.js";
@@ -28,8 +28,8 @@ export function Certification({
   institutions,
 }) {
   const requestHeaders = headers();
-  const [beingEdited, switchBeingEdited] = useSwitch(false, true);
-  const [details, switchDetails] = useSwitch(false, true);
+  const [beingEdited, switchBeingEdited] = useToggle(false, true);
+  const [details, switchDetails] = useToggle(false, true);
   const [certification, setCertification] = useState(initialCertification);
   const {
     uuid,

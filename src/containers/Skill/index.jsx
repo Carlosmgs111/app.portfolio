@@ -13,7 +13,7 @@ import {
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { labelCases } from "../../utils";
 import { useEffect, useState } from "react";
-import { useSwitch } from "../../hooks/useSwitch";
+import { useToggle } from "../../hooks/useToggle";
 import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
 import { runButtonBehavior } from "../../utils";
 import { runRequest } from "../../services/runRequest";
@@ -29,7 +29,7 @@ export function Skill({
 }) {
   const [show, ref] = useNearScreen(false, refreshRefs);
   const requestHeaders = headers();
-  const [beingEdited, switchBeingEdited] = useSwitch(false, true);
+  const [beingEdited, switchBeingEdited] = useToggle(false, true);
   const [skill, setSkill] = useState(initialState);
   const { uuid, name, image, description, tags, dominatedBy } = skill;
   const { token, username } = getContextValue(CONTEXTS.Global);

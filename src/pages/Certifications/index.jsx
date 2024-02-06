@@ -25,7 +25,7 @@ import { Modal } from "../../components/Modal";
 import { Container, MainContainer } from "./styles";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { runRequest } from "../../services/runRequest";
-import { useSwitch } from "../../hooks/useSwitch";
+import { useToggle } from "../../hooks/useToggle";
 import { Mapfy } from "../../utils";
 import { addCertification, addInstitution } from "./sections";
 import { useSearchParams, useLocation } from "react-router-dom";
@@ -36,7 +36,7 @@ export function Certifications() {
     searchParams.get("username")
   );
   const { token, username } = getContextValue(CONTEXTS.Global);
-  const [owned, switchOwned] = useSwitch(false, true);
+  const [owned, switchOwned] = useToggle(false, true);
 
   const initialState = {
     institutions: [],

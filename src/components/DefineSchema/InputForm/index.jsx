@@ -8,7 +8,7 @@ import {
 } from "./inputs";
 import { List, FormStyle, DeleteButton, ExpandButton } from "./styles";
 import { useEffect } from "react";
-import { useSwitch } from "../../../hooks/useSwitch";
+import { useToggle } from "../../../hooks/useToggle";
 
 export function InputForm({
   index,
@@ -19,7 +19,7 @@ export function InputForm({
   fixed = false,
   nonOptionals = [],
 }) {
-  const [isExpanded, switchIsExpanded] = useSwitch(true, false);
+  const [isExpanded, switchIsExpanded] = useToggle(true, false);
 
   const settingAttributes = () => {
     const _attributes = {};

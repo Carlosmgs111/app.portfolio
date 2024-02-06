@@ -14,7 +14,7 @@ import {
 } from "./styles";
 import { Children, cloneElement, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useSwitch } from "../../hooks/useSwitch";
+import { useToggle } from "../../hooks/useToggle";
 import { runRequest } from "../../services/runRequest";
 import { getContext, CONTEXTS } from "../../contexts";
 
@@ -23,7 +23,7 @@ export default function Navigation({ children, banner, className }) {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
   const [{ searchedUsername }, dispatch] = useStateValue();
 
-  const [menu, switchMenu] = useSwitch(
+  const [menu, switchMenu] = useToggle(
     { show: false, name: "fas fa-bars p-2 item" },
     { show: true, name: "fas fa-times p-2 item" }
   );

@@ -10,15 +10,15 @@ import {
   Main,
 } from "./styles";
 import { SettingsDashboard } from "./SettingsDashboard";
-import { useSwitch } from "../../../hooks/useSwitch";
+import { useToggle } from "../../../hooks/useToggle";
 import { injectAttrsToReactElements } from "../../../utils";
 
 export const MultiSidebar = (props) => {
   const { sidebars = [], children } = props;
-  const [expand, switchExpand] = useSwitch(false, true);
+  const [expand, switchExpand] = useToggle(false, true);
   const [activeSidebars, setActiveSidebars] = useState([sidebars[0]?.props.id]);
-  const [settingsDashboard, switchSettingsDashboard] = useSwitch(false, true);
-  const [float, switchFloat] = useSwitch(false, true);
+  const [settingsDashboard, switchSettingsDashboard] = useToggle(false, true);
+  const [float, switchFloat] = useToggle(false, true);
 
   useEffect(() => {}, []);
 

@@ -12,7 +12,7 @@ import {
 } from "./styles";
 import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
 import { useNearScreen } from "../../hooks/useNearScreen";
-import { useSwitch } from "../../hooks/useSwitch";
+import { useToggle } from "../../hooks/useToggle";
 import { labelCases } from "../../utils";
 import { useEffect, useState } from "react";
 import { runButtonBehavior } from "../../utils";
@@ -29,7 +29,7 @@ export const Project = ({
 }) => {
   const requestHeaders = headers();
   const [show, ref] = useNearScreen(false, refreshRefs);
-  const [beingEdited, switchBeingEdited] = useSwitch(false, true);
+  const [beingEdited, switchBeingEdited] = useToggle(false, true);
   const [project, setProject] = useState(initialState);
   const { uuid, name, images, descriptions, uri, version, buildedBy } = project;
   const { token, username } = getContextValue(CONTEXTS.Global);

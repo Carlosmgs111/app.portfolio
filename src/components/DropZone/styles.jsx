@@ -30,7 +30,7 @@ export const DropzoneBody = styled.div`
   &:hover {
     border: #00ffc8 0.2rem solid;
     + label {
-      top: -1.5rem;
+      top: 0;
       font-size: 1.2rem;
       background-color: #00ffc8;
       color: black;
@@ -50,6 +50,7 @@ export const DropzoneLabel = styled.label`
   top: 50%;
   transition: 0.4s;
   transform: translate(0, -50%);
+  pointer-events: none;
 `;
 
 export const FilePreview = styled.embed`
