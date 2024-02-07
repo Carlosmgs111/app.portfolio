@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Message } from "./styles";
+import styles from "./styles.module.css";
 
 export function OnError({
   error = null,
@@ -14,8 +14,8 @@ export function OnError({
   }, [error]);
 
   return error ? (
-    <Message>
+    <div className={styles.message}>
       <p>{message ? message : error.message}</p>
-    </Message>
+    </div>
   ) : null;
 }

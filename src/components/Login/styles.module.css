@@ -1,6 +1,4 @@
-import styled from "styled-components";
-
-export const Form = styled.form`
+.form {
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -13,22 +11,25 @@ export const Form = styled.form`
   align-items: center;
   padding: 4rem;
   z-index: 1000;
-`;
+}
 
-export const Title = styled.a`
+.title {
   display: block;
   color: white;
   font-weight: bold;
   font-style: none;
   color: white;
   text-align: center;
-  &:hover {
-    text-decoration: none;
-    color: white;
-  }
-`;
+  cursor: pointer;
+  font-style: normal;
+}
 
-export const Input = styled.input`
+.title:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.input {
   margin: 8px 0;
   padding: 0 8px;
   border: none;
@@ -42,22 +43,25 @@ export const Input = styled.input`
   border: solid black 1px;
   border-radius: 4rem;
   padding: 0.8rem;
-  &:disabled {
-    opacity: 0.3;
-  }
-`;
+}
 
-export const Button = styled.button`
+.input.disabled {
+  opacity: 0.3;
+}
+
+.button {
   display: block;
   width: 100%;
   border-radius: 4px;
-  &:hover {
-    background-color: black;
-    color: white;
-  }
   border-style: none;
-  &[disabled] {
-    opacity: 0.3;
-  }
   transition: background-color 0.4s, color 0.4s;
-`;
+}
+
+.button:hover {
+  background-color: black;
+  color: white;
+}
+
+.button.disabled {
+  opacity: 0.3;
+}

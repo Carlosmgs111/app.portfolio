@@ -8,7 +8,7 @@ import {
 import { MyState, Settings, ProfileHome, TestsSection } from "./sections";
 import { getContext, CONTEXTS } from "../../contexts";
 import { useNavigate } from "react-router-dom";
-import { Container, MainContainer } from "./styles";
+import styles from "./styles.module.css";
 import { useState } from "react";
 
 export function Profile({ clearAuth }) {
@@ -27,7 +27,7 @@ export function Profile({ clearAuth }) {
   ] = useStateValue();
   const [currentContent, setCurrentContent] = useState(
     // <Settings {...{ avatar }} />
-    <TestsSection/>
+    <TestsSection />
   );
 
   const navigate = useNavigate();
@@ -83,20 +83,20 @@ export function Profile({ clearAuth }) {
     <Page>
       <Banner
         customeMessage={false}
-        config={{
-          "background-image": `url('${avatar}')`,
+        {...{
+          background: `url('${avatar}')`,
         }}
       >
         {username}
       </Banner>
-      <Container>
+      <div className={styles.container}>
         <MultiSidebar
           {...{
             sidebars,
           }}
         />
-        <MainContainer>{currentContent}</MainContainer>
-      </Container>
+        <div className={styles.main_container}>{currentContent}</div>
+      </div>
     </Page>
   );
 }

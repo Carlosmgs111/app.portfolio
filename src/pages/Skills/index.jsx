@@ -1,4 +1,4 @@
-import { Container, MainContainer, Dashboard } from "./styles";
+import styles from "./styles.module.css";
 import { Banner } from "../../components/Banner";
 import { Skill } from "../../containers/Skill";
 import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
@@ -78,7 +78,7 @@ export function Skills() {
             onClick: () => {
               !currentModal
                 ? setCurrentModal(
-                    <Dashboard>
+                    <div className={styles.dashboard}>
                       <DefineSchema
                         {...{
                           title: "Agregar Nueva(s) Habilidad(es)",
@@ -101,8 +101,11 @@ export function Skills() {
                             data,
                             reset,
                           }) => {
-                            console.log("🚀 ~ file: index.jsx:104 ~ Skills ~ data:", data)
-                            
+                            console.log(
+                              "🚀 ~ file: index.jsx:104 ~ Skills ~ data:",
+                              data
+                            );
+
                             runRequest({
                               setData: (data) => {
                                 setSkills([...skills, ...data]);
@@ -124,7 +127,7 @@ export function Skills() {
                           },
                         }}
                       />
-                    </Dashboard>
+                    </div>
                   )
                 : setCurrentModal(null);
             },
@@ -137,15 +140,13 @@ export function Skills() {
     <Page>
       <Banner
         {...{
-          config: {
-            background: "linear-gradient(to right, #f026df, #fb5609)",
-          },
+          background: "linear-gradient(to right, #f026df, #fb5609)",
         }}
       >
         Habilidades
       </Banner>
       <MultiSidebar {...{ sidebars }}>
-        <MainContainer>
+        <div className={styles.main_container}>
           {skills.map((skill, index) => (
             <Skill
               {...{
@@ -158,7 +159,7 @@ export function Skills() {
               }}
             />
           ))}
-        </MainContainer>
+        </div>
       </MultiSidebar>
       <Modal
         {...{

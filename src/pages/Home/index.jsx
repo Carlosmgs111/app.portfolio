@@ -1,10 +1,10 @@
-import { Text, Container, Section } from './styles'
+import styles from "./styles.module.css";
 
 export function Home() {
   return (
-    <Container>
-      <Section bgc="">
-        <Text>
+    <div classNAme={styles.container}>
+      <article className={styles.section}>
+        <p className={styles.text}>
           Anim ex nostrud exercitation exercitation anim aliqua. Sit Lorem id
           laborum proident eu ad Lorem culpa. Occaecat ipsum exercitation
           consequat aute ullamco. Commodo enim voluptate aliqua pariatur ipsum
@@ -16,10 +16,10 @@ export function Home() {
           Aliqua quis amet est minim occaecat ipsum laboris do laboris minim
           nostrud anim. Qui adipisicing velit cupidatat adipisicing Lorem.
           Aliquip duis elit deserunt ad. Aute id ut tempor duis dolor anim.
-        </Text>
-      </Section>
-      <Section bgc="hsla(201, 38%, 29%, .9)">
-        <Text>
+        </p>
+      </article>
+      <article className={styles.section.concat(" ", styles.even)}>
+        <p className={styles.text}>
           Anim ex nostrud exercitation exercitation anim aliqua. Sit Lorem id
           laborum proident eu ad Lorem culpa. Occaecat ipsum exercitation
           consequat aute ullamco. Commodo enim voluptate aliqua pariatur ipsum
@@ -31,8 +31,8 @@ export function Home() {
           Aliqua quis amet est minim occaecat ipsum laboris do laboris minim
           nostrud anim. Qui adipisicing velit cupidatat adipisicing Lorem.
           Aliquip duis elit deserunt ad. Aute id ut tempor duis dolor anim.
-        </Text>
-      </Section>
-    </Container>
-  )
+        </p>
+      </article>
+    </div>
+  );
 }

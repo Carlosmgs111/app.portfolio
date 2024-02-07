@@ -1,4 +1,4 @@
-import { Header, Content, Footer, BannerStyle, Avatar } from "./styles";
+import styles from "./styles.module.css";
 import Navigation from "../components/Navigation";
 import { Routes } from "react-router-dom";
 import { Login } from "../components/Login";
@@ -19,9 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 export function App() {
   const { clearAuth } = useApp();
   const [{ useStateValue }] = getContext(CONTEXTS.Global);
-  const [
-    { token, avatar, searchedUsername },
-  ] = useStateValue();
+  const [{ token, avatar, searchedUsername }] = useStateValue();
   const [showFixed, setShowFixed] = useState(false);
   const [currentModal, setCurrentModal] = useState(null);
   // useScroll()
@@ -55,7 +53,14 @@ export function App() {
 
   if (token)
     pages.push({
-      item: <Avatar id="nonMark" src={avatar} />,
+      item: (
+        <img
+          className={styles.avatar}
+          id="nonMark"
+          src={avatar}
+          alt="Profile user avatar"
+        />
+      ),
       path: "profile",
     });
 
@@ -79,10 +84,10 @@ export function App() {
   return (
     <>
       <ToastContainer />
-      <Header showFixed={showFixed}>
+      <div className={styles.header} showFixed={showFixed}>
         <Navigation
           banner={{
-            title: <BannerStyle>Blogfolio</BannerStyle>,
+            title: <div className={styles.banner}>Blogfolio</div>,
             to: "/",
           }}
         >
@@ -103,10 +108,8 @@ export function App() {
             injectAttrsToReactElements([page], { key: index })
           )}
         </Navigation>
-        {/* <h1 id="box">°</h1> */}
-      </Header>
-      <Content>
-        {/* <ContentBanner></ContentBanner> */}
+      </div>
+      <div className={styles.content}>
         <Routes>
           {RoutesFactory({
             root: "",
@@ -134,7 +137,7 @@ export function App() {
             element: inConstruction,
           })}
         </Routes>
-      </Content>
+      </div>
       <Modal
         {...{
           active: false,
@@ -143,7 +146,7 @@ export function App() {
           over: !false,
         }}
       />
-      <Footer></Footer>
+      <footer className={styles.footer}></footer>
     </>
   );
 }

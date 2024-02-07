@@ -1,4 +1,4 @@
-import { Dashboard } from "../styles";
+import styles from "../styles.module.css"
 import { DefineSchema } from "../../../components/DefineSchema";
 import { runRequest } from "../../../services/runRequest";
 import { headers } from "../../../services/configs";
@@ -10,7 +10,7 @@ export const addInstitution = ({
 }) => {
   const requestHeaders = headers();
   return (
-    <Dashboard>
+    <div className={styles.dashboard}>
       <DefineSchema
         {...{
           title: "Add New Institution(s)",
@@ -28,6 +28,6 @@ export const addInstitution = ({
           },
         }}
       />
-    </Dashboard>
+    </div>
   );
 };

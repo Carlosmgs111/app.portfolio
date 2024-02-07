@@ -1,10 +1,5 @@
 import React, { useCallback } from "react";
-import {
-  DropzoneBody,
-  DropzoneLabel,
-  FilePreview,
-  DropzoneContainer,
-} from "./styles";
+import styles from "./styles.module.css";
 import { useDropzone } from "react-dropzone";
 import { getSizesDisposition } from "../../utils";
 
@@ -29,27 +24,30 @@ export function Dropzone({ files, setFiles }) {
   const filePreviewSizes = getSizesDisposition(files.length);
 
   return (
-    <DropzoneContainer>
-      <DropzoneBody {...getRootProps()}>
+    <div className={styles.dropzone_container}>
+      <div className={styles.dropzone_body} {...getRootProps()}>
         {files.map(
           (file, i) =>
             i >= files.length - 100 && (
-              <FilePreview
+              <embed
+                className={styles.file_preview}
                 disable={true}
                 key={i}
                 src={`${file}`}
-                width={`calc(${filePreviewSizes[i][0]}% - 1rem)`}
-                height={`calc(${filePreviewSizes[i][1]}% - 1rem)`}
+                style={{
+                  width: `calc(${filePreviewSizes[i][0]}% - 1rem)`,
+                  height: `calc(${filePreviewSizes[i][1]}% - 1rem)`,
+                }}
               />
             )
         )}
         <input style={{ overflow: "hidden" }} {...getInputProps()} />
-      </DropzoneBody>
-      <DropzoneLabel fileIn={files.length > 0}>
+      </div>
+      <label className={styles.dropzone_label} fileIn={files.length > 0}>
         {isDragActive
           ? "Suelta el archivo aqui ..."
           : "Drag 'n' drop some files here, or click to select files"}
-      </DropzoneLabel>
-    </DropzoneContainer>
+      </label>
+    </div>
   );
 }

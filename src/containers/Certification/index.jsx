@@ -1,13 +1,4 @@
-import {
-  Container,
-  Content,
-  Image,
-  Details,
-  Url,
-  Displacement,
-  Dashboard,
-  Button,
-} from "./styles";
+import styles from "./styles.module.css";
 import { CertificationSkeleton } from "./skeleton";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { labelCases } from "../../utils";
@@ -49,8 +40,7 @@ export function Certification({
     const { setError, setLoading, data, reset } = params;
     const toUpdate = {};
     for (var attr in data[0]) {
-      if (data[0][attr] !== certification[attr])
-        toUpdate[attr] = data[0][attr];
+      if (data[0][attr] !== certification[attr]) toUpdate[attr] = data[0][attr];
     }
     runRequest({
       setData: ({ updated }) => {
@@ -125,24 +115,35 @@ export function Certification({
   // useEffect(() => {}, [show, ref, token])
 
   return (
-    <Container ref={ref} id={labelCases(title).LS}>
+    <div className={styles.container} ref={ref} id={labelCases(title).LS}>
       {!beingEdited ? (
-        <Content>
-          <Image
+        <div className={styles.content}>
+          <img
             {...{
-              details,
               src: image,
+              alt: title,
+              className: styles.image,
+              style: { cursor: "zoom-in", opacity: !details ? 1 : 0 },
               onClick: () =>
                 setCurrentModal(
-                  <Image
-                    zoomed={true}
-                    onClick={() => setCurrentModal(null)}
-                    src={image}
+                  <img
+                    {...{
+                      src: image,
+                      alt: title,
+                      className: styles.image,
+                      style: { cursor: "zoom-out" },
+                      onClick: () => setCurrentModal(null),
+                    }}
                   />
                 ),
             }}
-          ></Image>
-          <Details {...{ details }}>
+          ></img>
+          <div
+            {...{
+              className: styles.details,
+              style: { opacity: details ? 1 : 0, zIndex: details ? 0 : -1 },
+            }}
+          >
             <>
               <h2>Title</h2>
               <p>{title}</p>
@@ -155,12 +156,22 @@ export function Certification({
               <h2>Granted</h2>
               <p>{format(emitedAt)}</p>
             </>
-          </Details>
-          <Displacement
-            {...{ className: "fa-solid fa-ellipsis", onClick: switchDetails }}
+          </div>
+          <i
+            {...{
+              className: `fa-solid fa-ellipsis ${styles.displacement}`,
+              onClick: switchDetails,
+            }}
           />
-          <Url target="_blank" href={url} className="fa-solid fa-link" />
-        </Content>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href={url}
+            className={`fa-solid fa-link ${styles.url}`}
+          >
+            {" "}
+          </a>
+        </div>
       ) : (
         <DefineSchema
           {...{
@@ -185,27 +196,31 @@ export function Certification({
       )}
 
       {token && username === grantedTo && (
-        <Dashboard id="certification-dashboard">
-          <Button
-            className={beingEdited ? "success" : "danger"}
+        <div className={styles.dashboard}>
+          <button
+            className={`${styles.button} ${
+              beingEdited ? styles.success : styles.danger
+            }`}
             id={uuid}
             name="primary"
             onClick={onClick}
           >
             {beingEdited ? (uuid ? "Guardar" : "Crear") : "Eliminar"}
-          </Button>
-          <Button
-            className={beingEdited ? "danger" : "secondary"}
+          </button>
+          <button
+            className={`${styles.button} ${
+              beingEdited ? styles.danger : styles.secondary
+            }`}
             name="secondary"
             id={uuid}
             button="secondary"
             onClick={onClick}
           >
             {beingEdited ? (uuid ? "Cancelar" : "Limpiar") : "Editar"}
-          </Button>
-        </Dashboard>
+          </button>
+        </div>
       )}
-    </Container>
+    </div>
   );
 }
 
