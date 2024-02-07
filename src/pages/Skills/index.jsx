@@ -101,8 +101,11 @@ export function Skills() {
                             data,
                             reset,
                           }) => {
-                            console.log("🚀 ~ file: index.jsx:104 ~ Skills ~ data:", data)
-                            
+                            console.log(
+                              "🚀 ~ file: index.jsx:104 ~ Skills ~ data:",
+                              data
+                            );
+
                             runRequest({
                               setData: (data) => {
                                 setSkills([...skills, ...data]);
@@ -137,9 +140,7 @@ export function Skills() {
     <Page>
       <Banner
         {...{
-          config: {
-            background: "linear-gradient(to right, #f026df, #fb5609)",
-          },
+          background: "linear-gradient(to right, #f026df, #fb5609)",
         }}
       >
         Habilidades

@@ -256,9 +256,7 @@ export function Certifications() {
       {/* // ? ⬇️ Start optionals components */}
       <Banner
         {...{
-          config: {
-            background: "linear-gradient(to right, #f026df,  #00ffc8)",
-          },
+          background: "linear-gradient(to right, #f026df,  #00ffc8)",
         }}
       >
         Certificados

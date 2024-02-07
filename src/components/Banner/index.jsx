@@ -1,31 +1,24 @@
-import { Body, Title } from "./styles";
-import { css } from "styled-components";
-import { formatToCss } from "../../utils";
+
+import styles from "./styles.module.css";
 import { getContextValue, CONTEXTS } from "../../contexts";
 
 export function Banner({
   children,
   config = {},
+  background,
   searchedUsername,
   customeMessage = true,
 }) {
   const { username } = getContextValue(CONTEXTS.Global);
-  // console.log({ searchedUsername });
   return (
-    <Body
-      {...{
-        styles: css`
-          ${formatToCss(config, true)}
-        `,
-      }}
-    >
-      <Title>
+    <div className={styles.body} style={{ background }}>
+      <h1 className={styles.title}>
         {customeMessage && username && "Tus "}
         {children}
         {customeMessage &&
           !username &&
           ` de ${searchedUsername ? searchedUsername : "la comunidad"}`}
-      </Title>
-    </Body>
+      </h1>
+    </div>
   );
 }

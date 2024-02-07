@@ -1,0 +1,181 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 3rem;
+  padding: 1rem;
+  min-height: 70vh;
+  width: 100%;
+  position: sticky;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 10px 8px 15px black;
+  flex-direction: row;
+  background: url("https://images.hdqwalls.com/wallpapers/stripes-geometric-figures-4k-fc.jpg");
+}
+
+.container:hover > .dashboard {
+  opacity: 1;
+  bottom: 0;
+}
+
+.container_reversed {
+  flex-direction: row-reverse;
+  background: url("https://images.hdqwalls.com/wallpapers/colorful-stripes-geometric-figures-4k-e9.jpg");
+}
+
+.title {
+  padding: 4rem;
+  text-align: center;
+  width: 100%;
+  font-size: 6rem;
+}
+
+.image_container {
+  display: flex;
+  flex-direction: column wrap;
+  flex-wrap: wrap;
+  min-height: 30rem;
+  max-width: 40%;
+  height: fit-content;
+  gap: 1.2rem;
+  border-radius: 1rem;
+  justify-content: right;
+}
+
+.image_container_reversed {
+  justify-content: left;
+}
+
+.image {
+  position: absolute;
+  position: sticky;
+  max-height: 80%;
+  object-fit: cover;
+  border-radius: 0.8rem;
+  object-position: center center;
+  border: solid 1px transparent;
+  transition: 0.6s;
+}
+
+.image:hover {
+  border: solid 1px #f026df;
+}
+
+.descriptions {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: space-between;
+  height: available;
+  gap: 3rem;
+  width: 55%;
+  padding: 5rem;
+  border-radius: 1rem;
+}
+
+.description {
+  width: 100%;
+  font-size: 2rem;
+  height: fit-content;
+  padding: 2rem;
+  border-radius: 1.8rem;
+  backdrop-filter: blur(5px) brightness(80%);
+}
+
+.dashboard {
+  border-radius: 0 0 0.8rem 0.8rem;
+  backdrop-filter: brightness(40%) blur(4px);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  align-items: center;
+  width: 100%;
+  padding: 1.2rem 0;
+  opacity: 0;
+  transition: 0.4s;
+  bottom: -100px;
+}
+.dashboard:hover {
+  background-color: #00deae51;
+}
+.dashboard_title {
+  text-align: center;
+}
+.buttons_section {
+  display: flex;
+  justify-content: space-evenly;
+}
+.button {
+  margin: 4px 12px 4px 12px;
+  padding: 0 12px 0 12px;
+  border: none;
+  border-radius: 4px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 800;
+  background-color: #121f25;
+  transition: background-color 0.2s, color 0.2s, border 0.2s;
+}
+.button:hover {
+  color: #121f25;
+  border: solid black 0.1rem;
+}
+.button:focus {
+  outline: none;
+}
+.secondary {
+  border: solid #f026df 0.1rem;
+  color: #f026df;
+}
+.success {
+  border: solid #21da09 0.1rem;
+  color: #21da09;
+}
+.danger {
+  border: solid #f03b26 0.1rem;
+  color: #f03b26;
+}
+.secondary:hover {
+  background-color: #f026df;
+}
+.success:hover {
+  background-color: #21da09;
+}
+.danger:hover {
+  background-color: #f03b26;
+}
+
+@media screen and (max-width: 1360px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .image_container {
+    max-width: 100%;
+    justify-content: space-around;
+  }
+  .image {
+    max-width: 32%;
+    justify-content: space-around;
+  }
+  .descriptions {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .description {
+    width: 100%;
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .description {
+    width: 100%;
+    font-size: 1.4rem;
+  }
+}
