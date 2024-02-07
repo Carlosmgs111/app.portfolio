@@ -58,17 +58,17 @@ export const ImagesContainer = styled.div`
 export const Image = styled.img`
   position: absolute;
   position: sticky;
-  max-width: ${({ big, zoomed }) => {
-    return big ? "100%" : zoomed ? "100%" : "48%";
-  }};
   max-height: 80%;
   object-fit: cover;
   border-radius: 0.8rem;
   object-position: center center;
-  cursor: ${({ zoomed }) => (zoomed ? "zoom-out" : "zoom-in")};
-  opacity: ${({ details }) => (!details ? "1" : "0")};
   border: solid 1px transparent;
   transition: 0.6s;
+  cursor: ${({ zoomed }) => (zoomed ? "zoom-out" : "zoom-in")};
+  opacity: ${({ details }) => (!details ? "1" : "0")};
+  max-width: ${({ big, zoomed }) => {
+    return big ? "100%" : zoomed ? "100%" : "48%";
+  }};
   &:hover {
     border: solid 1px #f026df;
   }
@@ -97,11 +97,11 @@ export const DescriptionsContainer = styled.div`
 export const Description = styled.article`
   width: 100%;
   font-size: 2rem;
-  text-align: ${({ even }) => (even ? "left" : "right")};
   height: fit-content;
   padding: 2rem;
   border-radius: 1.8rem;
   backdrop-filter: blur(5px) brightness(80%);
+  text-align: ${({ even }) => (even ? "left" : "right")};
   @media (max-width: 830px) {
     width: 100%;
     font-size: 1.8rem;
@@ -148,6 +148,7 @@ export const Button = styled.button`
   font-weight: 800;
   /* color: #fffbff; */
   background-color: #121f25;
+  transition: background-color 0.2s, color 0.2s, border 0.2s;
   &.secondary {
     border: solid #f026df 0.1rem;
     color: #f026df;
@@ -176,5 +177,4 @@ export const Button = styled.button`
   :focus {
     outline: none;
   }
-  transition: background-color 0.2s, color 0.2s, border 0.2s;
 `;

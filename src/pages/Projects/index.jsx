@@ -166,8 +166,8 @@ export function Projects() {
   return (
     <Page>
       <Banner
-        config={{
-          background: "linear-gradient(to right, #e4ff1a, #fb5609)",
+        {...{
+          background: "radial-gradient(circle at 20% 50%, #e4ff1a, #fb5609)",
         }}
       >
         Proyectos

@@ -1,15 +1,5 @@
-import {
-  Title,
-  ProjectContainer,
-  Image,
-  ImagesContainer,
-  Description,
-  DescriptionsContainer,
-  Dashboard,
-  DashboardTitle,
-  ButtonsSection,
-  Button,
-} from "./styles";
+
+import styles from "./styles.module.css";
 import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { useToggle } from "../../hooks/useToggle";
@@ -41,8 +31,7 @@ export const Project = ({
     const { setError, setLoading, data, reset } = params;
     const toUpdate = {};
     for (var attr in data[0]) {
-      if (data[0][attr] !== project[attr])
-        toUpdate[attr] = data[0][attr];
+      if (data[0][attr] !== project[attr]) toUpdate[attr] = data[0][attr];
     }
     runRequest({
       setData: ({ updated }) => {
@@ -73,8 +62,8 @@ export const Project = ({
     switchBeingEdited();
   };
 
-  // ? 2️⃣ Function to obtain the provided callback as the high order callback to be passed to 
-  // ? DefineSchema component as argument 'hightOrderCallback' and its respective trigger 
+  // ? 2️⃣ Function to obtain the provided callback as the high order callback to be passed to
+  // ? DefineSchema component as argument 'hightOrderCallback' and its respective trigger
   const [highOrderCallback, HOCTrigger] = getHOCAndTrigger(updateCallback);
 
   const onClick = (e) => {
@@ -110,37 +99,66 @@ export const Project = ({
   };
 
   return (
-    <ProjectContainer ref={ref} id={labelCases(name).LS} even={even}>
+    <div
+      className={styles.container.concat(
+        " ",
+        !even && styles.container_reversed
+      )}
+      ref={ref}
+      id={labelCases(name).LS}
+    >
       {!beingEdited ? (
         <>
-          <Title>{name}</Title>
-          <ImagesContainer even={even}>
+          <h1 className={styles.title}>{name}</h1>
+          <div
+            className={styles.image_container.concat(
+              " ",
+              even && styles.image_container_reversed
+            )}
+            even={even}
+          >
             {images.map((image, index) => (
-              <Image
+              <img
+                alt=""
                 key={index}
                 src={image}
                 big={
                   images.length >= 6 ? false : !(images.length > 2 && index > 0)
                 }
+                style={{
+                  maxWidth:
+                    images.length >= 6
+                      ? "48%"
+                      : !(images.length > 2 && index > 0)
+                      ? "100%"
+                      : "48%",
+                  cursor: "zoom-in",
+                }}
                 onClick={() => {
                   setCurrentModal(
-                    <Image
+                    <img
+                      alt=""
                       zoomed={true}
                       src={image}
+                      style={{ cursor: "zoom-out", maxWidth: "100%" }}
                       onClick={() => setCurrentModal(null)}
                     />
                   );
                 }}
               />
             ))}
-          </ImagesContainer>
-          <DescriptionsContainer even={even}>
+          </div>
+          <div className={styles.descriptions} even={even}>
             {descriptions.map((description, index) => (
-              <Description even={even} key={index}>
+              <article
+                className={styles.description}
+                style={{ textAlign: even ? "left" : "right" }}
+                key={index}
+              >
                 {description}
-              </Description>
+              </article>
             ))}
-          </DescriptionsContainer>
+          </div>
         </>
       ) : (
         <DefineSchema
@@ -160,29 +178,34 @@ export const Project = ({
         />
       )}
       {token && buildedBy.includes(username) && (
-        <Dashboard id="project-dashboard">
-          <DashboardTitle>{name}</DashboardTitle>
-          <ButtonsSection>
-            <Button
-              className={beingEdited ? "success" : "danger"}
+        <div className={styles.dashboard}>
+          <h2 className={styles.dashboard_title}>{name}</h2>
+          <div className={styles.buttons_section}>
+            <button
+              className={styles.button.concat(
+                " ",
+                beingEdited ? styles.success : styles.danger
+              )}
               id={uuid}
               name="primary"
               onClick={onClick}
             >
               {beingEdited ? (uuid ? "Guardar" : "Crear") : "Eliminar"}
-            </Button>
-            <Button
-              className={beingEdited ? "danger" : "secondary"}
+            </button>
+            <button
+              className={`${styles.button} ${
+                beingEdited ? styles.danger : styles.secondary
+              }`}
               name="secondary"
               id={uuid}
               button="secondary"
               onClick={onClick}
             >
               {beingEdited ? (uuid ? "Cancelar" : "Limpiar") : "Editar"}
-            </Button>
-          </ButtonsSection>
-        </Dashboard>
+            </button>
+          </div>
+        </div>
       )}
-    </ProjectContainer>
+    </div>
   );
 };
