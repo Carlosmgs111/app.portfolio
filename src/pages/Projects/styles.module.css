@@ -1,0 +1,15 @@
+
+.main_container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 10rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+  .main_container {
+    padding: 0.1rem;
+  }
+}

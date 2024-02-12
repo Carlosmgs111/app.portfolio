@@ -1,6 +1,6 @@
 import { runRequest } from "../../../services/runRequest";
 import { headers } from "../../../services/configs";
-import { Dashboard } from "../styles";
+import styles from "../styles.module.css";
 import { DefineSchema } from "../../../components/DefineSchema";
 
 export const addCertification = ({
@@ -12,7 +12,7 @@ export const addCertification = ({
 }) => {
   const requestHeaders = headers();
   return (
-    <Dashboard style={{ backgroundColor: "#9fbe05" }}>
+    <div className={styles.dashboard} style={{ backgroundColor: "#9fbe05" }}>
       <DefineSchema
         {...{
           title: "",
@@ -53,6 +53,6 @@ export const addCertification = ({
           },
         }}
       />
-    </Dashboard>
+    </div>
   );
 };

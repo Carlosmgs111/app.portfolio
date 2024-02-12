@@ -1,0 +1,93 @@
+.container {
+  position: relative;
+}
+.dashboard {
+  border-radius: 0.6rem;
+  border: solid transparent 1px;
+  position: absolute;
+  padding: 0.8rem;
+  backdrop-filter: blur(6px);
+  bottom: 0;
+  transition: 0.4s;
+  background-color: #2b4e7933;
+  left: -3rem;
+  opacity: 0;
+  z-index: -1;
+}
+.dashboard.show {
+  left: 0;
+  opacity: 1;
+  z-index: 1;
+}
+.dashboard:hover {
+  border: solid #00ffc8 1px;
+}
+.hide_button {
+  font-size: 2rem;
+  color: #f03b26;
+  -webkit-text-stroke: 0.8px black;
+  transition: 0.2s;
+  font-weight: 1000;
+}
+.hide_button:hover {
+  translate: -0.4rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 28px;
+  height: 14px;
+  align-self: center;
+}
+.input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.input:checked + .slider {
+  background-color: #00ffc8;
+}
+.input:checked + .slider.direction {
+  background-color: #f28c0f;
+}
+.input:focus + .slider {
+  background-color: #00ffc8;
+}
+.input:focus + .slider.direction {
+  background-color: #f28c0f;
+}
+.input:checked + .slider:before {
+  transform: translateX(13px);
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cccccc;
+  transition: 0.4s;
+  font-size: 1rem;
+  color: black;
+}
+.slider::before {
+  position: absolute;
+  height: 10px;
+  width: 6px;
+  left: 2px;
+  top: 2px;
+  transition: 0.4s;
+  background-color: transparent;
+}
+.slider.direction {
+  background-color: #89f10a;
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round::before {
+  border-radius: 50%;
+}

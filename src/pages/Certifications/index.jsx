@@ -22,7 +22,7 @@ import { useTrackSidebar } from "../../hooks/useTrackSidebar";
 import { OnLoading } from "../../components/OnLoading";
 import { OnError } from "../../components/OnError";
 import { Modal } from "../../components/Modal";
-import { Container, MainContainer } from "./styles";
+import styles from "./styles.module.css";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { runRequest } from "../../services/runRequest";
 import { useToggle } from "../../hooks/useToggle";
@@ -268,7 +268,7 @@ export function Certifications() {
           sidebars,
         }}
       >
-        <MainContainer>
+        <div className={styles.main_container}>
           {certifications.map(
             (certification, index) =>
               certification.visible && (
@@ -297,13 +297,13 @@ export function Certifications() {
               Certificados de la comunidad
             </Banner>
           )}
-        </MainContainer>
+        </div>
       </MultiSidebar>
       {/* // ? ⬇️ Start page support components */}
       <OnLoading
         {...{
           loading,
-          component: MainContainer,
+          component: styles.main_container,
           contain: manyfy(<CertificationSkeleton />, 12).map((c, index) =>
             injectAttrsToReactElements([c], { key: index })
           ),

@@ -1,14 +1,6 @@
 import { useEffect, useState, Children, cloneElement } from "react";
-import {
-  FloatContainer,
-  Wrapper,
-  Sidebar,
-  Body,
-  Header,
-  Footer,
-  Item,
-  Main,
-} from "./styles";
+
+import styles from "./style.module.css";
 import { SettingsDashboard } from "./SettingsDashboard";
 import { useToggle } from "../../../hooks/useToggle";
 import { injectAttrsToReactElements } from "../../../utils";
@@ -23,26 +15,28 @@ export const MultiSidebar = (props) => {
   useEffect(() => {}, []);
 
   const main = (
-    <FloatContainer>
-      <Main {...{ float }}>
-        <Sidebar>
+    <div className={styles.container}>
+      <div className={`${styles.main} ${float ? styles.floating : ""}`}>
+        <section className={styles.sidebar}>
           {sidebars.length > 1 && (
-            <Header>
+            <section className={styles.header}>
               {sidebars.map((sidebar, index) => (
-                <Item
+                <i
+                  className={`${styles.item} ${
+                    activeSidebars.includes(sidebar.props.id)
+                      ? styles.active
+                      : ""
+                  }`}
                   key={index}
-                  // href="#"
                   onClick={() => setActiveSidebars([sidebar.props.id])}
-                  active={activeSidebars.includes(sidebar.props.id)}
                 >
                   {index + 1}
-                </Item>
+                </i>
               ))}
               {activeSidebars.length !== sidebars.length && (
-                <Item
-                  // href="#"
+                <i
                   key="expand-button"
-                  className="fa-solid fa-ellipsis"
+                  className={`${styles.item} fa-solid fa-ellipsis`}
                   onClick={() =>
                     setActiveSidebars([
                       ...sidebars.map((sidebar) => sidebar.props.id),
@@ -50,25 +44,30 @@ export const MultiSidebar = (props) => {
                   }
                 />
               )}
-            </Header>
+            </section>
           )}
-          <Body {...{ active: activeSidebars.length > 1 }}>
+          <section
+            className={`${styles.body} ${
+              activeSidebars.length > 1 ? styles.active : ""
+            }`}
+          >
             {sidebars.map((sidebar, index) =>
               injectAttrsToReactElements([sidebar], {
                 active: activeSidebars.includes(sidebar.props.id),
                 key: index,
               })
             )}
-          </Body>
-          <Footer>
-            <Item
+          </section>
+          <section className={styles.footer}>
+            <i
               key="settings-button"
-              className="fa-solid fa-gear rotable"
-              active={settingsDashboard}
+              className={`fa-solid fa-gear ${styles.rotable} ${styles.item} ${
+                settingsDashboard ? styles.active : ""
+              }`}
               onClick={switchSettingsDashboard}
-            ></Item>
-          </Footer>
-        </Sidebar>
+            ></i>
+          </section>
+        </section>
         <SettingsDashboard
           {...{
             float,
@@ -77,19 +76,19 @@ export const MultiSidebar = (props) => {
             switchSettingsDashboard,
           }}
         />
-      </Main>
-    </FloatContainer>
+      </div>
+    </div>
   );
 
   return children ? (
-    <Wrapper>
+    <div className={styles.wrapper}>
       {main}
       {Children.toArray(children).map((child) =>
         cloneElement(child, {
           ...child.props,
         })
       )}
-    </Wrapper>
+    </div>
   ) : (
     main
   );

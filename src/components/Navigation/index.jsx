@@ -1,17 +1,5 @@
-import {
-  ItemsList,
-  NavigateBar,
-  Item,
-  Link,
-  NavbarContainer,
-  Button,
-  Banner,
-  NavbarHeader,
-  SearchForm,
-  SearchInput,
-  SubmitSearch,
-  SearchIcon,
-} from "./styles";
+import { Item, Link, Banner } from "./styles";
+import styles from "./styles.module.css";
 import { Children, cloneElement, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useToggle } from "../../hooks/useToggle";
@@ -51,8 +39,9 @@ export default function Navigation({ children, banner, className }) {
   const childrens = Children.toArray(children);
 
   return (
-    <NavbarContainer className={`${className}`}>
-      <NavbarHeader
+    <div className={`${className} ${styles.container}`}>
+      <div
+        className={styles.navbar_header}
         style={{
           justifyContent: "space-between",
           display: "flex",
@@ -70,9 +59,10 @@ export default function Navigation({ children, banner, className }) {
             {banner.title}
           </Banner>
         )}
-      </NavbarHeader>
-      <SearchForm action="">
-        <SearchInput
+      </div>
+      <form action="">
+        <input
+          className={styles.search_input}
           type="search"
           name="search-input"
           value={searchValue}
@@ -81,12 +71,14 @@ export default function Navigation({ children, banner, className }) {
             setSearchValue(e.target.value);
           }}
         />
-        <SearchIcon
-          className="fa-solid fa-magnifying-glass"
-          selected={selected}
+        <i
+          className={`fa-solid fa-magnifying-glass ${styles.search_icon} ${
+            selected ? styles.selected : ""
+          }`}
         />
-        <SubmitSearch
+        <input
           type="submit"
+          className={styles.submit_search}
           onClick={(e) => {
             dispatch({
               type: ACTIONS.setSearchedUsername,
@@ -96,22 +88,23 @@ export default function Navigation({ children, banner, className }) {
             e.preventDefault();
           }}
         />
-      </SearchForm>
+      </form>
       <datalist id="indexed_elements">
         {indexedElements.map((iE, idx) => (
           <option value={iE} key={idx} />
         ))}
       </datalist>
-      <NavigateBar className={className}>
-        <Button
-          className={`${menu.name}`}
+      <nav className={styles.navbar.concat(" ", className)}>
+        <i
+          className={`${menu.name} ${styles.button}`}
           id="nav-button"
           onClick={switchMenu}
-        ></Button>
-        <ItemsList
-          showfixed={showfixed}
-          className={`${className} navigation-list`}
-          show={menu.show}
+        ></i>
+        <ul
+          className={`${className} ${styles.itemlist.concat(
+            " ",
+            menu.show ? styles.show : ""
+          )} navigation-list`}
         >
           {children
             ? childrens.map((child, index) => {
@@ -147,9 +140,9 @@ export default function Navigation({ children, banner, className }) {
                 );
               })
             : null}
-        </ItemsList>
-      </NavigateBar>
+        </ul>
+      </nav>
       {/* <div style={{ width: "100%", height: "50px" }}></div> */}
-    </NavbarContainer>
+    </div>
   );
 }

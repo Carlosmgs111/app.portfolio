@@ -1,22 +1,24 @@
-import { useEffect } from 'react'
-import { Container } from './styles'
+import { useEffect } from "react";
+import styles from "./styles.module.css";
 
 export function OnLoading({
   children,
   loading,
   reset,
   delay = 3000,
-  contain = 'Loading',
+  contain = "Loading",
   component,
 }) {
   useEffect(() => {
     if (reset)
       setTimeout(() => {
-        reset()
-      }, delay)
-  })
+        reset();
+      }, delay);
+  });
 
   return loading ? (
-    <Container {...{ component }}>{contain || children}</Container>
-  ) : null
+    <div className={styles.container.concat(" ", component)}>
+      {contain || children}
+    </div>
+  ) : null;
 }

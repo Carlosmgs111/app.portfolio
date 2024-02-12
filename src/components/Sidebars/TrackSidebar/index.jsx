@@ -1,49 +1,68 @@
-import { useEffect } from 'react'
-import { SidebarBody, Item, InnerItem } from './styles'
-import { labelCases } from '../../../utils'
-import { useToggle } from '../../../hooks/useToggle'
-import { getContext, CONTEXTS } from '../../../contexts'
-import { manyfy } from '../../../utils'
+import { useEffect } from "react";
+import { labelCases } from "../../../utils";
+import { useToggle } from "../../../hooks/useToggle";
+import { getContext, CONTEXTS } from "../../../contexts";
+import { manyfy } from "../../../utils";
+import styles from "./styles.module.css";
 
 export function TrackSidebar(props) {
-  const { items = [], refs = [], innerItems = true } = props
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global)
-  const [{ token, loading: globalLoading }, dispatch] = useStateValue()
+  const {
+    items = [],
+    refs = [],
+    innerItems = true,
+    direction = "column",
+  } = props;
+  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
+  const [{ token, loading: globalLoading }, dispatch] = useStateValue();
 
-  const [expand, switchExpand] = useToggle(false, true)
+  const [expand, switchExpand] = useToggle(false, true);
 
-  useEffect(() => {}, [])
+  useEffect(() => {}, []);
 
-  const indexesList = []
+  const indexesList = [];
 
   items.map((name, index) => {
-    const active = refs.includes(labelCases(name).LS)
+    const active = refs.includes(labelCases(name).LS);
     indexesList.push(
-      <Item
+      <a
         active={active}
         key={index}
         href={`#${labelCases(name).LS}`}
-        className="fa-regular fa-circle-dot"
+        className={`fa-regular fa-circle-dot ${styles.item.concat(
+          " ",
+          active ? styles.active : ""
+        )}`}
       >
-        {innerItems && <InnerItem {...{ show: expand }}>{name}</InnerItem>}
-      </Item>,
-    )
-  })
+        {innerItems && (
+          <i
+            {...{
+              className: styles.inner.concat(" ", expand ? styles.show : ""),
+            }}
+          >
+            {name}
+          </i>
+        )}
+      </a>
+    );
+  });
 
   return (
-    <SidebarBody {...props}>
+    <section
+      {...{
+        style: { flexDirection: direction },
+        className: styles.body.concat(" ", styles.active),
+      }}
+    >
       {innerItems && (
-        <Item
-          active={false}
+        <i
           key="0"
-          // href="#"
           className={`fa-solid ${
-            expand ? 'fa-xmark' : 'fa-bars'
-          } sidebar-button`}
+            expand ? "fa-xmark" : "fa-bars"
+          } sidebar-button ${styles.item}`}
           onClick={switchExpand}
         />
       )}
       {indexesList}
-    </SidebarBody>
-  )
+    </section>
+  );
 }

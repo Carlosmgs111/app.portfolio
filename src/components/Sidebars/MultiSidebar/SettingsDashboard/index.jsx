@@ -1,4 +1,4 @@
-import { Dashboard, Container, Switch, Slider, Hide } from "./styles";
+import styles from "./styles.module.css";
 
 export function SettingsDashboard({
   float,
@@ -7,22 +7,30 @@ export function SettingsDashboard({
   switchSettingsDashboard,
 }) {
   return (
-    <Container>
-      <Dashboard show={settingsDashboard} onClick={switchSettingsDashboard}>
-        <Hide className="fa-solid fa-caret-left"/>
+    <div className={styles.container}>
+      <section
+        className={`${styles.dashboard} ${
+          settingsDashboard ? styles.show : ""
+        }`}
+        onClick={switchSettingsDashboard}
+      >
+        <i className={`fa-solid fa-caret-left ${styles.hide_button}`} />
         <form>
           <label>Flotante: </label>
-          <Switch className="switch ">
+          <label className={`switch ${styles.switch}`}>
             <input
+              className={styles.input}
               checked={float}
               type="checkbox"
               name="based-on"
               onChange={switchFloat}
             ></input>
-            <Slider className={`slider round fa-solid fa-circle-dot`}></Slider>
-          </Switch>
+            <span
+              className={`${styles.slider} ${styles.round} fa-solid fa-circle-dot`}
+            ></span>
+          </label>
         </form>
-      </Dashboard>
-    </Container>
+      </section>
+    </div>
   );
 }

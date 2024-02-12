@@ -3,7 +3,7 @@ import { getContextValue, CONTEXTS } from "../../contexts";
 import axios from "axios";
 import { URL_API } from "../../services";
 import { Project } from "../../containers/Project";
-import { Container, MainContainer, Dashboard } from "./styles";
+import styles from "./styles.module.css";
 import { useTrackSidebar } from "../../hooks/useTrackSidebar";
 import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
 import {
@@ -177,7 +177,7 @@ export function Projects() {
           sidebars,
         }}
       >
-        <MainContainer>
+        <div className={styles.main_container}>
           {projects.map((project, index) => (
             <Project
               key={index}
@@ -190,7 +190,7 @@ export function Projects() {
               }}
             />
           ))}
-        </MainContainer>
+        </div>
       </MultiSidebar>
       <Modal
         {...{

@@ -115,16 +115,12 @@ export const Project = ({
               " ",
               even && styles.image_container_reversed
             )}
-            even={even}
           >
             {images.map((image, index) => (
               <img
                 alt=""
                 key={index}
                 src={image}
-                big={
-                  images.length >= 6 ? false : !(images.length > 2 && index > 0)
-                }
                 style={{
                   maxWidth:
                     images.length >= 6
@@ -138,7 +134,6 @@ export const Project = ({
                   setCurrentModal(
                     <img
                       alt=""
-                      zoomed={true}
                       src={image}
                       style={{ cursor: "zoom-out", maxWidth: "100%" }}
                       onClick={() => setCurrentModal(null)}
@@ -148,7 +143,7 @@ export const Project = ({
               />
             ))}
           </div>
-          <div className={styles.descriptions} even={even}>
+          <div className={styles.descriptions}>
             {descriptions.map((description, index) => (
               <article
                 className={styles.description}

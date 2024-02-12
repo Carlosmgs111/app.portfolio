@@ -1,4 +1,4 @@
-import { Container, MainContainer, Dashboard } from "./styles";
+import styles from "./styles.module.css";
 import { Banner } from "../../components/Banner";
 import { Skill } from "../../containers/Skill";
 import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
@@ -78,7 +78,7 @@ export function Skills() {
             onClick: () => {
               !currentModal
                 ? setCurrentModal(
-                    <Dashboard>
+                    <div className={styles.dashboard}>
                       <DefineSchema
                         {...{
                           title: "Agregar Nueva(s) Habilidad(es)",
@@ -127,7 +127,7 @@ export function Skills() {
                           },
                         }}
                       />
-                    </Dashboard>
+                    </div>
                   )
                 : setCurrentModal(null);
             },
@@ -146,7 +146,7 @@ export function Skills() {
         Habilidades
       </Banner>
       <MultiSidebar {...{ sidebars }}>
-        <MainContainer>
+        <div className={styles.main_container}>
           {skills.map((skill, index) => (
             <Skill
               {...{
@@ -159,7 +159,7 @@ export function Skills() {
               }}
             />
           ))}
-        </MainContainer>
+        </div>
       </MultiSidebar>
       <Modal
         {...{

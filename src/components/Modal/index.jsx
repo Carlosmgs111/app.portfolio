@@ -1,10 +1,5 @@
 import { Children, cloneElement } from "react";
-import {
-  ModalStyle,
-  CloseButton,
-  ButtonContainer,
-  MainContainer,
-} from "./styles";
+import styles from "./styles.module.css";
 
 export const Modal = ({
   children,
@@ -17,17 +12,18 @@ export const Modal = ({
 }) => {
   const isActive = active || Boolean(children) || Boolean(injected);
   return (
-    <ModalStyle
+    <div
+      className={`${styles.modal} 
+      ${isActive ? styles.active : ""} 
+      ${isActive && over ? styles.over : ""}`}
       {...{
         onClick: (e) => {
           if (e.target.id === "modal_body") setInjected(null);
         },
-        over,
-        isActive,
         id: "modal_body",
       }}
     >
-      <MainContainer>
+      <div className={styles.main_container}>
         {Children.toArray(children || injected).map((child) =>
           cloneElement(child, {
             ...child.props,
@@ -36,14 +32,14 @@ export const Modal = ({
           })
         )}
         {showCloseButton && (
-          <ButtonContainer>
-            <CloseButton
-              className="fa-solid fa-xmark"
+          <div className={styles.button_container}>
+            <i
+              className={`fa-solid fa-xmark ${styles.close_button}`}
               onClick={() => setInjected(null)}
             />
-          </ButtonContainer>
+          </div>
         )}
-      </MainContainer>
-    </ModalStyle>
+      </div>
+    </div>
   );
 };

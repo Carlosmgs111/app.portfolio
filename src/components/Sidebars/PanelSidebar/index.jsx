@@ -1,27 +1,34 @@
 import { Children, cloneElement } from "react";
-import { SidebarBody, Item, Input, InnerItem, Separator } from "./styles";
+import styles from "./styles.module.css";
 
 export const innerItems = Object.freeze({
   Input: ({ onChange, expanded }) => (
-    <Input {...{ onChange, expanded }}></Input>
+    <input {...{ onChange, expanded, className: styles.input }}></input>
   ),
   InnerItem: ({ content, expanded }) => (
-    <InnerItem {...{ expanded }}>{content}</InnerItem>
+    <i
+      {...{
+        className: styles.inner.concat(" ", expanded ? styles.expanded : ""),
+        content,
+      }}
+    >
+      {content}
+    </i>
   ),
   InnerMenu: () => {},
-  Separator: () => <Separator />,
+  Separator: () => <i className={styles.separator} />,
 });
 
 export function PanelSidebar(props) {
-  const { children = [], items = [], expanded = false } = props;
+  const { children = [], items = [], expanded = false, active = true } = props;
 
   return (
-    <SidebarBody {...props}>
+    <div className={`${styles.body} ${active ? styles.active : ""}`}>
       {items.map(
         (
           {
             innerItem = null,
-            className,
+            className = "",
             onClick = () => {},
             onChange = () => {},
             visibility = true,
@@ -31,14 +38,19 @@ export function PanelSidebar(props) {
           index
         ) =>
           visibility && (
-            <Item {...{ className, onClick, key: index, href }}>
+            <i
+              {...{
+                className: className.concat(" ", styles.item),
+                onClick,
+                key: index,
+                href,
+              }}
+            >
               {innerItem && innerItem({ onChange, content, expanded })}
-            </Item>
+            </i>
           )
       )}
-      {Children.toArray(children).map((child) =>
-        cloneElement(<Item>{child}</Item>)
-      )}
-    </SidebarBody>
+      {Children.toArray(children).map((child) => cloneElement(<i>{child}</i>))}
+    </div>
   );
 }

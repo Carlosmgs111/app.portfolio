@@ -21,7 +21,8 @@ function useLogin() {
   const signPack = { password, username };
   if (email) signPack.email = email;
 
-  async function onClick() {
+  async function onClick(e) {
+    e.preventDefault();
     setLoading(true);
     try {
       const data = (

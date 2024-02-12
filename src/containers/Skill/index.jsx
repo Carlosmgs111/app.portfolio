@@ -1,15 +1,4 @@
-import {
-  Content,
-  Container,
-  InnerContainer,
-  Title,
-  Image,
-  Dashboard,
-  HideButton,
-  ButtonsSection,
-  Button,
-  Main,
-} from "./styles";
+import styles from "./styles.module.css";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { labelCases } from "../../utils";
 import { useEffect, useState } from "react";
@@ -113,19 +102,38 @@ export function Skill({
   };
 
   return (
-    <Content ref={ref} reverse={index % 2 === 0} id={labelCases(name).LS}>
+    <div
+      className={styles.content.concat(
+        " ",
+        index % 2 === 0 ? styles.reversed : ""
+      )}
+      ref={ref}
+      id={labelCases(name).LS}
+    >
       {!beingEdited ? (
-        <Main>
-          <Title>{name}</Title>
-          <Container reverse={index % 2 === 0}>
-            <InnerContainer className="image">
-              <Image src={image} />
-            </InnerContainer>
-            <InnerContainer reverse={index % 2 === 0} className="description">
+        <div className={styles.main}>
+          <h3 className={styles.title}>{name}</h3>
+          <div
+            className={styles.container.concat(
+              " ",
+              index % 2 === 0 ? styles.reversed : ""
+            )}
+          >
+            <div className={styles.inner_container.concat(" ", styles.image)}>
+              <img className={styles.image} src={image} alt="" />
+            </div>
+            <div
+              className={styles.inner_container.concat(
+                " ",
+                styles.description,
+                " ",
+                index % 2 === 0 ? styles.reversed : ""
+              )}
+            >
               {description}
-            </InnerContainer>
-          </Container>
-        </Main>
+            </div>
+          </div>
+        </div>
       ) : (
         <DefineSchema
           {...{
@@ -143,32 +151,38 @@ export function Skill({
         />
       )}
       {token && dominatedBy.includes(username) && (
-        <Dashboard id="skill-dashboard">
-          <HideButton
-            className="fa-solid fa-caret-down"
+        <div className={styles.dashboard} id="skill-dashboard">
+          <i
+            className={`fa-solid fa-caret-down ${styles.hidden_button}`}
             onClick={() => console.log("DOWN!")}
           />
-          <ButtonsSection>
-            <Button
-              className={beingEdited ? "success" : "danger"}
+          <div className={styles.buttons_section}>
+            <button
+              className={styles.button.concat(
+                " ",
+                beingEdited ? styles.success : styles.danger
+              )}
               id={uuid}
               name="primary"
               onClick={onClick}
             >
               {beingEdited ? (uuid ? "Guardar" : "Crear") : "Eliminar"}
-            </Button>
-            <Button
-              className={beingEdited ? "danger" : "secondary"}
+            </button>
+            <button
+              className={styles.button.concat(
+                " ",
+                beingEdited ? styles.danger : styles.secondary
+              )}
               name="secondary"
               id={uuid}
               button="secondary"
               onClick={onClick}
             >
               {beingEdited ? (uuid ? "Cancelar" : "Limpiar") : "Editar"}
-            </Button>
-          </ButtonsSection>
-        </Dashboard>
+            </button>
+          </div>
+        </div>
       )}
-    </Content>
+    </div>
   );
 }

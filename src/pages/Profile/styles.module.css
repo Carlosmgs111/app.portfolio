@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  position: sticky;
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.main_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+  .main_container {
+    padding: 0.1rem;
+  }
+}

@@ -2,77 +2,6 @@ import styled, { css } from "styled-components";
 import { Link as LinkRouter } from "react-router-dom";
 import { setFrames } from "../../utils";
 
-export const NavbarContainer = styled.div`
-  overflow: scroll;
-  height: fit-content;
-  /* height: 6rem; */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  backdrop-filter: blur(10rem) brightness(80%);
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  @media (max-width: 830px) {
-    backdrop-filter: none;
-    background-color: #00000065;
-  }
-`;
-
-export const NavbarHeader = styled.div`
-  justify-content: space-between;
-  display: flex;
-  flex-direction: row;
-`;
-
-export const NavigateBar = styled.nav`
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-  padding: 0 2vw;
-  width: inherit;
-  height: inherit;
-  @media (max-width: 1360px) {
-    /* flex-direction: column; */
-  }
-`;
-
-export const ItemsList = styled.ul`
-  color: transparent;
-  font-size: 3rem;
-  margin: 0;
-  border-radius: 6px;
-  /* max-height: ${({ showfixed }) => (showfixed ? "10rem" : "10rem")}; */
-  font-size: 2.8rem;
-  display: flex;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  height: inherit;
-  align-content: center;
-  justify-content: left;
-  align-items: center;
-  transition: 0.4s;
-  padding: 0 0.4rem;
-  @media (max-width: 830px) {
-    backdrop-filter: blur(10rem) brightness(0.4);
-    flex-direction: column;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    padding-top: ${({ show }) => (show ? "2rem" : "0")};
-    height: ${({ show }) => (show ? "100%" : "0")};
-  }
-  @media (max-width: 480px) {
-    width: 100%;
-  }
-`;
-
 export const from = ({ selected }) => css`
   color: ${selected ? "#ffffff" : "#ffffffb8"};
 `;
@@ -83,7 +12,8 @@ export const to = css`
 
 export const Item = styled.li`
   animation: 1.2s ${(props) => setFrames([to, from], props)} ease;
-  color: ${({ className }) => className?.includes("login") && "#e4ff1a !important"};
+  color: ${({ className }) =>
+    className?.includes("login") && "#e4ff1a !important"};
   z-index: 1;
   list-style: none;
   padding: 0;
@@ -126,21 +56,6 @@ export const Item = styled.li`
   }
 `;
 
-export const Button = styled.i`
-  display: none;
-  color: white;
-  @media (max-width: 830px) {
-    z-index: 10;
-    display: block;
-    right: 15px;
-    top: 2rem;
-    font-size: 4rem;
-  }
-  @media (max-width: 480px) {
-    font-size: 3rem;
-  }
-`;
-
 export const Banner = styled(LinkRouter)`
   ${Item.componentStyle.rules}
   &:hover {
@@ -154,40 +69,3 @@ export const Link = styled(LinkRouter)`
 `;
 
 export const SearchForm = styled.form``;
-
-export const SearchIcon = styled.i`
-  color: ${({ selected }) => (selected ? "#00deae" : "#ffffff")};
-  transition: color 0.4s;
-  font-weight: 1000;
-  position: relative;
-  right: 3rem;
-`;
-
-export const SearchInput = styled.input`
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: whitesmoke;
-  padding: 0 1rem;
-  border: solid white 1px;
-  border-radius: 4rem;
-  padding: 0.4rem 3rem 0.4rem 2rem;
-  transition: border 0.4s, width 0.4s;
-  width: 25rem;
-  @media (max-width: 1100px) {
-    width: 15rem;
-  }
-  :focus {
-    border: solid #00deae 1px;
-    width: 30rem;
-    @media (max-width: 1100px) {
-      width: 25rem;
-    }
-  }
-`;
-
-export const SubmitSearch = styled.input`
-  background-color: transparent;
-  border: none;
-  width: 0;
-`;

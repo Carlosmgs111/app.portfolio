@@ -84,7 +84,7 @@ export function App() {
   return (
     <>
       <ToastContainer />
-      <div className={styles.header} showFixed={showFixed}>
+      <div className={styles.header}>
         <Navigation
           banner={{
             title: <div className={styles.banner}>Blogfolio</div>,
