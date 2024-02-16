@@ -9,7 +9,7 @@ export const Modal = ({
   onClick = null,
   over = true,
   showCloseButton = true,
-}) => {
+}: any) => {
   const isActive = active || Boolean(children) || Boolean(injected);
   return (
     <div
@@ -17,14 +17,14 @@ export const Modal = ({
       ${isActive ? styles.active : ""} 
       ${isActive && over ? styles.over : ""}`}
       {...{
-        onClick: (e) => {
+        onClick: (e: any) => {
           if (e.target.id === "modal_body") setInjected(null);
         },
         id: "modal_body",
       }}
     >
       <div className={styles.main_container}>
-        {Children.toArray(children || injected).map((child) =>
+        {Children.toArray(children || injected).map((child: any) =>
           cloneElement(child, {
             ...child.props,
             disabled: true,

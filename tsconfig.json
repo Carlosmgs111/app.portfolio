@@ -1,0 +1,81 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@containers/*": [
+        "src/containers/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@modules/*": [
+        "backend/modules/*"
+      ],
+      "@globalContext": [
+        "src/context/index"
+      ],
+      "@utils": [
+        "src/utils/index"
+      ],
+      "@backend/conf": [
+        "backend/config"
+      ],
+      "@config": [
+        "src/config"
+      ],
+      "@dependencies": [
+        "backend/config/dependencies"
+      ],
+      "@mocks/*": [
+        "mocks/*"
+      ]
+    },
+    "target": "es6",
+    "lib": [
+      "es5",
+      "es6",
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": false,
+    "esModuleInterop": true,
+    "module": "ES6",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "experimentalDecorators": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/**/*.ts",
+    "**/**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/hooks/useNearScreen.ts",
+    "next.config.cjs",
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ]
+}

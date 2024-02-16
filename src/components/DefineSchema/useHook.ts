@@ -2,13 +2,17 @@ import { useState, useEffect, useMemo } from "react";
 import { genRandomId } from "../../utils";
 import { runButtonBehavior } from "../../utils";
 
-export function useHook({ baseSchema = {}, onClickHandler, highOrderCallback }) {
+export function useHook({
+  baseSchema = {},
+  onClickHandler,
+  highOrderCallback,
+}: any) {
   const [label, setLabel] = useState("");
-  const [schema, setSchema] = useState(useMemo(() => ({})));
+  const [schema, setSchema]: any = useState(useMemo(() => ({}), []));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [attributes, setAttributes] = useState({});
-  const listOfDefineAttributes = [];
+  const listOfDefineAttributes: any = [];
 
   useEffect(() => {
     setAttributes({ [genRandomId()]: baseSchema });
@@ -16,7 +20,7 @@ export function useHook({ baseSchema = {}, onClickHandler, highOrderCallback }) 
   }, [error]);
 
   const parseSchema = (object = true) => {
-    const parsedSchema = object ? {} : [];
+    const parsedSchema: any = object ? {} : [];
     for (var attr in schema) {
       if (object) parsedSchema[schema[attr].title] = schema[attr];
       else parsedSchema.push(schema[attr]);
@@ -44,7 +48,7 @@ export function useHook({ baseSchema = {}, onClickHandler, highOrderCallback }) 
     });
   };
 
-  const onClick = async (e) => {
+  const onClick = async (e: any) => {
     e.preventDefault();
     const behaviors = {
       add: addDefineAttribute,
@@ -78,5 +82,6 @@ export function useHook({ baseSchema = {}, onClickHandler, highOrderCallback }) 
     setLabel,
     loading,
     error,
+    reset,
   };
 }

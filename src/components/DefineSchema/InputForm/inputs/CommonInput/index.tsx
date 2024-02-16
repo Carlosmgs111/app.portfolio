@@ -6,7 +6,7 @@ export const CommonInput = ({
   name,
   onChange,
   nonOptionals,
-}) => {
+}: any) => {
   return (
     <input
       type={

@@ -1,4 +1,4 @@
-export const EitherInput = ({ keyName, value, name, onChange }) => {
+export const EitherInput = ({ keyName, value, name, onChange }: any) => {
   return (
     <>
       <label>

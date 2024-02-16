@@ -11,9 +11,9 @@ export const MultiInput = ({
   setAttributes,
   schema,
   setSchema,
-}) => {
-  const inputs = [];
-  value.forEach((text, i) =>
+}: any) => {
+  const inputs: any = [];
+  value.forEach((text: any, i: any) =>
     inputs.push(
       <InputContainer key={i}>
         <textarea

@@ -2,11 +2,11 @@ import { Route } from "react-router-dom";
 import { beutifyLabel } from "../utils";
 import { NotFound } from "./NotFound";
 
-export const NavigationItemsFactory = ({ pages = [], login }) => {
+export const NavigationItemsFactory = ({ pages = [], login }: any) => {
   const navigationItems = [];
   for (var page of pages) {
     if (page instanceof Object) {
-      const { path, item = <></>, label } = page;
+      const { path, item = <></>, label }: any = page;
       const content = label ? beutifyLabel(label) : item;
       navigationItems.push(
         <p id={item.props.id} key={path} className="item" to={`/${path}`}>
@@ -32,7 +32,7 @@ export const NavigationItemsFactory = ({ pages = [], login }) => {
   return navigationItems;
 };
 
-export const RoutesFactory = ({ element, root, parameters, subDomains }) => {
+export const RoutesFactory = ({ element, root, parameters, subDomains }:any) => {
   const routes = [];
   if (parameters)
     for (var parameter of parameters) {

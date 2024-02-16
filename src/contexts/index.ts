@@ -5,8 +5,7 @@ export const {
   getContext,
   removeContext,
   cleanContexts,
-  settingUpContext,
   getContextValue,
-} = factory();
+}: any = factory();
 
 export { CONTEXTS };

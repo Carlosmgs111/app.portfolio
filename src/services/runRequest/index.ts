@@ -2,9 +2,10 @@ import { URL_API } from "..";
 import axios from "axios";
 
 const methods = Object.freeze(["get", "post", "put", "patch", "delete"]);
+const typedAxios: any = axios;
 
-export function runRequest({ setData, setLoading, setError } = {}) {
-  const _fetch = async (method, ...args) => {
+export function runRequest({ setData, setLoading, setError }: any = {}) {
+  const _fetch = async (method: any, ...args: any) => {
     let data = null;
     let error = null;
     let loading = true;
@@ -30,7 +31,7 @@ export function runRequest({ setData, setLoading, setError } = {}) {
   return Object.fromEntries(
     methods.map((method) => [
       method,
-      (...args) => _fetch(axios[method], ...args),
+      (...args: any) => _fetch(typedAxios[method], ...args),
     ])
   );
 }

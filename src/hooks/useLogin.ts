@@ -18,10 +18,10 @@ function useLogin() {
   const [label, switchLabel] = useToggle("signin", "signup");
   const { setAuth } = useAuth();
 
-  const signPack = { password, username };
+  const signPack: any = { password, username };
   if (email) signPack.email = email;
 
-  async function onClick(e) {
+  async function onClick(e: any) {
     e.preventDefault();
     setLoading(true);
     try {
@@ -58,7 +58,7 @@ function useLogin() {
     }
   }
 
-  function onInputChange(e) {
+  function onInputChange(e: any) {
     if (e.target.name === "password") setPassword(e.target.value);
     if (e.target.name === "username") setUsername(e.target.value);
     if (e.target.name === "email") setEmail(e.target.value);

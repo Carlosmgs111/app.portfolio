@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import { addContext } from "./contexts";
@@ -19,9 +18,12 @@ const initialState = {
   searchedUsername: "",
 };
 
-export const actionTypes = setActions(["setAuth", "setLoading"], initialState);
+export const actionTypes: any = setActions(
+  ["setAuth", "setLoading"],
+  initialState
+);
 
-const reducer = (state, action) => {
+const reducer = (state: any, action: any) => {
   const { payload, type } = action;
   const actions = {
     [actionTypes.setAuth]: {
@@ -39,8 +41,8 @@ const reducer = (state, action) => {
 };
 
 const { StateProvider } = addContext("Global", actionTypes);
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const rootElemnt: any = document.getElementById("root");
+const root: any = ReactDOM.createRoot(rootElemnt);
 root.render(
   <Router>
     <StateProvider {...{ initialState, reducer }}>

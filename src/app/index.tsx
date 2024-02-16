@@ -25,7 +25,7 @@ export function App() {
   // useScroll()
 
   useEffect(() => {
-    const onScroll = (e) => {
+    const onScroll = (e: any) => {
       const newShowFixed = window.scrollY > 200;
       showFixed !== newShowFixed &&
         setTimeout(() => setShowFixed(newShowFixed), 500); // ? delay effect 500 ms
@@ -33,7 +33,7 @@ export function App() {
     document.addEventListener("scroll", onScroll);
   }, [showFixed]);
 
-  const pages = [
+  const pages: any = [
     {
       label: "proyectos",
       path: `projects${searchedUsername && `?username=${searchedUsername}`}`,

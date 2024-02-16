@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Content = styled.div`
+export const Content: any = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@ export const Content = styled.div`
   }
 `;
 
-export const FormStyle = styled.form`
+export const FormStyle: any = styled.form`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -30,7 +30,7 @@ export const FormStyle = styled.form`
   }
 `;
 
-export const Button = styled.button`
+export const Button: any = styled.button`
   padding: 0.2rem 1.2rem;
   border-radius: 0.4rem;
   border: none;
@@ -42,7 +42,7 @@ export const Button = styled.button`
   margin: 1rem 0;
 `;
 
-export const SubmitButton = styled.button`
+export const SubmitButton: any = styled.button`
   border: none;
   z-index: -1;
   :focus,

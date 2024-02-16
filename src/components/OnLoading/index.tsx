@@ -8,7 +8,7 @@ export function OnLoading({
   delay = 3000,
   contain = "Loading",
   component,
-}) {
+}: any) {
   useEffect(() => {
     if (reset)
       setTimeout(() => {

@@ -5,10 +5,10 @@ import { plural, singular } from "pluralize";
 /* passing a object with all properties to convert to css format */
 export const formatToCss = (objFormat = {}, important = false) => {
   if (typeof objFormat == "object") {
-    const s = (objFormat) => {
+    const s = (objFormat: any) => {
       var s = "/* start props */";
       objFormat.forEach(
-        (value, key) =>
+        (value: any, key: any) =>
           (s += `\n${key} : ${value} ${important && "!important"};`)
       );
       return s;
@@ -19,9 +19,9 @@ export const formatToCss = (objFormat = {}, important = false) => {
   }
 };
 
-export const beutifyLabel = (label) => {
-  label = label.replace(/\w\S*/g, (w) =>
-    w.replace(/^\w/, (c) => c.toUpperCase())
+export const beutifyLabel = (label: any) => {
+  label = label.replace(/\w\S*/g, (w: any) =>
+    w.replace(/^\w/, (c: any) => c.toUpperCase())
   );
   for (var i in label) {
     if (Number(i) !== label.length - 1) {
@@ -44,7 +44,7 @@ export const beutifyLabel = (label) => {
   return label;
 };
 
-export const capitalize = (label, pluralize = false) => {
+export const capitalize = (label: any, pluralize: boolean = false) => {
   return (
     label[0].toUpperCase() +
     label.slice(1).toLowerCase() +
@@ -52,10 +52,10 @@ export const capitalize = (label, pluralize = false) => {
   );
 };
 
-export const normalize = (str) => {
+export const normalize = (str: string) => {
   const from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç",
     to = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc",
-    mapping = {};
+    mapping: any = {};
 
   for (var i = 0, j = from.length; i < j; i++)
     mapping[from.charAt(i)] = to.charAt(i);
@@ -77,7 +77,7 @@ export const normalize = (str) => {
  * @UP Upper Case Plural (UpperPlural)
  * @US Upper Case Singular (UpperSingle)
  */
-export const labelCases = (label, normal = true) => {
+export const labelCases = (label: string, normal = true) => {
   label = normal ? normalize(label) : label;
   return Object.defineProperties(Object(String(label)), {
     LP: { value: plural(label.toLowerCase()), writable: false },
@@ -95,7 +95,7 @@ export const genRandomId = () => {
   return Number(String(Math.random()).replace("0.", ""));
 };
 
-export const getOffset = (element) => {
+export const getOffset = (element: HTMLElement) => {
   var _x = 0;
   var _y = 0;
   var _vw = 0;
@@ -106,7 +106,7 @@ export const getOffset = (element) => {
     _y += element.offsetTop - element.scrollTop;
     _vw = (_x * 100) / innerWidth;
     _vh = (_y * 100) / innerHeight;
-    element = element.offsetParent;
+    // element = element.offsetParent;
   }
 
   return [_vw, _vh];
@@ -121,9 +121,14 @@ export const getOffset = (element) => {
  * @param {integer} index
  * @returns {string|Array} key || value || [key, value, error]
  */
-export const pairKV = (object, depth = 0, get, index = 0) => {
+export const pairKV = (
+  object: object,
+  depth: number = 0,
+  get?: any,
+  index: any = 0
+) => {
   var key = "";
-  var value = "";
+  var value: any = "";
   var error = undefined;
 
   if (typeof depth === "string") {
@@ -135,9 +140,9 @@ export const pairKV = (object, depth = 0, get, index = 0) => {
     [key, value] = Object.entries(object)[index];
     if (value instanceof Object && typeof depth === "number" && depth !== 0) {
       depth -= 1;
-      if (!get) [key, value, error] = pairKV(value, depth);
-      if (get === PAIRKV.K) key = pairKV(value, depth, get);
-      if (get === PAIRKV.V) value = pairKV(value, depth, get);
+      if (!get) [key, value, error] = <any>pairKV(value, depth);
+      if (get === PAIRKV.K) key = <any>pairKV(value, depth, get);
+      if (get === PAIRKV.V) value = <any>pairKV(value, depth, get);
     }
   } catch (e) {
     error = e;
@@ -150,23 +155,23 @@ export const pairKV = (object, depth = 0, get, index = 0) => {
     : [key, value, error];
 };
 
-export const Mapfy = (object) => new Map(Object.entries(object));
+export const Mapfy = (object: any) => new Map(Object.entries(object));
 
-export const UnMapfy = (map) => Object.fromEntries(map.entries());
+export const UnMapfy = (map: any) => Object.fromEntries(map.entries());
 
 /**
  * It takes an array of React elements and injects the same attributes to all of them
  * @param items - an array of React elements
  * @param [attrs] - The attributes you want to inject into the React elements.
  */
-export const injectAttrsToReactElements = (items, attrs = {}) =>
-  items.map((item, index) => cloneElement(item, { ...attrs }));
+export const injectAttrsToReactElements = (items: any, attrs = {}) =>
+  items.map((item: any, index: any) => cloneElement(item, { ...attrs }));
 
-export const settingName = (value) =>
+export const settingName = (value: any) =>
   "set" + value.slice(0, 1).toUpperCase() + value.slice(1);
 
-export const getActionTypes = (object) => {
-  const actionTypes = {};
+export const getActionTypes = (object: any) => {
+  const actionTypes: any = {};
   for (var key of object.keys()) {
     actionTypes[settingName(key)] = settingName(key);
   }
@@ -174,18 +179,22 @@ export const getActionTypes = (object) => {
   return actionTypes;
 };
 
-export const setActions = (actions, entity) => {
+export const setActions = (actions: Array<string>, entity?: object) => {
   actions = [...actions, "reset"];
   const mapfied = entity ? getActionTypes(Mapfy(entity)) : {};
-  const types = {};
-  actions.forEach((action) => (types[action] = action));
+  const types: any = {};
+  actions.forEach((action: string) => (types[action] = action));
   return Object.freeze({ ...types, ...mapfied });
 };
 
-export const PAIRKV = setActions(["K", "V"]);
+export const PAIRKV: any = setActions(["K", "V"]);
 
-export const filterAttrs = (obj, toRemove, oclusive = true) => {
-  const newObj = {};
+export const filterAttrs = (
+  obj: any,
+  toRemove: string,
+  oclusive: boolean = true
+) => {
+  const newObj: any = {};
   for (var attr in obj) {
     if (!oclusive === toRemove.includes(attr)) {
       newObj[attr] = obj[attr];
@@ -195,7 +204,7 @@ export const filterAttrs = (obj, toRemove, oclusive = true) => {
 };
 
 export const logg = (
-  payload,
+  payload: any,
   { color = "black", size = "12px", weight = "normal" },
   path = undefined
 ) => {
@@ -213,10 +222,10 @@ export const logg = (
 
 // ? scale for extract every data response getting from query ended at 'NotDirected'
 // ? and be implemented as a *<adapter>
-export const extractEntities = (data, entityLabel) => {
-  let entities = [];
+export const extractEntities = (data: any, entityLabel: string) => {
+  let entities: any = [];
 
-  const filterEntities = (data, entityLabel) => {
+  const filterEntities = (data: any, entityLabel: string) => {
     for (var attr in data) {
       console.log(attr);
       if (attr !== entityLabel && data[attr] instanceof Array) {
@@ -234,8 +243,8 @@ export const extractEntities = (data, entityLabel) => {
   };
   filterEntities(data, entityLabel);
   // entities = [...new Set(entities)];
-  const setObj = new Set();
-  const newEntities = entities.reduce((acc, value) => {
+  const setObj: any = new Set();
+  const newEntities = entities.reduce((acc: any, value: any) => {
     const key = JSON.stringify(value);
     if (!setObj.has(key)) {
       setObj.add(key, value);
@@ -247,7 +256,7 @@ export const extractEntities = (data, entityLabel) => {
   return newEntities;
 };
 
-export const manyfy = (element, factor = 6) => {
+export const manyfy = (element: any, factor = 6) => {
   if (element) {
     const many = [];
     for (var i = 0; i < factor; i++) {
@@ -258,7 +267,7 @@ export const manyfy = (element, factor = 6) => {
 };
 
 // ? keyframes declaration depending of passed props
-export const setFrames = (frames, props) => {
+export const setFrames = (frames: any, props: any) => {
   if (frames.length < 2)
     throw new Error("Must provide an array with at least two values");
 
@@ -266,7 +275,7 @@ export const setFrames = (frames, props) => {
 
   let literalKeyframe = ``;
 
-  frames.forEach((frame, index) => {
+  frames.forEach((frame: any, index: any) => {
     const rule = frame instanceof Function ? frame(props) : frame;
     const percentage = Number((basePercentage * index).toFixed(2));
 
@@ -282,29 +291,33 @@ export const setFrames = (frames, props) => {
   `;
 };
 
-export const createEnumFromArray = (array) =>
-  Object.freeze(Object.fromEntries(array.map((item) => [item, item])));
+export const createEnumFromArray = (array: Array<any>) =>
+  Object.freeze(Object.fromEntries(array.map((item: any) => [item, item])));
 
-export const runButtonBehavior = (e, behaviors) => {
+export const runButtonBehavior = (e: any, behaviors: any) => {
   const { class: className, name, title, id } = e.target;
   const buttonId = name || title || id || className;
   behaviors[buttonId]();
 };
 
-export const getDispatchSetFunctions = (dispatch, actionTypes) => {
+export const getDispatchSetFunctions = (
+  dispatch: Function,
+  actionTypes: Array<string>
+) => {
   let functions = {};
   for (let actionType in actionTypes) {
     functions = {
       ...functions,
-      [actionType]: (data) => dispatch({ type: actionType, payload: data }),
+      [actionType]: (data: any) =>
+        dispatch({ type: actionType, payload: data }),
     };
   }
   return functions;
 };
 
-export const getSizesDisposition = (i) => {
+export const getSizesDisposition = (i: any) => {
   i -= 1;
-  let sizes = [];
+  let sizes: any = [];
   const reverte = !false;
   const sqNum = Number(String(Math.sqrt(i)).split(".")[0]) + 1;
   const w = (100 / sqNum) * 2;

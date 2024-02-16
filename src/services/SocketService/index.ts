@@ -2,7 +2,7 @@ import { connect } from "socket.io-client";
 import { Mapfy } from "../../utils";
 
 export class SocketService {
-  clients = {};
+  clients: any = {};
 
   constructor(clients = []) {
     if (clients) {
@@ -13,7 +13,7 @@ export class SocketService {
     return this;
   }
 
-  addClient = (client) => {
+  addClient = (client: any) => {
     const [alias, address] = Mapfy(client).entries().next().value;
     this.clients[alias] = connect(address);
     this.clients[alias].on("connect", () => {
@@ -22,16 +22,16 @@ export class SocketService {
     this.clients[alias].on("disconnect", () => {
       console.log("Conexión perdida con el servidor.");
     });
-    this.clients[alias].on("message", (message) => {
+    this.clients[alias].on("message", (message: any) => {
       console.log(`Mensaje recibido del servidor: ${message.payload}`);
     });
-    this.clients[alias].on("connect_error", (error) => {
+    this.clients[alias].on("connect_error", (error: any) => {
       console.error("Error de conexión:", error);
     });
     return this;
   };
 
-  sendMessage = (payload, receiverFunc) => {
+  sendMessage = (payload: any, receiverFunc: any) => {
     const [client, sendTo, params, receiverFunctionName] =
       this.extractRemoteHandlersSpecs(payload, receiverFunc);
     if (Mapfy(this.clients).size && this.clients[client]) {
@@ -45,17 +45,17 @@ export class SocketService {
     return this;
   };
 
-  receiveMessage = (payload) => {
+  receiveMessage = (payload: any) => {
     let [client, receiveIn, callback] =
       this.extractRemoteHandlersSpecs(payload);
     return new Promise((resolve, reject) => {
-      this.clients[client].on(receiveIn, (data) => {
+      this.clients[client].on(receiveIn, (data: any) => {
         resolve(callback(data));
       });
     });
   };
 
-  extractRemoteHandlersSpecs = (object, receiverFunc) => {
+  extractRemoteHandlersSpecs = (object: any, receiverFunc?: any) => {
     let specs = [];
     const [client, _payload] = Mapfy(object).entries().next().value;
     const [sendTo, paramsOrCallback] = Mapfy(_payload).entries().next().value;
@@ -66,7 +66,7 @@ export class SocketService {
     return specs;
   };
 
-  extractFunctionSpecs = (object) => {
+  extractFunctionSpecs = (object: any) => {
     let [functionName, callback] = ["function_not_provided", (...[]) => {}];
     if (object instanceof Function) {
       [functionName, callback] = [object.name, object];

@@ -1,9 +1,9 @@
-import { InputForm } from "./InputForm/index.jsx";
+import { InputForm } from "./InputForm";
 import { FormStyle, Content, Button, SubmitButton } from "./styles";
 import { useHook } from "./useHook";
 import { OnError } from "../OnError";
 import { OnLoading } from "../OnLoading";
-import { labelCases, Mapfy } from "../../utils/index.js";
+import { labelCases, Mapfy } from "../../utils";
 
 export function DefineSchema({
   title = "Define Schema",
@@ -12,7 +12,7 @@ export function DefineSchema({
   onClickHandler,
   buttons = { add: "add", main: "save" },
   highOrderCallback,
-}) {
+}: any) {
   const {
     attributes,
     onClick,
@@ -25,8 +25,8 @@ export function DefineSchema({
     loading,
     error,
     reset,
-  } = useHook({ baseSchema, onClickHandler, highOrderCallback });
-  
+  }: any = useHook({ baseSchema, onClickHandler, highOrderCallback });
+
   return (
     <Content>
       <h2>{title}</h2>
@@ -77,10 +77,10 @@ export function DefineSchema({
   );
 }
 
-export const getHOCAndTrigger = (cb) => {
-  let onClickHandlerCallback = null;
+export const getHOCAndTrigger = (cb: any) => {
+  let onClickHandlerCallback: any = null;
   return [
-    (params) => (onClickHandlerCallback = () => cb(params)),
+    (params: any) => (onClickHandlerCallback = () => cb(params)),
     () => onClickHandlerCallback(),
   ];
 };

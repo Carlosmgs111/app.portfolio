@@ -48,7 +48,7 @@ function useAuth() {
     });
   }, []);
 
-  const isExpired = (expire) => {
+  const isExpired = (expire: number) => {
     expire = Number(expire) * 1000;
     const currentDateTime = Date.now();
     return expire < currentDateTime;
@@ -63,7 +63,7 @@ function useAuth() {
     createdAt,
     privilege,
     avatar,
-  }) => {
+  }: any) => {
     dispatch({
       type: ACTIONS.setAuth,
       payload: {

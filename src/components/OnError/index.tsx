@@ -7,7 +7,7 @@ export function OnError({
   useAlert = false,
   delay = 3000,
   message,
-}) {
+}: any) {
   useEffect(() => {
     error && reset && setTimeout(() => reset(), delay);
     error && useAlert && window.alert(error);

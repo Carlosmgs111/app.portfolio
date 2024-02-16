@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const InputContainer = styled.div`
+export const InputContainer: any = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.4rem;
@@ -12,7 +12,7 @@ export const InputContainer = styled.div`
   }
 `;
 
-export const MultiInputContainer = styled.div`
+export const MultiInputContainer: any = styled.div`
   display: flex;
   padding: 1rem 0;
   flex-direction: column;
@@ -31,4 +31,3 @@ export const MultiInputContainer = styled.div`
     }
   }
 `;
-

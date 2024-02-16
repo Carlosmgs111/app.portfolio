@@ -3,8 +3,8 @@ import { Mapfy } from "../utils";
 
 const excludeContexts = ["Global", "CreationForm", "CreateNodeAndRelationship"];
 
-export const CONTEXTS = {};
-export const ACTIONS = {};
+export const CONTEXTS: any = {};
+export const ACTIONS: any = {};
 
 /**
  * @param name[String] String with the name of context
@@ -12,19 +12,19 @@ export const ACTIONS = {};
  * @param exclude[Boolean] Boolean value to add exclude context, by default is true
  */
 export function factory() {
-  const contexts = {};
-  const addContext = (name, actionTypes, exclude = true) => {
+  const contexts: any = {};
+  const addContext = (name: any, actionTypes: any, exclude = true) => {
     if (exclude) excludeContexts.push(name);
     CONTEXTS[name] = name;
     ACTIONS[name] = actionTypes;
     contexts[name] = { StateContext, StateProvider, useStateValue };
     return { StateProvider };
   };
-  const getContext = (name) => {
+  const getContext = (name: any) => {
     if (!Mapfy(CONTEXTS).has(name)) throw new Error(`Context doesn't exist!`);
     return [contexts[name], ACTIONS[name]];
   };
-  const removeContext = (name) => {
+  const removeContext = (name: any) => {
     if (Mapfy(CONTEXTS).has(name)) delete contexts[name];
   };
   const cleanContexts = () => {
@@ -34,7 +34,7 @@ export function factory() {
       }
     }
   };
-  const getContextValue = (name) => {
+  const getContextValue = (name: any) => {
     if (!Mapfy(CONTEXTS).has(name)) throw new Error(`Context doesn't exist!`);
     const { useStateValue } = contexts[name];
     const [contextValue] = useStateValue();

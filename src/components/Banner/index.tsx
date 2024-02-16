@@ -1,4 +1,3 @@
-
 import styles from "./styles.module.css";
 import { getContextValue, CONTEXTS } from "../../contexts";
 
@@ -8,7 +7,7 @@ export function Banner({
   background,
   searchedUsername,
   customeMessage = true,
-}) {
+}: any) {
   const { username } = getContextValue(CONTEXTS.Global);
   return (
     <div className={styles.body} style={{ background }}>

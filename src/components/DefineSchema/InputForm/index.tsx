@@ -18,11 +18,11 @@ export function InputForm({
   setAttributes,
   fixed = false,
   nonOptionals = [],
-}) {
+}: any) {
   const [isExpanded, switchIsExpanded] = useToggle(true, false);
 
   const settingAttributes = () => {
-    const _attributes = {};
+    const _attributes: any = {};
     for (var non in nonOptionals) {
       const nonOp = nonOptionals[non]
         .replace("{", "")
@@ -40,7 +40,7 @@ export function InputForm({
     });
   }, []);
 
-  const isControlledValue = (value) => {
+  const isControlledValue = (value: any) => {
     return (
       Mapfy(attributes[index]).get(value + "{") ||
       Mapfy(attributes[index]).get(value + "~") ||
@@ -48,7 +48,7 @@ export function InputForm({
     );
   };
 
-  const onChange = (currentName, currentValue, target) => {
+  const onChange = (currentName: any, currentValue: any, target: any) => {
     let { name, value } = target;
     let controllerName = null;
     let controllerValue = null;
@@ -100,7 +100,7 @@ export function InputForm({
     });
   };
 
-  const Form = (attribute, onChange) => {
+  const Form = (attribute: any, onChange: any) => {
     const [name, value] = attribute;
     const keyName = `${index}-${name}`;
     const isControlled = isControlledValue(name);
@@ -180,9 +180,9 @@ export function InputForm({
             <input
               style={{ width: "fit-content", visibility: "hidden" }}
               className={name}
-              onClick={(e) => {
+              onClick={(e: any) => {
                 Array(document.getElementsByName(keyName)[0]).forEach(
-                  (input) => {
+                  (input: any) => {
                     if (!e.target.checked) {
                       delete schema[index][input.name.replace(`${index}-`, "")];
                       setSchema({ ...schema });
@@ -210,7 +210,7 @@ export function InputForm({
               type="checkbox"
               id={keyName}
               onChange={() => {
-                document.getElementsByName(keyName).forEach((input) => {
+                document.getElementsByName(keyName).forEach((input: any) => {
                   input.disabled = !input.disabled;
                 });
               }}

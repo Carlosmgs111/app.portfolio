@@ -6,7 +6,7 @@ import { useToggle } from "../../hooks/useToggle";
 import { runRequest } from "../../services/runRequest";
 import { getContext, CONTEXTS } from "../../contexts";
 
-export default function Navigation({ children, banner, className }) {
+export default function Navigation({ children, banner, className }: any) {
   const location = useLocation();
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
   const [{ searchedUsername }, dispatch] = useStateValue();
@@ -15,22 +15,22 @@ export default function Navigation({ children, banner, className }) {
     { show: false, name: "fas fa-bars p-2 item" },
     { show: true, name: "fas fa-times p-2 item" }
   );
-  const [current, setCurrent] = useState(null);
+  const [current, setCurrent]: any = useState(null);
   const [showfixed, setShowFixed] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const [indexedElements, setIndexedElements] = useState([]);
+  const [indexedElements, setIndexedElements]: any = useState([]);
   const [selected, setSelected] = useState(false);
 
   useEffect(() => {
     runRequest({
-      setData: (data) => setIndexedElements([...indexedElements, ...data]),
+      setData: (data: any) => setIndexedElements([...indexedElements, ...data]),
     }).get("users/username/all");
     const searchInput = document.getElementsByName("search-input")[0];
     searchInput.addEventListener("focusin", () => setSelected(true));
     searchInput.addEventListener("focusout", () => setSelected(false));
   }, [showfixed]);
 
-  const onClick = (e) => {
+  const onClick = (e: any) => {
     setCurrent(Number(e.target.id));
     if (menu.show) switchMenu();
     console.log({ target: e.target.id });
@@ -90,7 +90,7 @@ export default function Navigation({ children, banner, className }) {
         />
       </form>
       <datalist id="indexed_elements">
-        {indexedElements.map((iE, idx) => (
+        {indexedElements.map((iE: any, idx: any) => (
           <option value={iE} key={idx} />
         ))}
       </datalist>
@@ -107,7 +107,7 @@ export default function Navigation({ children, banner, className }) {
           )} navigation-list`}
         >
           {children
-            ? childrens.map((child, index) => {
+            ? childrens.map((child: any, index: any) => {
                 var LinkedItem = child.props.children.props?.link ? Item : Link;
                 return (
                   <LinkedItem
@@ -119,7 +119,7 @@ export default function Navigation({ children, banner, className }) {
                           current === String(index)
                     }
                     type="button"
-                    onClick={(e) => {
+                    onClick={(e: any) => {
                       const next = e.target.id || child.props.id;
                       if (next) setCurrent(next);
                       if (child.props.onClick) child.props.onClick(e);

@@ -2,7 +2,7 @@ import { useLogin } from "../../hooks/useLogin";
 import { beutifyLabel } from "../../utils";
 import styles from "./styles.module.css";
 
-function Login({ onLogged }) {
+export function Login({ onLogged }: any) {
   const {
     email,
     username,
@@ -14,9 +14,9 @@ function Login({ onLogged }) {
     loading,
     error,
     token,
-  } = useLogin();
+  }: any = useLogin();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     onClick(e);
   };
@@ -24,13 +24,13 @@ function Login({ onLogged }) {
   return (
     !token && (
       <form className={styles.form}>
-        <i className={styles.title} type="button" onClick={switchLabel}>
+        <i className={styles.title} onClick={switchLabel}>
           {beutifyLabel(label)}
         </i>
         <input
           className={`${styles.input} ${loading ? styles.disabled : ""}`}
           name="username"
-          placeholder={`username ${!label === "signin" ? "o email" : ""}`}
+          placeholder={`username ${label === "signin" ? "o email" : ""}`}
           value={username}
           onSubmit={handleSubmit}
           onChange={onInputChange}
@@ -66,4 +66,3 @@ function Login({ onLogged }) {
     )
   );
 }
-export { Login };
