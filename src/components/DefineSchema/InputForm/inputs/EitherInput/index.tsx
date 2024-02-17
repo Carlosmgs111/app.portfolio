@@ -7,7 +7,7 @@ export const EitherInput = ({ keyName, value, name, onChange }: any) => {
           name={keyName}
           type="radio"
           disabled={true}
-          value={false}
+          defaultValue={"false"}
           checked={String(value) === "false"}
           onChange={(e) => onChange(name, value, e.target)}
         />
@@ -18,7 +18,7 @@ export const EitherInput = ({ keyName, value, name, onChange }: any) => {
           name={keyName}
           type="radio"
           disabled={true}
-          value={true}
+          defaultValue={"true"}
           checked={String(value) === "true"}
           onChange={(e) => onChange(name, value, e.target)}
         />

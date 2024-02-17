@@ -3,13 +3,9 @@ import Navigation from "../components/Navigation";
 import { Routes } from "react-router-dom";
 import { Login } from "../components/Login";
 import { getContext, CONTEXTS } from "../contexts";
-import { RoutesFactory, NavigationItemsFactory } from "../pages";
+import { RoutesFactory, NavigationItemsFactory } from "../pages/routers";
 import { useApp } from "../hooks/useApp";
-import { Home } from "../pages/Home";
-import { Skills } from "../pages/Skills";
-import { Projects } from "../pages/Projects";
-import { Certifications } from "../pages/Certifications";
-import { Profile } from "../pages/Profile";
+import { Home, Skills, Projects, Certifications, Profile } from "../pages";
 import { Modal } from "../components/Modal";
 import { injectAttrsToReactElements } from "../utils";
 import { useEffect, useState } from "react";
@@ -21,7 +17,7 @@ export function App() {
   const [{ useStateValue }] = getContext(CONTEXTS.Global);
   const [{ token, avatar, searchedUsername }] = useStateValue();
   const [showFixed, setShowFixed] = useState(false);
-  const [currentModal, setCurrentModal] = useState(null);
+  const [currentModal, setCurrentModal]: any = useState(null);
   // useScroll()
 
   useEffect(() => {
@@ -95,7 +91,7 @@ export function App() {
             pages,
             login: {
               label: () => <span>Login</span>,
-              onClick: (e) => {
+              onClick: (e: any) => {
                 e.preventDefault();
                 // switchShowLogin();
                 setCurrentModal(

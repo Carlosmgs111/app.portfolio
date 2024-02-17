@@ -11,14 +11,10 @@ export const to = css`
 `;
 
 export const Item: any = styled.li`
-  animation: 1.2s ${(props) => setFrames([to, from], props)} ease;
-  color: ${({ className }: any) =>
-    className?.includes("login") && "#e4ff1a !important"};
   z-index: 1;
   list-style: none;
   padding: 0;
   text-decoration: none;
-  ${(props: any) => from(props)};
   font-size: 1.4rem;
   font-weight: 1000;
   font-family: "Quicksand", sans-serif;
@@ -27,6 +23,10 @@ export const Item: any = styled.li`
   position: relative;
   align-items: center;
   justify-content: center;
+  color: ${({ className }: any) =>
+    className?.includes("login") && "#e4ff1a !important"};
+  animation: 1.2s ${(props) => setFrames([to, from], props)} ease;
+  ${(props: any) => from(props)};
   border-bottom: ${({ selected, id }: any) =>
     selected && id !== "nonMark" ? "solid #e4ff1a 1px" : "transparent"};
   top: ${({ selected, id }: any) =>

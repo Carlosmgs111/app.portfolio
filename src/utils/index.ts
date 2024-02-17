@@ -257,13 +257,14 @@ export const extractEntities = (data: any, entityLabel: string) => {
 };
 
 export const manyfy = (element: any, factor = 6) => {
-  if (element) {
-    const many = [];
-    for (var i = 0; i < factor; i++) {
-      many.push(element);
-    }
-    return many;
+  const many = [];
+  if (!element) {
+    throw new Error("Element does't provided")
   }
+  for (var i = 0; i < factor; i++) {
+    many.push(element);
+  }
+  return many;
 };
 
 // ? keyframes declaration depending of passed props

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const List = styled.ul`
+export const List: any = styled.ul`
   font-size: 1.4rem;
   padding: 2rem;
   align-items: center;
@@ -13,7 +13,7 @@ export const List = styled.ul`
   width: 100%;
 `;
 
-export const FormStyle = styled.div`
+export const FormStyle: any = styled.div`
   width: 100%;
   text-align: center;
   display: inline-flex;
@@ -155,7 +155,7 @@ export const FormStyle = styled.div`
   }
 `;
 
-export const ButtonsSection = styled.div`
+export const ButtonsSection: any = styled.div`
   padding: 0.4rem;
   display: flex;
   flex-direction: row;
@@ -167,7 +167,7 @@ export const ButtonsSection = styled.div`
   font-size: 1.4rem;
 `;
 
-export const DeleteButton = styled.button`
+export const DeleteButton: any = styled.button`
   margin: 0;
   height: fit-content;
   border-radius: 0.4rem;
@@ -192,7 +192,7 @@ export const DeleteButton = styled.button`
   }
 `;
 
-export const AddButton = styled.button`
+export const AddButton: any = styled.button`
   margin: 0;
   height: fit-content;
   border-radius: 0.4rem;
@@ -214,7 +214,7 @@ export const AddButton = styled.button`
   }
 `;
 
-export const ExpandButton = styled.button`
+export const ExpandButton: any = styled.button`
   width: 100%;
   height: 4rem;
   background-color: transparent;
@@ -225,7 +225,7 @@ export const ExpandButton = styled.button`
   }
 `;
 
-export const InputContainer = styled.div`
+export const InputContainer: any = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.4rem;
@@ -237,7 +237,7 @@ export const InputContainer = styled.div`
   }
 `;
 
-export const MultiInputContainer = styled.div`
+export const MultiInputContainer: any = styled.div`
   display: flex;
   padding: 1rem 0;
   flex-direction: column;

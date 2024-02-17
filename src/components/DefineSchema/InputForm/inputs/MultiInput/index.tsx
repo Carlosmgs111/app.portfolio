@@ -27,7 +27,7 @@ export const MultiInput = ({
           <DeleteButton
             className="fa-solid fa-trash mini"
             type="button"
-            onClick={(e) => {
+            onClick={(e: any) => {
               e.preventDefault();
               const list = [...attributes[index][name]];
               list.splice(i, 1);
@@ -50,7 +50,7 @@ export const MultiInput = ({
           <AddButton
             className="fa-solid fa-plus mini"
             type="button"
-            onClick={(e) => {
+            onClick={(e: any) => {
               e.preventDefault();
               const list = [...attributes[index][name]];
               list.splice(i + 1, 0, "");
@@ -76,7 +76,7 @@ export const MultiInput = ({
           className="fa-solid fa-plus mini"
           style={{ width: "100%" }}
           type="button"
-          onClick={(e) => {
+          onClick={(e: any) => {
             e.preventDefault();
             const list = [...attributes[index][name]];
             list.push("");
