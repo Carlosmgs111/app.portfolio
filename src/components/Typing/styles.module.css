@@ -1,0 +1,84 @@
+.animated_text {
+  font-size: 3.4rem;
+  font-weight: 600;
+  min-width: 28rem;
+  word-break: normal;
+  word-wrap: normal;
+}
+.animated_text p {
+  transition: 0.4s;
+}
+.animated_text span {
+  position: relative;
+}
+.animated_text span::before {
+  content: "Backend";
+  color: rgb(246, 138, 6);
+  animation: words 20s infinite;
+}
+.animated_text span::after {
+  content: "";
+  background-color: #2f3234;
+  position: absolute;
+  width: calc(100% + 0.8rem);
+  height: 100%;
+  border-left: 0.2rem solid rgb(15, 202, 231);
+  right: -0.8rem;
+  animation: cursor 0.6s infinite, typing 20s steps(14) infinite;
+}
+@keyframes cursor {
+  to {
+    border-left: 0.2rem solid #2f3542;
+  }
+}
+@keyframes words {
+  0%,
+  20% {
+    content: "Backend";
+  }
+  21%,
+  40% {
+    content: "Frontend";
+  }
+  41%,
+  60% {
+    content: "Fullstack";
+  }
+  41%,
+  60% {
+    content: "Javascript";
+  }
+  61%,
+  80% {
+    content: "Python";
+  }
+  81%,
+  100% {
+    content: "Java";
+  }
+}
+@keyframes typing {
+  10%,
+  15%,
+  30%,
+  35%,
+  50%,
+  55%,
+  70%,
+  75%,
+  90%,
+  95% {
+    width: 0;
+  }
+  5%,
+  20%,
+  25%,
+  40%,
+  45%,
+  60%,
+  65%,
+  80%,
+  85% {
+    width: calc(100% + 0.8rem);
+  }
+}
