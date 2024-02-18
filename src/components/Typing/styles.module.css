@@ -1,60 +1,59 @@
-.animated_text {
+.typing_container {
   font-size: 3.4rem;
   font-weight: 600;
-  min-width: 28rem;
-  word-break: normal;
-  word-wrap: normal;
+  width: fit-content;
+  display: flex;
+  gap: 0.6rem;
 }
-.animated_text p {
-  transition: 0.4s;
-}
-.animated_text span {
+.typing_container span {
   position: relative;
+  margin-right: 0.6rem;
 }
-.animated_text span::before {
+.typing_container span::before {
   content: "Backend";
-  color: rgb(246, 138, 6);
+  color: #339933;
   animation: words 20s infinite;
+  width: fit-content;
 }
-.animated_text span::after {
+.typing_text {
   content: "";
-  background-color: #2f3234;
-  position: absolute;
-  width: calc(100% + 0.8rem);
+  background-color: transparent;
+  width: fit-content;
   height: 100%;
-  border-left: 0.2rem solid rgb(15, 202, 231);
-  right: -0.8rem;
+  border-right: 0.2rem solid #0fcae7;
   animation: cursor 0.6s infinite, typing 20s steps(14) infinite;
+  overflow: hidden;
 }
 @keyframes cursor {
   to {
-    border-left: 0.2rem solid #2f3542;
+    border-right: 0.2rem solid #2f3542;
   }
 }
 @keyframes words {
   0%,
   20% {
     content: "Backend";
+    color: #339933;
   }
   21%,
   40% {
     content: "Frontend";
+    color: #61dafb;
   }
   41%,
   60% {
     content: "Fullstack";
-  }
-  41%,
-  60% {
-    content: "Javascript";
+    color: #e0234e;
   }
   61%,
   80% {
-    content: "Python";
+    content: "Typescript";
+    color: #3178c6;
   }
   81%,
   100% {
-    content: "Java";
+    content: "Python";
+    color: #3776ab;
   }
 }
 @keyframes typing {
@@ -68,8 +67,9 @@
   75%,
   90%,
   95% {
-    width: 0;
+    width: 100%;
   }
+  0%,
   5%,
   20%,
   25%,
@@ -78,7 +78,8 @@
   60%,
   65%,
   80%,
-  85% {
-    width: calc(100% + 0.8rem);
+  85%,
+  100% {
+    width: 0%;
   }
 }
