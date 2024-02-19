@@ -1,11 +1,52 @@
 import styles from "./styles.module.css";
 import { Typing } from "../../components/Typing";
 
+const typings: any = { Typing };
+
 export function Home() {
+  const literalCodeSnapshot = `
+1 |
+2 |  class Developer {
+3 |    name: string = "";
+4 |    lastName: string = "";
+5 |
+6 |    constructor(name: string, lastName: string): void {
+7 |      this.name = name;
+8 |      this.lastName = lastName;
+9 |     }
+10|
+11|    presentYourSelf(): string {
+12|      return \`
+13|      Hi! I'm \${this.name} \${this.lastName}
+14|      <{*Typing*}>
+15|      \`
+16|    }
+17|  }
+18|
+19|  const Carlos = new Developer("Carlos", "Muñoz");
+20|
+  `;
+
+  const highlight = () => {};
+  const spansCodeSnapshot: any = literalCodeSnapshot
+    .split("\n")
+    .map((line: string, key: number) => {
+      if (!line.trim()) return;
+      return (
+        <span key={key} className={styles.code_line}>
+          {line.split(/<\{([^}]*)\}>/).map((e) => {
+            if (RegExp(/\*([^}]+)\*/).test(e))
+              return typings[e.replaceAll("*", "")]();
+            return [<span>{e}</span>];
+          })}
+        </span>
+      );
+    });
   return (
     <div className={styles.container}>
       <article className={styles.section.concat(" ", styles.hero)}>
-        <Typing />
+        {/* <Typing /> */}
+        <section className={styles.code_snapshot}>{spansCodeSnapshot}</section>
       </article>
       <article className={styles.section.concat(" ", styles.even)}>
         <p className={styles.text}>
@@ -25,3 +66,4 @@ export function Home() {
     </div>
   );
 }
+
