@@ -1,12 +1,12 @@
 import styles from "./styles.module.css";
 
-export const Typing = () => {
+export const Typing = (text: string = "") => {
   return (
     <div className={styles.typing_container}>
       <div className={styles.typing_text}>
         <span></span>
       </div>
-      Developer
+      {text}
     </div>
   );
 };
