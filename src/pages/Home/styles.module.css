@@ -14,11 +14,6 @@
   height: 100vh;
   background-color: #2f3234;
 }
-.code_snapshot {
-  font-size: 2.6rem;
-  font-family: "Cascadia Code";
-  white-space: pre;
-}
 .code_line {
   display: flex;
 }
