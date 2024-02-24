@@ -12,7 +12,7 @@
 }
 .hero {
   height: 100vh;
-  background-color: #2f3234;
+  background: radial-gradient(circle at 100% 100%, #000046 20%, #1CB5E0 );
 }
 .code_line {
   display: flex;

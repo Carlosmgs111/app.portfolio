@@ -17,9 +17,9 @@ export function Home() {
 12|      return \`
 13|      Hi! I'm \${this.name} \${this.lastName}
 14|      <{*Typing*}>
-15|      \`
+15|      \`;
 16|    };
-17|  }
+17|  };
 18|
 19|  const Carlos = new Developer("Carlos", "Muñoz");
 20|
@@ -28,7 +28,7 @@ export function Home() {
   return (
     <div className={styles.container}>
       <article className={styles.section.concat(" ", styles.hero)}>
-        <CodeSnap>{literalCodeSnapshot}</CodeSnap>
+        <CodeSnap fontSize={"1.6rem"}>{literalCodeSnapshot}</CodeSnap>
       </article>
       <article className={styles.section.concat(" ", styles.even)}>
         <p className={styles.text}>

@@ -1,6 +1,8 @@
-
 .codesnap {
-  font-size: 2.6rem;
+  font-size: 2rem;
   font-family: "Cascadia Code";
   white-space: pre;
+  padding: 2rem;
+  border-radius: 2rem;
+  backdrop-filter: brightness(45%);
 }

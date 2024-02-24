@@ -5,167 +5,166 @@ const typings: any = { Typing };
 
 const parser = (text: string) => {
   const tokens: Array<any> = [];
-  const splitedText: Array<string> = text.split("");
-  let jumpTo = 0;
+  const chars: Array<string> = text.split("");
+  let skipTo = 0;
   let currentTokenIndex = 0;
 
-  splitedText.forEach((char: string, index) => {
-    if (jumpTo > index) return;
-    console.log({ currentTokenIndex, index });
-
-    if (char === "{") {
-      tokens[currentTokenIndex] = (
-        <span style={{ color: "yellow" }}>{char}</span>
-      );
-      jumpTo = index + 1;
+  chars.forEach((char: string, index) => {
+    if (skipTo > index) return;
+    const checkChar = (
+      pattern: string | Function,
+      pre: Function,
+      pos?: Function
+    ) => {
+      if (skipTo !== index) return;
+      let toCheck = "";
+      if (typeof pattern === "function") {
+        const result = pattern();
+        if (result || result === 0) {
+          skipTo = index + String(result).length;
+          tokens[currentTokenIndex] = pre();
+          currentTokenIndex++;
+        }
+        return;
+      }
+      const patternLength = pattern.length;
+      for (let i = 0; i < patternLength; i++) toCheck += chars[index + i];
+      if (toCheck !== pattern) return;
+      skipTo = index + patternLength;
+      tokens[currentTokenIndex] = pre();
       currentTokenIndex++;
-    }
-    if (char === "}") {
-      tokens[currentTokenIndex] = (
-        <span style={{ color: "yellow" }}>{char}</span>
-      );
-      jumpTo = index + 1;
+      if (!pos) return;
+      tokens[currentTokenIndex] = pos();
       currentTokenIndex++;
-    }
-    if (char === '"') {
-      tokens[currentTokenIndex] = (
-        <span style={{ color: "green" }}>{char}</span>
-      );
-      jumpTo = index + 1;
-      currentTokenIndex++;
-    }
-
-    if (char === ";") {
-      tokens[currentTokenIndex] = (
-        <span style={{ color: "orange" }}>{char}</span>
-      );
-      jumpTo = index + 1;
-      currentTokenIndex++;
-    }
-    if (char === "=") {
-      tokens[currentTokenIndex] = <span style={{ color: "pink" }}>{char}</span>;
-      jumpTo = index + 1;
-      currentTokenIndex++;
-    }
-    if (char === "(") {
-      tokens[currentTokenIndex] = <span style={{ color: "cyan" }}>{char}</span>;
-      jumpTo = index + 1;
-      currentTokenIndex++;
-    }
-    if (char === ")") {
-      tokens[currentTokenIndex] = <span style={{ color: "cyan" }}>{char}</span>;
-      jumpTo = index + 1;
-      currentTokenIndex++;
-    }
-    if (char === ":") {
-      tokens[currentTokenIndex] = <span style={{ color: "blue" }}>{char}</span>;
-      jumpTo = index + 1;
-      currentTokenIndex++;
-    }
-    if (char === ",") {
-      tokens[currentTokenIndex] = <span style={{ color: "pink" }}>{char}</span>;
-      jumpTo = index + 1;
-      currentTokenIndex++;
-    }
-    if (char === ".") {
-      tokens[currentTokenIndex] = <span style={{ color: "pink" }}>{char}</span>;
-      jumpTo = index + 1;
-      currentTokenIndex++;
-    }
-    if (
-      char +
-        splitedText[index + 1] +
-        splitedText[index + 2] +
-        splitedText[index + 3] +
-        splitedText[index + 4] ===
-      "class"
-    ) {
-      jumpTo = index + 5;
-      tokens[currentTokenIndex] = <span style={{ color: "red" }}>class</span>;
-      currentTokenIndex++;
-
-      let className = "";
+    };
+    checkChar("constructor", () => (
+      <span style={{ color: "#fd06f9" }}>constructor</span>
+    ));
+    checkChar("return", () => <span style={{ color: "#0de99c" }}>return</span>);
+    checkChar("const", () => <span style={{ color: "#0de99c" }}>const</span>);
+    checkChar("string", () => <span style={{ color: "#10a1e4" }}>string</span>);
+    checkChar("new", () => <span style={{ color: "#0de99c" }}>new</span>);
+    checkChar("this", () => <span style={{ color: "#0de99c" }}>this</span>);
+    checkChar("{", () => <span style={{ color: "#fd9e06" }}>{char}</span>);
+    checkChar("}", () => <span style={{ color: "#fd9e06" }}>{char}</span>);
+    checkChar(";", () => <span style={{ color: "#fd4806" }}>{char}</span>);
+    checkChar("=", () => <span style={{ color: "#fd4806" }}>{char}</span>);
+    checkChar("$", () => <span style={{ color: "#fd4806" }}>{char}</span>);
+    checkChar(":", () => <span style={{ color: "#fd4806" }}>{char}</span>);
+    checkChar(",", () => <span style={{ color: "#fd4806" }}>{char}</span>);
+    checkChar(".", () => <span style={{ color: "#fd4806" }}>{char}</span>);
+    checkChar(")", () => <span style={{ color: "#fd9e06" }}>{char}</span>);
+    checkChar("`", () => <span style={{ color: "#aee90d" }}>{char}</span>);
+    checkChar("|", () => <span style={{ color: "#0bf2f6" }}>{char}</span>);
+    checkChar(
+      () => Number(char),
+      () => <span style={{ color: "#f60b6d" }}>{char}</span>
+    );
+    checkChar('"', () => {
+      let content: any = "";
       for (let i = 0; i > -1; i++) {
-        if (splitedText[jumpTo + i] === "{") {
-          jumpTo = jumpTo + i + 1;
+        if (chars[skipTo + i] === '"') {
+          skipTo = skipTo + i + 1;
           i = -2;
         }
         if (i === 1000) i = -2;
-        className += splitedText[jumpTo + i];
+        content += chars[skipTo + i];
       }
-      console.log({ className });
-      tokens[currentTokenIndex] = [
-        <span style={{ color: "yellow" }}>{className}</span>,
-        <span style={{ color: "yellow" }}>{"{"}</span>,
-      ];
-      currentTokenIndex++;
-    }
-    if (char + splitedText[index + 1] + splitedText[index + 2] === "new") {
-      jumpTo = index + 3;
-      tokens[currentTokenIndex] = <span style={{ color: "red" }}>new</span>;
-      currentTokenIndex++;
-    }
-    if (
-      char +
-        splitedText[index + 1] +
-        splitedText[index + 2] +
-        splitedText[index + 3] ===
-      "this"
-    ) {
-      jumpTo = index + 4;
-      tokens[currentTokenIndex] = <span style={{ color: "red" }}>this</span>;
-      currentTokenIndex++;
-    }
-    if (
-      char +
-        splitedText[index + 1] +
-        splitedText[index + 2] +
-        splitedText[index + 3] +
-        splitedText[index + 4] +
-        splitedText[index + 5] ===
-      "return"
-    ) {
-      jumpTo = index + 6;
-      tokens[currentTokenIndex] = <span style={{ color: "red" }}>return</span>;
-      currentTokenIndex++;
-    }
-    if (char + splitedText[index + 1] + splitedText[index + 2] === "<{*") {
-      jumpTo = index + 3;
-      let funcName = "";
+
+      content = content.split("");
+      content.pop();
+      content = content.join("");
+      return <span style={{ color: "#aee90d" }}>{`"${content}"`}</span>;
+    });
+    checkChar("(", () => {
+      let funcName: any = "";
+      if (chars[index - 1] !== " ") {
+        for (let i = 0; i > -1; i++) {
+          if (i === 1000 || chars[index - (i + 1)] === " ") i = -2;
+          funcName += chars[index - (i + 1)];
+        }
+        funcName = funcName.split("");
+        funcName.pop();
+        funcName.reverse();
+        funcName = funcName.join("");
+      }
+      const rule = [<span style={{ color: "#fd9e06" }}>{char}</span>];
+      if (typeof tokens[currentTokenIndex - 1] === "string") {
+        tokens[currentTokenIndex - 1] = tokens[currentTokenIndex - 1].replace(
+          funcName,
+          ""
+        );
+        rule.unshift(<span style={{ color: "#fd9e06" }}>{funcName}</span>);
+      }
+      return rule;
+    });
+    checkChar(
+      "class",
+      () => <span style={{ color: "#0de99c" }}>class</span>,
+      () => {
+        let className: any = "";
+        for (let i = 0; i > -1; i++) {
+          if (chars[skipTo + i] === "{") {
+            skipTo = skipTo + i + 1;
+            i = -2;
+          }
+          if (i === 1000) i = -2;
+          className += chars[skipTo + i];
+        }
+        className = className.split("");
+        className.pop();
+        className = className.join("");
+        return [
+          <span style={{ color: "#fd06f9" }}>{className}</span>,
+          <span style={{ color: "#fd9e06" }}>{"{"}</span>,
+        ];
+      }
+    );
+    checkChar("<{*", () => {
+      let funcName: any = "";
       for (let i = 0; i > -1; i++) {
         if (
-          splitedText[jumpTo + i] +
-            splitedText[jumpTo + i + 1] +
-            splitedText[jumpTo + i + 2] ===
+          chars[skipTo + i] + chars[skipTo + i + 1] + chars[skipTo + i + 2] ===
           "*}>"
         ) {
-          jumpTo = jumpTo + i + 3;
+          skipTo = skipTo + i + 3;
           i = -2;
         }
         if (i === 1000) i = -2;
-        funcName += splitedText[jumpTo + i];
+        funcName += chars[skipTo + i];
       }
-      console.log({
-        funcName,
-      });
-      tokens[currentTokenIndex] = (
+
+      funcName = funcName.split("");
+      funcName.pop();
+      funcName = funcName.join("");
+      return (
         <span style={{ display: "inline-flex" }}>
-          {typings["Typing"]("Developer")}
+          {typings[funcName]({ text: "Developer", fontSize: "1.6rem" })}
         </span>
       );
-      currentTokenIndex++;
-    }
-    if (jumpTo === index) {
-      tokens[currentTokenIndex] = char;
-      currentTokenIndex++;
-      jumpTo = index + 1;
+    });
+    if (skipTo === index) {
+      if (
+        tokens[currentTokenIndex - 1] &&
+        typeof tokens[currentTokenIndex - 1] === "string" &&
+        typeof char === "string"
+      ) {
+        tokens[currentTokenIndex - 1] += char;
+      }
+      if (typeof tokens[currentTokenIndex - 1] !== "string") {
+        tokens[currentTokenIndex] = char;
+        currentTokenIndex++;
+      }
+      skipTo = index + 1;
     }
   });
   return tokens;
 };
 
-export const CodeSnap = ({ literal, children }: any) => {
+export const CodeSnap = ({ literal, children, fontSize = "1.8rem" }: any) => {
   return (
-    <section className={styles.codesnap}>{parser(literal || children)}</section>
+    <section style={{ fontSize }} className={styles.codesnap}>
+      {parser(literal || children)}
+    </section>
   );
 };
