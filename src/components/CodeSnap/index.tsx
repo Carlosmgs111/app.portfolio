@@ -80,7 +80,12 @@ const parser = (text: string) => {
       let funcName: any = "";
       if (chars[index - 1] !== " ") {
         for (let i = 0; i > -1; i++) {
-          if (i === 1000 || chars[index - (i + 1)] === " ") i = -2;
+          if (
+            i === 1000 ||
+            chars[index - (i + 1)] === " " ||
+            chars[index - (i + 1)] === "."
+          )
+            i = -2;
           funcName += chars[index - (i + 1)];
         }
         funcName = funcName.split("");

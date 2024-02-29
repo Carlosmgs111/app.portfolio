@@ -1,34 +1,59 @@
 import styles from "./styles.module.css";
 import { CodeSnap } from "../../components/CodeSnap";
+import { Typing } from "../../components/Typing";
 
 export function Home() {
   const literalCodeSnapshot = `
 1 |
-2 |  class Developer {
-3 |    name: string = "";
-4 |    lastName: string = "";
+2 | class Developer {
+3 |   name: string = "";
+4 |   lastName: string = "";
 5 |
-6 |    constructor(name: string, lastName: string) {
-7 |      this.name = name;
-8 |      this.lastName = lastName;
-9 |    };
+6 |   constructor(name: string, lastName: string) {
+7 |     this.name = name;
+8 |     this.lastName = lastName;
+9 |   };
 10|
-11|    presentYourSelf(): string {
-12|      return \`
-13|      Hi! I'm \${this.name} \${this.lastName}
-14|      <{*Typing*}>
-15|      \`;
-16|    };
-17|  };
+11|   presentYourSelf(): string {
+12|     return \`
+13|     Hi! I'm \${this.name} \${this.lastName}
+14|     <{*Typing*}>
+15|     \`;
+16|   };
+17| };
 18|
-19|  const Carlos = new Developer("Carlos", "Muñoz");
-20|
+19| const Carlos = new Developer("Carlos", "Muñoz");
+20| console.log(Carlos.presentYourSelf())
+21| 
   `;
 
   return (
     <div className={styles.container}>
       <article className={styles.section.concat(" ", styles.hero)}>
-        <CodeSnap fontSize={"1.6rem"}>{literalCodeSnapshot}</CodeSnap>
+        <div className={styles.presentation_section}>
+          <h1>
+            Hola, soy <br />
+            <b>Carlos Muñoz</b>,
+          </h1>
+          <h2
+            style={{
+              display: "inline-flex",
+              gap: "1rem",
+            }}
+          >
+            desarrollador <Typing fontSize={"3.2rem"}></Typing>
+          </h2>
+        </div>
+        <div className={styles.coding_section}>
+          <CodeSnap fontSize={"1.4rem"}>{literalCodeSnapshot}</CodeSnap>
+          <div className={styles.console}>
+            <span>{" > "}</span>
+            <div className={styles.output}>
+              <span>Hi! I'm Carlos Muñoz</span>
+              <Typing text={"Developer"} cursor={false} fontSize={"1.6rem"} />
+            </div>
+          </div>
+        </div>
       </article>
       <article className={styles.section.concat(" ", styles.even)}>
         <p className={styles.text}>

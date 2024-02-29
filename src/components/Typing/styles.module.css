@@ -1,11 +1,10 @@
 .typing_container {
-  font-weight: 600;
   width: fit-content;
   display: flex;
 }
 .typing_container span {
   position: relative;
-  margin-right: 0.6rem;
+  margin-right: 0.4rem;
 }
 .typing_container span::before {
   content: "Backend";
@@ -18,9 +17,14 @@
   background-color: transparent;
   width: fit-content;
   height: 100%;
+  overflow: hidden;
+  border-right: 0.2rem solid transparent;
+  animation: typing 24s steps(14) infinite;
+  display: inline-flex;
+}
+.cursor {
   border-right: 0.2rem solid #0fcae7;
   animation: cursor 0.6s infinite, typing 24s steps(14) infinite;
-  overflow: hidden;
 }
 @keyframes cursor {
   to {
