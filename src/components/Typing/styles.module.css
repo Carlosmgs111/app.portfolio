@@ -23,7 +23,7 @@
   display: inline-flex;
 }
 .cursor {
-  border-right: 0.2rem solid #0fcae7;
+  border-right: 0.2rem solid transparent;
   animation: cursor 0.6s infinite, typing 24s steps(14) infinite;
 }
 @keyframes cursor {

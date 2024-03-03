@@ -16,10 +16,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
 }
 .presentation_section {
   font-size: 2rem;
   gap: 2rem;
+  font-family: Rubik;
 }
 .presentation_section h1,
 h2 {
