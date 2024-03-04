@@ -1,40 +1,36 @@
-import styles from "./styles.module.css";
-import { TypingText } from "./styles";
-
-const composeTypingRules = (numb: number) => {
-  const start: any = [];
-  const end: any = [];
-  for (let i = 0; i <= numb; i++) {
-    const base = Math.floor(100 / numb / 4);
-    const first = base * (i * base);
-    const second = base * (i * base + 1);
-    const third = base * (i * base + 2);
-    const fourth = base * (i * base + 3);
-    if (first <= 100) start.push(`${first}%,\n`);
-    if (second <= 100) start.push(`${second}%,\n`);
-    if (third <= 100) end.push(`${third}%,\n`);
-    if (fourth <= 100) end.push(`${fourth}%,\n`);
-  }
-  start[start.length - 1] = start[start.length - 1].replace(
-    ",",
-    " {\n width: 0%;\n}"
-  );
-  end[end.length - 1] = end[end.length - 1].replace(",", " {\n  width: 100%;\n}");
-  return [start.join(""), "\n", end.join("")].join("");
-};
+import {
+  TypingContainer,
+  TypingText,
+  composeTypingRules,
+  composeWordsRules,
+} from "./styles";
 
 export const Typing = ({
   cursor = true,
   text = "",
+  words = [],
   fontSize = "3.8rem",
   fontWeight = 500,
+  baseTiming = 4,
 }: any) => {
+  if (!words[0]) return null;
+  const wordsLength = words.length;
+  const typingRules = composeTypingRules(wordsLength);
+  const composedWords = composeWordsRules(words);
+  const wordsRules = composedWords.join("");
+  const initWord = composedWords[0].split("{")[1].split("}")[0];
+  const timing = `${baseTiming * wordsLength}s`;
   return (
-    <div style={{ fontSize, fontWeight }} className={styles.typing_container}>
-      <TypingText typingRules={composeTypingRules(6)} cursor={cursor}>
+    <TypingContainer
+      timing={timing}
+      initWord={initWord}
+      wordsRules={wordsRules}
+      style={{ fontSize, fontWeight }}
+    >
+      <TypingText timing={timing} cursor={cursor} typingRules={typingRules}>
         <span></span>
       </TypingText>
       {text}
-    </div>
+    </TypingContainer>
   );
 };

@@ -11,12 +11,14 @@
   background-color: #f26161e4;
 }
 .hero {
-  height: 100vh;
+  min-height: 100vh;
+  padding: 0;
   background: radial-gradient(circle at 100% 100%, #1a2980, #26d0ce);
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 4rem;
 }
 .presentation_section {
   font-size: 2rem;
