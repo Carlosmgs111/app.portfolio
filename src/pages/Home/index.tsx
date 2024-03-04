@@ -24,9 +24,86 @@ export function Home() {
 18|
 19| const Carlos = new Developer("Carlos", "Muñoz");
 20| console.log(Carlos.presentYourSelf())
-21| 
+21|
   `;
 
+  const words = [
+    {
+      content: "Backend",
+      color: "#339933",
+    },
+    {
+      content: "Frontend",
+      color: "#61dafb",
+    },
+    {
+      content: "Fullstack",
+      color: "#e0234e",
+    },
+    {
+      content: "Python",
+      color: "#3776ab",
+    },
+    {
+      content: "Javascript",
+      color: "#f7df1e",
+    },
+    {
+      content: "Typescript",
+      color: "#3178c6",
+    },
+    {
+      content: "Backend",
+      color: "#339986",
+    },
+    {
+      content: "Frontend",
+      color: "#fb9c61",
+    },
+    {
+      content: "Fullstack",
+      color: "#a45063",
+    },
+    {
+      content: "Python",
+      color: "#ab3790",
+    },
+    {
+      content: "Javascript",
+      color: "#a54246",
+    },
+    {
+      content: "Typescript",
+      color: "#bcc631",
+    },
+  ];
+
+  const words1 = [
+    {
+      content: "Backend",
+      color: "#339933",
+    },
+    {
+      content: "Frontend",
+      color: "#61dafb",
+    },
+    {
+      content: "Fullstack",
+      color: "#e0234e",
+    },
+    {
+      content: "Python",
+      color: "#3776ab",
+    },
+    {
+      content: "Javascript",
+      color: "#f7df1e",
+    },
+    {
+      content: "Typescript",
+      color: "#3178c6",
+    },
+  ];
   return (
     <div className={styles.container}>
       <article className={styles.section.concat(" ", styles.hero)}>
@@ -41,16 +118,24 @@ export function Home() {
               gap: "1rem",
             }}
           >
-            desarrollador <Typing fontSize={"3.2rem"}></Typing>
+            desarrollador <Typing words={words} fontSize={"3.2rem"}></Typing>
           </h2>
+          <Typing words={[{ content: "Hola", color: "black" }]}></Typing>
         </div>
         <div className={styles.coding_section}>
-          <CodeSnap fontSize={"1.4rem"}>{literalCodeSnapshot}</CodeSnap>
+          <CodeSnap fontSize={"1.4rem"} words={words1}>
+            {literalCodeSnapshot}
+          </CodeSnap>
           <div className={styles.console}>
             <span>{" > "}</span>
             <div className={styles.output}>
               <span>Hi! I'm Carlos Muñoz</span>
-              <Typing text={"Developer"} cursor={false} fontSize={"1.6rem"} />
+              <Typing
+                words={words1}
+                text={"Developer"}
+                cursor={false}
+                fontSize={"1.6rem"}
+              />
             </div>
           </div>
         </div>

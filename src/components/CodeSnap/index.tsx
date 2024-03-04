@@ -3,7 +3,7 @@ import { Typing } from "../../components/Typing";
 
 const typings: any = { Typing };
 
-const parser = (text: string) => {
+const parser = (text: string, words: []) => {
   const tokens: Array<any> = [];
   const chars: Array<string> = text.split("");
   let skipTo = 0;
@@ -144,7 +144,11 @@ const parser = (text: string) => {
       funcName = funcName.join("");
       return (
         <span style={{ display: "inline-flex" }}>
-          {typings[funcName]({ text: "Developer", fontSize: "1.6rem" })}
+          {typings[funcName]({
+            text: "Developer",
+            fontSize: "1.6rem",
+            words,
+          })}
         </span>
       );
     });
@@ -166,10 +170,15 @@ const parser = (text: string) => {
   return tokens;
 };
 
-export const CodeSnap = ({ literal, children, fontSize = "1.8rem" }: any) => {
+export const CodeSnap = ({
+  literal,
+  children,
+  fontSize = "1.8rem",
+  words,
+}: any) => {
   return (
     <section style={{ fontSize }} className={styles.codesnap}>
-      {parser(literal || children)}
+      {parser(literal || children, words)}
     </section>
   );
 };
