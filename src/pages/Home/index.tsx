@@ -27,7 +27,7 @@ export function Home() {
 21|
   `;
 
-  const words = [
+  const mySkills = [
     {
       content: "NodeJS",
       color: "#339986",
@@ -54,7 +54,7 @@ export function Home() {
     },
   ];
 
-  const words1 = [
+  const wordsInCode = [
     {
       content: "Backend",
       color: "#339933",
@@ -94,11 +94,11 @@ export function Home() {
               gap: "1rem",
             }}
           >
-            desarrollador <Typing words={words} fontSize={"3.2rem"}></Typing>
+            desarrollador <Typing baseTiming={2.8} words={mySkills} fontSize={"3.2rem"}></Typing>
           </h2>
         </div>
         <div className={styles.coding_section}>
-          <CodeSnap fontSize={"1.4rem"} words={words1}>
+          <CodeSnap fontSize={"1.4rem"} words={wordsInCode}>
             {literalCodeSnapshot}
           </CodeSnap>
           <div className={styles.console}>
@@ -106,7 +106,7 @@ export function Home() {
             <div className={styles.output}>
               <span>Hi! I'm Carlos Muñoz</span>
               <Typing
-                words={words1}
+                words={wordsInCode}
                 text={"Developer"}
                 cursor={false}
                 fontSize={"1.6rem"}

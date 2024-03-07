@@ -6,7 +6,7 @@ const words = ({ wordsRules }: any) => keyframes`
 const typing = ({ typingRules }: any) => keyframes`
 ${typingRules}
 `;
-const cursor = keyframes` to {
+const cursorAnimation = keyframes` to {
   border-right: 0.2rem solid #c2c2c2;
 }
 `;
@@ -79,5 +79,5 @@ export const TypingText: any = styled.div`
   border-right: 0.2rem solid transparent;
   animation: ${({ typingRules }: any) => typing({ typingRules })}
     ${({ timing }: any) => timing} steps(14) infinite
-    ${({ cursor }: any) => cursor && `,${cursor} 0.6s infinite`};
+    ${({ cursor }: any) => cursor && css`,${cursorAnimation} 0.6s infinite`};
 `;
