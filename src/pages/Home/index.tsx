@@ -29,52 +29,28 @@ export function Home() {
 
   const words = [
     {
-      content: "Backend",
-      color: "#339933",
-    },
-    {
-      content: "Frontend",
-      color: "#61dafb",
-    },
-    {
-      content: "Fullstack",
-      color: "#e0234e",
-    },
-    {
-      content: "Python",
-      color: "#3776ab",
-    },
-    {
-      content: "Javascript",
-      color: "#f7df1e",
-    },
-    {
-      content: "Typescript",
-      color: "#3178c6",
-    },
-    {
-      content: "Backend",
+      content: "NodeJS",
       color: "#339986",
     },
     {
-      content: "Frontend",
+      content: "ReactJS",
       color: "#fb9c61",
     },
     {
-      content: "Fullstack",
+      content: "APIRest",
       color: "#a45063",
     },
     {
-      content: "Python",
+      content: "Django",
       color: "#ab3790",
     },
     {
-      content: "Javascript",
+      content: "GOlang",
       color: "#a54246",
     },
     {
-      content: "Typescript",
-      color: "#bcc631",
+      content: "Ziglang",
+      color: "#ad32bd",
     },
   ];
 
@@ -120,7 +96,6 @@ export function Home() {
           >
             desarrollador <Typing words={words} fontSize={"3.2rem"}></Typing>
           </h2>
-          <Typing words={[{ content: "Hola", color: "black" }]}></Typing>
         </div>
         <div className={styles.coding_section}>
           <CodeSnap fontSize={"1.4rem"} words={words1}>

@@ -1,4 +1,15 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+
+const words = ({ wordsRules }: any) => keyframes`
+  ${wordsRules}
+`;
+const typing = ({ typingRules }: any) => keyframes`
+${typingRules}
+`;
+const cursor = keyframes` to {
+  border-right: 0.2rem solid #c2c2c2;
+}
+`;
 
 export const composeTypingRules = (size: number) => {
   const start: any = [];
@@ -51,12 +62,11 @@ export const TypingContainer: any = styled.div`
     margin-right: 0.4rem;
   }
   span::before {
-    ${({ initWord }: any) => initWord}
-    animation: words ${({ timing }: any) => timing} infinite;
+    ${({ timing, wordsRules, initWord }: any) => css`
+      ${initWord}
+      animation: ${words({ wordsRules })} ${timing} infinite;
+    `}
     width: fit-content;
-  }
-  @keyframes words {
-    ${({ wordsRules }: any) => wordsRules}
   }
 `;
 
@@ -67,14 +77,7 @@ export const TypingText: any = styled.div`
   height: 100%;
   overflow: hidden;
   border-right: 0.2rem solid transparent;
-  animation: typing ${({ timing }: any) => timing} steps(14) infinite
-    ${({ cursor }: any) => cursor && ", cursor 0.6s infinite"};
-  @keyframes typing {
-    ${({ typingRules }: any) => typingRules}
-  }
-  @keyframes cursor {
-    to {
-      border-right: 0.2rem solid #c2c2c2;
-    }
-  }
+  animation: ${({ typingRules }: any) => typing({ typingRules })}
+    ${({ timing }: any) => timing} steps(14) infinite
+    ${({ cursor }: any) => cursor && `,${cursor} 0.6s infinite`};
 `;
