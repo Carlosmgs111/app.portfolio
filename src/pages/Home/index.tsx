@@ -26,34 +26,45 @@ export function Home() {
 20| console.log(Carlos.presentYourSelf())
 21|
   `;
-
   const mySkills = [
+    { content: "React", color: "#61DAFB" },
     {
-      content: "NodeJS",
-      color: "#339986",
+      content: "Node.js",
+      color: "#339933",
     },
+    { content: "HTML5", color: "#E34F26" },
     {
-      content: "ReactJS",
-      color: "#fb9c61",
+      content: "Python",
+      color: "#3776ab",
     },
+    { content: "PostgreSQL", color: "#4169E1" },
+    { content: "Socket.io", color: "#010101" },
+    { content: "CSS3", color: "#1572B6" },
     {
-      content: "APIRest",
-      color: "#a45063",
+      content: "Javascript",
+      color: "#f7df1e",
     },
+    { content: "MongoDB", color: "#47A248" },
+    { content: "GraphQL", color: "#E10098" },
     {
-      content: "Django",
-      color: "#ab3790",
-    },
-    {
-      content: "GOlang",
-      color: "#a54246",
-    },
-    {
-      content: "Ziglang",
-      color: "#ad32bd",
+      content: "Typescript",
+      color: "#3178c6",
     },
   ];
-
+  const myStacks = [
+    {
+      content: "Backend",
+      color: "#339933",
+    },
+    {
+      content: "Frontend",
+      color: "#61dafb",
+    },
+    {
+      content: "Fullstack",
+      color: "#e0234e",
+    },
+  ];
   const wordsInCode = [
     {
       content: "Backend",
@@ -88,13 +99,24 @@ export function Home() {
             Hola, soy <br />
             <b>Carlos Muñoz</b>,
           </h1>
-          <h2
-            style={{
-              display: "inline-flex",
-              gap: "1rem",
-            }}
-          >
-            desarrollador <Typing baseTiming={2.8} words={mySkills} fontSize={"3.2rem"}></Typing>
+          <h2>
+            Desarrollador{" "}
+            <Typing
+              baseTiming={4.8}
+              words={myStacks}
+              fontSize={"3.2rem"}
+            ></Typing>
+          </h2>
+          <br />
+          <h2>Creo Soluciones </h2>
+          <br />
+          <h2>
+            Usando{" "}
+            <Typing
+              baseTiming={2.8}
+              words={mySkills}
+              fontSize={"3.2rem"}
+            ></Typing>
           </h2>
         </div>
         <div className={styles.coding_section}>

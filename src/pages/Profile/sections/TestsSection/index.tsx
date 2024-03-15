@@ -1,7 +1,6 @@
 import { GenerateImage } from "./GenerateImages";
 import { MyDropzone } from "./UploadImage";
 import { Telport } from "./Telport";
-import { Typing } from "../../../../components/Typing";
 
 export function TestsSection() {
   return (
@@ -19,12 +18,6 @@ export function TestsSection() {
       }}
     >
       <h1 style={{ width: "100%", textAlign: "center" }}>Seccion de pruebas</h1>
-      <Typing
-        words={[
-          { content: "Hello", color: "red" },
-          { content: "World", color: "blue" },
-        ]}
-      ></Typing>
       <GenerateImage></GenerateImage>
       <MyDropzone />
       <Telport />

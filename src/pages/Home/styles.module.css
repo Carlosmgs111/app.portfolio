@@ -13,7 +13,12 @@
 .hero {
   min-height: 100vh;
   padding: 0;
-  background: radial-gradient(circle at 100% 100%, #1a2980, #26d0ce);
+  background: radial-gradient(
+    circle at 100% 80%,
+    #0f2027 20%,
+    #203a43 50%,
+    #2c5364
+  );
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -22,7 +27,6 @@
 }
 .presentation_section {
   font-size: 2rem;
-  gap: 2rem;
   font-family: Rubik;
 }
 .presentation_section h1,
@@ -30,10 +34,14 @@ h2 {
   font-size: 3.2rem;
   font-weight: 400;
 }
+.presentation_section h2 {
+  display: inline-flex;
+  gap: 1rem;
+}
 .presentation_section b {
   font-size: 6.4rem;
   font-weight: 500;
-  color: #aee90d;
+  color: #1cefff;
 }
 .coding_section {
   width: 52rem;
