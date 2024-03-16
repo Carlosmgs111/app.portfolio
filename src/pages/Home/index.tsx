@@ -4,27 +4,25 @@ import { Typing } from "../../components/Typing";
 
 export function Home() {
   const literalCodeSnapshot = `
-1 |
-2 | class Developer {
-3 |   name: string = "";
-4 |   lastName: string = "";
-5 |
-6 |   constructor(name: string, lastName: string) {
-7 |     this.name = name;
-8 |     this.lastName = lastName;
-9 |   };
-10|
-11|   presentYourSelf(): string {
-12|     return \`
-13|     Hi! I'm \${this.name} \${this.lastName}
-14|     <{*Typing*}>
-15|     \`;
-16|   };
-17| };
-18|
-19| const Carlos = new Developer("Carlos", "Muñoz");
-20| console.log(Carlos.presentYourSelf())
-21|
+1 | class Developer {
+2 |   name: string = "";
+3 |   lastName: string = "";
+4 |
+5 |   constructor(name: string, lastName: string) {
+6 |     this.name = name;
+7 |     this.lastName = lastName;
+8 |   };
+9 |
+10|   presentYourSelf(): string {
+11|     return \`
+12|     Hi! I'm \${this.name} \${this.lastName}
+13|     <{*Typing*}>
+14|     \`;
+15|   };
+16| };
+17|
+18| const Carlos = new Developer("Carlos", "Muñoz");
+19| console.log(Carlos.presentYourSelf())
   `;
   const mySkills = [
     { content: "React", color: "#61DAFB" },
@@ -94,7 +92,7 @@ export function Home() {
   return (
     <div className={styles.container}>
       <article className={styles.section.concat(" ", styles.hero)}>
-        <div className={styles.presentation_section}>
+        <section className={styles.presentation_section}>
           <h1>
             Hola, soy <br />
             <b>Carlos Muñoz</b>,
@@ -118,10 +116,10 @@ export function Home() {
               fontSize={"3.2rem"}
             ></Typing>
           </h2>
-        </div>
-        <div className={styles.coding_section}>
+        </section>
+        <section className={styles.coding_section}>
           <CodeSnap fontSize={"1.4rem"} words={wordsInCode}>
-            {literalCodeSnapshot}
+            {literalCodeSnapshot.replaceAll("|", " ")}
           </CodeSnap>
           <div className={styles.console}>
             <span>{" > "}</span>
@@ -135,7 +133,7 @@ export function Home() {
               />
             </div>
           </div>
-        </div>
+        </section>
       </article>
       <article className={styles.section.concat(" ", styles.even)}>
         <p className={styles.text}>
