@@ -1,6 +1,7 @@
 import styles from "./styles.module.css";
 import { CodeSnap } from "../../components/CodeSnap";
 import { Typing } from "../../components/Typing";
+import { GitHubSVG } from "../../icons";
 
 export function Home() {
   const literalCodeSnapshot = `
@@ -116,6 +117,11 @@ export function Home() {
               fontSize={"3.2rem"}
             ></Typing>
           </h2>
+          <div className={styles.contact}>
+            <span className={styles.svg_container}>
+              <GitHubSVG ></GitHubSVG>
+            </span>
+          </div>
         </section>
         <section className={styles.coding_section}>
           <CodeSnap fontSize={"1.4rem"} words={wordsInCode}>

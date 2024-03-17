@@ -1,0 +1,7 @@
+.svg {
+  width: 100%;
+  transition: 0.4s;
+}
+.svg:hover {
+  scale: 1.4;
+}

@@ -43,6 +43,14 @@ h2 {
   font-weight: 500;
   color: #1cefff;
 }
+.contact {
+  display: inline;
+}
+.svg_container {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
 .coding_section {
   width: 52rem;
   display: flex;
