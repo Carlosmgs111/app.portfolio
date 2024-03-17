@@ -44,12 +44,17 @@ h2 {
   color: #1cefff;
 }
 .contact {
-  display: inline;
+  padding: 4rem 0;
+  display: flex;
+  gap: 4rem;
+  flex-direction: flex-start;
+  width: 100%;
 }
-.svg_container {
+.contact_icon {
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 3.4rem;
+  height: 3.4rem;
+  cursor: pointer;
 }
 .coding_section {
   width: 52rem;

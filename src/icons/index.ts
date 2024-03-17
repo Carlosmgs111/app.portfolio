@@ -1,3 +1,4 @@
 import { GitHubSVG } from "./GitHubSVG";
+import { LinkedInSVG } from "./LinkedInSVG";
 
-export { GitHubSVG };
+export { GitHubSVG, LinkedInSVG };

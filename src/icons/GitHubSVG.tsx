@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 
 export const GitHubSVG = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    className={styles.svg}
+    className={`${styles.svg} ${styles.github}`}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     {...props}

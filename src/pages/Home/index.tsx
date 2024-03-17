@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import { CodeSnap } from "../../components/CodeSnap";
 import { Typing } from "../../components/Typing";
-import { GitHubSVG } from "../../icons";
+import { GitHubSVG, LinkedInSVG } from "../../icons";
 
 export function Home() {
   const literalCodeSnapshot = `
@@ -118,9 +118,12 @@ export function Home() {
             ></Typing>
           </h2>
           <div className={styles.contact}>
-            <span className={styles.svg_container}>
-              <GitHubSVG ></GitHubSVG>
-            </span>
+            <a className={styles.contact_icon}>
+              <GitHubSVG></GitHubSVG>
+            </a>
+            <a className={styles.contact_icon}>
+              <LinkedInSVG></LinkedInSVG>
+            </a>
           </div>
         </section>
         <section className={styles.coding_section}>

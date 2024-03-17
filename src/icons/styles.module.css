@@ -1,7 +1,14 @@
 .svg {
   width: 100%;
   transition: 0.4s;
+  fill: #b8e1e9;
 }
 .svg:hover {
-  scale: 1.4;
+  scale: 1.2;
+}
+.github:hover {
+  fill: #181717;
+}
+.linkedin:hover {
+  fill: #0A66C2;
 }
