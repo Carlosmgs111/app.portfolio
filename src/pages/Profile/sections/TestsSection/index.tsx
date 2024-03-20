@@ -1,6 +1,7 @@
 import { GenerateImage } from "./GenerateImages";
 import { MyDropzone } from "./UploadImage";
 import { Telport } from "./Telport";
+import { Slider } from "../../../../components/Slider";
 
 export function TestsSection() {
   return (
@@ -18,6 +19,7 @@ export function TestsSection() {
       }}
     >
       <h1 style={{ width: "100%", textAlign: "center" }}>Seccion de pruebas</h1>
+      <Slider></Slider>
       <GenerateImage></GenerateImage>
       <MyDropzone />
       <Telport />

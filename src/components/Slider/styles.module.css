@@ -1,0 +1,36 @@
+.container {
+  height: 100px;
+  overflow: hidden;
+  width: 100vw;
+}
+
+.slider {
+  display: inline-flex;
+  -moz-animation: sliding 20s infinite linear;
+  -webkit-animation: sliding 20s infinite linear;
+  animation: sliding 20s  infinite linear;
+  height: 100%;
+  width: auto;
+}
+
+.slide {
+  background: #CCC;
+  border: 1px solid #FFF;
+  color: #FFF;
+  font-family: Arial;
+  font-size: 16px;
+  line-height: 100px;
+  height: 100%;
+  flex: 0 0 auto;
+  text-align: center;
+  width: 400px;
+}
+
+
+@keyframes sliding {
+  to {
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}

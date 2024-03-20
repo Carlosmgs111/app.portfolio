@@ -46,7 +46,7 @@ h2 {
 .contact {
   padding: 4rem 0;
   display: flex;
-  gap: 4rem;
+  gap: 2rem;
   flex-direction: flex-start;
   width: 100%;
 }

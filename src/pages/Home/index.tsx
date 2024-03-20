@@ -99,7 +99,7 @@ export function Home() {
             <b>Carlos Muñoz</b>,
           </h1>
           <h2>
-            Desarrollador{" "}
+            Desarrollador
             <Typing
               baseTiming={4.8}
               words={myStacks}
@@ -110,7 +110,7 @@ export function Home() {
           <h2>Creo Soluciones </h2>
           <br />
           <h2>
-            Usando{" "}
+            Usando 
             <Typing
               baseTiming={2.8}
               words={mySkills}
@@ -118,10 +118,10 @@ export function Home() {
             ></Typing>
           </h2>
           <div className={styles.contact}>
-            <a className={styles.contact_icon}>
+            <a className={styles.contact_icon} href="https://github.com/Carlosmgs111" target="_blank">
               <GitHubSVG></GitHubSVG>
             </a>
-            <a className={styles.contact_icon}>
+            <a className={styles.contact_icon} href="https://www.linkedin.com/in/cmgs111/" target="_blank">
               <LinkedInSVG></LinkedInSVG>
             </a>
           </div>

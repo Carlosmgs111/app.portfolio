@@ -21,19 +21,18 @@ export default function Navigation({ children, banner, className }: any) {
   const [indexedElements, setIndexedElements]: any = useState([]);
   const [selected, setSelected] = useState(false);
 
-  useEffect(() => {
-    runRequest({
-      setData: (data: any) => setIndexedElements([...indexedElements, ...data]),
-    }).get("users/username/all");
-    const searchInput = document.getElementsByName("search-input")[0];
-    searchInput.addEventListener("focusin", () => setSelected(true));
-    searchInput.addEventListener("focusout", () => setSelected(false));
-  }, [showfixed]);
+  // useEffect(() => {
+  //   runRequest({
+  //     setData: (data: any) => setIndexedElements([...indexedElements, ...data]),
+  //   }).get("users/username/all");
+  //   const searchInput = document.getElementsByName("search-input")[0];
+  //   searchInput.addEventListener("focusin", () => setSelected(true));
+  //   searchInput.addEventListener("focusout", () => setSelected(false));
+  // }, [showfixed]);
 
   const onClick = (e: any) => {
     setCurrent(Number(e.target.id));
     if (menu.show) switchMenu();
-    console.log({ target: e.target.id });
   };
 
   const childrens = Children.toArray(children);
@@ -60,7 +59,7 @@ export default function Navigation({ children, banner, className }: any) {
           </Banner>
         )}
       </div>
-      <form action="">
+      {/* <form action="">
         <input
           className={styles.search_input}
           type="search"
@@ -93,7 +92,7 @@ export default function Navigation({ children, banner, className }: any) {
         {indexedElements.map((iE: any, idx: any) => (
           <option value={iE} key={idx} />
         ))}
-      </datalist>
+      </datalist> */}
       <nav className={styles.navbar.concat(" ", className)}>
         <i
           className={`${menu.name} ${styles.button}`}
