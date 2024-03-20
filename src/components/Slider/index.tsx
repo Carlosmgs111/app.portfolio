@@ -1,12 +1,16 @@
 import styles from "./styles.module.css";
-import { JestSVG } from "../../icons";
+import { JestSVG, ReactSVG } from "../../icons";
 const slides = [
   <div className={styles.slide}>
     <div className={styles.icon_container}>
       <JestSVG></JestSVG>
     </div>
   </div>,
-  <div className={styles.slide}>02</div>,
+  <div className={styles.slide}>
+    <div className={styles.icon_container}>
+      <ReactSVG></ReactSVG>
+    </div>
+  </div>,
   <div className={styles.slide}>03</div>,
   <div className={styles.slide}>04</div>,
   <div className={styles.slide}>05</div>,
