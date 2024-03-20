@@ -1,5 +1,5 @@
 .container {
-  height: 100px;
+  height: 200px;
   overflow: hidden;
   width: 100vw;
 }
@@ -8,24 +8,27 @@
   display: inline-flex;
   -moz-animation: sliding 20s infinite linear;
   -webkit-animation: sliding 20s infinite linear;
-  animation: sliding 20s  infinite linear;
+  animation: sliding 15s infinite linear;
   height: 100%;
   width: auto;
 }
 
 .slide {
-  background: #CCC;
-  border: 1px solid #FFF;
-  color: #FFF;
-  font-family: Arial;
-  font-size: 16px;
-  line-height: 100px;
   height: 100%;
   flex: 0 0 auto;
   text-align: center;
   width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.icon_container {
+  display: block;
+  width: 12rem;
+  height: 12rem;
+  cursor: pointer;
+}
 
 @keyframes sliding {
   to {
