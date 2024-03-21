@@ -39,3 +39,45 @@
 .axios {
   fill: #5a29e4;
 }
+.socketio {
+  fill: #010101;
+}
+.apollo_graphql {
+  fill: #311c87;
+}
+.graphql {
+  fill: #e10098;
+}
+.typescript {
+  fill: #3178c6;
+}
+.javascript {
+  fill: #f7df1e;
+}
+.python {
+  fill: #3776ab;
+}
+.nodejs {
+  fill: #339933;
+}
+.mongodb {
+  fill: #47a248;
+}
+.postgresql {
+  fill: #4169e1;
+}
+.express {
+  fill: #000000;
+}
+.sequelize {
+  fill: #52b0e7;
+}
+.mongoose {
+  fill: #880000;
+}
+.passport {
+  fill: #34e27a;
+}
+.jsonwebtokens {
+  fill: #000000;
+}
