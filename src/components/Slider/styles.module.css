@@ -1,5 +1,5 @@
 .container {
-  height: 200px;
+  height: 140px;
   overflow: hidden;
   width: 100%;
   position: relative;
@@ -18,7 +18,7 @@
   -moz-animation: slidingToRight 20s infinite linear;
   -webkit-animation: slidingToRight 20s infinite linear;
   animation: slidingToRight 20s infinite linear;
-  left: -200%;
+  left: -600%;
   direction: rtl;
 }
 .slide {
@@ -43,5 +43,23 @@
     -moz-transform: translateX(50%);
     -webkit-transform: translateX(50%);
     transform: translateX(50%);
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .to_right {
+    left: -400%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .to_right {
+    left: -300%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .to_right {
+    left: -200%;
   }
 }

@@ -3,7 +3,6 @@ import { MyDropzone } from "./UploadImage";
 import { Telport } from "./Telport";
 import { Slider } from "../../../../components/Slider";
 import {
-  SVGContainer,
   ReactSVG,
   JestSVG,
   StyledComponentsSVG,
@@ -15,27 +14,13 @@ import {
 
 export function TestsSection() {
   const firstSlides = [
-    <SVGContainer>
-      <JestSVG></JestSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <ReactSVG></ReactSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <StyledComponentsSVG></StyledComponentsSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <NextjsSVG></NextjsSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <ReactRouterSVG></ReactRouterSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <WebpackSVG></WebpackSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <AxiosSVG></AxiosSVG>
-    </SVGContainer>,
+    <JestSVG></JestSVG>,
+    <ReactSVG></ReactSVG>,
+    <StyledComponentsSVG></StyledComponentsSVG>,
+    <NextjsSVG></NextjsSVG>,
+    <ReactRouterSVG></ReactRouterSVG>,
+    <WebpackSVG></WebpackSVG>,
+    <AxiosSVG></AxiosSVG>,
   ];
   return (
     <div

@@ -4,7 +4,6 @@ import { Typing } from "../../components/Typing";
 import { GitHubSVG, LinkedInSVG } from "../../icons";
 import { Slider } from "../../components/Slider";
 import {
-  SVGContainer,
   ReactSVG,
   JestSVG,
   StyledComponentsSVG,
@@ -26,6 +25,13 @@ import {
   MongooseSVG,
   PassportSVG,
   JsonWebTokensSVG,
+  DjangoSVG,
+  RabbitmqSVG,
+  FastApiSVG,
+  DotEnvSVG,
+  VSCodeSVG,
+  TerminalSVG,
+  GitSVG,
 } from "./../../icons";
 
 export function Home() {
@@ -116,73 +122,40 @@ export function Home() {
     },
   ];
   const firstSlides = [
-    <SVGContainer>
-      <JestSVG></JestSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <ReactSVG></ReactSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <StyledComponentsSVG></StyledComponentsSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <NextjsSVG></NextjsSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <ReactRouterSVG></ReactRouterSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <WebpackSVG></WebpackSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <AxiosSVG></AxiosSVG>
-    </SVGContainer>,
+    <JestSVG />,
+    <ReactSVG />,
+    <StyledComponentsSVG />,
+    <NextjsSVG />,
+    <ReactRouterSVG />,
+    <WebpackSVG />,
+    <AxiosSVG />,
   ];
   const secondSlides = [
-    <SVGContainer>
-      <SocketioSVG></SocketioSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <ApolloGraphqlSVG></ApolloGraphqlSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <GraphqlSVG></GraphqlSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <TypeScriptSVG></TypeScriptSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <JavaScriptSVG></JavaScriptSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <PythonSVG></PythonSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <NodejsSVG></NodejsSVG>
-    </SVGContainer>,
+    <SocketioSVG />,
+    <ApolloGraphqlSVG />,
+    <GraphqlSVG />,
+    <TypeScriptSVG />,
+    <JavaScriptSVG />,
+    <PythonSVG />,
+    <NodejsSVG />,
   ];
   const thirdSlides = [
-    <SVGContainer>
-      <MongodbSVG></MongodbSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <PostgresSqlSVG></PostgresSqlSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <ExpressSVG></ExpressSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <SequelizeSVG></SequelizeSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <MongooseSVG></MongooseSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <PassportSVG></PassportSVG>
-    </SVGContainer>,
-    <SVGContainer>
-      <JsonWebTokensSVG></JsonWebTokensSVG>
-    </SVGContainer>,
+    <MongodbSVG />,
+    <PostgresSqlSVG />,
+    <ExpressSVG />,
+    <SequelizeSVG />,
+    <MongooseSVG />,
+    <PassportSVG />,
+    <JsonWebTokensSVG />,
+  ];
+  const fourthSlides = [
+    <DjangoSVG />,
+    <RabbitmqSVG />,
+    <FastApiSVG />,
+    <DotEnvSVG />,
+    <VSCodeSVG />,
+    <TerminalSVG />,
+    <GitSVG />,
   ];
   return (
     <div className={styles.container}>
@@ -191,6 +164,7 @@ export function Home() {
           <Slider toRight={true}>{firstSlides}</Slider>
           <Slider>{secondSlides}</Slider>
           <Slider toRight={true}>{thirdSlides}</Slider>
+          <Slider>{fourthSlides}</Slider>
         </div>
         <section className={styles.presentation_section}>
           <h1>

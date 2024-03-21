@@ -1,4 +1,4 @@
-import styles from "./styles.module.css";
+
 import { GitHubSVG } from "./GitHubSVG";
 import { LinkedInSVG } from "./LinkedInSVG";
 import { JestSVG } from "./JestSVG";
@@ -24,18 +24,12 @@ import { PassportSVG } from "./PassportSVG";
 import { JsonWebTokensSVG } from "./JsonWebTokensSVG";
 import { DjangoSVG } from "./DjangoSVG";
 import { RabbitmqSVG } from "./RabbitmqSVG";
-import { fastApiSVG } from "./FastApiSVG";
+import { FastApiSVG } from "./FastApiSVG";
 import { DotEnvSVG } from "./DotEnvSVG";
 import { VSCodeSVG } from "./VSCodeSVG";
 import { TerminalSVG } from "./TerminalSVG";
 import { GitSVG } from "./GitSVG";
-
-const SVGContainer = ({ children }: any) => {
-  return <div className={styles.svg_container}>{children}</div>;
-};
-
 export {
-  SVGContainer,
   GitHubSVG,
   LinkedInSVG,
   JestSVG,
@@ -61,7 +55,7 @@ export {
   JsonWebTokensSVG,
   DjangoSVG,
   RabbitmqSVG,
-  fastApiSVG,
+  FastApiSVG,
   DotEnvSVG,
   VSCodeSVG,
   TerminalSVG,
