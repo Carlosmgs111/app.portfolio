@@ -5,6 +5,7 @@ import { ReactSVG } from "./ReactSVG";
 import { StyledComponentsSVG } from "./StyledComponentsSVG";
 import { NextjsSVG } from "./NextjsSVG";
 import { ReactRouterSVG } from "./ReactRouterSVG";
+import { WebpackSVG } from "./WebpackSVG";
 
 export {
   GitHubSVG,
@@ -14,4 +15,5 @@ export {
   StyledComponentsSVG,
   NextjsSVG,
   ReactRouterSVG,
+  WebpackSVG,
 };

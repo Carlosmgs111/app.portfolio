@@ -5,6 +5,7 @@ import {
   StyledComponentsSVG,
   NextjsSVG,
   ReactRouterSVG,
+  WebpackSVG,
 } from "../../icons";
 const slides = [
   <div className={styles.slide}>
@@ -28,12 +29,15 @@ const slides = [
     </div>
   </div>,
   <div className={styles.slide}>
-    {" "}
     <div className={styles.icon_container}>
       <ReactRouterSVG></ReactRouterSVG>
     </div>
   </div>,
-  <div className={styles.slide}>06</div>,
+  <div className={styles.slide}>
+    <div className={styles.icon_container}>
+      <WebpackSVG></WebpackSVG>
+    </div>
+  </div>,
   <div className={styles.slide}>07</div>,
 ];
 export const Slider = () => {
