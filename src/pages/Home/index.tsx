@@ -19,6 +19,13 @@ import {
   JavaScriptSVG,
   PythonSVG,
   NodejsSVG,
+  MongodbSVG,
+  PostgresSqlSVG,
+  ExpressSVG,
+  SequelizeSVG,
+  MongooseSVG,
+  PassportSVG,
+  JsonWebTokensSVG,
 } from "./../../icons";
 
 export function Home() {
@@ -154,12 +161,36 @@ export function Home() {
       <NodejsSVG></NodejsSVG>
     </SVGContainer>,
   ];
+  const thirdSlides = [
+    <SVGContainer>
+      <MongodbSVG></MongodbSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <PostgresSqlSVG></PostgresSqlSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <ExpressSVG></ExpressSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <SequelizeSVG></SequelizeSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <MongooseSVG></MongooseSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <PassportSVG></PassportSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <JsonWebTokensSVG></JsonWebTokensSVG>
+    </SVGContainer>,
+  ];
   return (
     <div className={styles.container}>
       <article className={styles.section.concat(" ", styles.hero)}>
         <div className={styles.hero_background}>
           <Slider toRight={true}>{firstSlides}</Slider>
           <Slider>{secondSlides}</Slider>
+          <Slider toRight={true}>{thirdSlides}</Slider>
         </div>
         <section className={styles.presentation_section}>
           <h1>
