@@ -1,5 +1,11 @@
 import styles from "./styles.module.css";
-import { JestSVG, ReactSVG, StyledComponentsSVG, NextjsSVG } from "../../icons";
+import {
+  JestSVG,
+  ReactSVG,
+  StyledComponentsSVG,
+  NextjsSVG,
+  ReactRouterSVG,
+} from "../../icons";
 const slides = [
   <div className={styles.slide}>
     <div className={styles.icon_container}>
@@ -21,7 +27,12 @@ const slides = [
       <NextjsSVG></NextjsSVG>
     </div>
   </div>,
-  <div className={styles.slide}>05</div>,
+  <div className={styles.slide}>
+    {" "}
+    <div className={styles.icon_container}>
+      <ReactRouterSVG></ReactRouterSVG>
+    </div>
+  </div>,
   <div className={styles.slide}>06</div>,
   <div className={styles.slide}>07</div>,
 ];

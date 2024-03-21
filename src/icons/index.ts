@@ -4,6 +4,7 @@ import { JestSVG } from "./JestSVG";
 import { ReactSVG } from "./ReactSVG";
 import { StyledComponentsSVG } from "./StyledComponentsSVG";
 import { NextjsSVG } from "./NextjsSVG";
+import { ReactRouterSVG } from "./ReactRouterSVG";
 
 export {
   GitHubSVG,
@@ -12,4 +13,5 @@ export {
   ReactSVG,
   StyledComponentsSVG,
   NextjsSVG,
+  ReactRouterSVG,
 };
