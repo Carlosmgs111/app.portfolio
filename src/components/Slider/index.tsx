@@ -6,6 +6,7 @@ import {
   NextjsSVG,
   ReactRouterSVG,
   WebpackSVG,
+  AxiosSVG,
 } from "../../icons";
 const slides = [
   <div className={styles.slide}>
@@ -38,7 +39,12 @@ const slides = [
       <WebpackSVG></WebpackSVG>
     </div>
   </div>,
-  <div className={styles.slide}>07</div>,
+  <div className={styles.slide}>
+    {" "}
+    <div className={styles.icon_container}>
+      <AxiosSVG></AxiosSVG>
+    </div>
+  </div>,
 ];
 export const Slider = () => {
   return (
