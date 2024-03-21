@@ -12,6 +12,13 @@ import {
   ReactRouterSVG,
   WebpackSVG,
   AxiosSVG,
+  SocketioSVG,
+  ApolloGraphqlSVG,
+  GraphqlSVG,
+  TypeScriptSVG,
+  JavaScriptSVG,
+  PythonSVG,
+  NodejsSVG,
 } from "./../../icons";
 
 export function Home() {
@@ -124,11 +131,35 @@ export function Home() {
       <AxiosSVG></AxiosSVG>
     </SVGContainer>,
   ];
+  const secondSlides = [
+    <SVGContainer>
+      <SocketioSVG></SocketioSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <ApolloGraphqlSVG></ApolloGraphqlSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <GraphqlSVG></GraphqlSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <TypeScriptSVG></TypeScriptSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <JavaScriptSVG></JavaScriptSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <PythonSVG></PythonSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <NodejsSVG></NodejsSVG>
+    </SVGContainer>,
+  ];
   return (
     <div className={styles.container}>
       <article className={styles.section.concat(" ", styles.hero)}>
         <div className={styles.hero_background}>
           <Slider toRight={true}>{firstSlides}</Slider>
+          <Slider>{secondSlides}</Slider>
         </div>
         <section className={styles.presentation_section}>
           <h1>

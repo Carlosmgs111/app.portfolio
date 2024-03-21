@@ -29,8 +29,10 @@
 .hero_background {
   position: absolute;
   display: flex;
+  flex-direction: column;
   gap: 4rem;
   align-items: center;
+  justify-content: center;
   left: 0;
   top: 0;
   content: "";
