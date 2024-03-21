@@ -2,30 +2,33 @@
   height: 200px;
   overflow: hidden;
   width: 100vw;
+  position: relative;
 }
-
 .slider {
   display: inline-flex;
+  position: absolute;
+  left: 0;
   height: 100%;
   width: auto;
   -moz-animation: sliding 20s infinite linear;
   -webkit-animation: sliding 20s infinite linear;
   animation: sliding 20s infinite linear;
 }
-
-.slide {
-  height: 100%;
-  flex: 0 0 auto;
-  text-align: center;
-  width: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .to_right {
   -moz-animation: slidingToRight 20s infinite linear;
   -webkit-animation: slidingToRight 20s infinite linear;
   animation: slidingToRight 20s infinite linear;
+  left: -200%;
+  direction: rtl;
+}
+.slide {
+  height: 100%;
+  flex: 0 0 auto;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 @keyframes sliding {
