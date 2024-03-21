@@ -1,55 +1,12 @@
 import styles from "./styles.module.css";
-import {
-  JestSVG,
-  ReactSVG,
-  StyledComponentsSVG,
-  NextjsSVG,
-  ReactRouterSVG,
-  WebpackSVG,
-  AxiosSVG,
-} from "../../icons";
-const slides = [
-  <div className={styles.slide}>
-    <div className={styles.icon_container}>
-      <JestSVG></JestSVG>
-    </div>
-  </div>,
-  <div className={styles.slide}>
-    <div className={styles.icon_container}>
-      <ReactSVG></ReactSVG>
-    </div>
-  </div>,
-  <div className={styles.slide}>
-    <div className={styles.icon_container}>
-      <StyledComponentsSVG></StyledComponentsSVG>
-    </div>
-  </div>,
-  <div className={styles.slide}>
-    <div className={styles.icon_container}>
-      <NextjsSVG></NextjsSVG>
-    </div>
-  </div>,
-  <div className={styles.slide}>
-    <div className={styles.icon_container}>
-      <ReactRouterSVG></ReactRouterSVG>
-    </div>
-  </div>,
-  <div className={styles.slide}>
-    <div className={styles.icon_container}>
-      <WebpackSVG></WebpackSVG>
-    </div>
-  </div>,
-  <div className={styles.slide}>
-    {" "}
-    <div className={styles.icon_container}>
-      <AxiosSVG></AxiosSVG>
-    </div>
-  </div>,
-];
-export const Slider = () => {
+import { Children, cloneElement } from "react";
+export const Slider = ({ children }: any) => {
+  const slides: any = Children.toArray(children).map((child: any) => (
+    <div className={styles.slide}>{cloneElement(child)}</div>
+  ));
   return (
     <div className={styles.container}>
-      <div className={styles.slider}>
+      <div className={`${styles.slider} ${styles.to_right}`}>
         {slides}
         {slides}
       </div>

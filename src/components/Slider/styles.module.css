@@ -6,11 +6,11 @@
 
 .slider {
   display: inline-flex;
-  -moz-animation: sliding 20s infinite linear;
-  -webkit-animation: sliding 20s infinite linear;
-  animation: sliding 15s infinite linear;
   height: 100%;
   width: auto;
+  -moz-animation: sliding 20s infinite linear;
+  -webkit-animation: sliding 20s infinite linear;
+  animation: sliding 20s infinite linear;
 }
 
 .slide {
@@ -22,12 +22,10 @@
   justify-content: center;
   align-items: center;
 }
-
-.icon_container {
-  display: block;
-  width: 12rem;
-  height: 12rem;
-  cursor: pointer;
+.to_right {
+  -moz-animation: slidingToRight 20s infinite linear;
+  -webkit-animation: slidingToRight 20s infinite linear;
+  animation: slidingToRight 20s infinite linear;
 }
 
 @keyframes sliding {
@@ -35,5 +33,12 @@
     -moz-transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
+  }
+}
+@keyframes slidingToRight {
+  to {
+    -moz-transform: translateX(50%);
+    -webkit-transform: translateX(50%);
+    transform: translateX(50%);
   }
 }

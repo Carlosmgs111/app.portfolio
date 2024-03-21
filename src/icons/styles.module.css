@@ -3,6 +3,12 @@
   transition: 0.4s;
   fill: #b8e1e9;
 }
+.svg_container {
+  display: block;
+  width: 12rem;
+  height: 12rem;
+  cursor: pointer;
+}
 .svg:hover {
   scale: 1.2;
 }
