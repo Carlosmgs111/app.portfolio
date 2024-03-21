@@ -2,6 +2,17 @@ import styles from "./styles.module.css";
 import { CodeSnap } from "../../components/CodeSnap";
 import { Typing } from "../../components/Typing";
 import { GitHubSVG, LinkedInSVG } from "../../icons";
+import { Slider } from "../../components/Slider";
+import {
+  SVGContainer,
+  ReactSVG,
+  JestSVG,
+  StyledComponentsSVG,
+  NextjsSVG,
+  ReactRouterSVG,
+  WebpackSVG,
+  AxiosSVG,
+} from "./../../icons";
 
 export function Home() {
   const literalCodeSnapshot = `
@@ -90,9 +101,35 @@ export function Home() {
       color: "#3178c6",
     },
   ];
+  const firstSlides = [
+    <SVGContainer>
+      <JestSVG></JestSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <ReactSVG></ReactSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <StyledComponentsSVG></StyledComponentsSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <NextjsSVG></NextjsSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <ReactRouterSVG></ReactRouterSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <WebpackSVG></WebpackSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <AxiosSVG></AxiosSVG>
+    </SVGContainer>,
+  ];
   return (
     <div className={styles.container}>
       <article className={styles.section.concat(" ", styles.hero)}>
+        <div className={styles.hero_background}>
+          <Slider>{firstSlides}</Slider>
+        </div>
         <section className={styles.presentation_section}>
           <h1>
             Hola, soy <br />
@@ -110,7 +147,7 @@ export function Home() {
           <h2>Creo Soluciones </h2>
           <br />
           <h2>
-            Usando 
+            Usando
             <Typing
               baseTiming={2.8}
               words={mySkills}
@@ -118,10 +155,18 @@ export function Home() {
             ></Typing>
           </h2>
           <div className={styles.contact}>
-            <a className={styles.contact_icon} href="https://github.com/Carlosmgs111" target="_blank">
+            <a
+              className={styles.contact_icon}
+              href="https://github.com/Carlosmgs111"
+              target="_blank"
+            >
               <GitHubSVG></GitHubSVG>
             </a>
-            <a className={styles.contact_icon} href="https://www.linkedin.com/in/cmgs111/" target="_blank">
+            <a
+              className={styles.contact_icon}
+              href="https://www.linkedin.com/in/cmgs111/"
+              target="_blank"
+            >
               <LinkedInSVG></LinkedInSVG>
             </a>
           </div>
