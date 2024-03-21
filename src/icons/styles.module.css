@@ -81,3 +81,24 @@
 .jsonwebtokens {
   fill: #000000;
 }
+.django {
+  fill: #092e20;
+}
+.rabbitmq {
+  fill: #ff6600;
+}
+.fastapi {
+  fill: #009688;
+}
+.dotenv {
+  fill: #ecd53f;
+}
+.vscode {
+  fill: #007acc;
+}
+.terminal {
+  fill: #4d4d4d;
+}
+.git {
+  fill: #f05032;
+}

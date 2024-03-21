@@ -22,6 +22,13 @@ import { SequelizeSVG } from "./SequelizeSVG";
 import { MongooseSVG } from "./MongooseSVG";
 import { PassportSVG } from "./PassportSVG";
 import { JsonWebTokensSVG } from "./JsonWebTokensSVG";
+import { DjangoSVG } from "./DjangoSVG";
+import { RabbitmqSVG } from "./RabbitmqSVG";
+import { fastApiSVG } from "./FastApiSVG";
+import { DotEnvSVG } from "./DotEnvSVG";
+import { VSCodeSVG } from "./VSCodeSVG";
+import { TerminalSVG } from "./TerminalSVG";
+import { GitSVG } from "./GitSVG";
 
 const SVGContainer = ({ children }: any) => {
   return <div className={styles.svg_container}>{children}</div>;
@@ -52,4 +59,11 @@ export {
   MongooseSVG,
   PassportSVG,
   JsonWebTokensSVG,
+  DjangoSVG,
+  RabbitmqSVG,
+  fastApiSVG,
+  DotEnvSVG,
+  VSCodeSVG,
+  TerminalSVG,
+  GitSVG,
 };
