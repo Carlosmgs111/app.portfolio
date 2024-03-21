@@ -26,6 +26,13 @@ import {
   MongooseSVG,
   PassportSVG,
   JsonWebTokensSVG,
+  DjangoSVG,
+  RabbitmqSVG,
+  FastApiSVG,
+  DotEnvSVG,
+  VSCodeSVG,
+  TerminalSVG,
+  GitSVG,
 } from "./../../icons";
 
 export function Home() {
@@ -184,6 +191,29 @@ export function Home() {
       <JsonWebTokensSVG></JsonWebTokensSVG>
     </SVGContainer>,
   ];
+  const fourthSlides = [
+    <SVGContainer>
+      <DjangoSVG></DjangoSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <RabbitmqSVG></RabbitmqSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <FastApiSVG></FastApiSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <DotEnvSVG></DotEnvSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <VSCodeSVG></VSCodeSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <TerminalSVG></TerminalSVG>
+    </SVGContainer>,
+    <SVGContainer>
+      <GitSVG></GitSVG>
+    </SVGContainer>,
+  ];
   return (
     <div className={styles.container}>
       <article className={styles.section.concat(" ", styles.hero)}>
@@ -191,6 +221,7 @@ export function Home() {
           <Slider toRight={true}>{firstSlides}</Slider>
           <Slider>{secondSlides}</Slider>
           <Slider toRight={true}>{thirdSlides}</Slider>
+          <Slider>{fourthSlides}</Slider>
         </div>
         <section className={styles.presentation_section}>
           <h1>

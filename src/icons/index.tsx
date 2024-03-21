@@ -24,7 +24,7 @@ import { PassportSVG } from "./PassportSVG";
 import { JsonWebTokensSVG } from "./JsonWebTokensSVG";
 import { DjangoSVG } from "./DjangoSVG";
 import { RabbitmqSVG } from "./RabbitmqSVG";
-import { fastApiSVG } from "./FastApiSVG";
+import { FastApiSVG } from "./FastApiSVG";
 import { DotEnvSVG } from "./DotEnvSVG";
 import { VSCodeSVG } from "./VSCodeSVG";
 import { TerminalSVG } from "./TerminalSVG";
@@ -61,7 +61,7 @@ export {
   JsonWebTokensSVG,
   DjangoSVG,
   RabbitmqSVG,
-  fastApiSVG,
+  FastApiSVG,
   DotEnvSVG,
   VSCodeSVG,
   TerminalSVG,

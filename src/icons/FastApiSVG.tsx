@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SVGProps } from "react";
 import styles from "./styles.module.css";
-export const fastApiSVG = (props: SVGProps<SVGSVGElement>) => (
+export const FastApiSVG = (props: SVGProps<SVGSVGElement>) => (
   <svg
     className={`${styles.svg} ${styles.fastapi}`}
     xmlns="http://www.w3.org/2000/svg"
