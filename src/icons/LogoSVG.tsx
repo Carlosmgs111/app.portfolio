@@ -5,9 +5,9 @@ import { SVGContainer } from "./SVGContainer";
 export const LogoSVG = (props: SVGProps<SVGSVGElement>) => (
   <SVGContainer>
     <svg
-      className={`${styles.svg}`}
+      className={styles.svg}
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 145.34 115.58"
+      viewBox="0 0 145.32 115.56"
       {...props}
     >
       <defs>
@@ -17,7 +17,7 @@ export const LogoSVG = (props: SVGProps<SVGSVGElement>) => (
           x2={133.61}
           y1={218.28}
           y2={218.28}
-          gradientTransform="translate(-.258 .646)"
+          gradientTransform="matrix(-1.4556 -.00408 .00197 -3.0228 293.94 761.34)"
           gradientUnits="userSpaceOnUse"
         >
           <stop offset={0} stopColor="#00a6c0" />
@@ -30,12 +30,12 @@ export const LogoSVG = (props: SVGProps<SVGSVGElement>) => (
         stroke="url(#a)"
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth={5.292}
-        d="M130.71 218.92h-26.994m43.573 28.888-19.905-14.347 20.061-14.555m-53.778-10.252h63.723v49.557H93.667z"
+        strokeWidth={11.112}
+        d="m103.74 101.01 39.291.11M59.135 45.454l31.797 27.56-32.108 27.856m108.96 24.782-134.07-.18.14-104.26 134.07.18z"
         style={{
           paintOrder: "normal",
         }}
-        transform="rotate(-180 168.235 274.521) scale(2.1039)"
+        transform="translate(-28.161 -15.65)"
       />
     </svg>
   </SVGContainer>

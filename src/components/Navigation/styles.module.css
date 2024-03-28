@@ -21,9 +21,17 @@
   flex-direction: row;
 }
 
+.navbar_header > a {
+  padding-left: 4rem;
+}
+
 .navbar_header > a > div {
   width: 4rem;
   height: 4rem;
+}
+
+.navbar_header > a > div > svg {
+  filter: drop-shadow(-8px 6px 1px rgba(0, 0, 0, 0.8));
 }
 
 .navbar {
