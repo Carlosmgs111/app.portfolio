@@ -10,10 +10,12 @@ import {
   ReactRouterSVG,
   WebpackSVG,
   AxiosSVG,
+  LogoSVG,
 } from "./../../../../icons";
 
 export function TestsSection() {
   const firstSlides = [
+    <LogoSVG></LogoSVG>,
     <JestSVG></JestSVG>,
     <ReactSVG></ReactSVG>,
     <StyledComponentsSVG></StyledComponentsSVG>,
@@ -38,6 +40,7 @@ export function TestsSection() {
     >
       <h1 style={{ width: "100%", textAlign: "center" }}>Seccion de pruebas</h1>
       <Slider>{firstSlides}</Slider>
+      <LogoSVG></LogoSVG>
       <GenerateImage></GenerateImage>
       <MyDropzone />
       <Telport />

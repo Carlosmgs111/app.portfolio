@@ -24,11 +24,11 @@ export const Item: any = styled.li`
   align-items: center;
   justify-content: center;
   color: ${({ className }: any) =>
-    className?.includes("login") && "#e4ff1a !important"};
+    className?.includes("login") && "#1cefff !important"};
   animation: 1.2s ${(props) => setFrames([to, from], props)} ease;
   ${(props: any) => from(props)};
   border-bottom: ${({ selected, id }: any) =>
-    selected && id !== "nonMark" ? "solid #e4ff1a 1px" : "transparent"};
+    selected && id !== "nonMark" ? "solid #1cefff 1px" : "transparent"};
   top: ${({ selected, id }: any) =>
     selected && id !== "nonMark" ? "-6px" : "0"};
   transition: top 0.4s, border-bottom 0.8s;
@@ -38,7 +38,7 @@ export const Item: any = styled.li`
     text-decoration: none;
     top: ${({ id }: any) => (id !== "nonMark" ? "-6px" : "0")};
     border-bottom: ${({ id }: any) =>
-      id !== "nonMark" ? "solid #e4ff1a 1px" : "none"};
+      id !== "nonMark" ? "solid #1cefff 1px" : "none"};
     animation: 1.2s ${(props) => setFrames([from, to], props)} ease;
   }
   padding: 1rem 0.8rem;

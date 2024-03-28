@@ -9,6 +9,9 @@
   width: 10rem;
   height: 10rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .svg:hover {
   scale: 1.2;

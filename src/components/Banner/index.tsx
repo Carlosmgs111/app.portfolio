@@ -3,7 +3,6 @@ import { getContextValue, CONTEXTS } from "../../contexts";
 
 export function Banner({
   children,
-  config = {},
   background,
   searchedUsername,
   customeMessage = true,

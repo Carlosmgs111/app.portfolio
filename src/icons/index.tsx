@@ -1,4 +1,3 @@
-
 import { GitHubSVG } from "./GitHubSVG";
 import { LinkedInSVG } from "./LinkedInSVG";
 import { JestSVG } from "./JestSVG";
@@ -29,6 +28,7 @@ import { DotEnvSVG } from "./DotEnvSVG";
 import { VSCodeSVG } from "./VSCodeSVG";
 import { TerminalSVG } from "./TerminalSVG";
 import { GitSVG } from "./GitSVG";
+import { LogoSVG } from "./LogoSVG";
 export {
   GitHubSVG,
   LinkedInSVG,
@@ -60,4 +60,5 @@ export {
   VSCodeSVG,
   TerminalSVG,
   GitSVG,
+  LogoSVG,
 };

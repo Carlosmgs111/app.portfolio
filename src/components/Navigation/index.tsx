@@ -1,34 +1,19 @@
-import { Item, Link, Banner } from "./styles";
+import { Item, Link } from "./styles";
+import { Link as LinkRouter } from "react-router-dom";
 import styles from "./styles.module.css";
-import { Children, cloneElement, useEffect, useState } from "react";
+import { Children, cloneElement, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useToggle } from "../../hooks/useToggle";
-import { runRequest } from "../../services/runRequest";
-import { getContext, CONTEXTS } from "../../contexts";
+import { LogoSVG } from "./../../icons";
 
 export default function Navigation({ children, banner, className }: any) {
   const location = useLocation();
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
-  const [{ searchedUsername }, dispatch] = useStateValue();
 
   const [menu, switchMenu] = useToggle(
     { show: false, name: "fas fa-bars p-2 item" },
     { show: true, name: "fas fa-times p-2 item" }
   );
   const [current, setCurrent]: any = useState(null);
-  const [showfixed, setShowFixed] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
-  const [indexedElements, setIndexedElements]: any = useState([]);
-  const [selected, setSelected] = useState(false);
-
-  // useEffect(() => {
-  //   runRequest({
-  //     setData: (data: any) => setIndexedElements([...indexedElements, ...data]),
-  //   }).get("users/username/all");
-  //   const searchInput = document.getElementsByName("search-input")[0];
-  //   searchInput.addEventListener("focusin", () => setSelected(true));
-  //   searchInput.addEventListener("focusout", () => setSelected(false));
-  // }, [showfixed]);
 
   const onClick = (e: any) => {
     setCurrent(Number(e.target.id));
@@ -48,51 +33,17 @@ export default function Navigation({ children, banner, className }: any) {
         }}
       >
         {banner && (
-          <Banner
+          <LinkRouter
             onClick={() => {
               if (menu.show) switchMenu();
               setCurrent(null);
             }}
             to={banner.to}
           >
-            {banner.title}
-          </Banner>
+            <LogoSVG></LogoSVG>
+          </LinkRouter>
         )}
       </div>
-      {/* <form action="">
-        <input
-          className={styles.search_input}
-          type="search"
-          name="search-input"
-          value={searchValue}
-          list="indexed_elements"
-          onChange={(e) => {
-            setSearchValue(e.target.value);
-          }}
-        />
-        <i
-          className={`fa-solid fa-magnifying-glass ${styles.search_icon} ${
-            selected ? styles.selected : ""
-          }`}
-        />
-        <input
-          type="submit"
-          className={styles.submit_search}
-          onClick={(e) => {
-            dispatch({
-              type: ACTIONS.setSearchedUsername,
-              payload: searchValue,
-            });
-            setSearchValue("");
-            e.preventDefault();
-          }}
-        />
-      </form>
-      <datalist id="indexed_elements">
-        {indexedElements.map((iE: any, idx: any) => (
-          <option value={iE} key={idx} />
-        ))}
-      </datalist> */}
       <nav className={styles.navbar.concat(" ", className)}>
         <i
           className={`${menu.name} ${styles.button}`}
