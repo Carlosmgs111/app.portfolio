@@ -49,12 +49,14 @@ export function Home() {
 11|     return \`
 12|     Hi! I'm \${this.name} \${this.lastName}
 13|     <{*Typing*}>
-14|     \`;
-15|   };
-16| };
-17|
-18| const Carlos = new Developer("Carlos", "Muñoz");
-19| console.log(Carlos.presentYourSelf())
+14|     and make solutions is my passion
+15|     💪💖🦄
+15|     \`;
+16|   };
+17| };
+18|
+19| const Carlos = new Developer("Carlos", "Muñoz");
+20| console.log(Carlos.presentYourSelf())
   `;
   const mySkills = [
     { content: "React", color: "#61DAFB" },
@@ -207,6 +209,8 @@ export function Home() {
             </a>
           </div>
         </section>
+      </article>
+      <article className={styles.section}>
         <section className={styles.coding_section}>
           <CodeSnap fontSize={"1.4rem"} words={wordsInCode}>
             {literalCodeSnapshot.replaceAll("|", " ")}
@@ -221,11 +225,13 @@ export function Home() {
                 cursor={false}
                 fontSize={"1.6rem"}
               />
+              <span>and make solutions is my passion</span><br />
+              <span>💪💖🦄</span>
             </div>
           </div>
         </section>
       </article>
-      <article className={styles.section.concat(" ", styles.even)}>
+      <article className={styles.section}>
         <p className={styles.text}>
           Anim ex nostrud exercitation exercitation anim aliqua. Sit Lorem id
           laborum proident eu ad Lorem culpa. Occaecat ipsum exercitation

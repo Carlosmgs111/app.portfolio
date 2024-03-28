@@ -2,6 +2,7 @@
   width: 100%;
   transition: 0.4s;
   fill: #b8e1e9;
+  filter: drop-shadow(-16px 12px 1px rgba(0, 0, 0, 0.7));
 }
 .svg_container {
   display: block;
