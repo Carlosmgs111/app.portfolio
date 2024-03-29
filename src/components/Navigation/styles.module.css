@@ -1,6 +1,7 @@
 .container {
   overflow: scroll;
   height: fit-content;
+  min-height: 6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

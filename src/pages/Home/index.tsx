@@ -162,36 +162,38 @@ export function Home() {
   return (
     <div className={styles.container}>
       <article className={styles.section.concat(" ", styles.hero)}>
-        <div className={styles.hero_background}>
+        <div className={`${styles.hero_background} `}>
           <Slider toRight={true}>{firstSlides}</Slider>
           <Slider>{secondSlides}</Slider>
           <Slider toRight={true}>{thirdSlides}</Slider>
           <Slider>{fourthSlides}</Slider>
         </div>
         <section className={styles.presentation_section}>
-          <h1>
-            Hola, soy <br />
-            <b>Carlos Muñoz</b>,
-          </h1>
-          <h2>
-            Desarrollador
-            <Typing
-              baseTiming={4.8}
-              words={myStacks}
-              fontSize={"3.2rem"}
-            ></Typing>
-          </h2>
-          <br />
-          <h2>Creo Soluciones </h2>
-          <br />
-          <h2>
-            Usando
-            <Typing
-              baseTiming={2.8}
-              words={mySkills}
-              fontSize={"3.2rem"}
-            ></Typing>
-          </h2>
+          <div className={styles.presentation}>
+            <h1>
+              Hola, soy <br />
+              <b>Carlos Muñoz</b>,
+            </h1>
+            <h2>
+              Desarrollador
+              <Typing
+                baseTiming={4.8}
+                words={myStacks}
+                fontSize={"3.2rem"}
+              ></Typing>
+            </h2>
+            <br />
+            <h2>Creo Soluciones </h2>
+            <br />
+            <h2>
+              Usando
+              <Typing
+                baseTiming={2.8}
+                words={mySkills}
+                fontSize={"3.2rem"}
+              ></Typing>
+            </h2>
+          </div>
           <div className={styles.contact}>
             <a
               className={styles.contact_icon}
@@ -225,7 +227,8 @@ export function Home() {
                 cursor={false}
                 fontSize={"1.6rem"}
               />
-              <span>and make solutions is my passion</span><br />
+              <span>and make solutions is my passion</span>
+              <br />
               <span>💪💖🦄</span>
             </div>
           </div>
