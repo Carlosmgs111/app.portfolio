@@ -17,10 +17,10 @@ import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
 
 export function Skills() {
-  const { token } = getContextValue(CONTEXTS.Global);
+  const { token, currentLang } = getContextValue(CONTEXTS.Global);
   const requestHeaders = headers();
   const [TrackSidebar, setElements, refreshRefs]: any = useTrackSidebar();
-
+  const bannerMessage: any = { es: "Habilidades", en: "Skills" };
   const initialState = {
     skills: [],
     currentModal: null,
@@ -143,7 +143,7 @@ export function Skills() {
           background: "linear-gradient(to right, #f026df, #fb5609)",
         }}
       >
-        Habilidades
+        {bannerMessage[currentLang]}
       </Banner>
       <MultiSidebar {...{ sidebars }}>
         <div className={styles.main_container}>

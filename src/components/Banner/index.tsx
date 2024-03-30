@@ -5,7 +5,7 @@ export function Banner({
   children,
   background,
   searchedUsername,
-  customeMessage = true,
+  customeMessage = false,
   ownish = false,
 }: any) {
   const { username } = getContextValue(CONTEXTS.Global);

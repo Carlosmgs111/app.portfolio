@@ -4,6 +4,9 @@ import { addContext } from "./contexts";
 import "./index.css";
 import { App } from "./app";
 import { setActions } from "./utils";
+import content from "../public/content.json";
+
+const { defaultLang } = content;
 
 const initialState = {
   token: "",
@@ -16,7 +19,7 @@ const initialState = {
   avatar: "",
   loading: true,
   searchedUsername: "",
-  currentLang: "en",
+  currentLang: defaultLang,
 };
 
 export const actionTypes: any = setActions(
@@ -33,6 +36,7 @@ const reducer = (state: any, action: any) => {
     },
     [actionTypes.setLoading]: { ...state, loading: payload },
     [actionTypes.setSearchedUsername]: { ...state, searchedUsername: payload },
+    [actionTypes.setCurrentLang]: { ...state, currentLang: payload },
     [actionTypes.reset]: {
       ...state,
       ...initialState,

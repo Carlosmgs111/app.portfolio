@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: space-between;
   height: 20rem;
-  background-color: #0f2843;
+  background-color: #033949;
   position: relative;
   margin-top: 20rem;
   bottom: 0;
@@ -42,7 +42,7 @@
   object-fit: cover;
   object-position: center center;
   border-radius: 4rem;
-  border: 2px solid black;
+  border: 2px solid #033949;
   transition: border 0.4s;
 }
 

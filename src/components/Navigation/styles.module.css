@@ -41,9 +41,48 @@
   justify-content: space-between;
   align-items: center;
   align-content: center;
-  padding: 0 2vw;
+  padding: 0 3rem;
   width: inherit;
   height: inherit;
+  position: relative;
+}
+
+.page_settings {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 4rem;
+  position: absolute;
+  right: 0;
+}
+
+.languages {
+  padding: 0.8rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-family: "Rubik";
+  font-weight: 500;
+  font-size: 1.8rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: #1cefff;
+  -webkit-text-stroke:  #033949 .8px;
+  transition: 0.4s;
+  filter: drop-shadow(-6px 4px 1px rgba(0, 0, 0, 0.8));
+}
+
+.languages:hover {
+  scale: 1.2;
+}
+
+.languages option * {
+  background-color: transparent;
+  padding: 1.8rem !important;
+}
+
+.languages option:checked {
+  background-color: #033949;
 }
 
 .itemlist {
@@ -59,7 +98,6 @@
   justify-content: left;
   align-items: center;
   transition: 0.4s;
-  padding: 0 0.4rem;
 }
 
 .button {

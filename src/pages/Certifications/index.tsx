@@ -35,7 +35,7 @@ export function Certifications() {
   const [searchedUsername, setSearchedUsername] = useState(
     searchParams.get("username")
   );
-  const { token, username } = getContextValue(CONTEXTS.Global);
+  const { token, username, currentLang } = getContextValue(CONTEXTS.Global);
   const [owned, switchOwned] = useToggle(false, true);
 
   const initialState = {
@@ -47,6 +47,8 @@ export function Certifications() {
   };
 
   const actionTypes = setActions([], initialState);
+
+  const bannerMessage: any = { en: "Certifications", es: "Certificados" };
 
   const reducer = (state: any, dispatch: Function) => {
     const { type, payload }: any = dispatch;
@@ -256,10 +258,10 @@ export function Certifications() {
       {/* // ? ⬇️ Start optionals components */}
       <Banner
         {...{
-          background: "radial-gradient(circle at 20% 0%, #FF0099,  #493240)",
+          background: "radial-gradient(circle at 20% 0%, #FFE000,  #799F0C)",
         }}
       >
-        Certificados
+        {bannerMessage[currentLang]}
       </Banner>
 
       {/* // ? ⬆️ End optionals components */}

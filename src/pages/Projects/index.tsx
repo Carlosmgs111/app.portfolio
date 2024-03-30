@@ -19,9 +19,10 @@ import { headers } from "../../services/configs";
 import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
 
 export function Projects() {
-  const { token } = getContextValue(CONTEXTS.Global);
+  const { token, currentLang } = getContextValue(CONTEXTS.Global);
   const [TrackSidebar, setElements, refreshRefs]: any = useTrackSidebar();
   const requestHeaders = headers();
+  const bannerMessage: any = { es: "Proyectos", en: "Projects" };
   const [projectSchema, setProjectSchema]: any = useState({
     name: "",
     emitedBy: "",
@@ -170,7 +171,7 @@ export function Projects() {
           background: "radial-gradient(circle at 20% 50%, #e4ff1a, #fb5609)",
         }}
       >
-        Proyectos
+        {bannerMessage[currentLang]}
       </Banner>
       <MultiSidebar
         {...{

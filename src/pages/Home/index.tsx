@@ -39,8 +39,7 @@ import {
 export function Home() {
   const { summary }: any = content;
   const [{ currentLang }] = useStateValue();
-  const literalCodeSnapshot = `
-1 | class Developer {
+  const literalCodeSnapshot = `1 | class Developer {
 2 |   name: string = "";
 3 |   lastName: string = "";
 4 |
@@ -61,7 +60,7 @@ export function Home() {
 18|
 19| const Carlos = new Developer("Carlos", "Muñoz");
 20| console.log(Carlos.presentYourSelf())
-  `;
+`;
   const mySkills = [
     { content: "React", color: "#61DAFB" },
     {
@@ -249,6 +248,7 @@ export function Home() {
         </section>
       </article>
       <article className={styles.section}>
+        <p className={styles.text}>{summary[currentLang]}</p>
         <section className={styles.coding_section}>
           <CodeSnap fontSize={"1.4rem"} words={wordsInCode}>
             {literalCodeSnapshot.replaceAll("|", " ")}
@@ -269,9 +269,6 @@ export function Home() {
             </div>
           </div>
         </section>
-      </article>
-      <article className={styles.section}>
-        <p className={styles.text}>{summary[currentLang]}</p>
       </article>
     </div>
   );
