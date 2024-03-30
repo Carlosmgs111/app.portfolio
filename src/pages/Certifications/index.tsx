@@ -256,7 +256,7 @@ export function Certifications() {
       {/* // ? ⬇️ Start optionals components */}
       <Banner
         {...{
-          background: "linear-gradient(to right, #f026df,  #00ffc8)",
+          background: "radial-gradient(circle at 20% 0%, #FF0099,  #493240)",
         }}
       >
         Certificados

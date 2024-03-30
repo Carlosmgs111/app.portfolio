@@ -15,7 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 export function App() {
   const { clearAuth } = useApp();
   const [{ useStateValue }] = getContext(CONTEXTS.Global);
-  const [{ token, avatar, searchedUsername }] = useStateValue();
+  const [{ token, avatar, searchedUsername, currentLang }] = useStateValue();
   const [showFixed, setShowFixed] = useState(false);
   const [currentModal, setCurrentModal]: any = useState(null);
   // useScroll()
@@ -29,26 +29,45 @@ export function App() {
     document.addEventListener("scroll", onScroll);
   }, [showFixed]);
 
-  const pages: any = [
-    {
-      label: "proyectos",
-      path: `projects${searchedUsername && `?username=${searchedUsername}`}`,
-    },
-    {
-      label: "Certificados",
-      path: `certifications${
-        searchedUsername && `?username=${searchedUsername}`
-      }`,
-    },
-    {
-      label: "Habilidades",
-      path: `skills${searchedUsername && `?username=${searchedUsername}`}`,
-    },
-    "blog",
-  ];
+  const pages: any = {
+    es: [
+      {
+        label: "Proyectos",
+        path: `projects${searchedUsername && `?username=${searchedUsername}`}`,
+      },
+      {
+        label: "Certificados",
+        path: `certifications${
+          searchedUsername && `?username=${searchedUsername}`
+        }`,
+      },
+      {
+        label: "Habilidades",
+        path: `skills${searchedUsername && `?username=${searchedUsername}`}`,
+      },
+      "Blog",
+    ],
+    en: [
+      {
+        label: "Projects",
+        path: `projects${searchedUsername && `?username=${searchedUsername}`}`,
+      },
+      {
+        label: "Certifications",
+        path: `certifications${
+          searchedUsername && `?username=${searchedUsername}`
+        }`,
+      },
+      {
+        label: "Skills",
+        path: `skills${searchedUsername && `?username=${searchedUsername}`}`,
+      },
+      "Blog",
+    ],
+  };
 
   if (token)
-    pages.push({
+    pages[currentLang].push({
       item: (
         <img
           className={styles.avatar}
@@ -88,7 +107,7 @@ export function App() {
           }}
         >
           {NavigationItemsFactory({
-            pages,
+            pages: pages[currentLang],
             login: {
               label: () => <span>Login</span>,
               onClick: (e: any) => {

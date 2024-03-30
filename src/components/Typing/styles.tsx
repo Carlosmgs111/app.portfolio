@@ -68,6 +68,9 @@ export const TypingContainer: any = styled.div`
     `}
     width: fit-content;
   }
+  p {
+    white-space: nowrap;
+  }
 `;
 
 export const TypingText: any = styled.div`

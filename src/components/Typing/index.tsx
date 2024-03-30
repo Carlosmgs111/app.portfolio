@@ -30,7 +30,7 @@ export const Typing = ({
       <TypingText timing={timing} cursor={cursor} typingRules={typingRules}>
         <span></span>
       </TypingText>
-      {text}
+      <p>{text}</p>
     </TypingContainer>
   );
 };

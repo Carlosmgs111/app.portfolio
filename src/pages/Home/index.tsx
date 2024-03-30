@@ -3,6 +3,8 @@ import { CodeSnap } from "../../components/CodeSnap";
 import { Typing } from "../../components/Typing";
 import { GitHubSVG, LinkedInSVG } from "../../icons";
 import { Slider } from "../../components/Slider";
+import content from "../../../public/content.json";
+import { useStateValue } from "../../contexts/context";
 import {
   ReactSVG,
   JestSVG,
@@ -35,6 +37,8 @@ import {
 } from "./../../icons";
 
 export function Home() {
+  const { summary }: any = content;
+  const [{ currentLang }] = useStateValue();
   const literalCodeSnapshot = `
 1 | class Developer {
 2 |   name: string = "";
@@ -159,6 +163,62 @@ export function Home() {
     <TerminalSVG />,
     <GitSVG />,
   ];
+  const presentation: any = {
+    es: (
+      <div className={styles.presentation}>
+        <h1>
+          Hola, soy <br />
+          <b>Carlos Muñoz</b>,
+        </h1>
+        <h2>
+          Desarrollador
+          <Typing
+            baseTiming={4.8}
+            words={myStacks}
+            fontSize={"3.2rem"}
+          ></Typing>
+        </h2>
+        <br />
+        <h2>Creo Soluciones </h2>
+        <br />
+        <h2>
+          Usando
+          <Typing
+            baseTiming={2.8}
+            words={mySkills}
+            fontSize={"3.2rem"}
+          ></Typing>
+        </h2>
+      </div>
+    ),
+    en: (
+      <div className={styles.presentation}>
+        <h1>
+          Hi, i'm <br />
+          <b>Carlos Muñoz</b>,
+        </h1>
+        <h2>
+          <Typing
+            baseTiming={4.8}
+            words={myStacks}
+            fontSize={"3.2rem"}
+            text={["Developer"]}
+          ></Typing>
+        </h2>
+        <br />
+        <h2>I make solutions </h2>
+        <br />
+        <h2>
+          Using
+          <Typing
+            baseTiming={2.8}
+            words={mySkills}
+            fontSize={"3.2rem"}
+          ></Typing>
+        </h2>
+      </div>
+    ),
+  };
   return (
     <div className={styles.container}>
       <article className={styles.section.concat(" ", styles.hero)}>
@@ -169,31 +229,7 @@ export function Home() {
           <Slider>{fourthSlides}</Slider>
         </div>
         <section className={styles.presentation_section}>
-          <div className={styles.presentation}>
-            <h1>
-              Hola, soy <br />
-              <b>Carlos Muñoz</b>,
-            </h1>
-            <h2>
-              Desarrollador
-              <Typing
-                baseTiming={4.8}
-                words={myStacks}
-                fontSize={"3.2rem"}
-              ></Typing>
-            </h2>
-            <br />
-            <h2>Creo Soluciones </h2>
-            <br />
-            <h2>
-              Usando
-              <Typing
-                baseTiming={2.8}
-                words={mySkills}
-                fontSize={"3.2rem"}
-              ></Typing>
-            </h2>
-          </div>
+          {presentation[currentLang]}
           <div className={styles.contact}>
             <a
               className={styles.contact_icon}
@@ -235,19 +271,7 @@ export function Home() {
         </section>
       </article>
       <article className={styles.section}>
-        <p className={styles.text}>
-          Anim ex nostrud exercitation exercitation anim aliqua. Sit Lorem id
-          laborum proident eu ad Lorem culpa. Occaecat ipsum exercitation
-          consequat aute ullamco. Commodo enim voluptate aliqua pariatur ipsum
-          tempor enim velit nisi. Officia ut adipisicing veniam enim esse aliqua
-          minim Lorem esse amet ut elit ullamco et. Id reprehenderit cillum
-          mollit qui esse. Do sint dolor sunt adipisicing est eu tempor proident
-          sunt commodo ipsum occaecat tempor incididunt. Dolore consectetur
-          nostrud sunt aliquip eiusmod velit. Irure mollit duis sint dolore.
-          Aliqua quis amet est minim occaecat ipsum laboris do laboris minim
-          nostrud anim. Qui adipisicing velit cupidatat adipisicing Lorem.
-          Aliquip duis elit deserunt ad. Aute id ut tempor duis dolor anim.
-        </p>
+        <p className={styles.text}>{summary[currentLang]}</p>
       </article>
     </div>
   );

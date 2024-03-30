@@ -16,6 +16,7 @@ const initialState = {
   avatar: "",
   loading: true,
   searchedUsername: "",
+  currentLang: "en",
 };
 
 export const actionTypes: any = setActions(

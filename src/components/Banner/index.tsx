@@ -6,12 +6,13 @@ export function Banner({
   background,
   searchedUsername,
   customeMessage = true,
+  ownish = false,
 }: any) {
   const { username } = getContextValue(CONTEXTS.Global);
   return (
     <div className={styles.body} style={{ background }}>
       <h1 className={styles.title}>
-        {customeMessage && username && "Tus "}
+        {customeMessage && username && ownish && "Tus "}
         {children}
         {customeMessage &&
           !username &&
