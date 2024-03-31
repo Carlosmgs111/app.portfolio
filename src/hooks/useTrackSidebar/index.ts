@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { TrackSidebar } from "../../components/Sidebars/TrackSidebar";
 
 export const useTrackSidebar = () => {
   const items: any = [];
   const [elements, setElements] = useState([]);
   const [refs, setRefs]: any = useState([]);
+  const WrappedTrackSidebar: any = useMemo(
+    () => (props: any) =>
+      TrackSidebar({
+        ...props,
+        items,
+        refs,
+        id: "track-sidebar",
+      }),
+    [elements]
+  );
 
   const refreshRefs = (ref: any, show: boolean) => {
     if (show && !refs.includes(ref)) refs.push(ref);
@@ -12,15 +22,6 @@ export const useTrackSidebar = () => {
     setRefs([...refs]);
   };
   elements.map((element, index) => items.push(element));
-  return [
-    (props: any) =>
-      TrackSidebar({
-        ...props,
-        items,
-        refs,
-        id: "track-sidebar",
-      }),
-    setElements,
-    refreshRefs,
-  ];
+
+  return [WrappedTrackSidebar, setElements, refreshRefs];
 };
