@@ -1,7 +1,5 @@
 # Portfolio
-[https://app-blogfolio.web.app/](https://app-blogfolio.web.app) 
-
-[https://app-blogfolio.firebaseapp.com](https://app-blogfolio.firebaseapp.com)
+[https://app-portfolio-sooty.vercel.app/](https://app-portfolio-sooty.vercel.app/)
 ### (Blogfolio)
+![image](https://github.com/Carlosmgs111/app.portfolio/assets/41123597/006649b1-870b-449e-9d7d-becb28cfa36c)
 
-![Captura de pantalla (28)](https://user-images.githubusercontent.com/41123597/194403562-b21d983e-9898-4a7b-8b5a-d40f879a68ac.png)
