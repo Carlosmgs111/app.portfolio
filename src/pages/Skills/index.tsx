@@ -66,7 +66,7 @@ export function Skills() {
   }, [token]);
 
   const sidebars = [
-    TrackSidebar,
+    <TrackSidebar />,
     <PanelSidebar
       {...{
         id: "panel-sidebar",
@@ -101,11 +101,6 @@ export function Skills() {
                             data,
                             reset,
                           }: any) => {
-                            console.log(
-                              "🚀 ~ file: index.jsx:104 ~ Skills ~ data:",
-                              data
-                            );
-
                             runRequest({
                               setData: (data: any) => {
                                 setSkills([...skills, ...data]);

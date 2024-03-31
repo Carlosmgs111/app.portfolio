@@ -21,7 +21,7 @@
 .sidebar {
   border-radius: 0 0.6rem 0.6rem 0;
   backdrop-filter: blur(6px);
-  border: solid transparent 1px;
+  border: solid transparent 2px;
   max-height: 70vh;
   min-width: fit-content;
   padding: 0.8rem;
@@ -30,17 +30,17 @@
   font-size: 2.8rem;
   justify-content: center;
   align-items: center;
-  color: #fb5609;
-  z-index: 1000;
+  color: black;
+  z-index: 100;
   transition: border 0.4s;
 }
 .sidebar:hover {
-  border: solid #00ffc8 1px;
+  border: solid #1cefff 2px;
 }
 .sidebar::before {
   content: "";
   border-radius: 0 0.6rem 0.6rem 0;
-  background-color: #2b4e7933;
+  background-color: #0d697d93;
   box-shadow: 2px 2px 4px 2px #00000033;
   width: 100%;
   height: 100%;
@@ -91,19 +91,19 @@
     color 0.4s, left 0.6s, opacity 0.6s;
 }
 .item:hover {
-  color: #f026df !important;
+  color: #5bfbff !important;
 }
 .item.active {
-  color: #e4ff1a;
+  color: #5bfbff;
   transition: 0.4s;
 }
 .rotable {
-  transition: 0.2s;
+  transition: 0.4s;
 }
 .rotable:hover {
   scale: 1.2;
 }
 .rotable.active {
   transform: rotate(90deg);
-  color: #f026df !important;
+  color: #5bfbff !important;
 }

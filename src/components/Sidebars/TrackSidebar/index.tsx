@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+
 import { labelCases } from "../../../utils";
 import { useToggle } from "../../../hooks/useToggle";
 import { getContext, CONTEXTS } from "../../../contexts";
@@ -10,13 +10,12 @@ export function TrackSidebar(props: any) {
     refs = [],
     innerItems = true,
     direction = "column",
+    active,
   }: any = props;
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
   const [{ token, loading: globalLoading }, dispatch] = useStateValue();
 
   const [expand, switchExpand] = useToggle(false, true);
-
-  useEffect(() => {}, []);
 
   const indexesList: any = [];
 
@@ -47,8 +46,9 @@ export function TrackSidebar(props: any) {
   return (
     <section
       {...{
+        ...props,
         style: { flexDirection: direction },
-        className: styles.body.concat(" ", styles.active),
+        className: styles.body.concat(" ", active && styles.active),
       }}
     >
       {innerItems && (

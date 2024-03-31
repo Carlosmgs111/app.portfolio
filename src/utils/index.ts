@@ -165,7 +165,7 @@ export const UnMapfy = (map: any) => Object.fromEntries(map.entries());
  * @param [attrs] - The attributes you want to inject into the React elements.
  */
 export const injectAttrsToReactElements = (items: any, attrs = {}) =>
-  items.map((item: any, index: any) => cloneElement(item, { ...attrs }));
+  items.map((item: any, index: any) => cloneElement(item, { ...attrs, index }));
 
 export const settingName = (value: any) =>
   "set" + value.slice(0, 1).toUpperCase() + value.slice(1);
@@ -259,7 +259,7 @@ export const extractEntities = (data: any, entityLabel: string) => {
 export const manyfy = (element: any, factor = 6) => {
   const many = [];
   if (!element) {
-    throw new Error("Element does't provided")
+    throw new Error("Element does't provided");
   }
   for (var i = 0; i < factor; i++) {
     many.push(element);

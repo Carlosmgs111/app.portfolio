@@ -1,4 +1,4 @@
-import { useEffect, useState, Children, cloneElement } from "react";
+import { useState, Children, cloneElement } from "react";
 
 import styles from "./style.module.css";
 import { SettingsDashboard } from "./SettingsDashboard";
@@ -11,8 +11,6 @@ export const MultiSidebar = (props: any) => {
   const [activeSidebars, setActiveSidebars] = useState([sidebars[0]?.props.id]);
   const [settingsDashboard, switchSettingsDashboard] = useToggle(false, true);
   const [float, switchFloat] = useToggle(false, true);
-
-  useEffect(() => {}, []);
 
   const main = (
     <div className={styles.container}>

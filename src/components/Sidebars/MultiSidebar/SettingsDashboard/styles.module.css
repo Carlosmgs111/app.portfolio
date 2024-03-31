@@ -20,11 +20,11 @@
   z-index: 1;
 }
 .dashboard:hover {
-  border: solid #00ffc8 1px;
+  border: solid #1cefff 1px;
 }
 .hide_button {
   font-size: 2rem;
-  color: #f03b26;
+  color: #03839b;
   -webkit-text-stroke: 0.8px black;
   transition: 0.2s;
   font-weight: 1000;
@@ -46,13 +46,10 @@
   height: 0;
 }
 .input:checked + .slider {
-  background-color: #00ffc8;
+  background-color: #1cefff;
 }
 .input:checked + .slider.direction {
   background-color: #f28c0f;
-}
-.input:focus + .slider {
-  background-color: #00ffc8;
 }
 .input:focus + .slider.direction {
   background-color: #f28c0f;
@@ -68,7 +65,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #cccccc;
+  background-color: #cbfffe;
   transition: 0.4s;
   font-size: 1rem;
   color: black;

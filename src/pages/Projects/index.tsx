@@ -59,7 +59,7 @@ export function Projects() {
     getDispatchSetFunctions(dispatch, actionTypes);
 
   const sidebars = [
-    TrackSidebar, // ? ⬅️ this is a rendered component, so we just put as a variable and it is not called
+    <TrackSidebar/>, // ? ⬅️ this is a rendered component, so we just put as a variable and it is not called
   ];
 
   const updateState = (cb: Function) =>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TrackSidebar } from "../../components/Sidebars/TrackSidebar";
 
-export const useTrackSidebar = (props?: any) => {
+export const useTrackSidebar = () => {
   const items: any = [];
   const [elements, setElements] = useState([]);
   const [refs, setRefs]: any = useState([]);
@@ -11,16 +11,15 @@ export const useTrackSidebar = (props?: any) => {
     if (!show && refs.includes(ref)) refs.splice(refs.indexOf(ref), 1);
     setRefs([...refs]);
   };
-
-  (() => elements.map((element, index) => items.push(element)))();
-
+  elements.map((element, index) => items.push(element));
   return [
-    TrackSidebar({
-      props,
-      items,
-      refs,
-      id: "track-sidebar",
-    }),
+    (props: any) =>
+      TrackSidebar({
+        ...props,
+        items,
+        refs,
+        id: "track-sidebar",
+      }),
     setElements,
     refreshRefs,
   ];

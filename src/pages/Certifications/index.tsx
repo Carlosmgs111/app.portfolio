@@ -73,9 +73,7 @@ export function Certifications() {
     setError,
   }: any = setFunctions;
 
-  const [TrackSidebar, setElements, refreshRefs]: any = useTrackSidebar({
-    innerItems: true,
-  });
+  const [TrackSidebar, setElements, refreshRefs]: any = useTrackSidebar();
 
   const [certificationSchema, setCertificationSchema] = useState({
     title: "",
@@ -215,7 +213,7 @@ export function Certifications() {
     ];
 
   const sidebars = [
-    TrackSidebar,
+    <TrackSidebar />,
     <PanelSidebar id="panel-sidebar" items={items}></PanelSidebar>,
   ];
 
