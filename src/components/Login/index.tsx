@@ -23,9 +23,9 @@ export function Login({ onLogged }: any) {
   token && onLogged && onLogged();
   return !token ? (
     <form className={styles.form}>
-      <i className={styles.title} onClick={switchLabel}>
+      {/* <i className={styles.title} onClick={switchLabel}>
         {beutifyLabel(label)}
-      </i>
+      </i> */}
       <input
         className={`${styles.input} ${loading ? styles.disabled : ""}`}
         name="username"
