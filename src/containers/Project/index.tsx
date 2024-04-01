@@ -146,7 +146,6 @@ export const Project = ({
             {descriptions.map((description: any, index: number) => (
               <article
                 className={styles.description}
-                style={{ textAlign: even ? "left" : "right" }}
                 key={index}
               >
                 {description}
@@ -173,7 +172,6 @@ export const Project = ({
       )}
       {token && buildedBy.includes(username) && (
         <div className={styles.dashboard}>
-          <h2 className={styles.dashboard_title}>{name}</h2>
           <div className={styles.buttons_section}>
             <button
               className={styles.button.concat(
