@@ -166,13 +166,6 @@ export function Projects() {
 
   return (
     <Page>
-      <Banner
-        {...{
-          background: "radial-gradient(circle at 20% 50%, #e4ff1a, #fb5609)",
-        }}
-      >
-        {bannerMessage[currentLang]}
-      </Banner>
       <MultiSidebar
         {...{
           sidebars,

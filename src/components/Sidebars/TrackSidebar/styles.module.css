@@ -4,7 +4,7 @@
   overflow: scroll;
   color: black;
   border-radius: 0.6rem;
-  background-color: #03839b;
+  background-color: var(--main-color-900);
   min-height: fit-content;
   direction: rtl;
   transition: max-height 0.4s, max-width 0.4s;
@@ -36,13 +36,13 @@
   direction: ltr;
   color: inherit !important;
   transition: max-width 0.6s, max-height 0.4s, margin-right 0.4s, color 0.4s,
-    left 0.6s, opacity 0.6s, scale 0.6s;
+    opacity 0.6s, scale 0.6s;
 }
 .item:hover {
-  color: #9effff !important;
+  color: var(--main-color-200) !important;
 }
 .item.active {
-  color: #00d0e5 !important;
+  color: var(--main-color-500) !important;
 }
 .inner {
   cursor: hand;
@@ -53,8 +53,8 @@
   position: relative;
   direction: ltr;
   color: inherit !important;
-  transition: max-width 0.6s, max-height 0.4s, margin-right 0.4s, left 0.6s,
-    opacity 0.6s, transform 0.4s, scale 0.6s;
+  transition: max-width 0.4s, max-height 0.4s, margin-right 0.4s, opacity 0.2s,
+    transform 0.4s, scale 0.4s;
   font-family: "Quicksand" !important;
   padding: 0;
   text-overflow: ellipsis;
@@ -70,9 +70,11 @@
   max-width: 0;
   max-height: 1.4rem;
   margin-right: 0;
+  scale: 0;
 }
 .inner.show {
   transform: translate(1rem, 0);
+  scale: 1;
   opacity: 1;
   max-width: 25rem;
   margin-right: 1rem;

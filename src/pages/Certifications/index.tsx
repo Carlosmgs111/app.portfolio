@@ -15,7 +15,6 @@ import {
   getDispatchSetFunctions,
 } from "../../utils";
 import { Page } from "../../components/Page";
-import { Banner } from "../../components/Banner";
 import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
 import { useState, useEffect, useReducer } from "react";
 import { useTrackSidebar } from "../../hooks/useTrackSidebar";
@@ -28,14 +27,9 @@ import { runRequest } from "../../services/runRequest";
 import { useToggle } from "../../hooks/useToggle";
 import { Mapfy } from "../../utils";
 import { addCertification, addInstitution } from "./sections";
-import { useSearchParams, useLocation } from "react-router-dom";
 
 export function Certifications() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [searchedUsername, setSearchedUsername] = useState(
-    searchParams.get("username")
-  );
-  const { token, username, currentLang } = getContextValue(CONTEXTS.Global);
+  const { token, username } = getContextValue(CONTEXTS.Global);
   const [owned, switchOwned] = useToggle(false, true);
 
   const initialState = {
@@ -47,8 +41,6 @@ export function Certifications() {
   };
 
   const actionTypes = setActions([], initialState);
-
-  const bannerMessage: any = { en: "Certifications", es: "Certificados" };
 
   const reducer = (state: any, dispatch: Function) => {
     const { type, payload }: any = dispatch;
@@ -252,17 +244,7 @@ export function Certifications() {
   }, [token]);
 
   return (
-    <Page /* name="certifications" */>
-      {/* // ? ⬇️ Start optionals components */}
-      <Banner
-        {...{
-          background: "radial-gradient(circle at 20% 0%, #FFE000,  #799F0C)",
-        }}
-      >
-        {bannerMessage[currentLang]}
-      </Banner>
-
-      {/* // ? ⬆️ End optionals components */}
+    <Page >
       <MultiSidebar
         {...{
           sidebars,
@@ -283,19 +265,6 @@ export function Certifications() {
                   }}
                 />
               )
-          )}
-          {(username || searchedUsername) && (
-            <Banner
-              {...{
-                customeMessage: false,
-                config: {
-                  "background-image":
-                    "url(https://wallpaperaccess.com/full/53928.jpg)",
-                },
-              }}
-            >
-              Certificados de la comunidad
-            </Banner>
           )}
         </div>
       </MultiSidebar>
@@ -324,7 +293,6 @@ export function Certifications() {
           ),
         }}
       />
-      {/* // ? ⬆️ End page support components */}
     </Page>
   );
 }

@@ -1,16 +1,24 @@
-import { useState, Children, cloneElement } from "react";
-
+import { useState, Children, cloneElement, useEffect } from "react";
 import styles from "./style.module.css";
 import { SettingsDashboard } from "./SettingsDashboard";
 import { useToggle } from "../../../hooks/useToggle";
 import { injectAttrsToReactElements } from "../../../utils";
+import { useStateValue } from "../../../contexts/context";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
 export const MultiSidebar = (props: any) => {
   const { sidebars = [], children } = props;
   const [expand, switchExpand] = useToggle(false, true);
   const [activeSidebars, setActiveSidebars] = useState([sidebars[0]?.props.id]);
   const [settingsDashboard, switchSettingsDashboard] = useToggle(false, true);
-  const [float, switchFloat] = useToggle(false, true);
+  const [sidebarFloat, setSidebarFloat] = useLocalStorage("sidebarFloat", true);
+  const [, dispatch] = useStateValue();
+  const [float, switchFloat] = useToggle(sidebarFloat, !sidebarFloat);
+
+  useEffect(() => {
+    dispatch({ type: "setSidebarFloat", payload: sidebarFloat });
+    setSidebarFloat(float);
+  }, [float]);
 
   const main = (
     <div className={styles.container}>

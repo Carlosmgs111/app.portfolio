@@ -55,7 +55,7 @@ export const FormStyle: any = styled.div`
     appearance: none;
     width: 100%;
     height: 1rem;
-    background: rgba(255, 255, 255, 0.6);
+    background: #ffffff99;
     border-radius: 5px;
     background-color: #ff4500;
     &:focus + .label,

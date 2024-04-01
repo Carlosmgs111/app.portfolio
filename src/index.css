@@ -2,6 +2,26 @@
   --border-radius: 0.6rem;
   --background-image: url("https://armsystem.com.mx/img/intro-carousel/4.jpg");
   --background-color: black;
+  --main-color-50: #eafffe;
+  --main-color-100: #cbfffe;
+  --main-color-200: #9effff;
+  --main-color-200b: #9effff93;
+  --main-color-300: #5bfbff;
+  --main-color-300b: #5bfbff93;
+  --main-color-400: #1cefff;
+  --main-color-400b: #1cefff93;
+  --main-color-500: #00d0e5;
+  --main-color-500b: #00d0e593;
+  --main-color-600: #00a6c0;
+  --main-color-600b: #00a6c093;
+  --main-color-700: #03839b;
+  --main-color-700b: #03839b93;
+  --main-color-800: #0d697d;
+  --main-color-800b: #0d697d93;
+  --main-color-900: #105769;
+  --main-color-900b: #10576993;
+  --main-color-950: #033949;
+  --main-color-950b: #03394993;
 }
 
 * {

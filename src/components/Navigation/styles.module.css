@@ -32,7 +32,7 @@
 }
 
 .navbar_header > a > div > svg {
-  filter: drop-shadow(-8px 6px 1px rgba(0, 0, 0, 0.8));
+  filter: drop-shadow(-8px 6px 1px #000000cc);
 }
 
 .navbar {
@@ -66,10 +66,10 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  color: #1cefff;
-  -webkit-text-stroke:  #033949 .8px;
+  color: var(--main-color-400);
+  -webkit-text-stroke: var(--main-color-950) 0.8px;
   transition: 0.4s;
-  filter: drop-shadow(-6px 4px 1px rgba(0, 0, 0, 0.8));
+  filter: drop-shadow(-6px 4px 1px #000000cc);
 }
 
 .languages:hover {
@@ -82,7 +82,7 @@
 }
 
 .languages option:checked {
-  background-color: #033949;
+  background-color: var(--main-color-950) ;
 }
 
 .itemlist {

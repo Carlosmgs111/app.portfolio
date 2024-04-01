@@ -133,13 +133,6 @@ export function Skills() {
   ];
   return (
     <Page>
-      <Banner
-        {...{
-          background: "linear-gradient(to right, #f026df, #fb5609)",
-        }}
-      >
-        {bannerMessage[currentLang]}
-      </Banner>
       <MultiSidebar {...{ sidebars }}>
         <div className={styles.main_container}>
           {skills.map((skill: any, index: number) => (

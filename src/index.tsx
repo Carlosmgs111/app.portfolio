@@ -20,13 +20,13 @@ const initialState = {
   loading: true,
   searchedUsername: "",
   currentLang: defaultLang,
+  sidebarFloat: true,
 };
 
 export const actionTypes: any = setActions(
   ["setAuth", "setLoading"],
   initialState
 );
-
 const reducer = (state: any, action: any) => {
   const { payload, type } = action;
   const actions = {
@@ -37,6 +37,7 @@ const reducer = (state: any, action: any) => {
     [actionTypes.setLoading]: { ...state, loading: payload },
     [actionTypes.setSearchedUsername]: { ...state, searchedUsername: payload },
     [actionTypes.setCurrentLang]: { ...state, currentLang: payload },
+    [actionTypes.setSidebarFloat]: { ...state, sidebarFloat: payload },
     [actionTypes.reset]: {
       ...state,
       ...initialState,
@@ -47,8 +48,7 @@ const reducer = (state: any, action: any) => {
 
 const { StateProvider } = addContext("Global", actionTypes);
 const rootElemnt: any = document.getElementById("root");
-const root: any = ReactDOM.createRoot(rootElemnt);
-root.render(
+ReactDOM.createRoot(rootElemnt).render(
   <Router>
     <StateProvider {...{ initialState, reducer }}>
       <App />
