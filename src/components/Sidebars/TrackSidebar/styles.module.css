@@ -4,7 +4,7 @@
   overflow: scroll;
   color: black;
   border-radius: 0.6rem;
-  background-color: var(--main-color-900);
+  background-color: #0f2027;
   min-height: fit-content;
   direction: rtl;
   transition: max-height 0.4s, max-width 0.4s;
@@ -34,15 +34,15 @@
   align-items: center;
   position: relative;
   direction: ltr;
-  color: inherit !important;
+  color: var(--main-color-800) !important;
   transition: max-width 0.6s, max-height 0.4s, margin-right 0.4s, color 0.4s,
     opacity 0.6s, scale 0.6s;
 }
 .item:hover {
-  color: var(--main-color-200) !important;
+  color: var(--main-color-100) !important;
 }
 .item.active {
-  color: var(--main-color-500) !important;
+  color: var(--main-color-400) !important;
 }
 .inner {
   cursor: hand;

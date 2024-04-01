@@ -41,10 +41,10 @@ export function App() {
           searchedUsername && `?username=${searchedUsername}`
         }`,
       },
-      {
-        label: "Habilidades",
-        path: `skills${searchedUsername && `?username=${searchedUsername}`}`,
-      },
+      // {
+      //   label: "Habilidades",
+      //   path: `skills${searchedUsername && `?username=${searchedUsername}`}`,
+      // },
       "Blog",
     ],
     en: [
@@ -58,10 +58,10 @@ export function App() {
           searchedUsername && `?username=${searchedUsername}`
         }`,
       },
-      {
-        label: "Skills",
-        path: `skills${searchedUsername && `?username=${searchedUsername}`}`,
-      },
+      // {
+      //   label: "Skills",
+      //   path: `skills${searchedUsername && `?username=${searchedUsername}`}`,
+      // },
       "Blog",
     ],
   };
@@ -138,10 +138,10 @@ export function App() {
             root: "projects",
             element: <Projects />,
           })}
-          {RoutesFactory({
+          {/* {RoutesFactory({
             root: "skills",
             element: <Skills />,
-          })}
+          })} */}
           {RoutesFactory({
             root: "certifications",
             subDomains: ["uuid", "title"],

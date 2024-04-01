@@ -8,6 +8,7 @@ import { runButtonBehavior } from "../../utils";
 import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
 import { getContextValue, CONTEXTS } from "../../contexts";
+import { ReactRouterSVG, ReactSVG } from "../../icons";
 
 export const Project = ({
   even,
@@ -120,6 +121,7 @@ export const Project = ({
                 alt=""
                 key={index}
                 src={image}
+                className={styles.image}
                 style={{
                   maxWidth:
                     images.length >= 6
@@ -144,10 +146,7 @@ export const Project = ({
           </div>
           <div className={styles.descriptions}>
             {descriptions.map((description: any, index: number) => (
-              <article
-                className={styles.description}
-                key={index}
-              >
+              <article className={styles.description} key={index}>
                 {description}
               </article>
             ))}
@@ -170,6 +169,13 @@ export const Project = ({
           }}
         />
       )}
+      <div className={styles.metadata}>
+        <div className={styles.stack}>
+          <ReactSVG />
+          <ReactRouterSVG />
+        </div>
+        <div className={styles.state}>state and current version</div>
+      </div>
       {token && buildedBy.includes(username) && (
         <div className={styles.dashboard}>
           <div className={styles.buttons_section}>
