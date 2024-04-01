@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import { CodeSnap } from "../../components/CodeSnap";
 import { Typing } from "../../components/Typing";
-import { GitHubSVG, LinkedInSVG } from "../../icons";
+import { CSSSVG, GitHubSVG, HTMLSVG, LinkedInSVG } from "../../icons";
 import { Slider } from "../../components/Slider";
 import content from "../../../public/content.json";
 import { useStateValue } from "../../contexts/context";
@@ -25,8 +25,6 @@ import {
   ExpressSVG,
   SequelizeSVG,
   MongooseSVG,
-  PassportSVG,
-  JsonWebTokensSVG,
   DjangoSVG,
   RabbitmqSVG,
   FastApiSVG,
@@ -150,8 +148,8 @@ export function Home() {
     <ExpressSVG />,
     <SequelizeSVG />,
     <MongooseSVG />,
-    <PassportSVG />,
-    <JsonWebTokensSVG />,
+    <CSSSVG />,
+    <HTMLSVG />,
   ];
   const fourthSlides = [
     <DjangoSVG />,

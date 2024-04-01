@@ -29,6 +29,8 @@ import { VSCodeSVG } from "./VSCodeSVG";
 import { TerminalSVG } from "./TerminalSVG";
 import { GitSVG } from "./GitSVG";
 import { LogoSVG } from "./LogoSVG";
+import { CSSSVG } from "./CSSSVG";
+import { HTMLSVG } from "./HTMLSVG";
 export {
   GitHubSVG,
   LinkedInSVG,
@@ -61,4 +63,6 @@ export {
   TerminalSVG,
   GitSVG,
   LogoSVG,
+  CSSSVG,
+  HTMLSVG,
 };
