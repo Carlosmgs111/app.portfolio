@@ -31,6 +31,38 @@ import { GitSVG } from "./GitSVG";
 import { LogoSVG } from "./LogoSVG";
 import { CSSSVG } from "./CSSSVG";
 import { HTMLSVG } from "./HTMLSVG";
+export const SVGIndexes: any = {
+  jest: JestSVG,
+  react: ReactSVG,
+  styledcomponets: StyledComponentsSVG,
+  nestjs: NextjsSVG,
+  reactrouter: ReactRouterSVG,
+  webpack: WebpackSVG,
+  axios: AxiosSVG,
+  socketio: SocketioSVG,
+  apollographql: ApolloGraphqlSVG,
+  graphql: GraphqlSVG,
+  typescript: TypeScriptSVG,
+  javascript: JavaScriptSVG,
+  python: PythonSVG,
+  nodejs: NodejsSVG,
+  mongodb: MongodbSVG,
+  postgresql: PostgresSqlSVG,
+  espress: ExpressSVG,
+  sequelize: SequelizeSVG,
+  mongoose: MongooseSVG,
+  passport: PassportSVG,
+  jasonwebtoken: JsonWebTokensSVG,
+  django: DjangoSVG,
+  rabbitmq: RabbitmqSVG,
+  fastapi: FastApiSVG,
+  dotenv: DotEnvSVG,
+  vscode: VSCodeSVG,
+  terminal: TerminalSVG,
+  git: GitSVG,
+  css: CSSSVG,
+  html: HTMLSVG,
+};
 export {
   GitHubSVG,
   LinkedInSVG,

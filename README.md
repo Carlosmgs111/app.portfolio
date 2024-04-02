@@ -4,7 +4,7 @@
 
 ## Projects
 
-Set by current version, state and stack:
-- State: building, finished and abandoned.
-- Stack: The tech stack used for build it
-
+Set by current version, kind, state and stack:
+- State: developing 🔄️ `fa-solid fa-arrows-spin`, testing 🧪 `fa-solid fa-vial`, builded ✅ `fa-regular fa-square-check` and deprecated ⛔ `fa-solid fa-ban`.
+- Kind: test ⚗️ `fa-solid fa-vial-circle-check`, production 🚀 `fa-solid fa-rocket`, development 🏗️ `fa-solid fa-code`, component 🧩 `fa-solid fa-puzzle-piece` and complete project 🦄 `fa-solid fa-building-circle-check`.
+- Stack: The tech stack used for build it.

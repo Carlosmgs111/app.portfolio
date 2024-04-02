@@ -86,20 +86,33 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 4rem;
 }
 .stack {
   display: flex;
   align-items: center;
+  justify-content: right;
   gap: 1.2rem;
+  width: 50%;
 }
 .stack > div {
   width: 3.2rem;
   height: 3.2rem;
 }
+.stack > div > svg {
+  filter: drop-shadow(-6px 6px 1px #000000b3) !important;
+}
 .state {
   display: flex;
   align-items: center;
+  width: 50%;
+  gap: 2rem;
+}
+.state > span {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 3rem;
+  filter: drop-shadow(-6px 6px 1px #000000b3) !important;
 }
 .dashboard {
   border-radius: 0 0 0.8rem 0.8rem;

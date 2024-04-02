@@ -17,11 +17,17 @@ import { runRequest } from "../../services/runRequest";
 import { DefineSchema } from "../../components/DefineSchema";
 import { headers } from "../../services/configs";
 import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
+import { Stack } from "@mui/material";
 
 export function Projects() {
   const { token, currentLang } = getContextValue(CONTEXTS.Global);
   const [TrackSidebar, setElements, refreshRefs]: any = useTrackSidebar();
   const requestHeaders = headers();
+  const [projectsOptions, setProjectsOptions] = useState({
+    stack: [],
+    state: [],
+    kind: [],
+  });
   const bannerMessage: any = { es: "Proyectos", en: "Projects" };
   const [projectSchema, setProjectSchema]: any = useState({
     name: "",
@@ -59,7 +65,7 @@ export function Projects() {
     getDispatchSetFunctions(dispatch, actionTypes);
 
   const sidebars = [
-    <TrackSidebar/>, // ? ⬅️ this is a rendered component, so we just put as a variable and it is not called
+    <TrackSidebar />, // ? ⬅️ this is a rendered component, so we just put as a variable and it is not called
   ];
 
   const updateState = (cb: Function) =>
@@ -97,6 +103,9 @@ export function Projects() {
                               descriptions: [""],
                               images: [""],
                               tags: [""],
+                              "stack{": projectsOptions.stack,
+                              "kind{": projectsOptions.kind,
+                              "state{": projectsOptions.state,
                               uri: "",
                               version: "",
                             },
@@ -105,8 +114,14 @@ export function Projects() {
                               "descriptions",
                               "images",
                               "tags",
+                              "stack{",
+                              "kind{",
+                              "state{",
                               "uri",
                               "version",
+                              "state",
+                              "stack",
+                              "kind",
                             ],
                             buttons: { add: "agregar", main: "Guardar" },
                             onClickHandler: ({
@@ -150,8 +165,10 @@ export function Projects() {
     const fetchProjects = async () => {
       try {
         const { data } = await axios.get(`${URL_API}/projects`);
-        setProjects([...data]);
-        setElements([...data.map((project: any) => project.name)]);
+        const { projects, kind, state, stack } = data;
+        setProjects([...projects]);
+        setProjectsOptions({ kind, state, stack });
+        setElements([...projects.map((project: any) => project.name)]);
       } catch (e) {
         setLoading(false);
         setError(e);

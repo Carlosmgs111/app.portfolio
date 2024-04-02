@@ -3,12 +3,12 @@ import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { useToggle } from "../../hooks/useToggle";
 import { labelCases } from "../../utils";
-import { useEffect, useState } from "react";
+import { Component, useEffect, useState } from "react";
 import { runButtonBehavior } from "../../utils";
 import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
 import { getContextValue, CONTEXTS } from "../../contexts";
-import { ReactRouterSVG, ReactSVG } from "../../icons";
+import { SVGIndexes } from "../../icons";
 
 export const Project = ({
   even,
@@ -21,8 +21,33 @@ export const Project = ({
   const [show, ref] = useNearScreen(false, refreshRefs);
   const [beingEdited, switchBeingEdited] = useToggle(false, true);
   const [project, setProject] = useState(initialState);
-  const { uuid, name, images, descriptions, uri, version, buildedBy } = project;
+  const {
+    uuid,
+    name,
+    images,
+    descriptions,
+    uri,
+    version,
+    buildedBy,
+    state,
+    stack,
+    kind,
+  } = project;
   const { token, username } = getContextValue(CONTEXTS.Global);
+  const stateIcons: any = {
+    developing: "fa-solid fa-arrows-spin",
+    testing: "fa-solid fa-vial",
+    builded: "fa-regular fa-square-check",
+    deprecated: "fa-solid fa-ban",
+  };
+  const kindIcons: any = {
+    test: "fa-solid fa-vial-circle-check",
+    production: "fa-solid fa-rocket",
+    development: "fa-solid fa-code",
+    component: "fa-solid fa-puzzle-piece",
+    project: "fa-solid fa-building-circle-check",
+  };
+  console.log({ project });
 
   useEffect(() => {}, [show, ref]);
 
@@ -37,7 +62,6 @@ export const Project = ({
       setData: ({ updated }: any) => {
         if (updated) {
           const projectUpdated = { ...project, ...data[0] };
-          setProject({ ...projectUpdated });
           updateState(({ state, setElements }: any) => {
             const newProjects = [...state.projects];
             newProjects.splice(
@@ -47,6 +71,7 @@ export const Project = ({
             );
             setElements(newProjects.map((p) => p.name));
           });
+          setProject({ ...projectUpdated });
         }
       },
       setError,
@@ -151,6 +176,22 @@ export const Project = ({
               </article>
             ))}
           </div>
+          <div className={styles.metadata}>
+            <div className={styles.stack}>
+              {stack.map((s: any) => SVGIndexes[s] && SVGIndexes[s]())}
+            </div>
+            <div className={styles.state}>
+              <span>
+                <i className={stateIcons[state]}></i>
+              </span>
+              <span>
+                {kind.map((k: any) => (
+                  <i className={kindIcons[k]}></i>
+                ))}
+              </span>
+              <span>v {version}</span>
+            </div>
+          </div>
         </>
       ) : (
         <DefineSchema
@@ -162,21 +203,27 @@ export const Project = ({
               images,
               uri,
               version,
+              state,
+              stack,
+              kind,
             },
-            nonOptionals: ["name", "descriptions", "images", "uri", "version"],
+            nonOptionals: [
+              "name",
+              "descriptions",
+              "images",
+              "uri",
+              "version",
+              "kind",
+              "stack",
+              "state",
+            ],
             highOrderCallback,
             buttons: [],
           }}
         />
       )}
-      <div className={styles.metadata}>
-        <div className={styles.stack}>
-          <ReactSVG />
-          <ReactRouterSVG />
-        </div>
-        <div className={styles.state}>state and current version</div>
-      </div>
-      {token && buildedBy.includes(username) && (
+
+      {token /* && buildedBy.includes(username) */ && (
         <div className={styles.dashboard}>
           <div className={styles.buttons_section}>
             <button
