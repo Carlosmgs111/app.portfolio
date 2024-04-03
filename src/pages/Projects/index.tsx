@@ -14,7 +14,7 @@ import { Banner } from "../../components/Banner";
 import { Page } from "../../components/Page";
 import { Modal } from "../../components/Modal";
 import { runRequest } from "../../services/runRequest";
-import { DefineSchema } from "../../components/DefineSchema";
+import { DefineForms } from "../../components/DefineForms";
 import { headers } from "../../services/configs";
 import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
 import { Stack } from "@mui/material";
@@ -95,7 +95,7 @@ export function Projects() {
                           width: "60rem",
                         }}
                       >
-                        <DefineSchema
+                        <DefineForms
                           {...{
                             title: "Agregar nuevo(s) proyecto(s)",
                             baseSchema: {

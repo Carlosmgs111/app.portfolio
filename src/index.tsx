@@ -47,8 +47,8 @@ const reducer = (state: any, action: any) => {
 };
 
 const { StateProvider } = addContext("Global", actionTypes);
-const rootElemnt: any = document.getElementById("root");
-ReactDOM.createRoot(rootElemnt).render(
+const rootElement: any = document.getElementById("root");
+ReactDOM.createRoot(rootElement).render(
   <Router>
     <StateProvider {...{ initialState, reducer }}>
       <App />

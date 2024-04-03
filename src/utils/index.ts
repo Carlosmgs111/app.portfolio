@@ -358,3 +358,9 @@ export const getSizesDisposition = (i: any) => {
   sizes = sizes.flat();
   return sizes;
 };
+
+export const mapToList = (data: any): any =>
+  Object.entries({ ...data }).map((data) => data[1]);
+
+export const listToMap = (data: any): any =>
+  Object.fromEntries([...data].map((data: any, index: any) => [index, data]));

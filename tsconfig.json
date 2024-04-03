@@ -2,36 +2,24 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@hooks/*": [
+      "hooks/*": [
         "src/hooks/*"
       ],
-      "@containers/*": [
+      "containers/*": [
         "src/containers/*"
       ],
-      "@components/*": [
+      "components/*": [
         "src/components/*"
       ],
-      "@modules/*": [
-        "backend/modules/*"
-      ],
-      "@globalContext": [
+      "globalContext": [
         "src/context/index"
       ],
-      "@utils": [
+      "utils": [
         "src/utils/index"
       ],
-      "@backend/conf": [
-        "backend/config"
-      ],
-      "@config": [
+      "config": [
         "src/config"
       ],
-      "@dependencies": [
-        "backend/config/dependencies"
-      ],
-      "@mocks/*": [
-        "mocks/*"
-      ]
     },
     "target": "es6",
     "lib": [

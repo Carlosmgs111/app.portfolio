@@ -4,7 +4,7 @@
   width: fit-content;
   height: fit-content;
   font-size: 2rem;
-  background-color: #203A4393;
+  background-color: #203a4393;
   padding: 15px;
   border-radius: 15px;
   gap: 1.2rem;
@@ -16,13 +16,14 @@
 
 .title {
   display: block;
-  color: var(--main-color-950);
+  color: var(--main-color-600);
   font-weight: bold;
   font-style: none;
   text-align: center;
   cursor: pointer;
   font-style: normal;
   filter: drop-shadow(-6px 6px 1px #000000cc);
+  transition: 0.4s;
 }
 
 .title:hover {
@@ -40,7 +41,7 @@
   color: var(--main-color-100);
   display: block;
   background-color: transparent;
-  border: solid var(--main-color-700) 2px;
+  border: solid var(--main-color-500) 2px;
   border-radius: 0.8rem;
   transition: 0.4s;
   filter: drop-shadow(-4px 4px 1px #000000cc);
@@ -49,7 +50,7 @@
 .input:hover,
 .input:active,
 .input:focus {
-  border: solid var(--main-color-400) 2px;
+  border: solid var(--main-color-100) 2px;
 }
 
 .input.disabled {
@@ -66,15 +67,15 @@
   border-radius: 4px;
   border-style: none;
   padding: 1.2rem;
-  color: var(--main-color-300);
-  background-color: var(--main-color-700);
+  color: var(--main-color-200);
+  background-color: var(--main-color-600);
   transition: background-color 0.4s, color 0.4s;
   filter: drop-shadow(-4px 4px 1px #000000cc);
 }
 
 .button:hover {
-  background-color: var(--main-color-300);
-  color: var(--main-color-700);
+  background-color: var(--main-color-200);
+  color: var(--main-color-600);
 }
 
 .button.disabled {

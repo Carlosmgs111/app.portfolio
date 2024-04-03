@@ -57,6 +57,7 @@
     "styled-components": "^6.1.8",
     "timeago": "^1.6.7",
     "timeago.js": "^4.0.2",
+    "typescript": "5.0.4",
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
@@ -77,7 +78,7 @@
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.4.5",
     "ts-loader": "^9.5.1",
-    "typescript": "^5.3.3",
+    "tsconfig-paths": "^4.2.0",
     "typescript-eslint": "^7.0.1",
     "typings-for-css-modules-loader": "^1.7.0",
     "webpack": "^5.65.0",
