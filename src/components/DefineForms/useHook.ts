@@ -70,7 +70,8 @@ export function useHook({
 
   const injectControlledValue = () => {
     Object.entries(baseSchema).forEach((inputSchema: Array<any>) => {
-      let controlledValue = null;
+      let { controlledValue }: any = inputSchema[1];
+      if (controlledValue) return;
       if (!inputSchema[1].inputType) {
         baseSchema[inputSchema[0]] = inferInputType(
           inputSchema[0],

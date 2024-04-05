@@ -1,5 +1,4 @@
 import styles from "./styles.module.css";
-import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { useToggle } from "../../hooks/useToggle";
 import { labelCases } from "../../utils";
@@ -9,6 +8,11 @@ import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { SVGIndexes } from "../../icons";
+import {
+  INPUT_TYPES,
+  DefineForms,
+  getHOCAndTrigger,
+} from "../../components/DefineForms";
 
 export const Project = ({
   even,
@@ -16,6 +20,9 @@ export const Project = ({
   initialState,
   updateState,
   setCurrentModal,
+  stackOps,
+  stateOps,
+  kindOps,
 }: any) => {
   const requestHeaders = headers();
   const [show, ref] = useNearScreen(false, refreshRefs);
@@ -29,6 +36,7 @@ export const Project = ({
     uri,
     version,
     buildedBy,
+    tags,
     state,
     stack,
     kind,
@@ -193,31 +201,35 @@ export const Project = ({
           </div>
         </>
       ) : (
-        <DefineSchema
+        <DefineForms
           {...{
-            title: `Update ${name}`,
             baseSchema: {
               name,
               descriptions,
               images,
+              tags,
+              stack: {
+                inputType: [INPUT_TYPES.SELECTION],
+                value: [stackOps],
+                label: "stack",
+                controlledValue: stack,
+              },
+              kind: {
+                inputType: [INPUT_TYPES.SELECTION],
+                value: [kindOps],
+                label: "kind",
+                controlledValue: kind,
+              },
+              state: {
+                inputType: [INPUT_TYPES.SELECTION],
+                value: [stateOps],
+                label: "state",
+                controlledValue: [state],
+              },
               uri,
               version,
-              state,
-              stack,
-              kind,
             },
-            nonOptionals: [
-              "name",
-              "descriptions",
-              "images",
-              "uri",
-              "version",
-              "kind",
-              "stack",
-              "state",
-            ],
             highOrderCallback,
-            buttons: [],
           }}
         />
       )}

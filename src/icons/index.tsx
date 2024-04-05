@@ -34,7 +34,7 @@ import { HTMLSVG } from "./HTMLSVG";
 export const SVGIndexes: any = {
   jest: JestSVG,
   react: ReactSVG,
-  styledcomponets: StyledComponentsSVG,
+  styledcomponents: StyledComponentsSVG,
   nestjs: NextjsSVG,
   reactrouter: ReactRouterSVG,
   webpack: WebpackSVG,

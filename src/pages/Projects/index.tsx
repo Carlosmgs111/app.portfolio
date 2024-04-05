@@ -26,6 +26,7 @@ export function Projects() {
     state: [],
     kind: [],
   });
+  const { stack: stackOps, kind: kindOps, state: stateOps } = projectsOptions;
   const [projectSchema, setProjectSchema]: any = useState({
     name: "",
     emitedBy: "",
@@ -104,8 +105,16 @@ export function Projects() {
                                 value: [projectsOptions.stack],
                                 label: "stack",
                               },
-                              kind: projectsOptions.kind,
-                              state: projectsOptions.state,
+                              kind: {
+                                inputType: [INPUT_TYPES.SELECTION],
+                                value: [projectsOptions.kind],
+                                label: "kind",
+                              },
+                              state: {
+                                inputType: [INPUT_TYPES.SELECTION],
+                                value: [projectsOptions.state],
+                                label: "state",
+                              },
                               uri: "",
                               version: "",
                             },
@@ -184,6 +193,9 @@ export function Projects() {
                 refreshRefs,
                 updateState,
                 setCurrentModal,
+                stateOps,
+                stackOps,
+                kindOps,
               }}
             />
           ))}

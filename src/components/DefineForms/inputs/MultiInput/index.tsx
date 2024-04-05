@@ -91,7 +91,6 @@ export const MultiInput = ({
     },
     listToMap(controlledValue)
   );
-
   useEffect(() => {
     updateData(name, [...mapToList(inputValue)]);
   }, [inputValue]);
@@ -102,7 +101,7 @@ export const MultiInput = ({
   useEffect(() => {});
 
   const inputs: any = {};
-  // console.log({ controlledValue });
+   console.log({ controlledValue });
 
   mapToList(inputValue).forEach((contentValue: any, index: any) => {
     inputs[index] = (
@@ -175,8 +174,7 @@ export const MultiInput = ({
                 let payload: any = "";
                 if (inputType === INPUT_TYPES.DATE)
                   payload = new Date().getTime();
-                if (inputType === INPUT_TYPES.SELECTION)
-                  payload = value[0];
+                if (inputType === INPUT_TYPES.SELECTION) payload = value[0][0];
                 setInputValue({
                   index,
                   action: ACTIONS.ADD,
