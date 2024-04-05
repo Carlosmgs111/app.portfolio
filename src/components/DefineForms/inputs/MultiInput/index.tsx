@@ -94,15 +94,9 @@ export const MultiInput = ({
   useEffect(() => {
     updateData(name, [...mapToList(inputValue)]);
   }, [inputValue]);
-
   const updateInputValue = (index: any, state: any) =>
     setInputValue({ index, payload: state });
-
-  useEffect(() => {});
-
   const inputs: any = {};
-   console.log({ controlledValue });
-
   mapToList(inputValue).forEach((contentValue: any, index: any) => {
     inputs[index] = (
       <MemoizedComponent

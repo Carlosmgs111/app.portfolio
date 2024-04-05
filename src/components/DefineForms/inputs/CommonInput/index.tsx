@@ -33,7 +33,7 @@ export const CommonInput = ({
         disabled={!nonOptionals.includes(name)}
         placeholder={beutifyLabel(name)}
       />
-      <label className="label">Input</label>
+      <label className="label">{beutifyLabel(name)}</label>
     </>
   );
 };

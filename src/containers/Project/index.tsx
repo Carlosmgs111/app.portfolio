@@ -67,6 +67,7 @@ export const Project = ({
     }
     runRequest({
       setData: ({ updated }: any) => {
+        console.log({ updated });
         if (updated) {
           const projectUpdated = { ...project, ...data[0] };
           updateState(({ state, setElements }: any) => {
@@ -221,10 +222,10 @@ export const Project = ({
                 controlledValue: kind,
               },
               state: {
-                inputType: [INPUT_TYPES.SELECTION],
-                value: [stateOps],
+                inputType: INPUT_TYPES.SELECTION,
+                value: stateOps,
                 label: "state",
-                controlledValue: [state],
+                controlledValue: state,
               },
               uri,
               version,

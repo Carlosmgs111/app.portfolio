@@ -28,6 +28,7 @@ export const TextArea = styled.textarea`
   border-radius: 0.4rem;
   width: 100%;
   height: auto;
+  max-height: 10rem;
   min-height: var(--text-font-size);
   resize: none;
   overflow: hidden;

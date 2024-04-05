@@ -111,8 +111,8 @@ export function Projects() {
                                 label: "kind",
                               },
                               state: {
-                                inputType: [INPUT_TYPES.SELECTION],
-                                value: [projectsOptions.state],
+                                inputType: INPUT_TYPES.SELECTION,
+                                value: projectsOptions.state,
                                 label: "state",
                               },
                               uri: "",
@@ -124,25 +124,24 @@ export function Projects() {
                               data,
                               reset,
                             }: any) => {
-                              console.log({ data });
-                              // runRequest({
-                              //   setData: (data: any) => {
-                              //     setProjects([...projects, ...data]);
-                              //     setElements([
-                              //       ...projects.map((p: any) => p.name),
-                              //       ...data.map((p: any) => p.name),
-                              //     ]);
-                              //   },
-                              //   setError,
-                              //   setLoading,
-                              // }).post(
-                              //   `projects/projects`,
-                              //   { projects: data },
-                              //   {
-                              //     ...requestHeaders,
-                              //   }
-                              // );
-                              // reset();
+                              runRequest({
+                                setData: (data: any) => {
+                                  setProjects([...projects, ...data]);
+                                  setElements([
+                                    ...projects.map((p: any) => p.name),
+                                    ...data.map((p: any) => p.name),
+                                  ]);
+                                },
+                                setError,
+                                setLoading,
+                              }).post(
+                                `projects/projects`,
+                                { projects: data },
+                                {
+                                  ...requestHeaders,
+                                }
+                              );
+                              reset();
                             },
                           }}
                         />
