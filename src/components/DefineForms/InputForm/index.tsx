@@ -69,7 +69,8 @@ export function InputForm({
     if (Array.isArray(inputType)) {
       if (
         inputType[0] === INPUT_TYPES.TEXT ||
-        inputType[0] === INPUT_TYPES.PARAGRAPH
+        inputType[0] === INPUT_TYPES.PARAGRAPH ||
+        inputType[0] === INPUT_TYPES.SELECTION
       ) {
         // console.log(inputType[0], { schema, index, currentName, target });
         const list = [...data[currentName].controlledValue];
@@ -195,6 +196,7 @@ export function InputForm({
                     inputType: inputType[0],
                     nonOptionals,
                     controlledValue,
+                    value,
                     keyName,
                     ...rest,
                   }}

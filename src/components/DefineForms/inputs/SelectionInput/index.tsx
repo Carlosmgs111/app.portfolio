@@ -8,7 +8,6 @@ export const SelectionInput = ({
   controlledValue,
   name,
   onChange,
-  nonOptionals,
   required = false,
 }: {
   keyName: string;
@@ -16,7 +15,6 @@ export const SelectionInput = ({
   controlledValue: any;
   name: string;
   onChange: Function;
-  nonOptionals: Array<any>;
   required?: boolean;
 }) => {
   return (
@@ -25,8 +23,7 @@ export const SelectionInput = ({
       <select
         className={styles.selection}
         name={keyName}
-        defaultValue={value.find((v: any) => v === controlledValue)}
-        disabled={!nonOptionals.includes(name)}
+        value={controlledValue}
         onChange={(e: any) => onChange(name, e.target, INPUT_TYPES.SELECTION)}
       >
         {value.map((item: any, index: any) => {

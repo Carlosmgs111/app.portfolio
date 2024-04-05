@@ -43,7 +43,6 @@ export const ParagraphInput = ({
           name={idx}
           value={text}
           onChange={(e: any) => {
-            // setInputValue(e.target.value);
             onChange(name, e.target, INPUT_TYPES.PARAGRAPH);
           }}
           placeholder={placeholder || beutifyLabel(name).CS}

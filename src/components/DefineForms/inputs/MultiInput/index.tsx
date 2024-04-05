@@ -2,6 +2,7 @@ import { MultiInputContainer, InputContainer } from "./styles";
 import { InputHelper } from "../../../../components/DefineForms/styles";
 import { ParagraphInput } from "../ParagraphInput";
 import { DateInput } from "../DateInput";
+import { SelectionInput } from "../SelectionInput";
 import {
   AddButton,
   DeleteButton,
@@ -58,6 +59,7 @@ export const MultiInput = ({
   inputType,
   nonOptionals,
   controlledValue,
+  value,
   keyName,
   required = false,
 }: {
@@ -68,6 +70,7 @@ export const MultiInput = ({
   inputType: INPUT_TYPES;
   nonOptionals: Array<string>;
   controlledValue: any;
+  value: any;
   keyName: string;
   required?: boolean;
 }) => {
@@ -99,6 +102,7 @@ export const MultiInput = ({
   useEffect(() => {});
 
   const inputs: any = {};
+  // console.log({ controlledValue });
 
   mapToList(inputValue).forEach((contentValue: any, index: any) => {
     inputs[index] = (
@@ -139,6 +143,21 @@ export const MultiInput = ({
               }}
             />
           ) : null}
+          {inputType === INPUT_TYPES.SELECTION ? (
+            <SelectionInput
+              {...{
+                idx: index,
+                keyName,
+                value: value[0],
+                controlledValue: contentValue,
+                name,
+                onChange: (name: string, target: any, inputType: string) => {
+                  updateInputValue(index, target.value);
+                  onChange(name, target, [inputType]);
+                },
+              }}
+            />
+          ) : null}
           <ButtonsSection>
             <DeleteButton
               className="fa-solid fa-trash mini"
@@ -152,10 +171,12 @@ export const MultiInput = ({
               className="fa-solid fa-plus mini"
               type="button"
               onClick={(e: any) => {
-                let payload: any = "";
                 e.preventDefault();
+                let payload: any = "";
                 if (inputType === INPUT_TYPES.DATE)
                   payload = new Date().getTime();
+                if (inputType === INPUT_TYPES.SELECTION)
+                  payload = value[0];
                 setInputValue({
                   index,
                   action: ACTIONS.ADD,
@@ -180,10 +201,12 @@ export const MultiInput = ({
             style={{ width: "100%" }}
             type="button"
             onClick={(e: any) => {
-              let payload: any = "";
               e.preventDefault();
+              let payload: any = "";
               if (inputType === INPUT_TYPES.DATE)
                 payload = new Date().getTime();
+              if (inputType === INPUT_TYPES.SELECTION)
+                payload = controlledValue[0];
               setInputValue({
                 index: 0,
                 action: ACTIONS.ADD,

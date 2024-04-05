@@ -45,11 +45,12 @@ export const ButtonsSection = styled.div`
   position: absolute;
   opacity: 0;
   transform: scale(0);
-  right: -2.4rem;
+  right: -3.4rem;
   gap: 0.2rem;
   transition: 0.4s;
   font-size: 1.6rem;
   font-family: var(--text-font);
+  padding: 0 0.8rem;
 `;
 
 export const DeleteButton: any = styled.button`
@@ -63,10 +64,10 @@ export const DeleteButton: any = styled.button`
   background-color: transparent;
   -webkit-text-stroke: 1px black;
   color: var(--main-color-500b);
-  :hover {
+  &:hover {
     color: #f03b26;
   }
-  :focus {
+  &:focus {
     outline: none;
   }
   &.main {
@@ -91,10 +92,10 @@ export const AddButton: any = styled.button`
   padding: 0;
   background-color: transparent;
   -webkit-text-stroke: 1px black;
-  :focus {
+  &:focus {
     outline: none;
   }
-  :hover {
+  &:hover {
     color: #21da09;
   }
   &.main {
@@ -111,7 +112,7 @@ export const ExpandButton = styled.button`
   background-color: transparent;
   border-radius: 2rem;
   border: none;
-  :focus {
+  &:focus {
     outline: none;
   }
 `;

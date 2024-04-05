@@ -2,7 +2,6 @@ import { beutifyLabel } from "../../../../utils";
 import { DateInputStyle } from "./styles";
 import { InputHelper } from "../../../../components/DefineForms/styles";
 import { INPUT_TYPES } from "../../../../components/DefineForms";
-import { useState } from "react";
 
 export const DateInput = ({
   idx,

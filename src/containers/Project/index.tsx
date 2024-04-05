@@ -47,7 +47,6 @@ export const Project = ({
     component: "fa-solid fa-puzzle-piece",
     project: "fa-solid fa-building-circle-check",
   };
-  console.log({ project });
 
   useEffect(() => {}, [show, ref]);
 

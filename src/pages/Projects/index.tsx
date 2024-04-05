@@ -10,14 +10,12 @@ import {
   PanelSidebar,
   innerItems,
 } from "../../components/Sidebars/PanelSidebar";
-import { Banner } from "../../components/Banner";
 import { Page } from "../../components/Page";
 import { Modal } from "../../components/Modal";
 import { runRequest } from "../../services/runRequest";
-import { DefineForms } from "../../components/DefineForms";
+import { DefineForms, INPUT_TYPES } from "../../components/DefineForms";
 import { headers } from "../../services/configs";
 import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
-import { Stack } from "@mui/material";
 
 export function Projects() {
   const { token, currentLang } = getContextValue(CONTEXTS.Global);
@@ -28,7 +26,6 @@ export function Projects() {
     state: [],
     kind: [],
   });
-  const bannerMessage: any = { es: "Proyectos", en: "Projects" };
   const [projectSchema, setProjectSchema]: any = useState({
     name: "",
     emitedBy: "",
@@ -97,57 +94,46 @@ export function Projects() {
                       >
                         <DefineForms
                           {...{
-                            title: "Agregar nuevo(s) proyecto(s)",
                             baseSchema: {
                               name: "",
                               descriptions: [""],
                               images: [""],
                               tags: [""],
-                              "stack{": projectsOptions.stack,
-                              "kind{": projectsOptions.kind,
-                              "state{": projectsOptions.state,
+                              stack: {
+                                inputType: [INPUT_TYPES.SELECTION],
+                                value: [projectsOptions.stack],
+                                label: "stack",
+                              },
+                              kind: projectsOptions.kind,
+                              state: projectsOptions.state,
                               uri: "",
                               version: "",
                             },
-                            nonOptionals: [
-                              "name",
-                              "descriptions",
-                              "images",
-                              "tags",
-                              "stack{",
-                              "kind{",
-                              "state{",
-                              "uri",
-                              "version",
-                              "state",
-                              "stack",
-                              "kind",
-                            ],
-                            buttons: { add: "agregar", main: "Guardar" },
                             onClickHandler: ({
                               setError,
                               setLoading,
                               data,
                               reset,
                             }: any) => {
-                              runRequest({
-                                setData: (data: any) => {
-                                  setProjects([...projects, ...data]);
-                                  setElements([
-                                    ...projects.map((p: any) => p.name),
-                                    ...data.map((p: any) => p.name),
-                                  ]);
-                                },
-                                setError,
-                                setLoading,
-                              }).post(
-                                `projects/projects`,
-                                { projects: data },
-                                {
-                                  ...requestHeaders,
-                                }
-                              );
-                              reset();
+                              console.log({ data });
+                              // runRequest({
+                              //   setData: (data: any) => {
+                              //     setProjects([...projects, ...data]);
+                              //     setElements([
+                              //       ...projects.map((p: any) => p.name),
+                              //       ...data.map((p: any) => p.name),
+                              //     ]);
+                              //   },
+                              //   setError,
+                              //   setLoading,
+                              // }).post(
+                              //   `projects/projects`,
+                              //   { projects: data },
+                              //   {
+                              //     ...requestHeaders,
+                              //   }
+                              // );
+                              // reset();
                             },
                           }}
                         />

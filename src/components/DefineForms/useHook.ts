@@ -1,5 +1,10 @@
 import { useState, useEffect, useMemo, useReducer } from "react";
-import { runButtonBehavior, genRandomId, filterAttrs, Mapfy } from "../../utils";
+import {
+  runButtonBehavior,
+  genRandomId,
+  filterAttrs,
+  Mapfy,
+} from "../../utils";
 import { INPUT_TYPES } from ".";
 
 export function useHook({
@@ -77,6 +82,11 @@ export function useHook({
           controlledValue = inputSchema[1].value[0];
         } else if (inputSchema[1].inputType === INPUT_TYPES.SELECTION) {
           controlledValue = inputSchema[1].value[0];
+        } else if (
+          Array.isArray(inputSchema[1].inputType) &&
+          inputSchema[1].inputType[0] === INPUT_TYPES.SELECTION
+        ) {
+          controlledValue = [inputSchema[1].value[0][0]];
         } else {
           controlledValue = inputSchema[1].value;
         }
