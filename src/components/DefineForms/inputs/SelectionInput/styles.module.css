@@ -9,25 +9,12 @@
   background-color: var(--main-color-500b);
   color: black;
 }
-
-.selection+.label {
-  top: -0.7rem;
-  left: 2rem;
-  z-index: 10;
-  font-size: 14px;
-  font-weight: 600;
-  color: black;
-  font-size: 1rem;
-  opacity: 1;
-}
-
 .selection:hover,
 .selection:focus {
   border: 2px solid var(--main-color-400);
 }
-
-.selection:focus+.label,
-.selection:hover+.label {
+.selection:focus + .label,
+.selection:hover + .label {
   top: -0.7rem;
   left: 2rem;
   font-size: 14px;
@@ -36,11 +23,9 @@
   font-size: 1rem;
   opacity: 1;
 }
-
 .option {
-  background-color: var(--main-color-400)
+  background-color: var(--main-color-400);
 }
-
 .option:hover {
   background-color: red;
 }

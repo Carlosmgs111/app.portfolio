@@ -115,7 +115,6 @@
   filter: drop-shadow(-6px 6px 1px #000000b3) !important;
 }
 .dashboard {
-  border-radius: 0 0 0.8rem 0.8rem;
   backdrop-filter: brightness(40%) blur(4px);
   position: sticky;
   left: 0;
@@ -125,6 +124,8 @@
   padding: 1.2rem 0;
   opacity: 0;
   transition: 0.4s;
+  display: flex;
+  justify-content: center;
 }
 .dashboard_title {
   text-align: center;
@@ -132,6 +133,7 @@
 .buttons_section {
   display: flex;
   justify-content: space-evenly;
+  width: 40rem;
 }
 .button {
   margin: 4px 12px 4px 12px;

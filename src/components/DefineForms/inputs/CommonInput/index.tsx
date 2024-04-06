@@ -1,5 +1,5 @@
 import { beutifyLabel } from "../../../../utils";
-import { CommonInputStyle } from "./styles";
+import styles from "./styles.module.css";
 import { InputHelper } from "../../../../components/DefineForms/styles";
 import { INPUT_TYPES } from "../../../../components/DefineForms";
 
@@ -23,7 +23,8 @@ export const CommonInput = ({
   return (
     <>
       {required && <InputHelper>*</InputHelper>}
-      <CommonInputStyle
+      <input
+        className={styles.common_input}
         type={typeof value === "string" ? "text" : "number"}
         name={keyName}
         value={value}
@@ -33,7 +34,7 @@ export const CommonInput = ({
         disabled={!nonOptionals.includes(name)}
         placeholder={beutifyLabel(name)}
       />
-      <label className="label">{beutifyLabel(name)}</label>
+      <label className={styles.label}>{beutifyLabel(name)}</label>
     </>
   );
 };

@@ -1,6 +1,7 @@
 import styles from "./styles.module.css";
 import { INPUT_TYPES } from "../../../../components/DefineForms";
 import { InputHelper } from "../../../../components/DefineForms/styles";
+import { beutifyLabel } from "../../../../utils";
 
 export const SelectionInput = ({
   keyName,
@@ -34,6 +35,7 @@ export const SelectionInput = ({
           );
         })}
       </select>
+      <label className={styles.label}>{beutifyLabel(name)}</label>
     </>
   );
 };
