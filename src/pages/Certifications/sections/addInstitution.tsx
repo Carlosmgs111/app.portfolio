@@ -1,5 +1,4 @@
 import styles from "../styles.module.css";
-import { DefineSchema } from "../../../components/DefineSchema";
 import { DefineForms } from "../../../components/DefineForms";
 import { runRequest } from "../../../services/runRequest";
 import { headers } from "../../../services/configs";

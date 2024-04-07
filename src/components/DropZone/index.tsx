@@ -45,7 +45,7 @@ export function Dropzone({ files, setFiles }: any) {
       <label
         className={styles.dropzone_label.concat(
           " ",
-          files.length > 0 ? styles.file_in : ""
+          files.length > 0 ? "" : styles.file_in
         )}
       >
         {isDragActive

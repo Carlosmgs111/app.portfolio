@@ -111,10 +111,12 @@ export function GenerateImage() {
           ancho: {
             inputType: INPUT_TYPES.SELECTION,
             value: sizes,
+            controlledValue: 512,
           },
           alto: {
             inputType: INPUT_TYPES.SELECTION,
             value: sizes,
+            controlledValue: 512,
           },
           pasosDeInferencia: {
             inputType: INPUT_TYPES.RANGE,

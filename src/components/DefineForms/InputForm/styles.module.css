@@ -8,7 +8,7 @@
   height: fit-content;
   padding-bottom: 2rem;
   position: sticky;
-  width: 100%;
+  width: fit-content;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
