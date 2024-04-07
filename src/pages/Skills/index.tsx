@@ -10,7 +10,7 @@ import { useTrackSidebar } from "../../hooks/useTrackSidebar";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { useEffect, useReducer } from "react";
 import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
-import { DefineSchema } from "../../components/DefineSchema";
+import { DefineForms } from "../../components/DefineForms";
 import { Modal } from "../../components/Modal";
 import { Page } from "../../components/Page";
 import { runRequest } from "../../services/runRequest";
@@ -79,21 +79,14 @@ export function Skills() {
               !currentModal
                 ? setCurrentModal(
                     <div className={styles.dashboard}>
-                      <DefineSchema
+                      <DefineForms
                         {...{
-                          title: "Agregar Nueva(s) Habilidad(es)",
                           baseSchema: {
                             name: "",
                             description: "",
                             image: "",
                             tags: [""],
                           },
-                          nonOptionals: [
-                            "name",
-                            "description",
-                            "image",
-                            "tags",
-                          ],
                           buttons: { add: "agregar", main: "Guardar" },
                           onClickHandler: ({
                             setError,

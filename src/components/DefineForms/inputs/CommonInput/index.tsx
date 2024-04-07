@@ -22,14 +22,19 @@ export const CommonInput = ({
 }) => {
   return (
     <>
-      {required && <InputHelper/>}
+      {required && <InputHelper />}
       <input
         className={styles.common_input}
         type={typeof value === "string" ? "text" : "number"}
         name={keyName}
         value={value}
         onChange={(e: any) => {
-          onChange && onChange(name, e.target, INPUT_TYPES.TEXT);
+          onChange &&
+            onChange(
+              name,
+              e.target,
+              typeof value === "string" ? INPUT_TYPES.TEXT : INPUT_TYPES.NUMBER
+            );
         }}
         disabled={!nonOptionals.includes(name)}
         placeholder={beutifyLabel(name)}

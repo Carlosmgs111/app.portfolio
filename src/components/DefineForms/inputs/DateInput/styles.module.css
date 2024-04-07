@@ -14,23 +14,23 @@
   background-color: var(--main-color-500b);
   color: black;
 }
-.common_input::placeholder {
+.date_input::placeholder {
   transition: 0.4s;
   color: black;
 }
-.common_input:focus,
-.common_input:hover,
-.common_input:active {
+.date_input:focus,
+.date_input:hover,
+.date_input:active {
   border: 2px solid var(--main-color-400);
 }
-.common_input:focus::placeholder,
-.common_input:hover::placeholder,
-.common_input:active::placeholder {
+.date_input:focus::placeholder,
+.date_input:hover::placeholder,
+.date_input:active::placeholder {
   color: transparent;
 }
 
-.common_input:focus + .label,
-.common_input:hover + .label {
+.date_input:focus + .label,
+.date_input:hover + .label {
   top: -0.7rem;
   left: 2rem;
   font-size: 14px;

@@ -3,7 +3,7 @@ import { useNearScreen } from "../../hooks/useNearScreen";
 import { labelCases } from "../../utils";
 import { useEffect, useState } from "react";
 import { useToggle } from "../../hooks/useToggle";
-import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
+import { DefineForms, getHOCAndTrigger } from "../../components/DefineForms";
 import { runButtonBehavior } from "../../utils";
 import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
@@ -66,7 +66,7 @@ export function Skill({
   };
 
   // ? 2️⃣ Function to obtain the provided callback as the high order callback to be passed to
-  // ? DefineSchema component as argument 'hightOrderCallback' and its respective trigger
+  // ? DefineForms component as argument 'hightOrderCallback' and its respective trigger
   const [highOrderCallback, HOCTrigger]: any = getHOCAndTrigger(updateCallback);
 
   const onClick = (e: any) => {
@@ -91,7 +91,7 @@ export function Skill({
                       setElements(newProjects.map((p) => p.name));
                     });
                   },
-                }).delete(`projects/${uuid}`, {
+                }).delete(`skills/${uuid}`, {
                   ...requestHeaders,
                 });
             })();
@@ -135,16 +135,14 @@ export function Skill({
           </div>
         </div>
       ) : (
-        <DefineSchema
+        <DefineForms
           {...{
-            title: `Update ${name}`,
             baseSchema: {
               name,
               description,
               image,
               tags,
             },
-            nonOptionals: ["name", "description", "image", "tags"],
             highOrderCallback,
             buttons: [],
           }}

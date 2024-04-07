@@ -66,6 +66,7 @@ export function InputForm({
     if (inputType === INPUT_TYPES.EITHER) {
       value = value === "true" ? true : false;
     }
+    if (inputType === INPUT_TYPES.NUMBER) value = Number(value);
     if (Array.isArray(inputType)) {
       if (
         inputType[0] === INPUT_TYPES.TEXT ||

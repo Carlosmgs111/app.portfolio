@@ -5,9 +5,10 @@ import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import { SocketService } from "../../../../services";
 import {
-  DefineSchema,
+  DefineForms,
   getHOCAndTrigger,
-} from "../../../../components/DefineSchema";
+  INPUT_TYPES,
+} from "../../../../components/DefineForms";
 
 export function GenerateImage() {
   // console.log({ SocketService });
@@ -92,7 +93,7 @@ export function GenerateImage() {
   };
 
   // ? 2️⃣ Function to obtain the provided callback as the high order callback to be passed to
-  // ? DefineSchema component as argument 'hightOrderCallback' and its respective trigger
+  // ? DefineForms component as argument 'hightOrderCallback' and its respective trigger
   const [highOrderCallback, onClickHandler]: any = getHOCAndTrigger(
     generateImageCallback
   );
@@ -103,17 +104,32 @@ export function GenerateImage() {
         console.log({ data });
         const { outputs, sizes, inferenceSteps, guidanceScale } = data;
         setSettings({
-          numeroDeResultados: 1,
-          "numeroDeResultados{": outputs,
-          ancho: 512,
-          "ancho{": sizes,
-          alto: 512,
-          "alto{": sizes,
-          pasosDeInferencia: 50,
-          "pasosDeInferencia<": [[inferenceSteps.min, inferenceSteps.max]],
-          guiaDeEscala: 7,
-          "guiaDeEscala<": [[guidanceScale.min, guidanceScale.max]],
-          semilla: 0,
+          numeroDeResultados: {
+            inputType: INPUT_TYPES.SELECTION,
+            value: outputs,
+          },
+          ancho: {
+            inputType: INPUT_TYPES.SELECTION,
+            value: sizes,
+          },
+          alto: {
+            inputType: INPUT_TYPES.SELECTION,
+            value: sizes,
+          },
+          pasosDeInferencia: {
+            inputType: INPUT_TYPES.RANGE,
+            value: [inferenceSteps.min, inferenceSteps.max],
+            controlledValue: 50,
+          },
+          guiaDeEscala: {
+            inputType: INPUT_TYPES.RANGE,
+            value: [guidanceScale.min, guidanceScale.max],
+            controlledValue: 7,
+          },
+          semilla: {
+            inputType: INPUT_TYPES.NUMBER,
+            value: 0,
+          },
         });
       },
       setLoading,
@@ -182,18 +198,9 @@ export function GenerateImage() {
         onChange={(e) => setPrompt(e.target.value)}
       />
       {settings && (
-        <DefineSchema
+        <DefineForms
           {...{
-            title: "",
             baseSchema: settings,
-            nonOptionals: [
-              "numeroDeResultados{",
-              "alto{",
-              "ancho{",
-              "pasosDeInferencia<",
-              "guiaDeEscala<",
-              "semilla",
-            ],
             buttons: {},
             highOrderCallback,
           }}
