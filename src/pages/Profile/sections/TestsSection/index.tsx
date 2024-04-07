@@ -29,7 +29,7 @@ export function TestsSection() {
       style={{
         padding: "2rem",
         display: "flex",
-        // width: "30%",
+        width: "100%",
         alignSelf: "center",
         minHeight: "30rem",
         flexDirection: "column",

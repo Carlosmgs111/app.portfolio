@@ -45,6 +45,7 @@
   font-weight: 1000;
   border: none;
   position: absolute;
+  font-family: "Quicksand";
   top: 50%;
   transition: 0.4s;
   transform: translate(0, -50%);
