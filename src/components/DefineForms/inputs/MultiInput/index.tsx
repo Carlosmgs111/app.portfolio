@@ -1,13 +1,10 @@
-import { MultiInputContainer, InputContainer } from "./styles";
 import { InputHelper } from "../../../../components/DefineForms/styles";
 import { ParagraphInput } from "../ParagraphInput";
 import { DateInput } from "../DateInput";
 import { SelectionInput } from "../SelectionInput";
-import {
-  AddButton,
-  DeleteButton,
-  ButtonsSection,
-} from "../../InputForm/styles";
+import styles from "./styles.module.css";
+import defineFormsStyles from "../../styles.module.css";
+import inputFormsStyles from "../../InputForm/styles.module.css";
 import {
   Mapfy,
   beutifyLabel,
@@ -105,7 +102,7 @@ export const MultiInput = ({
           deps: [contentValue],
         }}
       >
-        <InputContainer>
+        <div className={styles.input_container}>
           {inputType === INPUT_TYPES.PARAGRAPH ? (
             <ParagraphInput
               {...{
@@ -151,17 +148,17 @@ export const MultiInput = ({
               }}
             />
           ) : null}
-          <ButtonsSection>
-            <DeleteButton
-              className="fa-solid fa-trash mini"
+          <div className={inputFormsStyles.button_section}>
+            <button
+              className={`fa-solid fa-trash mini ${inputFormsStyles.delete_button}`}
               type="button"
               onClick={(e: any) => {
                 e.preventDefault();
                 setInputValue({ index, action: ACTIONS.REMOVE });
               }}
             />
-            <AddButton
-              className="fa-solid fa-plus mini"
+            <button
+              className={`fa-solid fa-plus mini ${inputFormsStyles.add_button}`}
               type="button"
               onClick={(e: any) => {
                 e.preventDefault();
@@ -176,20 +173,20 @@ export const MultiInput = ({
                 });
               }}
             />
-          </ButtonsSection>
-        </InputContainer>
+          </div>
+        </div>
       </MemoizedComponent>
     );
   });
   return (
     <>
       {required && <InputHelper>*</InputHelper>}
-      <MultiInputContainer>
+      <div className={styles.multiinput}>
         {mapToList(inputs)}
-        <label className="label">{beutifyLabel(name)}</label>
+        <label className={styles.label}>{beutifyLabel(name)}</label>
         {Mapfy(inputs).size === 0 && (
-          <AddButton
-            className="fa-solid fa-plus mini"
+          <button
+            className={`fa-solid fa-plus mini ${inputFormsStyles.add_button}`}
             style={{ width: "100%" }}
             type="button"
             onClick={(e: any) => {
@@ -207,7 +204,7 @@ export const MultiInput = ({
             }}
           />
         )}
-      </MultiInputContainer>
+      </div>
     </>
   );
 };

@@ -13,7 +13,6 @@
   transition: 0.4s;
   background-color: var(--main-color-500b);
   color: black;
-  font-weight: 500;
 }
 .common_input::placeholder {
   transition: 0.4s;

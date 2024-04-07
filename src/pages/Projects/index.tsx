@@ -114,6 +114,12 @@ export function Projects() {
                                 inputType: INPUT_TYPES.SELECTION,
                                 value: projectsOptions.state,
                                 label: "state",
+                              }, range: {
+                                inputType: INPUT_TYPES.RANGE,
+                                label: "rango",
+                                value: [0, 343],
+                                required: true,
+                                initValue: 117,
                               },
                               uri: "",
                               version: "",

@@ -298,7 +298,7 @@ export const createEnumFromArray = (array: Array<any>) =>
 export const runButtonBehavior = (e: any, behaviors: any) => {
   const { class: className, name, title, id } = e.target;
   const buttonId = name || title || id || className;
-  behaviors[buttonId]();
+  behaviors[buttonId](e);
 };
 
 export const getDispatchSetFunctions = (

@@ -151,7 +151,7 @@ export function useHook({
     setSchema({ payload: { ...schema } });
   };
 
-  const onClick = async (e: any) => {
+  const onClick = (e: any) => {
     e.preventDefault();
     const behaviors = {
       add: addDefineAttribute,

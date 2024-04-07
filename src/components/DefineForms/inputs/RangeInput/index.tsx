@@ -1,9 +1,10 @@
 import { beutifyLabel } from "../../../../utils";
-import { Range } from "./styles";
 import { INPUT_TYPES } from "../../../../components/DefineForms";
 import { useEffect, useState } from "react";
 import { InputHelper } from "../../../../components/DefineForms/styles";
 import { useToggle } from "../../../../hooks/useToggle";
+import styles from "./styles.module.css";
+import inputFormStyles from "../../InputForm/styles.module.css";
 
 export const RangeInput = ({
   keyName,
@@ -44,7 +45,8 @@ export const RangeInput = ({
   return (
     <>
       {required && <InputHelper>*</InputHelper>}
-      <Range
+      <input
+        className={styles.range}
         type="range"
         id={name}
         min={min}
@@ -58,8 +60,8 @@ export const RangeInput = ({
         disabled={!nonOptionals.includes(name)}
         placeholder={beutifyLabel(name)}
         step={step}
-      ></Range>
-      <label htmlFor={name} className="label">
+      ></input>
+      <label className={styles.label}>
         {beutifyLabel(name)} : {initialValue || controlledValue}
       </label>
     </>

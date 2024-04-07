@@ -9,16 +9,10 @@ import {
   DateInput,
   ParagraphInput,
 } from "../inputs";
-import {
-  List,
-  FormStyle,
-  DeleteButton,
-  AddButton,
-  ExpandButton,
-} from "./styles";
 import { useEffect, useReducer } from "react";
 import { useToggle } from "../../../hooks/useToggle";
 import { INPUT_TYPES } from "..";
+import styles from "./styles.module.css";
 
 export function InputForm({
   index,
@@ -183,7 +177,7 @@ export function InputForm({
 
     return (
       <MemoizedComponent deps={[controlledValue]}>
-        <FormStyle className={isExpanded}>
+        <div className={`${styles.form} ${isExpanded}`}>
           {(() => {
             if (Array.isArray(inputType)) {
               return (
@@ -207,7 +201,7 @@ export function InputForm({
           })()}
 
           {nonOptionals.includes(name) ? (
-            <label className="label">{beutifyLabel(name)}</label>
+            <label>{beutifyLabel(name)}</label>
           ) : (
             <label>
               <input
@@ -251,13 +245,13 @@ export function InputForm({
               {beutifyLabel(name)}
             </label>
           )}
-        </FormStyle>
+        </div>
       </MemoizedComponent>
     );
   };
 
   return (
-    <List>
+    <ul className={styles.list}>
       {Object.entries(data).map((attribute, index) => {
         if (index < nonOptionals.length + 1)
           return <li key={index}> {Form(attribute, onChange)}</li>;
@@ -275,20 +269,20 @@ export function InputForm({
           </MemoizedComponent>
         );
       })}
-      <AddButton
-        className="fa-solid fa-plus main"
+      <button
+        className={`fa-solid fa-plus ${styles.main} ${styles.add_button}`}
         type="button"
         name="add"
         id={index}
-        onClick={onClick}
+        onClick={(e: any) => onClick(e)}
       />
       {Object.entries(schema).length > 1 && !fixed ? (
-        <DeleteButton
-          className="fa-solid fa-trash main"
+        <button
+          className={`fa-solid fa-trash ${styles.main} ${styles.delete_button}`}
           type="button"
           name="remove"
           id={index}
-          onClick={onClick}
+          onClick={(e: any) => onClick(e)}
         />
       ) : null}
       {/* {Object.entries(schema[index]).length > 2 ? (
@@ -298,6 +292,6 @@ export function InputForm({
           onClick={switchIsExpanded}
         />
       ) : null} */}
-    </List>
+    </ul>
   );
 }

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { InputHelper } from "../../../../components/DefineForms/styles";
-import { InputTextStyle, TextArea } from "./styles";
 import { beutifyLabel, genRandomId } from "../../../../utils";
 import { INPUT_TYPES } from "../../../../components/DefineForms";
+import styles from "./styles.module.css";
 
 export const ParagraphInput = ({
   name,
@@ -35,8 +35,9 @@ export const ParagraphInput = ({
   return (
     <>
       {required && <InputHelper>*</InputHelper>}
-      <InputTextStyle key={idx}>
-        <TextArea
+      <div className={styles.input_text} key={idx}>
+        <textarea
+          className={styles.textarea}
           wrap="hard"
           id={id}
           rows={1}
@@ -48,7 +49,8 @@ export const ParagraphInput = ({
           placeholder={placeholder || beutifyLabel(name).CS}
         />
         {showLabel && <label className="label">{name}</label>}
-      </InputTextStyle>
+      </div>
+      <label className={styles.label}>{beutifyLabel(name)}</label>
     </>
   );
 };

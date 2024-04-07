@@ -1,6 +1,4 @@
-import styled from "styled-components";
-
-export const List = styled.ul`
+.list {
   font-size: 1.4rem;
   padding: 0;
   align-items: center;
@@ -11,34 +9,31 @@ export const List = styled.ul`
   padding-bottom: 2rem;
   position: sticky;
   width: 100%;
-`;
-
-export const FormStyle = styled.div`
+}
+.form {
   width: 100%;
   text-align: center;
   display: inline-flex;
   position: relative;
   margin: 0.6rem 0;
-
-  label {
-    font-size: 0;
-    width: fit-content;
-    color: black;
-    position: absolute;
-    white-space: nowrap;
-    background-color: var(--main-color-400);
-    border-radius: 0.5rem;
-    left: 2.6rem;
-    top: 0.6rem;
-    padding: 0 4px;
-    transition: 0.4s;
-    opacity: 0;
-    margin: 0;
-    pointer-events: none;
-  }
-`;
-
-export const ButtonsSection = styled.div`
+}
+.form label {
+  font-size: 0;
+  width: fit-content;
+  color: black;
+  position: absolute;
+  white-space: nowrap;
+  background-color: var(--main-color-400);
+  border-radius: 0.5rem;
+  left: 2.6rem;
+  top: 0.6rem;
+  padding: 0 4px;
+  transition: 0.4s;
+  opacity: 0;
+  margin: 0;
+  pointer-events: none;
+}
+.button_section {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,9 +46,8 @@ export const ButtonsSection = styled.div`
   font-size: 1.6rem;
   font-family: var(--text-font);
   padding: 0 0.8rem;
-`;
-
-export const DeleteButton: any = styled.button`
+}
+.delete_button {
   margin: 0;
   height: fit-content;
   border-radius: 0.4rem;
@@ -64,22 +58,21 @@ export const DeleteButton: any = styled.button`
   background-color: transparent;
   -webkit-text-stroke: 1px black;
   color: var(--main-color-500b);
-  &:hover {
-    color: #f03b26;
-  }
-  &:focus {
-    outline: none;
-  }
-  &.main {
-    position: absolute;
-    bottom: 0.4rem;
-    right: 0;
-    padding-right: 2rem;
-    font-size: 1.6rem;
-  }
-`;
-
-export const AddButton: any = styled.button`
+}
+.delete_button:hover {
+  color: #f03b26;
+}
+.delete_button:focus {
+  outline: none;
+}
+.delete_button.main {
+  position: absolute;
+  bottom: 0.4rem;
+  right: 0;
+  padding-right: 2rem;
+  font-size: 1.6rem;
+}
+.add_button {
   margin: 0;
   height: fit-content;
   border-radius: 0.4rem;
@@ -92,27 +85,26 @@ export const AddButton: any = styled.button`
   padding: 0;
   background-color: transparent;
   -webkit-text-stroke: 1px black;
-  &:focus {
-    outline: none;
-  }
-  &:hover {
-    color: #21da09;
-  }
-  &.main {
-    position: absolute;
-    bottom: 0.2rem;
-    left: 0;
-    padding-left: 2rem;
-  }
-`;
-
-export const ExpandButton = styled.button`
+}
+.add_button:hover {
+  color: #21da09;
+}
+.add_button:focus {
+  outline: none;
+}
+.add_button.main {
+  position: absolute;
+  bottom: 0.2rem;
+  left: 0;
+  padding-left: 2rem;
+}
+.expand_button {
   width: 100%;
   height: 4rem;
   background-color: transparent;
   border-radius: 2rem;
   border: none;
-  &:focus {
-    outline: none;
-  }
-`;
+}
+.expand_button:focus {
+  outline: none;
+}
