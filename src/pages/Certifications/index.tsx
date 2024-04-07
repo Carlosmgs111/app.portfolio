@@ -27,6 +27,7 @@ import { runRequest } from "../../services/runRequest";
 import { useToggle } from "../../hooks/useToggle";
 import { Mapfy } from "../../utils";
 import { addCertification, addInstitution } from "./sections";
+import { INPUT_TYPES } from "../../components/DefineForms";
 
 export function Certifications() {
   const { token, username } = getContextValue(CONTEXTS.Global);
@@ -67,14 +68,18 @@ export function Certifications() {
 
   const [TrackSidebar, setElements, refreshRefs]: any = useTrackSidebar();
 
-  const [certificationSchema, setCertificationSchema] = useState({
+  const [certificationSchema, setCertificationSchema]: any = useState({
     title: "",
-    emitedBy: "",
-    // ? `{` symbol used for mark a select object controller
-    "emitedBy{": [],
-    emitedAt: new Date().getTime(),
-    // ? `~` symbol used for mark a date object controller
-    "emitedAt~": new Date().toISOString().slice(0, 10),
+    emitedBy: {
+      inputType: INPUT_TYPES.SELECTION,
+      label: "Emitido por",
+      value: [""],
+    },
+    emitedAt: {
+      inputType: INPUT_TYPES.DATE,
+      label: "fecha",
+      value: new Date().getTime(),
+    },
     image: "",
     url: "",
     tags: [""],
@@ -227,8 +232,10 @@ export function Certifications() {
           setData: (data: any) => {
             setCertificationSchema({
               ...certificationSchema,
-              emitedBy: data[0].name,
-              "emitedBy{": data.map((i: any) => i.name),
+              emitedBy: {
+                ...certificationSchema.emitedBy,
+                value: data.map((i: any) => i.name),
+              },
             });
             setInstitutions(data);
           },
@@ -244,7 +251,7 @@ export function Certifications() {
   }, [token]);
 
   return (
-    <Page >
+    <Page>
       <MultiSidebar
         {...{
           sidebars,

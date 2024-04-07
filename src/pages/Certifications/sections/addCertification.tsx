@@ -2,6 +2,7 @@ import { runRequest } from "../../../services/runRequest";
 import { headers } from "../../../services/configs";
 import styles from "../styles.module.css";
 import { DefineSchema } from "../../../components/DefineSchema";
+import { DefineForms } from "../../../components/DefineForms";
 
 export const addCertification = ({
   certificationSchema,
@@ -12,19 +13,10 @@ export const addCertification = ({
 }: any) => {
   const requestHeaders = headers();
   return (
-    <div className={styles.dashboard} style={{ backgroundColor: "#9fbe05" }}>
-      <DefineSchema
+    <div className={styles.dashboard}>
+      <DefineForms
         {...{
-          title: "",
           baseSchema: certificationSchema,
-          nonOptionals: [
-            "title",
-            "emitedAt~",
-            "image",
-            "url",
-            "emitedBy{",
-            "tags",
-          ],
           onClickHandler: (params: any) => {
             const { setError, setLoading, data, reset } = params;
 

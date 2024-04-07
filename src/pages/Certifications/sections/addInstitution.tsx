@@ -1,5 +1,6 @@
 import styles from "../styles.module.css";
 import { DefineSchema } from "../../../components/DefineSchema";
+import { DefineForms } from "../../../components/DefineForms";
 import { runRequest } from "../../../services/runRequest";
 import { headers } from "../../../services/configs";
 
@@ -11,11 +12,9 @@ export const addInstitution = ({
   const requestHeaders = headers();
   return (
     <div className={styles.dashboard}>
-      <DefineSchema
+      <DefineForms
         {...{
-          title: "Add New Institution(s)",
           baseSchema: institutionSchema,
-          nonOptionals: ["name", "businessName", "descriptions", "urls"],
           onClickHandler: ({ setError, setLoading, data, reset }: any) => {
             runRequest({
               setData: (data: any) =>

@@ -2,7 +2,12 @@ import styles from "./styles.module.css";
 import { CertificationSkeleton } from "./skeleton";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { labelCases } from "../../utils";
-import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
+// import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
+import {
+  DefineForms,
+  getHOCAndTrigger,
+  INPUT_TYPES,
+} from "../../components/DefineForms";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { runRequest } from "../../services/runRequest";
 import { useState } from "react";
@@ -175,26 +180,28 @@ export function Certification({
           </a>
         </div>
       ) : (
-        <DefineSchema
+        <DefineForms
           {...{
-            title: `Update ${title}`,
             baseSchema: {
               title,
-              emitedBy,
-              // ? `{` symbol used for mark a select object controller
-              "emitedBy{": institutions.map((i: any) => i.name),
-              emitedAt: new Date(emitedAt).getTime(),
-              // ? `~` symbol used for mark a date object controller
-              "emitedAt~": new Date(emitedAt).toISOString().slice(0, 10),
+              emitedBy: {
+                inputType: INPUT_TYPES.SELECTION,
+                value: institutions.map((i: any) => i.name),
+                controlledValue: emitedBy,
+              },
+              emitedAt: {
+                inputType: INPUT_TYPES.DATE,
+                label: "fecha",
+                value: new Date(emitedAt).toISOString().slice(0, 10),
+                controlledValue: new Date(emitedAt).getTime(),
+              },
               image,
               tags,
               url,
             },
-            nonOptionals: ["title", "emitedAt~", "image", "url", "emitedBy{"],
             highOrderCallback,
-            buttons: [],
           }}
-        ></DefineSchema>
+        ></DefineForms>
       )}
 
       {token && username === grantedTo && (
