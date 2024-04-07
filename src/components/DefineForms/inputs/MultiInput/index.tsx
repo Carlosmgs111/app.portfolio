@@ -1,4 +1,4 @@
-import { InputHelper } from "../../../../components/DefineForms/styles";
+import { InputHelper } from "../../../../components/InputHelper";
 import { ParagraphInput } from "../ParagraphInput";
 import { DateInput } from "../DateInput";
 import { SelectionInput } from "../SelectionInput";
@@ -180,7 +180,7 @@ export const MultiInput = ({
   });
   return (
     <>
-      {required && <InputHelper>*</InputHelper>}
+      {required && <InputHelper/>}
       <div className={styles.multiinput}>
         {mapToList(inputs)}
         <label className={styles.label}>{beutifyLabel(name)}</label>

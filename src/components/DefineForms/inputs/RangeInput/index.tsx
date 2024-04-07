@@ -1,13 +1,12 @@
 import { beutifyLabel } from "../../../../utils";
 import { INPUT_TYPES } from "../../../../components/DefineForms";
-import { useEffect, useState } from "react";
-import { InputHelper } from "../../../../components/DefineForms/styles";
+import { useEffect } from "react";
 import { useToggle } from "../../../../hooks/useToggle";
 import styles from "./styles.module.css";
-import inputFormStyles from "../../InputForm/styles.module.css";
+import defineFormsStyles from "../../styles.module.css";
+import { InputHelper } from "../../../../components/InputHelper";
 
 export const RangeInput = ({
-  keyName,
   value,
   controlledValue,
   initValue = null,
@@ -44,7 +43,7 @@ export const RangeInput = ({
   useEffect(() => {}, []);
   return (
     <>
-      {required && <InputHelper>*</InputHelper>}
+      {required && <InputHelper />}
       <input
         className={styles.range}
         type="range"

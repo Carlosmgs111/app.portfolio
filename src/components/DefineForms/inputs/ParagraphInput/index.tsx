@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { InputHelper } from "../../../../components/DefineForms/styles";
+import { InputHelper } from "../../../../components/InputHelper";
 import { beutifyLabel, genRandomId } from "../../../../utils";
 import { INPUT_TYPES } from "../../../../components/DefineForms";
 import styles from "./styles.module.css";
@@ -34,7 +34,7 @@ export const ParagraphInput = ({
 
   return (
     <>
-      {required && <InputHelper>*</InputHelper>}
+      {required && <InputHelper/>}
       <div className={styles.input_text} key={idx}>
         <textarea
           className={styles.textarea}

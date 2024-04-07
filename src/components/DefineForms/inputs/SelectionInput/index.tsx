@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 import { INPUT_TYPES } from "../../../../components/DefineForms";
-import { InputHelper } from "../../../../components/DefineForms/styles";
+import { InputHelper } from "../../../../components/InputHelper";
 import { beutifyLabel } from "../../../../utils";
 
 export const SelectionInput = ({
@@ -20,7 +20,7 @@ export const SelectionInput = ({
 }) => {
   return (
     <>
-      {required && <InputHelper>*</InputHelper>}
+      {required && <InputHelper />}
       <select
         className={styles.selection}
         name={keyName}

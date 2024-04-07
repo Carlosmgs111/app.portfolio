@@ -1,6 +1,6 @@
 import { beutifyLabel } from "../../../../utils";
 import styles from "./styles.module.css";
-import { InputHelper } from "../../../../components/DefineForms/styles";
+import { InputHelper } from "../../../../components/InputHelper";
 import { INPUT_TYPES } from "../../../../components/DefineForms";
 
 export const DateInput = ({
@@ -22,10 +22,9 @@ export const DateInput = ({
 }) => {
   return (
     <>
-      {required && <InputHelper>*</InputHelper>}
+      {required && <InputHelper />}
       <input
-        className={styles.date_input
-        }
+        className={styles.date_input}
         type="date"
         key={keyName}
         name={idx}

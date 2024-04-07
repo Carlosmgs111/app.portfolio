@@ -1,5 +1,5 @@
 import { InputForm } from "./InputForm";
-import { FormStyle, Content, Button, Message } from "./styles";
+import styles from "./styles.module.css";
 import { useHook } from "./useHook";
 import { OnError } from "../OnError";
 import { OnLoading } from "../OnLoading";
@@ -81,7 +81,7 @@ export function DefineForms({
   });
 
   return (
-    <Content>
+    <div className={styles.content}>
       <label hidden={true}>Label:</label>
       <input
         hidden={true}
@@ -90,21 +90,31 @@ export function DefineForms({
         value={label}
         onChange={(e) => setLabel(e.target.value)}
       />
-      <FormStyle name="main" onSubmit={onClick}>
+      <form className={styles.form} name="main" onSubmit={onClick}>
         {listOfDefineAttributes}
-      </FormStyle>
+      </form>
       <OnError {...{ error, reset }}></OnError>
-      <OnLoading {...{ loading, component: Content }}></OnLoading>
+      <OnLoading
+        {...{
+          loading,
+          component: () => <div className={styles.content}></div>,
+        }}
+      ></OnLoading>
       {Mapfy(buttons).has("main") && (
-        <Button name="main" type="button" onClick={onClick}>
+        <button
+          className={styles.button}
+          name="main"
+          type="button"
+          onClick={onClick}
+        >
           {Mapfy(schema).size < 2
             ? labelCases(buttons.main).CS
             : labelCases(buttons.main).CP}
-        </Button>
+        </button>
       )}
 
-      <Message>(*) Campos Obligatorios</Message>
-    </Content>
+      <span className={styles.message}>(*) Campos Obligatorios</span>
+    </div>
   );
 }
 

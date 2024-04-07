@@ -1,6 +1,6 @@
 import { beutifyLabel } from "../../../../utils";
 import styles from "./styles.module.css";
-import { InputHelper } from "../../../../components/DefineForms/styles";
+import { InputHelper } from "../../../../components/InputHelper";
 import { INPUT_TYPES } from "../../../../components/DefineForms";
 
 // ? This component can be used as an Individual component
@@ -22,7 +22,7 @@ export const CommonInput = ({
 }) => {
   return (
     <>
-      {required && <InputHelper>*</InputHelper>}
+      {required && <InputHelper/>}
       <input
         className={styles.common_input}
         type={typeof value === "string" ? "text" : "number"}
