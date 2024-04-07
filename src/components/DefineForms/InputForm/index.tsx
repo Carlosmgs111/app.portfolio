@@ -14,23 +14,29 @@ import { useToggle } from "../../../hooks/useToggle";
 import { INPUT_TYPES } from "..";
 import styles from "./styles.module.css";
 
+type InputFormOps = {
+  index: any;
+  schema: any;
+  _data: any;
+  updateSchemaDelta: Function;
+  fixed?: Boolean;
+  modifiable?: Boolean;
+  column?: Boolean;
+  nonOptionals?: Array<any>;
+  onClick: Function;
+};
+
 export function InputForm({
   index,
   schema,
   _data,
   updateSchemaDelta,
   fixed = false,
+  modifiable = true,
+  column = true,
   nonOptionals = [],
   onClick,
-}: {
-  index: any;
-  schema: any;
-  _data: any;
-  updateSchemaDelta: Function;
-  fixed: Boolean;
-  nonOptionals: Array<any>;
-  onClick: Function;
-}) {
+}: InputFormOps) {
   const [isExpanded, switchIsExpanded] = useToggle(true, false);
   // const [data, setData] = useState(_data);
   const [data, setData]: any = useReducer(
@@ -251,7 +257,7 @@ export function InputForm({
   };
 
   return (
-    <ul className={styles.list}>
+    <ul className={`${styles.list} ${column && styles.column}`}>
       {Object.entries(data).map((attribute, index) => {
         if (index < nonOptionals.length + 1)
           return <li key={index}> {Form(attribute, onChange)}</li>;
@@ -269,14 +275,16 @@ export function InputForm({
           </MemoizedComponent>
         );
       })}
-      <button
-        className={`fa-solid fa-plus ${styles.main} ${styles.add_button}`}
-        type="button"
-        name="add"
-        id={index}
-        onClick={(e: any) => onClick(e)}
-      />
-      {Object.entries(schema).length > 1 && !fixed ? (
+      {modifiable && (
+        <button
+          className={`fa-solid fa-plus ${styles.main} ${styles.add_button}`}
+          type="button"
+          name="add"
+          id={index}
+          onClick={(e: any) => onClick(e)}
+        />
+      )}
+      {Object.entries(schema).length > 1 && !fixed && modifiable ? (
         <button
           className={`fa-solid fa-trash ${styles.main} ${styles.delete_button}`}
           type="button"

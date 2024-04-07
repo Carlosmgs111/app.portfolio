@@ -4,11 +4,11 @@
   gap: 0.4rem;
   overflow: hidden;
 }
-.input_container:hover div,
-.input_container:focus div,
-.input_container:active div {
+.input_container:hover .button_container,
+.input_container:focus .button_container,
+.input_container:active .button_container {
   opacity: 1;
-  transform: scale(100%); /*  ? ⬅️ This refer to ButtonsContainer component */
+  transform: scale(100%) translate(0, -0.8rem); /*  ? ⬅️ This refer to ButtonsContainer component */
 }
 .multiinput {
   display: flex;

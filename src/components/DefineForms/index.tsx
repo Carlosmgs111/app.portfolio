@@ -45,6 +45,8 @@ export function DefineForms({
   onClickHandler,
   buttons = { main: "save" },
   highOrderCallback,
+  message = false,
+  modifiable = true,
 }: any) {
   if (!nonOptionals)
     nonOptionals = Object.entries(baseSchema).map((kv) => kv[0]);
@@ -74,6 +76,7 @@ export function DefineForms({
             nonOptionals,
             onClick,
             fixed: false,
+            modifiable,
           }}
         />
       </MemoizedComponent>
@@ -113,7 +116,9 @@ export function DefineForms({
         </button>
       )}
 
-      <span className={styles.message}>(*) Campos Obligatorios</span>
+      {message && (
+        <span className={styles.message}>(*) Campos Obligatorios</span>
+      )}
     </div>
   );
 }

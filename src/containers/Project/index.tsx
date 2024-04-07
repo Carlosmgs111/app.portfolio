@@ -231,6 +231,7 @@ export const Project = ({
               version,
             },
             highOrderCallback,
+            modifiable: false,
           }}
         />
       )}

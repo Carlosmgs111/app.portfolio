@@ -148,7 +148,9 @@ export const MultiInput = ({
               }}
             />
           ) : null}
-          <div className={inputFormsStyles.button_section}>
+          <div
+            className={`${inputFormsStyles.button_section} ${styles.button_container}`}
+          >
             <button
               className={`fa-solid fa-trash mini ${inputFormsStyles.delete_button}`}
               type="button"
@@ -180,7 +182,7 @@ export const MultiInput = ({
   });
   return (
     <>
-      {required && <InputHelper/>}
+      {required && <InputHelper />}
       <div className={styles.multiinput}>
         {mapToList(inputs)}
         <label className={styles.label}>{beutifyLabel(name)}</label>
