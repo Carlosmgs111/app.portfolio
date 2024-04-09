@@ -24,8 +24,8 @@
   position: relative;
   background: radial-gradient(
     circle at 100% 80%,
-    #0f2027 20%,
-    #203a43 50%,
+    #0f2027 50%,
+    #203a43 80%,
     #2c5364
   );
 }
@@ -41,12 +41,19 @@
   content: "";
   width: 100%;
   height: 100%;
-  filter: blur(6px);
+  filter: blur(2px);
+  background: url("https://private-user-images.githubusercontent.com/41123597/320682475-2b8128a5-bb4a-40e7-8219-558f7fe60f7b.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTI2MjI1MDksIm5iZiI6MTcxMjYyMjIwOSwicGF0aCI6Ii80MTEyMzU5Ny8zMjA2ODI0NzUtMmI4MTI4YTUtYmI0YS00MGU3LTgyMTktNTU4ZjdmZTYwZjdiLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA0MDklMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNDA5VDAwMjMyOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWQxM2Y1ZWNkMzMxZmFlZjY3OWM2ZTMzNTE3MGQyNTg2NTE4NDNjODVlNjYzNjViZTRjMTE3ZDA4YzhjNjZkMzMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.ZlKJK1wprSDlqYFgL8j7V9Z6G5SIEu-1SFBJyXcD3gI");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .presentation_section {
   font-size: 2rem;
   font-family: Rubik;
   z-index: 1;
+  backdrop-filter: blur(6px) brightness(90%);
+  padding: 6rem;
+  border-radius: 2rem;
 }
 .presentation {
   filter: drop-shadow(-6px 6px 1px #000000cc);
@@ -66,7 +73,7 @@ h2 {
   color: #1cefff;
 }
 .contact {
-  padding: 4rem 0;
+  padding: 4rem 0 0 0;
   display: flex;
   gap: 2rem;
   flex-direction: flex-start;
