@@ -46,7 +46,6 @@
   justify-content: left;
 }
 .image {
-  position: absolute;
   position: sticky;
   max-height: 80%;
   object-fit: cover;
@@ -174,6 +173,102 @@
 .danger:hover {
   background: linear-gradient(0deg, #550e07, #ed213a 90%);
 }
+/*  */
+.skeleton {
+  filter: drop-shadow(-6px 6px 1px black);
+  background-color: #ffffff1a;
+}
+.skeleton::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    #ffffff00 0,
+    #ffffff1a 20%,
+    #ffffff29 50%,
+    #ffffff1a 80%,
+    #ffffff00
+  );
+  animation: shimmer 3s infinite;
+  overflow: hidden;
+  content: "";
+}
+.skeleton_container {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  padding: 4rem 0;
+}
+.title.skeleton {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  width: 100%;
+  height: 8rem;
+}
+.skeleton_images_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  min-height: 30rem;
+  width: 60rem;
+  height: fit-content;
+  gap: 1.2rem;
+  border-radius: 1rem;
+  justify-content: right;
+}
+.big_image {
+  position: relative;
+  overflow: hidden;
+  height: 30rem;
+  border-radius: 0.8rem;
+}
+.small_image {
+  position: relative;
+  overflow: hidden;
+  width: 48%;
+  height: 16rem;
+  border-radius: 0.8rem;
+}
+.skeleton_descriptions {
+  display: flex;
+  flex-direction: column;
+  min-height: 40rem;
+  height: fit-content;
+  gap: 3rem;
+  width: 60rem;
+  border-radius: 1rem;
+}
+.description.skeleton {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 15rem;
+  border-radius: 0.8rem;
+}
+.skeleton_metadata {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin: 0 20rem;
+}
+.state.skeleton {
+  position: relative;
+  overflow: hidden;
+  width: 50%;
+  height: 4.2rem;
+  border-radius: 0.8rem;
+}
+/*  */
 @media screen and (max-width: 1360px) {
   .container {
     flex-direction: column;

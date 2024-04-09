@@ -2,7 +2,7 @@ import { useState, useEffect, useReducer } from "react";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import axios from "axios";
 import { URL_API } from "../../services";
-import { Project } from "../../containers/Project";
+import { Project, ProjectSkeleton } from "../../containers/Project";
 import styles from "./styles.module.css";
 import { useTrackSidebar } from "../../hooks/useTrackSidebar";
 import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
@@ -160,9 +160,11 @@ export function Projects() {
       try {
         const { data } = await axios.get(`${URL_API}/projects`);
         const { projects, kind, state, stack } = data;
+        setLoading(true);
         setProjects([...projects]);
         setProjectsOptions({ kind, state, stack });
         setElements([...projects.map((project: any) => project.name)]);
+        setTimeout(() => setLoading(false), 2000);
       } catch (e) {
         setLoading(false);
         setError(e);
@@ -183,21 +185,25 @@ export function Projects() {
         }}
       >
         <div className={styles.main_container}>
-          {projects.map((project: any, index: number) => (
-            <Project
-              key={index}
-              {...{
-                initialState: project,
-                even: index % 2 === 0,
-                refreshRefs,
-                updateState,
-                setCurrentModal,
-                stateOps,
-                stackOps,
-                kindOps,
-              }}
-            />
-          ))}
+          {loading ? (
+            <ProjectSkeleton />
+          ) : (
+            projects.map((project: any, index: number) => (
+              <Project
+                key={index}
+                {...{
+                  initialState: project,
+                  even: index % 2 === 0,
+                  refreshRefs,
+                  updateState,
+                  setCurrentModal,
+                  stateOps,
+                  stackOps,
+                  kindOps,
+                }}
+              />
+            ))
+          )}
         </div>
       </MultiSidebar>
       <Modal

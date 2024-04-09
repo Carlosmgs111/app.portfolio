@@ -8,6 +8,7 @@ import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { SVGIndexes } from "../../icons";
+import { ProjectSkeleton } from "./Skeleton";
 import {
   INPUT_TYPES,
   DefineForms,
@@ -266,3 +267,4 @@ export const Project = ({
     </div>
   );
 };
+export { ProjectSkeleton };
