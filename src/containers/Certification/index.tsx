@@ -137,8 +137,7 @@ export function Certification({
                     {...{
                       src: image,
                       alt: title,
-                      className: styles.image,
-                      style: { cursor: "zoom-out" },
+                      className: `${styles.image} ${styles.zoomed}`,
                       onClick: () => setCurrentModal(null),
                     }}
                   />
@@ -151,22 +150,16 @@ export function Certification({
               style: { opacity: details ? 1 : 0, zIndex: details ? 0 : -1 },
             }}
           >
-            <>
-              <h2>Title</h2>
-              <p>{title}</p>
-            </>
-            <>
-              <h2>Emited By</h2>
-              <p>{emitedBy}</p>
-            </>
-            <>
-              <h2>Granted</h2>
-              <p>{format(emitedAt)}</p>
-            </>
+            <h2>Title</h2>
+            <p>{title}</p>
+            <h2>Emited By</h2>
+            <p>{emitedBy}</p>
+            <h2>Granted</h2>
+            <p>{format(emitedAt)}</p>
           </div>
           <i
             {...{
-              className: `fa-solid fa-ellipsis ${styles.displacement}`,
+              className: `fa-solid fa-circle-info ${styles.displacement}`,
               onClick: switchDetails,
             }}
           />

@@ -40,7 +40,6 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  overflow: scroll;
   height: 100%;
 }
 .content::-webkit-scrollbar {
@@ -55,6 +54,10 @@
   object-fit: cover;
   object-position: center center;
   transition: opacity 0.4s;
+}
+.image.zoomed {
+  position: static;
+  cursor: zoom-out;
 }
 .details {
   top: 0;
@@ -76,17 +79,18 @@
   position: absolute;
   bottom: 1.2rem;
   right: 1.2rem;
-  color: #00ffc8 !important;
+  color: var(--main-color-700) !important;
   opacity: 0;
   transition: color 0.4s, opacity 0.4s;
   width: fit-content;
-  -webkit-text-stroke: black 0.1rem;
+  backdrop-filter: brightness(70%) blur(2px);
+  border-radius: 0.8rem;
 }
 .url:visited {
   color: unset;
 }
 .url:hover {
-  color: #f026df !important;
+  color: var(--main-color-500) !important;
 }
 .displacement {
   cursor: hand;
@@ -95,18 +99,19 @@
   font-size: 1.8rem;
   position: absolute;
   bottom: 1.2rem;
-  color: #00ffc8 !important;
+  color: var(--main-color-700) !important;
   opacity: 0;
   transition: color 0.4s, opacity 0.4s;
-  -webkit-text-stroke: black 0.1rem;
   width: fit-content;
   left: 1.2rem;
+  backdrop-filter: brightness(80%);
+  border-radius: 0.8rem;
 }
 .displacement:visited {
   color: unset;
 }
 .displacement:hover {
-  color: #f026df !important;
+  color: var(--main-color-500) !important;
 }
 .dashboard {
   border-radius: 0 0 0.8rem 0.8rem;
