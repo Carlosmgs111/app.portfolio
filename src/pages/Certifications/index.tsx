@@ -257,23 +257,25 @@ export function Certifications() {
           sidebars,
         }}
       >
-        <div className={styles.main_container}>
-          {certifications.map(
-            (certification: any, index: number) =>
-              certification.visible && (
-                <Certification
-                  {...{
-                    key: certification.uuid,
-                    initialCertification: certification,
-                    refreshRefs,
-                    setCurrentModal,
-                    updateState,
-                    institutions,
-                  }}
-                />
-              )
-          )}
-        </div>
+        {!loading && (
+          <div className={styles.main_container}>
+            {certifications.map(
+              (certification: any, index: number) =>
+                certification.visible && (
+                  <Certification
+                    {...{
+                      key: certification.uuid,
+                      initialCertification: certification,
+                      refreshRefs,
+                      setCurrentModal,
+                      updateState,
+                      institutions,
+                    }}
+                  />
+                )
+            )}
+          </div>
+        )}
       </MultiSidebar>
       {/* // ? ⬇️ Start page support components */}
       <OnLoading

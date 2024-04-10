@@ -24,7 +24,7 @@ export function TrackSidebar(props: any) {
       <a
         key={index}
         href={`#${labelCases(name).LS}`}
-        className={`fa-regular fa-circle-dot ${styles.item.concat(
+        className={`fa-solid fa-circle-dot ${styles.item.concat(
           " ",
           active ? styles.active : ""
         )}`}

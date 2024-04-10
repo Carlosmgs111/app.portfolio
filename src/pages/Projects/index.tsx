@@ -164,7 +164,7 @@ export function Projects() {
         setProjects([...projects]);
         setProjectsOptions({ kind, state, stack });
         setElements([...projects.map((project: any) => project.name)]);
-        setTimeout(() => setLoading(false), 2000);
+        setLoading(false);
       } catch (e) {
         setLoading(false);
         setError(e);

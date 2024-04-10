@@ -180,31 +180,32 @@ export function Certification({
           </a>
         </div>
       ) : (
-        <DefineForms
-          {...{
-            baseSchema: {
-              title,
-              emitedBy: {
-                inputType: INPUT_TYPES.SELECTION,
-                value: institutions.map((i: any) => i.name),
-                controlledValue: emitedBy,
+        <div className={styles.content}>
+          <DefineForms
+            {...{
+              baseSchema: {
+                title,
+                emitedBy: {
+                  inputType: INPUT_TYPES.SELECTION,
+                  value: institutions.map((i: any) => i.name),
+                  controlledValue: emitedBy,
+                },
+                emitedAt: {
+                  inputType: INPUT_TYPES.DATE,
+                  label: "fecha",
+                  value: new Date(emitedAt).toISOString().slice(0, 10),
+                  controlledValue: new Date(emitedAt).getTime(),
+                },
+                image,
+                tags,
+                url,
               },
-              emitedAt: {
-                inputType: INPUT_TYPES.DATE,
-                label: "fecha",
-                value: new Date(emitedAt).toISOString().slice(0, 10),
-                controlledValue: new Date(emitedAt).getTime(),
-              },
-              image,
-              tags,
-              url,
-            },
-            modifiable: false,
-            highOrderCallback,
-          }}
-        ></DefineForms>
+              modifiable: false,
+              highOrderCallback,
+            }}
+          ></DefineForms>
+        </div>
       )}
-
       {token && username === grantedTo && (
         <div className={styles.dashboard}>
           <button

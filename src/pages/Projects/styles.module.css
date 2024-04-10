@@ -6,13 +6,6 @@
   flex-wrap: wrap;
   width: 100%;
 }
-
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
-
 @media screen and (max-width: 480px) {
   .main_container {
     padding: 0.1rem;
