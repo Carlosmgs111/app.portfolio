@@ -170,6 +170,7 @@ export const Project = ({
                     <img
                       alt=""
                       src={image}
+                      className={`${styles.image} ${styles.zoomed}`}
                       style={{ cursor: "zoom-out", maxWidth: "100%" }}
                       onClick={() => setCurrentModal(null)}
                     />

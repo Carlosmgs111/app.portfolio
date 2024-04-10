@@ -137,8 +137,7 @@ export function Certification({
                     {...{
                       src: image,
                       alt: title,
-                      className: styles.image,
-                      style: { cursor: "zoom-out" },
+                      className: `${styles.image} ${styles.zoomed}`,
                       onClick: () => setCurrentModal(null),
                     }}
                   />

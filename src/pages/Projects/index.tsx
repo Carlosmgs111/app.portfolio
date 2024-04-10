@@ -157,18 +157,18 @@ export function Projects() {
 
   useEffect(() => {
     const fetchProjects = async () => {
+      setLoading(true);
       try {
         const { data } = await axios.get(`${URL_API}/projects`);
         const { projects, kind, state, stack } = data;
-        setLoading(true);
         setProjects([...projects]);
         setProjectsOptions({ kind, state, stack });
         setElements([...projects.map((project: any) => project.name)]);
-        setLoading(false);
       } catch (e) {
         setLoading(false);
         setError(e);
       }
+      setLoading(false);
     };
     fetchProjects();
     return () => {

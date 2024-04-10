@@ -56,6 +56,10 @@
   object-position: center center;
   transition: opacity 0.4s;
 }
+.image.zoomed {
+  position: static;
+  cursor: zoom-out;
+}
 .details {
   top: 0;
   left: 0;
