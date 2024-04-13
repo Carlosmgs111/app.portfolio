@@ -66,7 +66,7 @@ export function Certifications() {
     setError,
   }: any = setFunctions;
 
-  const [TrackSidebar, setElements, refreshRefs]: any = useTrackSidebar();
+  const [TrackSidebar,, setElements, refreshRefs]: any = useTrackSidebar();
 
   const [certificationSchema, setCertificationSchema]: any = useState({
     title: "",

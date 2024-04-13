@@ -4,7 +4,10 @@ typeof window.IntersectionObserver !== "undefined"
   ? window.IntersectionObserver
   : import("intersection-observer");
 
-export const useNearScreen = (initialState: any = null, cb: Function) => {
+export const useNearScreen = (
+  initialState: any = null,
+  cb: Function | null = null
+) => {
   const ref: any = useRef(null);
   const [show, setShow] = useState(initialState);
   // console.log({show})
