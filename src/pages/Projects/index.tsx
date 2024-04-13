@@ -19,7 +19,7 @@ import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
 
 export function Projects() {
   const { token, currentLang } = getContextValue(CONTEXTS.Global);
-  const [TrackSidebar, setElements, refreshRefs]: any = useTrackSidebar();
+  const [TrackSidebar, _, setElements, refreshRefs]: any = useTrackSidebar();
   const requestHeaders = headers();
   const [projectsOptions, setProjectsOptions] = useState({
     stack: [],

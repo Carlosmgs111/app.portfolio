@@ -9,7 +9,7 @@ export function TrackSidebar(props: any) {
     refs = [],
     innerItems = true,
     direction = "column",
-    active,
+    active = true,
   }: any = props;
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
   const [{ token, loading: globalLoading }, dispatch] = useStateValue();
@@ -24,10 +24,10 @@ export function TrackSidebar(props: any) {
       <a
         key={index}
         href={`#${labelCases(name).LS}`}
-        className={`fa-solid fa-circle-dot ${styles.item.concat(
-          " ",
-          active ? styles.active : ""
-        )}`}
+        className={`
+        fa-solid fa-circle-dot 
+        ${styles.item} 
+        ${active ? styles.active : ""}`}
       >
         {innerItems && (
           <i
@@ -35,7 +35,7 @@ export function TrackSidebar(props: any) {
               className: styles.inner.concat(" ", expand ? styles.show : ""),
             }}
           >
-            {name}
+            {labelCases(name).CS}
           </i>
         )}
       </a>

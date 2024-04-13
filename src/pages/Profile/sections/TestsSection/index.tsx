@@ -3,7 +3,6 @@ import { MyDropzone } from "./UploadImage";
 import { Telport } from "./Telport";
 import { Slider } from "../../../../components/Slider";
 import { useTrackSidebar } from "../../../../hooks/useTrackSidebar";
-import { useNearScreen } from "../../../../hooks/useNearScreen";
 import {
   ReactSVG,
   JestSVG,
@@ -14,16 +13,9 @@ import {
   AxiosSVG,
   LogoSVG,
 } from "./../../../../icons";
-import { useEffect } from "react";
 
 export function TestsSection() {
   const [TrackSidebar, ElementWrapper]: any = useTrackSidebar();
-
-  console.log({ TrackSidebar });
-
-  useEffect(() => {
-    // setElements(["logo", "jest", "react", "styled", "next", "axiosref"]);
-  }, []);
 
   const firstSlides = [
     <LogoSVG></LogoSVG>,
@@ -84,12 +76,24 @@ export function TestsSection() {
           }}
         >
           <ElementWrapper>
-            <LogoSVG id="logo" />
-            <JestSVG id="jest" />
-            <ReactSVG id="react" />
-            <StyledComponentsSVG id="styled" />
-            <NextjsSVG id="next" />
-            <AxiosSVG id="axiosref" />
+            <div id="logo">
+              <LogoSVG />
+            </div>
+            <div id="jest">
+              <JestSVG />
+            </div>
+            <div id="react">
+              <ReactSVG />
+            </div>
+            <div id="styled">
+              <StyledComponentsSVG />
+            </div>
+            <div id="next">
+              <NextjsSVG />
+            </div>
+            <div id="axios ">
+              <AxiosSVG />
+            </div>
           </ElementWrapper>
         </div>
       </div>
