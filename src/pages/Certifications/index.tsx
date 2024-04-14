@@ -160,11 +160,6 @@ export function Certifications() {
             visible: isIncluded(c) || isTagIncluded(c),
           })),
         ]);
-        setElements([
-          ...certifications
-            .filter((c: any) => isIncluded(c) || isTagIncluded(c))
-            .map((c: any) => c.title),
-        ]);
       },
     },
   ];
