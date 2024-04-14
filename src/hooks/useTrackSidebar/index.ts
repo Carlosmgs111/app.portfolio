@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { TrackSidebar } from "../../components/Sidebars/TrackSidebar";
 import { cloneElement, Children } from "react";
-import { useNearScreen } from "../../hooks/useNearScreen";
+import { useNearScreen, useNearScreenArray } from "../../hooks/useNearScreen";
 
 export const useTrackSidebar = () => {
   const [refs, setRefs]: any = useState([]);
@@ -21,21 +21,20 @@ export const useTrackSidebar = () => {
       }),
     [indexes]
   );
-
   const ElementWrapper = useMemo(
     () =>
       ({ children }: any): any => {
         const _children = Children.toArray(children);
+        const [, refs] = useNearScreenArray(_children.map(() => false),refreshRefs);
         useEffect(() => {
           setIndexes(_children.map((child: any) => child.props.id));
         }, []);
-        return _children.map((child: any): any => {
-          const [, ref] = useNearScreen(false, refreshRefs);
-          return cloneElement(child, { ref });
+        return _children.map((child: any, index: any): any => {
+          // const [, ref] = useNearScreen(false, refreshRefs);
+          return cloneElement(child, { ref: refs.current[index] });
         });
       },
     []
   );
-
   return [WrappedTrackSidebar, ElementWrapper, setIndexes, refreshRefs];
 };

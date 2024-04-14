@@ -66,7 +66,8 @@ export function Certifications() {
     setError,
   }: any = setFunctions;
 
-  const [TrackSidebar,_, setElements, refreshRefs]: any = useTrackSidebar();
+  const [TrackSidebar, ElementWrapper, setElements, refreshRefs]: any =
+    useTrackSidebar();
 
   const [certificationSchema, setCertificationSchema]: any = useState({
     title: "",
@@ -254,21 +255,25 @@ export function Certifications() {
       >
         {!loading && (
           <div className={styles.main_container}>
-            {certifications.map(
-              (certification: any, index: number) =>
-                certification.visible && (
-                  <Certification
-                    {...{
-                      key: certification.uuid,
-                      initialCertification: certification,
-                      refreshRefs,
-                      setCurrentModal,
-                      updateState,
-                      institutions,
-                    }}
-                  />
-                )
-            )}
+            <ElementWrapper>
+              {certifications.map(
+                (certification: any, index: number) =>
+                  certification.visible && (
+                    <div id={certification.title}>
+                      <Certification
+                        {...{
+                          key: certification.uuid,
+                          initialCertification: certification,
+                          refreshRefs,
+                          setCurrentModal,
+                          updateState,
+                          institutions,
+                        }}
+                      />
+                    </div>
+                  )
+              )}
+            </ElementWrapper>
           </div>
         )}
       </MultiSidebar>

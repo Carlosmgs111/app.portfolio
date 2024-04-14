@@ -25,10 +25,10 @@ export const addCertification = ({
                   ...certifications,
                   ...data.map((c: any) => ({ ...c, visible: true })),
                 ]);
-                setElements([
-                  ...certifications.map((c: any) => c.title),
-                  ...data.map((c: any) => c.title),
-                ]);
+                // setElements([
+                //   ...certifications.map((c: any) => c.title),
+                //   ...data.map((c: any) => c.title),
+                // ]);
                 setCurrentModal(null);
                 reset();
               },
