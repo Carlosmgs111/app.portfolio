@@ -41,7 +41,7 @@ export const useNearScreenArray = (
       observers[index] = new window.IntersectionObserver(
         (entries) => {
           const { isIntersecting }: any = entries[0];
-          show.splice(index, 0, isIntersecting);
+          show.splice(index, 1, isIntersecting);
           setShow([...show]);
           if (cb) cb(current.id, isIntersecting);
         },

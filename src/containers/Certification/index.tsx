@@ -19,7 +19,6 @@ import { format } from "timeago.js";
 export function Certification({
   initialCertification,
   setCurrentModal = () => {},
-  refreshRefs,
   updateState,
   institutions,
 }: any) {
@@ -38,7 +37,7 @@ export function Certification({
     grantedTo,
   }: any = certification;
   const { token, username } = getContextValue(CONTEXTS.Global);
-  const [show, ref]: any = useNearScreen(false, refreshRefs);
+  const [show, ref]: any = useNearScreen(false); // ? Use to lazy loading 💤⏳
 
   // ? 1️⃣ Define the callback to be passed as high order callback
   const updateCallback = (params: any) => {
@@ -52,7 +51,7 @@ export function Certification({
         if (updated) {
           const certificationUpdated = { ...certification, ...data[0] };
           setCertification(certificationUpdated);
-          updateState(({ state, setElements, setCertifications }: any) => {
+          updateState(({ state, setCertifications }: any) => {
             const newCertifications = [...state.certifications];
             newCertifications.splice(
               newCertifications.findIndex(
@@ -61,8 +60,7 @@ export function Certification({
               1,
               certificationUpdated
             );
-            // setCertifications([...newCertifications]); // ? to check
-            setElements(newCertifications.map((d) => d.title));
+            setCertifications([...newCertifications]); // ? to check
           });
         }
       },

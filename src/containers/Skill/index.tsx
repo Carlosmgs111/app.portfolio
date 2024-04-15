@@ -9,14 +9,8 @@ import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
 import { getContextValue, CONTEXTS } from "../../contexts";
 
-export function Skill({
-  state,
-  initialState,
-  updateState,
-  index,
-  refreshRefs,
-}: any) {
-  const [show, ref] = useNearScreen(false, refreshRefs);
+export function Skill({ state, initialState, updateState, index }: any) {
+  const [show, ref] = useNearScreen(false);
   const requestHeaders = headers();
   const [beingEdited, switchBeingEdited] = useToggle(false, true);
   const [skill, setSkill] = useState(initialState);

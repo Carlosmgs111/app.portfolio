@@ -17,7 +17,6 @@ export function TrackSidebar(props: any) {
   const [expand, switchExpand] = useToggle(false, true);
 
   const indexesList: any = [];
-
   items.map((name: any, index: number) => {
     const active = refs.includes(labelCases(name).LS);
     indexesList.push(

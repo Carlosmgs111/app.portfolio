@@ -19,7 +19,7 @@ import { headers } from "../../services/configs";
 export function Skills() {
   const { token, currentLang } = getContextValue(CONTEXTS.Global);
   const requestHeaders = headers();
-  const [TrackSidebar, setElements, refreshRefs]: any = useTrackSidebar();
+  const [TrackSidebar, ElementsWrapper]: any = useTrackSidebar();
   const bannerMessage: any = { es: "Habilidades", en: "Skills" };
   const initialState = {
     skills: [],
@@ -48,7 +48,6 @@ export function Skills() {
       state,
       dispatch,
       actionTypes,
-      setElements,
       setSkills,
     });
 
@@ -56,7 +55,6 @@ export function Skills() {
     runRequest({
       setData: async (data: any) => {
         setSkills(data.map((d: any) => ({ ...d, visible: true })));
-        setElements([...data.map((c: any) => c.name)]);
       },
       setError,
       setLoading,
@@ -97,10 +95,6 @@ export function Skills() {
                             runRequest({
                               setData: (data: any) => {
                                 setSkills([...skills, ...data]);
-                                setElements([
-                                  ...skills.map((p: any) => p.name),
-                                  ...data.map((p: any) => p.name),
-                                ]);
                               },
                               setError,
                               setLoading,
@@ -128,18 +122,19 @@ export function Skills() {
     <Page>
       <MultiSidebar {...{ sidebars }}>
         <div className={styles.main_container}>
-          {skills.map((skill: any, index: number) => (
-            <Skill
-              {...{
-                initialState: skill,
-                key: index,
-                index,
-                refreshRefs,
-                updateState,
-                state,
-              }}
-            />
-          ))}
+          <ElementsWrapper>
+            {skills.map((skill: any, index: number) => (
+              <Skill
+                {...{
+                  initialState: skill,
+                  key: index,
+                  index,
+                  updateState,
+                  state,
+                }}
+              />
+            ))}
+          </ElementsWrapper>
         </div>
       </MultiSidebar>
       <Modal

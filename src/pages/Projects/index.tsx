@@ -19,7 +19,7 @@ import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
 
 export function Projects() {
   const { token, currentLang } = getContextValue(CONTEXTS.Global);
-  const [TrackSidebar, _, setElements, refreshRefs]: any = useTrackSidebar();
+  const [TrackSidebar, ElementsWrapper]: any = useTrackSidebar();
   const requestHeaders = headers();
   const [projectsOptions, setProjectsOptions] = useState({
     stack: [],
@@ -71,7 +71,6 @@ export function Projects() {
       state,
       dispatch,
       actionTypes,
-      setElements,
       setProjects,
     });
 
@@ -127,10 +126,6 @@ export function Projects() {
                               runRequest({
                                 setData: (data: any) => {
                                   setProjects([...projects, ...data]);
-                                  setElements([
-                                    ...projects.map((p: any) => p.name),
-                                    ...data.map((p: any) => p.name),
-                                  ]);
                                 },
                                 setError,
                                 setLoading,
@@ -163,7 +158,6 @@ export function Projects() {
         const { projects, kind, state, stack } = data;
         setProjects([...projects]);
         setProjectsOptions({ kind, state, stack });
-        setElements([...projects.map((project: any) => project.name)]);
       } catch (e) {
         setLoading(false);
         setError(e);
@@ -173,7 +167,6 @@ export function Projects() {
     fetchProjects();
     return () => {
       setProjects([]);
-      refreshRefs([]);
     };
   }, [token]);
 
@@ -188,21 +181,23 @@ export function Projects() {
           {loading ? (
             <ProjectSkeleton />
           ) : (
-            projects.map((project: any, index: number) => (
-              <Project
-                key={index}
-                {...{
-                  initialState: project,
-                  even: index % 2 === 0,
-                  refreshRefs,
-                  updateState,
-                  setCurrentModal,
-                  stateOps,
-                  stackOps,
-                  kindOps,
-                }}
-              />
-            ))
+            <ElementsWrapper>
+              {projects.map((project: any, index: number) => (
+                <Project
+                  key={index}
+                  {...{
+                    id: project.name,
+                    initialState: project,
+                    even: index % 2 === 0,
+                    updateState,
+                    setCurrentModal,
+                    stateOps,
+                    stackOps,
+                    kindOps,
+                  }}
+                />
+              ))}
+            </ElementsWrapper>
           )}
         </div>
       </MultiSidebar>

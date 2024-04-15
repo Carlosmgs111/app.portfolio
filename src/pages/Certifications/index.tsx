@@ -66,8 +66,7 @@ export function Certifications() {
     setError,
   }: any = setFunctions;
 
-  const [TrackSidebar, ElementWrapper, setElements, refreshRefs]: any =
-    useTrackSidebar();
+  const [TrackSidebar, ElementWrapper]: any = useTrackSidebar();
 
   const [certificationSchema, setCertificationSchema]: any = useState({
     title: "",
@@ -101,14 +100,12 @@ export function Certifications() {
     ),
     addCertification: addCertification({
       certificationSchema,
-      setElements,
       setCertifications,
       certifications,
       setCurrentModal,
     }),
     addInstitution: addInstitution({
       institutionSchema,
-      setElements,
       setInstitutions,
       institutions,
     }),
@@ -215,7 +212,6 @@ export function Certifications() {
       state,
       dispatch,
       actionTypes,
-      setElements,
       ...setFunctions,
     });
 
@@ -223,7 +219,6 @@ export function Certifications() {
     runRequest({
       setData: async (data: any) => {
         setCertifications(data.map((d: any) => ({ ...d, visible: true })));
-        setElements([...data.map((c: any) => c.title)]);
         await runRequest({
           setData: (data: any) => {
             setCertificationSchema({
@@ -259,18 +254,16 @@ export function Certifications() {
               {certifications.map(
                 (certification: any, index: number) =>
                   certification.visible && (
-                    <div id={certification.title}>
-                      <Certification
-                        {...{
-                          key: certification.uuid,
-                          initialCertification: certification,
-                          refreshRefs,
-                          setCurrentModal,
-                          updateState,
-                          institutions,
-                        }}
-                      />
-                    </div>
+                    <Certification
+                      {...{
+                        id: certification.title,
+                        key: certification.uuid,
+                        initialCertification: certification,
+                        setCurrentModal,
+                        updateState,
+                        institutions,
+                      }}
+                    />
                   )
               )}
             </ElementWrapper>
