@@ -4,8 +4,6 @@ import { cloneElement, Children } from "react";
 import { useNearScreenArray } from "../useNearScreen";
 import { labelCases } from "../../utils";
 
-let TrackSidebar, ElementsWrapper;
-
 export const useTrackSidebar = () => {
   const [refs, setRefs]: any = useState([]);
   const [indexes, setIndexes]: any = useState([]);
@@ -14,7 +12,7 @@ export const useTrackSidebar = () => {
     if (!show && refs.includes(ref)) refs.splice(refs.indexOf(ref), 1);
     setRefs([...refs]);
   };
-  TrackSidebar = useMemo(
+  const TrackSidebar = useMemo(
     () => (props: any) =>
       T({
         ...props,
@@ -24,7 +22,7 @@ export const useTrackSidebar = () => {
       }),
     [indexes]
   );
-  ElementsWrapper = useMemo(
+  const ElementsWrapper = useMemo(
     () =>
       ({ children }: any): any => {
         const _children = Children.toArray(children);
@@ -46,7 +44,5 @@ export const useTrackSidebar = () => {
       },
     []
   );
-  return [TrackSidebar, ElementsWrapper, setIndexes, refreshRefs];
+  return [TrackSidebar, ElementsWrapper];
 };
-
-export default { TrackSidebar, ElementsWrapper };
