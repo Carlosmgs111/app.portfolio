@@ -19,7 +19,7 @@ import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
 
 export function Projects() {
   const { token, currentLang } = getContextValue(CONTEXTS.Global);
-  const [TrackSidebar, ElementsWrapper]: any = useTrackSidebar();
+  const { TrackSidebar, ContentWrapper }: any = useTrackSidebar();
   const requestHeaders = headers();
   const [projectsOptions, setProjectsOptions] = useState({
     stack: [],
@@ -181,7 +181,7 @@ export function Projects() {
           {loading ? (
             <ProjectSkeleton />
           ) : (
-            <ElementsWrapper>
+            <ContentWrapper>
               {projects.map((project: any, index: number) => (
                 <Project
                   key={index}
@@ -197,7 +197,7 @@ export function Projects() {
                   }}
                 />
               ))}
-            </ElementsWrapper>
+            </ContentWrapper>
           )}
         </div>
       </MultiSidebar>

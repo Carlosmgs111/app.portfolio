@@ -22,7 +22,7 @@ export const useTrackSidebar = () => {
       }),
     [indexes]
   );
-  const ElementsWrapper = useMemo(
+  const ContentWrapper = useMemo(
     () =>
       ({ children }: any): any => {
         const _children = Children.toArray(children);
@@ -44,5 +44,5 @@ export const useTrackSidebar = () => {
       },
     []
   );
-  return [TrackSidebar, ElementsWrapper];
+  return { TrackSidebar, ContentWrapper };
 };

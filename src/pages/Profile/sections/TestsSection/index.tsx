@@ -15,7 +15,7 @@ import {
 } from "./../../../../icons";
 
 export function TestsSection() {
-  const [TrackSidebar, ElementWrapper]: any = useTrackSidebar();
+  const { TrackSidebar, ContentWrapper }: any = useTrackSidebar();
 
   const firstSlides = [
     <LogoSVG></LogoSVG>,
@@ -75,14 +75,14 @@ export function TestsSection() {
             gap: "6rem",
           }}
         >
-          <ElementWrapper>
+          <ContentWrapper>
             <LogoSVG id="logo" />
             <JestSVG id="jest" />
             <ReactSVG id="re Act" />
             <StyledComponentsSVG id="styled" />
             <NextjsSVG id="next" />
             <AxiosSVG id="axios " />
-          </ElementWrapper>
+          </ContentWrapper>
         </div>
       </div>
     </div>

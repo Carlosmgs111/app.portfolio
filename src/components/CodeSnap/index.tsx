@@ -38,27 +38,97 @@ const parser = (text: string, words: []) => {
       currentTokenIndex++;
     };
     checkChar("constructor", () => (
-      <span style={{ color: "#fd06f9" }}>constructor</span>
+      <span style={{ color: "#fd06f9" }} key={index}>
+        constructor
+      </span>
     ));
-    checkChar("return", () => <span style={{ color: "#0de99c" }}>return</span>);
-    checkChar("const", () => <span style={{ color: "#0de99c" }}>const</span>);
-    checkChar("string", () => <span style={{ color: "#10a1e4" }}>string</span>);
-    checkChar("new", () => <span style={{ color: "#0de99c" }}>new</span>);
-    checkChar("this", () => <span style={{ color: "#0de99c" }}>this</span>);
-    checkChar("{", () => <span style={{ color: "#fd9e06" }}>{char}</span>);
-    checkChar("}", () => <span style={{ color: "#fd9e06" }}>{char}</span>);
-    checkChar(";", () => <span style={{ color: "#fd4806" }}>{char}</span>);
-    checkChar("=", () => <span style={{ color: "#fd4806" }}>{char}</span>);
-    checkChar("$", () => <span style={{ color: "#fd4806" }}>{char}</span>);
-    checkChar(":", () => <span style={{ color: "#fd4806" }}>{char}</span>);
-    checkChar(",", () => <span style={{ color: "#fd4806" }}>{char}</span>);
-    checkChar(".", () => <span style={{ color: "#fd4806" }}>{char}</span>);
-    checkChar(")", () => <span style={{ color: "#fd9e06" }}>{char}</span>);
-    checkChar("`", () => <span style={{ color: "#aee90d" }}>{char}</span>);
-    checkChar("|", () => <span style={{ color: "#0bf2f6" }}>{char}</span>);
+    checkChar("return", () => (
+      <span style={{ color: "#0de99c" }} key={index}>
+        return
+      </span>
+    ));
+    checkChar("const", () => (
+      <span style={{ color: "#0de99c" }} key={index}>
+        const
+      </span>
+    ));
+    checkChar("string", () => (
+      <span style={{ color: "#10a1e4" }} key={index}>
+        string
+      </span>
+    ));
+    checkChar("new", () => (
+      <span style={{ color: "#0de99c" }} key={index}>
+        new
+      </span>
+    ));
+    checkChar("this", () => (
+      <span style={{ color: "#0de99c" }} key={index}>
+        this
+      </span>
+    ));
+    checkChar("{", () => (
+      <span style={{ color: "#fd9e06" }} key={index}>
+        {char}
+      </span>
+    ));
+    checkChar("}", () => (
+      <span style={{ color: "#fd9e06" }} key={index}>
+        {char}
+      </span>
+    ));
+    checkChar(";", () => (
+      <span style={{ color: "#fd4806" }} key={index}>
+        {char}
+      </span>
+    ));
+    checkChar("=", () => (
+      <span style={{ color: "#fd4806" }} key={index}>
+        {char}
+      </span>
+    ));
+    checkChar("$", () => (
+      <span style={{ color: "#fd4806" }} key={index}>
+        {char}
+      </span>
+    ));
+    checkChar(":", () => (
+      <span style={{ color: "#fd4806" }} key={index}>
+        {char}
+      </span>
+    ));
+    checkChar(",", () => (
+      <span style={{ color: "#fd4806" }} key={index}>
+        {char}
+      </span>
+    ));
+    checkChar(".", () => (
+      <span style={{ color: "#fd4806" }} key={index}>
+        {char}
+      </span>
+    ));
+    checkChar(")", () => (
+      <span style={{ color: "#fd9e06" }} key={index}>
+        {char}
+      </span>
+    ));
+    checkChar("`", () => (
+      <span style={{ color: "#aee90d" }} key={index}>
+        {char}
+      </span>
+    ));
+    checkChar("|", () => (
+      <span style={{ color: "#0bf2f6" }} key={index}>
+        {char}
+      </span>
+    ));
     checkChar(
       () => Number(char),
-      () => <span style={{ color: "#f60b6d" }}>{char}</span>
+      () => (
+        <span style={{ color: "#f60b6d" }} key={index}>
+          {char}
+        </span>
+      )
     );
     checkChar('"', () => {
       let content: any = "";
@@ -74,7 +144,9 @@ const parser = (text: string, words: []) => {
       content = content.split("");
       content.pop();
       content = content.join("");
-      return <span style={{ color: "#aee90d" }}>{`"${content}"`}</span>;
+      return (
+        <span style={{ color: "#aee90d" }} key={index}>{`"${content}"`}</span>
+      );
     });
     checkChar("(", () => {
       let funcName: any = "";
@@ -93,19 +165,31 @@ const parser = (text: string, words: []) => {
         funcName.reverse();
         funcName = funcName.join("");
       }
-      const rule = [<span style={{ color: "#fd9e06" }}>{char}</span>];
+      const rule = [
+        <span style={{ color: "#fd9e06" }} key={`ch-${index}`}>
+          {char}
+        </span>,
+      ];
       if (typeof tokens[currentTokenIndex - 1] === "string") {
         tokens[currentTokenIndex - 1] = tokens[currentTokenIndex - 1].replace(
           funcName,
           ""
         );
-        rule.unshift(<span style={{ color: "#fd9e06" }}>{funcName}</span>);
+        rule.unshift(
+          <span style={{ color: "#fd9e06" }} key={index}>
+            {funcName}
+          </span>
+        );
       }
       return rule;
     });
     checkChar(
       "class",
-      () => <span style={{ color: "#0de99c" }}>class</span>,
+      () => (
+        <span style={{ color: "#0de99c" }} key={`c-${index}`}>
+          class
+        </span>
+      ),
       () => {
         let className: any = "";
         for (let i = 0; i > -1; i++) {
@@ -120,8 +204,12 @@ const parser = (text: string, words: []) => {
         className.pop();
         className = className.join("");
         return [
-          <span style={{ color: "#fd06f9" }}>{className}</span>,
-          <span style={{ color: "#fd9e06" }}>{"{"}</span>,
+          <span style={{ color: "#fd06f9" }} key={`cl-${index}`}>
+            {className}
+          </span>,
+          <span style={{ color: "#fd9e06" }} key={index}>
+            {"{"}
+          </span>,
         ];
       }
     );
@@ -143,7 +231,7 @@ const parser = (text: string, words: []) => {
       funcName.pop();
       funcName = funcName.join("");
       return (
-        <span style={{ display: "inline-flex" }}>
+        <span style={{ display: "inline-flex" }} key={index}>
           {typings[funcName]({
             text: "Developer",
             fontSize: "1.6rem",

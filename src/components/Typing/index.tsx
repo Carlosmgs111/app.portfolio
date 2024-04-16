@@ -22,12 +22,18 @@ export const Typing = ({
   const timing = `${baseTiming * wordsLength}s`;
   return (
     <TypingContainer
-      timing={timing}
-      initWord={initWord}
-      wordsRules={wordsRules}
-      style={{ fontSize, fontWeight }}
+      {...{
+        $timing: timing,
+        $initword: initWord,
+        $wordsrules: wordsRules,
+        style: { fontSize, fontWeight },
+      }}
     >
-      <TypingText timing={timing} cursor={cursor} typingRules={typingRules}>
+      <TypingText
+        $timing={timing}
+        $cursor={cursor.toString()}
+        $typingrules={typingRules}
+      >
         <span></span>
       </TypingText>
       <p>{text}</p>

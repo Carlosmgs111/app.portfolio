@@ -19,7 +19,7 @@ import { headers } from "../../services/configs";
 export function Skills() {
   const { token, currentLang } = getContextValue(CONTEXTS.Global);
   const requestHeaders = headers();
-  const [TrackSidebar, ElementsWrapper]: any = useTrackSidebar();
+  const {TrackSidebar, ContentWrapper}: any = useTrackSidebar();
   const bannerMessage: any = { es: "Habilidades", en: "Skills" };
   const initialState = {
     skills: [],
@@ -122,7 +122,7 @@ export function Skills() {
     <Page>
       <MultiSidebar {...{ sidebars }}>
         <div className={styles.main_container}>
-          <ElementsWrapper>
+          <ContentWrapper>
             {skills.map((skill: any, index: number) => (
               <Skill
                 {...{
@@ -134,7 +134,7 @@ export function Skills() {
                 }}
               />
             ))}
-          </ElementsWrapper>
+          </ContentWrapper>
         </div>
       </MultiSidebar>
       <Modal

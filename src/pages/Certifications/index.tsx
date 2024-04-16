@@ -66,7 +66,7 @@ export function Certifications() {
     setError,
   }: any = setFunctions;
 
-  const [TrackSidebar, ElementWrapper]: any = useTrackSidebar();
+  const {TrackSidebar, ContentWrapper}: any = useTrackSidebar();
 
   const [certificationSchema, setCertificationSchema]: any = useState({
     title: "",
@@ -250,7 +250,7 @@ export function Certifications() {
       >
         {!loading && (
           <div className={styles.main_container}>
-            <ElementWrapper>
+            <ContentWrapper>
               {certifications.map(
                 (certification: any, index: number) =>
                   certification.visible && (
@@ -266,7 +266,7 @@ export function Certifications() {
                     />
                   )
               )}
-            </ElementWrapper>
+            </ContentWrapper>
           </div>
         )}
       </MultiSidebar>
