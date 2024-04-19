@@ -165,7 +165,7 @@ export function Certification({
             target="_blank"
             rel="noreferrer"
             href={url}
-            className={`fa-solid fa-link ${styles.url}`}
+            className={`fa-solid fa-up-right-from-square ${styles.url}`}
           >
             {" "}
           </a>

@@ -71,14 +71,13 @@ export const Project = ({
         console.log({ updated });
         if (updated) {
           const projectUpdated = { ...project, ...data[0] };
-          updateState(({ state, setElements }: any) => {
+          updateState(({ state }: any) => {
             const newProjects = [...state.projects];
             newProjects.splice(
               newProjects.findIndex((c) => c.uuid === projectUpdated.uuid),
               1,
               projectUpdated
             );
-            setElements(newProjects.map((p) => p.name));
           });
           setProject({ ...projectUpdated });
         }
@@ -188,15 +187,18 @@ export const Project = ({
           </div>
           <div className={styles.metadata}>
             <div className={styles.stack}>
-              {stack.map((s: any) => SVGIndexes[s] && SVGIndexes[s]())}
+              {stack.map(
+                (s: any, index: any) =>
+                  SVGIndexes[s] && SVGIndexes[s]({ _key: index })
+              )}
             </div>
             <div className={styles.state}>
               <span>
                 <i className={stateIcons[state]}></i>
               </span>
               <span>
-                {kind.map((k: any) => (
-                  <i className={kindIcons[k]}></i>
+                {kind.map((k: any, index: any) => (
+                  <i key={index} className={kindIcons[k]}></i>
                 ))}
               </span>
               <span>v {version}</span>

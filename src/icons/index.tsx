@@ -31,6 +31,7 @@ import { GitSVG } from "./GitSVG";
 import { LogoSVG } from "./LogoSVG";
 import { CSSSVG } from "./CSSSVG";
 import { HTMLSVG } from "./HTMLSVG";
+
 export const SVGIndexes: any = {
   jest: JestSVG,
   react: ReactSVG,
@@ -48,7 +49,7 @@ export const SVGIndexes: any = {
   nodejs: NodejsSVG,
   mongodb: MongodbSVG,
   postgresql: PostgresSqlSVG,
-  espress: ExpressSVG,
+  express: ExpressSVG,
   sequelize: SequelizeSVG,
   mongoose: MongooseSVG,
   passport: PassportSVG,
@@ -63,6 +64,7 @@ export const SVGIndexes: any = {
   css: CSSSVG,
   html: HTMLSVG,
 };
+
 export {
   GitHubSVG,
   LinkedInSVG,

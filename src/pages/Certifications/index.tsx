@@ -66,7 +66,7 @@ export function Certifications() {
     setError,
   }: any = setFunctions;
 
-  const {TrackSidebar, ContentWrapper}: any = useTrackSidebar();
+  const { TrackSidebar, ContentWrapper }: any = useTrackSidebar();
 
   const [certificationSchema, setCertificationSchema]: any = useState({
     title: "",
@@ -249,24 +249,27 @@ export function Certifications() {
         }}
       >
         {!loading && (
-          <div className={styles.main_container}>
-            <ContentWrapper>
-              {certifications.map(
-                (certification: any, index: number) =>
-                  certification.visible && (
-                    <Certification
-                      {...{
-                        id: certification.title,
-                        key: certification.uuid,
-                        initialCertification: certification,
-                        setCurrentModal,
-                        updateState,
-                        institutions,
-                      }}
-                    />
-                  )
-              )}
-            </ContentWrapper>
+          <div>
+            <div className={styles.background}></div>
+            <div className={styles.main_container}>
+              <ContentWrapper>
+                {certifications.map(
+                  (certification: any, index: number) =>
+                    certification.visible && (
+                      <Certification
+                        {...{
+                          id: certification.title,
+                          key: certification.uuid,
+                          initialCertification: certification,
+                          setCurrentModal,
+                          updateState,
+                          institutions,
+                        }}
+                      />
+                    )
+                )}
+              </ContentWrapper>
+            </div>
           </div>
         )}
       </MultiSidebar>

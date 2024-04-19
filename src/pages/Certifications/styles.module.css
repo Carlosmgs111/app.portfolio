@@ -1,16 +1,23 @@
-.container {
-  display: flex;
-  position: sticky;
+.background {
+  position: fixed;
+  background: radial-gradient(
+    circle at 90% 10%,
+    var(--main-color-950),
+    var(--moonlit-asteroid-700),
+    var(--moonlit-asteroid-800) 40%,
+    var(--moonlit-asteroid-900)
+  );
+  height: 100vh;
   width: 100%;
 }
-
 .main_container {
   align-items: center;
   justify-content: center;
   display: flex;
-  gap: 2rem;
+  gap: .8rem;
   flex-wrap: wrap;
   padding-top: 10rem;
+  padding-bottom: 20rem;
   width: 100%;
 }
 .button {
@@ -28,9 +35,8 @@
   overflow: scroll;
 }
 
-.dashboard::-webkit-scrollbar{
+.dashboard::-webkit-scrollbar {
   display: none;
-
 }
 
 @media screen and (max-width: 700px) {
