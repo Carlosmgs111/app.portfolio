@@ -5,6 +5,7 @@ import "./index.css";
 import { App } from "./app";
 import { setActions } from "./utils";
 import content from "../public/content.json";
+import { ToastContainer } from "react-toastify";
 
 const { defaultLang } = content;
 
@@ -51,6 +52,7 @@ const rootElement: any = document.getElementById("root");
 ReactDOM.createRoot(rootElement).render(
   <Router>
     <StateProvider {...{ initialState, reducer }}>
+      <ToastContainer />
       <App />
     </StateProvider>
   </Router>

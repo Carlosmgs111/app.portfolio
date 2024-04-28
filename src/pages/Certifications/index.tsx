@@ -23,7 +23,7 @@ import { OnError } from "../../components/OnError";
 import { Modal } from "../../components/Modal";
 import styles from "./styles.module.css";
 import { getContextValue, CONTEXTS } from "../../contexts";
-import { runRequest } from "../../services/runRequest";
+import { runRequest} from "../../services/runRequest";
 import { useToggle } from "../../hooks/useToggle";
 import { Mapfy } from "../../utils";
 import { addCertification, addInstitution } from "./sections";
@@ -231,11 +231,11 @@ export function Certifications() {
             setInstitutions(data);
           },
           setError,
-          setLoading,
+          setLoading: () => setTimeout(setLoading, 2000),
         }).get("institutions");
       },
       setError,
-      setLoading,
+      setLoading: () => setTimeout(setLoading, 2000),
     }).get("certifications" /* , { ...requestHeaders } */);
 
     return () => {};
@@ -248,9 +248,9 @@ export function Certifications() {
           sidebars,
         }}
       >
-        {!loading && (
-          <div>
-            <div className={styles.background}></div>
+        <div>
+          <div className={styles.background}></div>
+          {!loading && (
             <div className={styles.main_container}>
               <ContentWrapper>
                 {certifications.map(
@@ -270,8 +270,8 @@ export function Certifications() {
                 )}
               </ContentWrapper>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </MultiSidebar>
       {/* // ? ⬇️ Start page support components */}
       <OnLoading

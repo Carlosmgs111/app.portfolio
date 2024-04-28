@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Dropzone } from "../../../../../components/DropZone";
-import { runRequest } from "../../../../../services/runRequest";
+import { runRequest} from "../../../../../services/runRequest";
 import { headers } from "../../../../../services/configs";
 
 export function MyDropzone() {

@@ -182,7 +182,8 @@
 /* //? SKELETON */
 .skeleton {
   filter: drop-shadow(-6px 6px 2px #000000);
-  background-color: #0808084d;
+  background-color: #08080814;
+  backdrop-filter: brightness(80%) blur(0.8rem);
 }
 .skeleton::after {
   position: absolute;

@@ -18,6 +18,7 @@ export const Typing = ({
   const typingRules = composeTypingRules(wordsLength);
   const composedWords = composeWordsRules(words);
   const wordsRules = composedWords.join("");
+  console.log({composedWords})
   const initWord = composedWords[0].split("{")[1].split("}")[0];
   const timing = `${baseTiming * wordsLength}s`;
   return (

@@ -1,6 +1,6 @@
 import { DefineForms } from "../../../components/DefineForms";
 import { useState } from "react";
-import { runRequest } from "../../../services/runRequest";
+import { runRequest} from "../../../services/runRequest";
 import { headers } from "../../../services/configs";
 import { INPUT_TYPES } from "../../../components/DefineForms";
 

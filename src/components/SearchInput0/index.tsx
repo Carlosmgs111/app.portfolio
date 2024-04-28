@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { runRequest } from "../../services/runRequest";
+import { runRequest} from "../../services/runRequest";
 import { getContext, CONTEXTS } from "../../contexts";
 import styles from './styles.module.css';
 export const SearchInput0 = () => {

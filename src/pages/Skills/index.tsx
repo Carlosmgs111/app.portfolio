@@ -13,7 +13,7 @@ import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
 import { DefineForms } from "../../components/DefineForms";
 import { Modal } from "../../components/Modal";
 import { Page } from "../../components/Page";
-import { runRequest } from "../../services/runRequest";
+import { runRequest} from "../../services/runRequest";
 import { headers } from "../../services/configs";
 
 export function Skills() {

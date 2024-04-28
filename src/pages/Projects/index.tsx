@@ -12,7 +12,7 @@ import {
 } from "../../components/Sidebars/PanelSidebar";
 import { Page } from "../../components/Page";
 import { Modal } from "../../components/Modal";
-import { runRequest } from "../../services/runRequest";
+import { runRequest} from "../../services/runRequest";
 import { DefineForms, INPUT_TYPES } from "../../components/DefineForms";
 import { headers } from "../../services/configs";
 import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
@@ -162,7 +162,7 @@ export function Projects() {
         setLoading(false);
         setError(e);
       }
-      setLoading(false);
+      setTimeout(() => setLoading(false), 2000);
     };
     fetchProjects();
     return () => {

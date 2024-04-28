@@ -1,7 +1,7 @@
-import { runRequest } from "../../../services/runRequest";
+import { DefineForms } from "../../../components/DefineForms";
+import { runRequest} from "../../../services/runRequest";
 import { headers } from "../../../services/configs";
 import styles from "../styles.module.css";
-import { DefineForms } from "../../../components/DefineForms";
 
 export const addCertification = ({
   certificationSchema,
@@ -27,7 +27,8 @@ export const addCertification = ({
                 setCurrentModal(null);
                 reset();
               },
-              setError,
+              setError: (e: any) =>
+                setError(new Error(e.response.data.message)),
               setLoading,
             }).post(
               `certifications/certifications`,

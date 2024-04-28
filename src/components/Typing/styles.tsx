@@ -1,10 +1,10 @@
 import styled, { css, keyframes } from "styled-components";
 
-const words = ({ $wordsRules }: any) => keyframes`
-  ${$wordsRules}
+const words = ({ $wordsrules }: any) => keyframes`
+  ${$wordsrules}
 `;
 const typing = ({ $typingrules }: any) => keyframes`
-${$typingrules}
+  ${$typingrules}
 `;
 const cursorAnimation = keyframes` to {
   border-right: 0.2rem solid #c2c2c2;

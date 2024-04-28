@@ -1,6 +1,6 @@
 import styles from "../styles.module.css";
 import { DefineForms } from "../../../components/DefineForms";
-import { runRequest } from "../../../services/runRequest";
+import { runRequest} from "../../../services/runRequest";
 import { headers } from "../../../services/configs";
 
 export const addInstitution = ({

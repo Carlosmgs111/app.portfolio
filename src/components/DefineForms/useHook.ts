@@ -124,6 +124,8 @@ export function useHook({
   const reset = () => {
     setSchema({});
     setSchema({ index: genRandomId(), payload: baseSchema });
+    setError(false)
+    setLoading(false)
   };
 
   if (highOrderCallback)
