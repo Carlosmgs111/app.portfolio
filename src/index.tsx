@@ -20,7 +20,7 @@ const initialState = {
   privilege: "",
   avatar: "",
   loading: true,
-  searchedUsername: "",
+  searchedusername: "",
   currentLang: defaultLang,
   sidebarFloat: true,
 };
@@ -37,7 +37,7 @@ const reducer = (state: any, action: any) => {
       ...payload,
     },
     [actionTypes.setLoading]: { ...state, loading: payload },
-    [actionTypes.setSearchedUsername]: { ...state, searchedUsername: payload },
+    [actionTypes.setSearchedusername]: { ...state, searchedusername: payload },
     [actionTypes.setCurrentLang]: { ...state, currentLang: payload },
     [actionTypes.setSidebarFloat]: { ...state, sidebarFloat: payload },
     [actionTypes.reset]: {

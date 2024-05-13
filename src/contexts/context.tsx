@@ -10,7 +10,7 @@ export const StateProvider = ({ reducer, initialState, children }: any) => (
   <StateContext.Provider value={useReducer(reducer, initialState)}>
     {children
       ? Children.toArray(children).map((child: any) =>
-          cloneElement(child, { withContext: true })
+          cloneElement(child, { withcontext: 1 })
         )
       : null}
   </StateContext.Provider>

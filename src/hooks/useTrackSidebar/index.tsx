@@ -36,7 +36,11 @@ export const useTrackSidebar = () => {
         }, [_childrenIds.length]);
         return _children.map((child: any, index: any): any => {
           return (
-            <div ref={_refs.current[index]} id={labelCases(child.props.id).LS}>
+            <div
+              key={index}
+              ref={_refs.current[index]}
+              id={labelCases(child.props.id).LS}
+            >
               {cloneElement(child, {})}
             </div>
           );

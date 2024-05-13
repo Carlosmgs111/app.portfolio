@@ -59,7 +59,7 @@ export const MultiSidebar = (props: any) => {
           >
             {sidebars.map((sidebar: any, index: number) =>
               injectAttrsToReactElements([sidebar], {
-                active: activeSidebars.includes(sidebar.props.id),
+                active: Number(activeSidebars.includes(sidebar.props.id)),
                 key: index,
               })
             )}
@@ -89,9 +89,10 @@ export const MultiSidebar = (props: any) => {
   return children ? (
     <div className={styles.wrapper}>
       {main}
-      {Children.toArray(children).map((child: any) =>
+      {Children.toArray(children).map((child: any, index: any) =>
         cloneElement(child, {
           ...child.props,
+          key: index,
         })
       )}
     </div>

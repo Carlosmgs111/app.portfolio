@@ -9,7 +9,7 @@ export function TrackSidebar(props: any) {
     refs = [],
     innerItems = true,
     direction = "column",
-    active = true,
+    active = 1,
   }: any = props;
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
   const [{ token, loading: globalLoading }, dispatch] = useStateValue();

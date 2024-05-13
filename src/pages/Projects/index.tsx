@@ -18,7 +18,7 @@ import { headers } from "../../services/configs";
 import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
 import { Helmet } from "react-helmet";
 
-export function Projects() {
+export function Projects({}: any) {
   const { token, currentLang } = getContextValue(CONTEXTS.Global);
   const { TrackSidebar, ContentWrapper }: any = useTrackSidebar();
   const requestHeaders = headers();
@@ -163,7 +163,7 @@ export function Projects() {
         setLoading(false);
         setError(e);
       }
-      setTimeout(() => setLoading(false), 2000);
+      setLoading(false);
     };
     fetchProjects();
     return () => {

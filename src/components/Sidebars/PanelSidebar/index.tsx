@@ -20,7 +20,7 @@ export const innerItems = Object.freeze({
 });
 
 export function PanelSidebar(props: any) {
-  const { children = [], items = [], expanded = false, active = true } = props;
+  const { children = [], items = [], expanded = 0, active = 1 } = props;
 
   return (
     <div className={`${styles.body} ${active ? styles.active : ""}`}>

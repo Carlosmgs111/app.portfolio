@@ -1,24 +1,19 @@
 import styles from "./styles.module.css";
 import Navigation from "../components/Navigation";
-import { Routes } from "react-router-dom";
 import { Login } from "../components/Login";
-import { getContext, CONTEXTS } from "../contexts";
-import { RoutesFactory, NavigationItemsFactory } from "../pages/routers";
+import { useStateValue } from "../contexts/context";
 import { useApp } from "../hooks/useApp";
-import { Home, Skills, Projects, Certifications, Profile } from "../pages";
+import { Home, Projects, Certifications, Profile } from "../pages";
 import { Modal } from "../components/Modal";
-import { injectAttrsToReactElements } from "../utils";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import path from "path";
+import { Router } from "../components/Router";
 
 export function App() {
   const { clearAuth } = useApp();
-  const [{ useStateValue }] = getContext(CONTEXTS.Global);
   const [{ token, avatar, searchedUsername, currentLang }] = useStateValue();
   const [showFixed, setShowFixed] = useState(false);
   const [currentModal, setCurrentModal]: any = useState(null);
-  // useScroll()
 
   useEffect(() => {
     const onScroll = (e: any) => {
@@ -33,41 +28,34 @@ export function App() {
     es: [
       {
         label: "Proyectos",
-        path: "projects",
+        to: "projects",
       },
       {
         label: "Certificados",
-        path: "certifications",
+        to: "certifications",
       },
-      "Blog",
+      {
+        label: "Blog",
+        to: "blog",
+      },
     ],
     en: [
       {
         label: "Projects",
-        path: "projects",
+        to: "projects",
       },
       {
         label: "Certifications",
-        path: "certifications",
+        to: "certifications",
       },
-      "Blog",
+      {
+        label: "Blog",
+        to: "blog",
+      },
     ],
   };
 
-  // if (token)
-  //   pages[currentLang].push({
-  //     item: (
-  //       <img
-  //         className={styles.avatar}
-  //         id="nonMark"
-  //         src={avatar}
-  //         alt="Profile user avatar"
-  //       />
-  //     ),
-  //     path: "profile",
-  //   });
-
-  const inConstruction = (
+  const InConstruction = ({}: any) => (
     <Modal
       {...{
         over: false,
@@ -92,10 +80,7 @@ export function App() {
       </Helmet>
       <div className={styles.header}>
         <Navigation
-          pages={[
-            { label: "Certifications", to: "certifications" },
-            { label: "Projects", to: "projects" },
-          ]}
+          pages={pages[currentLang]}
           login={{
             to: "profile",
             onClick: (e: any) => {
@@ -108,33 +93,14 @@ export function App() {
         ></Navigation>
       </div>
       <div className={styles.content}>
-        <Routes>
-          {RoutesFactory({
-            root: "",
-            element: <Home />,
-          })}
-          {RoutesFactory({
-            root: "profile",
-            element: <Profile {...{ clearAuth }} />,
-          })}
-          {RoutesFactory({
-            root: "projects",
-            element: <Projects />,
-          })}
-          {/* {RoutesFactory({
-            root: "skills",
-            element: <Skills />,
-          })} */}
-          {RoutesFactory({
-            root: "certifications",
-            subDomains: ["uuid", "title"],
-            element: <Certifications />,
-          })}
-          {RoutesFactory({
-            root: "blog",
-            element: inConstruction,
-          })}
-        </Routes>
+        <Router>
+          <Home path="/" />
+          <Home path="home" />
+          <Profile path="profile" {...{ clearAuth }} />
+          <Projects path="projects" />
+          <Certifications path="certifications" />
+          <InConstruction path="blog" />
+        </Router>
       </div>
       <Modal
         {...{

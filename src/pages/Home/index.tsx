@@ -34,7 +34,7 @@ import {
   GitSVG,
 } from "./../../icons";
 
-export function Home() {
+export function Home({}: any) {
   const { summary }: any = content;
   const [{ currentLang }] = useStateValue();
   const literalCodeSnapshot = `1 | class Developer {

@@ -6,7 +6,7 @@ import { getContextValue, CONTEXTS } from "../../contexts";
 export function Page({ children, name }: any) {
   const childrens = Children.toArray(children);
   const location = useLocation();
-  const { searchedUsername } = getContextValue(CONTEXTS.Global);
+  const { searchedusername } = getContextValue(CONTEXTS.Global);
   const [searchParams, setSearchParams] = useSearchParams();
   /*  const [searchedUsername, setSearchedUsername] = useState(
     searchParams.get("username")
@@ -15,7 +15,7 @@ export function Page({ children, name }: any) {
   return (
     <div className={styles.page}>
       {childrens.map((child: any) => {
-        return cloneElement(child, { searchedUsername });
+        return cloneElement(child, { searchedusername });
       })}
     </div>
   );

@@ -4,7 +4,7 @@ import { useToggle } from "../../hooks/useToggle";
 import { labelCases } from "../../utils";
 import { Component, useEffect, useState } from "react";
 import { runButtonBehavior } from "../../utils";
-import { runRequest} from "../../services/runRequest";
+import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { SVGIndexes } from "../../icons";
@@ -187,10 +187,10 @@ export const Project = ({
           </div>
           <div className={styles.metadata}>
             <div className={styles.stack}>
-              {stack.map(
-                (s: any, index: any) =>
-                  SVGIndexes[s] && SVGIndexes[s]({ _key: index })
-              )}
+              {stack.map((s: any, index: any) => {
+                const Component = SVGIndexes[s] && SVGIndexes[s];
+                return <Component key={index} />;
+              })}
             </div>
             <div className={styles.state}>
               <span>

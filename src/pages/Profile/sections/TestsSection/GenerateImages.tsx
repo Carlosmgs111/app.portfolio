@@ -89,7 +89,6 @@ export function GenerateImage() {
     }); */
     setLoading(false);
     if (Array.isArray(messageResult)) setImages(messageResult);
-    console.log({ messageResult });
   };
 
   // ? 2️⃣ Function to obtain the provided callback as the high order callback to be passed to
@@ -101,7 +100,6 @@ export function GenerateImage() {
   useEffect(() => {
     runRequest({
       setData: (data: any) => {
-        console.log({ data });
         const { outputs, sizes, inferenceSteps, guidanceScale } = data;
         setSettings({
           numeroDeResultados: {

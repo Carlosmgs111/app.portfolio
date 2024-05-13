@@ -23,13 +23,13 @@ import { OnError } from "../../components/OnError";
 import { Modal } from "../../components/Modal";
 import styles from "./styles.module.css";
 import { getContextValue, CONTEXTS } from "../../contexts";
-import { runRequest} from "../../services/runRequest";
+import { runRequest } from "../../services/runRequest";
 import { useToggle } from "../../hooks/useToggle";
 import { Mapfy } from "../../utils";
 import { addCertification, addInstitution } from "./sections";
 import { INPUT_TYPES } from "../../components/DefineForms";
 
-export function Certifications() {
+export function Certifications({}: any) {
   const { token, username } = getContextValue(CONTEXTS.Global);
   const [owned, switchOwned] = useToggle(false, true);
 
@@ -231,11 +231,11 @@ export function Certifications() {
             setInstitutions(data);
           },
           setError,
-          setLoading: () => setTimeout(setLoading, 2000),
+          setLoading,
         }).get("institutions");
       },
       setError,
-      setLoading: () => setTimeout(setLoading, 2000),
+      setLoading,
     }).get("certifications" /* , { ...requestHeaders } */);
 
     return () => {};

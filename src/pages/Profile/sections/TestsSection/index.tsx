@@ -18,15 +18,15 @@ export function TestsSection() {
   const { TrackSidebar, ContentWrapper }: any = useTrackSidebar();
 
   const firstSlides = [
-    <LogoSVG></LogoSVG>,
-    <JestSVG></JestSVG>,
-    <ReactSVG></ReactSVG>,
-    <StyledComponentsSVG></StyledComponentsSVG>,
-    <NextjsSVG></NextjsSVG>,
-    <ReactRouterSVG></ReactRouterSVG>,
-    <WebpackSVG></WebpackSVG>,
-    <AxiosSVG></AxiosSVG>,
-  ];
+    LogoSVG,
+    JestSVG,
+    ReactSVG,
+    StyledComponentsSVG,
+    NextjsSVG,
+    ReactRouterSVG,
+    WebpackSVG,
+    AxiosSVG,
+  ].map((Logo: any, index: any) => <Logo key={index} />);
   return (
     <div
       style={{
