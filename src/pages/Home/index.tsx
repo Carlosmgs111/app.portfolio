@@ -125,41 +125,41 @@ export function Home() {
     },
   ];
   const firstSlides = [
-    <JestSVG />,
-    <ReactSVG />,
-    <StyledComponentsSVG />,
-    <NextjsSVG />,
-    <ReactRouterSVG />,
-    <WebpackSVG />,
-    <AxiosSVG />,
-  ];
+    JestSVG,
+    ReactSVG,
+    StyledComponentsSVG,
+    NextjsSVG,
+    ReactRouterSVG,
+    WebpackSVG,
+    AxiosSVG,
+  ].map((Component, index) => <Component key={index} />);
   const secondSlides = [
-    <SocketioSVG />,
-    <ApolloGraphqlSVG />,
-    <GraphqlSVG />,
-    <TypeScriptSVG />,
-    <JavaScriptSVG />,
-    <PythonSVG />,
-    <NodejsSVG />,
-  ];
+    SocketioSVG,
+    ApolloGraphqlSVG,
+    GraphqlSVG,
+    TypeScriptSVG,
+    JavaScriptSVG,
+    PythonSVG,
+    NodejsSVG,
+  ].map((Component, index) => <Component key={index} />);
   const thirdSlides = [
-    <MongodbSVG />,
-    <PostgresSqlSVG />,
-    <ExpressSVG />,
-    <SequelizeSVG />,
-    <MongooseSVG />,
-    <CSSSVG />,
-    <HTMLSVG />,
-  ];
+    MongodbSVG,
+    PostgresSqlSVG,
+    ExpressSVG,
+    SequelizeSVG,
+    MongooseSVG,
+    CSSSVG,
+    HTMLSVG,
+  ].map((Component, index) => <Component key={index} />);
   const fourthSlides = [
-    <DjangoSVG />,
-    <RabbitmqSVG />,
-    <FastApiSVG />,
-    <DotEnvSVG />,
-    <VSCodeSVG />,
-    <TerminalSVG />,
-    <GitSVG />,
-  ];
+    DjangoSVG,
+    RabbitmqSVG,
+    FastApiSVG,
+    DotEnvSVG,
+    VSCodeSVG,
+    TerminalSVG,
+    GitSVG,
+  ].map((Component, index) => <Component key={index} />);
   const presentation: any = {
     es: (
       <div className={styles.presentation}>

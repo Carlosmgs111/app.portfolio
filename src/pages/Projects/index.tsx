@@ -12,10 +12,11 @@ import {
 } from "../../components/Sidebars/PanelSidebar";
 import { Page } from "../../components/Page";
 import { Modal } from "../../components/Modal";
-import { runRequest} from "../../services/runRequest";
+import { runRequest } from "../../services/runRequest";
 import { DefineForms, INPUT_TYPES } from "../../components/DefineForms";
 import { headers } from "../../services/configs";
 import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
+import { Helmet } from "react-helmet";
 
 export function Projects() {
   const { token, currentLang } = getContextValue(CONTEXTS.Global);
@@ -177,6 +178,10 @@ export function Projects() {
           sidebars,
         }}
       >
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Projects | Carlos Muñoz</title>
+        </Helmet>
         <div className={styles.main_container}>
           {loading ? (
             <ProjectSkeleton />

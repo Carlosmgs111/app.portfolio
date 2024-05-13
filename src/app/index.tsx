@@ -9,8 +9,8 @@ import { Home, Skills, Projects, Certifications, Profile } from "../pages";
 import { Modal } from "../components/Modal";
 import { injectAttrsToReactElements } from "../utils";
 import { useEffect, useState } from "react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Helmet } from "react-helmet";
+import path from "path";
 
 export function App() {
   const { clearAuth } = useApp();
@@ -33,51 +33,39 @@ export function App() {
     es: [
       {
         label: "Proyectos",
-        path: `projects${searchedUsername && `?username=${searchedUsername}`}`,
+        path: "projects",
       },
       {
         label: "Certificados",
-        path: `certifications${
-          searchedUsername && `?username=${searchedUsername}`
-        }`,
+        path: "certifications",
       },
-      // {
-      //   label: "Habilidades",
-      //   path: `skills${searchedUsername && `?username=${searchedUsername}`}`,
-      // },
       "Blog",
     ],
     en: [
       {
         label: "Projects",
-        path: `projects${searchedUsername && `?username=${searchedUsername}`}`,
+        path: "projects",
       },
       {
         label: "Certifications",
-        path: `certifications${
-          searchedUsername && `?username=${searchedUsername}`
-        }`,
+        path: "certifications",
       },
-      // {
-      //   label: "Skills",
-      //   path: `skills${searchedUsername && `?username=${searchedUsername}`}`,
-      // },
       "Blog",
     ],
   };
 
-  if (token)
-    pages[currentLang].push({
-      item: (
-        <img
-          className={styles.avatar}
-          id="nonMark"
-          src={avatar}
-          alt="Profile user avatar"
-        />
-      ),
-      path: "profile",
-    });
+  // if (token)
+  //   pages[currentLang].push({
+  //     item: (
+  //       <img
+  //         className={styles.avatar}
+  //         id="nonMark"
+  //         src={avatar}
+  //         alt="Profile user avatar"
+  //       />
+  //     ),
+  //     path: "profile",
+  //   });
 
   const inConstruction = (
     <Modal
@@ -98,31 +86,26 @@ export function App() {
 
   return (
     <>
-      <ToastContainer />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Carlos Muñoz</title>
+      </Helmet>
       <div className={styles.header}>
         <Navigation
-          banner={{
-            title: <div className={styles.banner}>Blogfolio</div>,
-            to: "/",
-          }}
-        >
-          {NavigationItemsFactory({
-            pages: pages[currentLang],
-            login: {
-              label: () => <span>Login</span>,
-              onClick: (e: any) => {
-                e.preventDefault();
-                // switchShowLogin();
-                setCurrentModal(
-                  <Login {...{ onLogged: () => setCurrentModal(null) }} />
-                );
-              },
-              hidden: Boolean(token),
+          pages={[
+            { label: "Certifications", to: "certifications" },
+            { label: "Projects", to: "projects" },
+          ]}
+          login={{
+            to: "profile",
+            onClick: (e: any) => {
+              e.preventDefault();
+              setCurrentModal(
+                <Login {...{ onLogged: () => setCurrentModal(null) }} />
+              );
             },
-          }).map((page, index) =>
-            injectAttrsToReactElements([page], { key: index })
-          )}
-        </Navigation>
+          }}
+        ></Navigation>
       </div>
       <div className={styles.content}>
         <Routes>

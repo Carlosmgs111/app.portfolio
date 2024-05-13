@@ -1,7 +1,5 @@
 import { factory, CONTEXTS } from "./factory";
 
-console.log({CONTEXTS})
-
 export const {
   addContext,
   getContext,

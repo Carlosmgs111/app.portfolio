@@ -6,6 +6,7 @@ import { App } from "./app";
 import { setActions } from "./utils";
 import content from "../public/content.json";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { defaultLang } = content;
 

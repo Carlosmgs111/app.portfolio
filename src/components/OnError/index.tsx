@@ -25,8 +25,9 @@ export function OnError({
   useEffect(() => {
     error && reset && setTimeout(() => reset(), delay);
     error && useAlert && window.alert(error);
+    error && toastNotifify && notify(error.message);
   }, [error]);
-  error && toastNotifify && notify(error.message);
+
   return (
     error &&
     !toastNotifify && (
