@@ -2,6 +2,7 @@ import styles from "./styles.module.css";
 import { CertificationSkeleton } from "./skeleton";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { labelCases } from "../../utils";
+import { Image } from "../../components/Image";
 // import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
 import {
   DefineForms,
@@ -9,7 +10,7 @@ import {
   INPUT_TYPES,
 } from "../../components/DefineForms";
 import { getContextValue, CONTEXTS } from "../../contexts";
-import { runRequest} from "../../services/runRequest";
+import { runRequest } from "../../services/runRequest";
 import { useState } from "react";
 import { useToggle } from "../../hooks/useToggle";
 import { headers } from "../../services/configs";
@@ -123,7 +124,7 @@ export function Certification({
     <div className={styles.container} ref={ref} id={labelCases(title).LS}>
       {!beingEdited ? (
         <div className={styles.content}>
-          <img
+          <Image
             {...{
               src: image,
               alt: title,
@@ -141,7 +142,7 @@ export function Certification({
                   />
                 ),
             }}
-          ></img>
+          ></Image>
           <div
             {...{
               className: styles.details,

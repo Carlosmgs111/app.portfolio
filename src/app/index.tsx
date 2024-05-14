@@ -11,7 +11,7 @@ import { Router } from "../components/Router";
 
 export function App() {
   const { clearAuth } = useApp();
-  const [{ token, avatar, searchedUsername, currentLang }] = useStateValue();
+  const [{ currentLang }] = useStateValue();
   const [showFixed, setShowFixed] = useState(false);
   const [currentModal, setCurrentModal]: any = useState(null);
 

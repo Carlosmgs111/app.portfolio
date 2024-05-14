@@ -2,13 +2,14 @@ import styles from "./styles.module.css";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { useToggle } from "../../hooks/useToggle";
 import { labelCases } from "../../utils";
-import { Component, useEffect, useState } from "react";
+import { useState } from "react";
 import { runButtonBehavior } from "../../utils";
 import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { SVGIndexes } from "../../icons";
 import { ProjectSkeleton } from "./Skeleton";
+import { Image } from "../../components/Image";
 import {
   INPUT_TYPES,
   DefineForms,
@@ -56,8 +57,6 @@ export const Project = ({
     component: "fa-solid fa-puzzle-piece",
     project: "fa-solid fa-building-circle-check",
   };
-
-  useEffect(() => {}, [show, ref]);
 
   // ? 1️⃣ Define the callback to be passed as high order callback
   const updateCallback = (params: any) => {
@@ -150,32 +149,32 @@ export const Project = ({
             )}
           >
             {images.map((image: any, index: number) => (
-              <img
-                alt=""
+              <Image
                 key={index}
-                src={image}
-                className={styles.image}
-                style={{
-                  maxWidth:
-                    images.length >= 6
-                      ? "48%"
-                      : !(images.length > 2 && index > 0)
-                      ? "100%"
-                      : "48%",
-                  cursor: "zoom-in",
+                {...{
+                  src: image,
+                  style: {
+                    maxWidth:
+                      images.length >= 6
+                        ? "48%"
+                        : !(images.length > 2 && index > 0)
+                        ? "100%"
+                        : "48%",
+                    cursor: "zoom-in",
+                  },
+                  onClick: () => {
+                    setCurrentModal(
+                      <img
+                        alt=""
+                        src={image}
+                        className={`${styles.image} ${styles.zoomed}`}
+                        style={{ cursor: "zoom-out", maxWidth: "100%" }}
+                        onClick={() => setCurrentModal(null)}
+                      />
+                    );
+                  },
                 }}
-                onClick={() => {
-                  setCurrentModal(
-                    <img
-                      alt=""
-                      src={image}
-                      className={`${styles.image} ${styles.zoomed}`}
-                      style={{ cursor: "zoom-out", maxWidth: "100%" }}
-                      onClick={() => setCurrentModal(null)}
-                    />
-                  );
-                }}
-              />
+              ></Image>
             ))}
           </div>
           <div className={styles.descriptions}>
