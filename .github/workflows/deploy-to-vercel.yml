@@ -8,12 +8,13 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+
+      - name: Install PNPM
+        run: npm install -g pnpm
+
       - name: Install Dependencies
-        run: npm install --force
+        run: pnpm install --force
+
       - name: Build
-        run: npm run build
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: dist
-          path: dist
+        run: pnpm build
+      

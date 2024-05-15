@@ -2,22 +2,22 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "hooks/*": [
+      "@hooks/*": [
         "src/hooks/*"
       ],
-      "containers/*": [
+      "@containers/*": [
         "src/containers/*"
       ],
-      "components/*": [
+      "@components/*": [
         "src/components/*"
       ],
-      "globalContext": [
+      "@globalContext": [
         "src/context/index"
       ],
-      "utils": [
+      "@utils": [
         "src/utils/index"
       ],
-      "config": [
+      "@config": [
         "src/config"
       ],
     },
@@ -47,9 +47,6 @@
         "name": "next"
       }
     ],
-    "types": [
-      "node"
-    ]
   },
   "exclude": [
     "node_modules",

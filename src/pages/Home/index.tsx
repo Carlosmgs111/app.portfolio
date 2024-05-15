@@ -3,7 +3,7 @@ import { CodeSnap } from "../../components/CodeSnap";
 import { Typing } from "../../components/Typing";
 import { CSSSVG, GitHubSVG, HTMLSVG, LinkedInSVG } from "../../icons";
 import { Slider } from "../../components/Slider";
-import content from "../../../public/content.json";
+import content from "../../db/content.json";
 import { useStateValue } from "../../contexts/context";
 import {
   ReactSVG,

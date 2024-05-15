@@ -4,7 +4,7 @@ import { addContext } from "./contexts";
 import "./index.css";
 import { App } from "./app";
 import { setActions } from "./utils";
-import content from "../public/content.json";
+import content from "./db/content.json";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
