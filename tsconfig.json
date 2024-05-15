@@ -2,22 +2,22 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "hooks/*": [
+      "@hooks/*": [
         "src/hooks/*"
       ],
-      "containers/*": [
+      "@containers/*": [
         "src/containers/*"
       ],
-      "components/*": [
+      "@components/*": [
         "src/components/*"
       ],
-      "globalContext": [
+      "@globalContext": [
         "src/context/index"
       ],
-      "utils": [
+      "@utils": [
         "src/utils/index"
       ],
-      "config": [
+      "@config": [
         "src/config"
       ],
     },
@@ -47,22 +47,15 @@
         "name": "next"
       }
     ],
-    "types": [
-      "node"
-    ]
   },
   "exclude": [
     "node_modules",
   ],
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/**/*.ts",
     "**/**/*.tsx",
-    ".next/types/**/*.ts",
-    "src/hooks/useNearScreen.ts",
-    "next.config.cjs",
     "src/**/*.ts",
     "src/**/*.tsx"
   ]

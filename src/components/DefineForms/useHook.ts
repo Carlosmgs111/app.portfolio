@@ -11,7 +11,7 @@ export function useHook({
   baseSchema = {},
   onClickHandler,
   highOrderCallback,
-}: any) {
+}: any): any {
   const [label, setLabel] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -124,8 +124,8 @@ export function useHook({
   const reset = () => {
     setSchema({});
     setSchema({ index: genRandomId(), payload: baseSchema });
-    setError(false)
-    setLoading(false)
+    setError(false);
+    setLoading(false);
   };
 
   if (highOrderCallback)

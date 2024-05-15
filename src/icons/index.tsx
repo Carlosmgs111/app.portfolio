@@ -36,7 +36,7 @@ export const SVGIndexes: any = {
   jest: JestSVG,
   react: ReactSVG,
   styledcomponents: StyledComponentsSVG,
-  nestjs: NextjsSVG,
+  nextjs: NextjsSVG,
   reactrouter: ReactRouterSVG,
   webpack: WebpackSVG,
   axios: AxiosSVG,

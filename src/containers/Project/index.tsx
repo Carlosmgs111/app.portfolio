@@ -187,7 +187,7 @@ export const Project = ({
           <div className={styles.metadata}>
             <div className={styles.stack}>
               {stack.map((s: any, index: any) => {
-                const Component = SVGIndexes[s] && SVGIndexes[s];
+                const Component = SVGIndexes[s] ? SVGIndexes[s] : null;
                 return <Component key={index} />;
               })}
             </div>

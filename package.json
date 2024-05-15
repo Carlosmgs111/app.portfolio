@@ -7,9 +7,9 @@
     "build-react": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "webpack serve --mode development",
+    "dev": "webpack serve --mode development",
     "build": "webpack serve --mode production",
-    "serve:dev": "npm run build && npx serve dist -s",
+    "serve:dev": "pnpm run build && npx serve dist -s",
     "test:dev": "cypress open"
   },
   "dependencies": {
@@ -22,7 +22,10 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@types/react": "^18.3.2",
     "@types/react-helmet": "^6.1.11",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/react-toastify": "^4.1.0",
     "apollo-boost": "^0.4.9",
     "axios": "^0.21.4",
     "copy-webpack-plugin": "^10.0.0",

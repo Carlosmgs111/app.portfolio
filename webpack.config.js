@@ -18,14 +18,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|jpe?g|gif)$/,
-        use: [
-          {
-            loader: "file-loader",
-          },
-        ],
-      },
-      {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: "ts-loader",
@@ -124,5 +116,10 @@ module.exports = {
       disableDotRule: true,
     },
     port: 3080,
+  },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
   },
 };
