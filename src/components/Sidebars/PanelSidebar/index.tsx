@@ -39,10 +39,10 @@ export function PanelSidebar(props: any) {
         ) =>
           visibility && (
             <i
+              key={index}
               {...{
                 className: className.concat(" ", styles.item),
                 onClick,
-                key: index,
                 href,
               }}
             >

@@ -257,9 +257,9 @@ export function Certifications({}: any) {
                   (certification: any, index: number) =>
                     certification.visible && (
                       <Certification
+                        key={certification.uuid}
                         {...{
                           id: certification.title,
-                          key: certification.uuid,
                           initialCertification: certification,
                           setCurrentModal,
                           updateState,
