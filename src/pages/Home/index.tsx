@@ -217,7 +217,8 @@ export function Home({}: any) {
     ),
   };
   return (
-    <div className={styles.container}>
+    <div className={styles.page}>
+      <div className={styles.page_background}></div>
       <article className={styles.section.concat(" ", styles.hero)}>
         <div className={`${styles.hero_background} `}>
           <Slider toRight={true}>{firstSlides}</Slider>

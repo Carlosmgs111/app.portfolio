@@ -5,7 +5,6 @@ import { useToggle } from "../../hooks/useToggle";
 import { LogoSVG } from "./../../icons";
 import { useStateValue } from "../../contexts/context";
 import { actionTypes } from "../../";
-import importedStyles from "../../app/styles.module.css";
 
 export default function Navigation({ className, login, pages }: any) {
   const location = useLocation();
@@ -16,14 +15,14 @@ export default function Navigation({ className, login, pages }: any) {
   );
 
   return (
-    <div style={{ position: "relative" }}>
-      <div className={`${className} ${styles.container}`}>
+    <div className={styles.navbar_container}>
+      <div className={`${className} ${styles.navbar}`}>
         <div className={styles.navbar_header}>
           <LinkRouter to="/">
             <LogoSVG></LogoSVG>
           </LinkRouter>
         </div>
-        <nav className={styles.navbar.concat(" ", className)}>
+        <nav className={styles.navbar_indexes.concat(" ", className)}>
           <i
             className={`${menu.name} ${styles.button}`}
             id="nav-button"

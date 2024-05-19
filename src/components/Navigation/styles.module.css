@@ -1,18 +1,25 @@
-.container {
+.navbar_container {
+  position: relative;
+  backdrop-filter: blur(10rem) brightness(80%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navbar {
   overflow: scroll;
   height: fit-content;
   min-height: 6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  backdrop-filter: blur(10rem) brightness(80%);
+  width: 80rem;
 }
 
-.container * ::-webkit-scrollbar {
+.navbar * ::-webkit-scrollbar {
   display: none;
 }
 
-.container::-webkit-scrollbar {
+.navbar::-webkit-scrollbar {
   display: none;
 }
 
@@ -36,14 +43,14 @@
   filter: drop-shadow(-8px 6px 1px #000000cc);
 }
 
-.navbar {
+.navbar_indexes {
   z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
   align-content: center;
   padding: 0 3rem;
-  width: inherit;
+  width: fit-content;
   height: inherit;
   position: relative;
 }
@@ -54,6 +61,7 @@
   padding: 1rem 4rem;
   position: absolute;
   right: 0;
+  top: 6rem;
 }
 
 .languages {
