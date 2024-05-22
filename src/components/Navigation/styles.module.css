@@ -1,18 +1,21 @@
 .navbar_container {
-  position: relative;
+  position: fixed;
   backdrop-filter: blur(10rem) brightness(80%);
   display: flex;
   align-items: center;
   justify-content: center;
+  height: fit-content;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 .navbar {
   overflow: scroll;
-  height: fit-content;
   min-height: 6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 80rem;
+  width: 120rem;
 }
 
 .navbar * ::-webkit-scrollbar {
@@ -28,12 +31,8 @@
   display: flex;
   flex-direction: row;
   justify-content: "space-between";
+  padding: 0 2rem;
 }
-
-.navbar_header > a {
-  padding-left: 4rem;
-}
-
 .navbar_header > a > div {
   width: 4rem;
   height: 4rem;
@@ -49,12 +48,10 @@
   justify-content: space-between;
   align-items: center;
   align-content: center;
-  padding: 0 3rem;
+  padding: 0 2rem;
   width: fit-content;
   height: inherit;
-  position: relative;
 }
-
 .page_settings {
   display: flex;
   justify-content: flex-end;
@@ -111,7 +108,7 @@
 
 .button {
   display: none;
-  color: white;
+  color: var(--main-color-300);
 }
 .link {
   z-index: 1;
@@ -170,27 +167,41 @@
     backdrop-filter: none;
     background-color: #00000065;
   }
+  .navbar {
+    align-items: flex-start;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+  .navbar_indexes {
+    flex-direction: column;
+    padding: 0;
+  }
   .itemlist {
     backdrop-filter: blur(10rem) brightness(0.4);
     flex-direction: column;
-    align-items: center;
-    position: fixed;
     top: 0;
     right: 0;
     width: 100%;
     padding: 0;
     height: 0;
+    gap: 4rem;
+  }
+  .link {
+    font-size: 4rem;
   }
   .itemlist.show {
     padding: 2rem;
-    height: 100%;
+    height: 100vh;
   }
   .button {
     z-index: 10;
     display: block;
-    right: 15px;
-    top: 2rem;
     font-size: 4rem;
+  }
+  .navbar_header {
+    width: 100%;
+    padding: 1rem 4rem 0 4rem;
   }
 }
 

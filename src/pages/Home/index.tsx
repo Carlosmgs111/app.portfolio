@@ -46,7 +46,7 @@ export function Home({}: any) {
 7 |     this.lastName = lastName;
 8 |   };
 9 |
-10|   presentYourSelf(): string {
+10|   introducesYourSelf(): string {
 11|     return \`
 12|     Hi! I'm \${this.name} \${this.lastName}
 13|     <{*Typing*}>
@@ -57,7 +57,7 @@ export function Home({}: any) {
 17| };
 18|
 19| const Carlos = new Developer("Carlos", "Muñoz");
-20| console.log(Carlos.presentYourSelf())
+20| console.log(Carlos.introducesYourSelf())
 `;
   const mySkills = [
     { content: "React", color: "#61DAFB" },
@@ -248,6 +248,8 @@ export function Home({}: any) {
       </article>
       <article className={styles.section}>
         <p className={styles.text}>{summary[currentLang]}</p>
+      </article>
+      <article className={`${styles.section} ${styles.right}`}>
         <section className={styles.coding_section}>
           <CodeSnap fontSize={"1.4rem"} words={wordsInCode}>
             {literalCodeSnapshot.replaceAll("|", " ")}

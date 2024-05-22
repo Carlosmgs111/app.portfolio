@@ -18,16 +18,16 @@ export default function Navigation({ className, login, pages }: any) {
     <div className={styles.navbar_container}>
       <div className={`${className} ${styles.navbar}`}>
         <div className={styles.navbar_header}>
-          <LinkRouter to="/">
+          <LinkRouter onClick={() => menu.show && switchMenu()} to="/">
             <LogoSVG></LogoSVG>
           </LinkRouter>
-        </div>
-        <nav className={styles.navbar_indexes.concat(" ", className)}>
           <i
             className={`${menu.name} ${styles.button}`}
             id="nav-button"
             onClick={switchMenu}
           ></i>
+        </div>
+        <nav className={styles.navbar_indexes.concat(" ", className)}>
           <ul
             className={`${className} ${styles.itemlist} ${
               menu.show ? styles.show : ""
@@ -45,6 +45,7 @@ export default function Navigation({ className, login, pages }: any) {
                     key={index}
                     to={to}
                     id={index}
+                    onClick={switchMenu}
                   >
                     {label}
                   </LinkRouter>
@@ -57,7 +58,7 @@ export default function Navigation({ className, login, pages }: any) {
                 onClick={!token && login?.onClick}
               >
                 {token ? (
-                  <img src={avatar} alt="Profile user avatar" />
+                  <img src={avatar} onClick={()=>menu.show && switchMenu()} alt="Profile user avatar" />
                 ) : (
                   "Login"
                 )}

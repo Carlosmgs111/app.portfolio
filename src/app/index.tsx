@@ -56,20 +56,21 @@ export function App() {
   };
 
   const InConstruction = ({}: any) => (
-    <Modal
-      {...{
-        over: false,
-        showCloseButton: false,
-        injected: (
-          <img
-            alt="work restrictional signal"
-            src={
-              "https://cdn.pixabay.com/photo/2017/10/26/17/51/under-construction-2891888_1280.jpg"
-            }
-          />
-        ),
-      }}
-    />
+    <div style={{ height: "100vh" }}>
+      <Modal
+        {...{
+          over: false,
+          showCloseButton: false,
+        }}
+      >
+        <img
+          alt="work restrictional signal"
+          src={
+            "https://cdn.pixabay.com/photo/2017/10/26/17/51/under-construction-2891888_1280.jpg"
+          }
+        />
+      </Modal>
+    </div>
   );
 
   return (

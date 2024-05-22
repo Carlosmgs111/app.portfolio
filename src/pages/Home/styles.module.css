@@ -1,7 +1,12 @@
 .page {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .page_background {
+  top: 0;
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -21,19 +26,21 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  filter: blur(2px) brightness(70%);
+  filter: blur(2px) brightness(60%);
 }
 .section {
   border: none;
-  padding: 8rem;
   height: fit-content;
-  min-height: 100vh;
-  width: 100%;
+  min-height: 80vh;
+  width: 120rem;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   gap: 8rem;
   flex-wrap: wrap;
+}
+.section.right {
+  justify-content: right;
 }
 .hero {
   min-height: 100vh;
@@ -43,6 +50,7 @@
   align-items: center;
   gap: 4rem;
   position: relative;
+  width: 100% !important;
 }
 .hero_background {
   position: absolute;
@@ -103,6 +111,9 @@ h2 {
   gap: 1rem;
   filter: drop-shadow(-10px 6px 1px #000000);
 }
+.coding_section {
+  font-size: 1px;
+}
 .console {
   border-radius: 2rem;
   display: flex;
@@ -113,6 +124,7 @@ h2 {
 }
 .output {
   backdrop-filter: brightness(95%);
+  font-size: 1rem;
 }
 
 .text {
@@ -127,16 +139,24 @@ h2 {
 @media screen and (max-width: 1360px) {
   .section {
     padding: 8rem 14rem;
+    width: 80rem;
   }
 }
 @media screen and (max-width: 830px) {
   .section {
     padding: 4rem 8rem;
+    width: 100%;
+  }
+  .presentation_section {
+    padding: 0;
   }
 }
 @media screen and (max-width: 600px) {
   .text {
     font-size: 2rem;
+  }
+  .coding_section {
+    scale: 0.8;
   }
 }
 @media screen and (max-width: 480px) {
