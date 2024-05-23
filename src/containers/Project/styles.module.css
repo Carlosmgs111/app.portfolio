@@ -291,10 +291,6 @@
     max-width: 100%;
     justify-content: space-around;
   }
-  .image {
-    max-width: 32%;
-    justify-content: space-around;
-  }
   .descriptions {
     width: 100%;
   }

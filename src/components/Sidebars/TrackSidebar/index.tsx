@@ -1,7 +1,8 @@
 import { labelCases } from "../../../utils";
 import { useToggle } from "../../../hooks/useToggle";
-import { getContext, CONTEXTS } from "../../../contexts";
+import { useStateValue } from "../../../contexts/context";
 import styles from "./styles.module.css";
+import { Link } from "react-router-dom";
 
 export function TrackSidebar(props: any) {
   const {
@@ -9,25 +10,37 @@ export function TrackSidebar(props: any) {
     refs = [],
     innerItems = true,
     direction = "column",
-    active = 1,
+    isactive = 1,
+    expanded = !false,
+    showbutton = 1,
+    width,
+    redirect = "",
   }: any = props;
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
-  const [{ token, loading: globalLoading }, dispatch] = useStateValue();
-
-  const [expand, switchExpand] = useToggle(false, true);
-
+  const [{ token, loading: globalLoading }, dispatch]: any = useStateValue();
+  const [expand, switchExpand] = useToggle(
+    showbutton ? expanded : 1,
+    !expanded
+  );
   const indexesList: any = [];
   items.map((name: any, index: number) => {
+    const href = redirect
+      ? `/${redirect}#${labelCases(name).LS}`
+      : `#${labelCases(name).LS}`;
     const active = refs.includes(labelCases(name).LS);
     indexesList.push(
-      <a
-        key={index}
-        href={`#${labelCases(name).LS}`}
+      <Link
         className={`
-        fa-solid fa-circle-dot 
-        ${styles.item} 
-        ${active ? styles.active : ""}`}
+      ${styles.item} 
+      ${active ? styles.active : ""}`}
+        key={index}
+        href={href}
       >
+        <i
+          className={`
+        fa-solid fa-circle-dot 
+        ${styles.icon} ${expand && styles.hidden}
+        ${active ? styles.active : ""}`}
+        ></i>
         {innerItems && (
           <i
             {...{
@@ -37,7 +50,7 @@ export function TrackSidebar(props: any) {
             {labelCases(name).CS}
           </i>
         )}
-      </a>
+      </Link>
     );
   });
 
@@ -45,11 +58,11 @@ export function TrackSidebar(props: any) {
     <section
       {...{
         ...props,
-        style: { flexDirection: direction },
-        className: styles.body.concat(" ", active && styles.active),
+        style: { flexDirection: direction, width: width || "available" },
+        className: styles.body.concat(" ", isactive && styles.active),
       }}
     >
-      {innerItems && (
+      {innerItems && Boolean(showbutton) && (
         <i
           key="0"
           className={`fa-solid ${

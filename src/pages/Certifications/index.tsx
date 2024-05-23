@@ -28,6 +28,7 @@ import { useToggle } from "../../hooks/useToggle";
 import { Mapfy } from "../../utils";
 import { addCertification, addInstitution } from "./sections";
 import { INPUT_TYPES } from "../../components/DefineForms";
+import Helmet from "react-helmet";
 
 export function Certifications({}: any) {
   const { token, username } = getContextValue(CONTEXTS.Global);
@@ -243,6 +244,10 @@ export function Certifications({}: any) {
 
   return (
     <Page>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Certications | Carlos Muñoz Gachancipá</title>
+      </Helmet>
       <MultiSidebar
         {...{
           sidebars,

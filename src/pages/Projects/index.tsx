@@ -173,15 +173,15 @@ export function Projects({}: any) {
 
   return (
     <Page>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Projects | Carlos Muñoz Gachancipá</title>
+      </Helmet>
       <MultiSidebar
         {...{
           sidebars,
         }}
       >
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>Projects | Carlos Muñoz</title>
-        </Helmet>
         <div className={styles.main_container}>
           {loading ? (
             <ProjectSkeleton />

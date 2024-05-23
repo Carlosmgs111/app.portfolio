@@ -20,6 +20,9 @@
       "@config": [
         "src/config"
       ],
+      "@context":[
+        "src/context"
+      ]
     },
     "target": "es6",
     "lib": [

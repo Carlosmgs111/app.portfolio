@@ -77,7 +77,7 @@ export function App() {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Carlos Muñoz</title>
+        <title>Carlos Muñoz Gachancipá</title>
       </Helmet>
       <div className={styles.header}>
         <Navigation
