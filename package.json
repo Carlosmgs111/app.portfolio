@@ -22,6 +22,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@types/dotenv": "^8.2.0",
     "@types/react": "^18.3.2",
     "@types/react-helmet": "^6.1.11",
     "@types/react-router-dom": "^5.3.3",
@@ -29,7 +30,6 @@
     "apollo-boost": "^0.4.9",
     "axios": "^0.21.4",
     "copy-webpack-plugin": "^10.0.0",
-    "dotenv": "^16.0.3",
     "dotenv-webpack": "^7.0.3",
     "file-loader": "^6.2.0",
     "flatted": "^3.2.7",
@@ -80,10 +80,12 @@
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "cypress": "^10.6.0",
+    "dotenv": "^16.4.5",
     "faker-js": "^1.0.0",
     "html-loader": "^3.0.1",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.4.5",
+    "node-polyfill-webpack-plugin": "^4.0.0",
     "ts-loader": "^9.5.1",
     "tsconfig-paths": "^4.2.0",
     "typescript-eslint": "^7.0.1",
@@ -93,6 +95,9 @@
     "webpack-dev-server": "^4.6.0",
     "webpack-pwa-manifest": "^4.0.0",
     "workbox-webpack-plugin": "^6.5.4"
+  },
+  "browser": {
+    "crypto": false
   },
   "eslintConfig": {
     "extends": [

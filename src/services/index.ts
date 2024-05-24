@@ -1,10 +1,11 @@
 import config from "../config";
 import { SocketService as SS } from "./SocketService";
 
-export const URL =
-  config.devUrl || "https://coreportfolio-production.up.railway.app/";
+export const URL = config.devUrl || config.prodUrl;
 export const URL_API =
-  config.devUrlApi || "https://coreportfolio-production.up.railway.app/api/v1";
+  config.devUrlApi || `${config.prodUrl}/api/${config.prodApiVersion}`;
+
+console.log({ URL, URL_API });
 
 export const SocketService = new SS(/* [
   { imageService: "http://127.0.0.1:7081" },

@@ -63,7 +63,7 @@ module.exports = {
     new MiniCSSExtractPlugin({
       filename: "assets/[name].css",
     }),
-    new Dotenv(),
+    new Dotenv({ path: "./.env", safe: true, systemvars: true }),
     // ! discomment for it use
     /*  new WebpackPwaManifestPlugin({
       filename: "manifest.webmanifest",

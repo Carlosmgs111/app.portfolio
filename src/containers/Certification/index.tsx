@@ -118,10 +118,12 @@ export function Certification({
     runButtonBehavior(e, behaviors);
   };
 
-  // useEffect(() => {}, [show, ref, token])
-
   return (
-    <div className={styles.container} ref={ref} id={labelCases(title).LS}>
+    <div
+      className={`${styles.container} ${show ? styles.visible : ""}`}
+      ref={ref}
+      id={labelCases(title).LS}
+    >
       {!beingEdited ? (
         <div className={styles.content}>
           <Image

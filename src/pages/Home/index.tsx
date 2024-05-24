@@ -251,7 +251,7 @@ export function Home({}: any) {
       </article>
       <article className={`${styles.section} ${styles.right}`}>
         <section className={styles.coding_section}>
-          <CodeSnap fontSize={"1.4rem"} words={wordsInCode}>
+          <CodeSnap fontSize={"1.6rem"} words={wordsInCode}>
             {literalCodeSnapshot.replaceAll("|", " ")}
           </CodeSnap>
           <div className={styles.console}>

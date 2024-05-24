@@ -1,5 +1,6 @@
 import styles from "./styles.module.css";
 import { useToggle } from "../../hooks/useToggle";
+import { useResizeHTMLElement } from "../../hooks/useResize";
 import { LogoSVG } from "./../../icons";
 import { useStateValue } from "../../contexts/context";
 import { actionTypes } from "../../";
@@ -16,8 +17,7 @@ export default function Navigation({ className, login, pages }: any) {
     { show: true, name: "fas fa-times p-2 item" }
   );
   const indicatorRef: any = useRef(null);
-
-  useEffect(() => {
+  const adjustIndicatorSizes = (pathname: any) => {
     const currentPath = referencesRefs.current[pathname.split("/")[1]];
     if (!currentPath) {
       indicatorRef.current.style.scale = "0";
@@ -32,10 +32,17 @@ export default function Navigation({ className, login, pages }: any) {
     indicatorRef.current.style.width = `${offsetWidth}px`;
     indicatorRef.current.style.top = `${offsetTop}px`;
     indicatorRef.current.style.height = `${offsetHeight}px`;
+  };
+  const navbarContainerRef = useResizeHTMLElement(
+    () => adjustIndicatorSizes(pathname),
+    [pathname]
+  );
+  useEffect(() => {
+    adjustIndicatorSizes(pathname);
   }, [pathname]);
 
   return (
-    <div className={styles.navbar_container}>
+    <div ref={navbarContainerRef} className={styles.navbar_container}>
       <div className={`${className} ${styles.navbar}`}>
         <div className={styles.navbar_header}>
           <Linkdex

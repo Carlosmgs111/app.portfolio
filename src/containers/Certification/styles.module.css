@@ -17,12 +17,18 @@
   background-repeat: no-repeat;
   background-position: center;
   display: block;
-  transition: max-width 0.4s;
+  transition: 0.4s ease-in-out;
   overflow: scroll;
   filter: drop-shadow(-6px 6px 2px #00000093);
+  scale: 0.4;
+  opacity: 0;
 }
 .container::-webkit-scrollbar {
   display: none;
+}
+.container.visible {
+  opacity: 1;
+  scale: 1;
 }
 .container:hover > .dashboard,
 .container:focus > .dashboard,

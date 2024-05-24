@@ -3,6 +3,7 @@ import { Mapfy } from "../../utils";
 
 export class SocketService {
   clients: any = {};
+  maxTries: number = 10;
 
   constructor(clients = []) {
     if (clients) {
@@ -14,6 +15,7 @@ export class SocketService {
   }
 
   addClient = (client: any) => {
+    let tries = 0;
     const [alias, address] = Mapfy(client).entries().next().value;
     this.clients[alias] = connect(address);
     this.clients[alias].on("connect", () => {
@@ -26,7 +28,9 @@ export class SocketService {
       console.log(`Mensaje recibido del servidor: ${message.payload}`);
     });
     this.clients[alias].on("connect_error", (error: any) => {
+      if (tries >= this.maxTries) return;
       console.error("Error de conexión:", error);
+      tries++;
     });
     return this;
   };

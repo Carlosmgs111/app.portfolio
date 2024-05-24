@@ -18,6 +18,7 @@
   flex-wrap: wrap;
   padding: 10rem 20rem 20rem 20rem;
   width: 100%;
+  overflow: hidden;
 }
 .button {
   margin: auto;

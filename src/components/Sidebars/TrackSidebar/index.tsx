@@ -2,7 +2,6 @@ import { labelCases } from "../../../utils";
 import { useToggle } from "../../../hooks/useToggle";
 import { useStateValue } from "../../../contexts/context";
 import styles from "./styles.module.css";
-import { Link } from "react-router-dom";
 
 export function TrackSidebar(props: any) {
   const {
@@ -28,7 +27,7 @@ export function TrackSidebar(props: any) {
       : `#${labelCases(name).LS}`;
     const active = refs.includes(labelCases(name).LS);
     indexesList.push(
-      <Link
+      <a
         className={`
       ${styles.item} 
       ${active ? styles.active : ""}`}
@@ -50,7 +49,7 @@ export function TrackSidebar(props: any) {
             {labelCases(name).CS}
           </i>
         )}
-      </Link>
+      </a>
     );
   });
 
