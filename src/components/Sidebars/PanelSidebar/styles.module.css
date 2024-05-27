@@ -6,14 +6,21 @@
   min-height: fit-content;
   direction: rtl;
   font-size: 1.6rem;
-  transition: max-height 0.4s, max-width 0.4s, padding-right 0.4s;
+  transition: max-height 0.4s, max-width 0.4s, padding-right 0.4s, width 0.4s, scale 0.4s,
+    transform 0.4s, opacity 0.2s;
   box-shadow: inset 0px 0px 4px 2px rgba(0, 0, 0, 0.2);
   max-width: 0;
   max-height: 0;
+  scale: 0;
+  opacity: 0;
+  transform: translate(-300px, 0);
 }
 .body.active {
   max-width: 260px;
   max-height: 60vh;
+  scale: 1;
+  opacity: 1;
+  transform: translate(0, 0);
 }
 .body::-webkit-scrollbar {
   width: 0.4rem;
@@ -50,7 +57,7 @@
 }
 .input {
   float: right;
-  font-family: "Quicksand" !important;
+  font-family: "Rubik" !important;
   text-transform: capitalize;
   -webkit-text-stroke: 0.1px black;
   font-weight: normal;
@@ -74,7 +81,8 @@
   margin-right: 1rem;
 }
 .inner {
-  font-family: "Quicksand" !important;
+  font-family: "Rubik" !important;
+  font-weight: 400;
   cursor: default;
   text-decoration: none !important;
   position: relative;

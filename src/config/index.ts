@@ -1,5 +1,3 @@
-console.log({ env: process.env });
-
 const config = {
   email: process.env.REACT_APP_EMAIL,
   username: process.env.REACT_APP_USERNAME,

@@ -250,6 +250,9 @@ export function Certifications({}: any) {
       </Helmet>
       <MultiSidebar
         {...{
+          width: "240px",
+          float: false,
+          multi: false,
           sidebars,
         }}
       >

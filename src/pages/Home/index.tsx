@@ -33,6 +33,7 @@ import {
   TerminalSVG,
   GitSVG,
 } from "./../../icons";
+import { useNearScreen } from "../../hooks/useNearScreen";
 
 export function Home({}: any) {
   const { summary }: any = content;
@@ -216,17 +217,34 @@ export function Home({}: any) {
       </div>
     ),
   };
+
+  const [showPresentation, presentationRef] = useNearScreen(false);
+  const [showSummary, summaryRef] = useNearScreen(false, null, {
+    threshold: 0.05,
+  });
+  const [showCoding, codingRef] = useNearScreen(false, null, {
+    threshold: 0.05,
+  });
+
   return (
     <div className={styles.page}>
-      <div className={styles.page_background}></div>
-      <article className={styles.section.concat(" ", styles.hero)}>
-        <div className={`${styles.hero_background} `}>
+      <div className={styles.page_background}>
+        <div className={`${styles.hero_background}`}>
           <Slider toRight={true}>{firstSlides}</Slider>
           <Slider>{secondSlides}</Slider>
           <Slider toRight={true}>{thirdSlides}</Slider>
           <Slider>{fourthSlides}</Slider>
         </div>
-        <section className={styles.presentation_section}>
+      </div>
+      <article
+        ref={presentationRef}
+        className={`${styles.section} ${styles.hero}`}
+      >
+        <section
+          className={`${styles.presentation_section} ${
+            showPresentation && styles.visible
+          }`}
+        >
           {presentation[currentLang]}
           <div className={styles.contact}>
             <a
@@ -246,10 +264,18 @@ export function Home({}: any) {
           </div>
         </section>
       </article>
-      <article className={styles.section}>
+      <article
+        ref={summaryRef}
+        className={`${styles.section} ${showSummary && styles.visible}`}
+      >
         <p className={styles.text}>{summary[currentLang]}</p>
       </article>
-      <article className={`${styles.section} ${styles.right}`}>
+      <article
+        ref={codingRef}
+        className={`${styles.section} ${styles.right} ${
+          showCoding && styles.visible
+        }`}
+      >
         <section className={styles.coding_section}>
           <CodeSnap fontSize={"1.6rem"} words={wordsInCode}>
             {literalCodeSnapshot.replaceAll("|", " ")}

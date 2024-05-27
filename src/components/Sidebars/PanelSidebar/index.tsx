@@ -20,10 +20,19 @@ export const innerItems = Object.freeze({
 });
 
 export function PanelSidebar(props: any) {
-  const { children = [], items = [], expanded = 0, isactive = 1 } = props;
+  const {
+    children = [],
+    items = [],
+    expanded = true,
+    isactive = 1,
+    width,
+  } = props;
 
   return (
-    <div className={`${styles.body} ${isactive ? styles.active : ""}`}>
+    <div
+      style={{ width: width || "available" }}
+      className={`${styles.body} ${isactive ? styles.active : ""}`}
+    >
       {items.map(
         (
           {
