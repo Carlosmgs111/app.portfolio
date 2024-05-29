@@ -15,6 +15,7 @@ import {
   DefineForms,
   getHOCAndTrigger,
 } from "../../components/DefineForms";
+import { GitHubSVG } from "../../icons";
 
 export const Project = ({
   even,
@@ -36,6 +37,7 @@ export const Project = ({
     images,
     descriptions,
     uri,
+    codeUri,
     version,
     buildedBy,
     tags,
@@ -202,6 +204,26 @@ export const Project = ({
                 ))}
               </span>
               <span>v {version}</span>
+            </div>
+          </div>
+          <div className={styles.quick_access}>
+            <div>
+              <a
+                className={`${!uri && styles.disabled}`}
+                href={uri}
+                target="_blank"
+              >
+                Ir al Proyecto
+              </a>
+            </div>
+            <div>
+              <a
+                className={`${!codeUri && styles.disabled}`}
+                href={codeUri}
+                target="_blank"
+              >
+                Ver Codigo
+              </a>
             </div>
           </div>
         </>
