@@ -113,12 +113,37 @@
   align-items: center;
   width: 50%;
   gap: 2rem;
+  padding: 0 0.8rem;
 }
+.state > i,
 .state > span {
   display: flex;
   gap: 0.6rem;
   font-size: 3rem;
   filter: drop-shadow(-6px 6px 1px #000000b3) !important;
+  transition: 0.4s;
+  position: relative;
+}
+.state > i:hover {
+  scale: 1.2;
+}
+.state > i > span {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  scale: 0;
+  opacity: 0;
+  transition: 0.4s;
+  font-size: 1.2rem;
+  font-family: "Rubik";
+  font-weight: 100;
+  transform: translate(-300%, 0);
+}
+.state > i:hover span {
+  top: -2rem;
+  scale: 1;
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 .dashboard {
   backdrop-filter: brightness(40%) blur(4px);
@@ -214,7 +239,7 @@
   border: 2px solid var(--moonlit-asteroid-900) !important;
 }
 .quick_access a.disabled {
-  background-color: var(--moonlit-asteroid-700)!important;
+  background-color: var(--moonlit-asteroid-700) !important;
   color: var(--moonlit-asteroid-900);
   pointer-events: none;
   cursor: none;
@@ -308,13 +333,6 @@
   justify-content: center;
   gap: 4rem;
   margin: 0 20rem;
-}
-.state {
-  position: relative;
-  overflow: hidden;
-  width: 50%;
-  height: 4.2rem;
-  border-radius: 0.8rem;
 }
 @keyframes shimmer {
   100% {

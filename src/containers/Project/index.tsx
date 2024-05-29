@@ -158,10 +158,10 @@ export const Project = ({
                   style: {
                     maxWidth:
                       images.length >= 6
-                        ? "48%"
+                        ? "50%"
                         : !(images.length > 2 && index > 0)
                         ? "100%"
-                        : "48%",
+                        : "calc( 50% - 0.6rem )",
                     cursor: "zoom-in",
                   },
                   onClick: () => {
@@ -195,14 +195,16 @@ export const Project = ({
               })}
             </div>
             <div className={styles.state}>
-              <span>
-                <i className={stateIcons[state]}></i>
-              </span>
-              <span>
-                {kind.map((k: any, index: any) => (
-                  <i key={index} className={kindIcons[k]}></i>
-                ))}
-              </span>
+              <i className={stateIcons[state]}>
+                <span>{state}</span>
+              </i>
+
+              {kind.map((k: any, index: any) => (
+                <i key={index} className={kindIcons[k]}>
+                  <span>{k}</span>
+                </i>
+              ))}
+
               <span>v {version}</span>
             </div>
           </div>
