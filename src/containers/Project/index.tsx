@@ -112,14 +112,13 @@ export const Project = ({
               result &&
                 runRequest({
                   setData: (data: any) => {
-                    updateState(({ setProjects, state, setElements }: any) => {
+                    updateState(({ setProjects, state }: any) => {
                       const newProjects = [...state.projects];
                       newProjects.splice(
                         newProjects.findIndex((c) => c.uuid === data.uuid),
                         1
                       );
                       setProjects(newProjects);
-                      setElements(newProjects.map((p) => p.name));
                     });
                   },
                 }).delete(`projects/${uuid}`, {
