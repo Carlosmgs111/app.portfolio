@@ -14,10 +14,21 @@ export class SocketService {
     return this;
   }
 
+  requestConnection = (url: any) => {
+    fetch(url, { method: "POST", body: JSON.stringify({ url: URL }) }).then(
+      (response) => console.log({ response })
+    );
+  };
+
   addClient = (client: any) => {
+    const token = localStorage.getItem("token")?.replaceAll('"', "");
     let tries = 0;
     const [alias, address] = Mapfy(client).entries().next().value;
-    this.clients[alias] = connect(address);
+    this.clients[alias] = connect(`${address}`, {
+      path: "/ws",
+      auth: { token },
+    });
+    this.clients[alias].connect();
     this.clients[alias].on("connect", () => {
       console.log("Conexión establecida con el servidor.");
     });
@@ -38,6 +49,8 @@ export class SocketService {
   sendMessage = (payload: any, receiverFunc: any) => {
     const [client, sendTo, params, receiverFunctionName] =
       this.extractRemoteHandlersSpecs(payload, receiverFunc);
+    console.log({ client, sendTo, params, receiverFunc });
+    console.log(this.clients);
     if (Mapfy(this.clients).size && this.clients[client]) {
       this.clients[client].emit(sendTo, { [receiverFunctionName]: params });
       if (receiverFunc) {

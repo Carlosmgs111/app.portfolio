@@ -66,7 +66,7 @@ export function DefineForms({
   Mapfy(schema).forEach((_, index) => {
     const _data = schema[index];
     listOfDefineAttributes.push(
-      <MemoizedComponent {...{ deps: [_data, Mapfy(schema).size], key: index }}>
+      <MemoizedComponent key={index} {...{ deps: [_data, Mapfy(schema).size] }}>
         <InputForm
           {...{
             index,
