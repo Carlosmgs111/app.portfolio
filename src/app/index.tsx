@@ -8,12 +8,14 @@ import { Modal } from "../components/Modal";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Router } from "../components/Router";
+import { Footer } from "../components/Footer";
 
 export function App() {
   const { clearAuth } = useApp();
   const [{ currentLang }] = useStateValue();
   const [showFixed, setShowFixed] = useState(false);
   const [currentModal, setCurrentModal]: any = useState(null);
+  const online = false;
 
   useEffect(() => {
     const onScroll = (e: any) => {
@@ -102,6 +104,20 @@ export function App() {
           <Certifications path="certifications" />
           <InConstruction path="blog" />
         </Router>
+        <div className={styles.live_chat}>
+          <div
+            className={`${styles.chat_button} ${online ? styles.online : ""}`}
+          >
+            <i
+              className={`fa-regular fa-comment-dots  ${
+                online ? styles.online : ""
+              }`}
+            ></i>
+            <span className={`${online ? styles.online : ""}`}>
+              {online ? "online" : "offline"}
+            </span>
+          </div>
+        </div>
       </div>
       <Modal
         {...{
@@ -111,7 +127,7 @@ export function App() {
           over: !false,
         }}
       />
-      <footer className={styles.footer}></footer>
+      <Footer></Footer>
     </>
   );
 }

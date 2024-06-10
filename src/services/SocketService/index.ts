@@ -49,8 +49,6 @@ export class SocketService {
   sendMessage = (payload: any, receiverFunc: any) => {
     const [client, sendTo, params, receiverFunctionName] =
       this.extractRemoteHandlersSpecs(payload, receiverFunc);
-    console.log({ client, sendTo, params, receiverFunc });
-    console.log(this.clients);
     if (Mapfy(this.clients).size && this.clients[client]) {
       this.clients[client].emit(sendTo, { [receiverFunctionName]: params });
       if (receiverFunc) {

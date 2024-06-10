@@ -1,7 +1,7 @@
 .svg {
   width: 100%;
   transition: 0.4s;
-  fill: #b8e1e9;
+  fill: #ffffff;
   filter: drop-shadow(-16px 12px 1px #000000b3);
 }
 .svg_container {
@@ -17,6 +17,9 @@
 }
 .github:hover {
   fill: #181717;
+}
+.whatsapp:hover {
+  fill: #25d366;
 }
 .linkedin:hover {
   fill: #0a66c2;

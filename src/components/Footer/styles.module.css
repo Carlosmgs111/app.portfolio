@@ -1,0 +1,28 @@
+.footer {
+  min-height: 40rem;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  justify-content: center;
+  background-color: var(--main-color-950);
+  position: relative;
+  bottom: 0;
+}
+.separator {
+  height: 24rem;
+  border: 1px solid var(--moonlit-asteroid-900);
+}
+.section {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+.contact_icon > div {
+  width: 3.4rem;
+  height: 3.4rem;
+}
+.contact_icon > div > svg {
+  filter: drop-shadow(-6px 6px 1px #000000b3);
+}

@@ -1,0 +1,58 @@
+.container.XS {
+  --size: 0.8rem;
+  --wide: .2rem;
+}
+
+.container.S {
+  --size: 1rem;
+  --wide: .3rem;
+}
+
+.container.M {
+  --size: 1.4rem;
+  --wide: .4rem;
+}
+
+.container.L {
+  --size: 1.8rem;
+  --wide: .5rem;
+}
+
+.container.XL {
+  --size: 2rem;
+  --wide: .6rem;
+}
+
+.container {
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  aspect-ratio: 1/1;
+}
+
+.loader {
+  top: calc(var(--wide) * -1);
+  left: calc(var(--wide) * -1);
+  position: absolute;
+  border: var(--wide) solid rgba(255, 255, 255, 0.3);
+  border-top: var(--wide) solid #3498db;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  animation: spin 2s linear infinite;
+}
+
+.loader.large {
+  border-left: 4px solid #3498db;
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

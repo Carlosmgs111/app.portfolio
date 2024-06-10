@@ -1,0 +1,77 @@
+.email_form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center;
+  width: 100%;
+  max-width: 70rem;
+}
+.email_form > :nth-child(n) {
+  border: none;
+  outline: none;
+  padding: 0.8rem 1.2rem;
+  margin: 0.2rem;
+  border: solid 2px var(--moonlit-asteroid-700);
+  background-image: radial-gradient(
+    circle at 5% 10%,
+    var(--main-color-200b),
+    var(--main-color-300b) 30%,
+    var(--main-color-400b) 60%
+  );
+  background-color: transparent;
+  color: black;
+  font-family: "Rubik";
+  width: available;
+  transition: 0.4s;
+}
+.email_form > :nth-child(n):hover {
+  border: solid 2px var(--main-color-400);
+}
+.email_form > :first-child {
+  border-radius: 0.8rem 0.8rem 0 0;
+}
+.email_form > :last-child {
+  border-radius: 0 0 0.8rem 0.8rem;
+}
+.email_form > :nth-child(n)::placeholder {
+  color: black;
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+.email_form > textarea {
+  height: 32rem;
+  resize: none;
+}
+.email_form > textarea::-webkit-scrollbar {
+  width: 10px;
+}
+.email_form > textarea::-webkit-scrollbar-track {
+  background-color: var(--main-color-200);
+  border-radius: 0.6rem;
+}
+.email_form > textarea::-webkit-scrollbar-thumb {
+  background-color: var(--main-color-700);
+  border-radius: 5px;
+  cursor: grab;
+}
+.email_form > textarea::-webkit-scrollbar-thumb:hover {
+  background-color: var(--main-color-900);
+}
+.email_form > button {
+  position: relative;
+  font-size: 1.4rem;
+  font-weight: bold;
+  background-color: var(--main-color-700) !important;
+  display: flex;
+  justify-content: center;
+  transition: 0.4s;
+}
+.email_form > button:hover {
+  background-color: var(--main-color-400) !important;
+}
+@media screen and (min-width: 800px) {
+  .email_form > textarea {
+    height: 12rem;
+    width: 32rem;
+  }
+}

@@ -42,7 +42,7 @@
 .section {
   border: none;
   height: fit-content;
-  min-height: 80vh;
+  min-height: 90rem;
   width: 120rem;
   display: flex;
   justify-content: left;
@@ -163,7 +163,7 @@ h2 {
   font-size: 2.4rem;
   margin: 0;
   white-space: pre-wrap;
-  text-align: justify;
+  text-align: right;
   filter: drop-shadow(-6px 6px 1px #000000cc);
   max-width: 60rem;
 }

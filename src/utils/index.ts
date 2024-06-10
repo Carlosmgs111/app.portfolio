@@ -360,3 +360,21 @@ export const mapToList = (data: any): any =>
 
 export const listToMap = (data: any): any =>
   Object.fromEntries([...data].map((data: any, index: any) => [index, data]));
+
+
+export const arrayJoin = (
+  array: any = [],
+  joiner: string = " "
+): string | undefined => {
+  if (!array[0]) return;
+  let stringArray = array.filter(
+    (value: any) => typeof value === "string" || typeof value === "number"
+  );
+  const arrayArray = array.filter((value: any) => Array.isArray(value));
+
+  for (let arr of arrayArray) {
+    stringArray = [...stringArray, arrayJoin(arr[0], arr[1])];
+  }
+  const joinedString = stringArray.join(joiner);
+  return joinedString;
+};

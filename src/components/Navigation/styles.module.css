@@ -34,11 +34,9 @@
 .navbar * ::-webkit-scrollbar {
   display: none;
 }
-
 .navbar::-webkit-scrollbar {
   display: none;
 }
-
 .navbar_header {
   justify-content: space-between;
   display: flex;
@@ -50,11 +48,9 @@
   width: 4rem;
   height: 4rem;
 }
-
 .navbar_header > a > div > svg {
   filter: drop-shadow(-8px 6px 1px #000000cc);
 }
-
 .navbar_indexes {
   z-index: 1;
   display: flex;
@@ -76,7 +72,6 @@
   z-index: 1;
   transition: 0.4s;
 }
-
 .languages {
   padding: 0.8rem;
   background-color: transparent;
@@ -93,20 +88,16 @@
   transition: 0.4s;
   filter: drop-shadow(-6px 4px 1px #000000cc);
 }
-
 .languages:hover {
   scale: 1.2;
 }
-
 .languages option * {
   background-color: transparent;
   padding: 1.8rem !important;
 }
-
 .languages option:checked {
   background-color: var(--main-color-950);
 }
-
 .itemlist {
   color: transparent;
   font-size: 3rem;
@@ -121,7 +112,6 @@
   align-items: center;
   transition: 0.4s;
 }
-
 .button {
   display: none;
   color: var(--main-color-300);

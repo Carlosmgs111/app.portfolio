@@ -6,35 +6,62 @@
   top: 0;
   position: sticky;
 }
-
 .content {
   justify-content: center;
   width: 100%;
-  min-height: 75vh;
+  min-height: 100vh;
   z-index: 1;
 }
-
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 20rem;
-  background-color: #033949;
-  position: relative;
-  bottom: 0;
+.live_chat {
+  position: fixed;
+  right: 5rem;
+  bottom: 10rem;
+  z-index: 10;
 }
-
+.chat_button {
+  padding: .6rem;
+  border-radius: 0.6rem;
+  background-color: #e52d27;
+  transition: 0.4s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--main-color-950);
+}
+.chat_button.online {
+  background-color: #52c234;
+}
+.chat_button:hover {
+  scale: 1.2;
+  background-color: var(--main-color-950);
+}
+.chat_button > i {
+  font-size: 2.4rem;
+  transition: 0.4s;
+}
+.chat_button > span {
+  font-weight: 600;
+  font-size: 1.2rem;
+  font-family: "Quicksand";
+  pointer-events: none;
+}
+.chat_button:hover > i,
+.chat_button:hover > span {
+  color: #e52d27;
+}
+.chat_button:hover > i.online,
+.chat_button:hover > span.online {
+  color: #52c234;
+}
 .banner {
   color: #00deae;
   font-weight: bold;
   font-size: 3.4rem;
   transition: color 0.4s;
 }
-
 .banner:hover {
   color: #f026df;
 }
-
 .avatar {
   height: 3.4rem;
   width: 3.4rem;
@@ -44,24 +71,20 @@
   border: 2px solid #033949;
   transition: border 0.4s;
 }
-
 .avatar:hover {
   border: 2px solid #1cefff;
 }
-
 @media screen and (max-width: 1360px) {
   .content {
     min-height: 80vh;
   }
 }
-
 @media screen and (max-width: 830px) {
   .avatar {
     height: 5.4rem;
     width: 5.4rem;
   }
 }
-
 @media screen and (max-width: 480px) {
   .banner {
     font-size: 2.6rem;

@@ -133,7 +133,7 @@ export function Home({}: any) {
     ReactRouterSVG,
     WebpackSVG,
     AxiosSVG,
-  ].map((Component, index) => <Component key={index} />);
+  ].map<any>((Component, index) => <Component key={index} />);
   const secondSlides = [
     SocketioSVG,
     ApolloGraphqlSVG,
@@ -142,7 +142,7 @@ export function Home({}: any) {
     JavaScriptSVG,
     PythonSVG,
     NodejsSVG,
-  ].map((Component, index) => <Component key={index} />);
+  ].map<any>((Component, index) => <Component key={index} />);
   const thirdSlides = [
     MongodbSVG,
     PostgresSqlSVG,
@@ -151,7 +151,7 @@ export function Home({}: any) {
     MongooseSVG,
     CSSSVG,
     HTMLSVG,
-  ].map((Component, index) => <Component key={index} />);
+  ].map<any>((Component, index) => <Component key={index} />);
   const fourthSlides = [
     DjangoSVG,
     RabbitmqSVG,
@@ -160,7 +160,7 @@ export function Home({}: any) {
     VSCodeSVG,
     TerminalSVG,
     GitSVG,
-  ].map((Component, index) => <Component key={index} />);
+  ].map<any>((Component, index) => <Component key={index} />);
   const presentation: any = {
     es: (
       <div className={styles.presentation}>
