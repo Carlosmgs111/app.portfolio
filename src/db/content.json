@@ -12,5 +12,35 @@
     ]
   },
   "defaultLang": "es",
-  "icons_labels": {}
+  "icons_labels": {},
+  "pages": {
+    "es": [
+      {
+        "label": "Proyectos",
+        "to": "projects"
+      },
+      {
+        "label": "Certificados",
+        "to": "certifications"
+      },
+      {
+        "label": "Blog",
+        "to": "blog"
+      }
+    ],
+    "en": [
+      {
+        "label": "Projects",
+        "to": "projects"
+      },
+      {
+        "label": "Certifications",
+        "to": "certifications"
+      },
+      {
+        "label": "Blog",
+        "to": "blog"
+      }
+    ]
+  }
 }

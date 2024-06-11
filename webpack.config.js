@@ -25,8 +25,14 @@ module.exports = {
       {
         test: /\.(js|jsx|png|svg|jpg|jpeg|gif|ico)$/,
         exclude: /node_modules/,
+        include: [path.resolve(__dirname, "assets/images")],
         use: {
           loader: "babel-loader",
+          options: {
+            name: "[path][name].[ext]",
+            outputPath: "images",
+            esModule: false,
+          },
         },
       },
       {

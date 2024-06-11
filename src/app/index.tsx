@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Router } from "../components/Router";
 import { Footer } from "../components/Footer";
+import content from "../db/content.json";
 
 export function App() {
   const { clearAuth } = useApp();
@@ -26,36 +27,7 @@ export function App() {
     document.addEventListener("scroll", onScroll);
   }, [showFixed]);
 
-  const pages: any = {
-    es: [
-      {
-        label: "Proyectos",
-        to: "projects",
-      },
-      {
-        label: "Certificados",
-        to: "certifications",
-      },
-      {
-        label: "Blog",
-        to: "blog",
-      },
-    ],
-    en: [
-      {
-        label: "Projects",
-        to: "projects",
-      },
-      {
-        label: "Certifications",
-        to: "certifications",
-      },
-      {
-        label: "Blog",
-        to: "blog",
-      },
-    ],
-  };
+  const { pages }: any = content;
 
   const InConstruction = ({}: any) => (
     <div style={{ height: "100vh" }}>
@@ -105,7 +77,7 @@ export function App() {
           <InConstruction path="blog" />
         </Router>
         <div className={styles.live_chat}>
-          <div
+          <button
             className={`${styles.chat_button} ${online ? styles.online : ""}`}
           >
             <i
@@ -116,7 +88,7 @@ export function App() {
             <span className={`${online ? styles.online : ""}`}>
               {online ? "online" : "offline"}
             </span>
-          </div>
+          </button>
         </div>
       </div>
       <Modal

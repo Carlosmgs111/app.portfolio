@@ -20,18 +20,17 @@ export const Footer = () => {
         >
           <LinkedInSVG></LinkedInSVG>
         </a>
-      </div>
-      <div className={styles.separator}></div>
-      <div className={styles.section}>
         <a
           className={styles.contact_icon}
-          href="https://api.whatsapp.com/send?phone=573194914913"
+          href="https://api.whatsapp.com/send?phone=573196917820"
           target="_blank"
         >
           <WhatsAppLogoSVG></WhatsAppLogoSVG>
         </a>
+      </div>
+      <div className={styles.separator}></div>
+      <div className={styles.section}>
         <ContactForm></ContactForm>
-        {/* EMAIL, QUICK CONTACT EMAIL */}
       </div>
     </footer>
   );

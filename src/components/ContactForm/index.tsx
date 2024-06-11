@@ -112,7 +112,7 @@ export const ContactForm = () => {
       <input
         type="email"
         value={email}
-        placeholder="Dame tu correo de contacto"
+        placeholder="Tu correo de contacto"
         onChange={(e: any) => setEmail(e.target.value)}
         required
       />
@@ -123,7 +123,7 @@ export const ContactForm = () => {
         required
       ></textarea>
       <button disabled={sending} onClick={onClickSendButton}>
-        {!sending ? "Enviar" : <Loader {...{ size: LOADER_SIZES.M }} />}
+        {!sending ? "Enviar mensaje" : <Loader {...{ size: LOADER_SIZES.L }} />}
       </button>
     </form>
   );
