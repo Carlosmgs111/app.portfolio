@@ -19,7 +19,7 @@
   z-index: 10;
 }
 .chat_button {
-  padding: .6rem;
+  padding: 0.6rem;
   border-radius: 0.6rem;
   background-color: #e52d27;
   transition: 0.4s;
@@ -32,6 +32,9 @@
 }
 .chat_button.online {
   background-color: #52c234;
+}
+.chat_button.hidden {
+  transform: translate(10rem, 0);
 }
 .chat_button:hover {
   scale: 1.2;
@@ -54,6 +57,31 @@
 .chat_button:hover > i.online,
 .chat_button:hover > span.online {
   color: #52c234;
+}
+.chat_container {
+  display: relative;
+  height: 0;
+  width: 0;
+}
+.chat_container > div {
+  display: absolute;
+  transform: translate(10rem, -60rem);
+  transition: 0.6s;
+}
+.chat_container > div.visible {
+  display: absolute;
+  transform: translate(-36rem, -60rem);
+}
+.chat_container > div > button {
+  position: absolute;
+  border: none;
+  font-size: 4rem;
+  padding: 1rem;
+  transition: 0.4s;
+  background-color: transparent;
+}
+.chat_container > div > button:hover {
+  padding-left: 2rem;
 }
 .banner {
   color: #00deae;

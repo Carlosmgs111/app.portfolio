@@ -3,12 +3,14 @@ import Navigation from "../components/Navigation";
 import { Login } from "../components/Login";
 import { useStateValue } from "../contexts/context";
 import { useApp } from "../hooks/useApp";
+import { useToggle } from "../hooks/useToggle";
 import { Home, Projects, Certifications, Profile } from "../pages";
 import { Modal } from "../components/Modal";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Router } from "../components/Router";
 import { Footer } from "../components/Footer";
+import { LiveChat } from "../components/LiveChat";
 import content from "../db/content.json";
 
 export function App() {
@@ -16,6 +18,7 @@ export function App() {
   const [{ currentLang }] = useStateValue();
   const [showFixed, setShowFixed] = useState(false);
   const [currentModal, setCurrentModal]: any = useState(null);
+  const [showChat, toggleShowChat] = useToggle(false, true);
   const online = false;
 
   useEffect(() => {
@@ -78,7 +81,11 @@ export function App() {
         </Router>
         <div className={styles.live_chat}>
           <button
-            className={`${styles.chat_button} ${online ? styles.online : ""}`}
+            className={`
+            ${styles.chat_button} 
+            ${online ? styles.online : ""} 
+            ${showChat ? styles.hidden : ""}`}
+            onClick={toggleShowChat}
           >
             <i
               className={`fa-regular fa-comment-dots  ${
@@ -89,6 +96,15 @@ export function App() {
               {online ? "online" : "offline"}
             </span>
           </button>
+          <div className={`${styles.chat_container} `}>
+            <div className={showChat ? styles.visible : ""}>
+              <button
+                className={"fa-solid fa-caret-right"}
+                onClick={toggleShowChat}
+              ></button>
+              <LiveChat></LiveChat>
+            </div>
+          </div>
         </div>
       </div>
       <Modal

@@ -1,0 +1,23 @@
+.chat {
+  width: 40rem;
+  height: 60rem;
+  background-color: whitesmoke;
+  border-radius: 2rem;
+  padding: 2rem;
+}
+.body {
+  width: 100%;
+  height: 52rem;
+  color: black;
+  font-size: 1.4rem;
+  padding-top: 3rem;
+}
+.dashboard {
+  height: 4rem;
+  width: 100%;
+  border: 2px solid var(--moonlit-asteroid-900);
+  border-radius: 1rem;
+  transition: 0.4s;
+  padding: 1.6rem;
+  font-size: 1.4rem;
+}

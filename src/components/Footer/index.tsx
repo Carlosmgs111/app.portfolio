@@ -6,6 +6,7 @@ export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.section}>
+        <h3>Mis redes</h3>
         <a
           className={styles.contact_icon}
           href="https://github.com/Carlosmgs111"
@@ -30,6 +31,7 @@ export const Footer = () => {
       </div>
       <div className={styles.separator}></div>
       <div className={styles.section}>
+        <h3>¡Contáctame!</h3>
         <ContactForm></ContactForm>
       </div>
     </footer>

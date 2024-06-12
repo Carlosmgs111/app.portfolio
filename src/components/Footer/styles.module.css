@@ -18,6 +18,16 @@
   display: flex;
   gap: 4rem;
   align-items: center;
+  position: relative;
+  height: 40rem;
+}
+.section > h3 {
+  font-size: 2rem;
+  position: absolute;
+  top: 4rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: white;
 }
 .contact_icon > div {
   width: 3.4rem;
