@@ -7,6 +7,7 @@ import { setActions } from "./utils";
 import content from "./db/content.json";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { act } from "react";
 
 const { defaultLang } = content;
 
@@ -23,6 +24,7 @@ const initialState = {
   searchedusername: "",
   currentLang: defaultLang,
   sidebarFloat: true,
+  isOnline: false,
 };
 
 export const actionTypes: any = setActions(
@@ -40,6 +42,7 @@ const reducer = (state: any, action: any) => {
     [actionTypes.setSearchedusername]: { ...state, searchedusername: payload },
     [actionTypes.setCurrentLang]: { ...state, currentLang: payload },
     [actionTypes.setSidebarFloat]: { ...state, sidebarFloat: payload },
+    [actionTypes.setIsOnline]: { ...state, isOnline: payload },
     [actionTypes.reset]: {
       ...state,
       ...initialState,

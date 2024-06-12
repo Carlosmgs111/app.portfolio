@@ -63,7 +63,7 @@ export function GenerateImage() {
 
     const messageResult = await SocketService.sendMessage(
       {
-        imageService: {
+        core: {
           generateImages: [
             {
               prompt,

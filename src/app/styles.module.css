@@ -15,7 +15,7 @@
 .live_chat {
   position: fixed;
   right: 5rem;
-  bottom: 10rem;
+  bottom: 5rem;
   z-index: 10;
 }
 .chat_button {

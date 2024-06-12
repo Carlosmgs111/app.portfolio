@@ -32,6 +32,7 @@
   background-color: #0f2027;
   color: var(--main-color-100);
   text-shadow: -4px 4px 2px #000000aa;
+  font-weight: 500;
 }
 .image_container {
   display: flex;

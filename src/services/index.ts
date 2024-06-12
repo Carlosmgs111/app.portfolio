@@ -8,4 +8,4 @@ export const WS_URL = config.devWsUrl || config.prodWsUrl;
 
 export const SocketService = new SS(/* [
   { imageService: "http://127.0.0.1:7081" },
-] */).addClient({ imageService: URL});
+] */).addClient({ core: URL });

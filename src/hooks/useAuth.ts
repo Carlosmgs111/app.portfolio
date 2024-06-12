@@ -3,6 +3,7 @@ import { useLocalStorage } from "./useLocalStorage";
 import { getContext, CONTEXTS } from "../contexts";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { URL_API } from "../services";
 
 function useAuth() {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
@@ -89,6 +90,7 @@ function useAuth() {
   };
 
   const clearAuth = () => {
+    fetch(`${URL_API}/logout`, { method: "GET" });
     setToken("");
     setApiKey("");
     setExpire(0);

@@ -12,14 +12,15 @@ import { Router } from "../components/Router";
 import { Footer } from "../components/Footer";
 import { LiveChat } from "../components/LiveChat";
 import content from "../db/content.json";
+import { URL_API } from "../services";
+import { actionTypes } from "../";
 
 export function App() {
   const { clearAuth } = useApp();
-  const [{ currentLang }] = useStateValue();
+  const [{ currentLang, isOnline }, dispatch] = useStateValue();
   const [showFixed, setShowFixed] = useState(false);
   const [currentModal, setCurrentModal]: any = useState(null);
   const [showChat, toggleShowChat] = useToggle(false, true);
-  const online = false;
 
   useEffect(() => {
     const onScroll = (e: any) => {
@@ -29,6 +30,14 @@ export function App() {
     };
     document.addEventListener("scroll", onScroll);
   }, [showFixed]);
+
+  useEffect(() => {
+    fetch(`${URL_API}/checkifisonline`)
+      .then((response: any) => response.json())
+      .then((response) =>
+        dispatch({ type: actionTypes.setIsOnline, payload: response })
+      );
+  }, []);
 
   const { pages }: any = content;
 
@@ -83,17 +92,17 @@ export function App() {
           <button
             className={`
             ${styles.chat_button} 
-            ${online ? styles.online : ""} 
+            ${isOnline ? styles.online : ""} 
             ${showChat ? styles.hidden : ""}`}
             onClick={toggleShowChat}
           >
             <i
               className={`fa-regular fa-comment-dots  ${
-                online ? styles.online : ""
+                isOnline ? styles.online : ""
               }`}
             ></i>
-            <span className={`${online ? styles.online : ""}`}>
-              {online ? "online" : "offline"}
+            <span className={`${isOnline ? styles.online : ""}`}>
+              {isOnline ? "online" : "offline"}
             </span>
           </button>
           <div className={`${styles.chat_container} `}>

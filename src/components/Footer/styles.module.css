@@ -25,9 +25,11 @@
   font-size: 2rem;
   position: absolute;
   top: 4rem;
-  left: 50%;
-  transform: translate(-50%, 0);
   color: white;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+
 }
 .contact_icon > div {
   width: 3.4rem;
