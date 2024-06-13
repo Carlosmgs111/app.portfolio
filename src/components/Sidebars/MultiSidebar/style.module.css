@@ -5,6 +5,11 @@
   height: 0;
   width: fit-content;
   z-index: 1;
+  height: fit-content; /* ? This allows dynamic scrolling when your content is overtaken, in this case by app footer   */
+  max-height: calc(
+    /* ? This allows dynamic scrolling when your content is overtaken, in this case by app footer */
+      100vh - 6rem
+  );
 }
 .main {
   position: relative;
@@ -22,7 +27,7 @@
   border-radius: 0 0.6rem 0.6rem 0;
   backdrop-filter: blur(6px);
   border: solid transparent 2px;
-  /* max-height: calc(100vh - 6rem); */
+  max-height: calc(100vh - 6rem);
   height: 100%;
   padding: 1.4rem;
   display: flex;
@@ -58,7 +63,7 @@
 .body {
   display: flex;
   max-height: calc(
-    100vh - 6rem - 40rem - 4.8rem - 2.8rem
+    100vh - 6rem - 4.8rem - 2.8rem
   ); /* ? Calculated based in height of both footer and header of sidebar, body and its corresponding paddings, minus height of both navigation bar and footer */
   width: max-content;
   transition: column-gap 0.4s;
