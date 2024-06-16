@@ -1,9 +1,11 @@
 import { connect } from "socket.io-client";
-import { Mapfy } from "../../utils";
+import { Mapfy, genRandomId } from "../../utils";
 
 export class SocketService {
   clients: any = {};
   maxTries: number = 10;
+  id = String(genRandomId());
+  onConnectionEvent = () => {};
 
   constructor(clients = []) {
     if (clients) {
@@ -21,16 +23,19 @@ export class SocketService {
   };
 
   addClient = (client: any) => {
+    console.log(this.id);
     const token = localStorage.getItem("token")?.replaceAll('"', "");
     let tries = 0;
     const [alias, address] = Mapfy(client).entries().next().value;
     this.clients[alias] = connect(`${address}`, {
       path: "/ws",
       auth: { token },
+      query: { id: this.id },
     });
     this.clients[alias].connect();
     this.clients[alias].on("connect", () => {
       console.log("Conexión establecida con el servidor.");
+      this.onConnectionEvent()
     });
     this.clients[alias].on("disconnect", () => {
       console.log("Conexión perdida con el servidor.");

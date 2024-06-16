@@ -121,7 +121,18 @@ module.exports = {
     historyApiFallback: {
       disableDotRule: true,
     },
-    port: 3080,
+    port: "auto",
+    open: true,
+    client: {
+      overlay: {
+        warnings: false,
+        errors: true,
+      },
+    },
+    onListening: function (devServer) {
+      const port = devServer.server.address().port;
+      console.log("Listening on port:", port);
+    },
   },
   performance: {
     hints: false,

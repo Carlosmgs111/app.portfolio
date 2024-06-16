@@ -6,10 +6,7 @@
   width: fit-content;
   z-index: 1;
   height: fit-content; /* ? This allows dynamic scrolling when your content is overtaken, in this case by app footer   */
-  max-height: calc(
-    /* ? This allows dynamic scrolling when your content is overtaken, in this case by app footer */
-      100vh - 6rem
-  );
+  max-height: 100vh; /* ? This allows dynamic scrolling when your content is overtaken, in this case by app footer */
 }
 .main {
   position: relative;

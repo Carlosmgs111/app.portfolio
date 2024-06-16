@@ -18,6 +18,30 @@
   border: 2px solid var(--moonlit-asteroid-900);
   border-radius: 1rem;
   transition: 0.4s;
-  padding: 1.6rem;
   font-size: 1.4rem;
+  position: relative;
+}
+.dashboard > input {
+  height: 100%;
+  padding: 1.6rem;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.dashboard > input:focus + button,
+.dashboard > button:hover {
+  color: black;
+}
+.dashboard > button {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 4rem;
+  background: linear-gradient(90deg, transparent 5%, white, white);
+  border: none;
+  font-size: 2rem;
+  transition: 0.2s;
+  border-radius: 2rem;
+  color: grey;
 }
