@@ -18,7 +18,7 @@
 .header > button {
   border: none;
   outline: none;
-  padding: 0.8rem;
+  padding: 0.6rem;
   font-family: "Rubik";
   font-size: 1.6rem;
   font-weight: 500;
@@ -41,13 +41,33 @@
   list-style: none;
 }
 .messages > li {
-  padding: 0 30% 0 0;
+  display: flex;
+}
+.messages > li > p {
+  margin: 0.2rem 0;
+  padding: 0.4rem;
+  max-width: 70%;
   word-wrap: break-word;
   white-space: pre-wrap;
+  background-color: var(--main-color-400b);
+  border-radius: 0.4rem;
 }
 .messages > li.right {
-  text-align: right;
-  padding: 0 0 0 30%;
+  justify-content: right;
+}
+.messages > li.right > p {
+  background-color: var(--main-color-500b);
+}
+.messages > li.advice > p {
+  width: 100% !important;
+  max-width: 100%;
+  background-color: #ffff008b;
+  text-align: center;
+}
+.body > article {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 .dashboard {
   height: 4rem;

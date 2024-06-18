@@ -97,11 +97,20 @@ export const ContactForm = () => {
       notify({
         message: `Bien!, tu mensaje ha sido enviado.`,
       });
+      setWho("");
+      setEmail("");
+      setMessage("");
     });
   };
 
   return (
     <form className={styles.email_form} action="" onSubmit={onClickSendButton}>
+      <textarea
+        value={message}
+        placeholder="Cuentame más..."
+        onChange={(e: any) => setMessage(e.target.value)}
+        required
+      ></textarea>
       <input
         type="text"
         value={who}
@@ -112,16 +121,10 @@ export const ContactForm = () => {
       <input
         type="email"
         value={email}
-        placeholder="Tu correo de contacto"
+        placeholder="Tu correo de contacto."
         onChange={(e: any) => setEmail(e.target.value)}
         required
       />
-      <textarea
-        value={message}
-        placeholder="Cuentame más"
-        onChange={(e: any) => setMessage(e.target.value)}
-        required
-      ></textarea>
       <button disabled={sending} onClick={onClickSendButton}>
         {!sending ? "Enviar mensaje" : <Loader {...{ size: LOADER_SIZES.L }} />}
       </button>

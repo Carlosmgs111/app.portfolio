@@ -39,6 +39,8 @@
   font-size: 1.4rem;
 }
 .email_form > textarea {
+  min-width: 34rem;
+  width: 100% !important;
   height: 32rem;
   resize: none;
 }

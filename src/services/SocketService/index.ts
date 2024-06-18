@@ -6,6 +6,7 @@ export class SocketService {
   maxTries: number = 10;
   id = String(genRandomId());
   onConnectionEvent = () => {};
+  onDisconnectionEvent = () => {};
 
   constructor(clients = []) {
     if (clients) {
@@ -35,9 +36,10 @@ export class SocketService {
     this.clients[alias].connect();
     this.clients[alias].on("connect", () => {
       console.log("Conexión establecida con el servidor.");
-      this.onConnectionEvent()
+      this.onConnectionEvent();
     });
     this.clients[alias].on("disconnect", () => {
+      this.onDisconnectionEvent();
       console.log("Conexión perdida con el servidor.");
     });
     this.clients[alias].on("message", (message: any) => {
@@ -47,6 +49,10 @@ export class SocketService {
       if (tries >= this.maxTries) return;
       console.error("Error de conexión:", error);
       tries++;
+    });
+    window.addEventListener("beforeunload", () => {
+      this.onDisconnectionEvent();
+      this.clients[alias].close();
     });
     return this;
   };

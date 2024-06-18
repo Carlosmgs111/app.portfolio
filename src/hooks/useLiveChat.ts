@@ -1,6 +1,6 @@
 import { useStateValue } from "../contexts/context";
 import { SocketService } from "../services";
-import { useEffect, useState, useReducer } from "react";
+import { useEffect, useState } from "react";
 import { actionTypes } from "..";
 import { generate } from "random-words";
 import { labelCases } from "../utils";
@@ -9,10 +9,10 @@ export const useLiveChat = () => {
   const [{ token }, dispatch] = useStateValue();
   const [message, setMessage] = useState("");
   const [rooms, setRooms]: any = useState([]);
-  const [chat, setChat]: any = useState([]);
+  const [chats, setChats]: any = useState({});
   const [currentRoom, setCurrentRoom]: any = useState(null);
+  const [alias, setAlias] = useState("");
   const kind = token ? "host" : "guest";
-  const alias: any = generate({ minLength: 5 });
 
   const register = () => {
     SocketService.sendMessage({
@@ -20,14 +20,22 @@ export const useLiveChat = () => {
         register: [
           {
             id: SocketService.id,
-            alias: labelCases(alias).CS,
+            alias: labelCases(
+              alias || ((): any => generate({ minLength: 5 }))()
+            ).CS,
             kind,
           },
         ],
       },
     });
     if (token) {
+      setAlias("Carlos Muñoz");
       SocketService.sendMessage({ core: { isOnline: [Boolean(token)] } });
+      SocketService.sendMessage({
+        core: {
+          updateAlias: [{ id: SocketService.id, alias: "Carlos Muñoz" }],
+        },
+      });
     }
   };
 
@@ -35,6 +43,12 @@ export const useLiveChat = () => {
     register();
     SocketService.onConnectionEvent = () => {
       register();
+    };
+    SocketService.onDisconnectionEvent = () => {
+      token &&
+        SocketService.sendMessage({
+          core: { isOnline: [false] },
+        });
     };
   }, [token]);
 
@@ -60,31 +74,75 @@ export const useLiveChat = () => {
         },
       },
     });
+    if (alias && !token) {
+      const history = chats[currentRoom.id] || [];
+      setChats({
+        ...chats,
+        [currentRoom.id]: [
+          ...history,
+          {
+            by: "advice",
+            message: `¡Hola ${alias} 👋, ya puedes chatear conmigo!`,
+          },
+        ],
+      });
+    }
   }, []);
+  useEffect(() => {
+    if (alias && !token) {
+      const history = chats[currentRoom.id] || [];
+      SocketService.sendMessage({
+        core: { updateAlias: [{ alias, id: SocketService.id }] },
+      });
+      setChats({
+        ...chats,
+        [currentRoom.id]: [
+          ...history,
+          {
+            by: "advice",
+            message: `¡Hola ${alias} 👋, ya puedes chatear conmigo!`,
+          },
+        ],
+      });
+    }
+  }, [alias]);
   useEffect(() => {
     SocketService.receiveMessage({
       core: {
         response: ({ message, room }: any) => {
-          setChat([...chat, { by: "party", message }]);
+          const history = chats[room.id] || [];
+          setChats({
+            ...chats,
+            [room?.id]: [...history, { by: "party", message }],
+          });
         },
       },
     });
-  }, [chat]);
+  }, [chats]);
 
   const onSubmit = (e: any) => {
+    const history = chats[currentRoom.id] || [];
     e.preventDefault();
-    SocketService.sendMessage({
-      core: {
-        message: [
-          {
-            message,
-            room: currentRoom,
-          },
-        ],
-      },
-    });
+    if (alias) {
+      SocketService.sendMessage({
+        core: {
+          message: [
+            {
+              message,
+              room: currentRoom,
+            },
+          ],
+        },
+      });
+      setChats({
+        ...chats,
+        [currentRoom.id]: [...history, { by: "self", message }],
+      });
+    }
+    if (!alias) {
+      setAlias(message);
+    }
     setMessage("");
-    setChat([...chat, { by: "self", message }]);
   };
   return {
     onSubmit,
@@ -93,6 +151,8 @@ export const useLiveChat = () => {
     rooms,
     currentRoom,
     setCurrentRoom,
-    chat,
+    chats,
+    token,
+    alias,
   };
 };
