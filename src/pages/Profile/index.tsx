@@ -10,6 +10,7 @@ import { getContext, CONTEXTS } from "../../contexts";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import { useState } from "react";
+import { SocketService } from "../../services";
 
 export function Profile({ clearAuth }: any) {
   const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
@@ -69,6 +70,9 @@ export function Profile({ clearAuth }: any) {
       onClick: () => {
         if (window.confirm("Are you sure you want logout?")) {
           clearAuth();
+          SocketService.sendMessage({
+            core: { unregister: [{ id: SocketService.id }] },
+          });
           dispatch({ type: ACTIONS.reset });
           navigate("/");
         }

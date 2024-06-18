@@ -1,98 +1,65 @@
 import styles from "./styles.module.css";
-import { useStateValue } from "../../contexts/context";
-import { SocketService } from "../../services";
-import { useEffect, useState } from "react";
-import { actionTypes } from "../..";
+import { useLiveChat } from "../../hooks/useLiveChat";
 
 export const LiveChat = () => {
-  const [{ token }, dispatch] = useStateValue();
-  const [message, setMessage] = useState("");
-  const [rooms, setRooms] = useState([]);
-  const kind = token ? "host" : "guest";
+  const {
+    message,
+    setMessage,
+    onSubmit,
+    rooms,
+    currentRoom,
+    setCurrentRoom,
+    chat,
+  } = useLiveChat();
 
-  const register = () => {
-    SocketService.sendMessage({
-      core: {
-        register: [
-          {
-            id: SocketService.id,
-            alias: SocketService.id,
-            kind,
-          },
-        ],
-      },
-    });
-    if (token) {
-      SocketService.sendMessage({ core: { isOnline: [Boolean(token)] } });
-    }
-  };
-
-  useEffect(() => {
-    register();
-    SocketService.onConnectionEvent = () => {
-      register();
-    };
-  }, [token]);
-
-  useEffect(() => {
-    SocketService.receiveMessage({
-      core: { message: async (_message: any) => console.log({ _message }) },
-    });
-    SocketService.receiveMessage({
-      core: {
-        response: ({ message, from, to }: any) => {
-          console.log({ message, from, to });
-        },
-      },
-    });
-    SocketService.receiveMessage({
-      core: {
-        isOnline: ({ isOnline }: any) => {
-          dispatch({ type: actionTypes.setIsOnline, payload: isOnline });
-        },
-      },
-    });
-    SocketService.receiveMessage({
-      core: {
-        rooms: (rooms: any) => {
-          setRooms(rooms);
-          console.log({ rooms });
-        },
-      },
-    });
-  }, []);
-
-  const onSubmit = (e: any) => {
-    e.preventDefault();
-    SocketService.sendMessage({
-      core: {
-        message: [
-          {
-            message,
-            room: rooms[0],
-          },
-        ],
-      },
-    });
-  };
-
+  const headerTabs = rooms.map(({ id, parties }: any, key: any) => (
+    <button
+      id={id}
+      onClick={(e: any) =>
+        setCurrentRoom(
+          rooms[
+            rooms.findIndex(
+              (room: any) => String(room.id) === String(e.target.id)
+            )
+          ]
+        )
+      }
+      className={`${currentRoom?.id === id ? styles.active : ""}`}
+      key={key}
+    >
+      {parties[0].partyAlias}
+    </button>
+  ));
+  const bodyChat = (
+    <ul className={styles.messages}>
+      {chat.map(({ message, by }: any, key: any) => (
+        <li className={`${by === "self" ? styles.right : ""}`} key={key}>
+          {message}
+        </li>
+      ))}
+    </ul>
+  );
+  const tempMessage = (
+    <article>
+      <p>Aqui ira el chat en vivo</p>
+      <span>
+        🚧
+        <mark>
+          Nota: Esta sección está actualmente en desarrollo y construcción.
+        </mark>
+        🚧
+      </span>
+      <p>
+        Podras comunicarte conmigo directamente cuando me encuentre conectado,
+        en caso contrario, te mostrara una opcion para redirigirte al formulario
+        de contacto ubicado en el footer de la aplicacion.
+      </p>
+    </article>
+  );
   return (
     <div className={styles.chat}>
-      <div className={styles.body}>
-        <article>Aqui ira el chat en vivo</article>
-        <span>
-          🚧
-          <mark>
-            Nota: Esta sección está actualmente en desarrollo y construcción.
-          </mark>
-          🚧
-        </span>
-        <p>
-          Podras comunicarte conmigo directamente cuando me encuentre conectado,
-          en caso contrario, te mostrara una opcion para redirigirte al
-          formulario de contacto ubicado en el footer de la aplicacion.
-        </p>
-      </div>
+      <div className={styles.header}>{headerTabs}</div>
+      <div className={styles.body}>{bodyChat}</div>
       <form className={styles.dashboard} onSubmit={onSubmit}>
         <input
           type="text"
