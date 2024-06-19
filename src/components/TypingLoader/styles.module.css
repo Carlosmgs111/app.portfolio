@@ -1,0 +1,40 @@
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  scale: 1.2;
+  padding: 0.4rem;
+}
+
+.typing-indicator span {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin: 0 0.2rem;
+  background-color: #333;
+  border-radius: 50%;
+  animation: typing 1.2s infinite both;
+}
+
+.typing-indicator span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0% {
+    transform: translateY(0.2rem);
+  }
+  50% {
+    transform: translateY(-0.2rem);
+  }
+  100% {
+    transform: translateY(0.2rem);
+  }
+}

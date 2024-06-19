@@ -22,15 +22,18 @@
   font-family: "Rubik";
   font-size: 1.6rem;
   font-weight: 500;
-  background-color: var(--main-color-200);
   height: fit-content;
   border-radius: 0.4rem;
+  transition: 0.2s;
 }
-.header > button.active {
-  background-color: var(--main-color-500);
+.header > button.active,
+.header > button.active:hover {
+  background-color: black;
+  color: white;
 }
 .header > button:hover {
-  background-color: var(--main-color-300);
+  background-color: grey;
+  color: black;
 }
 .body {
   width: 100%;
@@ -49,19 +52,20 @@
   max-width: 70%;
   word-wrap: break-word;
   white-space: pre-wrap;
-  background-color: var(--main-color-400b);
+  background-color: grey;
   border-radius: 0.4rem;
 }
 .messages > li.right {
   justify-content: right;
 }
 .messages > li.right > p {
-  background-color: var(--main-color-500b);
+  background-color: black;
+  color: white;
 }
 .messages > li.advice > p {
   width: 100% !important;
   max-width: 100%;
-  background-color: #ffff008b;
+  background-color: #ffff00;
   text-align: center;
 }
 .body > article {
@@ -86,6 +90,16 @@
   border: none;
   outline: none;
 }
+.dashboard > input::placeholder {
+  font-family: "Rubik";
+  font-size: 1.4rem;
+  transition: 0.4s;
+}
+.dashboard > input:hover::placeholder,
+.dashboard > input:focus::placeholder {
+  transform: translate(0, -2.4rem);
+  opacity: 0;
+}
 .dashboard > input:focus + button,
 .dashboard > button:hover {
   color: black;
@@ -98,7 +112,24 @@
   background: linear-gradient(90deg, transparent 5%, white, white);
   border: none;
   font-size: 2rem;
-  transition: 0.2s;
+  transition: 0.4s;
   border-radius: 2rem;
   color: grey;
+}
+.dashboard > input:hover + button + span,
+.dashboard > input:focus + button + span {
+  top: -2.4rem;
+  background-color: yellow;
+  opacity: 1;
+}
+.dashboard > span {
+  position: absolute;
+  top: 1.8rem;
+  left: 0.8rem;
+  transform: translate(0, -50%);
+  pointer-events: none;
+  transition: 0.4s;
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  opacity: 0;
 }

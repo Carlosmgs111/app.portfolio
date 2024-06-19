@@ -1,6 +1,7 @@
 import styles from "./styles.module.css";
 import { useLiveChat } from "../../hooks/useLiveChat";
 import { ContactForm } from "../../components/ContactForm";
+import { TypingLoader } from "../../components/TypingLoader";
 
 export const LiveChat = () => {
   const {
@@ -38,6 +39,18 @@ export const LiveChat = () => {
 
   const bodyChat = (
     <ul className={styles.messages}>
+      {!alias && (
+        <span>
+          Hola 👋, primera vez? Sólo dime quién eres para empezar a chatear 💬
+          en vivo conmigo. Puede hacerlo ingresando su nombre o a quién
+          representa en el formulario en la parte inferior ⬇️ y presionando
+          'enter' o haciendo clic en el botón{" "}
+          <i className="fa-solid fa-paper-plane"></i>.
+        </span>
+      )}
+      <li>
+        <p><TypingLoader></TypingLoader></p>
+      </li>
       {chats[currentRoom?.id]?.map(({ message, by }: any, key: any) => (
         <li
           className={`
@@ -85,11 +98,14 @@ export const LiveChat = () => {
             id="chat"
             value={message}
             onChange={(e: any) => setMessage(e.target.value)}
-            placeholder={
-              !alias && !token ? "Para iniciar indícame quien eres... " : ""
-            }
+            placeholder="Para iniciar indícame quien eres..."
           ></input>
           <button className="fa-solid fa-paper-plane" type="submit"></button>
+          {!alias && !token && (
+            <span style={{ opacity: Number(!Boolean(message)) }}>
+              {"Para iniciar indícame quien eres..."}
+            </span>
+          )}
         </form>
       )}
     </div>
