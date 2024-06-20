@@ -97,7 +97,7 @@
 }
 .dashboard > input:hover::placeholder,
 .dashboard > input:focus::placeholder {
-  transform: translate(0, -2.4rem);
+  transform: translate(0, -210%);
   opacity: 0;
 }
 .dashboard > input:focus + button,

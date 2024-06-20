@@ -14,6 +14,7 @@ export const LiveChat = () => {
     chats,
     token,
     alias,
+    counterpartyIsTyping,
   } = useLiveChat();
 
   const headerTabs =
@@ -48,9 +49,6 @@ export const LiveChat = () => {
           <i className="fa-solid fa-paper-plane"></i>.
         </span>
       )}
-      <li>
-        <p><TypingLoader></TypingLoader></p>
-      </li>
       {chats[currentRoom?.id]?.map(({ message, by }: any, key: any) => (
         <li
           className={`
@@ -62,6 +60,18 @@ export const LiveChat = () => {
           <p>{message}</p>
         </li>
       ))}
+      {counterpartyIsTyping && (
+        <li>
+          <div
+            style={{
+              margin: "0.2rem 0",
+              padding: "0.4rem",
+            }}
+          >
+            <TypingLoader></TypingLoader>
+          </div>
+        </li>
+      )}
     </ul>
   );
   const offlineMessage = (
@@ -98,7 +108,9 @@ export const LiveChat = () => {
             id="chat"
             value={message}
             onChange={(e: any) => setMessage(e.target.value)}
-            placeholder="Para iniciar indícame quien eres..."
+            placeholder={
+              !alias && !token ? "Para iniciar indícame quien eres..." : ""
+            }
           ></input>
           <button className="fa-solid fa-paper-plane" type="submit"></button>
           {!alias && !token && (
