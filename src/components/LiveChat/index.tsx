@@ -45,7 +45,7 @@ export const LiveChat = () => {
       {!alias && (
         <span>
           Hola 👋, primera vez? Sólo dime quién eres para empezar a chatear 💬
-          en vivo conmigo. Puede hacerlo ingresando su nombre o a quién
+          en vivo conmigo. Puede hacerlo ingresando tu nombre o a quién
           representa en el formulario en la parte inferior ⬇️ y presionando
           'enter' o haciendo clic en el botón{" "}
           <i className="fa-solid fa-paper-plane"></i>.

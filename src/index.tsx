@@ -7,7 +7,6 @@ import { setActions } from "./utils";
 import content from "./db/content.json";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { act } from "react";
 
 const { defaultLang } = content;
 
@@ -56,7 +55,7 @@ const rootElement: any = document.getElementById("root");
 ReactDOM.createRoot(rootElement).render(
   <Router>
     <StateProvider {...{ initialState, reducer }}>
-      <ToastContainer />
+      <ToastContainer stacked  />
       <App />
     </StateProvider>
   </Router>
