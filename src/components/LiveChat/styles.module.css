@@ -124,7 +124,7 @@
 }
 .dashboard > span {
   position: absolute;
-  top: 1.8rem;
+  top: 1.7rem;
   left: 0.8rem;
   transform: translate(0, -50%);
   pointer-events: none;

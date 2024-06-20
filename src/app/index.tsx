@@ -6,7 +6,8 @@ import { useApp } from "../hooks/useApp";
 import { useToggle } from "../hooks/useToggle";
 import { Home, Projects, Certifications, Profile } from "../pages";
 import { Modal } from "../components/Modal";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Router } from "../components/Router";
 import { Footer } from "../components/Footer";
@@ -17,7 +18,8 @@ import { actionTypes } from "../";
 
 export function App() {
   const { clearAuth } = useApp();
-  const [{ currentLang, isOnline }, dispatch] = useStateValue();
+  const router = useNavigate();
+  const [{ currentLang, isOnline, token }, dispatch] = useStateValue();
   const [showFixed, setShowFixed] = useState(false);
   const [currentModal, setCurrentModal]: any = useState(null);
   const [showChat, toggleShowChat] = useToggle(false, true);
@@ -38,6 +40,49 @@ export function App() {
         dispatch({ type: actionTypes.setIsOnline, payload: response })
       );
   }, []);
+
+  const handleKeyPress = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.altKey && event.key.toLowerCase() === "l")
+        if (!currentModal)
+          dispatch({
+            type: actionTypes.setCurrentModal,
+            payload: (
+              <Login
+                {...{
+                  onCloseSession: () =>
+                    dispatch({
+                      type: actionTypes.setCurrentModal,
+                      payload: null,
+                    }),
+                }}
+              />
+            ),
+          });
+        else {
+          dispatch({
+            type: actionTypes.setCurrentModal,
+            payload: null,
+          });
+        }
+      if (event.altKey && event.key.toLowerCase() === "l") {
+        !token &&
+          setCurrentModal(
+            <Login {...{ onLogged: () => setCurrentModal(null) }} />
+          );
+        token && router("/profile");
+      }
+      if (event.altKey && event.key.toLowerCase() === "h") router("/");
+    },
+    [currentModal]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [handleKeyPress]);
 
   const { pages }: any = content;
 
@@ -68,15 +113,15 @@ export function App() {
       <div className={styles.header}>
         <Navigation
           pages={pages[currentLang]}
-          login={{
-            to: "profile",
-            onClick: (e: any) => {
-              e.preventDefault();
-              setCurrentModal(
-                <Login {...{ onLogged: () => setCurrentModal(null) }} />
-              );
-            },
-          }}
+          // login={{
+          //   to: "profile",
+          //   onClick: (e: any) => {
+          //     e.preventDefault();
+          //     setCurrentModal(
+          //       <Login {...{ onLogged: () => setCurrentModal(null) }} />
+          //     );
+          //   },
+          // }}
         ></Navigation>
       </div>
       <div className={styles.content}>

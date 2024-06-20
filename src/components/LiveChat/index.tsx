@@ -17,6 +17,8 @@ export const LiveChat = () => {
     counterpartyIsTyping,
   } = useLiveChat();
 
+  const helperMessage = "Hola 👋, como te llamas?";
+
   const headerTabs =
     token &&
     rooms.map(({ id, parties }: any, key: any) => (
@@ -108,14 +110,12 @@ export const LiveChat = () => {
             id="chat"
             value={message}
             onChange={(e: any) => setMessage(e.target.value)}
-            placeholder={
-              !alias && !token ? "Para iniciar indícame quien eres..." : ""
-            }
+            placeholder={!alias && !token ? helperMessage : ""}
           ></input>
           <button className="fa-solid fa-paper-plane" type="submit"></button>
           {!alias && !token && (
             <span style={{ opacity: Number(!Boolean(message)) }}>
-              {"Para iniciar indícame quien eres..."}
+              {helperMessage}
             </span>
           )}
         </form>
