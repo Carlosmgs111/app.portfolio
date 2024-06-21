@@ -38,7 +38,7 @@ export function Certification({
     grantedTo,
   }: any = certification;
   const { token, username } = getContextValue(CONTEXTS.Global);
-  const [show, ref]: any = useNearScreen(false); // ? Use to lazy loading 💤⏳
+  const [ref, show]: any = useNearScreen(false); // ? Use to lazy loading 💤⏳
 
   // ? 1️⃣ Define the callback to be passed as high order callback
   const updateCallback = (params: any) => {

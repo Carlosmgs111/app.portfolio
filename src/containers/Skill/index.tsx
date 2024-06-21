@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import { useToggle } from "../../hooks/useToggle";
 import { DefineForms, getHOCAndTrigger } from "../../components/DefineForms";
 import { runButtonBehavior } from "../../utils";
-import { runRequest} from "../../services/runRequest";
+import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
 import { getContextValue, CONTEXTS } from "../../contexts";
 
 export function Skill({ state, initialState, updateState, index }: any) {
-  const [show, ref] = useNearScreen(false);
+  const [ref, show] = useNearScreen(false);
   const requestHeaders = headers();
   const [beingEdited, switchBeingEdited] = useToggle(false, true);
   const [skill, setSkill] = useState(initialState);

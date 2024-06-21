@@ -159,16 +159,6 @@ h2 {
   backdrop-filter: brightness(95%);
   font-size: 1.6rem;
 }
-
-.text {
-  font-size: 2.4rem;
-  margin: 0;
-  white-space: pre-wrap;
-  text-align: right;
-  filter: drop-shadow(-6px 6px 1px #000000cc);
-  max-width: 60rem;
-}
-
 @media screen and (max-width: 1360px) {
   .section {
     padding: 8rem 14rem;

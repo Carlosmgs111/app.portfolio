@@ -13,6 +13,10 @@ export const Slider = ({ children, toRight = false }: any) => {
       <div className={`${styles.slider} ${toRight ? styles.to_right : ""}`}>
         {slides}
         {slides}
+        {slides}
+        {slides}
+        {slides}
+        {slides}
       </div>
     </div>
   );

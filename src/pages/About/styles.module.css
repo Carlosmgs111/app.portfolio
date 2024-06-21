@@ -1,0 +1,35 @@
+.page {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
+.section {
+  border: none;
+  height: fit-content;
+  min-height: 90rem;
+  width: 120rem;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 8rem;
+  flex-wrap: wrap;
+  transition: 1s ease-in-out;
+  transform: translate(70vw, 0);
+  opacity: 0;
+}
+.section.visible {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+.text {
+  font-size: 2.4rem;
+  margin: 0;
+  white-space: pre-wrap;
+  text-align: right;
+  filter: drop-shadow(-6px 6px 1px #000000cc);
+  max-width: 60rem;
+}

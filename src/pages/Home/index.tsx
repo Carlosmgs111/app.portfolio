@@ -3,7 +3,6 @@ import { CodeSnap } from "../../components/CodeSnap";
 import { Typing } from "../../components/Typing";
 import { CSSSVG, GitHubSVG, HTMLSVG, LinkedInSVG } from "../../icons";
 import { Slider } from "../../components/Slider";
-import content from "../../db/content.json";
 import { useStateValue } from "../../contexts/context";
 import {
   ReactSVG,
@@ -34,9 +33,10 @@ import {
   GitSVG,
 } from "./../../icons";
 import { useNearScreen } from "../../hooks/useNearScreen";
+import { useToggle } from "../../hooks/useToggle";
+import { MemoizedComponent } from "../../components/MemoizedComponent";
 
 export function Home({}: any) {
-  const { summary }: any = content;
   const [{ currentLang }] = useStateValue();
   const literalCodeSnapshot = `1 | class Developer {
 2 |   name: string = "";
@@ -217,32 +217,39 @@ export function Home({}: any) {
       </div>
     ),
   };
+  const [showIntroduccion, toggleShowIntroduccion] = useToggle(false, true);
+  const [showCoding, toggleShowCoding] = useToggle(false, true);
 
-  const [showPresentation, presentationRef] = useNearScreen(false);
-  const [showSummary, summaryRef] = useNearScreen(false, null, {
-    threshold: 0.05,
-  });
-  const [showCoding, codingRef] = useNearScreen(false, null, {
-    threshold: 0.05,
-  });
+  const [presentationRef] = useNearScreen(
+    false,
+    (_: any, show: any) => show && !showIntroduccion && toggleShowIntroduccion()
+  );
+  const [codingRef] = useNearScreen(
+    false,
+    (_: any, show: any) =>
+      show && !showIntroduccion && toggleShowCoding(),
+    {
+      threshold: 0.05,
+    }
+  );
 
   return (
     <div className={styles.page}>
-      <div className={styles.page_background}>
+      {/* <div className={styles.page_background}>
         <div className={`${styles.hero_background}`}>
           <Slider toRight={true}>{firstSlides}</Slider>
           <Slider>{secondSlides}</Slider>
           <Slider toRight={true}>{thirdSlides}</Slider>
           <Slider>{fourthSlides}</Slider>
         </div>
-      </div>
+      </div> */}
       <article
         ref={presentationRef}
         className={`${styles.section} ${styles.hero}`}
       >
         <section
           className={`${styles.presentation_section} ${
-            showPresentation && styles.visible
+            showIntroduccion && styles.visible
           }`}
         >
           {presentation[currentLang]}
@@ -264,12 +271,7 @@ export function Home({}: any) {
           </div>
         </section>
       </article>
-      <article
-        ref={summaryRef}
-        className={`${styles.section} ${showSummary && styles.visible}`}
-      >
-        <p className={styles.text}>{summary[currentLang]}</p>
-      </article>
+      <Slider toRight={true}>{firstSlides}</Slider>
       <article
         ref={codingRef}
         className={`${styles.section} ${styles.right} ${

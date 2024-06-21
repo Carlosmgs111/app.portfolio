@@ -10,10 +10,10 @@ export const useNearScreen = (
   opts: any = {}
 ) => {
   const { threshold = 0.5 } = opts;
-  const _ref = null; // ? For some weird reason, when a high order element or component parent of component 
-                     // ? implementing this hook, is referenced with `ref` attribute and passing directly 
-                     // ? ↙️ `null` to useRef to references the given element, the reference is missed, so to
-                     // ? ⬇️ avoid it, must be passed a variable with the initial value, in this case ↖️`_ref`
+  const _ref = null; // ? For some weird reason, when a high order element or component parent of component
+  // ? implementing this hook, is referenced with `ref` attribute and passing directly
+  // ? ↙️ `null` to useRef to references the given element, the reference is missed, so to
+  // ? ⬇️ avoid it, must be passed a variable with the initial value, in this case ↖️`_ref`
   const ref: any = useRef(_ref);
   const [show, setShow] = useState(initialState);
   useEffect(() => {
@@ -32,7 +32,7 @@ export const useNearScreen = (
     setObserver(ref.current);
     return () => observer?.disconnect();
   }, [ref]);
-  return [show, ref];
+  return [ref, show];
 };
 
 export const useNearScreenArray = (
@@ -59,5 +59,5 @@ export const useNearScreenArray = (
     return () => observers.forEach((observer: any) => observer?.disconnect());
   }, [refs]);
 
-  return [show, refs];
+  return [refs, show];
 };

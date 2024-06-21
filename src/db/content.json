@@ -24,8 +24,8 @@
         "to": "certifications"
       },
       {
-        "label": "Blog",
-        "to": "blog"
+        "label": "Sobre mí",
+        "to": "about"
       }
     ],
     "en": [
@@ -38,8 +38,8 @@
         "to": "certifications"
       },
       {
-        "label": "Blog",
-        "to": "blog"
+        "label": "About Me",
+        "to": "abput"
       }
     ]
   }

@@ -26,7 +26,7 @@ export const useTrackSidebar = () => {
     () =>
       ({ children }: any): any => {
         const _children = Children.toArray(children);
-        const [, _refs] = useNearScreenArray(
+        const [_refs] = useNearScreenArray(
           _children.map(() => false),
           refreshRefs
         );

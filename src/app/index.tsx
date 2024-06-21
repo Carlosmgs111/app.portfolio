@@ -4,7 +4,7 @@ import { Login } from "../components/Login";
 import { useStateValue } from "../contexts/context";
 import { useApp } from "../hooks/useApp";
 import { useToggle } from "../hooks/useToggle";
-import { Home, Projects, Certifications, Profile } from "../pages";
+import { Home, Projects, Certifications, Profile, About } from "../pages";
 import { Modal } from "../components/Modal";
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,8 +16,6 @@ import content from "../db/content.json";
 import { URL_API } from "../services";
 import { actionTypes } from "../";
 import { toast, Zoom } from "react-toastify";
-import { CloseButton } from "react-toastify";
-import { colors } from "@mui/material";
 
 export function App() {
   const { clearAuth } = useApp();
@@ -180,6 +178,7 @@ export function App() {
           <Projects path="projects" />
           <Certifications path="certifications" />
           <InConstruction path="blog" />
+          <About path="about"/>
         </Router>
         <div className={styles.live_chat}>
           <button

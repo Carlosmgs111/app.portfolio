@@ -13,18 +13,22 @@
   -moz-animation: sliding 20s infinite linear;
   -webkit-animation: sliding 20s infinite linear;
   animation: sliding 20s infinite linear;
+  transition: animation 0.5s ease-out;
 }
 .to_right {
   -moz-animation: slidingToRight 20s infinite linear;
   -webkit-animation: slidingToRight 20s infinite linear;
   animation: slidingToRight 20s infinite linear;
-  left: -600%;
+  left: -200%;
   direction: rtl;
+}
+.slider:hover {
+  animation-play-state: paused;
 }
 .slide {
   height: 100%;
   flex: 0 0 auto;
-  width: 400px;
+  min-width: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
