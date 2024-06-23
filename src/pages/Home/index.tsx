@@ -2,7 +2,7 @@ import styles from "./styles.module.css";
 import { CodeSnap } from "../../components/CodeSnap";
 import { Typing } from "../../components/Typing";
 import { CSSSVG, GitHubSVG, HTMLSVG, LinkedInSVG } from "../../icons";
-import { Slider } from "../../components/Slider";
+import { Slider } from "../../components/InfiniteCarousel";
 import { useStateValue } from "../../contexts/context";
 import {
   ReactSVG,
@@ -34,7 +34,6 @@ import {
 } from "./../../icons";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { useToggle } from "../../hooks/useToggle";
-import { MemoizedComponent } from "../../components/MemoizedComponent";
 
 export function Home({}: any) {
   const [{ currentLang }] = useStateValue();
@@ -226,8 +225,7 @@ export function Home({}: any) {
   );
   const [codingRef] = useNearScreen(
     false,
-    (_: any, show: any) =>
-      show && !showIntroduccion && toggleShowCoding(),
+    (_: any, show: any) => show && !showIntroduccion && toggleShowCoding(),
     {
       threshold: 0.05,
     }

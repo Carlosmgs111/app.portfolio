@@ -1,7 +1,7 @@
 import { GenerateImage } from "./GenerateImages";
 import { MyDropzone } from "./UploadImage";
 import { Telport } from "./Telport";
-import { Slider } from "../../../../components/Slider";
+import { Slider } from "../../../../components/InfiniteCarousel";
 import { useTrackSidebar } from "../../../../hooks/useTrackSidebar";
 import {
   ReactSVG,
