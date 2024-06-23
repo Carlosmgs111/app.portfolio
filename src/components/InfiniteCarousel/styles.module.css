@@ -1,0 +1,60 @@
+.container {
+  min-height: 14.8rem;
+  overflow: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.container::-webkit-scrollbar {
+  display: none;
+}
+.slider {
+  display: inline-flex;
+  left: 0;
+  height: 100%;
+  width: fit-content;
+}
+.animated {
+  -moz-animation: sliding var(--timing) infinite linear;
+  -webkit-animation: sliding var(--timing) infinite linear;
+  animation: sliding var(--timing) infinite linear;
+  transition: 0.5s ease-out;
+}
+.animated.to_right {
+  -moz-animation: slidingToRight var(--timing) infinite linear;
+  -webkit-animation: slidingToRight var(--timing) infinite linear;
+  animation: slidingToRight var(--timing) infinite linear;
+  direction: rtl;
+}
+.pausable:hover {
+  animation-play-state: paused;
+}
+.slide {
+  height: 100%;
+  flex: 0 0 auto;
+  min-width: 40rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@keyframes sliding {
+  to {
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}
+@keyframes slidingToRight {
+  from {
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+  to {
+    -moz-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
