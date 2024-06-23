@@ -6,6 +6,8 @@ export const Slider = ({
   toRight = false,
   pausable = true,
   timing = 10,
+  height = "40rem",
+  gap = "4rem",
 }: any) => {
   const sliderRef: any = useRef(null);
   const containerRef: any = useRef(null);
@@ -50,8 +52,9 @@ export const Slider = ({
   }, []);
 
   return (
-    <div ref={containerRef} className={styles.container}>
+    <div style={{ height }} ref={containerRef} className={styles.container}>
       <div
+        style={{ gap }}
         ref={sliderRef}
         className={`
         ${styles.slider} ${styles.animated} ${toRight ? styles.to_right : ""} 

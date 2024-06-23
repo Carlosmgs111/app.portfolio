@@ -4,6 +4,7 @@ import { Typing } from "../../components/Typing";
 import { CSSSVG, GitHubSVG, HTMLSVG, LinkedInSVG } from "../../icons";
 import { Slider } from "../../components/InfiniteCarousel";
 import { useStateValue } from "../../contexts/context";
+import { ProjectIndex } from "../../containers/ProjectIndex";
 import {
   ReactSVG,
   JestSVG,
@@ -127,11 +128,11 @@ export function Home({}: any) {
   const firstSlides = [
     JestSVG,
     ReactSVG,
-    StyledComponentsSVG,
-    NextjsSVG,
-    ReactRouterSVG,
-    WebpackSVG,
-    AxiosSVG,
+    // StyledComponentsSVG,
+    // NextjsSVG,
+    // ReactRouterSVG,
+    // WebpackSVG,
+    // AxiosSVG,
   ].map<any>((Component, index) => <Component key={index} />);
   const secondSlides = [
     SocketioSVG,
@@ -269,7 +270,10 @@ export function Home({}: any) {
           </div>
         </section>
       </article>
-      <Slider toRight={true}>{firstSlides}</Slider>
+      <Slider toRight={true} timing={4}>
+        {<ProjectIndex />}
+        {<ProjectIndex />}
+      </Slider>
       <article
         ref={codingRef}
         className={`${styles.section} ${styles.right} ${
