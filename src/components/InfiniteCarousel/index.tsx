@@ -15,7 +15,7 @@ export const Slider = ({
   const slides: any = Children.toArray(children).map(
     (child: any, index: any) => (
       <div key={index} className={styles.slide}>
-        {cloneElement(child)}
+        <div style={{ direction: "ltr" }}>{cloneElement(child, {})}</div>
       </div>
     )
   );

@@ -1,8 +1,7 @@
 .chat {
-  width: 40rem;
-  height: 60rem;
+  width: 100vw;
+  height: 100vh;
   background-color: whitesmoke;
-  border-radius: 2rem;
   padding: 2rem;
   color: black;
 }
@@ -132,4 +131,11 @@
   padding: 0.8rem;
   border-radius: 0.8rem;
   opacity: 0;
+}
+@media screen and (min-width: 430px) {
+  .chat {
+    width: 40rem;
+    height: 60rem;
+    border-radius: 2rem;
+  }
 }
