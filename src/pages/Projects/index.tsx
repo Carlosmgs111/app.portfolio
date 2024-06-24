@@ -17,8 +17,10 @@ import { DefineForms, INPUT_TYPES } from "../../components/DefineForms";
 import { headers } from "../../services/configs";
 import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
 import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 
 export function Projects({}: any) {
+  const location = useLocation();
   const { token, currentLang } = getContextValue(CONTEXTS.Global);
   const { TrackSidebar, ContentWrapper }: any = useTrackSidebar();
   const requestHeaders = headers();
@@ -66,7 +68,32 @@ export function Projects({}: any) {
   const sidebars = [
     <TrackSidebar />, // ? ⬅️ this is a rendered component, so we just put as a variable and it is not called
   ];
+  /* //? ⬇️ this could be abtracted to a hook or even in a component */
+  useEffect(() => {
+    const { hash } = location;
+    let timeoutId: any;
+    const scrollToElement = (id: any) => {
+      if (!id) return;
+      const projectContainer = document.getElementById(id);
+      if (projectContainer) {
+        requestAnimationFrame(() => {
+          projectContainer.scrollIntoView({ behavior: "smooth" });
+        });
+      } else {
+        timeoutId = setTimeout(() => scrollToElement(id), 10);
+      }
+      setTimeout(() => clearTimeout(timeoutId), 2000);
+    };
 
+    if (hash) {
+      const id = hash.replace("#", "");
+      scrollToElement(decodeURIComponent(id));
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [location]);
+  /* //? ⬆️ */
   const updateState = (cb: Function) =>
     cb({
       state,

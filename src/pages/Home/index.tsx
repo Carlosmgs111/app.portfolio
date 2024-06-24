@@ -5,6 +5,7 @@ import { CSSSVG, GitHubSVG, HTMLSVG, LinkedInSVG } from "../../icons";
 import { Slider } from "../../components/InfiniteCarousel";
 import { useStateValue } from "../../contexts/context";
 import { ProjectIndex } from "../../containers/ProjectIndex";
+import { URL_API } from "../../../src/services";
 import {
   ReactSVG,
   JestSVG,
@@ -35,9 +36,11 @@ import {
 } from "./../../icons";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { useToggle } from "../../hooks/useToggle";
+import { useEffect, useState } from "react";
 
 export function Home({}: any) {
   const [{ currentLang }] = useStateValue();
+  const [projectIndexes, setProjectIndexes] = useState([]);
   const literalCodeSnapshot = `1 | class Developer {
 2 |   name: string = "";
 3 |   lastName: string = "";
@@ -161,9 +164,9 @@ export function Home({}: any) {
     TerminalSVG,
     GitSVG,
   ].map<any>((Component, index) => <Component key={index} />);
-  const presentation: any = {
+  const introduction: any = {
     es: (
-      <div className={styles.presentation}>
+      <div className={styles.introduction}>
         <h1>
           Hola, soy <br />
           <b>Carlos Muñoz</b>,
@@ -190,7 +193,7 @@ export function Home({}: any) {
       </div>
     ),
     en: (
-      <div className={styles.presentation}>
+      <div className={styles.introduction}>
         <h1>
           Hi, i'm <br />
           <b>Carlos Muñoz</b>,
@@ -220,7 +223,7 @@ export function Home({}: any) {
   const [showIntroduccion, toggleShowIntroduccion] = useToggle(false, true);
   const [showCoding, toggleShowCoding] = useToggle(false, true);
 
-  const [presentationRef] = useNearScreen(
+  const [introductionRef] = useNearScreen(
     false,
     (_: any, show: any) => show && !showIntroduccion && toggleShowIntroduccion()
   );
@@ -231,6 +234,14 @@ export function Home({}: any) {
       threshold: 0.05,
     }
   );
+
+  useEffect(() => {
+    fetch(`${URL_API}/projects`, { method: "GET" })
+      .then((data) => data.json())
+      .then(({ projects }) => setProjectIndexes(projects));
+  }, []);
+
+  const projectsTitle: any = { es: "Proyectos", en: "Projects" };
 
   return (
     <div className={styles.page}>
@@ -243,15 +254,15 @@ export function Home({}: any) {
         </div>
       </div> */}
       <article
-        ref={presentationRef}
+        ref={introductionRef}
         className={`${styles.section} ${styles.hero}`}
       >
         <section
-          className={`${styles.presentation_section} ${
+          className={`${styles.introduction_section} ${
             showIntroduccion && styles.visible
           }`}
         >
-          {presentation[currentLang]}
+          {introduction[currentLang]}
           <div className={styles.contact}>
             <a
               className={styles.contact_icon}
@@ -270,37 +281,39 @@ export function Home({}: any) {
           </div>
         </section>
       </article>
-      <Slider toRight={true} timing={4}>
-        {<ProjectIndex />}
-        {<ProjectIndex />}
-      </Slider>
-      <article
+      <article className={`${styles.section} ${styles.visible} `}>
+        <h2>{projectsTitle[currentLang]}</h2>
+        <Slider toRight={true} timing={40}>
+          {projectIndexes.map((project: any) => (
+            <ProjectIndex {...project} />
+          ))}
+        </Slider>
+      </article>
+      <section
         ref={codingRef}
-        className={`${styles.section} ${styles.right} ${
-          showCoding && styles.visible
+        className={`${styles.section} ${showCoding ? styles.visible : ""} ${
+          styles.coding_section
         }`}
       >
-        <section className={styles.coding_section}>
-          <CodeSnap fontSize={"1.6rem"} words={wordsInCode}>
-            {literalCodeSnapshot.replaceAll("|", " ")}
-          </CodeSnap>
-          <div className={styles.console}>
-            <span>{" > "}</span>
-            <div className={styles.output}>
-              <span>Hi! I'm Carlos Muñoz</span>
-              <Typing
-                words={wordsInCode}
-                text={"Developer"}
-                cursor={false}
-                fontSize={"1.6rem"}
-              />
-              <span>and make solutions is my passion</span>
-              <br />
-              <span>💪💖🦄</span>
-            </div>
+        <CodeSnap fontSize={"1.6rem"} words={wordsInCode}>
+          {literalCodeSnapshot.replaceAll("|", " ")}
+        </CodeSnap>
+        <div className={styles.console}>
+          <span>{" > "}</span>
+          <div className={styles.output}>
+            <span>Hi! I'm Carlos Muñoz</span>
+            <Typing
+              words={wordsInCode}
+              text={"Developer"}
+              cursor={false}
+              fontSize={"1.6rem"}
+            />
+            <span>and make solutions is my passion</span>
+            <br />
+            <span>💪💖🦄</span>
           </div>
-        </section>
-      </article>
+        </div>
+      </section>
     </div>
   );
 }
