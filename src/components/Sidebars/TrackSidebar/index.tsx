@@ -12,7 +12,7 @@ export function TrackSidebar(props: any) {
     isactive = 1,
     expanded = !false,
     showbutton = 1,
-    width,
+    width = "available",
     redirect = "",
   }: any = props;
   const [{ token, loading: globalLoading }, dispatch]: any = useStateValue();
@@ -57,7 +57,7 @@ export function TrackSidebar(props: any) {
     <section
       {...{
         ...props,
-        style: { flexDirection: direction, width: width || "available" },
+        style: { flexDirection: direction, width },
         className: styles.body.concat(" ", isactive && styles.active),
       }}
     >

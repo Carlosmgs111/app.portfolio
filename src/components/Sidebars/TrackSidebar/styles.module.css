@@ -30,6 +30,7 @@
 .body.active {
   max-height:calc(100vh - 14rem);
   max-width: 25rem;
+  width: 100%;
   scale: 1;
   opacity: 1;
   transform: translate(0, 0);

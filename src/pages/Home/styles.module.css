@@ -7,39 +7,6 @@
   overflow-x: hidden;
   position: relative;
 }
-.page_background {
-  top: 0;
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  background: radial-gradient(
-    circle at 100% 80%,
-    #0f2027 50%,
-    #203a43 80%,
-    #2c5364
-  );
-}
-.page_background::after {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent 90%, #000000c5),
-    linear-gradient(270deg, transparent 90%, #000000c5);
-}
-.page_background::before {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100vh;
-  background: url("../../assets/images/dotted-world-map-wallpaper.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  filter: blur(2px) brightness(80%);
-}
 .section {
   border: none;
   height: fit-content;
@@ -82,20 +49,6 @@
   width: 100% !important;
   transform: translate(0, 0);
   opacity: 1;
-}
-.hero_background {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  align-content: center;
-  justify-content: center;
-  left: 0;
-  top: 0;
-  content: "";
-  width: 100%;
-  height: 100%;
-  filter: blur(5px);
 }
 .introduction_section {
   font-size: 2rem;
@@ -143,32 +96,8 @@ h2 {
 .contact_icon > div > svg {
   filter: drop-shadow(-6px 6px 1px #000000b3);
 }
-.coding_section {
-  flex-direction: column;
-  gap: 1rem;
-  font-size: 1px;
-  display: none;
-  align-content: flex-end;
-  padding: 8rem;
-  filter: drop-shadow(-10px 6px 1px #000000);
-}
-.console {
-  border-radius: 2rem;
-  display: flex;
-  font-size: 1.6rem;
-  padding: 1.8rem;
-  gap: 1rem;
-  backdrop-filter: brightness(55%);
-}
-.output {
-  backdrop-filter: brightness(95%);
-  font-size: 1.6rem;
-}
 @media screen and (min-width: 900px) {
   .introduction_section {
     padding: 6rem;
-  }
-  .coding_section {
-    display: flex;
   }
 }
