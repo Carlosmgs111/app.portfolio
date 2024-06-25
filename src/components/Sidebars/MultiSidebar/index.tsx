@@ -36,6 +36,12 @@ export const MultiSidebar = (props: any) => {
       deps={[float, activeSidebars, sidebars, settingsDashboard, expand]}
     >
       <div className={styles.container}>
+        <div className={styles.access_button}>
+          <button
+            onClick={switchExpand}
+            className={`fa-solid fa-list-ul `}
+          ></button>
+        </div>
         <div className={`${styles.main} ${float ? styles.floating : ""}`}>
           <section
             style={{
@@ -110,12 +116,6 @@ export const MultiSidebar = (props: any) => {
               switchSettingsDashboard,
             }}
           />
-        </div>
-        <div>
-          <button
-            onClick={switchExpand}
-            className={`fa-solid fa-list-ul `}
-          ></button>
         </div>
       </div>
     </MemoizedComponent>
