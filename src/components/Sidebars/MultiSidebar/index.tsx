@@ -11,7 +11,7 @@ export const MultiSidebar = (props: any) => {
   const {
     sidebars = [],
     children,
-    width,
+    width = "fit-content",
     float: _float = true,
     multi = true,
     settings = false,
@@ -33,13 +33,24 @@ export const MultiSidebar = (props: any) => {
 
   const main = (
     <MemoizedComponent
-      deps={[float, activeSidebars, sidebars, settingsDashboard]}
+      deps={[float, activeSidebars, sidebars, settingsDashboard, expand]}
     >
       <div className={styles.container}>
+        <div className={styles.access_button}>
+          <button
+            onClick={switchExpand}
+            className={`fa-solid fa-list-ul `}
+          ></button>
+        </div>
         <div className={`${styles.main} ${float ? styles.floating : ""}`}>
           <section
-            style={{ width: width || "fit-content", minWidth: "none" }}
-            className={`${styles.sidebar} ${!width && styles.dinamic}`}
+            style={{
+              width,
+              minWidth: "none",
+            }}
+            className={`${styles.sidebar} ${!width && styles.dinamic} ${
+              expand ? styles.show : ""
+            }`}
           >
             {sidebars.length > 1 && (
               <section className={styles.header}>

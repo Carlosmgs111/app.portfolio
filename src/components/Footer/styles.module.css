@@ -10,30 +10,41 @@
   position: relative;
   bottom: 0;
   padding: 4rem 0;
-  z-index: 10;
+  z-index: 2;
 }
 .separator {
+  display: none;
   display: none;
   height: 24rem;
   border: 1px solid var(--moonlit-asteroid-900);
 }
 .section {
   width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4rem;
   align-items: center;
   justify-content: center;
+  justify-content: center;
   position: relative;
+  height: fit-content;
   height: fit-content;
 }
 .section > h3 {
   font-size: 2rem;
   top: 0;
+  top: 0;
   color: white;
   font-weight: 500;
   width: 100%;
   text-align: center;
+}
+.contact_icons {
+  display: flex;
+  width: 100%;
+  gap: 4rem;
+  justify-content: center;
 }
 .contact_icons {
   display: flex;
@@ -52,7 +63,7 @@
 @media screen and (min-width: 1030px) {
   .footer {
     min-height: 40rem;
-    /* z-index: -1; */
+    z-index: 1;
   }
   .separator {
     display: block;
