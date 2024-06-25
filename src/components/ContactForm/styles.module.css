@@ -10,7 +10,6 @@
   border: none;
   outline: none;
   padding: 1.2rem 1.6rem;
-  margin: 0.2rem;
   border: solid 2px var(--main-color-800);
   background-image: radial-gradient(
     circle at 5% 10%,

@@ -22,7 +22,6 @@
   object-fit: cover;
   object-position: center center;
   border-radius: inherit;
-  filter: blur(0.2px) brightness(140%);
   z-index: -1;
 }
 .quick_info {
@@ -41,10 +40,11 @@
 }
 .quick_info > h3 {
   font-size: 2.2rem;
+  font-weight: 500;
 }
 .quick_info > article {
   font-size: 1.2rem;
-  color: var(--main-color-100);
+  color: white;
 }
 .quick_access {
   display: flex;

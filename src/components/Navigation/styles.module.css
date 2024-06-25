@@ -156,7 +156,7 @@
   border: 2px solid var(--main-color-300);
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 900px) {
   .container {
     backdrop-filter: none;
     background-color: #00000065;
