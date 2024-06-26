@@ -45,7 +45,7 @@ export const About = ({}: any) => {
     NextjsSVG,
     ReactRouterSVG,
     WebpackSVG,
-    AxiosSVG,
+     AxiosSVG,
   ].map<any>((Component, index) => <Component key={index} />);
   const secondSlides = [
     SocketioSVG,

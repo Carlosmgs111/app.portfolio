@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 import { Typing } from "../../components/Typing";
-import {  GitHubSVG,  LinkedInSVG } from "../../icons";
+import { GitHubSVG, LinkedInSVG } from "../../icons";
 import { Slider } from "../../components/InfiniteCarousel";
 import { useStateValue } from "../../contexts/context";
 import { ProjectIndex } from "../../containers/ProjectIndex";
@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 export function Home({}: any) {
   const [{ currentLang }] = useStateValue();
   const [projectIndexes, setProjectIndexes] = useState([]);
- 
+
   const mySkills = [
     { content: "React", color: "#61DAFB" },
     {
@@ -52,7 +52,7 @@ export function Home({}: any) {
       color: "#e0234e",
     },
   ];
- 
+
   const introduction: any = {
     es: (
       <div className={styles.introduction}>
@@ -115,7 +115,6 @@ export function Home({}: any) {
     false,
     (_: any, show: any) => show && !showIntroduccion && toggleShowIntroduccion()
   );
- 
 
   useEffect(() => {
     fetch(`${URL_API}/projects`, { method: "GET" })
@@ -163,7 +162,6 @@ export function Home({}: any) {
           ))}
         </Slider>
       </article>
-     
     </div>
   );
 }

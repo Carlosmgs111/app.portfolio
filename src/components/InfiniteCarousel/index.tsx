@@ -1,21 +1,36 @@
 import styles from "./styles.module.css";
 import { manyfy } from "../../utils";
 import { Children, cloneElement, useRef, useEffect } from "react";
+
+const getSimulatedGap = (measureSize: string | number) => {
+  measureSize = String(measureSize);
+  let measureValue = "";
+  let measureUnit = "";
+  measureSize.split("").forEach((char: string) => {
+    if (!isNaN(Number(char))) return (measureValue += char);
+    measureUnit += char;
+  });
+  return `${Number(measureValue) / 2}${measureUnit}`;
+};
+
 export const Slider = ({
   children,
   toRight = false,
   pausable = true,
-  timing = 10,
+  timing = 4,
   height = "40rem",
   gap = "4rem",
 }: any) => {
+  const simulatedGap = getSimulatedGap(gap);
   const sliderRef: any = useRef(null);
   const containerRef: any = useRef(null);
   const slidesLength = children.length;
   const slides: any = Children.toArray(children).map(
     (child: any, index: any) => (
       <div key={index} className={styles.slide}>
-        <div style={{ direction: "ltr" }}>{cloneElement(child, {})}</div>
+        <div style={{ direction: "ltr", padding: ` 0 ${simulatedGap}` }}>
+          {cloneElement(child, {})}
+        </div>
       </div>
     )
   );
@@ -24,7 +39,7 @@ export const Slider = ({
     const slider = sliderRef.current;
     const container = containerRef.current;
     if (!slider || !container) return;
-    let prevContainerScrollLeft = 1;
+    let prevContainerScrollLeft = 0;
     container.style.setProperty("--timing", `${timing * baseFactor}s`);
 
     const handleScroll = () => {
@@ -32,7 +47,7 @@ export const Slider = ({
         container.scrollLeft > prevContainerScrollLeft &&
         container.scrollLeft >= slider.offsetWidth / baseFactor
       ) {
-        prevContainerScrollLeft = -1;
+        prevContainerScrollLeft = 0;
         container.scrollLeft = 0;
         return;
       }
@@ -40,7 +55,7 @@ export const Slider = ({
         container.scrollLeft < prevContainerScrollLeft &&
         container.scrollLeft === 0
       ) {
-        prevContainerScrollLeft = slider.offsetWidth / baseFactor + 1;
+        prevContainerScrollLeft = slider.offsetWidth / baseFactor;
         container.scrollLeft = slider.offsetWidth / baseFactor;
         return;
       }
@@ -54,7 +69,6 @@ export const Slider = ({
   return (
     <div style={{ height }} ref={containerRef} className={styles.container}>
       <div
-        style={{ gap }}
         ref={sliderRef}
         className={`
         ${styles.slider} ${styles.animated} ${toRight ? styles.to_right : ""} 
