@@ -49,7 +49,6 @@ export function Certifications({}: any) {
     loading: false,
     error: null,
   };
-
   const actionTypes = setActions([], initialState);
 
   const reducer = (state: any, dispatch: Function) => {
@@ -281,21 +280,18 @@ export function Certifications({}: any) {
           {!loading && (
             <div className={styles.main_container}>
               <ContentWrapper>
-                {certifications.map(
-                  (certification: any, index: number) =>
-                    certification.visible && (
-                      <Certification
-                        key={certification.uuid}
-                        {...{
-                          id: certification.title,
-                          initialCertification: certification,
-                          setCurrentModal,
-                          updateState,
-                          institutions,
-                        }}
-                      />
-                    )
-                )}
+                {certifications.map((certification: any, index: number) => (
+                  <Certification
+                    key={certification.uuid}
+                    {...{
+                      id: certification.title,
+                      initialCertification: certification,
+                      setCurrentModal,
+                      updateState,
+                      institutions,
+                    }}
+                  />
+                ))}
               </ContentWrapper>
             </div>
           )}

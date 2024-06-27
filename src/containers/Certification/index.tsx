@@ -95,7 +95,7 @@ export function Certification({
                 runRequest({
                   setData: (data: any) => {
                     updateState(
-                      ({ setCertifications, state, setElements }: any) => {
+                      ({ setCertifications, state }: any) => {
                         const newCertifications = [...state.certifications];
                         newCertifications.splice(
                           newCertifications.findIndex(
@@ -104,7 +104,6 @@ export function Certification({
                           1
                         );
                         setCertifications(newCertifications);
-                        setElements(newCertifications.map((d) => d.title));
                       }
                     );
                   },

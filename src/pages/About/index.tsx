@@ -172,7 +172,7 @@ export const About = ({}: any) => {
         </div>
       </section>
       <div className={`${styles.skills}`}>
-        <Slider toRight={true}>{firstSlides}</Slider>
+        <Slider timing={4} toRight={true}>{firstSlides}</Slider>
         <Slider>{secondSlides}</Slider>
         <Slider toRight={true}>{thirdSlides}</Slider>
         <Slider>{fourthSlides}</Slider>

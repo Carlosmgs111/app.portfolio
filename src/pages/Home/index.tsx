@@ -4,6 +4,7 @@ import { GitHubSVG, LinkedInSVG } from "../../icons";
 import { Slider } from "../../components/InfiniteCarousel";
 import { useStateValue } from "../../contexts/context";
 import { ProjectIndex } from "../../containers/ProjectIndex";
+import { CertificationIndex } from "../../containers/CertificationIndex";
 import { URL_API } from "../../../src/services";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { useToggle } from "../../hooks/useToggle";
@@ -11,9 +12,10 @@ import { useEffect, useState } from "react";
 import { actionTypes } from "../../index";
 
 export function Home({}: any) {
-  const [{ currentLang, projects, projectsOptions, certifications }, dispatch] =
-    useStateValue();
+  const [{ currentLang, projects, certifications }, dispatch] = useStateValue();
   const [projectsIndexes, setProjectsIndexes] = useState(projects);
+  const [certificationsIndexes, setCertificationsIndexes] =
+    useState(certifications);
 
   const mySkills = [
     { content: "React", color: "#61DAFB" },
@@ -130,9 +132,22 @@ export function Home({}: any) {
           });
           dispatch({ type: actionTypes.setProjects, payload: projects });
         });
+    !certificationsIndexes[0] &&
+      fetch(`${URL_API}/certifications`, { method: "GET" })
+        .then((data) => data.json())
+        .then((data) => {
+          setCertificationsIndexes(data);
+          dispatch({
+            type: actionTypes.setCertifications,
+            payload: data,
+          });
+        });
   }, []);
 
-  const projectsTitle: any = { es: "Proyectos", en: "Projects" };
+  const titles: any = {
+    projects: { es: "Proyectos", en: "Projects" },
+    certifications: { es: "Certificados", en: "Certifications" },
+  };
 
   return (
     <div className={styles.page}>
@@ -165,10 +180,23 @@ export function Home({}: any) {
         </section>
       </article>
       <article className={`${styles.section} ${styles.visible} `}>
-        <h2>{projectsTitle[currentLang]}</h2>
-        <Slider toRight={true} timing={40}>
+        <h2>{titles.projects[currentLang]}</h2>
+        <Slider toRight={true} timing={80}>
           {projectsIndexes.map((project: any) => (
             <ProjectIndex {...project} />
+          ))}
+        </Slider>
+      </article>
+      <article className={`${styles.section} ${styles.visible} `}>
+        <h2>{titles.certifications[currentLang]}</h2>
+        <Slider timing={40} gap={"2rem"}>
+          {certificationsIndexes.map((certification: any) => (
+            <CertificationIndex {...certification} />
+          ))}
+        </Slider>
+        <Slider timing={40} gap={"2rem"} toRight={true}>
+          {certificationsIndexes.map((certification: any) => (
+            <CertificationIndex {...certification} />
           ))}
         </Slider>
       </article>

@@ -1,21 +1,23 @@
 .container {
-  min-height: 20rem;
   overflow: auto;
   width: 100%;
   display: flex;
   align-items: center;
-  position: relative;
+  /* position: relative; */
+  height: fit-content;
 }
 .container::-webkit-scrollbar {
   display: none;
 }
 .slider {
-  position: absolute;
+  /* position: absolute; */
   display: inline-flex;
   left: 0;
   height: 100%;
   width: fit-content;
   display: flex;
+  align-items: center;
+  padding: 2rem;
 }
 .animated {
   -moz-animation: sliding var(--timing) infinite linear;

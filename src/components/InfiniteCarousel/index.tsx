@@ -17,8 +17,7 @@ export const Slider = ({
   children,
   toRight = false,
   pausable = true,
-  timing = 4,
-  height = "40rem",
+  timing = 10,
   gap = "4rem",
 }: any) => {
   const simulatedGap = getSimulatedGap(gap);
@@ -28,7 +27,12 @@ export const Slider = ({
   const slides: any = Children.toArray(children).map(
     (child: any, index: any) => (
       <div key={index} className={styles.slide}>
-        <div style={{ direction: "ltr", padding: ` 0 ${simulatedGap}` }}>
+        <div
+          style={{
+            direction: "ltr",
+            padding: ` 0 ${simulatedGap}`,
+          }}
+        >
           {cloneElement(child, {})}
         </div>
       </div>
@@ -67,7 +71,7 @@ export const Slider = ({
   }, []);
 
   return (
-    <div style={{ height }} ref={containerRef} className={styles.container}>
+    <div  ref={containerRef} className={styles.container}>
       <div
         ref={sliderRef}
         className={`
