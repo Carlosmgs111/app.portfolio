@@ -24,6 +24,11 @@ const initialState = {
   currentLang: defaultLang,
   sidebarFloat: true,
   isOnline: false,
+  projects: [],
+  projectsOptions: { stack: [], state: [], kind: [] },
+  certifications: [],
+  institutions: [],
+  currentModal: null,
 };
 
 export const actionTypes: any = setActions(
@@ -42,6 +47,10 @@ const reducer = (state: any, action: any) => {
     [actionTypes.setCurrentLang]: { ...state, currentLang: payload },
     [actionTypes.setSidebarFloat]: { ...state, sidebarFloat: payload },
     [actionTypes.setIsOnline]: { ...state, isOnline: payload },
+    [actionTypes.setProjects]: { ...state, projects: payload },
+    [actionTypes.setProjectsOptions]: { ...state, projectsOptions: payload },
+    [actionTypes.setCertifications]: { ...state, certifications: payload },
+    [actionTypes.setInstitutions]: { ...state, institutions: payload },
     [actionTypes.reset]: {
       ...state,
       ...initialState,
@@ -49,13 +58,12 @@ const reducer = (state: any, action: any) => {
   };
   return actions[type] || state;
 };
-
 const { StateProvider } = addContext("Global", actionTypes);
 const rootElement: any = document.getElementById("root");
 ReactDOM.createRoot(rootElement).render(
   <Router>
     <StateProvider {...{ initialState, reducer }}>
-      <ToastContainer stacked  />
+      <ToastContainer stacked />
       <App />
     </StateProvider>
   </Router>

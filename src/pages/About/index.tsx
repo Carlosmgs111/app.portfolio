@@ -45,7 +45,7 @@ export const About = ({}: any) => {
     NextjsSVG,
     ReactRouterSVG,
     WebpackSVG,
-     AxiosSVG,
+    AxiosSVG,
   ].map<any>((Component, index) => <Component key={index} />);
   const secondSlides = [
     SocketioSVG,
@@ -138,15 +138,7 @@ export const About = ({}: any) => {
   );
   return (
     <div className={styles.page}>
-      <div className={styles.page_background}>
-        <div className={`${styles.hero_background}`}>
-          <Slider toRight={true}>{firstSlides}</Slider>
-          <Slider>{secondSlides}</Slider>
-          <Slider toRight={true}>{thirdSlides}</Slider>
-          <Slider>{fourthSlides}</Slider>
-        </div>
-      </div>
-
+      <div className={styles.page_background}></div>
       <article
         ref={summaryRef}
         className={`${styles.section} ${showSummary && styles.visible}`}
@@ -179,6 +171,12 @@ export const About = ({}: any) => {
           </div>
         </div>
       </section>
+      <div className={`${styles.skills}`}>
+        <Slider toRight={true}>{firstSlides}</Slider>
+        <Slider>{secondSlides}</Slider>
+        <Slider toRight={true}>{thirdSlides}</Slider>
+        <Slider>{fourthSlides}</Slider>
+      </div>
     </div>
   );
 };

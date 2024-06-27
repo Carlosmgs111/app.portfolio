@@ -22,7 +22,7 @@ import { OnLoading } from "../../components/OnLoading";
 import { OnError } from "../../components/OnError";
 import { Modal } from "../../components/Modal";
 import styles from "./styles.module.css";
-import { getContextValue, CONTEXTS } from "../../contexts";
+import { useStateValue } from "../../contexts/context";
 import { runRequest } from "../../services/runRequest";
 import { useToggle } from "../../hooks/useToggle";
 import { Mapfy } from "../../utils";
@@ -31,14 +31,22 @@ import { INPUT_TYPES } from "../../components/DefineForms";
 import Helmet from "react-helmet";
 
 export function Certifications({}: any) {
-  const { token, username } = getContextValue(CONTEXTS.Global);
+  const [
+    {
+      token,
+      username,
+      certifications: globalCertifications,
+      institutions: globalInstitutions,
+    },
+    globalDispatch,
+  ] = useStateValue();
   const [owned, switchOwned] = useToggle(false, true);
 
   const initialState = {
-    institutions: [],
-    certifications: [],
+    institutions: globalInstitutions,
+    certifications: globalCertifications,
     currentModal: null,
-    loading: true,
+    loading: false,
     error: null,
   };
 
@@ -217,30 +225,42 @@ export function Certifications({}: any) {
     });
 
   useEffect(() => {
-    runRequest({
-      setData: async (data: any) => {
-        setCertifications(data.map((d: any) => ({ ...d, visible: true })));
-        await runRequest({
-          setData: (data: any) => {
-            setCertificationSchema({
-              ...certificationSchema,
-              emitedBy: {
-                ...certificationSchema.emitedBy,
-                value: data.map((i: any) => i.name),
-              },
-            });
-            setInstitutions(data);
-          },
-          setError,
-          setLoading,
-        }).get("institutions");
-      },
-      setError,
-      setLoading,
-    }).get("certifications" /* , { ...requestHeaders } */);
+    !certifications[0] &&
+      runRequest({
+        setData: async (data: any) => {
+          setCertifications(data.map((d: any) => ({ ...d, visible: true })));
+          await runRequest({
+            setData: (data: any) => {
+              setInstitutions(data);
+            },
+            setError,
+            setLoading,
+          }).get("institutions");
+        },
+        setError,
+        setLoading,
+      }).get("certifications" /* , { ...requestHeaders } */);
 
     return () => {};
-  }, [token]);
+  }, []);
+
+  useEffect(() => {
+    setCertificationSchema({
+      ...certificationSchema,
+      emitedBy: {
+        ...certificationSchema.emitedBy,
+        value: institutions.map((i: any) => i.name),
+      },
+    });
+    globalDispatch({
+      type: actionTypes.setCertifications,
+      payload: certifications,
+    });
+    globalDispatch({
+      type: actionTypes.setInstitutions,
+      payload: institutions,
+    });
+  }, [certifications, institutions]);
 
   return (
     <Page>

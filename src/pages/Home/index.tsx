@@ -8,10 +8,12 @@ import { URL_API } from "../../../src/services";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { useToggle } from "../../hooks/useToggle";
 import { useEffect, useState } from "react";
+import { actionTypes } from "../../index";
 
 export function Home({}: any) {
-  const [{ currentLang }] = useStateValue();
-  const [projectIndexes, setProjectIndexes] = useState([]);
+  const [{ currentLang, projects, projectsOptions, certifications }, dispatch] =
+    useStateValue();
+  const [projectsIndexes, setProjectsIndexes] = useState(projects);
 
   const mySkills = [
     { content: "React", color: "#61DAFB" },
@@ -117,9 +119,17 @@ export function Home({}: any) {
   );
 
   useEffect(() => {
-    fetch(`${URL_API}/projects`, { method: "GET" })
-      .then((data) => data.json())
-      .then(({ projects }) => setProjectIndexes(projects));
+    !projectsIndexes[0] &&
+      fetch(`${URL_API}/projects`, { method: "GET" })
+        .then((data) => data.json())
+        .then(({ projects, kind, state, stack }) => {
+          setProjectsIndexes(projects);
+          dispatch({
+            type: actionTypes.setProjectsOptions,
+            payload: { kind, stack, state },
+          });
+          dispatch({ type: actionTypes.setProjects, payload: projects });
+        });
   }, []);
 
   const projectsTitle: any = { es: "Proyectos", en: "Projects" };
@@ -157,7 +167,7 @@ export function Home({}: any) {
       <article className={`${styles.section} ${styles.visible} `}>
         <h2>{projectsTitle[currentLang]}</h2>
         <Slider toRight={true} timing={40}>
-          {projectIndexes.map((project: any) => (
+          {projectsIndexes.map((project: any) => (
             <ProjectIndex {...project} />
           ))}
         </Slider>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useReducer } from "react";
-import { getContextValue, CONTEXTS } from "../../contexts";
+import { useStateValue } from "../../contexts/context";
 import axios from "axios";
 import { URL_API } from "../../services";
 import { Project, ProjectSkeleton } from "../../containers/Project";
@@ -21,29 +21,21 @@ import { useLocation } from "react-router-dom";
 
 export function Projects({}: any) {
   const location = useLocation();
-  const { token, currentLang } = getContextValue(CONTEXTS.Global);
+  const [
+    {
+      token,
+      currentLang,
+      projects: globalProjects,
+      projectsOptions: globalProjectsOptions,
+    },
+    globalDispatch,
+  ] = useStateValue();
   const { TrackSidebar, ContentWrapper }: any = useTrackSidebar();
   const requestHeaders = headers();
-  const [projectsOptions, setProjectsOptions] = useState({
-    stack: [],
-    state: [],
-    kind: [],
-  });
-  const { stack: stackOps, kind: kindOps, state: stateOps } = projectsOptions;
-  const [projectSchema, setProjectSchema]: any = useState({
-    name: "",
-    emitedBy: "",
-    // ? `{` symbol used for mark a select object controller
-    "emitedBy{": [],
-    emitedAt: new Date().getTime(),
-    // ? `~` symbol used for mark a date object controller
-    "emitedAt~": new Date().toISOString().slice(0, 10),
-    image: "",
-    url: "",
-  });
 
   const initialState = {
-    projects: [],
+    projects: globalProjects,
+    projectsOptions: globalProjectsOptions,
     currentModal: null,
     loading: false,
     error: null,
@@ -61,39 +53,19 @@ export function Projects({}: any) {
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { projects, currentModal, loading, error } = state;
-  const { setProjects, setCurrentModal, setLoading, setError }: any =
-    getDispatchSetFunctions(dispatch, actionTypes);
+  const { projects, projectsOptions, currentModal, loading, error } = state;
+  const { stack: stackOps, kind: kindOps, state: stateOps } = projectsOptions;
+  const {
+    setProjects,
+    setProjectsOptions,
+    setCurrentModal,
+    setLoading,
+    setError,
+  }: any = getDispatchSetFunctions(dispatch, actionTypes);
 
   const sidebars = [
     <TrackSidebar />, // ? ⬅️ this is a rendered component, so we just put as a variable and it is not called
   ];
-  /* //? ⬇️ this could be abtracted to a hook or even in a component */
-  useEffect(() => {
-    const { hash } = location;
-    let timeoutId: any;
-    const scrollToElement = (id: any) => {
-      if (!id) return;
-      const projectContainer = document.getElementById(id);
-      if (projectContainer) {
-        requestAnimationFrame(() => {
-          projectContainer.scrollIntoView({ behavior: "smooth" });
-        });
-      } else {
-        timeoutId = setTimeout(() => scrollToElement(id), 10);
-      }
-      setTimeout(() => clearTimeout(timeoutId), 2000);
-    };
-
-    if (hash) {
-      const id = hash.replace("#", "");
-      scrollToElement(decodeURIComponent(id));
-    }
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [location]);
-  /* //? ⬆️ */
   const updateState = (cb: Function) =>
     cb({
       state,
@@ -178,6 +150,32 @@ export function Projects({}: any) {
       />
     );
 
+  /* //? ⬇️ this could be abtracted to a hook or even in a component */
+  useEffect(() => {
+    const { hash } = location;
+    let timeoutId: any;
+    const scrollToElement = (id: any) => {
+      if (!id) return;
+      const projectContainer = document.getElementById(id);
+      if (projectContainer) {
+        requestAnimationFrame(() => {
+          projectContainer.scrollIntoView({ behavior: "smooth" });
+        });
+      } else {
+        timeoutId = setTimeout(() => scrollToElement(id), 10);
+      }
+      setTimeout(() => clearTimeout(timeoutId), 2000);
+    };
+
+    if (hash) {
+      const id = hash.replace("#", "");
+      scrollToElement(decodeURIComponent(id));
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [location]);
+  /* //? ⬆️ */
   useEffect(() => {
     const fetchProjects = async () => {
       setLoading(true);
@@ -192,12 +190,23 @@ export function Projects({}: any) {
       }
       setLoading(false);
     };
-    fetchProjects();
+    !projects[0] && fetchProjects();
     return () => {
       setProjects([]);
     };
-  }, [token]);
-
+  }, []);
+  /* // ? this update global state  */
+  useEffect(() => {
+    globalDispatch({
+      type: actionTypes.setProjects,
+      payload: projects,
+    });
+    globalDispatch({
+      type: actionTypes.setProjectsOptions,
+      payload: projectsOptions,
+    });
+  }, [projects, projectsOptions]);
+  /* // ? */
   return (
     <Page>
       <Helmet>

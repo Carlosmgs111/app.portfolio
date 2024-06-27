@@ -10,7 +10,6 @@
 .section {
   border: none;
   height: fit-content;
-  min-height: 100vh;
   width: 100%;
   display: flex;
   justify-content: left;
@@ -20,6 +19,7 @@
   transition: 1s ease-in-out;
   transform: translate(70vw, 0);
   opacity: 0;
+  padding-bottom: 40rem;
 }
 .section > h2 {
   width: 100%;
