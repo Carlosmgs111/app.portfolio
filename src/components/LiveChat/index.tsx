@@ -97,12 +97,12 @@ export const LiveChat = () => {
   );
   return (
     <div className={styles.chat}>
-      <div className={styles.header}>{headerTabs}</div>
       <div className={styles.body}>
         {rooms[0] && bodyChat}
         {!token && !rooms[0] && offlineMessage}
         {token && !rooms[0] && noClients}
       </div>
+      <div className={styles.header}>{headerTabs}</div>
       {rooms.length > 0 && (
         <form className={styles.dashboard} onSubmit={onSubmit}>
           <input

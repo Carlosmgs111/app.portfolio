@@ -4,6 +4,10 @@
   background-color: whitesmoke;
   padding: 2rem;
   color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: 4.4rem;
 }
 .header {
   height: 4rem;
@@ -13,6 +17,7 @@
   justify-content: flex-end;
   align-items: center;
   font-size: 1.6rem;
+  padding: 1.2rem;
 }
 .header > button {
   border: none;
@@ -36,8 +41,8 @@
 }
 .body {
   width: 100%;
-  height: 48rem;
   font-size: 1.4rem;
+  overflow: scroll;
 }
 .messages {
   list-style: none;
