@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import { Typing } from "../../components/Typing";
 import { GitHubSVG, LinkedInSVG } from "../../icons";
-import { Slider } from "../../components/InfiniteCarousel";
+import { InfiniteCarousel } from "../../components/InfiniteCarousel";
 import { useStateValue } from "../../contexts/context";
 import { ProjectIndex } from "../../containers/ProjectIndex";
 import { CertificationIndex } from "../../containers/CertificationIndex";
@@ -121,7 +121,7 @@ export function Home({}: any) {
   );
 
   useEffect(() => {
-    !projectsIndexes[0] &&
+    if (!projectsIndexes[0]) {
       fetch(`${URL_API}/projects`, { method: "GET" })
         .then((data) => data.json())
         .then(({ projects, kind, state, stack }) => {
@@ -132,7 +132,8 @@ export function Home({}: any) {
           });
           dispatch({ type: actionTypes.setProjects, payload: projects });
         });
-    !certificationsIndexes[0] &&
+    }
+    if (!certificationsIndexes[0]) {
       fetch(`${URL_API}/certifications`, { method: "GET" })
         .then((data) => data.json())
         .then((data) => {
@@ -142,6 +143,15 @@ export function Home({}: any) {
             payload: data,
           });
         });
+      fetch(`${URL_API}/institutions`, { method: "GET" })
+        .then((data) => data.json())
+        .then((data) => {
+          dispatch({
+            type: actionTypes.setInstitutions,
+            payload: data,
+          });
+        });
+    }
   }, []);
 
   const titles: any = {
@@ -179,26 +189,26 @@ export function Home({}: any) {
           </div>
         </section>
       </article>
-      <article className={`${styles.section} ${styles.visible} `}>
+      <article className={`${styles.section} `}>
         <h2>{titles.projects[currentLang]}</h2>
-        <Slider toRight={true} timing={80}>
+        <InfiniteCarousel toRight={true} timing={50}>
           {projectsIndexes.map((project: any) => (
             <ProjectIndex {...project} />
           ))}
-        </Slider>
+        </InfiniteCarousel>
       </article>
-      <article className={`${styles.section} ${styles.visible} `}>
+      <article className={`${styles.section}  `}>
         <h2>{titles.certifications[currentLang]}</h2>
-        <Slider timing={40} gap={"2rem"}>
+        <InfiniteCarousel timing={30} gap={"2rem"}>
           {certificationsIndexes.map((certification: any) => (
             <CertificationIndex {...certification} />
           ))}
-        </Slider>
-        <Slider timing={40} gap={"2rem"} toRight={true}>
+        </InfiniteCarousel>
+        <InfiniteCarousel timing={30} gap={"2rem"} toRight={true}>
           {certificationsIndexes.map((certification: any) => (
             <CertificationIndex {...certification} />
           ))}
-        </Slider>
+        </InfiniteCarousel>
       </article>
     </div>
   );

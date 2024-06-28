@@ -20,7 +20,7 @@
   z-index: 1;
 }
 .chat_button {
-  padding: 0.6rem;
+  padding: 1rem;
   border-radius: 0.6rem;
   background-color: #e52d27;
   transition: 0.4s;
@@ -35,7 +35,7 @@
   background-color: #52c234;
 }
 .chat_button.hidden {
-  transform: translate(10rem, 0);
+  transform: translate(12rem, 0);
 }
 .chat_button:hover {
   scale: 1.2;
@@ -66,7 +66,7 @@
 }
 .chat_container > div {
   display: absolute;
-  transform: translate(10rem, -60rem);
+  transform: translate(12rem, -60rem);
   transition: 0.6s;
 }
 .chat_container > div.visible {

@@ -6,6 +6,8 @@
   align-items: center;
   overflow-x: hidden;
   position: relative;
+  gap: 16rem;
+  padding-bottom: 16rem;
 }
 .section {
   border: none;
@@ -17,9 +19,6 @@
   gap: 2rem;
   flex-wrap: wrap;
   transition: 1s ease-in-out;
-  transform: translate(70vw, 0);
-  opacity: 0;
-  padding-bottom: 40rem;
 }
 .section > h2 {
   width: 100%;
@@ -27,10 +26,6 @@
   padding: 2rem;
   backdrop-filter: brightness(70%);
   color: var(--main-color-400);
-}
-.section.visible {
-  transform: translate(0, 0);
-  opacity: 1;
 }
 .section.right {
   justify-content: right;
@@ -47,6 +42,9 @@
   align-items: center;
   position: relative;
   width: 100% !important;
+  opacity: 1;
+}
+.hero.visible {
   transform: translate(0, 0);
   opacity: 1;
 }

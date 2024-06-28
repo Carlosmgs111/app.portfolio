@@ -2,7 +2,7 @@ import { useNearScreen } from "../../hooks/useNearScreen";
 import content from "../../db/content.json";
 import styles from "./styles.module.css";
 import { useStateValue } from "../../contexts/context";
-import { Slider } from "../../components/InfiniteCarousel";
+import { InfiniteCarousel } from "../../components/InfiniteCarousel";
 import { useToggle } from "../../hooks/useToggle";
 import { CodeSnap } from "../../components/CodeSnap";
 import { Typing } from "../../components/Typing";
@@ -172,10 +172,10 @@ export const About = ({}: any) => {
         </div>
       </section>
       <div className={`${styles.skills}`}>
-        <Slider timing={4} toRight={true}>{firstSlides}</Slider>
-        <Slider>{secondSlides}</Slider>
-        <Slider toRight={true}>{thirdSlides}</Slider>
-        <Slider>{fourthSlides}</Slider>
+        <InfiniteCarousel timing={4} toRight={true}>{firstSlides}</InfiniteCarousel>
+        <InfiniteCarousel>{secondSlides}</InfiniteCarousel>
+        <InfiniteCarousel toRight={true}>{thirdSlides}</InfiniteCarousel>
+        <InfiniteCarousel>{fourthSlides}</InfiniteCarousel>
       </div>
     </div>
   );

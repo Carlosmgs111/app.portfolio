@@ -3,13 +3,13 @@
   width: 100%;
   display: flex;
   align-items: center;
-  /* position: relative; */
+  position: relative;
   height: fit-content;
 }
 .container::-webkit-scrollbar {
   display: none;
 }
-.slider {
+.carousel {
   /* position: absolute; */
   display: inline-flex;
   left: 0;
@@ -17,7 +17,6 @@
   width: fit-content;
   display: flex;
   align-items: center;
-  padding: 2rem;
 }
 .animated {
   -moz-animation: sliding var(--timing) infinite linear;
@@ -35,7 +34,7 @@
 .pausable:hover {
   animation-play-state: paused;
 }
-.slide {
+.element {
   height: 100%;
   flex: 0 0 auto;
   min-width: 20rem;

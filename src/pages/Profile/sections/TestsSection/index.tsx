@@ -1,7 +1,7 @@
 import { GenerateImage } from "./GenerateImages";
 import { MyDropzone } from "./UploadImage";
 import { Telport } from "./Telport";
-import { Slider } from "../../../../components/InfiniteCarousel";
+import { InfiniteCarousel } from "../../../../components/InfiniteCarousel";
 import { useTrackSidebar } from "../../../../hooks/useTrackSidebar";
 import {
   ReactSVG,
@@ -43,7 +43,7 @@ export function TestsSection() {
       }}
     >
       <h1 style={{ width: "100%", textAlign: "center" }}>Seccion de pruebas</h1>
-      <Slider>{firstSlides}</Slider>
+      <InfiniteCarousel>{firstSlides}</InfiniteCarousel>
       {/* <LogoSVG></LogoSVG> */}
       <GenerateImage></GenerateImage>
       <MyDropzone />

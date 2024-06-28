@@ -1,6 +1,7 @@
 import styles from "./styles.module.css";
 import { manyfy } from "../../utils";
 import { Children, cloneElement, useRef, useEffect } from "react";
+import { MemoizedComponent } from "../../components/MemoizedComponent";
 
 const getSimulatedGap = (measureSize: string | number) => {
   measureSize = String(measureSize);
@@ -13,7 +14,7 @@ const getSimulatedGap = (measureSize: string | number) => {
   return `${Number(measureValue) / 2}${measureUnit}`;
 };
 
-export const Slider = ({
+export const InfiniteCarousel = ({
   children,
   toRight = false,
   pausable = true,
@@ -21,12 +22,14 @@ export const Slider = ({
   gap = "4rem",
 }: any) => {
   const simulatedGap = getSimulatedGap(gap);
-  const sliderRef: any = useRef(null);
+  const carouselRef: any = useRef(null);
   const containerRef: any = useRef(null);
-  const slidesLength = children.length;
-  const slides: any = Children.toArray(children).map(
+  const carousel = carouselRef.current;
+  const container = containerRef.current;
+  const elementsLenght = children.length;
+  const elements: any = Children.toArray(children).map(
     (child: any, index: any) => (
-      <div key={index} className={styles.slide}>
+      <div key={index} className={styles.element}>
         <div
           style={{
             direction: "ltr",
@@ -39,17 +42,19 @@ export const Slider = ({
     )
   );
   const baseFactor = 4;
+  const duration =
+    carousel && container
+      ? ((carousel.offsetWidth / container.offsetWidth) * timing) / 2
+      : 0;
   useEffect(() => {
-    const slider = sliderRef.current;
-    const container = containerRef.current;
-    if (!slider || !container) return;
+    if (!carousel || !container) return;
     let prevContainerScrollLeft = 0;
-    container.style.setProperty("--timing", `${timing * baseFactor}s`);
+    container.style.setProperty("--timing", `${duration}s`);
 
     const handleScroll = () => {
       if (
         container.scrollLeft > prevContainerScrollLeft &&
-        container.scrollLeft >= slider.offsetWidth / baseFactor
+        container.scrollLeft >= carousel.offsetWidth / baseFactor
       ) {
         prevContainerScrollLeft = 0;
         container.scrollLeft = 0;
@@ -59,8 +64,8 @@ export const Slider = ({
         container.scrollLeft < prevContainerScrollLeft &&
         container.scrollLeft === 0
       ) {
-        prevContainerScrollLeft = slider.offsetWidth / baseFactor;
-        container.scrollLeft = slider.offsetWidth / baseFactor;
+        prevContainerScrollLeft = carousel.offsetWidth / baseFactor;
+        container.scrollLeft = carousel.offsetWidth / baseFactor;
         return;
       }
       prevContainerScrollLeft = container.scrollLeft;
@@ -68,22 +73,24 @@ export const Slider = ({
     container.scrollLeft = prevContainerScrollLeft;
     container.addEventListener("scroll", handleScroll);
     return () => container.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [elements, duration]);
 
   return (
-    <div  ref={containerRef} className={styles.container}>
-      <div
-        ref={sliderRef}
-        className={`
-        ${styles.slider} ${styles.animated} ${toRight ? styles.to_right : ""} 
+    <MemoizedComponent deps={[elements]}>
+      <div ref={containerRef} className={styles.container}>
+        <div
+          ref={carouselRef}
+          className={`
+        ${styles.carousel} ${styles.animated} ${toRight ? styles.to_right : ""} 
         ${pausable ? styles.pausable : ""}`}
-      >
-        {manyfy(slides, baseFactor)}
-        {slidesLength < 4 && manyfy(slides, baseFactor)}
-        {slidesLength < 4 && manyfy(slides, baseFactor)}
-        {slidesLength < 6 && manyfy(slides, baseFactor)}
-        {slidesLength < 6 && manyfy(slides, baseFactor)}
+        >
+          {manyfy(elements, baseFactor)}
+          {elementsLenght < 4 && manyfy(elements, baseFactor)}
+          {elementsLenght < 4 && manyfy(elements, baseFactor)}
+          {elementsLenght < 6 && manyfy(elements, baseFactor)}
+          {elementsLenght < 6 && manyfy(elements, baseFactor)}
+        </div>
       </div>
-    </div>
+    </MemoizedComponent>
   );
 };
