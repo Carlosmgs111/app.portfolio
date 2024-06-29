@@ -7,7 +7,7 @@ import { actionTypes } from "../../";
 import { Linkdex } from "./Linkdex";
 import { useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
+import { ToggleButton } from "../../components/ToggleButton";
 export default function Navigation({ className, login, pages }: any) {
   const [{ token, avatar }, dispatch] = useStateValue();
   const { pathname } = useLocation();
@@ -16,8 +16,10 @@ export default function Navigation({ className, login, pages }: any) {
     { show: false, name: "fas fa-bars p-2 item" },
     { show: true, name: "fas fa-times p-2 item" }
   );
+  const [language, toggleLanguage] = useToggle("es", "en");
   const indicatorRef: any = useRef(null);
   const adjustIndicatorSizes = (pathname: any) => {
+    if (!referencesRefs.current) return;
     const currentPath = referencesRefs.current[pathname.split("/")[1]];
     if (!currentPath) {
       indicatorRef.current.style.scale = "0";
@@ -40,6 +42,12 @@ export default function Navigation({ className, login, pages }: any) {
   useEffect(() => {
     adjustIndicatorSizes(pathname);
   }, [pathname]);
+  useEffect(() => {
+    dispatch({
+      type: actionTypes.setCurrentLang,
+      payload: language,
+    });
+  }, [language]);
 
   return (
     <div ref={navbarContainerRef} className={styles.navbar_container}>
@@ -106,18 +114,17 @@ export default function Navigation({ className, login, pages }: any) {
         </nav>
       </div>
       <div className={`${styles.page_settings}  ${menu.show && styles.show}`}>
-        <select
-          onChange={(e) =>
-            dispatch({
-              type: actionTypes.setCurrentLang,
-              payload: e.target.value,
-            })
-          }
-          className={styles.languages}
-        >
-          <option value="es">ES</option>
-          <option value="en">EN</option>
-        </select>
+        <div className={styles.languages}>
+          <ToggleButton
+            onChange={toggleLanguage}
+            toggled={
+              "url('https://cdn-icons-png.flaticon.com/256/555/555526.png')"
+            }
+            unToggled={
+              "url('https://w7.pngwing.com/pngs/900/804/png-transparent-flag-of-colombia-national-flag-flag-of-cuba-flag-miscellaneous-angle-flag-thumbnail.png')"
+            }
+          ></ToggleButton>
+        </div>
       </div>
     </div>
   );

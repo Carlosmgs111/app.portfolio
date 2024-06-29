@@ -23,14 +23,21 @@ module.exports = {
         use: "ts-loader",
       },
       {
-        test: /\.(js|jsx|png|svg|jpg|jpeg|gif|ico)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        include: [path.resolve(__dirname, "assets/images")],
         use: {
           loader: "babel-loader",
+        },
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
+        exclude: /node_modules/,
+        include: [path.resolve(__dirname, "./assets/images")],
+        use: {
+          loader: "file-loader",
           options: {
             name: "[path][name].[ext]",
-            outputPath: "images",
+            outputPath: "./images",
             esModule: false,
           },
         },

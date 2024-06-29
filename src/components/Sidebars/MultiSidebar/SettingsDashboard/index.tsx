@@ -1,4 +1,5 @@
 import styles from "./styles.module.css";
+import { ToggleButton } from "../../../../components/ToggleButton";
 
 export function SettingsDashboard({
   float,
@@ -15,21 +16,10 @@ export function SettingsDashboard({
         onClick={switchSettingsDashboard}
       >
         <i className={`fa-solid fa-caret-left ${styles.hide_button}`} />
-        <form>
-          <label>Flotante: </label>
-          <label className={`switch ${styles.switch}`}>
-            <input
-              className={styles.input}
-              checked={float}
-              type="checkbox"
-              name="based-on"
-              onChange={switchFloat}
-            ></input>
-            <span
-              className={`${styles.slider} ${styles.round} fa-solid fa-circle-dot`}
-            ></span>
-          </label>
-        </form>
+        <span>Flotante: </span>
+        <ToggleButton
+          {...{ checked: float, onChange: switchFloat }}
+        ></ToggleButton>
       </section>
     </div>
   );

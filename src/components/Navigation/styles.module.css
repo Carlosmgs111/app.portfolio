@@ -71,6 +71,7 @@
   width: fit-content;
   z-index: 1;
   transition: 0.4s;
+  align-content: center;
 }
 .languages {
   padding: 0.8rem;
@@ -87,9 +88,7 @@
   -webkit-text-stroke: var(--main-color-950) 0.8px;
   transition: 0.4s;
   filter: drop-shadow(-6px 4px 1px #000000cc);
-}
-.languages:hover {
-  scale: 1.2;
+  scale: 1.8;
 }
 .languages option * {
   background-color: transparent;
