@@ -2,7 +2,6 @@
   width: 100%;
   transition: 0.4s;
   fill: #ffffff;
-  filter: drop-shadow(-16px 12px 1px #000000b3);
 }
 .svg_container {
   display: block;
@@ -11,9 +10,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.svg:hover {
-  scale: 1.2;
 }
 .github:hover {
   fill: #181717;

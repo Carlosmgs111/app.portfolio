@@ -10,6 +10,7 @@ import { useNearScreen } from "../../hooks/useNearScreen";
 import { useToggle } from "../../hooks/useToggle";
 import { useEffect, useState } from "react";
 import { actionTypes } from "../../index";
+import { TechSkills } from "../../containers/TechSkills";
 
 export function Home({}: any) {
   const [{ currentLang, projects, certifications }, dispatch] = useStateValue();
@@ -155,8 +156,9 @@ export function Home({}: any) {
   }, []);
 
   const titles: any = {
-    projects: { es: "Proyectos", en: "Projects" },
-    certifications: { es: "Certificados", en: "Certifications" },
+    projects: { es: "Mis Proyectos", en: "My Projects" },
+    certifications: { es: "Mis Certificados", en: "My Certifications" },
+    techs: { es: "Las tecnologías que domino", en: "The technologies i master" },
   };
 
   return (
@@ -197,7 +199,7 @@ export function Home({}: any) {
           ))}
         </InfiniteCarousel>
       </article>
-      <article className={`${styles.section}  `}>
+      <article className={`${styles.section} `}>
         <h2>{titles.certifications[currentLang]}</h2>
         <InfiniteCarousel timing={30} gap={"2rem"}>
           {certificationsIndexes.map((certification: any) => (
@@ -209,6 +211,10 @@ export function Home({}: any) {
             <CertificationIndex {...certification} />
           ))}
         </InfiniteCarousel>
+      </article>
+      <article className={`${styles.section}`}>
+        <h2>{titles.techs[currentLang]}</h2>
+        <TechSkills></TechSkills>
       </article>
     </div>
   );

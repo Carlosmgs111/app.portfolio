@@ -37,7 +37,7 @@
 .element {
   height: 100%;
   flex: 0 0 auto;
-  min-width: 20rem;
+  min-width: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;

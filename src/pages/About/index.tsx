@@ -172,10 +172,14 @@ export const About = ({}: any) => {
         </div>
       </section>
       <div className={`${styles.skills}`}>
-        <InfiniteCarousel timing={4} toRight={true}>{firstSlides}</InfiniteCarousel>
-        <InfiniteCarousel>{secondSlides}</InfiniteCarousel>
-        <InfiniteCarousel toRight={true}>{thirdSlides}</InfiniteCarousel>
-        <InfiniteCarousel>{fourthSlides}</InfiniteCarousel>
+        <InfiniteCarousel timing={20} toRight={true}>
+          {firstSlides}
+        </InfiniteCarousel>
+        <InfiniteCarousel timing={20}>{secondSlides}</InfiniteCarousel>
+        <InfiniteCarousel timing={20} toRight={true}>
+          {thirdSlides}
+        </InfiniteCarousel>
+        <InfiniteCarousel timing={20}>{fourthSlides}</InfiniteCarousel>
       </div>
     </div>
   );
