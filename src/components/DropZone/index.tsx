@@ -1,7 +1,29 @@
-import React, { useCallback } from "react";
+import React, { Children, useCallback } from "react";
 import styles from "./styles.module.css";
 import { useDropzone } from "react-dropzone";
 import { getSizesDisposition } from "../../utils";
+
+const FilesPreview = ({ children }: any): any => {
+  const files = Children.toArray(children);
+
+  // * Use reverse method only with 'flex-direction: row'
+  const filePreviewSizes = getSizesDisposition(files.length);
+
+  return files.map(
+    (file: any, i: number) =>
+      i >= files.length - 16 && (
+        <embed
+          className={styles.file_preview}
+          key={i}
+          src={`${file}`}
+          style={{
+            width: `calc(${filePreviewSizes[i][0]}% - 1rem)`,
+            height: `calc(${filePreviewSizes[i][1]}% - 1rem)`,
+          }}
+        />
+      )
+  );
+};
 
 export function Dropzone({ files, setFiles }: any) {
   const onDrop = useCallback((acceptedFiles: any) => {
@@ -20,26 +42,10 @@ export function Dropzone({ files, setFiles }: any) {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
-  // * Use reverse method only with 'flex-direction: row'
-  const filePreviewSizes = getSizesDisposition(files.length);
-
   return (
     <div className={styles.dropzone_container}>
       <div className={styles.dropzone_body} {...getRootProps()}>
-        {files.map(
-          (file: any, i: number) =>
-            i >= files.length - 100 && (
-              <embed
-                className={styles.file_preview}
-                key={i}
-                src={`${file}`}
-                style={{
-                  width: `calc(${filePreviewSizes[i][0]}% - 1rem)`,
-                  height: `calc(${filePreviewSizes[i][1]}% - 1rem)`,
-                }}
-              />
-            )
-        )}
+        <FilesPreview>{files}</FilesPreview>
         <input style={{ overflow: "hidden" }} {...getInputProps()} />
       </div>
       <label

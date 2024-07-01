@@ -1,14 +1,13 @@
 .main_container {
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   display: flex;
-  gap: 10rem;
+  gap: 2rem;
   flex-wrap: wrap;
   width: 100%;
-  padding: 2rem;  
 }
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 900px) {
   .main_container {
-    padding: 0.1rem;
+    padding: 2rem;
   }
 }

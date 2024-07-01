@@ -25,7 +25,7 @@ export const Image = ({
   return (
     <img
       alt={alt}
-      className={className || styles.image}
+      className={`${className} ${styles.image}`}
       src={src}
       ref={ref}
       style={style}

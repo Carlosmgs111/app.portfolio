@@ -158,7 +158,10 @@ export function Home({}: any) {
   const titles: any = {
     projects: { es: "Mis Proyectos", en: "My Projects" },
     certifications: { es: "Mis Certificados", en: "My Certifications" },
-    techs: { es: "Las tecnologías que domino", en: "The technologies i master" },
+    techs: {
+      es: "Las tecnologías que domino",
+      en: "The technologies i master",
+    },
   };
 
   return (
@@ -179,14 +182,14 @@ export function Home({}: any) {
               href="https://github.com/Carlosmgs111"
               target="_blank"
             >
-              <GitHubSVG></GitHubSVG>
+              <i className="fa-brands fa-github-alt"></i> Github
             </a>
             <a
               className={styles.contact_icon}
               href="https://www.linkedin.com/in/cmgs111/"
               target="_blank"
             >
-              <LinkedInSVG></LinkedInSVG>
+              <i className="fa-brands fa-linkedin-in"></i> Linkedin
             </a>
           </div>
         </section>

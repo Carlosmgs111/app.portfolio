@@ -15,7 +15,7 @@ import {
   DefineForms,
   getHOCAndTrigger,
 } from "../../components/DefineForms";
-import { GitHubSVG } from "../../icons";
+import { InfiniteCarousel } from "../../components/InfiniteCarousel";
 
 export const Project = ({
   even,
@@ -143,40 +143,29 @@ export const Project = ({
       {!beingEdited ? (
         <>
           <h1 className={styles.title}>{name}</h1>
-          <div
-            className={styles.image_container.concat(
-              " ",
-              even && styles.image_container_reversed
-            )}
-          >
-            {images.map((image: any, index: number) => (
-              <Image
-                key={index}
-                {...{
-                  src: image,
-                  style: {
-                    maxWidth:
-                      images.length >= 6
-                        ? "50%"
-                        : !(images.length > 2 && index > 0)
-                        ? "100%"
-                        : "calc( 50% - 0.6rem )",
-                    cursor: "zoom-in",
-                  },
-                  onClick: () => {
-                    setCurrentModal(
-                      <img
-                        alt=""
-                        src={image}
-                        className={`${styles.image} ${styles.zoomed}`}
-                        style={{ cursor: "zoom-out", maxWidth: "100%" }}
-                        onClick={() => setCurrentModal(null)}
-                      />
-                    );
-                  },
-                }}
-              ></Image>
-            ))}
+          <div className={styles.images}>
+            <InfiniteCarousel gap={"1rem"} timing={10}>
+              {images.map((image: any, index: number) => (
+                <Image
+                  className={styles.image}
+                  key={index}
+                  {...{
+                    src: image,
+                    onClick: () => {
+                      setCurrentModal(
+                        <img
+                          alt=""
+                          src={image}
+                          className={`${styles.image} ${styles.zoomed}`}
+                          style={{ cursor: "zoom-out", maxWidth: "100%" }}
+                          onClick={() => setCurrentModal(null)}
+                        />
+                      );
+                    },
+                  }}
+                ></Image>
+              ))}
+            </InfiniteCarousel>
           </div>
           <div className={styles.descriptions}>
             {descriptions.map((description: any, index: number) => (
