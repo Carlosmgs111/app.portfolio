@@ -1,10 +1,7 @@
 import { Page } from "../../components/Page";
 import { Banner } from "../../components/Banner";
-import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
-import {
-  PanelSidebar,
-  innerItems,
-} from "../../components/Sidebars/PanelSidebar";
+import { SidePanel } from "../../components/SidePanel";
+import { PanelSidebar, innerItems } from "../../components/PanelSidebar";
 import { MyState, Settings, ProfileHome, TestsSection } from "./sections";
 import { getContext, CONTEXTS } from "../../contexts";
 import { useNavigate } from "react-router-dom";
@@ -94,7 +91,7 @@ export function Profile({ clearAuth }: any) {
         {username}
       </Banner>
       <div className={styles.container}>
-        <MultiSidebar
+        <SidePanel
           {...{
             sidebars,
           }}

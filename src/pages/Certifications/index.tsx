@@ -5,7 +5,7 @@ import {
 import {
   PanelSidebar,
   innerItems,
-} from "../../components/Sidebars/PanelSidebar";
+} from "../../components/PanelSidebar";
 import {
   manyfy,
   injectAttrsToReactElements,
@@ -15,7 +15,7 @@ import {
   getDispatchSetFunctions,
 } from "../../utils";
 import { Page } from "../../components/Page";
-import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
+import { SidePanel } from "../../components/SidePanel";
 import { useState, useEffect, useReducer } from "react";
 import { useTrackSidebar } from "../../hooks/useTrackSidebar";
 import { OnLoading } from "../../components/OnLoading";
@@ -267,7 +267,7 @@ export function Certifications({}: any) {
         <meta charSet="utf-8" />
         <title>Certications | Carlos Muñoz Gachancipá</title>
       </Helmet>
-      <MultiSidebar
+      <SidePanel
         {...{
           width: "240px",
           float: false,
@@ -296,7 +296,7 @@ export function Certifications({}: any) {
             </div>
           )}
         </div>
-      </MultiSidebar>
+      </SidePanel>
       {/* // ? ⬇️ Start page support components */}
       <OnLoading
         {...{

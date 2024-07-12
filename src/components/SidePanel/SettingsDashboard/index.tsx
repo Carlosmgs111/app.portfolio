@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import { ToggleButton } from "../../../../components/ToggleButton";
+import { ToggleButton } from "../../../components/ToggleButton";
 
 export function SettingsDashboard({
   float,

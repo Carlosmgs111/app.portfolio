@@ -5,11 +5,8 @@ import { URL_API } from "../../services";
 import { Project, ProjectSkeleton } from "../../containers/Project";
 import styles from "./styles.module.css";
 import { useTrackSidebar } from "../../hooks/useTrackSidebar";
-import { MultiSidebar } from "../../components/Sidebars/MultiSidebar";
-import {
-  PanelSidebar,
-  innerItems,
-} from "../../components/Sidebars/PanelSidebar";
+import { SidePanel } from "../../components/SidePanel";
+import { PanelSidebar, innerItems } from "../../components/PanelSidebar";
 import { Page } from "../../components/Page";
 import { Modal } from "../../components/Modal";
 import { runRequest } from "../../services/runRequest";
@@ -213,7 +210,7 @@ export function Projects({}: any) {
         <meta charSet="utf-8" />
         <title>Projects | Carlos Muñoz Gachancipá</title>
       </Helmet>
-      <MultiSidebar
+      <SidePanel
         {...{
           width: "240px",
           float: false,
@@ -244,7 +241,7 @@ export function Projects({}: any) {
             </ContentWrapper>
           )}
         </div>
-      </MultiSidebar>
+      </SidePanel>
       <Modal
         {...{
           injected: currentModal,

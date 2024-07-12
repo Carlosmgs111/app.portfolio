@@ -1,13 +1,13 @@
 import { useState, Children, cloneElement, useEffect } from "react";
 import styles from "./style.module.css";
 import { SettingsDashboard } from "./SettingsDashboard";
-import { useToggle } from "../../../hooks/useToggle";
-import { injectAttrsToReactElements } from "../../../utils";
-import { useStateValue } from "../../../contexts/context";
-import { useLocalStorage } from "../../../hooks/useLocalStorage";
-import { MemoizedComponent } from "../../../components/MemoizedComponent";
+import { useToggle } from "../../hooks/useToggle";
+import { injectAttrsToReactElements } from "../../utils";
+import { useStateValue } from "../../contexts/context";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { MemoizedComponent } from "../../components/MemoizedComponent";
 
-export const MultiSidebar = (props: any) => {
+export const SidePanel = (props: any) => {
   const {
     sidebars = [],
     children,

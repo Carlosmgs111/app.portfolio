@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { TrackSidebar as T } from "../../components/Sidebars/TrackSidebar";
+import { TrackSidebar as T } from "../../components/TrackSidebar";
 import { cloneElement, Children } from "react";
 import { useNearScreenArray } from "../useNearScreen";
 import { labelCases } from "../../utils";

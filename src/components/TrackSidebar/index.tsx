@@ -1,6 +1,6 @@
-import { labelCases } from "../../../utils";
-import { useToggle } from "../../../hooks/useToggle";
-import { useStateValue } from "../../../contexts/context";
+import { labelCases } from "../../utils";
+import { useToggle } from "../../hooks/useToggle";
+import { useStateValue } from "../../contexts/context";
 import styles from "./styles.module.css";
 
 export function TrackSidebar(props: any) {
