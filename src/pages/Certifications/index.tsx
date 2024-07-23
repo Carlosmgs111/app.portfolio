@@ -276,7 +276,6 @@ export function Certifications({}: any) {
         }}
       >
         <div>
-          <div className={styles.background}></div>
           {!loading && (
             <div className={styles.main_container}>
               <ContentWrapper>
@@ -285,6 +284,7 @@ export function Certifications({}: any) {
                     key={certification.uuid}
                     {...{
                       id: certification.title,
+                      title: certification.title,
                       initialCertification: certification,
                       setCurrentModal,
                       updateState,

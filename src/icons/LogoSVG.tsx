@@ -2,7 +2,7 @@ import * as React from "react";
 import { SVGProps } from "react";
 import styles from "./styles.module.css";
 import { SVGContainer } from "./SVGContainer";
-export const LogoSVG = (props: SVGProps<SVGSVGElement>) => (
+export const LogoSVG = (props: any) => (
   <SVGContainer>
     <svg
       className={styles.svg}

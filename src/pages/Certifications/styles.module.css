@@ -1,15 +1,4 @@
-.background {
-  position: fixed;
-  background: radial-gradient(
-    circle at 90% 10%,
-    var(--main-color-950),
-    var(--moonlit-asteroid-700),
-    var(--moonlit-asteroid-800) 40%,
-    var(--moonlit-asteroid-900)
-  );
-  height: 100vh;
-  width: 100%;
-}
+
 .main_container {
   align-items: center;
   justify-content: center;

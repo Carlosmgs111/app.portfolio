@@ -1,7 +1,7 @@
 import { SVGProps } from "react";
 import styles from "./styles.module.css";
 import { SVGContainer } from "./SVGContainer";
-export const ApolloGraphqlSVG = (props: SVGProps<SVGSVGElement>) => (
+export const ApolloGraphqlSVG = (props: any) => (
   <SVGContainer>
     <svg
       className={`${styles.svg} ${styles.apollo_graphql}`}

@@ -2,7 +2,7 @@ import * as React from "react";
 import { SVGProps } from "react";
 import styles from "./styles.module.css";
 import { SVGContainer } from "./SVGContainer";
-export const JestSVG = (props: SVGProps<SVGSVGElement>) => (
+export const JestSVG = (props: any) => (
   <SVGContainer name="Jest">
     <svg
       className={`${styles.svg} ${styles.jest}`}

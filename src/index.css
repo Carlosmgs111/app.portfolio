@@ -94,10 +94,11 @@ body::before {
   height: 100vh;
   z-index: -10;
   background-image: radial-gradient(
-    circle at 80% 20%,
-    var(--main-color-900) 10%,
-    var(--moonlit-asteroid-700) 20%,
-    var(--moonlit-asteroid-800) 40%,
+    circle at 95% 5%,
+    var(--main-color-950) 5%,
+    var(--main-color-900) 20%,
+    var(--moonlit-asteroid-700) 35%,
+    var(--moonlit-asteroid-800) 50%,
     var(--moonlit-asteroid-900)
   );
 

@@ -9,12 +9,12 @@ export const useNearScreen = (
   cb: Function | null = null,
   opts: any = {}
 ) => {
-  const { threshold = 0.5 } = opts;
-  const _ref = null; // ? For some weird reason, when a high order element or component parent of component
+  const { threshold = 0.5, $ref = null } = opts;
+  // ? For some weird reason, when a high order element or component parent of component
   // ? implementing this hook, is referenced with `ref` attribute and passing directly
   // ? ↙️ `null` to useRef to references the given element, the reference is missed, so to
   // ? ⬇️ avoid it, must be passed a variable with the initial value, in this case ↖️`_ref`
-  const ref: any = useRef(_ref);
+  const ref: any = useRef($ref);
   const [show, setShow] = useState(initialState);
   useEffect(() => {
     var observer: any;

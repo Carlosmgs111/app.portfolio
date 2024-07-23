@@ -228,6 +228,7 @@ export function Projects({}: any) {
                   key={index}
                   {...{
                     id: project.name,
+                    title: project.name,
                     initialState: project,
                     even: index % 2 === 0,
                     updateState,

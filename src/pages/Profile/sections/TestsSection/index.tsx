@@ -76,12 +76,12 @@ export function TestsSection() {
           }}
         >
           <ContentWrapper>
-            <LogoSVG id="logo" />
-            <JestSVG id="jest" />
-            <ReactSVG id="re Act" />
-            <StyledComponentsSVG id="styled" />
-            <NextjsSVG id="next" />
-            <AxiosSVG id="axios " />
+            <LogoSVG id="logo" title="logo" />
+            <JestSVG id="jest" title="jest" />
+            <ReactSVG id="re Act" title="react" />
+            <StyledComponentsSVG id="styled" title="styled" />
+            <NextjsSVG id="next" title="next" />
+            <AxiosSVG id="_axio s " title="axio s" />
           </ContentWrapper>
         </div>
       </div>

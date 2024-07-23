@@ -2,7 +2,7 @@ import * as React from "react";
 import { SVGProps } from "react";
 import styles from "./styles.module.css";
 import { SVGContainer } from "./SVGContainer";
-export const JavaScriptSVG = (props: SVGProps<SVGSVGElement>) => (
+export const JavaScriptSVG = (props: any) => (
   <SVGContainer>
     <svg
       className={`${styles.svg} ${styles.javascript}`}
