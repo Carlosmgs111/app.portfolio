@@ -2,10 +2,7 @@ import {
   Certification,
   CertificationSkeleton,
 } from "../../containers/Certification";
-import {
-  PanelSidebar,
-  innerItems,
-} from "../../components/PanelSidebar";
+import { PanelSidebar, innerItems } from "../../components/PanelSidebar";
 import {
   manyfy,
   injectAttrsToReactElements,
@@ -278,7 +275,7 @@ export function Certifications({}: any) {
         <div>
           {!loading && (
             <div className={styles.main_container}>
-              <ContentWrapper>
+              <ContentWrapper deps={[certifications]}>
                 {certifications.map((certification: any, index: number) => (
                   <Certification
                     key={certification.uuid}

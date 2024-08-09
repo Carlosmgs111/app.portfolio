@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { runRequest} from "../../../../services/runRequest";
+import { runRequest } from "../../../../services/runRequest";
 import { headers } from "../../../../services/configs";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";

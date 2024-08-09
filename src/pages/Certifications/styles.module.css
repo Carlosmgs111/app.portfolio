@@ -2,6 +2,7 @@
 .main_container {
   align-items: center;
   justify-content: center;
+  align-content: flex-start;
   display: flex;
   gap: 0.8rem;
   flex-wrap: wrap;

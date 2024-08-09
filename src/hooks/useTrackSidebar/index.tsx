@@ -1,55 +1,65 @@
-import { useState, useMemo, useEffect, useCallback } from "react";
-import { TrackSidebar as T } from "../../components/TrackSidebar";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { TrackSidebar as WrappedTrackSidebar } from "../../components/TrackSidebar";
 import { cloneElement, Children } from "react";
-import { useNearScreenArray } from "../useNearScreen";
+import { ComponentReferencer } from "../../components/ComponentReferencer";
 import { labelCases } from "../../utils";
 
 export const useTrackSidebar = () => {
-  const [indexesRefs, setIndexesRefs]: any = useState([]);
+  const [indexesRefs, setIndexesRefs]: any = useState({});
   const [indexes, setIndexes]: any = useState([]);
+  const elementsIndexes = useRef([]);
   const refreshRefs = (ref: any, show: boolean) => {
-    if (show && !indexesRefs.includes(ref)) indexesRefs.push(ref);
-    if (!show && indexesRefs.includes(ref))
-      indexesRefs.splice(indexesRefs.indexOf(ref), 1);
-    setIndexesRefs([...indexesRefs]);
+    indexesRefs[ref] = show;
+    setIndexesRefs({ ...indexesRefs });
   };
+
   const TrackSidebar = useCallback(
-    (props: any) => (
-      <T
-        {...{
-          ...props,
-          items: indexes,
-          refs: indexesRefs,
-          id: "track-sidebar",
-        }}
-      />
-    ),
+    (props: any) => {
+      return (
+        <WrappedTrackSidebar
+          {...{
+            ...props,
+            items: indexes,
+            refs: indexesRefs,
+            id: "track-sidebar",
+          }}
+        />
+      );
+    },
     [indexes]
   );
-  const ContentWrapper = useCallback(({ children }: any): any => {
-    const [elementsRefs] = useNearScreenArray(
-      children.map(() => false),
-      refreshRefs
-    );
-    const elementsIndexes = children.map(({ props: { title, id } }: any) => ({
-      reference: id,
-      title,
-    }));
+
+  const ContentWrapper = useCallback(({ children, deps=[] }: any): any => {
     useEffect(() => {
-      console.log({elementsRefs})
-      setIndexes(elementsIndexes);
-    }, [elementsIndexes.length]);
-    return children.map((child: any, index: any): any => {
-      return (
-        <div
-          key={index}
-          ref={elementsRefs.current[index]}
-          id={labelCases(child.props.id).LS}
-        >
-          {cloneElement(child, {})}
-        </div>
-      );
-    });
+      const childrenIndexes: any = [];
+      children.forEach((child: any) => {
+        const { id, title } = child.props;
+        childrenIndexes.push({ reference: id, title });
+      });
+      setIndexes(childrenIndexes);
+      setIndexesRefs(indexesRefs);
+    }, [...deps]);
+
+    return (
+      <ComponentReferencer $refs={elementsIndexes}>
+        {Children.toArray(children).map((child: any) =>
+          cloneElement(child, {
+            ...child.props,
+            id: labelCases(child.props.id).LS,
+            use: (current: any) => {
+              if (!current) return;
+              new window.IntersectionObserver(
+                (entries) => {
+                  const { isIntersecting }: any = entries[0];
+                  refreshRefs(child.props.id, isIntersecting);
+                },
+                { threshold: 0.5 }
+              ).observe(current);
+            },
+          })
+        )}
+      </ComponentReferencer>
+    );
   }, []);
   return { TrackSidebar, ContentWrapper };
 };

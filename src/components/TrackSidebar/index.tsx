@@ -1,6 +1,5 @@
 import { labelCases } from "../../utils";
 import { useToggle } from "../../hooks/useToggle";
-import { useStateValue } from "../../contexts/context";
 import styles from "./styles.module.css";
 
 export function TrackSidebar(props: any) {
@@ -15,7 +14,6 @@ export function TrackSidebar(props: any) {
     width = "available",
     redirect = "",
   }: any = props;
-  const [{ token, loading: globalLoading }, dispatch]: any = useStateValue();
   const [expand, switchExpand] = useToggle(
     showbutton ? expanded : 1,
     !expanded
@@ -26,12 +24,11 @@ export function TrackSidebar(props: any) {
     const href = redirect
       ? `/${redirect}#${labelCases(reference).LS}`
       : `#${labelCases(reference).LS}`;
-    const active = refs.includes(labelCases(reference).LS);
     indexesList.push(
       <a
         className={`
       ${styles.item} 
-      ${active ? styles.active : ""}`}
+      ${refs[labelCases(reference).LS] ? styles.active : ""}`}
         key={index}
         href={href}
       >
@@ -39,7 +36,7 @@ export function TrackSidebar(props: any) {
           className={`
         fa-solid fa-circle-dot 
         ${styles.icon} ${expand && styles.hidden}
-        ${active ? styles.active : ""}`}
+        ${refs[labelCases(reference).LS] ? styles.active : ""}`}
         ></i>
         {innerItems && (
           <i
