@@ -84,42 +84,44 @@ export function DefineForms({
   });
 
   return (
-    <div className={styles.content}>
-      <label hidden={true}>Label:</label>
-      <input
-        hidden={true}
-        type="text"
-        name="Label"
-        value={label}
-        onChange={(e) => setLabel(e.target.value)}
-      />
-      <form className={styles.form} name="main" onSubmit={onClick}>
-        {listOfDefineAttributes}
-      </form>
-      <OnError {...{ error, reset }}></OnError>
-      <OnLoading
-        {...{
-          loading,
-          component: () => <div className={styles.content}></div>,
-        }}
-      ></OnLoading>
-      {Mapfy(buttons).has("main") && (
-        <button
-          className={styles.button}
-          name="main"
-          type="button"
-          onClick={onClick}
-        >
-          {Mapfy(schema).size < 2
-            ? labelCases(buttons.main).CS
-            : labelCases(buttons.main).CP}
-        </button>
-      )}
+    <Memo deps={[schema]}>
+      <div className={styles.content}>
+        <label hidden={true}>Label:</label>
+        <input
+          hidden={true}
+          type="text"
+          name="Label"
+          value={label}
+          onChange={(e) => setLabel(e.target.value)}
+        />
+        <form className={styles.form} name="main" onSubmit={onClick}>
+          {listOfDefineAttributes}
+        </form>
+        <OnError {...{ error, reset }}></OnError>
+        <OnLoading
+          {...{
+            loading,
+            component: () => <div className={styles.content}></div>,
+          }}
+        ></OnLoading>
+        {Mapfy(buttons).has("main") && (
+          <button
+            className={styles.button}
+            name="main"
+            type="button"
+            onClick={onClick}
+          >
+            {Mapfy(schema).size < 2
+              ? labelCases(buttons.main).CS
+              : labelCases(buttons.main).CP}
+          </button>
+        )}
 
-      {message && (
-        <span className={styles.message}>(*) Campos Obligatorios</span>
-      )}
-    </div>
+        {message && (
+          <span className={styles.message}>(*) Campos Obligatorios</span>
+        )}
+      </div>
+    </Memo>
   );
 }
 
