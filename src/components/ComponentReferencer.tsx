@@ -1,24 +1,28 @@
 import { Children, cloneElement, useEffect } from "react";
 
-const ElementWrapper = ({ children, index, $refs }: any) => {
-  const child = children;
-  const ref = { current: null };
-  $refs.current[index] = ref;
+const ElementWrapper = ({ children: child, $ref }: any) => {
   useEffect(() => {
-    if (child.props.use) child.props.use(ref.current);
-  }, [ref.current]);
+    let whenGone: Function | null = null;
+    if (child.props.use) whenGone = child.props.use($ref.current);
+    return () => whenGone && whenGone();
+  }, [$ref.current]);
   return (
-    <div id={child.props.idx} key={index} ref={ref} autoFocus={true}>
+    <div id={child.props.id} ref={$ref} autoFocus={true}>
       {cloneElement(child, {
         ...child.props,
-        key: index,
       })}
     </div>
   );
 };
 
-export const ComponentReferencer = ({ children, $refs }: any):any => {
+export const ComponentReferencer = ({ children, $refs }: any): any => {
   return Children.toArray(children).map((child: any, index: any) => {
-    return <ElementWrapper {...{ index, $refs }}>{child}</ElementWrapper>;
+    const $ref = { current: null };
+    $refs.current[index] = $ref;
+    return (
+      <ElementWrapper key={index} {...{ $ref }}>
+        {child}
+      </ElementWrapper>
+    );
   });
 };

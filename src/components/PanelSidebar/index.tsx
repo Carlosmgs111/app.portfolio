@@ -23,7 +23,7 @@ export function PanelSidebar(props: any) {
   const {
     children = [],
     items = [],
-    expanded = true,
+    expanded = "true",
     isactive = 1,
     width,
   } = props;

@@ -26,6 +26,7 @@ import { Mapfy } from "../../utils";
 import { addCertification, addInstitution } from "./sections";
 import { INPUT_TYPES } from "../../components/DefineForms";
 import Helmet from "react-helmet";
+import { MemoizedComponent } from "../../components/MemoizedComponent";
 
 export function Certifications({}: any) {
   const [
@@ -272,27 +273,29 @@ export function Certifications({}: any) {
           sidebars,
         }}
       >
-        <div>
-          {!loading && (
-            <div className={styles.main_container}>
-              <ContentWrapper deps={[certifications]}>
-                {certifications.map((certification: any, index: number) => (
-                  <Certification
-                    key={certification.uuid}
-                    {...{
-                      id: certification.title,
-                      title: certification.title,
-                      initialCertification: certification,
-                      setCurrentModal,
-                      updateState,
-                      institutions,
-                    }}
-                  />
-                ))}
-              </ContentWrapper>
-            </div>
-          )}
-        </div>
+        <MemoizedComponent deps={[certifications, loading]}>
+          <div>
+            {!loading && (
+              <div className={styles.main_container}>
+                <ContentWrapper>
+                  {certifications.map((certification: any, index: number) => (
+                    <Certification
+                      key={certification.uuid}
+                      {...{
+                        id: certification.uuid,
+                        title: certification.title,
+                        initialCertification: certification,
+                        setCurrentModal,
+                        updateState,
+                        institutions,
+                      }}
+                    />
+                  ))}
+                </ContentWrapper>
+              </div>
+            )}
+          </div>
+        </MemoizedComponent>
       </SidePanel>
       {/* // ? ⬇️ Start page support components */}
       <OnLoading

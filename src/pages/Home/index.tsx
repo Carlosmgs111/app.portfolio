@@ -197,21 +197,21 @@ export function Home({}: any) {
       <article className={`${styles.section} `}>
         <h2>{titles.projects[currentLang]}</h2>
         <InfiniteCarousel toRight={true} timing={50}>
-          {projectsIndexes.map((project: any) => (
-            <ProjectIndex {...project} />
+          {projectsIndexes.map((project: any, index: any) => (
+            <ProjectIndex key={index} {...project} />
           ))}
         </InfiniteCarousel>
       </article>
       <article className={`${styles.section} `}>
         <h2>{titles.certifications[currentLang]}</h2>
         <InfiniteCarousel timing={30} gap={"2rem"}>
-          {certificationsIndexes.map((certification: any) => (
-            <CertificationIndex {...certification} />
+          {certificationsIndexes.map((certification: any, index: any) => (
+            <CertificationIndex key={index} {...certification} />
           ))}
         </InfiniteCarousel>
         <InfiniteCarousel timing={30} gap={"2rem"} toRight={true}>
-          {certificationsIndexes.map((certification: any) => (
-            <CertificationIndex {...certification} />
+          {certificationsIndexes.map((certification: any, index: any) => (
+            <CertificationIndex key={index} {...certification} />
           ))}
         </InfiniteCarousel>
       </article>

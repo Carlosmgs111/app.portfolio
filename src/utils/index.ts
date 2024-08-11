@@ -74,6 +74,7 @@ export const normalize = (str: string) => {
  * @US Upper Case Singular (UpperSingle)
  */
 export const labelCases = (label: string, normal = true) => {
+  if (!label) "";
   label = normal ? normalize(label) : label;
   return Object.defineProperties(Object(String(label)), {
     LP: { value: plural(label.toLowerCase()), writable: false },
@@ -360,7 +361,6 @@ export const mapToList = (data: any): any =>
 
 export const listToMap = (data: any): any =>
   Object.fromEntries([...data].map((data: any, index: any) => [index, data]));
-
 
 export const arrayJoin = (
   array: any = [],

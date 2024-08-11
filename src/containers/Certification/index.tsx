@@ -3,6 +3,7 @@ import { CertificationSkeleton } from "./skeleton";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { labelCases } from "../../utils";
 import { Image } from "../../components/Image";
+import { MemoizedComponent } from "../../components/MemoizedComponent";
 // import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
 import {
   DefineForms,
@@ -11,7 +12,7 @@ import {
 } from "../../components/DefineForms";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { runRequest } from "../../services/runRequest";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useToggle } from "../../hooks/useToggle";
 import { headers } from "../../services/configs";
 import { runButtonBehavior } from "../../utils";
@@ -94,18 +95,16 @@ export function Certification({
               result &&
                 runRequest({
                   setData: (data: any) => {
-                    updateState(
-                      ({ setCertifications, state }: any) => {
-                        const newCertifications = [...state.certifications];
-                        newCertifications.splice(
-                          newCertifications.findIndex(
-                            (c) => c.uuid === data.uuid
-                          ),
-                          1
-                        );
-                        setCertifications(newCertifications);
-                      }
-                    );
+                    updateState(({ setCertifications, state }: any) => {
+                      const newCertifications = [...state.certifications];
+                      newCertifications.splice(
+                        newCertifications.findIndex(
+                          (c) => c.uuid === data.uuid
+                        ),
+                        1
+                      );
+                      setCertifications(newCertifications);
+                    });
                   },
                 }).delete(`certifications/${uuid}`, {
                   ...requestHeaders,
@@ -116,114 +115,120 @@ export function Certification({
     };
     runButtonBehavior(e, behaviors);
   };
+  
+  useEffect(() => {
+    setCertification(initialCertification);
+  }, [initialCertification]);
 
   return (
-    <div
-      className={`${styles.container} ${show ? styles.visible : ""}`}
-      ref={ref}
-      id={labelCases(title).LS}
-    >
-      {!beingEdited ? (
-        <div className={styles.content}>
-          <Image
-            {...{
-              src: image,
-              alt: title,
-              className: styles.image,
-              style: { cursor: "zoom-in", opacity: !details ? 1 : 0 },
-              onClick: () =>
-                setCurrentModal(
-                  <img
-                    {...{
-                      src: image,
-                      alt: title,
-                      className: `${styles.image} ${styles.zoomed}`,
-                      onClick: () => setCurrentModal(null),
-                    }}
-                  />
-                ),
-            }}
-          ></Image>
-          <div
-            {...{
-              className: styles.details,
-              style: { opacity: details ? 1 : 0, zIndex: details ? 0 : -1 },
-            }}
-          >
-            <h2>Title</h2>
-            <p>{title}</p>
-            <h2>Emited By</h2>
-            <p>{emitedBy}</p>
-            <h2>Granted</h2>
-            <p>{format(emitedAt)}</p>
+    <MemoizedComponent deps={[certification, show, beingEdited]}>
+      <div
+        className={`${styles.container} ${show ? styles.visible : ""}`}
+        ref={ref}
+        id={labelCases(title).LS}
+      >
+        {!beingEdited ? (
+          <div className={styles.content}>
+            <Image
+              {...{
+                src: image,
+                alt: title,
+                className: styles.image,
+                style: { cursor: "zoom-in", opacity: !details ? 1 : 0 },
+                onClick: () =>
+                  setCurrentModal(
+                    <img
+                      {...{
+                        src: image,
+                        alt: title,
+                        className: `${styles.image} ${styles.zoomed}`,
+                        onClick: () => setCurrentModal(null),
+                      }}
+                    />
+                  ),
+              }}
+            ></Image>
+            <div
+              {...{
+                className: styles.details,
+                style: { opacity: details ? 1 : 0, zIndex: details ? 0 : -1 },
+              }}
+            >
+              <h2>Title</h2>
+              <p>{title}</p>
+              <h2>Emited By</h2>
+              <p>{emitedBy}</p>
+              <h2>Granted</h2>
+              <p>{format(emitedAt)}</p>
+            </div>
+            <i
+              {...{
+                className: `fa-solid fa-circle-info ${styles.displacement}`,
+                onClick: switchDetails,
+              }}
+            />
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href={url}
+              className={`fa-solid fa-up-right-from-square ${styles.url}`}
+            >
+              {" "}
+            </a>
           </div>
-          <i
-            {...{
-              className: `fa-solid fa-circle-info ${styles.displacement}`,
-              onClick: switchDetails,
-            }}
-          />
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href={url}
-            className={`fa-solid fa-up-right-from-square ${styles.url}`}
-          >
-            {" "}
-          </a>
-        </div>
-      ) : (
-        <div className={styles.content}>
-          <DefineForms
-            {...{
-              baseSchema: {
-                title,
-                emitedBy: {
-                  inputType: INPUT_TYPES.SELECTION,
-                  value: institutions.map((i: any) => i.name),
-                  controlledValue: emitedBy,
+        ) : (
+          <div className={styles.content}>
+            <DefineForms
+              {...{
+                baseSchema: {
+                  title,
+                  emitedBy: {
+                    inputType: INPUT_TYPES.SELECTION,
+                    value: institutions.map((i: any) => i.name),
+                    controlledValue: emitedBy,
+                  },
+                  emitedAt: {
+                    inputType: INPUT_TYPES.DATE,
+                    label: "fecha",
+                    value: new Date(emitedAt).toISOString().slice(0, 10),
+                    controlledValue: new Date(emitedAt).getTime(),
+                  },
+                  image,
+                  tags,
+                  url,
                 },
-                emitedAt: {
-                  inputType: INPUT_TYPES.DATE,
-                  label: "fecha",
-                  value: new Date(emitedAt).toISOString().slice(0, 10),
-                  controlledValue: new Date(emitedAt).getTime(),
-                },
-                image,
-                tags,
-                url,
-              },
-              modifiable: false,
-              highOrderCallback,
-            }}
-          ></DefineForms>
-        </div>
-      )}
-      {token && username === grantedTo && (
-        <div className={styles.dashboard}>
-          <button
-            className={`${styles.button} ${
-              beingEdited ? styles.success : styles.danger
-            }`}
-            id={uuid}
-            name="primary"
-            onClick={onClick}
-          >
-            {beingEdited ? (uuid ? "Guardar" : "Crear") : "Eliminar"}
-          </button>
-          <button
-            className={`${styles.button} ${
-              beingEdited ? styles.danger : styles.secondary
-            }`}
-            name="secondary"
-            id={uuid}
-            onClick={onClick}
-          >
-            {beingEdited ? (uuid ? "Cancelar" : "Limpiar") : "Editar"}
-          </button>
-        </div>
-      )}
-    </div>
+                modifiable: false,
+                highOrderCallback,
+              }}
+            ></DefineForms>
+          </div>
+        )}
+        {token && username === grantedTo && (
+          <div className={styles.dashboard}>
+            <button
+              className={`${styles.button} ${
+                beingEdited ? styles.success : styles.danger
+              }`}
+              id={uuid}
+              name="primary"
+              onClick={onClick}
+            >
+              {beingEdited ? (uuid ? "Guardar" : "Crear") : "Eliminar"}
+            </button>
+            <button
+              className={`${styles.button} ${
+                beingEdited ? styles.danger : styles.secondary
+              }`}
+              name="secondary"
+              id={uuid}
+              onClick={onClick}
+            >
+              {beingEdited ? (uuid ? "Cancelar" : "Limpiar") : "Editar"}
+            </button>
+          </div>
+        )}
+      </div>
+    </MemoizedComponent>
   );
 }
 
