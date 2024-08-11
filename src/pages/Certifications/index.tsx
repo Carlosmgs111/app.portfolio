@@ -26,7 +26,7 @@ import { Mapfy } from "../../utils";
 import { addCertification, addInstitution } from "./sections";
 import { INPUT_TYPES } from "../../components/DefineForms";
 import Helmet from "react-helmet";
-import { MemoizedComponent } from "../../components/MemoizedComponent";
+import { Memo } from "../../components/Memo";
 
 export function Certifications({}: any) {
   const [
@@ -273,7 +273,7 @@ export function Certifications({}: any) {
           sidebars,
         }}
       >
-        <MemoizedComponent deps={[certifications, loading]}>
+        <Memo deps={[certifications, loading]}>
           <div>
             {!loading && (
               <div className={styles.main_container}>
@@ -295,7 +295,7 @@ export function Certifications({}: any) {
               </div>
             )}
           </div>
-        </MemoizedComponent>
+        </Memo>
       </SidePanel>
       {/* // ? ⬇️ Start page support components */}
       <OnLoading

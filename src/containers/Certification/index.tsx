@@ -3,7 +3,7 @@ import { CertificationSkeleton } from "./skeleton";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { labelCases } from "../../utils";
 import { Image } from "../../components/Image";
-import { MemoizedComponent } from "../../components/MemoizedComponent";
+import { Memo } from "../../components/Memo";
 // import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
 import {
   DefineForms,
@@ -115,13 +115,13 @@ export function Certification({
     };
     runButtonBehavior(e, behaviors);
   };
-  
+
   useEffect(() => {
     setCertification(initialCertification);
   }, [initialCertification]);
 
   return (
-    <MemoizedComponent deps={[certification, show, beingEdited]}>
+    <Memo deps={[certification, show, beingEdited]}>
       <div
         className={`${styles.container} ${show ? styles.visible : ""}`}
         ref={ref}
@@ -228,7 +228,7 @@ export function Certification({
           </div>
         )}
       </div>
-    </MemoizedComponent>
+    </Memo>
   );
 }
 

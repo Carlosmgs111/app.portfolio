@@ -4,7 +4,7 @@ import { useHook } from "./useHook";
 import { OnError } from "../OnError";
 import { OnLoading } from "../OnLoading";
 import { labelCases, Mapfy } from "../../utils";
-import { MemoizedComponent } from "../../components/MemoizedComponent";
+import { Memo } from "../Memo";
 
 export enum INPUT_TYPES {
   TEXT = "TEXT", // input text
@@ -66,7 +66,7 @@ export function DefineForms({
   Mapfy(schema).forEach((_, index) => {
     const _data = schema[index];
     listOfDefineAttributes.push(
-      <MemoizedComponent key={index} {...{ deps: [_data, Mapfy(schema).size] }}>
+      <Memo key={index} {...{ deps: [_data, Mapfy(schema).size] }}>
         <InputForm
           {...{
             index,
@@ -79,7 +79,7 @@ export function DefineForms({
             modifiable,
           }}
         />
-      </MemoizedComponent>
+      </Memo>
     );
   });
 

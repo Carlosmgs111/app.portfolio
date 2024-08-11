@@ -13,7 +13,7 @@ import {
   mapToList,
 } from "../../../../utils";
 import { INPUT_TYPES } from "../../../../components/DefineForms";
-import { MemoizedComponent } from "../../../../components/MemoizedComponent";
+import { Memo } from "../../../Memo";
 import { useState, useReducer, useEffect, Children, cloneElement } from "react";
 
 const ACTIONS = Object.freeze({ ADD: "ADD", REMOVE: "REMOVE" });
@@ -96,7 +96,7 @@ export const MultiInput = ({
   const inputs: any = {};
   mapToList(inputValue).forEach((contentValue: any, index: any) => {
     inputs[index] = (
-      <MemoizedComponent
+      <Memo
         key={index}
         {...{
           deps: [contentValue],
@@ -177,7 +177,7 @@ export const MultiInput = ({
             />
           </div>
         </div>
-      </MemoizedComponent>
+      </Memo>
     );
   });
   return (

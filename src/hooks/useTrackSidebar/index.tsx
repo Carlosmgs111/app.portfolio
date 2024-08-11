@@ -1,8 +1,8 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import { TrackSidebar as WrappedTrackSidebar } from "../../components/TrackSidebar";
 import { cloneElement, Children } from "react";
-import { ComponentReferencer } from "../../components/ComponentReferencer";
-import { MemoizedComponent } from "../../components/MemoizedComponent";
+import { Refs } from "../../components/Refs";
+import { Memo } from "../../components/Memo";
 import { mapToList } from "../../utils";
 
 const ElementWrapped = ({
@@ -22,13 +22,13 @@ const ElementWrapped = ({
   }, [id, title]);
 
   return (
-    <MemoizedComponent deps={[child.props]}>
+    <Memo deps={[child.props]}>
       <div  id={id} >
         {cloneElement(child, {
           ...child.props,
         })}
       </div>
-    </MemoizedComponent>
+    </Memo>
   );
 };
 
@@ -54,7 +54,7 @@ export const useTrackSidebar = () => {
       });
     }, [children.length]);
     return (
-      <ComponentReferencer $refs={elementsIndexes}>
+      <Refs $refs={elementsIndexes}>
         {Children.toArray(children).map((child: any, index) => (
           <ElementWrapped
             key={index}
@@ -84,7 +84,7 @@ export const useTrackSidebar = () => {
             {child}
           </ElementWrapped>
         ))}
-      </ComponentReferencer>
+      </Refs>
     );
   }, []);
   return { TrackSidebar, ContentWrapper };

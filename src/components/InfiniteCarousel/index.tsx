@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import { manyfy } from "../../utils";
 import { Children, cloneElement, useRef, useEffect } from "react";
-import { MemoizedComponent } from "../../components/MemoizedComponent";
+import { Memo } from "../Memo";
 
 const getSimulatedGap = (measureSize: string | number) => {
   measureSize = String(measureSize);
@@ -76,7 +76,7 @@ export const InfiniteCarousel = ({
   }, [elements, duration]);
 
   return (
-    <MemoizedComponent deps={[elements]}>
+    <Memo deps={[elements]}>
       <div ref={containerRef} className={styles.container}>
         <div
           ref={carouselRef}
@@ -91,6 +91,6 @@ export const InfiniteCarousel = ({
           {elementsLenght < 6 && manyfy(elements, baseFactor)}
         </div>
       </div>
-    </MemoizedComponent>
+    </Memo>
   );
 };
