@@ -15,6 +15,7 @@ import { headers } from "../../services/configs";
 import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
 import { Helmet } from "react-helmet";
 import { useLocation } from "react-router-dom";
+import { Memo } from "../../components/Memo";
 
 export function Projects({}: any) {
   const location = useLocation();
@@ -218,30 +219,32 @@ export function Projects({}: any) {
           sidebars,
         }}
       >
-        <div className={styles.main_container}>
-          {loading ? (
-            <ProjectSkeleton />
-          ) : (
-            <ContentWrapper>
-              {projects.map((project: any, index: number) => (
-                <Project
-                  key={index}
-                  {...{
-                    id: project.name,
-                    title: project.name,
-                    initialState: project,
-                    even: index % 2 === 0,
-                    updateState,
-                    setCurrentModal,
-                    stateOps,
-                    stackOps,
-                    kindOps,
-                  }}
-                />
-              ))}
-            </ContentWrapper>
-          )}
-        </div>
+        <Memo deps={[projects]}>
+          <div className={styles.main_container}>
+            {loading ? (
+              <ProjectSkeleton />
+            ) : (
+              <ContentWrapper>
+                {projects.map((project: any, index: number) => (
+                  <Project
+                    key={index}
+                    {...{
+                      id: project.name,
+                      title: project.name,
+                      initialState: project,
+                      even: index % 2 === 0,
+                      updateState,
+                      setCurrentModal,
+                      stateOps,
+                      stackOps,
+                      kindOps,
+                    }}
+                  />
+                ))}
+              </ContentWrapper>
+            )}
+          </div>
+        </Memo>
       </SidePanel>
       <Modal
         {...{

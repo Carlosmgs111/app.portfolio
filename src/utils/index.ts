@@ -20,6 +20,7 @@ export const formatToCss = (objFormat = {}, important = false) => {
 };
 
 export const beutifyLabel = (label: any) => {
+  if (!label) return "";
   label = label.replace(/\w\S*/g, (w: any) =>
     w.replace(/^\w/, (c: any) => c.toUpperCase())
   );
@@ -40,31 +41,6 @@ export const beutifyLabel = (label: any) => {
   return label;
 };
 
-export const capitalize = (label: any, pluralize: boolean = false) => {
-  return (
-    label[0].toUpperCase() +
-    label.slice(1).toLowerCase() +
-    (pluralize ? "s" : "")
-  );
-};
-
-export const normalize = (str: string) => {
-  const from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÇç",
-    to = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuucc",
-    mapping: any = {};
-
-  for (var i = 0, j = from.length; i < j; i++)
-    mapping[from.charAt(i)] = to.charAt(i);
-
-  var ret = [];
-  for (var i = 0, j = str.length; i < j; i++) {
-    var c = str.charAt(i);
-    if (mapping.hasOwnProperty(str.charAt(i))) ret.push(mapping[c]);
-    else ret.push(c);
-  }
-  return ret.join("");
-};
-
 /**
  * @LP Lower Case Plural (LowerPlural)
  * @LS Lower Case Singular (LowerSingle)
@@ -73,8 +49,8 @@ export const normalize = (str: string) => {
  * @UP Upper Case Plural (UpperPlural)
  * @US Upper Case Singular (UpperSingle)
  */
-export const labelCases = (label: string, normal = true) => {
-  if (!label) "";
+export const labelCases = (label: string, normal: boolean = true) => {
+  if (!label) return "";
   label = normal ? normalize(label) : label;
   return Object.defineProperties(Object(String(label)), {
     LP: { value: plural(label.toLowerCase()), writable: false },
@@ -86,6 +62,33 @@ export const labelCases = (label: string, normal = true) => {
 
     toString: { value: () => label },
   });
+};
+
+export const normalize = (str: any) => {
+  if (!str) return "";
+  const from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÇç",
+    to = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuucc",
+    mapping: any = {};
+
+  for (var i = 0, j: any = from.length; i < j; i++)
+    mapping[from.charAt(i)] = to.charAt(i);
+
+  var ret = [];
+  for (var i = 0, j = str.length; i < j; i++) {
+    var c = str.charAt(i);
+    if (mapping.hasOwnProperty(str.charAt(i))) ret.push(mapping[c]);
+    else ret.push(c);
+  }
+  return ret.join("");
+};
+
+export const capitalize = (label: any, pluralize: boolean = false) => {
+  if (!label) return "";
+  return (
+    label[0].toUpperCase() +
+    label.slice(1).toLowerCase() +
+    (pluralize ? "s" : "")
+  );
 };
 
 export const genRandomId = () => {

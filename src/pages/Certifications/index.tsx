@@ -274,27 +274,25 @@ export function Certifications({}: any) {
         }}
       >
         <Memo deps={[certifications, loading]}>
-          <div>
-            {!loading && (
-              <div className={styles.main_container}>
-                <ContentWrapper>
-                  {certifications.map((certification: any, index: number) => (
-                    <Certification
-                      key={certification.uuid}
-                      {...{
-                        id: certification.uuid,
-                        title: certification.title,
-                        initialCertification: certification,
-                        setCurrentModal,
-                        updateState,
-                        institutions,
-                      }}
-                    />
-                  ))}
-                </ContentWrapper>
-              </div>
-            )}
-          </div>
+          {!loading && (
+            <div className={styles.main_container}>
+              <ContentWrapper>
+                {certifications.map((certification: any, index: number) => (
+                  <Certification
+                    key={certification.uuid}
+                    {...{
+                      id: certification.uuid,
+                      title: certification.title,
+                      initialCertification: certification,
+                      setCurrentModal,
+                      updateState,
+                      institutions,
+                    }}
+                  />
+                ))}
+              </ContentWrapper>
+            </div>
+          )}
         </Memo>
       </SidePanel>
       {/* // ? ⬇️ Start page support components */}

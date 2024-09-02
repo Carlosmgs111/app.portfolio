@@ -54,6 +54,8 @@
 .image.zoomed {
   position: static;
   cursor: zoom-out;
+  width: 100%;
+  height: 100%;
 }
 .descriptions {
   display: flex;
