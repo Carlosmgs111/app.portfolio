@@ -11,6 +11,7 @@ import { useToggle } from "../../hooks/useToggle";
 import { useEffect, useState } from "react";
 import { actionTypes } from "../../index";
 import { TechSkills } from "../../containers/TechSkills";
+import { Memo } from "../../components/Memo";
 
 export function Home({}: any) {
   const [{ currentLang, projects, certifications }, dispatch] = useStateValue();
@@ -178,14 +179,14 @@ export function Home({}: any) {
           {introduction[currentLang]}
           <div className={styles.contact}>
             <a
-              className={styles.contact_icon}
+              className={styles.contact_button}
               href="https://github.com/Carlosmgs111"
               target="_blank"
             >
               <i className="fa-brands fa-github-alt"></i> Github
             </a>
             <a
-              className={styles.contact_icon}
+              className={styles.contact_button}
               href="https://www.linkedin.com/in/cmgs111/"
               target="_blank"
             >
@@ -194,31 +195,38 @@ export function Home({}: any) {
           </div>
         </section>
       </article>
-      <article className={`${styles.section} `}>
-        <h2>{titles.projects[currentLang]}</h2>
-        <InfiniteCarousel toRight={true} timing={50}>
-          {projectsIndexes.map((project: any, index: any) => (
-            <ProjectIndex key={index} {...project} />
-          ))}
-        </InfiniteCarousel>
-      </article>
-      <article className={`${styles.section} `}>
-        <h2>{titles.certifications[currentLang]}</h2>
-        <InfiniteCarousel timing={30} gap={"2rem"}>
-          {certificationsIndexes.map((certification: any, index: any) => (
-            <CertificationIndex key={index} {...certification} />
-          ))}
-        </InfiniteCarousel>
-        <InfiniteCarousel timing={30} gap={"2rem"} toRight={true}>
-          {certificationsIndexes.map((certification: any, index: any) => (
-            <CertificationIndex key={index} {...certification} />
-          ))}
-        </InfiniteCarousel>
-      </article>
-      <article className={`${styles.section}`}>
-        <h2>{titles.techs[currentLang]}</h2>
-        <TechSkills></TechSkills>
-      </article>
+      <Memo deps={[projects]}>
+        <article className={`${styles.section} `}>
+          <h2>{titles.projects[currentLang]}</h2>
+          <InfiniteCarousel toRight={true} timing={50}>
+            {projectsIndexes.map((project: any, index: any) => (
+              <ProjectIndex key={index} {...project} />
+            ))}
+          </InfiniteCarousel>
+        </article>
+      </Memo>
+      <Memo deps={[certifications]}>
+        <article className={`${styles.section} `}>
+          <h2>{titles.certifications[currentLang]}</h2>
+          <InfiniteCarousel timing={30} gap={"2rem"}>
+            {certificationsIndexes.map((certification: any, index: any) => (
+              <CertificationIndex key={index} {...certification} />
+            ))}
+          </InfiniteCarousel>
+          <InfiniteCarousel timing={30} gap={"2rem"} toRight={true}>
+            {certificationsIndexes.map((certification: any, index: any) => (
+              <CertificationIndex key={index} {...certification} />
+            ))}
+          </InfiniteCarousel>
+        </article>
+      </Memo>
+
+      <Memo>
+        <article className={`${styles.section}`}>
+          <h2>{titles.techs[currentLang]}</h2>
+          <TechSkills></TechSkills>
+        </article>
+      </Memo>
     </div>
   );
 }

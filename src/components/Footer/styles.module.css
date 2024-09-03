@@ -19,8 +19,8 @@
   border: 1px solid var(--moonlit-asteroid-900);
 }
 .section {
-  width: 100%;
-  width: 100%;
+  min-width: fit-content;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4rem;
@@ -39,6 +39,7 @@
   font-weight: 500;
   width: 100%;
   text-align: center;
+  white-space: nowrap;
 }
 .contact_icons {
   display: flex;
@@ -58,6 +59,22 @@
 }
 .contact_icon > div > svg {
   filter: drop-shadow(-6px 6px 1px #000000b3);
+}
+.contact_button {
+  width: fit-content;
+  height: fit-content;
+  text-decoration: none;
+  background-color: var(--moonlit-asteroid-900);
+  color: var(--main-color-50);
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.8rem;
+  font-family: Rubik;
+  transition: 0.4s;
+  font-size: 2rem;
+}
+.contact_button:hover {
+  background-color: var(--main-color-50);
+  color: var(--moonlit-asteroid-900);
 }
 
 @media screen and (min-width: 1030px) {

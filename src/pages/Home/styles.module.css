@@ -89,7 +89,7 @@ h2 {
   flex-direction: flex-start;
   width: 100%;
 }
-.contact_icon {
+.contact_button {
   width: fit-content;
   height: fit-content;
   text-decoration: none;
@@ -100,7 +100,7 @@ h2 {
   font-family: Rubik;
   transition: 0.4s;
 }
-.contact_icon:hover {
+.contact_button:hover {
   background-color: var(--main-color-50);
   color: var(--moonlit-asteroid-900);
 }

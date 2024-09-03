@@ -24,8 +24,6 @@ export const InfiniteCarousel = ({
   const simulatedGap = getSimulatedGap(gap);
   const carouselRef: any = useRef(null);
   const containerRef: any = useRef(null);
-  const carousel = carouselRef.current;
-  const container = containerRef.current;
   const elementsLenght = children.length;
   const elements: any = Children.toArray(children).map(
     (child: any, index: any) => (
@@ -42,38 +40,42 @@ export const InfiniteCarousel = ({
     )
   );
   const baseFactor = 4;
-  const duration =
-    carousel && container
-      ? ((carousel.offsetWidth / container.offsetWidth) * timing) / 2
-      : 0;
   useEffect(() => {
-    if (!carousel || !container) return;
+    if (!carouselRef.current || !containerRef.current) return;
+    const duration =
+      carouselRef.current && containerRef.current
+        ? ((carouselRef.current.offsetWidth /
+            containerRef.current.offsetWidth) *
+            timing) /
+          2
+        : 0;
     let prevContainerScrollLeft = 0;
-    container.style.setProperty("--timing", `${duration}s`);
+    containerRef.current.style.setProperty("--timing", `${duration}s`);
 
     const handleScroll = () => {
       if (
-        container.scrollLeft > prevContainerScrollLeft &&
-        container.scrollLeft >= carousel.offsetWidth / baseFactor
+        containerRef.current.scrollLeft > prevContainerScrollLeft &&
+        containerRef.current.scrollLeft >=
+          carouselRef.current.offsetWidth / baseFactor
       ) {
         prevContainerScrollLeft = 0;
-        container.scrollLeft = 0;
+        containerRef.current.scrollLeft = 0;
         return;
       }
       if (
-        container.scrollLeft < prevContainerScrollLeft &&
-        container.scrollLeft === 0
+        containerRef.current.scrollLeft < prevContainerScrollLeft &&
+        containerRef.current.scrollLeft === 0
       ) {
-        prevContainerScrollLeft = carousel.offsetWidth / baseFactor;
-        container.scrollLeft = carousel.offsetWidth / baseFactor;
+        prevContainerScrollLeft = carouselRef.current.offsetWidth / baseFactor;
+        containerRef.current.scrollLeft =
+          carouselRef.current.offsetWidth / baseFactor;
         return;
       }
-      prevContainerScrollLeft = container.scrollLeft;
+      prevContainerScrollLeft = containerRef.current.scrollLeft;
     };
-    container.scrollLeft = prevContainerScrollLeft;
-    container.addEventListener("scroll", handleScroll);
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, [elements, duration]);
+    containerRef.current.scrollLeft = prevContainerScrollLeft;
+    containerRef.current.addEventListener("scroll", handleScroll);
+  }, [elements, timing]);
 
   return (
     <Memo deps={[elements]}>

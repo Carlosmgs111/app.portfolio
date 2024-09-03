@@ -36,6 +36,17 @@ export const Footer = () => {
         <h3>¡Contáctame!</h3>
         <ContactForm></ContactForm>
       </div>
+      <div className={styles.separator}></div>
+      <div className={styles.section}>
+        <h3>Sobre este sitio</h3>
+        <a
+          className={styles.contact_button}
+          href="https://github.com/Carlosmgs111/app.portfolio"
+          target="_blank"
+        >
+          <i className="fa-brands fa-github-alt"></i>&nbsp;&nbsp;Github
+        </a>
+      </div>
     </footer>
   );
 };
