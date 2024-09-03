@@ -129,7 +129,6 @@ module.exports = {
       disableDotRule: true,
     },
     port: "auto",
-    open: true,
     client: {
       overlay: {
         warnings: false,

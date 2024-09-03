@@ -30,18 +30,17 @@ import {
   HTMLSVG,
   CSSSVG,
 } from "./../../icons";
+import { Children } from "react";
 
-const TechSkill = ({ children }: any) => (
+const TechSkill = ({ children, label }: any) => (
   <div className={styles.skill_container}>
-    <span className={styles.skill_label}>
-      {children.type.name.replace("SVG", "")}
-    </span>
+    <span className={styles.skill_label}>{label.replace("SVG", "")}</span>
     <div className={styles.skill_icon}>{children}</div>
   </div>
 );
 
 export const TechSkills = () => {
-  const firstSlides = [
+  const firstSlides = Object.entries({
     JestSVG,
     ReactSVG,
     StyledComponentsSVG,
@@ -56,12 +55,12 @@ export const TechSkills = () => {
     JavaScriptSVG,
     PythonSVG,
     NodejsSVG,
-  ].map<any>((Icon, index) => (
-    <TechSkill key={index}>
-      <Icon />
+  }).map(([label, Icon]: any, index: any) => (
+    <TechSkill label={label} key={index}>
+      {<Icon />}
     </TechSkill>
   ));
-  const secondSlides = [
+  const secondSlides = Object.entries({
     MongodbSVG,
     PostgresSqlSVG,
     ExpressSVG,
@@ -76,9 +75,9 @@ export const TechSkills = () => {
     VSCodeSVG,
     TerminalSVG,
     GitSVG,
-  ].map<any>((Icon, index) => (
-    <TechSkill key={index}>
-      <Icon />
+  }).map(([label, Icon]: any, index: any) => (
+    <TechSkill label={label} key={index}>
+      {<Icon />}
     </TechSkill>
   ));
   return (
