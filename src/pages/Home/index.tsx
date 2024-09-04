@@ -220,7 +220,6 @@ export function Home({}: any) {
           </InfiniteCarousel>
         </article>
       </Memo>
-
       <Memo>
         <article className={`${styles.section}`}>
           <h2>{titles.techs[currentLang]}</h2>

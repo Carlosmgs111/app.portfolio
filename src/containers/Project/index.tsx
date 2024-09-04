@@ -1,8 +1,7 @@
 import styles from "./styles.module.css";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { useToggle } from "../../hooks/useToggle";
-import { labelCases } from "../../utils";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { runButtonBehavior } from "../../utils";
 import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
@@ -10,6 +9,7 @@ import { getContextValue, CONTEXTS } from "../../contexts";
 import { SVGIndexes } from "../../icons";
 import { ProjectSkeleton } from "./Skeleton";
 import { Image } from "../../components/Image";
+import { Memo } from "../../components/Memo";
 import {
   INPUT_TYPES,
   DefineForms,
@@ -138,35 +138,38 @@ export const Project = ({
         !even && styles.container_reversed
       )}
       ref={ref}
-      id={labelCases(name).LS}
     >
       {!beingEdited ? (
         <>
           <h1 className={styles.title}>{name}</h1>
-          <div className={styles.images}>
-            <InfiniteCarousel gap={"1rem"} timing={10}>
-              {images.map((image: any, index: number) => (
-                <Image
-                  className={styles.image}
-                  key={index}
-                  {...{
-                    src: image,
-                    onClick: () => {
-                      setCurrentModal(
-                        <img
-                          alt=""
-                          src={image}
-                          className={`${styles.image} ${styles.zoomed}`}
-                          style={{ cursor: "zoom-out", maxWidth: "100%" }}
-                          onClick={() => setCurrentModal(null)}
-                        />
-                      );
-                    },
-                  }}
-                ></Image>
-              ))}
-            </InfiniteCarousel>
-          </div>
+          <Memo>
+            <div className={styles.images}>
+              <InfiniteCarousel gap={"1rem"} timing={10}>
+                {images.map((image: any, index: number) => (
+                  <Memo>
+                    <Image
+                      className={styles.image}
+                      key={index}
+                      {...{
+                        src: image,
+                        onClick: () => {
+                          setCurrentModal(
+                            <img
+                              alt=""
+                              src={image}
+                              className={`${styles.image} ${styles.zoomed}`}
+                              style={{ cursor: "zoom-out", maxWidth: "100%" }}
+                              onClick={() => setCurrentModal(null)}
+                            />
+                          );
+                        },
+                      }}
+                    ></Image>
+                  </Memo>
+                ))}
+              </InfiniteCarousel>
+            </div>
+          </Memo>
           <div className={styles.descriptions}>
             {descriptions.map((description: any, index: number) => (
               <article className={styles.description} key={index}>

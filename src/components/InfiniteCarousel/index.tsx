@@ -21,6 +21,7 @@ export const InfiniteCarousel = ({
   timing = 10,
   gap = "4rem",
 }: any) => {
+  if (!children) return null;
   const simulatedGap = getSimulatedGap(gap);
   const carouselRef: any = useRef(null);
   const containerRef: any = useRef(null);
@@ -75,7 +76,7 @@ export const InfiniteCarousel = ({
     };
     containerRef.current.scrollLeft = prevContainerScrollLeft;
     containerRef.current.addEventListener("scroll", handleScroll);
-  }, [elements, timing]);
+  }, [elements, timing]); // TODO check how to refresh addition of properties
 
   return (
     <Memo deps={[elements]}>

@@ -2,78 +2,11 @@ import { useNearScreen } from "../../hooks/useNearScreen";
 import content from "../../db/content.json";
 import styles from "./styles.module.css";
 import { useStateValue } from "../../contexts/context";
-import { InfiniteCarousel } from "../../components/InfiniteCarousel";
 import { useToggle } from "../../hooks/useToggle";
 import { CodeSnap } from "../../components/CodeSnap";
 import { Typing } from "../../components/Typing";
-import {
-  ReactSVG,
-  JestSVG,
-  StyledComponentsSVG,
-  NextjsSVG,
-  ReactRouterSVG,
-  WebpackSVG,
-  AxiosSVG,
-  SocketioSVG,
-  ApolloGraphqlSVG,
-  GraphqlSVG,
-  TypeScriptSVG,
-  JavaScriptSVG,
-  PythonSVG,
-  NodejsSVG,
-  MongodbSVG,
-  PostgresSqlSVG,
-  ExpressSVG,
-  SequelizeSVG,
-  MongooseSVG,
-  DjangoSVG,
-  RabbitmqSVG,
-  FastApiSVG,
-  DotEnvSVG,
-  VSCodeSVG,
-  TerminalSVG,
-  GitSVG,
-  HTMLSVG,
-  CSSSVG,
-} from "./../../icons";
 
 export const About = ({}: any) => {
-  const firstSlides = [
-    JestSVG,
-    ReactSVG,
-    StyledComponentsSVG,
-    NextjsSVG,
-    ReactRouterSVG,
-    WebpackSVG,
-    AxiosSVG,
-  ].map<any>((Component, index) => <Component key={index} />);
-  const secondSlides = [
-    SocketioSVG,
-    ApolloGraphqlSVG,
-    GraphqlSVG,
-    TypeScriptSVG,
-    JavaScriptSVG,
-    PythonSVG,
-    NodejsSVG,
-  ].map<any>((Component, index) => <Component key={index} />);
-  const thirdSlides = [
-    MongodbSVG,
-    PostgresSqlSVG,
-    ExpressSVG,
-    SequelizeSVG,
-    MongooseSVG,
-    CSSSVG,
-    HTMLSVG,
-  ].map<any>((Component, index) => <Component key={index} />);
-  const fourthSlides = [
-    DjangoSVG,
-    RabbitmqSVG,
-    FastApiSVG,
-    DotEnvSVG,
-    VSCodeSVG,
-    TerminalSVG,
-    GitSVG,
-  ].map<any>((Component, index) => <Component key={index} />);
   const [{ currentLang }] = useStateValue();
   const { summary }: any = content;
   const [summaryRef, showSummary] = useNearScreen(false, null, {
@@ -171,16 +104,6 @@ export const About = ({}: any) => {
           </div>
         </div>
       </section>
-      <div className={`${styles.skills}`}>
-        <InfiniteCarousel timing={20} toRight={true}>
-          {firstSlides}
-        </InfiniteCarousel>
-        <InfiniteCarousel timing={20}>{secondSlides}</InfiniteCarousel>
-        <InfiniteCarousel timing={20} toRight={true}>
-          {thirdSlides}
-        </InfiniteCarousel>
-        <InfiniteCarousel timing={20}>{fourthSlides}</InfiniteCarousel>
-      </div>
     </div>
   );
 };

@@ -12,7 +12,12 @@ import { Modal } from "../../components/Modal";
 import { runRequest } from "../../services/runRequest";
 import { DefineForms, INPUT_TYPES } from "../../components/DefineForms";
 import { headers } from "../../services/configs";
-import { setActions, getDispatchSetFunctions, settingName } from "../../utils";
+import {
+  setActions,
+  getDispatchSetFunctions,
+  settingName,
+  labelCases,
+} from "../../utils";
 import { Helmet } from "react-helmet";
 import { useLocation } from "react-router-dom";
 import { Memo } from "../../components/Memo";
@@ -148,23 +153,25 @@ export function Projects({}: any) {
       />
     );
 
-  /* //? ⬇️ this could be abtracted to a hook or even in a component */
+  //? ⬇️ this could be abtracted to a hook or even in a component
   useEffect(() => {
     const { hash } = location;
+    console.log(hash)
     let timeoutId: any;
     const scrollToElement = (id: any) => {
       if (!id) return;
       const projectContainer = document.getElementById(id);
-      if (projectContainer) {
-        requestAnimationFrame(() => {
-          projectContainer.scrollIntoView({ behavior: "smooth" });
-        });
-      } else {
+      if (!projectContainer) {
         timeoutId = setTimeout(() => scrollToElement(id), 10);
+        return;
       }
+      requestAnimationFrame(() => {
+        projectContainer.scrollIntoView({
+          behavior: "smooth",
+        });
+      });
       setTimeout(() => clearTimeout(timeoutId), 2000);
     };
-
     if (hash) {
       const id = hash.replace("#", "");
       scrollToElement(decodeURIComponent(id));
@@ -173,7 +180,7 @@ export function Projects({}: any) {
       clearTimeout(timeoutId);
     };
   }, [location]);
-  /* //? ⬆️ */
+  //? ⬆️
   useEffect(() => {
     const fetchProjects = async () => {
       setLoading(true);
@@ -229,7 +236,7 @@ export function Projects({}: any) {
                   <Project
                     key={index}
                     {...{
-                      id: project.name,
+                      id: labelCases(project.name).LS,
                       title: project.name,
                       initialState: project,
                       even: index % 2 === 0,

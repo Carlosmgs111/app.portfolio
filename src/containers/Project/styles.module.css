@@ -158,7 +158,6 @@
 }
 .button {
   margin: 4px 12px 4px 12px;
-  padding: 0 12px 0 12px;
   border: none;
   border-radius: 4px;
   padding: 0.6rem 1.2rem;
@@ -218,7 +217,7 @@
   background-color: var(--main-color-600) !important;
   color: black;
   font-size: 1.6rem;
-  padding: 1rem 2rem;
+  padding: .8rem 1.6rem;
   border-radius: 0.8rem;
   transition: 0.4s;
   border: 2px solid var(--moonlit-asteroid-800);
