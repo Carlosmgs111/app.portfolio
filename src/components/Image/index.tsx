@@ -17,6 +17,8 @@ export const Image = ({
     if (!ref.current) return;
     let tries = 0;
     const maxTries = 3;
+    console.log(ref.current.complete);
+    // if (ref.current.complete) setLoading(false);
     ref.current.addEventListener("error", () => {
       if (!ref.current) return;
       if (++tries < maxTries) {
@@ -25,16 +27,25 @@ export const Image = ({
         setLoading(false);
       }
     });
-    ref.current.addEventListener("load", () => setLoading(false));
+    ref.current.addEventListener("load", () => {
+      console.log(src, "loaded");
+      setLoading(false);
+    });
   }, [ref.current]);
+  console.log({ loading });
   return (
-    <img
-      alt={alt}
-      className={`${className} ${styles.image}`}
-      src={src}
-      ref={ref}
-      style={style}
-      onClick={onClick}
-    />
+    <div className={`${styles.container} ${className}`}>
+      <div className={`${styles.loader} ${loading && styles.show}`}>
+        Cargando...
+      </div>
+      <img
+        alt={alt}
+        className={`${styles.image} ${!loading && styles.show}`}
+        src={src}
+        ref={ref}
+        style={style}
+        onClick={onClick}
+      />
+    </div>
   );
 };

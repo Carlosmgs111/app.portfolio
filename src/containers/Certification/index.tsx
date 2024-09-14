@@ -2,7 +2,7 @@ import styles from "./styles.module.css";
 import { CertificationSkeleton } from "./skeleton";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { labelCases } from "../../utils";
-import { Image } from "../../components/Image";
+import { AsyncImage } from "loadable-image";
 import { Memo } from "../../components/Memo";
 // import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
 import {
@@ -121,7 +121,7 @@ export function Certification({
   }, [initialCertification]);
 
   return (
-    <Memo deps={[certification, show, beingEdited]}>
+    <Memo deps={[certification, show, beingEdited, details]}>
       <div
         className={`${styles.container} ${show ? styles.visible : ""}`}
         ref={ref}
@@ -129,12 +129,15 @@ export function Certification({
       >
         {!beingEdited ? (
           <div className={styles.content}>
-            <Image
+            <AsyncImage
               {...{
                 src: image,
                 alt: title,
                 className: styles.image,
-                style: { cursor: "zoom-in", opacity: !details ? 1 : 0 },
+                loader: <CertificationSkeleton />,
+                style: {
+                  opacity: !details ? 1 : 0,
+                },
                 onClick: () =>
                   setCurrentModal(
                     <img
@@ -147,7 +150,7 @@ export function Certification({
                     />
                   ),
               }}
-            ></Image>
+            ></AsyncImage>
             <div
               {...{
                 className: styles.details,
@@ -173,7 +176,6 @@ export function Certification({
               href={url}
               className={`fa-solid fa-up-right-from-square ${styles.url}`}
             >
-              {" "}
             </a>
           </div>
         ) : (

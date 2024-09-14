@@ -15,8 +15,6 @@ import { Page } from "../../components/Page";
 import { SidePanel } from "../../components/SidePanel";
 import { useState, useEffect, useReducer } from "react";
 import { useTrackSidebar } from "../../hooks/useTrackSidebar";
-import { OnLoading } from "../../components/OnLoading";
-import { OnError } from "../../components/OnError";
 import { Modal } from "../../components/Modal";
 import styles from "./styles.module.css";
 import { useStateValue } from "../../contexts/context";
@@ -27,6 +25,8 @@ import { addCertification, addInstitution } from "./sections";
 import { INPUT_TYPES } from "../../components/DefineForms";
 import Helmet from "react-helmet";
 import { Memo } from "../../components/Memo";
+
+console.log("Certifications")
 
 export function Certifications({}: any) {
   const [
@@ -274,8 +274,8 @@ export function Certifications({}: any) {
         }}
       >
         <Memo deps={[certifications, loading]}>
-          {!loading && (
-            <div className={styles.main_container}>
+          <div className={styles.main_container}>
+            {!loading && (
               <ContentWrapper>
                 {certifications.map((certification: any, index: number) => (
                   <Certification
@@ -291,21 +291,28 @@ export function Certifications({}: any) {
                   />
                 ))}
               </ContentWrapper>
-            </div>
-          )}
+            )}
+            {loading &&
+              manyfy(
+                <div
+                  style={{
+                    height: "28rem",
+                    width: "48rem",
+                    borderRadius: ".8rem",
+                    overflow: "hidden",
+                  }}
+                >
+                  <CertificationSkeleton />
+                </div>,
+                12
+              ).map((c, index) =>
+                injectAttrsToReactElements([c], { key: index })
+              )}
+          </div>
         </Memo>
       </SidePanel>
       {/* // ? ⬇️ Start page support components */}
-      <OnLoading
-        {...{
-          loading,
-          component: styles.main_container,
-          contain: manyfy(<CertificationSkeleton />, 12).map((c, index) =>
-            injectAttrsToReactElements([c], { key: index })
-          ),
-        }}
-      />
-      <OnError {...{ error }} />
+
       <Modal
         {...{
           active: false,

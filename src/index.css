@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Quicksand&family=Rubik:wght@300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Rubik:wght@300&display=swap");
 :root {
   --border-radius: 0.6rem;
   --background-image: url("https://armsystem.com.mx/img/intro-carousel/4.jpg");
@@ -32,7 +30,6 @@
   --moonlit-asteroid-700: #2c5364;
   /* fonts scheme */
   --main-font: "Rubik";
-  --secondary-font: "Quicksand";
   --title-font: "AvantGarde Bk BT";
   /* font sizes */
   --text-font-size: 1.6rem;
@@ -58,24 +55,110 @@
   ) !important;
   --toastify-text-color-error: white !important;
 }
+/* * Global loader */
+.global-loader-container {
+  height: 100vh;
+  font-size: 24px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sk-cube-grid {
+  width: 8rem;
+  height: 8rem;
+  aspect-ratio: 1/1;
+}
+.sk-cube-grid .sk-cube {
+  width: 33.333%;
+  height: 33.333%;
+  background-color: var(--moonlit-asteroid-900);
+  float: left;
+  -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+  animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+}
+.sk-cube-grid .sk-cube1 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+.sk-cube-grid .sk-cube2 {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+.sk-cube-grid .sk-cube3 {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+.sk-cube-grid .sk-cube4 {
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+.sk-cube-grid .sk-cube5 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+.sk-cube-grid .sk-cube6 {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+.sk-cube-grid .sk-cube7 {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+.sk-cube-grid .sk-cube8 {
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+.sk-cube-grid .sk-cube9 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+@-webkit-keyframes sk-cubeGridScaleDelay {
+  0%,
+  70%,
+  100% {
+    -webkit-transform: scale3D(1, 1, 1);
+    transform: scale3D(1, 1, 1);
+  }
+  35% {
+    -webkit-transform: scale3D(0, 0, 1);
+    transform: scale3D(0, 0, 1);
+  }
+}
+
+@keyframes sk-cubeGridScaleDelay {
+  0%,
+  70%,
+  100% {
+    -webkit-transform: scale3D(1, 1, 1);
+    transform: scale3D(1, 1, 1);
+  }
+  35% {
+    -webkit-transform: scale3D(0, 0, 1);
+    transform: scale3D(0, 0, 1);
+  }
+}
+
+/* * Global loader */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-weight: thin;
+  font-weight: 400;
 }
 
 html {
   margin: 0;
   padding: 0;
-  font-family: "Rubik", "Quicksand", sans-serif;
+  font-family: "Rubik", sans-serif;
   font-size: 62.5%;
   scroll-behavior: smooth;
 }
 
 body {
   /* ? scheme_color: darker */
-  background-color: #0f2027;
+  background-color: var(--moonlit-asteroid-900);
   /* ? schema_color: lighter */
   /* background-color: #f0fafb; */
   background-position: center center;
@@ -83,7 +166,7 @@ body {
   background-attachment: fixed;
   margin: 0;
   padding: 0;
-  font-family: Rubik, "Quicksand", sans-serif;
+  font-family: "Rubik", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #e2e2e2;

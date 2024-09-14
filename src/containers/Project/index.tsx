@@ -1,14 +1,15 @@
 import styles from "./styles.module.css";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { useToggle } from "../../hooks/useToggle";
-import { memo, useState } from "react";
+import { useState } from "react";
 import { runButtonBehavior } from "../../utils";
 import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
 import { getContextValue, CONTEXTS } from "../../contexts";
 import { SVGIndexes } from "../../icons";
 import { ProjectSkeleton } from "./Skeleton";
-import { Image } from "../../components/Image";
+import { AsyncImage } from "loadable-image";
+import { CubeGridLoader } from "../../components/CubeGridLoader";
 import { Memo } from "../../components/Memo";
 import {
   INPUT_TYPES,
@@ -69,7 +70,6 @@ export const Project = ({
     }
     runRequest({
       setData: ({ updated }: any) => {
-        console.log({ updated });
         if (updated) {
           const projectUpdated = { ...project, ...data[0] };
           updateState(({ state }: any) => {
@@ -146,10 +146,11 @@ export const Project = ({
             <div className={styles.images}>
               <InfiniteCarousel gap={"1rem"} timing={10}>
                 {images.map((image: any, index: number) => (
-                  <Memo>
-                    <Image
+                  <Memo key={index}>
+                    <AsyncImage
                       className={styles.image}
                       key={index}
+                      loader={<CubeGridLoader />}
                       {...{
                         src: image,
                         onClick: () => {
@@ -164,7 +165,7 @@ export const Project = ({
                           );
                         },
                       }}
-                    ></Image>
+                    ></AsyncImage>
                   </Memo>
                 ))}
               </InfiniteCarousel>

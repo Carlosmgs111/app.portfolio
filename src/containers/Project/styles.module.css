@@ -30,7 +30,7 @@
   background-color: #0f2027;
   color: var(--main-color-100);
   text-shadow: -4px 4px 2px #000000aa;
-  font-weight: 500;
+  font-weight: 300;
 }
 .images {
   width: 100vw;
@@ -73,6 +73,7 @@
 .description {
   width: 100%;
   font-size: 2rem;
+  font-weight: 300;
   height: fit-content;
   padding: 0 2rem;
   border-radius: 0.8rem;
@@ -126,7 +127,7 @@
   transition: 0.4s;
   font-size: 1.2rem;
   font-family: "Rubik";
-  font-weight: 100;
+  font-weight: 300;
   transform: translate(-300%, 0);
 }
 .state > i:hover span {
@@ -165,6 +166,7 @@
   background-color: #0f2027;
   transition: background 0.4s, color 0.2s, border 0.2s;
   font-family: "Rubik";
+  font-weight: 400;
 }
 .button:hover {
   color: #121f25;

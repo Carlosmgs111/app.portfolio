@@ -4,7 +4,6 @@ import { Login } from "../components/Login";
 import { useStateValue } from "../contexts/context";
 import { useApp } from "../hooks/useApp";
 import { useToggle } from "../hooks/useToggle";
-import { Home, Projects, Certifications, Profile, About } from "../pages";
 import { Modal } from "../components/Modal";
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +15,9 @@ import content from "../db/content.json";
 import { URL_API } from "../services";
 import { actionTypes } from "../";
 import { toast, Zoom } from "react-toastify";
+import { lazyLoad, LazyComponent } from "../components/LazyComponent";
+import { CubeGridLoader } from "../components/CubeGridLoader";
+import { Memo } from "../components/Memo";
 
 export function App() {
   const { clearAuth } = useApp();
@@ -171,15 +173,56 @@ export function App() {
         ></Navigation>
       </div>
       <div className={styles.content}>
-        <Router>
-          <Home path="/" />
-          <Home path="home" />
-          <Profile path="profile" {...{ clearAuth }} />
-          <Projects path="projects" />
-          <Certifications path="certifications" />
-          <InConstruction path="blog" />
-          <About path="about"/>
-        </Router>
+        <Memo>
+          <Router>
+            <LazyComponent
+              fallback={
+                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+              }
+              Component={lazyLoad(() => import("../pages/Home"), "Home")}
+              path="/"
+            />
+            <LazyComponent
+              fallback={
+                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+              }
+              Component={lazyLoad(() => import("../pages/Home"), "Home")}
+              path="home"
+            />
+            <LazyComponent
+              Component={lazyLoad(() => import("../pages/Profile"), "Profile")}
+              path="profile"
+              {...{ clearAuth }}
+            />
+            <LazyComponent
+              fallback={
+                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+              }
+              Component={lazyLoad(
+                () => import("../pages/Projects"),
+                "Projects"
+              )}
+              path="projects"
+            />
+            <LazyComponent
+              fallback={
+                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+              }
+              Component={lazyLoad(
+                () => import("../pages/Certifications"),
+                "Certifications"
+              )}
+              path="certifications"
+            />
+            <LazyComponent
+              fallback={
+                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+              }
+              Component={lazyLoad(() => import("../pages/About"), "About")}
+              path="about"
+            />
+          </Router>
+        </Memo>
         <div className={styles.live_chat}>
           <button
             className={`

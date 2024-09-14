@@ -226,7 +226,7 @@ export function Projects({}: any) {
           sidebars,
         }}
       >
-        <Memo deps={[projects]}>
+        <Memo deps={[projects, loading]}>
           <div className={styles.main_container}>
             {loading ? (
               <ProjectSkeleton />

@@ -1,24 +1,18 @@
 .container {
   border-radius: 0.8rem;
-  height: auto;
+  height: fit-content;
   min-width: 45rem;
   max-width: 48rem;
   min-height: 25rem;
   max-height: 28rem;
   text-align: center;
   position: relative;
-  background: radial-gradient(
-    circle at 20% 50%,
-    var(--main-color-600),
-    var(--main-color-700),
-    var(--main-color-800)
-  );
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   display: block;
+  overflow: hidden;
   transition: 0.4s ease-in-out;
-  overflow: scroll;
   filter: drop-shadow(-6px 6px 2px #00000093);
   scale: 0.4;
   opacity: 0;
@@ -42,24 +36,29 @@
   opacity: 1;
 }
 .content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
+  width: 100%;
   height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+  /* background: radial-gradient(
+    circle at 20% 50%,
+    var(--main-color-600),
+    var(--main-color-700),
+    var(--main-color-800)
+  ); */
 }
 .content::-webkit-scrollbar {
   display: none;
 }
 .image {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center center;
   transition: opacity 0.4s;
+  cursor: zoom-in;
 }
 .image.zoomed {
   position: static;
@@ -124,7 +123,7 @@
   display: flex;
   justify-content: space-around;
   background-color: #2c2b2b56;
-  position: sticky;
+  position: absolute;
   left: 0;
   bottom: 0;
   align-items: center;
@@ -132,6 +131,7 @@
   padding: 1.2rem 0;
   opacity: 0;
   transition: opacity 0.4s;
+  bottom: 0;
 }
 .button {
   margin: 4px 12px 4px 12px;
@@ -159,6 +159,42 @@
 .danger:hover {
   background-color: #f03b26;
 }
+/*  */
+.skeleton {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(-6px 6px 2px #000000);
+  background-color: #08080814;
+  backdrop-filter: brightness(80%) blur(0.8rem);
+  position: relative;
+}
+.skeleton::after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    #ffffff00 0,
+    #ffffff1a 20%,
+    #ffffff29 50%,
+    #ffffff1a 80%,
+    #ffffff00
+  );
+  animation: shimmer 3s infinite;
+  overflow: hidden;
+  content: "";
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+/*  */
 @media screen and (max-width: 500px) {
   .container {
     min-width: 32rem;

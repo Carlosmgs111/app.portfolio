@@ -61,7 +61,7 @@
 .chat_button > span {
   font-weight: 600;
   font-size: 1.2rem;
-  font-family: "Quicksand";
+  font-family: "Rubik";
   pointer-events: none;
 }
 .chat_button:hover > i,

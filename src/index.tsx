@@ -2,11 +2,13 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import { addContext } from "./contexts";
 import "./index.css";
-import { App } from "./app";
 import { setActions } from "./utils";
 import content from "./db/content.json";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { lazyLoad, LazyComponent } from "./components/LazyComponent";
+const App = lazyLoad(() => import("./app"), "App");
+import { CubeGridLoader } from "./components/CubeGridLoader";
 
 const { defaultLang } = content;
 
@@ -60,11 +62,18 @@ const reducer = (state: any, action: any) => {
 };
 const { StateProvider } = addContext("Global", actionTypes);
 const rootElement: any = document.getElementById("root");
+const loaderElement: any = document.querySelector(".global-loader-container");
 ReactDOM.createRoot(rootElement).render(
   <Router>
     <StateProvider {...{ initialState, reducer }}>
       <ToastContainer stacked />
-      <App />
+      <LazyComponent
+        Component={App}
+        fallback={<CubeGridLoader style={{ height: "100vh", width: "100%" }} />}
+      />
     </StateProvider>
   </Router>
 );
+if (loaderElement) {
+  loaderElement.style.display = "none";
+}

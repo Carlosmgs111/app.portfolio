@@ -7,7 +7,6 @@ export function OnLoading({
   reset,
   delay = 3000,
   contain = "Loading",
-  component,
 }: any) {
   useEffect(() => {
     if (reset)
@@ -15,9 +14,8 @@ export function OnLoading({
         reset();
       }, delay);
   });
-
   return loading ? (
-    <div className={styles.container.concat(" ", component)}>
+    <div className={styles.container}>
       {contain || children}
     </div>
   ) : null;

@@ -1,29 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "@hooks/*": [
-        "src/hooks/*"
-      ],
-      "@containers/*": [
-        "src/containers/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@globalContext": [
-        "src/context/index"
-      ],
-      "@utils": [
-        "src/utils/index"
-      ],
-      "@config": [
-        "src/config"
-      ],
-      "@context":[
-        "src/context"
-      ]
-    },
     "target": "es6",
     "lib": [
       "es5",

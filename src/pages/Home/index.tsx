@@ -1,7 +1,5 @@
 import styles from "./styles.module.css";
 import { Typing } from "../../components/Typing";
-import { GitHubSVG, LinkedInSVG } from "../../icons";
-import { InfiniteCarousel } from "../../components/InfiniteCarousel";
 import { useStateValue } from "../../contexts/context";
 import { ProjectIndex } from "../../containers/ProjectIndex";
 import { CertificationIndex } from "../../containers/CertificationIndex";
@@ -12,6 +10,12 @@ import { useEffect, useState } from "react";
 import { actionTypes } from "../../index";
 import { TechSkills } from "../../containers/TechSkills";
 import { Memo } from "../../components/Memo";
+import { lazyLoad, LazyComponent } from "../../components/LazyComponent";
+import { CubeGridLoader } from "../../components/CubeGridLoader";
+const InfiniteCarousel = lazyLoad(
+  () => import("../../components/InfiniteCarousel"),
+  "InfiniteCarousel"
+);
 
 export function Home({}: any) {
   const [{ currentLang, projects, certifications }, dispatch] = useStateValue();
@@ -160,8 +164,8 @@ export function Home({}: any) {
     projects: { es: "Mis Proyectos", en: "My Projects" },
     certifications: { es: "Mis Certificados", en: "My Certifications" },
     techs: {
-      es: "Las tecnologías que domino",
-      en: "The technologies i master",
+      es: "Las Tecnologías Que Domino",
+      en: "Technologies I Master",
     },
   };
 
@@ -195,32 +199,48 @@ export function Home({}: any) {
           </div>
         </section>
       </article>
-      <Memo deps={[projects]}>
+      <Memo deps={[projects, currentLang]}>
         <article className={`${styles.section} `}>
           <h2>{titles.projects[currentLang]}</h2>
-          <InfiniteCarousel toRight={true} timing={50}>
+          <LazyComponent
+            Component={InfiniteCarousel}
+            fallback={<CubeGridLoader />}
+            toRight={true}
+            timing={50}
+          >
             {projectsIndexes.map((project: any, index: any) => (
               <ProjectIndex key={index} {...project} />
             ))}
-          </InfiniteCarousel>
+          </LazyComponent>
         </article>
       </Memo>
-      <Memo deps={[certifications]}>
+      <Memo deps={[certifications, currentLang]}>
         <article className={`${styles.section} `}>
           <h2>{titles.certifications[currentLang]}</h2>
-          <InfiniteCarousel timing={30} gap={"2rem"}>
+          <LazyComponent
+            Component={InfiniteCarousel}
+            fallback={<CubeGridLoader />}
+            timing={30}
+            gap={"2rem"}
+          >
             {certificationsIndexes.map((certification: any, index: any) => (
               <CertificationIndex key={index} {...certification} />
             ))}
-          </InfiniteCarousel>
-          <InfiniteCarousel timing={30} gap={"2rem"} toRight={true}>
+          </LazyComponent>
+          <LazyComponent
+            Component={InfiniteCarousel}
+            fallback={<CubeGridLoader />}
+            timing={30}
+            gap={"2rem"}
+            toRight={true}
+          >
             {certificationsIndexes.map((certification: any, index: any) => (
               <CertificationIndex key={index} {...certification} />
             ))}
-          </InfiniteCarousel>
+          </LazyComponent>
         </article>
       </Memo>
-      <Memo>
+      <Memo deps={[currentLang]}>
         <article className={`${styles.section}`}>
           <h2>{titles.techs[currentLang]}</h2>
           <TechSkills></TechSkills>
