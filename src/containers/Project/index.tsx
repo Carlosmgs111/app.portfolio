@@ -201,24 +201,21 @@ export const Project = ({
             </div>
           </div>
           <div className={styles.quick_access}>
-            <div>
-              <a
-                className={`${!uri && styles.disabled}`}
-                href={uri}
-                target="_blank"
-              >
-                Ir al Proyecto
-              </a>
-            </div>
-            <div>
-              <a
-                className={`${!codeUri && styles.disabled}`}
-                href={codeUri}
-                target="_blank"
-              >
-                Ver Codigo
-              </a>
-            </div>
+            <a
+              className={`${!uri && styles.disabled}`}
+              href={uri}
+              target="_blank"
+            >
+              <i className={"fa-solid fa-up-right-from-square"}></i>
+              &nbsp;&nbsp; Ir al Proyecto
+            </a>
+            <a
+              className={`${!codeUri && styles.disabled}`}
+              href={codeUri}
+              target="_blank"
+            >
+              <i className="fa-brands fa-github-alt"></i>&nbsp;&nbsp; Ver Codigo
+            </a>
           </div>
         </>
       ) : (

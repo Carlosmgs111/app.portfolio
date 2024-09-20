@@ -217,13 +217,17 @@
   width: fit-content !important;
   text-decoration: none;
   background-color: var(--main-color-600) !important;
-  color: black;
+  color: var(--moonlit-asteroid-900);
   font-size: 1.6rem;
   padding: .8rem 1.6rem;
   border-radius: 0.8rem;
   transition: 0.4s;
   border: 2px solid var(--moonlit-asteroid-800);
   font-weight: 500;
+  white-space: nowrap;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 .quick_access a:hover {
   background-color: var(--main-color-400) !important;
