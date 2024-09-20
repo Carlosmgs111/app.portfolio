@@ -206,7 +206,7 @@ export const Project = ({
               href={uri}
               target="_blank"
             >
-              <i className={"fa-solid fa-up-right-from-square"}></i>
+              <i className="fa-solid fa-square-arrow-up-right"></i>
               &nbsp;&nbsp; Ir al Proyecto
             </a>
             <a
