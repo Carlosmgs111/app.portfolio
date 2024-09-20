@@ -17,28 +17,34 @@
     "es": [
       {
         "label": "Proyectos",
+        "icon": "fa-solid fa-compass-drafting",
         "to": "projects"
       },
       {
         "label": "Certificados",
+        "icon": "fa-solid fa-graduation-cap",
         "to": "certifications"
       },
       {
         "label": "Sobre Mí",
+        "icon": "fa-solid fa-address-card",
         "to": "about"
       }
     ],
     "en": [
       {
         "label": "Projects",
+        "icon": "fa-solid fa-compass-drafting",
         "to": "projects"
       },
       {
         "label": "Certifications",
+        "icon": "fa-solid fa-graduation-cap",
         "to": "certifications"
       },
       {
         "label": "About Me",
+        "icon": "fa-solid fa-address-card",
         "to": "about"
       }
     ]

@@ -78,7 +78,7 @@ export default function Navigation({ className, login, pages }: any) {
               className={styles.indicator}
             ></span>
             {pages &&
-              pages.map(({ to, label }: any, index: any) => {
+              pages.map(({ to, icon, label }: any, index: any) => {
                 referencesRefs.current[to] = { current: null };
                 const linkRef = referencesRefs.current[to];
                 return (
@@ -89,6 +89,7 @@ export default function Navigation({ className, login, pages }: any) {
                     id={index}
                     onClick={() => menu.show && switchMenu()}
                   >
+                    <i className={icon}></i>&nbsp;&nbsp;
                     {label}
                   </Linkdex>
                 );
