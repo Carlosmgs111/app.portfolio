@@ -1,10 +1,8 @@
 .container {
   border-radius: 0.8rem;
   height: fit-content;
-  min-width: 45rem;
-  max-width: 48rem;
-  min-height: 25rem;
-  max-height: 28rem;
+  width: 28rem;
+  height: 18rem;
   text-align: center;
   position: relative;
   background-size: cover;
@@ -192,12 +190,5 @@
 @keyframes shimmer {
   100% {
     transform: translateX(100%);
-  }
-}
-/*  */
-@media screen and (max-width: 500px) {
-  .container {
-    min-width: 32rem;
-    max-width: 32rem;
   }
 }

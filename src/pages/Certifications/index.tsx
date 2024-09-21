@@ -206,10 +206,11 @@ export function Certifications({}: any) {
       },
     ];
 
-  const sidebars = [
-    <TrackSidebar />,
-    <PanelSidebar id="panel-sidebar" items={items}></PanelSidebar>,
-  ];
+  const sidebars = [<TrackSidebar />, ,];
+  if (token)
+    sidebars.push(
+      <PanelSidebar id="panel-sidebar" items={items}></PanelSidebar>
+    );
 
   const updateState = (cb: Function) =>
     cb({

@@ -220,7 +220,7 @@ export function Projects({}: any) {
       </Helmet>
       <SidePanel
         {...{
-          width: "240px",
+          // width: "240px",
           float: false,
           multi: false,
           sidebars,

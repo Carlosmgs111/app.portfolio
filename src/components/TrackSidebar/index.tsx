@@ -71,7 +71,7 @@ export function TrackSidebar(props: any) {
           <i
             key="0"
             className={`fa-solid 
-            ${expand ? "fa-xmark" : "fa-bars"}
+            ${expand ? "fa-ellipsis-vertical" : "fa-bars"}
             ${styles.item}`}
             onClick={switchExpand}
           />

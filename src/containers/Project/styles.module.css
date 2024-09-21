@@ -27,7 +27,6 @@
   text-align: center;
   width: 100%;
   font-size: 3em;
-  background-color: #0f2027;
   color: var(--main-color-100);
   text-shadow: -4px 4px 2px #000000aa;
   font-weight: 300;
@@ -47,8 +46,9 @@
   object-position: center center;
   border: solid 2px transparent;
   transition: 0.6s;
-  width: 60rem;
-  height: 40rem;
+  width: 40rem;
+  height: 20rem;
+  aspect-ratio: 1/1;
   cursor: zoom-in;
 }
 .image.zoomed {
@@ -337,12 +337,13 @@
 /* //? SKELETON  */
 @media screen and (min-width: 900px) {
   .container {
+    width: 60rem;
     padding: 4rem 0;
     border-radius: 2rem;
     /* width: 80rem; */
   }
   .images {
-    width: 60rem;
+    width: 100%;
     padding: 2rem;
     border-radius: 2rem;
   }
@@ -350,6 +351,6 @@
     border-radius: 1.4rem;
   }
   .descriptions {
-    width: 60rem;
+    width: 100%;
   }
 }
