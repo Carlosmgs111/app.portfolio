@@ -4,7 +4,6 @@
   overflow: scroll;
   color: black;
   border-radius: 0.6rem;
-  background-color: #0f2027;
   min-height: fit-content;
   direction: rtl;
   transition: max-height 0.4s, max-width 0.4s, width 0.4s, scale 0.4s,
@@ -16,6 +15,7 @@
   opacity: 0;
   transform: translate(-300px, 0);
   position: sticky;
+  gap: 0.4rem;
 }
 .body::-webkit-scrollbar {
   width: 0.4rem;
@@ -28,8 +28,8 @@
   background-color: black;
 }
 .body.active {
-  max-height:calc(100vh - 14rem);
-  max-width: 25rem;
+  max-height: calc(100vh - 14rem);
+  max-width: 20rem;
   width: 100%;
   scale: 1;
   opacity: 1;
@@ -37,15 +37,16 @@
 }
 .item {
   cursor: hand;
+  padding: .8rem 1.6rem;
   text-decoration: none !important;
   display: flex;
-  padding: 0.8rem 0.6rem;
   align-items: center;
   position: relative;
   direction: ltr;
-  color: var(--main-color-700) !important;
+  border-radius: .4rem;
+  color: var(--main-color-500) !important;
   transition: max-width 0.6s, max-height 0.4s, margin-right 0.4s, color 0.4s,
-    opacity 0.6s, scale 0.6s;
+    opacity 0.6s, scale 0.6s, background-color 0.4s;
 }
 .header {
   display: flex;
@@ -74,7 +75,8 @@
   color: var(--main-color-100) !important;
 }
 .item.active {
-  color: var(--main-color-300) !important;
+  color: var(--moonlit-asteroid-900) !important;
+  background-color: var(--main-color-400);
 }
 .inner {
   cursor: hand;

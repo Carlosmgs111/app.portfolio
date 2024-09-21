@@ -120,7 +120,6 @@ export function Home({}: any) {
     ),
   };
   const [showIntroduccion, toggleShowIntroduccion] = useToggle(false, true);
-
   const [introductionRef] = useNearScreen(
     false,
     (_: any, show: any) => show && !showIntroduccion && toggleShowIntroduccion()

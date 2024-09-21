@@ -39,7 +39,11 @@ export function Certification({
     grantedTo,
   }: any = certification;
   const { token, username } = getContextValue(CONTEXTS.Global);
-  const [ref, show]: any = useNearScreen(false); // ? Use to lazy loading 💤⏳
+  const [showCertification, toggleShowCertification] = useToggle(false, true);
+  const [ref]: any = useNearScreen(
+    false,
+    (_: any, show: any) => show && !showCertification && toggleShowCertification()
+  ); // ? Use to lazy loading 💤⏳
 
   // ? 1️⃣ Define the callback to be passed as high order callback
   const updateCallback = (params: any) => {
@@ -121,9 +125,11 @@ export function Certification({
   }, [initialCertification]);
 
   return (
-    <Memo deps={[certification, show, beingEdited, details]}>
+    <Memo deps={[certification, showCertification, beingEdited, details]}>
       <div
-        className={`${styles.container} ${show ? styles.visible : ""}`}
+        className={`${styles.container} ${
+          showCertification ? styles.visible : ""
+        }`}
         ref={ref}
         id={labelCases(title).LS}
       >
@@ -175,8 +181,7 @@ export function Certification({
               rel="noreferrer"
               href={url}
               className={`fa-solid fa-up-right-from-square ${styles.url}`}
-            >
-            </a>
+            ></a>
           </div>
         ) : (
           <div className={styles.content}>

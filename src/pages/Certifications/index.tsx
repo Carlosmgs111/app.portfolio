@@ -26,8 +26,6 @@ import { INPUT_TYPES } from "../../components/DefineForms";
 import Helmet from "react-helmet";
 import { Memo } from "../../components/Memo";
 
-console.log("Certifications")
-
 export function Certifications({}: any) {
   const [
     {
@@ -267,7 +265,7 @@ export function Certifications({}: any) {
       </Helmet>
       <SidePanel
         {...{
-          width: "240px",
+          // width: "240px",
           float: false,
           multi: false,
           sidebars,

@@ -9,7 +9,7 @@
     "eject": "react-scripts eject",
     "dev": "webpack serve --mode development",
     "prod": "webpack serve --mode production",
-    "build": "webpack --config webpack.config.js  && cp dist/index.html dist/200.html",
+    "build": "webpack build",
     "serve:dev": "pnpm run build && npx serve dist -s",
     "test:dev": "cypress open"
   },
