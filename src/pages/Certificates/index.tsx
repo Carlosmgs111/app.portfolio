@@ -1,7 +1,4 @@
-import {
-  Certification,
-  CertificationSkeleton,
-} from "../../containers/Certification";
+import { Certificate, CertificateSkeleton } from "../../containers/Certificate";
 import { PanelSidebar, innerItems } from "../../components/PanelSidebar";
 import {
   manyfy,
@@ -26,7 +23,7 @@ import { INPUT_TYPES } from "../../components/DefineForms";
 import Helmet from "react-helmet";
 import { Memo } from "../../components/Memo";
 
-export function Certifications({}: any) {
+export function Certificates({}: any) {
   const [
     {
       token,
@@ -206,7 +203,7 @@ export function Certifications({}: any) {
       },
     ];
 
-  const sidebars = [<TrackSidebar />, ,];
+  const sidebars = [<TrackSidebar />];
   if (token)
     sidebars.push(
       <PanelSidebar id="panel-sidebar" items={items}></PanelSidebar>
@@ -277,7 +274,7 @@ export function Certifications({}: any) {
             {!loading && (
               <ContentWrapper>
                 {certifications.map((certification: any, index: number) => (
-                  <Certification
+                  <Certificate
                     key={certification.uuid}
                     {...{
                       id: certification.uuid,
@@ -301,7 +298,7 @@ export function Certifications({}: any) {
                     overflow: "hidden",
                   }}
                 >
-                  <CertificationSkeleton />
+                  <CertificateSkeleton />
                 </div>,
                 12
               ).map((c, index) =>

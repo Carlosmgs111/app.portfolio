@@ -1,6 +1,7 @@
 .body {
   width: 30rem;
-  height: fit-content;
+  height: auto;
+  aspect-ratio: 7/4;
   border-radius: 1.2rem;
   position: relative;
 }

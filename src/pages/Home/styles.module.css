@@ -26,7 +26,6 @@
   width: 100%;
   text-align: center;
   padding: 2rem;
-  backdrop-filter: brightness(70%);
   color: var(--main-color-400);
 }
 .section.right {

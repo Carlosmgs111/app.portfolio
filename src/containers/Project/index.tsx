@@ -144,7 +144,7 @@ export const Project = ({
           <h1 className={styles.title}>{name}</h1>
           <Memo>
             <div className={styles.images}>
-              <InfiniteCarousel toRight={even} gap={"1rem"} timing={10}>
+              <InfiniteCarousel toRight={even} gap={".1rem"} timing={10}>
                 {images.map((image: any, index: number) => (
                   <Memo key={index}>
                     <AsyncImage
@@ -165,7 +165,7 @@ export const Project = ({
                           );
                         },
                       }}
-                    ></AsyncImage>
+                    />
                   </Memo>
                 ))}
               </InfiniteCarousel>
@@ -214,7 +214,7 @@ export const Project = ({
               href={codeUri}
               target="_blank"
             >
-              <i className="fa-brands fa-github-alt"></i>&nbsp;&nbsp; Ver Codigo
+              <i className="fa-solid fa-code"></i>&nbsp;&nbsp; Ver Codigo
             </a>
           </div>
         </>

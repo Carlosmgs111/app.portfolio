@@ -4,9 +4,12 @@
   left: 0;
   height: 0;
   z-index: 1;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
   height: fit-content; /* ? This allows dynamic scrolling when your content is overtaken, in this case by app footer   */
   max-height: 100vh; /* ? This allows dynamic scrolling when your content is overtaken, in this case by app footer */
+}
+.container::-webkit-scrollbar {
+  display: none;
 }
 .access_button {
   position: relative;

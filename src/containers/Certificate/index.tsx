@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import { CertificationSkeleton } from "./skeleton";
+import { CertificateSkeleton } from "./skeleton";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { labelCases } from "../../utils";
 import { AsyncImage } from "loadable-image";
@@ -18,7 +18,7 @@ import { headers } from "../../services/configs";
 import { runButtonBehavior } from "../../utils";
 import { format } from "timeago.js";
 
-export function Certification({
+export function Certificate({
   initialCertification,
   setCurrentModal = () => {},
   updateState,
@@ -42,7 +42,8 @@ export function Certification({
   const [showCertification, toggleShowCertification] = useToggle(false, true);
   const [ref]: any = useNearScreen(
     false,
-    (_: any, show: any) => show && !showCertification && toggleShowCertification()
+    (_: any, show: any) =>
+      show && !showCertification && toggleShowCertification()
   ); // ? Use to lazy loading 💤⏳
 
   // ? 1️⃣ Define the callback to be passed as high order callback
@@ -140,7 +141,7 @@ export function Certification({
                 src: image,
                 alt: title,
                 className: styles.image,
-                loader: <CertificationSkeleton />,
+                loader: <CertificateSkeleton />,
                 style: {
                   opacity: !details ? 1 : 0,
                 },
@@ -163,25 +164,21 @@ export function Certification({
                 style: { opacity: details ? 1 : 0, zIndex: details ? 0 : -1 },
               }}
             >
-              <h2>Title</h2>
-              <p>{title}</p>
-              <h2>Emited By</h2>
+              <h3>{title}</h3>
+              <h4>Emited By</h4>
               <p>{emitedBy}</p>
-              <h2>Granted</h2>
+              <h4>Emited At</h4>
               <p>{format(emitedAt)}</p>
             </div>
-            <i
-              {...{
-                className: `fa-solid fa-circle-info ${styles.displacement}`,
-                onClick: switchDetails,
-              }}
-            />
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href={url}
-              className={`fa-solid fa-up-right-from-square ${styles.url}`}
-            ></a>
+            <div>
+              <a onClick={switchDetails}>
+                <i className="fa-solid fa-circle-info" />
+                &nbsp;Ver Más
+              </a>
+              <a target="_blank" rel="noreferrer" href={url}>
+                <i className="fa-solid fa-up-right-from-square"></i>&nbsp;Consultar
+              </a>
+            </div>
           </div>
         ) : (
           <div className={styles.content}>
@@ -239,4 +236,4 @@ export function Certification({
   );
 }
 
-export { CertificationSkeleton };
+export { CertificateSkeleton };

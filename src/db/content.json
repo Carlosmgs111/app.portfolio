@@ -23,7 +23,7 @@
       {
         "label": "Certificados",
         "icon": "fa-solid fa-graduation-cap",
-        "to": "certifications"
+        "to": "certificates"
       },
       {
         "label": "Sobre Mí",
@@ -38,9 +38,9 @@
         "to": "projects"
       },
       {
-        "label": "Certifications",
+        "label": "Certificates",
         "icon": "fa-solid fa-graduation-cap",
-        "to": "certifications"
+        "to": "certificates"
       },
       {
         "label": "About Me",

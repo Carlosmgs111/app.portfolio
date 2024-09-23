@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
 
-export const CertificationSkeleton = () => (
+export const CertificateSkeleton = () => (
   <div className={styles.skeleton}></div>
 );

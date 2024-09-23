@@ -209,10 +209,10 @@ export function App() {
                 <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
               }
               Component={lazyLoad(
-                () => import("../pages/Certifications"),
-                "Certifications"
+                () => import("../pages/Certificates"),
+                "Certificates"
               )}
-              path="certifications"
+              path="certificates"
             />
             <LazyComponent
               fallback={

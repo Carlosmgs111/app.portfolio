@@ -1,7 +1,8 @@
 .body {
   display: flex;
   font-size: 1.6rem;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   color: black;
   border-radius: 0.6rem;
   direction: rtl;

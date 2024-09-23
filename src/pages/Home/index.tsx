@@ -2,7 +2,7 @@ import styles from "./styles.module.css";
 import { Typing } from "../../components/Typing";
 import { useStateValue } from "../../contexts/context";
 import { ProjectIndex } from "../../containers/ProjectIndex";
-import { CertificationIndex } from "../../containers/CertificationIndex";
+import { CertificateIndex } from "../../containers/CertificateIndex";
 import { URL_API } from "../../../src/services";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { useToggle } from "../../hooks/useToggle";
@@ -160,11 +160,11 @@ export function Home({}: any) {
   }, []);
 
   const titles: any = {
-    projects: { es: "Mis Proyectos", en: "My Projects" },
-    certifications: { es: "Mis Certificados", en: "My Certifications" },
+    projects: { es: "🏗️ Mis Proyectos", en: "🏗️ My Projects" },
+    certifications: { es: "🎓 Mis Certificados", en: "🎓 My Certificates" },
     techs: {
-      es: "Las Tecnologías Que Domino",
-      en: "Technologies I Master",
+      es: "🎯 Las Tecnologías Que Domino",
+      en: "🎯 Technologies I Master",
     },
   };
 
@@ -223,7 +223,7 @@ export function Home({}: any) {
             gap={"2rem"}
           >
             {certificationsIndexes.map((certification: any, index: any) => (
-              <CertificationIndex key={index} {...certification} />
+              <CertificateIndex key={index} {...certification} />
             ))}
           </LazyComponent>
           <LazyComponent
@@ -234,7 +234,7 @@ export function Home({}: any) {
             toRight={true}
           >
             {certificationsIndexes.map((certification: any, index: any) => (
-              <CertificationIndex key={index} {...certification} />
+              <CertificateIndex key={index} {...certification} />
             ))}
           </LazyComponent>
         </article>

@@ -8,6 +8,7 @@ import { Linkdex } from "./Linkdex";
 import { useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ToggleButton } from "../../components/ToggleButton";
+
 export default function Navigation({ className, login, pages }: any) {
   const [{ token, avatar }, dispatch] = useStateValue();
   const { pathname } = useLocation();

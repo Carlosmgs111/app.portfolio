@@ -33,14 +33,16 @@ export const ProjectIndex = ({
             }}
             preventScrollReset={true}
           >
-            Ir a detalles
+            <i className="fa-solid fa-circle-info"></i>&nbsp;&nbsp; Mas
+            Informacion
           </Link>
           <a
             className={`${!codeUri && styles.disabled}`}
             href={codeUri}
             target="_blank"
           >
-            Ver Codigo
+            <i className="fa-solid fa-code"></i>&nbsp;&nbsp; Ver
+            Codigo
           </a>
         </div>
       </div>
