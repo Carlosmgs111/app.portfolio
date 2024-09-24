@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: flex-end;
   gap: 3.2rem;
-  width: 100%;
+  width: 100dvw;
   position: sticky;
   background-size: cover;
   background-repeat: no-repeat;
@@ -324,15 +324,12 @@
   }
 }
 /* //? SKELETON  */
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 600px) {
   .container {
     width: 60rem;
     padding: 4rem 0;
     border-radius: 2rem;
     /* width: 80rem; */
-  }
-  .images {
-    width: 100%;
   }
   .descriptions {
     width: 100%;

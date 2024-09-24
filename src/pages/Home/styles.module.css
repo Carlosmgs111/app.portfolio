@@ -51,7 +51,8 @@
 }
 .introduction_section {
   font-size: 2rem;
-  font-family: Rubik;
+  font-family: "Rubik";
+  font-weight: 400;
   z-index: 1;
   border-radius: 2rem;
   transition: 0.8s ease-in-out;
@@ -78,7 +79,6 @@ h2 {
 }
 .introduction_section b {
   font-size: 6.4rem;
-  font-weight: 500;
   color: #1cefff;
 }
 .contact {

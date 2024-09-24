@@ -1,5 +1,5 @@
 .body {
-  width: 30rem;
+  width: 100vw;
   height: auto;
   aspect-ratio: 3/2;
   border-radius: 2rem;
@@ -80,7 +80,6 @@
 
 @media screen and (min-width: 600px) {
   .body {
-    min-width: 62rem;
-    max-width: 62rem;
+    width: 60rem;
   }
 }

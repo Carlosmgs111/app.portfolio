@@ -118,13 +118,11 @@ export default function Navigation({ className, login, pages }: any) {
       <div className={`${styles.page_settings}  ${menu.show && styles.show}`}>
         <div className={styles.languages}>
           <ToggleButton
+            value={language}
             onChange={toggleLanguage}
-            toggled={
-              "url('https://cdn-icons-png.flaticon.com/256/555/555526.png')"
-            }
-            unToggled={
-              "url('https://w7.pngwing.com/pngs/900/804/png-transparent-flag-of-colombia-national-flag-flag-of-cuba-flag-miscellaneous-angle-flag-thumbnail.png')"
-            }
+            backgrounds={["var(--main-color-400)"]}
+            labels={["ES", "EN"]}
+            sliders={["fa-solid fa-globe"]}
           ></ToggleButton>
         </div>
       </div>
