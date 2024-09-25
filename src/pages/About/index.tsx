@@ -98,7 +98,7 @@ export const About = ({}: any) => {
               cursor={false}
               fontSize={"1.6rem"}
             />
-            <span>and make solutions is my passion</span>
+            <span>and make solutions with tech is my passion</span>
             <br />
             <span>💪💖🦄</span>
           </div>

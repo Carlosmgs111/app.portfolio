@@ -6,7 +6,7 @@
   /* max-width: 600px; */
   padding: 2rem;
   /* margin: 2rem; */
-  font-weight: bold;
+   
   /* border: 1px solid black; */
   font-family: var(--main-font);
 }
@@ -31,7 +31,7 @@
   background-color: var(--main-color-500);
   align-self: center;
   width: fit-content;
-  font-weight: bold;
+   
   font-size: 1.4rem;
   color: black;
   font-family: var(--text-font);

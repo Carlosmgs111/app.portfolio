@@ -73,7 +73,7 @@ export function App() {
         message: (
           <p>
             Hola 👋, me encuentro conectado, solo por si quieres conversar un
-            rato conmigo 👍, pulsa el boton verde{" "}
+            rato conmigo 👍, pulsa el boton verde&nbsp;
             <i
               style={{
                 backgroundColor: "#52c234",
@@ -81,7 +81,7 @@ export function App() {
                 borderRadius: "4px",
               }}
               className="fa-regular fa-comment-dots"
-            ></i>{" "}
+            ></i>&nbsp;
             ubicado en la parte inferior derecha ↘️ que dice `online`, o dando
             clic a esta notificación, ambos desplegarán el chat.
           </p>

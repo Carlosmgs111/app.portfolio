@@ -18,7 +18,7 @@ import { useStateValue } from "../../contexts/context";
 import { runRequest } from "../../services/runRequest";
 import { useToggle } from "../../hooks/useToggle";
 import { Mapfy } from "../../utils";
-import { addCertification, addInstitution } from "./sections";
+import { addCertificate, addInstitution } from "./sections";
 import { INPUT_TYPES } from "../../components/DefineForms";
 import Helmet from "react-helmet";
 import { Memo } from "../../components/Memo";
@@ -28,7 +28,7 @@ export function Certificates({}: any) {
     {
       token,
       username,
-      certifications: globalCertifications,
+      certificates: globalCertificates,
       institutions: globalInstitutions,
     },
     globalDispatch,
@@ -37,7 +37,7 @@ export function Certificates({}: any) {
 
   const initialState = {
     institutions: globalInstitutions,
-    certifications: globalCertifications,
+    certificates: globalCertificates,
     currentModal: null,
     loading: false,
     error: null,
@@ -55,12 +55,12 @@ export function Certificates({}: any) {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { institutions, certifications, currentModal, loading, error } = state;
+  const { institutions, certificates, currentModal, loading, error } = state;
 
   const setFunctions = getDispatchSetFunctions(dispatch, actionTypes);
 
   const {
-    setCertifications,
+    setCertificates,
     setInstitutions,
     setCurrentModal,
     setLoading,
@@ -99,10 +99,10 @@ export function Certificates({}: any) {
         <h1>Hola</h1>
       </div>
     ),
-    addCertification: addCertification({
+    addCertification: addCertificate({
       certificationSchema,
-      setCertifications,
-      certifications,
+      setCertificates,
+      certificates,
       setCurrentModal,
     }),
     addInstitution: addInstitution({
@@ -134,7 +134,7 @@ export function Certificates({}: any) {
       className: "fa-solid fa-magnifying-glass",
       onChange: (e: any) =>
         console.log(
-          certifications.filter((c: any) =>
+          certificates.filter((c: any) =>
             c.title.toLowerCase().includes(e.target.value.toLowerCase())
           )
         ),
@@ -153,8 +153,8 @@ export function Certificates({}: any) {
               tag.includes(e.target.value.toLowerCase())
             )[0]
           );
-        setCertifications([
-          ...certifications.map((c: any) => ({
+        setCertificates([
+          ...certificates.map((c: any) => ({
             ...c,
             visible: isIncluded(c) || isTagIncluded(c),
           })),
@@ -173,8 +173,8 @@ export function Certificates({}: any) {
         className: owned ? "fa-solid fa-eye" : "fa-solid fa-eye-slash",
         onClick: () => {
           switchOwned();
-          setCertifications([
-            ...certifications.map((c: any) => ({
+          setCertificates([
+            ...certificates.map((c: any) => ({
               ...c,
               visible: owned || c.grantedTo === username,
             })),
@@ -203,7 +203,7 @@ export function Certificates({}: any) {
       },
     ];
 
-  const sidebars = [<TrackSidebar />];
+  const sidebars = [<TrackSidebar icon="fa-solid fa-award" />];
   if (token)
     sidebars.push(
       <PanelSidebar id="panel-sidebar" items={items}></PanelSidebar>
@@ -218,10 +218,10 @@ export function Certificates({}: any) {
     });
 
   useEffect(() => {
-    !certifications[0] &&
+    !certificates[0] &&
       runRequest({
         setData: async (data: any) => {
-          setCertifications(data.map((d: any) => ({ ...d, visible: true })));
+          setCertificates(data.map((d: any) => ({ ...d, visible: true })));
           await runRequest({
             setData: (data: any) => {
               setInstitutions(data);
@@ -246,14 +246,14 @@ export function Certificates({}: any) {
       },
     });
     globalDispatch({
-      type: actionTypes.setCertifications,
-      payload: certifications,
+      type: actionTypes.setCertificates,
+      payload: certificates,
     });
     globalDispatch({
       type: actionTypes.setInstitutions,
       payload: institutions,
     });
-  }, [certifications, institutions]);
+  }, [certificates, institutions]);
 
   return (
     <Page>
@@ -269,17 +269,17 @@ export function Certificates({}: any) {
           sidebars,
         }}
       >
-        <Memo deps={[certifications, loading]}>
+        <Memo deps={[certificates, loading]}>
           <div className={styles.main_container}>
             {!loading && (
               <ContentWrapper>
-                {certifications.map((certification: any, index: number) => (
+                {certificates.map((certificate: any, index: number) => (
                   <Certificate
-                    key={certification.uuid}
+                    key={certificate.uuid}
                     {...{
-                      id: certification.uuid,
-                      title: certification.title,
-                      initialCertification: certification,
+                      id: certificate.uuid,
+                      title: certificate.title,
+                      initialCertificate: certificate,
                       setCurrentModal,
                       updateState,
                       institutions,

@@ -9,14 +9,15 @@ export function TrackSidebar(props: any) {
     innerItems = true,
     direction = "column",
     isactive = 1,
-    expanded = !false,
+    expanded: _expanded = false,
     showbutton = 1,
     width = "available",
     redirect = "",
+    icon = "fa-solid fa-circle-dot",
   }: any = props;
-  const [expand, switchExpand] = useToggle(
-    showbutton ? expanded : 1,
-    !expanded
+  const [expanded, switchExpand] = useToggle(
+    showbutton ? _expanded : 1,
+    !_expanded
   );
 
   const indexesList: any = useMemo(
@@ -29,23 +30,23 @@ export function TrackSidebar(props: any) {
         return (
           <a
             className={`
-      ${styles.item} 
-      ${item.isVisible ? styles.active : ""}`}
+            ${styles.item} 
+            ${expanded ? styles.expanded : ""}
+            ${item.isVisible ? styles.active : ""}`}
             key={index}
             href={href}
           >
             <i
-              className={`
-        fa-solid fa-circle-dot 
-        ${styles.icon} ${expand && styles.hidden}
-        ${item.isVisible ? styles.active : ""}`}
+              className={`${icon} ${styles.icon} ${expanded && styles.hidden} ${
+                item.isVisible ? styles.active : ""
+              }`}
             ></i>
             {innerItems && (
               <i
                 {...{
                   className: styles.inner.concat(
                     " ",
-                    expand ? styles.show : ""
+                    expanded ? styles.show : ""
                   ),
                 }}
               >
@@ -67,11 +68,11 @@ export function TrackSidebar(props: any) {
       }}
     >
       {innerItems && Boolean(showbutton) && (
-        <div className={styles.header}>
+        <div className={`${styles.header} ${expanded ? styles.expanded : ""}`}>
           <i
             key="0"
             className={`fa-solid 
-            ${expand ? "fa-ellipsis-vertical" : "fa-bars"}
+            ${expanded ? "fa-ellipsis-vertical" : "fa-bars"}
             ${styles.item}`}
             onClick={switchExpand}
           />

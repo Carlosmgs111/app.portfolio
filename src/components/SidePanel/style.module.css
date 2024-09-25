@@ -4,9 +4,9 @@
   left: 0;
   height: 0;
   z-index: 1;
-  overflow-y: scroll;
   height: fit-content; /* ? This allows dynamic scrolling when your content is overtaken, in this case by app footer   */
   max-height: 100vh; /* ? This allows dynamic scrolling when your content is overtaken, in this case by app footer */
+  display: none;
 }
 .container::-webkit-scrollbar {
   display: none;
@@ -39,7 +39,6 @@
   position: sticky;
 }
 .sidebar {
-  backdrop-filter: blur(1px);
   border: solid transparent 2px;
   max-height: 100vh;
   height: 100vh;
@@ -48,6 +47,7 @@
   flex-direction: column;
   font-size: 2.8rem;
   /* justify-content: flex-start; */
+  backdrop-filter: brightness(60%) blur(1px);
   align-items: center;
   color: black;
   z-index: 10;
@@ -94,7 +94,7 @@
   border-radius: 0.6rem;
   display: flex;
   font-size: 1.4rem;
-  font-weight: bold;
+   
   height: 2.4rem;
   justify-content: space-around;
   align-items: center;
@@ -154,6 +154,9 @@
 }
 
 @media screen and (min-width: 900px) {
+  .container {
+    display: block;
+  }
   .access_button {
     display: none;
   }
@@ -174,5 +177,6 @@
     opacity: 1;
     transform: translate(0);
     position: relative;
+    backdrop-filter: blur(1px);
   }
 }

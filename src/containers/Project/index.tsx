@@ -28,6 +28,7 @@ export const Project = ({
   stateOps,
   kindOps,
 }: any) => {
+  console.log({initialState})
   const requestHeaders = headers();
   const [ref] = useNearScreen(false, refreshRefs);
   const [beingEdited, switchBeingEdited] = useToggle(false, true);

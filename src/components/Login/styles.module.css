@@ -17,7 +17,7 @@
 .title {
   display: block;
   color: var(--main-color-600);
-  font-weight: bold;
+
   font-style: none;
   text-align: center;
   cursor: pointer;

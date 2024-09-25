@@ -35,7 +35,7 @@ export function Projects({}: any) {
   ] = useStateValue();
   const { TrackSidebar, ContentWrapper }: any = useTrackSidebar();
   const requestHeaders = headers();
-
+console.log({globalProjects})
   const initialState = {
     projects: globalProjects,
     projectsOptions: globalProjectsOptions,
@@ -67,7 +67,7 @@ export function Projects({}: any) {
   }: any = getDispatchSetFunctions(dispatch, actionTypes);
 
   const sidebars = [
-    <TrackSidebar />, // ? ⬅️ this is a rendered component, so we just put as a variable and it is not called
+    <TrackSidebar icon="fa-solid fa-compass-drafting" />, // ? ⬅️ this is a rendered component, so we just put as a variable and it is not called
   ];
   const updateState = (cb: Function) =>
     cb({
@@ -156,7 +156,7 @@ export function Projects({}: any) {
   //? ⬇️ this could be abtracted to a hook or even in a component
   useEffect(() => {
     const { hash } = location;
-    console.log(hash)
+    console.log(hash);
     let timeoutId: any;
     const scrollToElement = (id: any) => {
       if (!id) return;

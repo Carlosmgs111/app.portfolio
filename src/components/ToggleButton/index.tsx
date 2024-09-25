@@ -28,10 +28,10 @@ export const ToggleButton = ({
       toggledBackground = `url('${toggledBackground}')`;
     }
     if (defaultBackground) {
-      defaultLabelRef.current.style.background = ` content-box center / cover ${defaultBackground}`;
+      defaultLabelRef.current.style.background = `content-box center / cover ${defaultBackground}`;
     }
     if (toggledBackground) {
-      toggledLabelRef.current.style.background = ` content-box center / cover ${toggledBackground}`;
+      toggledLabelRef.current.style.background = `content-box center / cover ${toggledBackground}`;
     }
   }, [defaultLabelRef, toggledLabelRef]);
   return (

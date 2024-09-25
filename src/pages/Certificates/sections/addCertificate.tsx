@@ -1,11 +1,12 @@
 import { DefineForms } from "../../../components/DefineForms";
-import { runRequest} from "../../../services/runRequest";
+import { runRequest } from "../../../services/runRequest";
 import { headers } from "../../../services/configs";
 import styles from "../styles.module.css";
+import { v4 as uuidv4 } from "uuid";
 
-export const addCertification = ({
+export const addCertificate = ({
   certificationSchema,
-  setCertifications,
+  setCertificates,
   certifications,
   setCurrentModal,
 }: any) => {
@@ -16,11 +17,10 @@ export const addCertification = ({
         {...{
           baseSchema: certificationSchema,
           onClickHandler: (params: any) => {
-            const { setError, setLoading, data, reset } = params;
-
+            let { setError, setLoading, data, reset } = params;
             runRequest({
               setData: (data: any) => {
-                setCertifications([
+                setCertificates([
                   ...certifications,
                   ...data.map((c: any) => ({ ...c, visible: true })),
                 ]);
@@ -32,7 +32,7 @@ export const addCertification = ({
               setLoading,
             }).post(
               `certifications/certifications`,
-              { certifications: data },
+              { certifications: [{ ...data[0], uuid: uuidv4() }] },
               {
                 ...requestHeaders,
               }

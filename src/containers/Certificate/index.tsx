@@ -19,7 +19,7 @@ import { runButtonBehavior } from "../../utils";
 import { format } from "timeago.js";
 
 export function Certificate({
-  initialCertification,
+  initialCertificate,
   setCurrentModal = () => {},
   updateState,
   institutions,
@@ -27,7 +27,7 @@ export function Certificate({
   const requestHeaders = headers();
   const [beingEdited, switchBeingEdited] = useToggle(false, true);
   const [details, switchDetails] = useToggle(false, true);
-  const [certification, setCertification] = useState(initialCertification);
+  const [certificate, setCertification] = useState(initialCertificate);
   const {
     uuid,
     title,
@@ -37,13 +37,13 @@ export function Certificate({
     url,
     tags,
     grantedTo,
-  }: any = certification;
+  }: any = certificate;
   const { token, username } = getContextValue(CONTEXTS.Global);
-  const [showCertification, toggleShowCertification] = useToggle(false, true);
+  const [showCertificate, toggleShowCertificate] = useToggle(false, true);
   const [ref]: any = useNearScreen(
     false,
     (_: any, show: any) =>
-      show && !showCertification && toggleShowCertification()
+      show && !showCertificate && toggleShowCertificate()
   ); // ? Use to lazy loading 💤⏳
 
   // ? 1️⃣ Define the callback to be passed as high order callback
@@ -51,23 +51,23 @@ export function Certificate({
     const { setError, setLoading, data, reset } = params;
     const toUpdate: any = {};
     for (var attr in data[0]) {
-      if (data[0][attr] !== certification[attr]) toUpdate[attr] = data[0][attr];
+      if (data[0][attr] !== certificate[attr]) toUpdate[attr] = data[0][attr];
     }
     runRequest({
       setData: ({ updated }: any) => {
         if (updated) {
-          const certificationUpdated = { ...certification, ...data[0] };
+          const certificationUpdated = { ...certificate, ...data[0] };
           setCertification(certificationUpdated);
-          updateState(({ state, setCertifications }: any) => {
-            const newCertifications = [...state.certifications];
-            newCertifications.splice(
-              newCertifications.findIndex(
+          updateState(({ state, setCertificates }: any) => {
+            const newCertificates = [...state.certificates];
+            newCertificates.splice(
+              newCertificates.findIndex(
                 (c) => c.uuid === certificationUpdated.uuid
               ),
               1,
               certificationUpdated
             );
-            setCertifications([...newCertifications]); // ? to check
+            setCertificates([...newCertificates]); // ? to check
           });
         }
       },
@@ -86,16 +86,16 @@ export function Certificate({
 
   // ? 2️⃣ Function to obtain the provided callback as the high order callback to be passed to
   // ? DefineSchema component as argument 'hightOrderCallback' and its respective trigger
-  const [highOrderCallback, HOCTrigger]: any = getHOCAndTrigger(updateCallback);
+  const [highOrderCallback, onClickHandler]: any = getHOCAndTrigger(updateCallback);
 
   const onClick = (e: any) => {
     const behaviors = {
       primary: () => {
         beingEdited
-          ? HOCTrigger()
+          ? onClickHandler()
           : (() => {
               const result = window.confirm(
-                `Are you sure you want to delete certification ${title}`
+                `Are you sure you want to delete certificate ${title}`
               );
               result &&
                 runRequest({
@@ -122,14 +122,14 @@ export function Certificate({
   };
 
   useEffect(() => {
-    setCertification(initialCertification);
-  }, [initialCertification]);
+    setCertification(initialCertificate);
+  }, [initialCertificate]);
 
   return (
-    <Memo deps={[certification, showCertification, beingEdited, details]}>
+    <Memo deps={[certificate, showCertificate, beingEdited, details]}>
       <div
         className={`${styles.container} ${
-          showCertification ? styles.visible : ""
+          showCertificate ? styles.visible : ""
         }`}
         ref={ref}
         id={labelCases(title).LS}

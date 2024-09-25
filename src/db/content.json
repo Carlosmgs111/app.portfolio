@@ -22,7 +22,7 @@
       },
       {
         "label": "Certificados",
-        "icon": "fa-solid fa-graduation-cap",
+        "icon": "fa-solid fa-award",
         "to": "certificates"
       },
       {
@@ -39,7 +39,7 @@
       },
       {
         "label": "Certificates",
-        "icon": "fa-solid fa-graduation-cap",
+        "icon": "fa-solid fa-award",
         "to": "certificates"
       },
       {

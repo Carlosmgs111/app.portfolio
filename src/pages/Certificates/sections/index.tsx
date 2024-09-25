@@ -1,4 +1,4 @@
-import { addCertification } from "./addCertification";
+import { addCertificate } from "./addCertificate";
 import { addInstitution } from "./addInstitution";
 
-export { addCertification, addInstitution };
+export { addCertificate, addInstitution };

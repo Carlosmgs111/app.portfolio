@@ -18,10 +18,10 @@ const InfiniteCarousel = lazyLoad(
 );
 
 export function Home({}: any) {
-  const [{ currentLang, projects, certifications }, dispatch] = useStateValue();
+  const [{ currentLang, projects, certificates }, dispatch] = useStateValue();
   const [projectsIndexes, setProjectsIndexes] = useState(projects);
-  const [certificationsIndexes, setCertificationsIndexes] =
-    useState(certifications);
+  const [certificatesIndexes, setCertificatesIndexes] =
+    useState(certificates);
 
   const mySkills = [
     { content: "React", color: "#61DAFB" },
@@ -138,11 +138,11 @@ export function Home({}: any) {
           dispatch({ type: actionTypes.setProjects, payload: projects });
         });
     }
-    if (!certificationsIndexes[0]) {
+    if (!certificatesIndexes[0]) {
       fetch(`${URL_API}/certifications`, { method: "GET" })
         .then((data) => data.json())
         .then((data) => {
-          setCertificationsIndexes(data);
+          setCertificatesIndexes(data);
           dispatch({
             type: actionTypes.setCertifications,
             payload: data,
@@ -186,21 +186,22 @@ export function Home({}: any) {
               href="https://github.com/Carlosmgs111"
               target="_blank"
             >
-              <i className="fa-brands fa-github-alt"></i> Github
+              <i className="fa-brands fa-github-alt"></i>&nbsp;&nbsp;Github
             </a>
             <a
               className={styles.contact_button}
               href="https://www.linkedin.com/in/cmgs111/"
               target="_blank"
             >
-              <i className="fa-brands fa-linkedin-in"></i> Linkedin
+              <i className="fa-brands fa-linkedin-in"></i>&nbsp;&nbsp;Linkedin
             </a>
           </div>
         </section>
       </article>
-      <Memo deps={[projects, currentLang]}>
-        <article className={`${styles.section} `}>
-          <h2>{titles.projects[currentLang]}</h2>
+
+      <article className={`${styles.section} `}>
+        <h2>{titles.projects[currentLang]}</h2>
+        <Memo deps={[projects]}>
           <LazyComponent
             Component={InfiniteCarousel}
             fallback={<CubeGridLoader />}
@@ -211,21 +212,24 @@ export function Home({}: any) {
               <ProjectIndex key={index} {...project} />
             ))}
           </LazyComponent>
-        </article>
-      </Memo>
-      <Memo deps={[certifications, currentLang]}>
-        <article className={`${styles.section} `}>
-          <h2>{titles.certifications[currentLang]}</h2>
+        </Memo>
+      </article>
+
+      <article className={`${styles.section} `}>
+        <h2>{titles.certifications[currentLang]}</h2>
+        <Memo deps={[certificatesIndexes]}>
           <LazyComponent
             Component={InfiniteCarousel}
             fallback={<CubeGridLoader />}
             timing={30}
             gap={"2rem"}
           >
-            {certificationsIndexes.map((certification: any, index: any) => (
+            {certificatesIndexes.map((certification: any, index: any) => (
               <CertificateIndex key={index} {...certification} />
             ))}
           </LazyComponent>
+        </Memo>
+        <Memo deps={[certificatesIndexes]}>
           <LazyComponent
             Component={InfiniteCarousel}
             fallback={<CubeGridLoader />}
@@ -233,18 +237,18 @@ export function Home({}: any) {
             gap={"2rem"}
             toRight={true}
           >
-            {certificationsIndexes.map((certification: any, index: any) => (
+            {certificatesIndexes.map((certification: any, index: any) => (
               <CertificateIndex key={index} {...certification} />
             ))}
           </LazyComponent>
-        </article>
-      </Memo>
-      <Memo deps={[currentLang]}>
-        <article className={`${styles.section}`}>
-          <h2>{titles.techs[currentLang]}</h2>
+        </Memo>
+      </article>
+      <article className={`${styles.section}`}>
+        <h2>{titles.techs[currentLang]}</h2>
+        <Memo>
           <TechSkills></TechSkills>
-        </article>
-      </Memo>
+        </Memo>
+      </article>
     </div>
   );
 }

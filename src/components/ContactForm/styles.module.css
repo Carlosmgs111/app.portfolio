@@ -61,7 +61,7 @@
 .email_form > button {
   position: relative;
   font-size: 1.4rem;
-  font-weight: bold;
+   
   background-color: var(--main-color-700) !important;
   display: flex;
   justify-content: center;

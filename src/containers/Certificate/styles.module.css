@@ -1,7 +1,7 @@
 .container {
   border-radius: 0.8rem;
   height: fit-content;
-  width: 28rem;
+  width: 100dvw;
   height: auto;
   aspect-ratio: 7/4;
   text-align: center;
@@ -15,6 +15,7 @@
   filter: drop-shadow(-6px 6px 2px #00000093);
   scale: 0.4;
   opacity: 0;
+  z-index: 100;
 }
 .container::-webkit-scrollbar {
   display: none;
@@ -111,15 +112,14 @@
   cursor: default;
 }
 .dashboard {
-  border-radius: 0 0 0.8rem 0.8rem;
+  position: absolute;
+  border-radius: 0.8rem;
   display: flex;
   justify-content: space-around;
   background-color: #2c2b2b56;
-  left: 0;
-  bottom: 0;
   align-items: center;
   width: 100%;
-  padding: 1.2rem 0;
+  padding: 0.8rem;
   opacity: 0;
   transition: opacity 0.4s;
   bottom: 0;
@@ -183,5 +183,11 @@
 @keyframes shimmer {
   100% {
     transform: translateX(100%);
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .container {
+    width: 32rem;
   }
 }

@@ -28,7 +28,7 @@ const initialState = {
   isOnline: false,
   projects: [],
   projectsOptions: { stack: [], state: [], kind: [] },
-  certifications: [],
+  certificates: [],
   institutions: [],
   currentModal: null,
 };
@@ -51,7 +51,7 @@ const reducer = (state: any, action: any) => {
     [actionTypes.setIsOnline]: { ...state, isOnline: payload },
     [actionTypes.setProjects]: { ...state, projects: payload },
     [actionTypes.setProjectsOptions]: { ...state, projectsOptions: payload },
-    [actionTypes.setCertifications]: { ...state, certifications: payload },
+    [actionTypes.setCertificates]: { ...state, certificates: payload },
     [actionTypes.setInstitutions]: { ...state, institutions: payload },
     [actionTypes.reset]: {
       ...state,
