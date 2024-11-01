@@ -35,7 +35,6 @@ export function Projects({}: any) {
   ] = useStateValue();
   const { TrackSidebar, ContentWrapper }: any = useTrackSidebar();
   const requestHeaders = headers();
-console.log({globalProjects})
   const initialState = {
     projects: globalProjects,
     projectsOptions: globalProjectsOptions,
@@ -156,7 +155,6 @@ console.log({globalProjects})
   //? ⬇️ this could be abtracted to a hook or even in a component
   useEffect(() => {
     const { hash } = location;
-    console.log(hash);
     let timeoutId: any;
     const scrollToElement = (id: any) => {
       if (!id) return;

@@ -161,15 +161,6 @@ export function App() {
       <div className={styles.header}>
         <Navigation
           pages={pages[currentLang]}
-          // login={{
-          //   to: "profile",
-          //   onClick: (e: any) => {
-          //     e.preventDefault();
-          //     setCurrentModal(
-          //       <Login {...{ onLogged: () => setCurrentModal(null) }} />
-          //     );
-          //   },
-          // }}
         ></Navigation>
       </div>
       <div className={styles.content}>

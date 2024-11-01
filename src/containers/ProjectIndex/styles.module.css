@@ -4,7 +4,6 @@
   aspect-ratio: 3/2;
   border-radius: 2rem;
   position: relative;
-  overflow: hidden;
 }
 .body > a {
   position: absolute;
