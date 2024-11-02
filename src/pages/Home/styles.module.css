@@ -14,6 +14,7 @@
   border: none;
   height: fit-content;
   width: 100%;
+  max-width: 80rem;
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -21,8 +22,19 @@
   gap: 2rem;
   flex-wrap: wrap;
   transition: 1s ease-in-out;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 3%,
+    black 8%,
+    black 92%,
+    transparent 97%
+  );
+}
+.section > * {
+  border-radius: 2rem;
 }
 .section > h2 {
+  font-weight: 200;
   width: 100%;
   text-align: center;
   padding: 2rem;
@@ -42,12 +54,50 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 100% ;
+  width: 100%;
   opacity: 1;
+  font-weight: 200;
 }
 .hero.visible {
   transform: translate(0, 0);
   opacity: 1;
+}
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+}
+.background::before {
+  content: "";
+  width: 100vw;
+  height: 100vh;
+  background: #141c1f;
+}
+.background::after {
+  content: "";
+  width: 500vw;
+  height: 500vh;
+  transform: var(--inclination);
+  position: fixed;
+  background: repeating-linear-gradient(
+      270deg,
+      #93939314 0px,
+      #93939314 1px,
+      transparent 1px,
+      transparent 9px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      #93939314 0px,
+      #93939314 1px,
+      transparent 1px,
+      transparent 9px
+    ),
+    linear-gradient(270deg, #000000, #394041);
+  filter:saturate(160%)
 }
 .introduction_section {
   font-size: 2rem;
@@ -67,11 +117,12 @@
 }
 .introduction {
   filter: drop-shadow(-6px 6px 1px #000000cc);
+  font-weight: 200;
 }
 .introduction_section h1,
 h2 {
   font-size: 3.2rem;
-  font-weight: 400;
+  font-weight: 200;
 }
 .introduction_section h2 {
   display: inline-flex;
@@ -80,6 +131,7 @@ h2 {
 .introduction_section b {
   font-size: 6.4rem;
   color: #1cefff;
+  font-weight: 100;
 }
 .contact {
   padding: 3.2rem 0 0 0;

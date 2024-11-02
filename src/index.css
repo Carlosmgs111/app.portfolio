@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@100&display=swap");
 :root {
   --border-radius: 0.6rem;
-  --background-image: url("https://armsystem.com.mx/img/intro-carousel/4.jpg");
   --background-color: black;
   --main-color-50: #eafffe;
   --main-color-100: #cbfffe;
@@ -187,7 +188,7 @@ body::before {
     var(--moonlit-asteroid-800) 50%,
     var(--moonlit-asteroid-900)
   );
-
+  filter: brightness(70%) contrast(110%) blur(0.6rem);
   background-repeat: no-repeat, no-repeat;
 }
 

@@ -35,7 +35,7 @@ export function Home({}: any) {
       color: "#3776ab",
     },
     { content: "PostgreSQL", color: "#4169E1" },
-    { content: "Socket.io", color: "#010101" },
+    { content: "Socket.io", color: "#eceaea" },
     { content: "CSS3", color: "#1572B6" },
     {
       content: "Javascript",
@@ -170,6 +170,7 @@ export function Home({}: any) {
 
   return (
     <div className={styles.page}>
+    <div className={styles.background}></div>
       <article
         ref={introductionRef}
         className={`${styles.section} ${styles.hero}`}
