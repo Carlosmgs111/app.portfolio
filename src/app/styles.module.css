@@ -7,11 +7,11 @@
   position: sticky;
 }
 .content {
-  top: -10rem;
   justify-content: center;
   width: 100%;
   min-height: 100vh;
   z-index: 1;
+  --inclination: perspective(1000px) rotateX(55deg) rotateY(0deg) rotateZ(40deg);
 }
 .content::before {
   width: 100%;
@@ -99,7 +99,7 @@
 }
 .banner {
   color: #00deae;
-   
+
   font-size: 3.4rem;
   transition: color 0.4s;
 }
@@ -142,4 +142,3 @@
     width: 5rem;
   }
 }
-
