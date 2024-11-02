@@ -207,7 +207,8 @@ export function Home({}: any) {
             Component={InfiniteCarousel}
             fallback={<CubeGridLoader />}
             toRight={true}
-            timing={50}
+            gap={"8px"}
+            timing={20}
           >
             {projectsIndexes.map((project: any, index: any) => (
               <ProjectIndex key={index} {...project} />
@@ -223,7 +224,7 @@ export function Home({}: any) {
             Component={InfiniteCarousel}
             fallback={<CubeGridLoader />}
             timing={30}
-            gap={"2rem"}
+            gap={"4px"}
           >
             {certificatesIndexes.map((certification: any, index: any) => (
               <CertificateIndex key={index} {...certification} />
@@ -235,7 +236,7 @@ export function Home({}: any) {
             Component={InfiniteCarousel}
             fallback={<CubeGridLoader />}
             timing={30}
-            gap={"2rem"}
+            gap={"4px"}
             toRight={true}
           >
             {certificatesIndexes.map((certification: any, index: any) => (

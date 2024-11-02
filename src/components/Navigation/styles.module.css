@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 120rem;
+  width: 80rem;
 }
 .indicator {
   position: absolute;

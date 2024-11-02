@@ -144,7 +144,7 @@ export const Project = ({
           <h1 className={styles.title}>{name}</h1>
           <Memo>
             <div className={styles.images}>
-              <InfiniteCarousel toRight={even} gap={".1rem"} timing={10}>
+              <InfiniteCarousel toRight={even} gap={".1rem"} timing={20}>
                 {images.map((image: any, index: number) => (
                   <Memo key={index}>
                     <AsyncImage
