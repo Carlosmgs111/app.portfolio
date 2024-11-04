@@ -30,7 +30,7 @@
   fill: #db7093;
 }
 .nextjs {
-  fill: #000000;
+  fill: #fff;
 }
 .react_router {
   fill: #ca4245;
@@ -42,7 +42,7 @@
   fill: #5a29e4;
 }
 .socketio {
-  fill: #010101;
+  fill: #fefefe;
 }
 .apollo_graphql {
   fill: #311c87;
@@ -69,7 +69,7 @@
   fill: #4169e1;
 }
 .express {
-  fill: #000000;
+  fill: #fff;
 }
 .sequelize {
   fill: #52b0e7;
@@ -81,7 +81,7 @@
   fill: #34e27a;
 }
 .jsonwebtokens {
-  fill: #000000;
+  fill: #fff;
 }
 .django {
   fill: #092e20;
@@ -109,4 +109,7 @@
 }
 .html {
   fill: #e34f26;
+}
+.vite {
+  fill: #646cff;
 }
