@@ -1,6 +1,6 @@
 .navbar_container {
   position: fixed;
-  backdrop-filter: blur(.4rem) brightness(60%);
+  backdrop-filter: blur(0.4rem) brightness(60%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,6 +30,7 @@
   align-self: center;
   transition: left 0.4s, width 0.4s, opacity 1s, scale 0.4s;
   border-radius: 0.4rem;
+  filter: saturate(180%);
 }
 .navbar * ::-webkit-scrollbar {
   display: none;
@@ -90,7 +91,7 @@
 }
 .languages option * {
   background-color: transparent;
-  padding: 1.8rem ;
+  padding: 1.8rem;
 }
 .languages option:checked {
   background-color: var(--main-color-950);
@@ -121,7 +122,7 @@
   font-weight: 400;
   font-family: "Rubik", sans-serif;
   text-align: center;
-  font-style: none ;
+  font-style: none;
   position: relative;
   align-items: center;
   justify-content: center;
@@ -129,10 +130,11 @@
   color: var(--main-color-400);
   padding: 0.8rem;
   transition: 0.4s;
-  margin: 0 ;
+  margin: 0;
+  filter: saturate(150%);
 }
 .selected {
-  color: var(--main-color-950);
+  color: black;
 }
 .avatar {
   transition: border 0.4s;

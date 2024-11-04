@@ -30,7 +30,6 @@ import {
   HTMLSVG,
   CSSSVG,
 } from "./../../icons";
-import { Children } from "react";
 
 const TechSkill = ({ children, label }: any) => (
   <div className={styles.skill_container}>

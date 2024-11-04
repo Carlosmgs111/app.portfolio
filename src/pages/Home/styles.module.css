@@ -11,17 +11,31 @@
   position: relative;
 }
 .section {
+  min-height: 100vh;
   border: none;
   height: fit-content;
   width: 100%;
   max-width: 80rem;
+  gap: 0.4rem;
   display: flex;
   flex-direction: column;
-  justify-content: left;
+  justify-content: center;
   align-content: center;
-  gap: .4rem;
   flex-wrap: wrap;
   transition: 1s ease-in-out;
+  z-index: 10;
+}
+.section > div {
+  width: inherit;
+  height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 0.4rem;
+  padding: 0 0 6.4rem 0;
+  backdrop-filter: blur(1.2rem);
   mask-image: linear-gradient(
     90deg,
     transparent 3%,
@@ -33,11 +47,11 @@
 .section > * {
   border-radius: 2rem;
 }
-.section > h2 {
+.section > div > h2 {
   font-weight: 200;
   width: 100%;
   text-align: center;
-  padding: 2rem;
+  padding: 3.2rem;
   color: var(--main-color-400);
 }
 .section.right {
@@ -48,19 +62,46 @@
   transform: translate(0, 0);
 }
 .hero {
-  min-height: 100vh;
-  padding: 0;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 100%;
-  opacity: 1;
   font-weight: 200;
+  backdrop-filter: blur(0.8rem);
+  font-size: 2rem;
+  font-family: "Rubik";
+  font-weight: 400;
+  z-index: 1;
+  border-radius: 2rem;
+  transition: 0.8s ease-in-out;
+  transform: translate(-120vw, 0);
+  opacity: 0;
+  scale: 0;
+  width: 52.8rem !important;
+  padding: 6.4rem 0 !important;
+}
+.hero h1,
+h2 {
+  font-size: 3.2rem;
+  font-weight: 200;
+}
+.hero h2 {
+  display: inline-flex;
+  gap: 1rem;
+}
+.hero b {
+  font-size: 6.4rem;
+  color: #1cefff;
+  font-weight: 100;
 }
 .hero.visible {
   transform: translate(0, 0);
+  scale: 1;
   opacity: 1;
+}
+.introduction {
+  filter: drop-shadow(0 0 1rem #000000cc);
+  font-weight: 100;
 }
 .background {
   display: flex;
@@ -74,13 +115,14 @@
   content: "";
   width: 100vw;
   height: 100vh;
-  background: #141c1f;
+  background: radial-gradient(circle at 10% 20%, #273a3d, #071318 40%);
+  filter: saturate(140%) brightness(80%);
 }
 .background::after {
   content: "";
   width: 500vw;
   height: 500vh;
-  top:-220vh;
+  top: -180vh;
   transform: var(--inclination);
   position: fixed;
   background: repeating-linear-gradient(
@@ -98,42 +140,30 @@
       transparent 9px
     ),
     linear-gradient(270deg, #000000, #394041);
-  filter: saturate(160%);
+  filter: saturate(150%) brightness(80%);
 }
-.introduction_section {
-  font-size: 2rem;
-  font-family: "Rubik";
-  font-weight: 400;
+.over {
+  width: 500vw;
+  height: 500vh;
+  top: -180vh;
+  position: fixed;
+  transform: var(--inclination);
   z-index: 1;
-  border-radius: 2rem;
-  transition: 0.8s ease-in-out;
-  transform: translate(-120vw, 0);
-  scale: 0.6;
-  opacity: 0;
-  mask-image: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
 }
-.introduction_section.visible {
-  transform: translate(0, 0);
-  scale: 1;
-  opacity: 1;
-}
-.introduction {
-  filter: drop-shadow(-6px 6px 1px #000000cc);
-  font-weight: 200;
-}
-.introduction_section h1,
-h2 {
-  font-size: 3.2rem;
-  font-weight: 200;
-}
-.introduction_section h2 {
-  display: inline-flex;
-  gap: 1rem;
-}
-.introduction_section b {
-  font-size: 6.4rem;
-  color: #1cefff;
-  font-weight: 100;
+.blueprint {
+  width: 42rem;
+  height: 76rem;
+  display: flex;
+  position: fixed;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  filter: blur(2px) saturate(120%);
+  scale: 1.4;
 }
 .contact {
   padding: 3.2rem 0 0 0;
@@ -159,11 +189,17 @@ h2 {
   color: var(--moonlit-asteroid-900);
 }
 @media screen and (max-width: 800px) {
+  .hero {
+    width: 100% !important;
+  }
+  .blueprint {
+    scale: 1.2;
+  }
   .section {
-    mask-image: none;
     border-radius: unset;
   }
-  .section > * {
+  .section > div {
     border-radius: unset;
+    mask-image: unset;
   }
 }

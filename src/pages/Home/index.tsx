@@ -16,17 +16,19 @@ const InfiniteCarousel = lazyLoad(
   () => import("../../components/InfiniteCarousel"),
   "InfiniteCarousel"
 );
+import { ReactNodeTest } from "../../components/ReactNodeTest";
 
 export function Home({}: any) {
   const [{ currentLang, projects, certificates }, dispatch] = useStateValue();
   const [projectsIndexes, setProjectsIndexes] = useState(projects);
-  const [certificatesIndexes, setCertificatesIndexes] =
-    useState(certificates);
+  const [certificatesIndexes, setCertificatesIndexes] = useState(certificates);
 
   const mySkills = [
     { content: "React", color: "#61DAFB" },
+    { content: "NextJS", color: "#fff" },
+    ,
     {
-      content: "Node.js",
+      content: "Node",
       color: "#339933",
     },
     { content: "HTML5", color: "#E34F26" },
@@ -35,14 +37,14 @@ export function Home({}: any) {
       color: "#3776ab",
     },
     { content: "PostgreSQL", color: "#4169E1" },
-    { content: "Socket.io", color: "#eceaea" },
+    { content: "SocketIO", color: "#eceaea" },
     { content: "CSS3", color: "#1572B6" },
     {
       content: "Javascript",
       color: "#f7df1e",
     },
     { content: "MongoDB", color: "#47A248" },
-    { content: "GraphQL", color: "#E10098" },
+    { content: "Express", color: "#fff" },
     {
       content: "Typescript",
       color: "#3178c6",
@@ -170,13 +172,13 @@ export function Home({}: any) {
 
   return (
     <div className={styles.page}>
-    <div className={styles.background}></div>
-      <article
-        ref={introductionRef}
-        className={`${styles.section} ${styles.hero}`}
-      >
-        <section
-          className={`${styles.introduction_section} ${
+      <div className={styles.background}></div>
+      <div className={styles.over}>
+        <ReactNodeTest className={styles.blueprint}></ReactNodeTest>
+      </div>
+      <article ref={introductionRef} className={`${styles.section}`}>
+        <div
+          className={`${styles.hero} ${
             showIntroduccion && styles.visible
           }`}
         >
@@ -197,59 +199,65 @@ export function Home({}: any) {
               <i className="fa-brands fa-linkedin-in"></i>&nbsp;&nbsp;Linkedin
             </a>
           </div>
-        </section>
+        </div>
       </article>
 
       <article className={`${styles.section} `}>
-        <h2>{titles.projects[currentLang]}</h2>
-        <Memo deps={[projects]}>
-          <LazyComponent
-            Component={InfiniteCarousel}
-            fallback={<CubeGridLoader />}
-            toRight={true}
-            gap={"8px"}
-            timing={20}
-          >
-            {projectsIndexes.map((project: any, index: any) => (
-              <ProjectIndex key={index} {...project} />
-            ))}
-          </LazyComponent>
-        </Memo>
+        <div>
+          <h2>{titles.projects[currentLang]}</h2>
+          <Memo deps={[projects]}>
+            <LazyComponent
+              Component={InfiniteCarousel}
+              fallback={<CubeGridLoader />}
+              toRight={true}
+              gap={"8px"}
+              timing={20}
+            >
+              {projectsIndexes.map((project: any, index: any) => (
+                <ProjectIndex key={index} {...project} />
+              ))}
+            </LazyComponent>
+          </Memo>
+        </div>
       </article>
 
       <article className={`${styles.section} `}>
-        <h2>{titles.certifications[currentLang]}</h2>
-        <Memo deps={[certificatesIndexes]}>
-          <LazyComponent
-            Component={InfiniteCarousel}
-            fallback={<CubeGridLoader />}
-            timing={30}
-            gap={"4px"}
-          >
-            {certificatesIndexes.map((certification: any, index: any) => (
-              <CertificateIndex key={index} {...certification} />
-            ))}
-          </LazyComponent>
-        </Memo>
-        <Memo deps={[certificatesIndexes]}>
-          <LazyComponent
-            Component={InfiniteCarousel}
-            fallback={<CubeGridLoader />}
-            timing={30}
-            gap={"4px"}
-            toRight={true}
-          >
-            {certificatesIndexes.map((certification: any, index: any) => (
-              <CertificateIndex key={index} {...certification} />
-            ))}
-          </LazyComponent>
-        </Memo>
+        <div>
+          <h2>{titles.certifications[currentLang]}</h2>
+          <Memo deps={[certificatesIndexes]}>
+            <LazyComponent
+              Component={InfiniteCarousel}
+              fallback={<CubeGridLoader />}
+              timing={30}
+              gap={"4px"}
+            >
+              {certificatesIndexes.map((certification: any, index: any) => (
+                <CertificateIndex key={index} {...certification} />
+              ))}
+            </LazyComponent>
+          </Memo>
+          <Memo deps={[certificatesIndexes]}>
+            <LazyComponent
+              Component={InfiniteCarousel}
+              fallback={<CubeGridLoader />}
+              timing={30}
+              gap={"4px"}
+              toRight={true}
+            >
+              {certificatesIndexes.map((certification: any, index: any) => (
+                <CertificateIndex key={index} {...certification} />
+              ))}
+            </LazyComponent>
+          </Memo>
+        </div>
       </article>
       <article className={`${styles.section}`}>
-        <h2>{titles.techs[currentLang]}</h2>
-        <Memo>
-          <TechSkills></TechSkills>
-        </Memo>
+        <div>
+          <h2>{titles.techs[currentLang]}</h2>
+          <Memo>
+            <TechSkills></TechSkills>
+          </Memo>
+        </div>
       </article>
     </div>
   );
