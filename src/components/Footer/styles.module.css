@@ -6,7 +6,7 @@
   flex-wrap: wrap;
   gap: 4rem;
   justify-content: center;
-  background-color: var(--main-color-950);
+  background-color: var(--moonlit-asteroid-900);
   position: relative;
   bottom: 0;
   padding: 4rem 0;
@@ -16,7 +16,7 @@
   display: none;
   display: none;
   height: 24rem;
-  border: 1px solid var(--moonlit-asteroid-900);
+  border: 1px solid var(--moonlit-asteroid-700);
 }
 .section {
   min-width: fit-content;

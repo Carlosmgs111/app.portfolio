@@ -173,25 +173,29 @@ body {
   color: #e2e2e2;
   /* transform-style: preserve-3d;  */ /* ⬅️ delete the effect of backdrop filter */
 }
-
 body::before {
   position: fixed;
   content: "";
   width: 100%;
   height: 100vh;
   z-index: -10;
-  background-image: radial-gradient(
-    circle at 95% 5%,
-    var(--main-color-950) 5%,
-    var(--main-color-900) 20%,
-    var(--moonlit-asteroid-700) 35%,
-    var(--moonlit-asteroid-800) 50%,
-    var(--moonlit-asteroid-900)
-  );
-  filter: brightness(70%) contrast(110%) blur(0.6rem);
+  background: radial-gradient(circle at 10% 20%, #273a3d, #071318 40%);
+  filter: saturate(140%) brightness(80%);
   background-repeat: no-repeat, no-repeat;
 }
-
+body::-webkit-scrollbar {
+  width: .8rem;
+  display: inside;
+  background-color: var(--moonlit-asteroid-900);
+  transition: 0.4s;
+}
+body::-webkit-scrollbar-corner {
+  display: none;
+}
+body::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: var(--main-color-400);
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

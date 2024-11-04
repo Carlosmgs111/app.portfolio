@@ -32,6 +32,7 @@ import { LogoSVG } from "./LogoSVG";
 import { CSSSVG } from "./CSSSVG";
 import { HTMLSVG } from "./HTMLSVG";
 import { WhatsAppLogoSVG } from "./WhatsAppLogoSVG";
+import { ViteSVG } from "./ViteSVG";
 
 export const SVGIndexes: any = {
   jest: JestSVG,
@@ -65,6 +66,7 @@ export const SVGIndexes: any = {
   css: CSSSVG,
   html: HTMLSVG,
   whataspp: WhatsAppLogoSVG,
+  vite: ViteSVG,
 };
 
 export {
@@ -102,4 +104,5 @@ export {
   CSSSVG,
   HTMLSVG,
   WhatsAppLogoSVG,
+  ViteSVG,
 };

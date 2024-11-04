@@ -1,0 +1,95 @@
+.page {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+  gap: 16rem;
+  position: relative;
+}
+
+.section {
+  min-height: 100vh;
+  border: none;
+  height: fit-content;
+  width: 100%;
+  max-width: 80rem;
+  gap: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  transition: 1s ease-in-out;
+  z-index: 10;
+}
+.section > div {
+  width: inherit;
+  height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 0.4rem;
+  padding: 0 0 6.4rem 0;
+  backdrop-filter: blur(1.2rem);
+  mask-image: linear-gradient(
+    90deg,
+    transparent 3%,
+    black 8%,
+    black 92%,
+    transparent 97%
+  );
+}
+.section > * {
+  border-radius: 2rem;
+}
+.section > div > h2 {
+  font-size: 2.6rem;
+  font-weight: 200;
+  width: 100%;
+  text-align: center;
+  padding: 3.2rem;
+  color: var(--main-color-400);
+}
+.section > div > a {
+  z-index: 10;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--moonlit-asteroid-900);
+  color: var(--main-color-300);
+  font-size: 1.4rem;
+  padding: 1.4rem;
+  border-radius: 0.8rem;
+  transition: 0.4s;
+  font-weight: 400;
+  width: 100%;
+}
+.section > div > a:hover {
+  background-color: var(--main-color-300);
+  color: var(--main-color-950);
+}
+.section > div > a.disabled {
+  background-color: var(--moonlit-asteroid-700);
+  color: var(--moonlit-asteroid-900);
+  cursor: not-allowed;
+}
+.section.right {
+  justify-content: right;
+  transform: translate(-50vw, 0);
+}
+.section.right.visible {
+  transform: translate(0, 0);
+}
+@media screen and (max-width: 800px) {
+  .section {
+    border-radius: unset;
+  }
+  .section > div {
+    border-radius: unset;
+    mask-image: unset;
+  }
+}
