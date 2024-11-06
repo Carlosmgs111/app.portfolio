@@ -14,13 +14,14 @@
   height: fit-content;
   min-height: 90rem;
   width: 100%;
+  max-width: 80rem;
   display: flex;
   justify-content: left;
   align-items: center;
   gap: 8rem;
   flex-wrap: wrap;
   transition: 1s ease-in-out;
-  transform: translate(70vw, 0);
+  transform: translate(30vw, 0);
   opacity: 0;
 }
 .section.visible {
@@ -28,36 +29,13 @@
   opacity: 1;
 }
 .text {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
+  font-weight: 100;
   margin: 0;
   white-space: pre-wrap;
-  text-align: justify;
   filter: drop-shadow(-6px 6px 1px #000000cc);
   max-width: 60rem;
   border-radius: 2rem;
-}
-.page_background {
-  top: 0;
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  background: radial-gradient(
-    circle at 100% 80%,
-    #0f2027 50%,
-    #203a43 80%,
-    #2c5364
-  );
-  filter: blur(4px);
-}
-.page_background::before {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100vh;
-  background: url("../../assets/images/dotted-world-map-wallpaper.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 .skills {
   display: flex;
@@ -92,16 +70,76 @@
   backdrop-filter: brightness(95%);
   font-size: 1.6rem;
 }
-@media screen and (min-width: 600px) {
-  .section {
-    padding: 8rem;
+.hero {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-weight: 200;
+  backdrop-filter: blur(0.8rem);
+  font-size: 2rem;
+  font-family: "Rubik";
+  font-weight: 400;
+  z-index: 1;
+  border-radius: 2rem;
+  transition: 0.8s ease-in-out;
+  transform: translate(-30vw, 0);
+  opacity: 0;
+  scale: 0;
+  width: 52.8rem !important;
+  padding: 6.4rem 0 !important;
+}
+.hero h1,
+h2 {
+  font-size: 3.2rem;
+  font-weight: 200;
+}
+.hero h2 {
+  display: inline-flex;
+  gap: 1rem;
+}
+.hero b {
+  font-size: 6.4rem;
+  color: #1cefff;
+  font-weight: 100;
+}
+.hero.visible {
+  transform: translate(0, 0);
+  scale: 1;
+  opacity: 1;
+}
+.introduction {
+  filter: drop-shadow(0 0 1rem #000000cc);
+  font-weight: 100;
+}
+.contact {
+  padding: 3.2rem 0 0 0;
+  display: flex;
+  gap: 1.6rem;
+  justify-content: space-around;
+  width: 100%;
+}
+.contact_button {
+  width: 50%;
+  height: fit-content;
+  text-decoration: none;
+  text-align: center;
+  background-color: var(--moonlit-asteroid-900);
+  color: var(--main-color-50);
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.8rem;
+  font-family: Rubik;
+  transition: 0.4s;
+}
+.contact_button:hover {
+  background-color: var(--main-color-50);
+  color: var(--moonlit-asteroid-900);
+}
+@media screen and (max-width: 800px) {
+  .hero {
+    width: 100% !important;
   }
-  .text {
-    font-size: 2.4rem;
-    text-align: right;
-  }
-  .coding_section {
-    align-content: flex-end;
-    scale: 1;
+  .blueprint {
+    scale: 1.2;
   }
 }

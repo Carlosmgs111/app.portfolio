@@ -19,7 +19,7 @@
   padding: 0.8rem;
 }
 .body::-webkit-scrollbar {
-  width: 0.4rem;
+  width: 0.2rem;
   display: inside;
   background-color: transparent;
   transition: 0.4s;
@@ -28,7 +28,7 @@
   display: none;
 }
 .body::-webkit-scrollbar-thumb {
-  border-radius: 10px;
+  border-radius: 1rem;
   background-color: var(--main-color-400);
 }
 .body.active {

@@ -13,17 +13,17 @@
   },
   "defaultLang": "es",
   "icons_labels": {},
-  "pages": {
+  "navIndexes": {
     "es": [
       {
-        "label": "Proyectos",
-        "icon": "fa-solid fa-compass-drafting",
-        "to": "projects"
+        "label": "Portafolio",
+        "icon": "fa-solid fa-briefcase",
+        "to": "portfolio"
       },
       {
-        "label": "Certificados",
-        "icon": "fa-solid fa-award",
-        "to": "certificates"
+        "label": "Soluciónes",
+        "icon": "fa-regular fa-lightbulb",
+        "to": "solutions"
       },
       {
         "label": "Sobre Mí",
@@ -33,14 +33,14 @@
     ],
     "en": [
       {
-        "label": "Projects",
-        "icon": "fa-solid fa-compass-drafting",
-        "to": "projects"
+        "label": "Portfolio",
+        "icon": "fa-solid fa-briefcase",
+        "to": "portfolio"
       },
       {
-        "label": "Certificates",
-        "icon": "fa-solid fa-award",
-        "to": "certificates"
+        "label": "Solutions",
+        "icon": "fa-regular fa-lightbulb",
+        "to": "solutions"
       },
       {
         "label": "About Me",

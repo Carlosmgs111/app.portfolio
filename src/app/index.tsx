@@ -81,9 +81,9 @@ export function App() {
                 borderRadius: "4px",
               }}
               className="fa-regular fa-comment-dots"
-            ></i>&nbsp;
-            ubicado en la parte inferior derecha ↘️ que dice `online`, o dando
-            clic a esta notificación, ambos desplegarán el chat.
+            ></i>
+            &nbsp; ubicado en la parte inferior derecha ↘️ que dice `online`, o
+            dando clic a esta notificación, ambos desplegarán el chat.
           </p>
         ),
       });
@@ -132,7 +132,7 @@ export function App() {
     };
   }, [handleKeyPress]);
 
-  const { pages }: any = content;
+  const { navIndexes }: any = content;
 
   return (
     <>
@@ -141,13 +141,22 @@ export function App() {
         <title>Carlos Muñoz Gachancipá</title>
       </Helmet>
       <div className={styles.header}>
-        <Navigation
-          pages={pages[currentLang]}
-        ></Navigation>
+        <Navigation pages={navIndexes[currentLang]}></Navigation>
       </div>
       <div className={styles.content}>
+        <div className={styles.background}></div>
         <Memo>
           <Router>
+            <LazyComponent
+              fallback={
+                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+              }
+              Component={lazyLoad(
+                () => import("../pages/Projects"),
+                "Projects"
+              )}
+              path="/projects"
+            />
             <LazyComponent
               fallback={
                 <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
@@ -172,10 +181,10 @@ export function App() {
                 <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
               }
               Component={lazyLoad(
-                () => import("../pages/Projects"),
-                "Projects"
+                () => import("../pages/Portfolio"),
+                "Portfolio"
               )}
-              path="projects"
+              path="portfolio"
             />
             <LazyComponent
               fallback={

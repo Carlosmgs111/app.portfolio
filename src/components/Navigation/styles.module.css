@@ -124,8 +124,11 @@
   text-align: center;
   font-style: none;
   position: relative;
+  display: flex;
+  height: fit-content;
   align-items: center;
   justify-content: center;
+  align-items: center;
   text-decoration: none;
   color: var(--main-color-400);
   padding: 0.8rem;
@@ -133,7 +136,7 @@
   margin: 0;
   filter: saturate(150%);
 }
-.selected {
+.link.selected {
   color: black;
 }
 .avatar {
