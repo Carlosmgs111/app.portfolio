@@ -1,0 +1,91 @@
+.coat_of_arms {
+  width: 10rem;
+  height: auto;
+  aspect-ratio: 1/1;
+  transform: rotateZ(45deg);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.6rem;
+  scale: 2;
+}
+.coat_of_arms > span {
+  border-radius: 20%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 100;
+  background-size: 800% !important;
+  animation: glowing 40s linear infinite;
+  backdrop-filter: blur(10rem) saturate(180%) brightness(180%);
+  --deg: 45deg;
+  --background: linear-gradient(
+    var(--deg),
+    cyan,
+    magenta,
+    blue,
+    magenta,
+    cyan
+  );
+  background: var(--background);
+  box-shadow: 0 0 1rem black;
+}
+.coat_of_arms > span::before {
+  content: "";
+  position: absolute;
+  left: calc(0% + 1px);
+  top: calc(0% + 1px);
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  border-radius: inherit;
+  z-index: -100;
+  background-image: radial-gradient(
+      circle at center center,
+      transparent 0%,
+      rgb(33, 33, 33) 99%
+    ),
+    repeating-linear-gradient(
+      45deg,
+      #909a9f33 0px,
+      #a3a3a333 1px,
+      transparent 1px,
+      transparent 2px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      #a3a3a333 0px,
+      #a3a3a333 1px,
+      transparent 1px,
+      transparent 2px
+    ),
+    linear-gradient(45deg, #212121, #212121);
+  background-size: contain;
+}
+.coat_of_arms > span > i {
+  font-size: 2.8rem;
+  transform: rotateZ(-45deg);
+  background-size: 1000% !important;
+  animation: glowing 40s linear infinite;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  color: transparent;
+  position: relative;
+  --deg: 90deg; 
+  background: var(--background);
+  background-clip: text;
+  filter: contrast(150%) brightness(80%);
+}
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
