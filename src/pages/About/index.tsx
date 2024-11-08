@@ -1,5 +1,5 @@
 import { useNearScreen } from "../../hooks/useNearScreen";
-import content from "../../db/content.json";
+import content from "../../mocks/content.json";
 import styles from "./styles.module.css";
 import { useStateValue } from "../../contexts/context";
 import { useToggle } from "../../hooks/useToggle";

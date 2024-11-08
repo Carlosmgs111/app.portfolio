@@ -11,45 +11,12 @@
   width: 100%;
   min-height: 100vh;
   z-index: 1;
-  --bg-transform: perspective(100rem) rotateX(55deg) rotateY(0deg) rotateZ(30deg);
+  --bg-transform: perspective(100rem) rotateX(55deg) rotateY(0deg)
+    rotateZ(30deg);
   --bg-w: 500vw;
   --bg-h: 500vh;
   --bg-l: -200vw;
-  --bg-t: -180vh;
-}
-.background {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  z-index: -1;
-}
-.background::before {
-  content: "";
-  width: var(--bg-w);
-  height: var(--bg-h);
-  left: var(--bg-l);
-  top: var(--bg-t);
-  transform: var(--bg-transform);
-  position: fixed;
-  background: repeating-linear-gradient(
-      270deg,
-      #93939314 0px,
-      #93939314 1px,
-      transparent 1px,
-      transparent 9px
-    ),
-    repeating-linear-gradient(
-      180deg,
-      #93939314 0px,
-      #93939314 1px,
-      transparent 1px,
-      transparent 9px
-    ),
-    linear-gradient(270deg, #000000, #394041);
-  filter: saturate(180%) brightness(70%);
+  --bg-t: -200vh;
 }
 .live_chat {
   position: fixed;
@@ -59,7 +26,7 @@
 }
 .chat_button {
   padding: 1rem;
-  border-radius: .8rem;
+  border-radius: 0.8rem;
   background-color: #e52d27;
   transition: 0.4s;
   display: flex;
@@ -158,10 +125,10 @@
     bottom: 2rem;
   }
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 800px) {
   .content {
-    --bg-transform: perspective(100rem) rotateX(35deg) rotateY(0deg)
-      rotateZ(10deg);
+    --bg-transform: perspective(100rem) rotateX(45deg) rotateY(0deg)
+      rotateZ(15deg);
   }
   .banner {
     font-size: 2.6rem;

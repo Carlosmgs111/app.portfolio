@@ -11,13 +11,14 @@ import { Helmet } from "react-helmet";
 import { Router } from "../components/Router";
 import { Footer } from "../components/Footer";
 import { LiveChat } from "../components/LiveChat";
-import content from "../db/content.json";
+import content from "../mocks/content.json";
 import { URL_API } from "../services";
 import { actionTypes } from "../";
 import { toast, Zoom } from "react-toastify";
 import { lazyLoad, LazyComponent } from "../components/LazyComponent";
 import { CubeGridLoader } from "../components/CubeGridLoader";
 import { Memo } from "../components/Memo";
+import { AppBackground } from "../components/AppBackground";
 
 export function App() {
   const { clearAuth } = useApp();
@@ -144,67 +145,72 @@ export function App() {
         <Navigation pages={navIndexes[currentLang]}></Navigation>
       </div>
       <div className={styles.content}>
-        <div className={styles.background}></div>
-        <Memo>
-          <Router>
-            <LazyComponent
-              fallback={
-                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-              }
-              Component={lazyLoad(
-                () => import("../pages/Projects"),
-                "Projects"
-              )}
-              path="/projects"
-            />
-            <LazyComponent
-              fallback={
-                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-              }
-              Component={lazyLoad(() => import("../pages/Home"), "Home")}
-              path="/"
-            />
-            <LazyComponent
-              fallback={
-                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-              }
-              Component={lazyLoad(() => import("../pages/Home"), "Home")}
-              path="home"
-            />
-            <LazyComponent
-              Component={lazyLoad(() => import("../pages/Profile"), "Profile")}
-              path="profile"
-              {...{ clearAuth }}
-            />
-            <LazyComponent
-              fallback={
-                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-              }
-              Component={lazyLoad(
-                () => import("../pages/Portfolio"),
-                "Portfolio"
-              )}
-              path="portfolio"
-            />
-            <LazyComponent
-              fallback={
-                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-              }
-              Component={lazyLoad(
-                () => import("../pages/Certificates"),
-                "Certificates"
-              )}
-              path="certificates"
-            />
-            <LazyComponent
-              fallback={
-                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-              }
-              Component={lazyLoad(() => import("../pages/About"), "About")}
-              path="about"
-            />
-          </Router>
-        </Memo>
+        <AppBackground>
+          <Memo>
+            <Router>
+              <LazyComponent
+                fallback={
+                  <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+                }
+                Component={lazyLoad(
+                  () => import("../pages/Projects"),
+                  "Projects"
+                )}
+                path="/projects"
+              />
+              <LazyComponent
+                fallback={
+                  <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+                }
+                Component={lazyLoad(() => import("../pages/Home"), "Home")}
+                path="/"
+              />
+              <LazyComponent
+                fallback={
+                  <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+                }
+                Component={lazyLoad(() => import("../pages/Home"), "Home")}
+                path="home"
+              />
+              <LazyComponent
+                Component={lazyLoad(
+                  () => import("../pages/Profile"),
+                  "Profile"
+                )}
+                path="profile"
+                {...{ clearAuth }}
+              />
+              <LazyComponent
+                fallback={
+                  <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+                }
+                Component={lazyLoad(
+                  () => import("../pages/Portfolio"),
+                  "Portfolio"
+                )}
+                path="portfolio"
+              />
+              <LazyComponent
+                fallback={
+                  <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+                }
+                Component={lazyLoad(
+                  () => import("../pages/Certificates"),
+                  "Certificates"
+                )}
+                path="certificates"
+              />
+              <LazyComponent
+                fallback={
+                  <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+                }
+                Component={lazyLoad(() => import("../pages/About"), "About")}
+                path="about"
+              />
+            </Router>
+          </Memo>
+        </AppBackground>
+
         <div className={styles.live_chat}>
           <button
             className={`

@@ -1,0 +1,58 @@
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: -2;
+}
+.background::before {
+  content: "";
+  width: var(--bg-w);
+  height: var(--bg-h);
+  left: var(--bg-l);
+  top: var(--bg-t);
+  transform: var(--bg-transform);
+  position: fixed;
+  background: repeating-linear-gradient(
+      270deg,
+      #93939314 0px,
+      #93939314 1px,
+      transparent 1px,
+      transparent 9px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      #93939314 0px,
+      #93939314 1px,
+      transparent 1px,
+      transparent 9px
+    ),
+    linear-gradient(270deg, #000000, #394041);
+  filter: saturate(180%) brightness(70%);
+}
+.foreground {
+  width: var(--bg-w);
+  height: var(--bg-h);
+  top: var(--bg-t);
+  left: var(--bg-l);
+  position: fixed;
+  transform: var(--bg-transform);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: -1;
+}
+.blueprint {
+  width: 42rem;
+  height: 76rem;
+  display: flex;
+  position: fixed;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  filter: blur(2px) saturate(120%);
+  scale: 1.4;
+}

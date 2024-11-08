@@ -70,7 +70,7 @@
 }
 .section > div > a:hover {
   background-color: var(--main-color-300);
-  color: var(--main-color-950);
+  color: black;
 }
 .section > div > a.disabled {
   background-color: var(--moonlit-asteroid-700);

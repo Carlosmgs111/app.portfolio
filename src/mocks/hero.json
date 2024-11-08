@@ -1,0 +1,32 @@
+[
+  {
+    "faIcon": "fa-solid fa-layer-group",
+    "title": "Arquitectura Escalable",
+    "summary": "Desarrollo basado en patrones de arquitectura escalables para aplicaciones complejas."
+  },
+  {
+    "faIcon": "fa-solid fa-shield-halved",
+    "title": "Segura por Defecto",
+    "summary": "Accesos protegido por defecto, las rutas desprotegidas deberan ser declaradas de manera explícita."
+  },
+  {
+    "faIcon": "fa-solid fa-code",
+    "title": "Codigo Limpio",
+    "summary": "Codigo limpio y con buenas practicas de programación, garantizando la extensibilidad y mantenibildad a largo plazo"
+  },
+  {
+    "faIcon": "fa-solid fa-puzzle-piece",
+    "title": "Basado en Microservicios",
+    "summary": "Servicios modulares y desplegados independientemente."
+  },
+  {
+    "faIcon": "fa-solid fa-rocket",
+    "title": "Prototipado Rapido",
+    "summary": "Desde el concepto hasta la concepcion de un MVP en tiempo record."
+  },
+  {
+    "faIcon": "fa-solid fa-wand-magic-sparkles",
+    "title": "Integracion con IAs",
+    "summary": "Aprovecha el poder de un variado surtido de modelos de lenguajes para todo proposito."
+  }
+]

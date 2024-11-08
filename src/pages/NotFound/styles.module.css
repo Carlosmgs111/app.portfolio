@@ -3,11 +3,15 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  z-index: 1;
 }
 .content {
   text-align: center;
   justify-content: center;
   color: #dfdfdf;
+  padding: 6.4rem;
+  backdrop-filter: blur(2rem);
+  border-radius: 3.2rem;
 }
 .content > h2 {
   font-size: 10rem;

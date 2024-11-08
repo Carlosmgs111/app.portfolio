@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { addContext } from "./contexts";
 import "./index.css";
 import { setActions } from "./utils";
-import content from "./db/content.json";
+import content from "./mocks/content.json";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { lazyLoad, LazyComponent } from "./components/LazyComponent";

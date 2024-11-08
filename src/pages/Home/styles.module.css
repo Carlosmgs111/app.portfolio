@@ -7,30 +7,42 @@
   overflow-x: hidden;
   position: relative;
   gap: 16rem;
+  padding-top: 32rem;
   padding-bottom: 16rem;
   position: relative;
 }
-.over {
-  width: var(--bg-w);
-  height: var(--bg-h);
-  top: var(--bg-t);
-  left: var(--bg-l);
-  position: fixed;
-  transform: var(--bg-transform);
-  z-index: 1;
+.hero {
   display: flex;
+  max-width: 80rem;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  pointer-events: none;
+  gap: 4rem;
 }
-.blueprint {
-  width: 42rem;
-  height: 76rem;
+.hero > :nth-child(n) {
   display: flex;
-  position: fixed;
-  left: 50%;
-  top: 45%;
-  transform: translate(-50%, -50%);
-  filter: blur(2px) saturate(120%);
-  scale: 1.4;
+  gap: 1.8rem;
+  flex-direction: column;
+  border-radius: 1.8rem;
+  height: 20rem;
+  max-width: 38rem;
+  min-width: 32rem;
+  width: 100%;
+  backdrop-filter: blur(1.6rem);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.493);
+  font-size: 1.4rem;
+  padding: 2.4rem;
+  justify-content: space-between;
+  filter: brightness(140%) saturate(160%);
+}
+.hero > :nth-child(n) > span:nth-child(1) {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  font-size: 1.8rem;
+}
+.hero > :nth-child(n) > span:nth-child(1) > i {
+  font-size: 3.6rem;
 }
