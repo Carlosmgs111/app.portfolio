@@ -145,72 +145,67 @@ export function App() {
         <Navigation pages={navIndexes[currentLang]}></Navigation>
       </div>
       <div className={styles.content}>
-        <AppBackground>
-          <Memo>
-            <Router>
-              <LazyComponent
-                fallback={
-                  <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-                }
-                Component={lazyLoad(
-                  () => import("../pages/Projects"),
-                  "Projects"
-                )}
-                path="/projects"
-              />
-              <LazyComponent
-                fallback={
-                  <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-                }
-                Component={lazyLoad(() => import("../pages/Home"), "Home")}
-                path="/"
-              />
-              <LazyComponent
-                fallback={
-                  <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-                }
-                Component={lazyLoad(() => import("../pages/Home"), "Home")}
-                path="home"
-              />
-              <LazyComponent
-                Component={lazyLoad(
-                  () => import("../pages/Profile"),
-                  "Profile"
-                )}
-                path="profile"
-                {...{ clearAuth }}
-              />
-              <LazyComponent
-                fallback={
-                  <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-                }
-                Component={lazyLoad(
-                  () => import("../pages/Portfolio"),
-                  "Portfolio"
-                )}
-                path="portfolio"
-              />
-              <LazyComponent
-                fallback={
-                  <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-                }
-                Component={lazyLoad(
-                  () => import("../pages/Certificates"),
-                  "Certificates"
-                )}
-                path="certificates"
-              />
-              <LazyComponent
-                fallback={
-                  <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-                }
-                Component={lazyLoad(() => import("../pages/About"), "About")}
-                path="about"
-              />
-            </Router>
-          </Memo>
-        </AppBackground>
-
+        <AppBackground></AppBackground>
+        <Memo>
+          <Router>
+            <LazyComponent
+              fallback={
+                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+              }
+              Component={lazyLoad(
+                () => import("../pages/Projects"),
+                "Projects"
+              )}
+              path="/projects"
+            />
+            <LazyComponent
+              fallback={
+                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+              }
+              Component={lazyLoad(() => import("../pages/Home"), "Home")}
+              path="/"
+            />
+            <LazyComponent
+              fallback={
+                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+              }
+              Component={lazyLoad(() => import("../pages/Home"), "Home")}
+              path="home"
+            />
+            <LazyComponent
+              Component={lazyLoad(() => import("../pages/Profile"), "Profile")}
+              path="profile"
+              {...{ clearAuth }}
+            />
+            <LazyComponent
+              fallback={
+                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+              }
+              Component={lazyLoad(
+                () => import("../pages/Portfolio"),
+                "Portfolio"
+              )}
+              path="portfolio"
+            />
+            <LazyComponent
+              fallback={
+                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+              }
+              Component={lazyLoad(
+                () => import("../pages/Certificates"),
+                "Certificates"
+              )}
+              path="certificates"
+            />
+            <LazyComponent
+              fallback={
+                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+              }
+              Component={lazyLoad(() => import("../pages/About"), "About")}
+              path="about"
+            />
+          </Router>
+        </Memo>
         <div className={styles.live_chat}>
           <button
             className={`

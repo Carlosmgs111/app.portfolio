@@ -6,7 +6,8 @@
   flex-wrap: wrap;
   gap: 4rem;
   justify-content: center;
-  background-color: var(--moonlit-asteroid-900);
+  background-color: rgba(1, 32, 45, 0.589);
+  backdrop-filter: blur(2rem);
   position: relative;
   bottom: 0;
   padding: 4rem 0;

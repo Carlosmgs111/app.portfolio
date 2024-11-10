@@ -37,7 +37,7 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
         exclude: /node_modules/,
-        include: [path.resolve(__dirname, "./assets/images")],
+        include: [path.resolve(__dirname, "assets/images")],
         use: {
           loader: "file-loader",
           options: {
@@ -46,6 +46,18 @@ module.exports = {
             esModule: false,
           },
         },
+      },
+      {
+        test: /\.(mp4|webm|ogg)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[hash].[ext]",
+              outputPath: "videos/", 
+            },
+          },
+        ],
       },
       {
         test: /\.html$/,

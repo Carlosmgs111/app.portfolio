@@ -7,11 +7,26 @@
   overflow-x: hidden;
   position: relative;
   gap: 16rem;
-  padding-top: 32rem;
-  padding-bottom: 16rem;
+  padding: 16rem 0;
   position: relative;
 }
 .hero {
+  top: 0;
+  position: fixed;
+}
+.hero > video {
+  width: 100%;
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    black 30%,
+    black 70%,
+    transparent 100%
+  );
+  backdrop-filter: blur(1.2rem);
+  min-height: 10rem;
+}
+.quality_attributes {
   display: flex;
   max-width: 80rem;
   flex-direction: row;
@@ -19,7 +34,7 @@
   justify-content: center;
   gap: 4rem;
 }
-.hero > :nth-child(n) {
+.quality_attributes > :nth-child(n) {
   display: flex;
   gap: 1.8rem;
   flex-direction: column;
@@ -28,21 +43,27 @@
   max-width: 38rem;
   min-width: 32rem;
   width: 100%;
+  font-weight: 100;
   backdrop-filter: blur(1.6rem);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.493);
   font-size: 1.4rem;
   padding: 2.4rem;
   justify-content: space-between;
-  filter: brightness(140%) saturate(160%);
+  filter: brightness(160%) saturate(140%);
+  color: white;
 }
-.hero > :nth-child(n) > span:nth-child(1) {
+.quality_attributes > :nth-child(n) > span {
+  gap: 3.6rem;
+}
+.quality_attributes > :nth-child(n) > span:nth-child(1) {
   width: 100%;
   height: fit-content;
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: end;
   font-size: 1.8rem;
 }
-.hero > :nth-child(n) > span:nth-child(1) > i {
+.quality_attributes > :nth-child(n) > span:nth-child(1) > i {
   font-size: 3.6rem;
 }

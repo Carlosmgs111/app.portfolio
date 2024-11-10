@@ -56,3 +56,27 @@
   filter: blur(2px) saturate(120%);
   scale: 1.4;
 }
+.hero {
+  top: 0;
+  position: fixed;
+  transition: 2s;
+}
+.hero.hidden {
+  opacity: 0;
+  z-index: -10;
+  transition: 2s;
+}
+.video {
+  width: 100%;
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    black 30%,
+    black 70%,
+    transparent 100%
+  );
+  background-color: #000000;
+  backdrop-filter: blur(1.2rem);
+  filter:  saturate(180%);
+  min-height: 10rem;
+}

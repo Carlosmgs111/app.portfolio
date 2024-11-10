@@ -2,31 +2,51 @@
   {
     "faIcon": "fa-solid fa-layer-group",
     "title": "Arquitectura Escalable",
-    "summary": "Desarrollo basado en patrones de arquitectura escalables para aplicaciones complejas."
+    "summary": "Desarrollo basado en patrones de arquitectura modulares y escalables, garantizando su extensibilidad y mantenibilidad a largo plazo."
   },
   {
     "faIcon": "fa-solid fa-shield-halved",
     "title": "Segura por Defecto",
-    "summary": "Accesos protegido por defecto, las rutas desprotegidas deberan ser declaradas de manera explícita."
+    "summary": "Accesos protegido por defecto, garantizando la seguridad y privacidad de la informacion."
   },
   {
     "faIcon": "fa-solid fa-code",
-    "title": "Codigo Limpio",
+    "title": "Código Limpio",
     "summary": "Codigo limpio y con buenas practicas de programación, garantizando la extensibilidad y mantenibildad a largo plazo"
   },
   {
     "faIcon": "fa-solid fa-puzzle-piece",
-    "title": "Basado en Microservicios",
-    "summary": "Servicios modulares y desplegados independientemente."
+    "title": "Basado en Módulos",
+    "summary": "Servicios, carateristicas y componentes modulares e independientes, con capacidad de despliegue independiente."
   },
   {
     "faIcon": "fa-solid fa-rocket",
-    "title": "Prototipado Rapido",
-    "summary": "Desde el concepto hasta la concepcion de un MVP en tiempo record."
+    "title": "Prototipado Rápido",
+    "summary": "Desde el concepto hasta la concepcion de un MVP en tiempo record sin comprometer los atributos de calidad."
   },
   {
     "faIcon": "fa-solid fa-wand-magic-sparkles",
-    "title": "Integracion con IAs",
+    "title": "Integración con IAs",
     "summary": "Aprovecha el poder de un variado surtido de modelos de lenguajes para todo proposito."
+  },
+  {
+    "faIcon": "fa-solid fa-palette",
+    "title": "Alta Personalizacion",
+    "summary": "Diseños modernos para todo tipo de proyectos, landing, paginas, compoenentes, etc."
+  },
+  {
+    "faIcon": "fa-solid fa-toggle-off",
+    "title": "Integracion con Panel de Control",
+    "summary": "Acceso rapido a las todas las caracteristicas del proyecto, desde administracion de contenido a manejo de accesos y mas."
+  },
+  {
+    "faIcon": "fa-solid fa-bolt",
+    "title": "Optimización del Rendimiento",
+    "summary": "Aplicaciones y proyectos con alto rendimiento y bajo consumo de recursos."
+  },
+  {
+    "faIcon": "fa-solid fa-mobile-screen-button",
+    "title": "Interfaces Responsivas e Intuitivas",
+    "summary": "Interfaces intuitivas y responsivas para todo tipo de dispositivos y pantallas."
   }
 ]
