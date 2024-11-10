@@ -1,8 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { runRequest } from "../../../../services/runRequest";
 import { headers } from "../../../../services/configs";
-import Skeleton from "@mui/material/Skeleton";
-import Stack from "@mui/material/Stack";
 import { SocketService } from "../../../../services";
 import {
   DefineForms,
@@ -16,23 +14,6 @@ export function GenerateImage() {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const [settings, setSettings]: any = useState(null);
-
-  const skeletons = [];
-  for (let i = 0; i < settings?.numeroDeResultados; i++) {
-    skeletons.push(
-      <Skeleton
-        key={i}
-        animation="wave"
-        variant="rounded"
-        sx={{
-          backdropFilter: "brightness(80%) blur(0.8rem); ",
-          width: `${settings?.ancho}px`,
-          height: `${settings?.alto}px`,
-          borderRadius: "0.8rem",
-        }}
-      />
-    );
-  }
 
   const requestHeaders = headers();
 
@@ -152,20 +133,7 @@ export function GenerateImage() {
       }}
     >
       <h2 style={{ width: "100%", textAlign: "center" }}>Generar Imagenes</h2>
-      {loading && (
-        <Stack
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "calc(512px*2)",
-          }}
-        >
-          {skeletons}
-        </Stack>
-      )}
+      
       <div
         style={{
           display: "flex",

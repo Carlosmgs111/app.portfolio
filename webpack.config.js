@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
 module.exports = {
   mode: "production",
@@ -35,17 +36,22 @@ module.exports = {
         },
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
-        exclude: /node_modules/,
-        include: [path.resolve(__dirname, "assets/images")],
-        use: {
-          loader: "file-loader",
-          options: {
-            name: "[path][name].[ext]",
-            outputPath: "./images",
-            esModule: false,
-          },
+        test: /\.(png|jpe?g|gif|webp)$/i,
+        type: "asset",
+        generator: {
+          filename: "images/[hash][ext][query]",
         },
+        use: [
+          {
+            loader: "image-webpack-loader",
+            options: {
+              mozjpeg: { progressive: true, quality: 75 },
+              optipng: { enabled: false },
+              pngquant: { quality: [0.65, 0.9], speed: 4 },
+              webp: { quality: 75 },
+            },
+          },
+        ],
       },
       {
         test: /\.(mp4|webm|ogg)$/,
@@ -54,7 +60,7 @@ module.exports = {
             loader: "file-loader",
             options: {
               name: "[name].[hash].[ext]",
-              outputPath: "videos/", 
+              outputPath: "videos/",
             },
           },
         ],
@@ -85,6 +91,29 @@ module.exports = {
     ],
   },
   plugins: [
+    new ImageMinimizerPlugin({
+      minimizer: {
+        implementation: ImageMinimizerPlugin.imageminGenerate,
+        options: {
+          plugins: [
+            ["gifsicle", { interlaced: true }],
+            ["jpegtran", { progressive: true }],
+            ["optipng", { optimizationLevel: 5 }],
+            [
+              "svgo",
+              {
+                plugins: [
+                  {
+                    name: "removeViewBox",
+                    active: false,
+                  },
+                ],
+              },
+            ],
+          ],
+        },
+      },
+    }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
       filename: "./index.html",

@@ -1,4 +1,4 @@
-import { keyframes } from "styled-components";
+
 import { cloneElement } from "react";
 import { plural, singular } from "pluralize";
 
@@ -265,31 +265,6 @@ export const manyfy = (element: any, factor = 6) => {
     many.push(element);
   }
   return many;
-};
-
-// ? keyframes declaration depending of passed props
-export const setFrames = (frames: any, props: any) => {
-  if (frames.length < 2)
-    throw new Error("Must provide an array with at least two values");
-
-  const basePercentage = 100 / (frames.length - 1);
-
-  let literalKeyframe = ``;
-
-  frames.forEach((frame: any, index: any) => {
-    const rule = frame instanceof Function ? frame(props) : frame;
-    const percentage = Number((basePercentage * index).toFixed(2));
-
-    literalKeyframe += `
-      ${percentage}% {
-        ${rule}
-      }
-    `;
-  });
-
-  return keyframes`
-    ${literalKeyframe}
-  `;
 };
 
 export const createEnumFromArray = (array: Array<any>) =>

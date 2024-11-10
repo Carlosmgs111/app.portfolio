@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import styles  from "./styles.module.css";
+import styles from "./styles.module.css";
 
 interface VideoPlayerProps {
   src: string;
@@ -21,16 +21,21 @@ export const Video: React.FC<VideoPlayerProps> = ({
   ...options
 }: any) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [loaded, setLoaded] = useState(false);
   const videoStateManage = () => {
     const video = videoRef.current;
     if (!video) return;
+    video.addEventListener("loadeddata", () => {
+      video.style.opacity = "1";
+      setLoaded(true);
+    });
     video.addEventListener("error", (event: any) => {
       console.error("Error al cargar el video:", event);
     });
     video.addEventListener("pause", () => {
-      // if (!video.ended) {
-      //   video.play();
-      // }
+      if (!video.ended) {
+        !pause && video.play();
+      }
     });
   };
   useEffect(() => {
@@ -38,12 +43,16 @@ export const Video: React.FC<VideoPlayerProps> = ({
   }, [videoRef]);
 
   useEffect(() => {
+    if (!loaded) return;
     if (!videoRef.current) return;
+    const video = videoRef.current;
     if (pause) {
-      videoRef.current.pause();
+      setTimeout(() => video.pause(), 2000);
+      video.style.opacity = "0";
       return;
     }
-    videoRef.current.play();
+    video.play();
+    video.style.opacity = "1";
   }, [videoRef, pause]);
 
   return (
