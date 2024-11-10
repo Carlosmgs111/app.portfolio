@@ -59,15 +59,12 @@
 .hero {
   top: 0;
   position: fixed;
-  transition: 2s;
-}
-.hero.hidden {
-  opacity: 0;
-  z-index: -10;
+  opacity: 1;
   transition: 2s;
 }
 .video {
   width: 100%;
+  transition: 2s ease;
   mask-image: linear-gradient(
     180deg,
     transparent 0%,

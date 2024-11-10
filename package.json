@@ -1,4 +1,4 @@
-  {
+{
   "name": "app.portfolio",
   "version": "0.1.0",
   "private": true,
@@ -14,12 +14,7 @@
     "test:dev": "cypress open"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.0",
-    "@apollo/react-hooks": "^4.0.0",
-    "@emotion/react": "^11.7.1",
-    "@emotion/styled": "^11.6.0",
-    "@hapi/boom": "^10.0.0",
-    "@mui/material": "^5.8.3",
+    "@types/node": "^22.9.0",
     "@types/uuid": "^10.0.0",
     "@xyflow/react": "^12.3.4",
     "apollo-boost": "^0.4.9",
@@ -30,8 +25,8 @@
     "dotenv-webpack": "^7.0.3",
     "flatted": "^3.2.7",
     "fs": "^0.0.1-security",
-    "graphql": "^16.6.0",
-    "graphql-tag": "^2.12.6",
+    "image-minimizer-webpack-plugin": "^4.1.0",
+    "image-webpack-loader": "^8.1.0",
     "intersection-observer": "^0.12.0",
     "jose": "^4.11.1",
     "loadable-image": "^3.2.6",
@@ -41,14 +36,11 @@
     "pluralize": "^8.0.0",
     "random-words": "^2.0.1",
     "react": "^18.1.0",
-    "react-bootstrap": "^1.6.3",
-    "react-bootstrap-floating-label": "^1.6.0",
     "react-content-loader": "^6.2.0",
     "react-dom": "^18.1.0",
     "react-draggable": "^4.4.5",
     "react-dropzone": "^14.2.3",
     "react-helmet": "^6.1.0",
-    "react-hook-form": "^7.19.5",
     "react-resizable": "^3.0.4",
     "react-router-dom": "^6.2.1",
     "react-scripts": "^5.0.1",
@@ -100,7 +92,7 @@
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.6.0",
     "webpack-pwa-manifest": "^4.0.0",
-    "workbox-webpack-plugin": "^6.5.4"
+    "workbox-webpack-plugin": "^6.6.1"
   },
   "browser": {
     "crypto": false
