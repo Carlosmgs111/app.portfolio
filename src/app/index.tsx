@@ -14,7 +14,6 @@ import { LiveChat } from "../components/LiveChat";
 import content from "../mocks/content.json";
 import { URL_API } from "../services";
 import { actionTypes } from "../";
-import { toast, Zoom } from "react-toastify";
 import { lazyLoad, LazyComponent } from "../components/LazyComponent";
 import { CubeGridLoader } from "../components/CubeGridLoader";
 import { Memo } from "../components/Memo";
@@ -27,7 +26,6 @@ export function App() {
   const [showFixed, setShowFixed] = useState(false);
   const [currentModal, setCurrentModal]: any = useState(null);
   const [showChat, toggleShowChat] = useToggle(false, true);
-
   useEffect(() => {
     const onScroll = (e: any) => {
       const newShowFixed = window.scrollY > 200;
@@ -44,51 +42,6 @@ export function App() {
         dispatch({ type: actionTypes.setIsOnline, payload: response })
       );
   }, []);
-
-  useEffect(() => {
-    const notify = ({ message, kind = "success" }: any = {}) => {
-      const options: any = {
-        position: "top-center",
-        autoClose: 8000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Zoom,
-        style: { fontSize: "1.2rem", color: "black", textAlign: "justify" },
-        icon: false,
-        closeButton: false,
-        onClick: toggleShowChat,
-      };
-      const notifyKinds: any = {
-        success: toast.success,
-        error: toast.error,
-      };
-      notifyKinds[kind](message || "Peticion completada!", options);
-    };
-    isOnline &&
-      !token &&
-      notify({
-        message: (
-          <p>
-            Hola 👋, me encuentro conectado, solo por si quieres conversar un
-            rato conmigo 👍, pulsa el boton verde&nbsp;
-            <i
-              style={{
-                backgroundColor: "#52c234",
-                padding: "1%",
-                borderRadius: "4px",
-              }}
-              className="fa-regular fa-comment-dots"
-            ></i>
-            &nbsp; ubicado en la parte inferior derecha ↘️ que dice `online`, o
-            dando clic a esta notificación, ambos desplegarán el chat.
-          </p>
-        ),
-      });
-  }, [isOnline]);
 
   const handleKeyPress = useCallback(
     (event: KeyboardEvent) => {
@@ -220,7 +173,9 @@ export function App() {
               }`}
             ></i>
             <span className={`${isOnline ? styles.online : ""}`}>
-              {isOnline ? "online" : "offline"}
+              {isOnline
+                ? "Hi, I'm online"
+                : "I'm currently offline, chat with Archie"}
             </span>
           </button>
           <div className={`${styles.chat_container} `}>

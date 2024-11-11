@@ -20,11 +20,11 @@ export const Portfolio = ({}) => {
   const [certificatesIndexes, setCertificatesIndexes] = useState(certificates);
   const [projectsIndexes, setProjectsIndexes] = useState(projects);
   const titles: any = {
-    projects: { es: "🏗️ Mis Proyectos", en: "🏗️ My Projects" },
-    certifications: { es: "🎓 Mis Certificados", en: "🎓 My Certificates" },
+    projects: { es: "Mis Proyectos", en: "My Projects" },
+    certifications: { es: "Mis Certificados", en: "My Certificates" },
     techs: {
-      es: "🎯 Las Tecnologías Que Domino",
-      en: "🎯 Technologies I Master",
+      es: "Las Tecnologías Que Domino",
+      en: "Technologies I Master",
     },
   };
   useEffect(() => {

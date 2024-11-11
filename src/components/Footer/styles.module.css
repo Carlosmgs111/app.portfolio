@@ -6,7 +6,7 @@
   flex-wrap: wrap;
   gap: 4rem;
   justify-content: center;
-  background-color: rgba(1, 32, 45, 0.589);
+  background-color: #19191996;
   backdrop-filter: blur(2rem);
   position: relative;
   bottom: 0;

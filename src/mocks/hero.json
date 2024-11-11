@@ -48,5 +48,15 @@
     "faIcon": "fa-solid fa-mobile-screen-button",
     "title": "Interfaces Responsivas e Intuitivas",
     "summary": "Interfaces intuitivas y responsivas para todo tipo de dispositivos y pantallas."
+  },
+  {
+    "faIcon": "fa-solid fa-clone",
+    "title": "\"Copy and Paste\" de UI/UX",
+    "summary": "Ves alguna interfaz de usuario que te guste, podemos imitarla y adaptarla a las necesidades del proyecto."
+  },
+  {
+    "faIcon": "fa-solid fa-plug",
+    "title": "Facil integracion con otras tecnologias y plataformas.",
+    "summary": "Integracion completa con cualquier tecnologia o plataforma existente, dependiendo de las necesidades del proyecto"
   }
 ]

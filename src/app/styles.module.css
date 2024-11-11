@@ -25,44 +25,62 @@
   z-index: 1;
 }
 .chat_button {
-  padding: 1rem;
+  padding: 1.2rem;
+  width: fit-content;
+  height: auto;
+  aspect-ratio: 1/1;
   border-radius: 0.8rem;
-  background-color: #e52d27;
+  background-color: #ff1493;
   transition: 0.4s;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--main-color-950);
+  color: black;
   outline: none;
   border: none;
+  position: relative;
 }
 .chat_button.online {
-  background-color: #52c234;
+  background-color: #007fff;
 }
 .chat_button.hidden {
   transform: translate(12rem, 0);
 }
 .chat_button:hover {
-  scale: 1.2;
-  background-color: var(--main-color-950);
+  background-color: black;
 }
 .chat_button > i {
-  font-size: 2.4rem;
+  font-size: 2.8rem;
   transition: 0.4s;
 }
 .chat_button > span {
+  width: 200%;
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-family: "Rubik";
   pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  background-color: #ff1493;
+  transition: transform 0.4s, opacity 0.2s;
+  opacity: 0;
+  z-index: -1;
+  padding: 1.2rem;
+  border-radius: 0.8rem;
 }
-.chat_button:hover > i,
+.chat_button > span.online {
+  background-color: #007fff;
+}
+.chat_button:hover > i {
+  color: #ff1493;
+}
 .chat_button:hover > span {
-  color: #e52d27;
+  transform: translate(-100%, -50%);
+  opacity: 1;
 }
-.chat_button:hover > i.online,
-.chat_button:hover > span.online {
-  color: #52c234;
+.chat_button:hover > i.online {
+  color: #007fff;
 }
 .chat_container {
   display: relative;

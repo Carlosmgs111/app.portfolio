@@ -84,6 +84,7 @@
 @media screen and (min-width: 800px) {
   .coat_of_arms {
     width: 80rem;
+    gap: 1.2rem;
   }
   .coat_of_arms > span > i {
     font-size: 22.4rem;
