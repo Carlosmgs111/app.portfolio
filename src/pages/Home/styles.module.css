@@ -53,3 +53,16 @@
 .quality_attributes > :nth-child(n) > span:nth-child(1) > i {
   font-size: 3.6rem;
 }
+@media screen and (max-width: 800px) {
+  .quality_attributes {
+    gap: 0.8rem;
+  }
+}
+@media screen and (max-width: 489px) {
+  .quality_attributes > :nth-child(n) {
+    aspect-ratio: unset;
+    width: 100%;
+    max-width: unset;
+    margin: 2rem;
+  }
+}

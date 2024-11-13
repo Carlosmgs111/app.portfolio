@@ -3,7 +3,6 @@ import { useToggle } from "../../hooks/useToggle";
 import { useResizeHTMLElement } from "../../hooks/useResize";
 import { LogoSVG } from "./../../icons";
 import { useStateValue } from "../../contexts/context";
-import { actionTypes } from "../../";
 import { Linkdex } from "./Linkdex";
 import { useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -44,10 +43,7 @@ export default function Navigation({ className, login, pages }: any) {
     adjustIndicatorSizes(pathname);
   }, [pathname]);
   useEffect(() => {
-    dispatch({
-      type: actionTypes.setCurrentLang,
-      payload: language,
-    });
+    dispatch({ language });
   }, [language]);
 
   return (

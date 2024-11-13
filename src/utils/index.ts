@@ -1,4 +1,3 @@
-
 import { cloneElement } from "react";
 import { plural, singular } from "pluralize";
 
@@ -284,8 +283,7 @@ export const getDispatchSetFunctions = (
   for (let actionType in actionTypes) {
     functions = {
       ...functions,
-      [actionType]: (data: any) =>
-        dispatch({ type: actionType, payload: data }),
+      [actionType]: (data: any) => dispatch({ [data]: data }),
     };
   }
   return functions;
@@ -355,4 +353,23 @@ export const arrayJoin = (
   }
   const joinedString = stringArray.join(joiner);
   return joinedString;
+};
+
+export const isPrimitiveValue = (value: any): boolean => {
+  if (
+    typeof value === "string" ||
+    typeof value === "number" ||
+    typeof value === "boolean" ||
+    typeof value === "bigint" ||
+    typeof value === "symbol" ||
+    typeof value === "undefined"
+    // || typeof value === "object"
+  ) {
+    return true;
+  }
+  if (value === null) {
+    return true;
+  }
+  if (value?.$$typeof) return false;
+  return false;
 };

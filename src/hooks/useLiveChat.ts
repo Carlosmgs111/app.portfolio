@@ -1,7 +1,6 @@
 import { useStateValue } from "../contexts/context";
 import { SocketService } from "../services";
 import { useEffect, useState } from "react";
-import { actionTypes } from "..";
 import { generate } from "random-words";
 import { labelCases } from "../utils";
 import { useDebounce } from "./useDebounce";
@@ -85,7 +84,7 @@ export const useLiveChat = () => {
     SocketService.receiveMessage({
       core: {
         isOnline: ({ isOnline }: any) => {
-          dispatch({ type: actionTypes.setIsOnline, payload: isOnline });
+          dispatch({  isOnline });
         },
       },
     });

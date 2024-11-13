@@ -7,16 +7,16 @@ import { lazyLoad, LazyComponent } from "../../components/LazyComponent";
 import { CubeGridLoader } from "../../components/CubeGridLoader";
 import { useStateValue } from "../../contexts/context";
 import { URL_API } from "../../../src/services";
+import Helmet from "react-helmet";
 const InfiniteCarousel = lazyLoad(
   () => import("../../components/InfiniteCarousel"),
   "InfiniteCarousel"
 );
 import { useEffect, useState } from "react";
-import { actionTypes } from "../../index";
 import { Link } from "react-router-dom";
 
 export const Portfolio = ({}) => {
-  const [{ currentLang, projects, certificates }, dispatch] = useStateValue();
+  const [{ language, projects, certificates }, dispatch] = useStateValue();
   const [certificatesIndexes, setCertificatesIndexes] = useState(certificates);
   const [projectsIndexes, setProjectsIndexes] = useState(projects);
   const titles: any = {
@@ -34,37 +34,38 @@ export const Portfolio = ({}) => {
         .then(({ projects, kind, state, stack }) => {
           setProjectsIndexes(projects);
           dispatch({
-            type: actionTypes.setProjectsOptions,
-            payload: { kind, stack, state },
+            projectsOptions: { kind, stack, state },
           });
-          dispatch({ type: actionTypes.setProjects, payload: projects });
+          dispatch({ projects });
         });
     }
     if (!certificatesIndexes[0]) {
-      fetch(`${URL_API}/certifications`, { method: "GET" })
+      fetch(`${URL_API}/certificates`, { method: "GET" })
         .then((data) => data.json())
         .then((data) => {
           setCertificatesIndexes(data);
           dispatch({
-            type: actionTypes.setCertifications,
-            payload: data,
+            certificates: data,
           });
         });
       fetch(`${URL_API}/institutions`, { method: "GET" })
         .then((data) => data.json())
         .then((data) => {
           dispatch({
-            type: actionTypes.setInstitutions,
-            payload: data,
+            institutions: data,
           });
         });
     }
   }, []);
   return (
     <div className={styles.page}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Portfolio &bull; Carlos Muñoz Gachancipá</title>
+      </Helmet>
       <article className={`${styles.section} `}>
         <div>
-          <h2>{titles.projects[currentLang]}</h2>
+          <h2>{titles.projects[language]}</h2>
           <Memo deps={[projects]}>
             <LazyComponent
               Component={InfiniteCarousel}
@@ -86,7 +87,7 @@ export const Portfolio = ({}) => {
       </article>
       <article className={`${styles.section} `}>
         <div>
-          <h2>{titles.certifications[currentLang]}</h2>
+          <h2>{titles.certifications[language]}</h2>
           <Memo deps={[certificatesIndexes]}>
             <LazyComponent
               Component={InfiniteCarousel}
@@ -120,7 +121,7 @@ export const Portfolio = ({}) => {
       </article>
       <article className={`${styles.section}`}>
         <div>
-          <h2>{titles.techs[currentLang]}</h2>
+          <h2>{titles.techs[language]}</h2>
           <Memo>
             <TechSkills></TechSkills>
           </Memo>

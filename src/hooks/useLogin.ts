@@ -13,8 +13,8 @@ function useLogin() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("" /* || config.email */);
-  const [username, setUsername] = useState("" || config.username);
-  const [password, setPassword] = useState("" || config.password);
+  const [username, setUsername] = useState(config.username || "");
+  const [password, setPassword] = useState(config.password || "");
   const [label, switchLabel] = useToggle("signin", "signup");
   const { setAuth } = useAuth();
 

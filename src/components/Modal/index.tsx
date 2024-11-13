@@ -18,7 +18,7 @@ export const Modal = ({
       ${isActive && over ? styles.over : ""}`}
       {...{
         onClick: (e: any) => {
-          if (e.target.id === "modal_body") setInjected(null);
+          if (e.target.id === "modal_body") setInjected({ currentModal: null });
         },
         id: "modal_body",
       }}
@@ -35,7 +35,7 @@ export const Modal = ({
           <div className={styles.button_container}>
             <i
               className={`fa-solid fa-xmark ${styles.close_button}`}
-              onClick={() => setInjected(null)}
+              onClick={() => setInjected({ currentModal: null })}
             />
           </div>
         )}

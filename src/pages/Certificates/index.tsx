@@ -1,16 +1,9 @@
 import { Certificate, CertificateSkeleton } from "../../containers/Certificate";
 import { PanelSidebar, innerItems } from "../../components/PanelSidebar";
-import {
-  manyfy,
-  injectAttrsToReactElements,
-  normalize,
-  settingName,
-  setActions,
-  getDispatchSetFunctions,
-} from "../../utils";
+import { manyfy, injectAttrsToReactElements, normalize } from "../../utils";
 import { Page } from "../../components/Page";
 import { SidePanel } from "../../components/SidePanel";
-import { useState, useEffect, useReducer } from "react";
+import { useState, useEffect } from "react";
 import { useTrackSidebar } from "../../hooks/useTrackSidebar";
 import { Modal } from "../../components/Modal";
 import styles from "./styles.module.css";
@@ -22,6 +15,7 @@ import { addCertificate, addInstitution } from "./sections";
 import { INPUT_TYPES } from "../../components/DefineForms";
 import Helmet from "react-helmet";
 import { Memo } from "../../components/Memo";
+import { useReduceState } from "../../hooks/useReduceState";
 
 export function Certificates({}: any) {
   const [
@@ -42,30 +36,10 @@ export function Certificates({}: any) {
     loading: false,
     error: null,
   };
-  const actionTypes = setActions([], initialState);
 
-  const reducer = (state: any, dispatch: Function) => {
-    const { type, payload }: any = dispatch;
-    const actions: any = {};
-    for (let s in initialState) {
-      actions[settingName(s)] = { ...state, [s]: payload };
-    }
-    return actions[type] || state;
-  };
-
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReduceState(initialState);
 
   const { institutions, certificates, currentModal, loading, error } = state;
-
-  const setFunctions = getDispatchSetFunctions(dispatch, actionTypes);
-
-  const {
-    setCertificates,
-    setInstitutions,
-    setCurrentModal,
-    setLoading,
-    setError,
-  }: any = setFunctions;
 
   const { TrackSidebar, ContentWrapper }: any = useTrackSidebar();
 
@@ -101,13 +75,12 @@ export function Certificates({}: any) {
     ),
     addCertification: addCertificate({
       certificationSchema,
-      setCertificates,
+      dispatch,
       certificates,
-      setCurrentModal,
     }),
     addInstitution: addInstitution({
       institutionSchema,
-      setInstitutions,
+      dispatch,
       institutions,
     }),
   };
@@ -118,14 +91,14 @@ export function Certificates({}: any) {
   );
 
   const switchModal = (currentModal: any, modal: any) => {
-    if (!currentModal) return setCurrentModal(modal);
+    if (!currentModal) return dispatch({ currentModal: modal });
     const [currentModalName, modalName] = [
       currentModal.modalName,
       modal.modalName,
     ];
     if (currentModal && currentModalName !== modalName)
-      setCurrentModal({ ...modal });
-    if (currentModalName === modalName) setCurrentModal(null);
+      dispatch({ currentModal: { ...modal } });
+    if (currentModalName === modalName) dispatch({ currentModal: null });
   };
 
   let items: any = [
@@ -153,12 +126,14 @@ export function Certificates({}: any) {
               tag.includes(e.target.value.toLowerCase())
             )[0]
           );
-        setCertificates([
-          ...certificates.map((c: any) => ({
-            ...c,
-            visible: isIncluded(c) || isTagIncluded(c),
-          })),
-        ]);
+        dispatch({
+          certificates: [
+            ...certificates.map((c: any) => ({
+              ...c,
+              visible: isIncluded(c) || isTagIncluded(c),
+            })),
+          ],
+        });
       },
     },
   ];
@@ -173,12 +148,14 @@ export function Certificates({}: any) {
         className: owned ? "fa-solid fa-eye" : "fa-solid fa-eye-slash",
         onClick: () => {
           switchOwned();
-          setCertificates([
-            ...certificates.map((c: any) => ({
-              ...c,
-              visible: owned || c.grantedTo === username,
-            })),
-          ]);
+          dispatch({
+            certificates: [
+              ...certificates.map((c: any) => ({
+                ...c,
+                visible: owned || c.grantedTo === username,
+              })),
+            ],
+          });
         },
       },
       {
@@ -213,26 +190,26 @@ export function Certificates({}: any) {
     cb({
       state,
       dispatch,
-      actionTypes,
-      ...setFunctions,
     });
 
   useEffect(() => {
     !certificates[0] &&
       runRequest({
         setData: async (data: any) => {
-          setCertificates(data.map((d: any) => ({ ...d, visible: true })));
+          dispatch({
+            certificates: data.map((d: any) => ({ ...d, visible: true })),
+          });
           await runRequest({
             setData: (data: any) => {
-              setInstitutions(data);
+              dispatch({ institutions: data });
             },
-            setError,
-            setLoading,
+            setError: (error: any) => dispatch({ error }),
+            setLoading: (loading: any) => dispatch({ loading }),
           }).get("institutions");
         },
-        setError,
-        setLoading,
-      }).get("certifications" /* , { ...requestHeaders } */);
+        setError: (error: any) => dispatch({ error }),
+        setLoading: (loading: any) => dispatch({ loading }),
+      }).get("certificates" /* , { ...requestHeaders } */);
 
     return () => {};
   }, []);
@@ -245,21 +222,15 @@ export function Certificates({}: any) {
         value: institutions.map((i: any) => i.name),
       },
     });
-    globalDispatch({
-      type: actionTypes.setCertificates,
-      payload: certificates,
-    });
-    globalDispatch({
-      type: actionTypes.setInstitutions,
-      payload: institutions,
-    });
+    globalDispatch({ certificates });
+    globalDispatch({ institutions });
   }, [certificates, institutions]);
 
   return (
     <Page>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Certications | Carlos Muñoz Gachancipá</title>
+        <title>Certificates &bull; Carlos Muñoz Gachancipá</title>
       </Helmet>
       <SidePanel
         {...{
@@ -280,7 +251,7 @@ export function Certificates({}: any) {
                       id: certificate.uuid,
                       title: certificate.title,
                       initialCertificate: certificate,
-                      setCurrentModal,
+                      setCurrentModal: dispatch,
                       updateState,
                       institutions,
                     }}
@@ -313,11 +284,11 @@ export function Certificates({}: any) {
         {...{
           active: false,
           injected: currentModal,
-          setInjected: setCurrentModal,
+          setInjected: dispatch,
           over: !false,
           embedbutton: (
             <i
-              onClick={() => setCurrentModal(null)}
+              onClick={() => dispatch({ currentModal: null })}
               className="fa-solid fa-xmark"
             ></i>
           ),

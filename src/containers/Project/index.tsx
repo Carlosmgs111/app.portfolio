@@ -112,13 +112,13 @@ export const Project = ({
               result &&
                 runRequest({
                   setData: (data: any) => {
-                    updateState(({ setProjects, state }: any) => {
+                    updateState(({ dispatch, state }: any) => {
                       const newProjects = [...state.projects];
                       newProjects.splice(
                         newProjects.findIndex((c) => c.uuid === data.uuid),
                         1
                       );
-                      setProjects(newProjects);
+                      dispatch({ projects: newProjects });
                     });
                   },
                 }).delete(`projects/${uuid}`, {
@@ -154,15 +154,19 @@ export const Project = ({
                       {...{
                         src: image,
                         onClick: () => {
-                          setCurrentModal(
-                            <img
-                              alt=""
-                              src={image}
-                              className={`${styles.image} ${styles.zoomed}`}
-                              style={{ cursor: "zoom-out", maxWidth: "100%" }}
-                              onClick={() => setCurrentModal(null)}
-                            />
-                          );
+                          setCurrentModal({
+                            currentModal: (
+                              <img
+                                alt=""
+                                src={image}
+                                className={`${styles.image} ${styles.zoomed}`}
+                                style={{ cursor: "zoom-out", maxWidth: "100%" }}
+                                onClick={() =>
+                                  setCurrentModal({ currentModal: null })
+                                }
+                              />
+                            ),
+                          });
                         },
                       }}
                     />

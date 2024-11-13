@@ -6,9 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 
 export const addCertificate = ({
   certificationSchema,
-  setCertificates,
-  certifications,
-  setCurrentModal,
+  dispatch,
+  certificates,
 }: any) => {
   const requestHeaders = headers();
   return (
@@ -20,19 +19,21 @@ export const addCertificate = ({
             let { setError, setLoading, data, reset } = params;
             runRequest({
               setData: (data: any) => {
-                setCertificates([
-                  ...certifications,
-                  ...data.map((c: any) => ({ ...c, visible: true })),
-                ]);
-                setCurrentModal(null);
+                dispatch({
+                  certificates: [
+                    ...certificates,
+                    ...data.map((c: any) => ({ ...c, visible: true })),
+                  ],
+                });
+                dispatch({ currentModal: null });
                 reset();
               },
               setError: (e: any) =>
                 setError(new Error(e.response.data.message)),
               setLoading,
             }).post(
-              `certifications/certifications`,
-              { certifications: [{ ...data[0], uuid: uuidv4() }] },
+              `certificates/certificates`,
+              { certificates: [{ ...data[0], uuid: uuidv4() }] },
               {
                 ...requestHeaders,
               }

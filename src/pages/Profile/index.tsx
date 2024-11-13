@@ -10,7 +10,7 @@ import { useState } from "react";
 import { SocketService } from "../../services";
 
 export function Profile({ clearAuth }: any) {
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
+  const [{ useStateValue }] = getContext(CONTEXTS.Global);
   const [
     {
       token,
@@ -70,7 +70,6 @@ export function Profile({ clearAuth }: any) {
           SocketService.sendMessage({
             core: { unregister: [{ id: SocketService.id }] },
           });
-          dispatch({ type: ACTIONS.reset });
           navigate("/");
         }
       },

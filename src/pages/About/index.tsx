@@ -6,7 +6,7 @@ import { useToggle } from "../../hooks/useToggle";
 import { Typing } from "../../components/Typing";
 
 export const About = ({}: any) => {
-  const [{ currentLang }] = useStateValue();
+  const [{ language }] = useStateValue();
   const { summary }: any = content;
   const [showIntroduccion, toggleShowIntroduccion] = useToggle(false, true);
   const [summaryRef, showSummary] = useNearScreen(false, null, {
@@ -153,7 +153,7 @@ export const About = ({}: any) => {
     <div className={styles.page}>
       <article ref={introductionRef} className={`${styles.section}`}>
         <div className={`${styles.hero} ${showIntroduccion && styles.visible}`}>
-          {introduction[currentLang]}
+          {introduction[language]}
           <div className={styles.contact}>
             <a
               className={styles.contact_button}
@@ -176,7 +176,7 @@ export const About = ({}: any) => {
         ref={summaryRef}
         className={`${styles.section} ${showSummary && styles.visible}`}
       >
-        <p className={styles.text}>{summary[currentLang]}</p>
+        <p className={styles.text}>{summary[language]}</p>
       </article>
       <section
         ref={codingRef}

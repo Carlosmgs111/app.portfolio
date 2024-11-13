@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from "react";
+import { useEffect } from "react";
 import { useStateValue } from "../../contexts/context";
 import axios from "axios";
 import { URL_API } from "../../services";
@@ -12,12 +12,9 @@ import { Modal } from "../../components/Modal";
 import { runRequest } from "../../services/runRequest";
 import { DefineForms, INPUT_TYPES } from "../../components/DefineForms";
 import { headers } from "../../services/configs";
-import {
-  setActions,
-  getDispatchSetFunctions,
-  settingName,
-  labelCases,
-} from "../../utils";
+import { v4 as uuidv4 } from "uuid";
+import { useReduceState } from "../../hooks/useReduceState";
+import { labelCases } from "../../utils";
 import { Helmet } from "react-helmet";
 import { useLocation } from "react-router-dom";
 import { Memo } from "../../components/Memo";
@@ -27,7 +24,7 @@ export function Projects({}: any) {
   const [
     {
       token,
-      currentLang,
+      language,
       projects: globalProjects,
       projectsOptions: globalProjectsOptions,
     },
@@ -43,27 +40,9 @@ export function Projects({}: any) {
     error: null,
   };
 
-  const actionTypes = setActions([], initialState);
-
-  const reducer = (state: any, dispatch: Function) => {
-    const { type, payload }: any = dispatch;
-    const actions: any = {};
-    for (let s in initialState) {
-      actions[settingName(s)] = { ...state, [s]: payload };
-    }
-    return actions[type] || state;
-  };
-
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReduceState(initialState);
   const { projects, projectsOptions, currentModal, loading, error } = state;
   const { stack: stackOps, kind: kindOps, state: stateOps } = projectsOptions;
-  const {
-    setProjects,
-    setProjectsOptions,
-    setCurrentModal,
-    setLoading,
-    setError,
-  }: any = getDispatchSetFunctions(dispatch, actionTypes);
 
   const sidebars = [
     <TrackSidebar icon="fa-solid fa-compass-drafting" />, // ? ⬅️ this is a rendered component, so we just put as a variable and it is not called
@@ -72,8 +51,6 @@ export function Projects({}: any) {
     cb({
       state,
       dispatch,
-      actionTypes,
-      setProjects,
     });
 
   if (token)
@@ -88,63 +65,78 @@ export function Projects({}: any) {
               content: "Agregar Proyecto",
               onClick: () => {
                 !currentModal
-                  ? setCurrentModal(
-                      <div
-                        style={{
-                          width: "60rem",
-                        }}
-                      >
-                        <DefineForms
-                          {...{
-                            baseSchema: {
-                              name: "",
-                              descriptions: [""],
-                              images: [""],
-                              tags: [""],
-                              stack: {
-                                inputType: [INPUT_TYPES.SELECTION],
-                                value: [projectsOptions.stack],
-                                label: "stack",
-                              },
-                              kind: {
-                                inputType: [INPUT_TYPES.SELECTION],
-                                value: [projectsOptions.kind],
-                                label: "kind",
-                              },
-                              state: {
-                                inputType: INPUT_TYPES.SELECTION,
-                                value: projectsOptions.state,
-                                label: "state",
-                              },
-                              uri: "",
-                              version: "",
-                            },
-                            onClickHandler: ({
-                              setError,
-                              setLoading,
-                              data,
-                              reset,
-                            }: any) => {
-                              runRequest({
-                                setData: (data: any) => {
-                                  setProjects([...projects, ...data]);
+                  ? dispatch({
+                      currentModal: (
+                        <div
+                          style={{
+                            width: "60rem",
+                          }}
+                        >
+                          <DefineForms
+                            {...{
+                              baseSchema: {
+                                name: "",
+                                descriptions: [""],
+                                images: [""],
+                                tags: [""],
+                                stack: {
+                                  inputType: [INPUT_TYPES.SELECTION],
+                                  value: [projectsOptions.stack],
+                                  label: "stack",
                                 },
+                                kind: {
+                                  inputType: [INPUT_TYPES.SELECTION],
+                                  value: [projectsOptions.kind],
+                                  label: "kind",
+                                },
+                                state: {
+                                  inputType: INPUT_TYPES.SELECTION,
+                                  value: projectsOptions.state,
+                                  label: "state",
+                                },
+                                uri: "",
+                                version: "",
+                              },
+                              onClickHandler: ({
                                 setError,
                                 setLoading,
-                              }).post(
-                                `projects/projects`,
-                                { projects: data },
-                                {
-                                  ...requestHeaders,
-                                }
-                              );
-                              reset();
-                            },
-                          }}
-                        />
-                      </div>
-                    )
-                  : setCurrentModal(null);
+                                data,
+                                reset,
+                              }: any) => {
+                                runRequest({
+                                  /*************  ✨ Codeium Command ⭐  *************/
+                                  /**
+                                   * Updates the projects state by dispatching a new array of projects.
+                                   * Merges the existing projects with the new data provided.
+                                   *
+                                   * @param {any} data - The new project data to be added to the state.
+                                   */
+                                  /******  9f444335-9e35-4ac6-af81-de7c6dfa0fba  *******/
+                                  setData: (data: any) => {
+                                    dispatch({
+                                      projects: [...projects, ...data],
+                                    });
+                                  },
+                                  setError,
+                                  setLoading,
+                                }).post(
+                                  `projects/projects`,
+                                  {
+                                    projects: [{ ...data[0], uuid: uuidv4() }],
+                                  },
+                                  {
+                                    ...requestHeaders,
+                                  }
+                                );
+                                reset();
+                                dispatch({ currentModal: null });
+                              },
+                            }}
+                          />
+                        </div>
+                      ),
+                    })
+                  : dispatch({ currentModal: null });
               },
             },
           ],
@@ -181,40 +173,34 @@ export function Projects({}: any) {
   //? ⬆️
   useEffect(() => {
     const fetchProjects = async () => {
-      setLoading(true);
+      dispatch({ loading: true });
       try {
         const { data } = await axios.get(`${URL_API}/projects`);
         const { projects, kind, state, stack } = data;
-        setProjects([...projects]);
-        setProjectsOptions({ kind, state, stack });
+        dispatch({ projects: [...projects] });
+        dispatch({ projectsOptions: { kind, state, stack } });
       } catch (e) {
-        setLoading(false);
-        setError(e);
+        dispatch({ loading: false });
+        dispatch({ error: e });
       }
-      setLoading(false);
+      dispatch({ loading: false });
     };
     !projects[0] && fetchProjects();
     return () => {
-      setProjects([]);
+      dispatch({ projects: [] });
     };
   }, []);
   /* // ? this update global state  */
   useEffect(() => {
-    globalDispatch({
-      type: actionTypes.setProjects,
-      payload: projects,
-    });
-    globalDispatch({
-      type: actionTypes.setProjectsOptions,
-      payload: projectsOptions,
-    });
+    globalDispatch({ projects });
+    globalDispatch({ projectsOptions });
   }, [projects, projectsOptions]);
   /* // ? */
   return (
     <Page>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Projects | Carlos Muñoz Gachancipá</title>
+        <title>Projects &bull; Carlos Muñoz Gachancipá</title>
       </Helmet>
       <SidePanel
         {...{
@@ -239,7 +225,7 @@ export function Projects({}: any) {
                       initialState: project,
                       even: index % 2 === 0,
                       updateState,
-                      setCurrentModal,
+                      setCurrentModal: dispatch,
                       stateOps,
                       stackOps,
                       kindOps,
@@ -254,7 +240,7 @@ export function Projects({}: any) {
       <Modal
         {...{
           injected: currentModal,
-          setInjected: setCurrentModal,
+          setInjected: dispatch,
           over: !false,
         }}
       ></Modal>

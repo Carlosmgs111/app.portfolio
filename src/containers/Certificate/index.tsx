@@ -42,8 +42,7 @@ export function Certificate({
   const [showCertificate, toggleShowCertificate] = useToggle(false, true);
   const [ref]: any = useNearScreen(
     false,
-    (_: any, show: any) =>
-      show && !showCertificate && toggleShowCertificate()
+    (_: any, show: any) => show && !showCertificate && toggleShowCertificate()
   ); // ? Use to lazy loading 💤⏳
 
   // ? 1️⃣ Define the callback to be passed as high order callback
@@ -58,7 +57,7 @@ export function Certificate({
         if (updated) {
           const certificationUpdated = { ...certificate, ...data[0] };
           setCertification(certificationUpdated);
-          updateState(({ state, setCertificates }: any) => {
+          updateState(({ state, dispatch }: any) => {
             const newCertificates = [...state.certificates];
             newCertificates.splice(
               newCertificates.findIndex(
@@ -67,14 +66,14 @@ export function Certificate({
               1,
               certificationUpdated
             );
-            setCertificates([...newCertificates]); // ? to check
+            dispatch({ certificates: [...newCertificates] }); // ? to check
           });
         }
       },
       setError,
       setLoading,
     }).patch(
-      `certifications`,
+      `certificates`,
       { ...toUpdate, uuid },
       {
         ...requestHeaders,
@@ -86,7 +85,8 @@ export function Certificate({
 
   // ? 2️⃣ Function to obtain the provided callback as the high order callback to be passed to
   // ? DefineSchema component as argument 'hightOrderCallback' and its respective trigger
-  const [highOrderCallback, onClickHandler]: any = getHOCAndTrigger(updateCallback);
+  const [highOrderCallback, onClickHandler]: any =
+    getHOCAndTrigger(updateCallback);
 
   const onClick = (e: any) => {
     const behaviors = {
@@ -100,18 +100,18 @@ export function Certificate({
               result &&
                 runRequest({
                   setData: (data: any) => {
-                    updateState(({ setCertifications, state }: any) => {
-                      const newCertifications = [...state.certifications];
+                    updateState(({ dispatch, state }: any) => {
+                      const newCertifications = [...state.certificates];
                       newCertifications.splice(
                         newCertifications.findIndex(
                           (c) => c.uuid === data.uuid
                         ),
                         1
                       );
-                      setCertifications(newCertifications);
+                      dispatch({ certificates: newCertifications });
                     });
                   },
-                }).delete(`certifications/${uuid}`, {
+                }).delete(`certificates/${uuid}`, {
                   ...requestHeaders,
                 });
             })();
@@ -146,16 +146,18 @@ export function Certificate({
                   opacity: !details ? 1 : 0,
                 },
                 onClick: () =>
-                  setCurrentModal(
-                    <img
-                      {...{
-                        src: image,
-                        alt: title,
-                        className: `${styles.image} ${styles.zoomed}`,
-                        onClick: () => setCurrentModal(null),
-                      }}
-                    />
-                  ),
+                  setCurrentModal({
+                    currentModal: (
+                      <img
+                        {...{
+                          src: image,
+                          alt: title,
+                          className: `${styles.image} ${styles.zoomed}`,
+                          onClick: () => setCurrentModal(null),
+                        }}
+                      />
+                    ),
+                  }),
               }}
             ></AsyncImage>
             <div
@@ -176,7 +178,8 @@ export function Certificate({
                 &nbsp;Ver Más
               </a>
               <a target="_blank" rel="noreferrer" href={url}>
-                <i className="fa-solid fa-up-right-from-square"></i>&nbsp;Consultar
+                <i className="fa-solid fa-up-right-from-square"></i>
+                &nbsp;Consultar
               </a>
             </div>
           </div>

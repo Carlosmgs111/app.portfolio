@@ -13,7 +13,6 @@ import { Footer } from "../components/Footer";
 import { LiveChat } from "../components/LiveChat";
 import content from "../mocks/content.json";
 import { URL_API } from "../services";
-import { actionTypes } from "../";
 import { lazyLoad, LazyComponent } from "../components/LazyComponent";
 import { CubeGridLoader } from "../components/CubeGridLoader";
 import { Memo } from "../components/Memo";
@@ -22,7 +21,8 @@ import { AppBackground } from "../components/AppBackground";
 export function App() {
   const { clearAuth } = useApp();
   const router = useNavigate();
-  const [{ currentLang, isOnline, token }, dispatch] = useStateValue();
+  const [{ language, isOnline, token }, dispatch] = useStateValue();
+  // console.log({ token });
   const [showFixed, setShowFixed] = useState(false);
   const [currentModal, setCurrentModal]: any = useState(null);
   const [showChat, toggleShowChat] = useToggle(false, true);
@@ -38,9 +38,7 @@ export function App() {
   useEffect(() => {
     fetch(`${URL_API}/checkifisonline`)
       .then((response: any) => response.json())
-      .then((response) =>
-        dispatch({ type: actionTypes.setIsOnline, payload: response })
-      );
+      .then((response) => dispatch({ isOnline: response }));
   }, []);
 
   const handleKeyPress = useCallback(
@@ -48,24 +46,16 @@ export function App() {
       if (event.altKey && event.key.toLowerCase() === "l")
         if (!currentModal)
           dispatch({
-            type: actionTypes.setCurrentModal,
-            payload: (
+            currentModal: (
               <Login
                 {...{
-                  onCloseSession: () =>
-                    dispatch({
-                      type: actionTypes.setCurrentModal,
-                      payload: null,
-                    }),
+                  onCloseSession: () => dispatch({ currentModal: null }),
                 }}
               />
             ),
           });
         else {
-          dispatch({
-            type: actionTypes.setCurrentModal,
-            payload: null,
-          });
+          dispatch({ currentModal: null });
         }
       if (event.altKey && event.key.toLowerCase() === "l") {
         !token &&
@@ -95,7 +85,7 @@ export function App() {
         <title>Carlos Muñoz Gachancipá</title>
       </Helmet>
       <div className={styles.header}>
-        <Navigation pages={navIndexes[currentLang]}></Navigation>
+        <Navigation pages={navIndexes[language]}></Navigation>
       </div>
       <div className={styles.content}>
         <AppBackground></AppBackground>

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { URL_API } from "../services";
 
 function useAuth() {
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
+  const [{ useStateValue }] = getContext(CONTEXTS.Global);
   const [token, setToken] = useLocalStorage("token", "");
   const [apiKey, setApiKey] = useLocalStorage("apiKey", "");
   const [expire, setExpire] = useLocalStorage("expire", 0);
@@ -66,19 +66,15 @@ function useAuth() {
     avatar,
   }: any) => {
     dispatch({
-      type: ACTIONS.setAuth,
-      payload: {
-        token,
-        apiKey,
-        expire,
-        username,
-        email,
-        createdAt,
-        privilege,
-        avatar,
-      },
+      apiKey,
+      expire,
+      username,
+      email,
+      createdAt,
+      privilege,
+      avatar,
+      token,
     });
-    // if (expire) expire = Date.parse(new Date(Date.now())) + Number(expire);
     setToken(token);
     setApiKey(apiKey);
     setExpire(expire);
@@ -91,6 +87,16 @@ function useAuth() {
 
   const clearAuth = () => {
     fetch(`${URL_API}/logout`, { method: "GET" });
+    dispatch({
+      apiKey: "",
+      expire: "",
+      username: "",
+      email: "",
+      createdAt: "",
+      privilege: "",
+      avatar: "",
+      token: "",
+    });
     setToken("");
     setApiKey("");
     setExpire(0);
