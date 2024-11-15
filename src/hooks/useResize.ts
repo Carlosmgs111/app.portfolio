@@ -1,23 +1,43 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
-// ? aparently this is a good implementation but must
-// ? be implementated a timing control mechanism
-export const useResizeHTMLElement = <LegacyRef>(
-  callback: Function,
-  deps: Array<any> = []
+type ResizeCallback = () => void;
+
+export const useResizeHTMLElement = <T extends HTMLElement>(
+  callback: ResizeCallback,
+  deps: Array<any> = [],
+  throttleMs: number = 100 // Configurable control de tiempo
 ) => {
-  const ref = useRef(null);
-  let prevWidth: any, prevHeight: any;
-  const resizeObserver = new ResizeObserver(async (entries) => {
-    const { width, height } = entries[0].contentRect;
-    if (prevHeight !== height || prevWidth !== width) callback();
-    prevHeight = height;
-    prevWidth = width;
-  });
+  const ref = useRef<HTMLDivElement| null>(null);
+  const prevSize = useRef({ width: 0, height: 0 });
+  const resizeObserver = useRef<ResizeObserver | null>(null);
+
+  const throttledCallback = useCallback(() => {
+    const current = ref.current;
+    if (!current) return;
+
+    const { width, height } = current.getBoundingClientRect();
+    if (
+      prevSize.current.width !== width ||
+      prevSize.current.height !== height
+    ) {
+      callback();
+      prevSize.current = { width, height };
+    }
+  }, [callback]);
 
   useEffect(() => {
-    if (ref.current) resizeObserver.observe(ref.current);
-  }, Array([ref], deps));
+    const handleResize = () => {
+      if (resizeObserver.current) resizeObserver.current.disconnect();
+      resizeObserver.current = new ResizeObserver(() => throttledCallback());
+      if (ref.current) resizeObserver.current.observe(ref.current);
+    };
+
+    handleResize(); // Set up the observer initially
+
+    return () => {
+      resizeObserver.current?.disconnect();
+    };
+  }, [throttledCallback, ...deps]); // Ensure dependencies are handled correctly
 
   return ref;
 };

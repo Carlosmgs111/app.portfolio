@@ -11,7 +11,6 @@
   display: none;
 }
 .carousel {
-  /* position: absolute; */
   display: inline-flex;
   left: 0;
   height: 100%;
@@ -19,18 +18,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  will-change: transform;
+  transition: .1s ease;
 }
 .animated {
-  -moz-animation: sliding var(--timing) infinite linear;
-  -webkit-animation: sliding var(--timing) infinite linear;
   animation: sliding var(--timing) infinite linear;
-  transition: 0.5s ease-out;
+  will-change: transform;
 }
 .animated.to_right {
-  -moz-animation: slidingToRight var(--timing) infinite linear;
-  -webkit-animation: slidingToRight var(--timing) infinite linear;
   animation: slidingToRight var(--timing) infinite linear;
-  transition: 0.5s ease-out;
+  will-change: transform;
   direction: rtl;
 }
 .pausable:hover {
@@ -48,26 +45,18 @@
 
 @keyframes sliding {
   from {
-    -moz-transform: translateX(0);
-    -webkit-transform: translateX(0);
     transform: translateX(0);
   }
   to {
-    -moz-transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
   }
 }
 
 @keyframes slidingToRight {
   from {
-    -moz-transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
   }
   to {
-    -moz-transform: translateX(0);
-    -webkit-transform: translateX(0);
     transform: translateX(0);
   }
 }

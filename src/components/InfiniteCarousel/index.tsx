@@ -13,6 +13,32 @@ const getSimulatedGap = (measureSize: string | number) => {
   });
   return `${Number(measureValue) / 2}${measureUnit}`;
 };
+const handleScroll = ({
+  prevContainerScrollLeft,
+  containerRef,
+  carouselRef,
+  baseFactor,
+}: any) => {
+  if (
+    containerRef.current.scrollLeft > prevContainerScrollLeft &&
+    containerRef.current.scrollLeft >=
+      carouselRef.current.offsetWidth / baseFactor
+  ) {
+    prevContainerScrollLeft = 0;
+    containerRef.current.scrollLeft = 0;
+    return;
+  }
+  if (
+    containerRef.current.scrollLeft < prevContainerScrollLeft &&
+    containerRef.current.scrollLeft === 0
+  ) {
+    prevContainerScrollLeft = carouselRef.current.offsetWidth / baseFactor;
+    containerRef.current.scrollLeft =
+      carouselRef.current.offsetWidth / baseFactor;
+    return;
+  }
+  prevContainerScrollLeft = containerRef.current.scrollLeft;
+};
 
 export const InfiniteCarousel = ({
   children,
@@ -25,7 +51,6 @@ export const InfiniteCarousel = ({
   const simulatedGap = getSimulatedGap(gap);
   const carouselRef: any = useRef(null);
   const containerRef: any = useRef(null);
-  const elementsLenght = children.length;
   const elements: any = Children.toArray(children).map(
     (child: any, index: any) => (
       <div key={index} className={styles.element}>
@@ -41,6 +66,16 @@ export const InfiniteCarousel = ({
     )
   );
   const baseFactor = 4;
+  let prevContainerScrollLeft = 0;
+  const throttledScroll = () =>
+    requestAnimationFrame(() =>
+      handleScroll({
+        prevContainerScrollLeft,
+        containerRef,
+        carouselRef,
+        baseFactor,
+      })
+    );
   useEffect(() => {
     if (!carouselRef.current || !containerRef.current) return;
     const duration =
@@ -50,32 +85,16 @@ export const InfiniteCarousel = ({
             timing) /
           2
         : 0;
-    let prevContainerScrollLeft = 0;
     containerRef.current.style.setProperty("--timing", `${duration}s`);
-
-    const handleScroll = () => {
-      if (
-        containerRef.current.scrollLeft > prevContainerScrollLeft &&
-        containerRef.current.scrollLeft >=
-          carouselRef.current.offsetWidth / baseFactor
-      ) {
-        prevContainerScrollLeft = 0;
-        containerRef.current.scrollLeft = 0;
-        return;
-      }
-      if (
-        containerRef.current.scrollLeft < prevContainerScrollLeft &&
-        containerRef.current.scrollLeft === 0
-      ) {
-        prevContainerScrollLeft = carouselRef.current.offsetWidth / baseFactor;
-        containerRef.current.scrollLeft =
-          carouselRef.current.offsetWidth / baseFactor;
-        return;
-      }
-      prevContainerScrollLeft = containerRef.current.scrollLeft;
-    };
     containerRef.current.scrollLeft = prevContainerScrollLeft;
-    containerRef.current.addEventListener("scroll", handleScroll);
+    containerRef.current.addEventListener("scroll", throttledScroll);
+    return () => {
+      if (!containerRef.current) return;
+      return containerRef.current.removeEventListener(
+        "scroll",
+        throttledScroll
+      );
+    };
   }, [elements, timing]); // TODO check how to refresh addition of properties
 
   return (
@@ -88,10 +107,6 @@ export const InfiniteCarousel = ({
         ${pausable ? styles.pausable : ""}`}
         >
           {manyfy(elements, baseFactor)}
-          {elementsLenght < 4 && manyfy(elements, baseFactor)}
-          {elementsLenght < 4 && manyfy(elements, baseFactor)}
-          {elementsLenght < 6 && manyfy(elements, baseFactor)}
-          {elementsLenght < 6 && manyfy(elements, baseFactor)}
         </div>
       </div>
     </Memo>

@@ -18,30 +18,40 @@ export default function Navigation({ className, login, pages }: any) {
   );
   const [language, toggleLanguage] = useToggle("es", "en");
   const indicatorRef: any = useRef(null);
-  const adjustIndicatorSizes = (pathname: any) => {
-    if (!referencesRefs.current) return;
-    const currentPath = referencesRefs.current[pathname.split("/")[1]];
-    if (!currentPath) {
-      indicatorRef.current.style.scale = "0";
-      indicatorRef.current.style.opacity = "0";
+  const adjustIndicatorSizes = (pathname: string) => {
+    if (!referencesRefs.current || !indicatorRef.current) return;
+
+    const pathKey = pathname.split("/")[1];
+    const currentPathRef = referencesRefs.current[pathKey];
+
+    if (!currentPathRef || !currentPathRef.current) {
+      Object.assign(indicatorRef.current.style, {
+        scale: "0",
+        opacity: "0",
+      });
       return;
     }
+
     const { offsetLeft, offsetWidth, offsetHeight, offsetTop } =
-      currentPath.current;
-    indicatorRef.current.style.scale = "1";
-    indicatorRef.current.style.opacity = "1";
-    indicatorRef.current.style.left = `${offsetLeft}px`;
-    indicatorRef.current.style.width = `${offsetWidth}px`;
-    indicatorRef.current.style.top = `${offsetTop}px`;
-    indicatorRef.current.style.height = `${offsetHeight}px`;
+      currentPathRef.current;
+
+    Object.assign(indicatorRef.current.style, {
+      scale: "1",
+      opacity: "1",
+      left: `${offsetLeft}px`,
+      width: `${offsetWidth}px`,
+      top: `${offsetTop}px`,
+      height: `${offsetHeight}px`,
+    });
   };
-  const navbarContainerRef = useResizeHTMLElement(
-    () => adjustIndicatorSizes(pathname),
-    [pathname]
-  );
+  const navbarContainerRef = useResizeHTMLElement(() => {
+    adjustIndicatorSizes(pathname);
+  }, [pathname]);
+  
   useEffect(() => {
     adjustIndicatorSizes(pathname);
   }, [pathname]);
+  
   useEffect(() => {
     dispatch({ language });
   }, [language]);

@@ -17,6 +17,7 @@ import { lazyLoad, LazyComponent } from "../components/LazyComponent";
 import { CubeGridLoader } from "../components/CubeGridLoader";
 import { Memo } from "../components/Memo";
 import { AppBackground } from "../components/AppBackground";
+import { ScrollToTop } from "../components/ScrollToTop";
 
 export function App() {
   const { clearAuth } = useApp();
@@ -88,7 +89,8 @@ export function App() {
         <Navigation pages={navIndexes[language]}></Navigation>
       </div>
       <div className={styles.content}>
-        <AppBackground></AppBackground>
+        <ScrollToTop />
+        <AppBackground />
         <Memo>
           <Router>
             <LazyComponent

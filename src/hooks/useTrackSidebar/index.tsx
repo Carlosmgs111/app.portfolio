@@ -23,7 +23,7 @@ const ElementWrapped = ({
 
   return (
     <Memo deps={[child.props]}>
-      <div  id={id} >
+      <div id={id}>
         {cloneElement(child, {
           ...child.props,
         })}
@@ -48,6 +48,7 @@ export const useTrackSidebar = () => {
   }, []);
 
   const ContentWrapper = useCallback(({ children }: any): any => {
+    if(!children)return null
     useEffect(() => {
       mapToList(indexes).forEach((_: any, index: any) => {
         if (index > children.length - 1) delete indexes[index];
@@ -62,7 +63,12 @@ export const useTrackSidebar = () => {
               indexes,
               setIndexes,
               index,
-              use: (current: any) => {
+              $useCurrent: (current: any) => {
+                let onGone = () => {};
+                if (child.props.$useCurrent) {
+                  onGone = child.props.$useCurrent(current);
+                }
+                current;
                 if (!current) return;
                 const observer: any = new window.IntersectionObserver(
                   (entries) => {
@@ -77,6 +83,7 @@ export const useTrackSidebar = () => {
                 ).observe(current);
                 return () => {
                   observer?.disconnect();
+                  onGone();
                 };
               },
             }}

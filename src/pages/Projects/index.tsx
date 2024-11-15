@@ -104,14 +104,6 @@ export function Projects({}: any) {
                                 reset,
                               }: any) => {
                                 runRequest({
-                                  /*************  ✨ Codeium Command ⭐  *************/
-                                  /**
-                                   * Updates the projects state by dispatching a new array of projects.
-                                   * Merges the existing projects with the new data provided.
-                                   *
-                                   * @param {any} data - The new project data to be added to the state.
-                                   */
-                                  /******  9f444335-9e35-4ac6-af81-de7c6dfa0fba  *******/
                                   setData: (data: any) => {
                                     dispatch({
                                       projects: [...projects, ...data],
@@ -196,6 +188,30 @@ export function Projects({}: any) {
     globalDispatch({ projectsOptions });
   }, [projects, projectsOptions]);
   /* // ? */
+  const fadeAnimation = (element: any) => {
+    element.style.willChange = "transform";
+    element.style.transition = "transform 0.1s ease";
+    const screenHeight = window.innerHeight;
+    const centerScreen = screenHeight / 2;
+    const visibilityThreshold = screenHeight * 0.25;
+    const rect = element.getBoundingClientRect();
+    const itemCenter = rect.top + rect.height / 2;
+    const distanceFromCenter = Math.abs(itemCenter - centerScreen);
+    let scale = 1;
+    const inFixedZone = distanceFromCenter < visibilityThreshold;
+    if (!inFixedZone) {
+      const maxScale = 1;
+      const minScale = 0.6;
+      const adjustedDistance = distanceFromCenter - visibilityThreshold;
+      const maxDistance = screenHeight / 2 - visibilityThreshold;
+      scale = Math.max(
+        minScale,
+        maxScale - (adjustedDistance / maxDistance) * (maxScale - minScale)
+      );
+    }
+    element.style.transform = `scale(${scale})`;
+  };
+
   return (
     <Page>
       <Helmet>
@@ -218,6 +234,22 @@ export function Projects({}: any) {
               <ContentWrapper>
                 {projects.map((project: any, index: number) => (
                   <Project
+                    $useCurrent={(current: any) => {
+                      let ticking = false;
+                      window.addEventListener("scroll", () => {
+                        if (!ticking) {
+                          window.requestAnimationFrame(() => {
+                            fadeAnimation(current);
+                            ticking = false;
+                          });
+                          ticking = true;
+                        }
+                      });
+                      fadeAnimation(current);
+                      return () => {
+                        window.removeEventListener("scroll", fadeAnimation);
+                      };
+                    }}
                     key={index}
                     {...{
                       id: labelCases(project.name).LS,

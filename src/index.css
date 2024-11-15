@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 :root {
   --border-radius: 0.6rem;
   --background-color: black;
@@ -139,11 +139,12 @@
 }
 
 /* * Global loader */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-weight: 400;
 }
 
 html {
@@ -181,7 +182,7 @@ body::before {
   background-repeat: no-repeat, no-repeat;
 }
 body::-webkit-scrollbar {
-  width: .8rem;
+  width: 0.8rem;
   display: inside;
   background-color: var(--moonlit-asteroid-900);
   transition: 0.4s;
