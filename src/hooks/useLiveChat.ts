@@ -1,4 +1,4 @@
-import { useStateValue } from "../contexts/context";
+import { useStateValue } from "../context";
 import { SocketService } from "../services";
 import { useEffect, useState } from "react";
 import { generate } from "random-words";
@@ -6,7 +6,7 @@ import { labelCases } from "../utils";
 import { useDebounce } from "./useDebounce";
 
 export const useLiveChat = () => {
-  const [{ token }, dispatch] = useStateValue();
+  const [{ token, isOnline: globalIsOnline }, dispatch]: any = useStateValue();
   const [message, setMessage] = useState("");
   const debouncedMessage = useDebounce(message, 600);
   const [rooms, setRooms]: any = useState([]);
@@ -84,7 +84,7 @@ export const useLiveChat = () => {
     SocketService.receiveMessage({
       core: {
         isOnline: ({ isOnline }: any) => {
-          dispatch({  isOnline });
+          dispatch({ isOnline });
         },
       },
     });

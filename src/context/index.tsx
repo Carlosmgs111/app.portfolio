@@ -1,7 +1,13 @@
-import { createContext, useContext, Children, cloneElement, useEffect } from "react";
+import { createContext, useContext, Children, cloneElement } from "react";
 import { useReduceState } from "../hooks/useReduceState";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { isPrimitiveValue, Mapfy } from "../utils";
+
+const Recovered = ({ key, state, storageManage, recoveredState }: any) => {
+  const [storedValue, setStoredValue] = useLocalStorage(key, state);
+  storageManage[key] = { storedValue, setStoredValue };
+  recoveredState[key] = storedValue;
+};
 
 export const StateContext: any = createContext(null);
 
@@ -9,9 +15,7 @@ export const StateProvider = ({ initialState, children }: any) => {
   const storageManage: any = {};
   const recoveredState: any = { ...initialState };
   Mapfy(initialState).forEach((state: any, key: any) => {
-    const [storedValue, setStoredValue] = useLocalStorage(key, state);
-    storageManage[key] = { storedValue, setStoredValue };
-    recoveredState[key] = storedValue;
+    Recovered({ key, state, storageManage, recoveredState });
   });
   return (
     <StateContext.Provider
@@ -29,4 +33,7 @@ export const StateProvider = ({ initialState, children }: any) => {
     </StateContext.Provider>
   );
 };
-export const useStateValue = () => [...useContext<any>(StateContext)];
+export const useStateValue = () => {
+  const [state, dispatch] = useContext<any>(StateContext);
+  return [state, dispatch];
+};

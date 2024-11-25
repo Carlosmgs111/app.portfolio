@@ -5,7 +5,7 @@ import { TechSkills } from "../../containers/TechSkills";
 import { Memo } from "../../components/Memo";
 import { lazyLoad, LazyComponent } from "../../components/LazyComponent";
 import { CubeGridLoader } from "../../components/CubeGridLoader";
-import { useStateValue } from "../../contexts/context";
+import { useStateValue } from "../../context";
 import { URL_API } from "../../../src/services";
 import Helmet from "react-helmet";
 const InfiniteCarousel = lazyLoad(
@@ -58,9 +58,13 @@ const fadeAnimation = (
   element.style.opacity = `${opacity}`;
 };
 export const Portfolio = ({}) => {
-  const [{ language, projects, certificates }, dispatch] = useStateValue();
-  const [certificatesIndexes, setCertificatesIndexes] = useState(certificates);
-  const [projectsIndexes, setProjectsIndexes] = useState(projects);
+  const [
+    { language, projects: globalProjects, certificates: globalCertificates },
+    dispatch,
+  ]: any = useStateValue();
+  const [certificatesIndexes, setCertificatesIndexes] =
+    useState(globalCertificates);
+  const [projectsIndexes, setProjectsIndexes] = useState(globalProjects);
   const titles: any = {
     projects: { es: "Mis Proyectos", en: "My Projects" },
     certifications: { es: "Mis Certificados", en: "My Certificates" },
@@ -89,8 +93,8 @@ export const Portfolio = ({}) => {
           setProjectsIndexes(projects);
           dispatch({
             projectsOptions: { kind, stack, state },
+            projects,
           });
-          dispatch({ projects });
         });
     }
     if (!certificatesIndexes[0]) {
@@ -126,7 +130,7 @@ export const Portfolio = ({}) => {
         >
           <div>
             <h2>{titles.projects[language]}</h2>
-            <Memo deps={[projects]}>
+            <Memo deps={[projectsIndexes]}>
               <LazyComponent
                 Component={InfiniteCarousel}
                 fallback={<CubeGridLoader />}

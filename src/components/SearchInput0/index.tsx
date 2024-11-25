@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { runRequest} from "../../services/runRequest";
-import { getContext, CONTEXTS } from "../../contexts";
-import styles from './styles.module.css';
+import { runRequest } from "../../services/runRequest";
+import { useStateValue } from "../../context";
+import styles from "./styles.module.css";
 export const SearchInput0 = () => {
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
-  const [{ searchedUsername }, dispatch] = useStateValue();
+  const [{ searchedUsername }, dispatch]: any = useStateValue();
   const [showfixed, setShowFixed] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [indexedElements, setIndexedElements]: any = useState([]);
@@ -39,10 +38,7 @@ export const SearchInput0 = () => {
           type="submit"
           className={styles.submit_search}
           onClick={(e) => {
-            dispatch({
-              type: ACTIONS.setSearchedUsername,
-              payload: searchValue,
-            });
+            dispatch({ searchValue });
             setSearchValue("");
             e.preventDefault();
           }}

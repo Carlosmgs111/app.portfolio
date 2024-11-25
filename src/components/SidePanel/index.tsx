@@ -3,7 +3,7 @@ import styles from "./style.module.css";
 import { SettingsDashboard } from "./SettingsDashboard";
 import { useToggle } from "../../hooks/useToggle";
 import { injectAttrsToReactElements } from "../../utils";
-import { useStateValue } from "../../contexts/context";
+import { useStateValue } from "../../context";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Memo } from "../Memo";
 

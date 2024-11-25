@@ -1,12 +1,12 @@
 import { useNearScreen } from "../../hooks/useNearScreen";
 import content from "../../mocks/content.json";
 import styles from "./styles.module.css";
-import { useStateValue } from "../../contexts/context";
+import { useStateValue } from "../../context";
 import { useToggle } from "../../hooks/useToggle";
 import { Typing } from "../../components/Typing";
 
 export const About = ({}: any) => {
-  const [{ language }] = useStateValue();
+  const [{ language }]: any = useStateValue();
   const { summary }: any = content;
   const [showIntroduccion, toggleShowIntroduccion] = useToggle(false, true);
   const [summaryRef, showSummary] = useNearScreen(false, null, {
@@ -148,7 +148,7 @@ export const About = ({}: any) => {
     false,
     (_: any, show: any) => show && !showIntroduccion && toggleShowIntroduccion()
   );
-  console.log({showIntroduccion})
+  console.log({ showIntroduccion });
   return (
     <div className={styles.page}>
       <article ref={introductionRef} className={`${styles.section}`}>

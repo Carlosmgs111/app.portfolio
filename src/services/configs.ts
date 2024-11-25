@@ -1,7 +1,7 @@
-import { getContextValue, CONTEXTS } from "../contexts";
+import { useStateValue } from "../context";
 
 export const headers = () => {
-  const { token }: any = getContextValue(CONTEXTS.Global);
+  const [{ token }]: any = useStateValue();
   return {
     headers: {
       "Access-Control-Allow-Origin": "*",

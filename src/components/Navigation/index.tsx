@@ -2,14 +2,15 @@ import styles from "./styles.module.css";
 import { useToggle } from "../../hooks/useToggle";
 import { useResizeHTMLElement } from "../../hooks/useResize";
 import { LogoSVG } from "./../../icons";
-import { useStateValue } from "../../contexts/context";
+import { useStateValue } from "../../context";
 import { Linkdex } from "./Linkdex";
 import { useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ToggleButton } from "../../components/ToggleButton";
 
 export default function Navigation({ className, login, pages }: any) {
-  const [{ token, avatar }, dispatch] = useStateValue();
+  const [{ token, avatar, language: globalLanguage }, dispatch]: any =
+    useStateValue();
   const { pathname } = useLocation();
   const referencesRefs: any = useRef({});
   const [menu, switchMenu] = useToggle(
@@ -47,11 +48,11 @@ export default function Navigation({ className, login, pages }: any) {
   const navbarContainerRef = useResizeHTMLElement(() => {
     adjustIndicatorSizes(pathname);
   }, [pathname]);
-  
+
   useEffect(() => {
     adjustIndicatorSizes(pathname);
   }, [pathname]);
-  
+
   useEffect(() => {
     dispatch({ language });
   }, [language]);

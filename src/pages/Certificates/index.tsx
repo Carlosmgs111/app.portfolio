@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useTrackSidebar } from "../../hooks/useTrackSidebar";
 import { Modal } from "../../components/Modal";
 import styles from "./styles.module.css";
-import { useStateValue } from "../../contexts/context";
+import { useStateValue } from "../../context";
 import { runRequest } from "../../services/runRequest";
 import { useToggle } from "../../hooks/useToggle";
 import { Mapfy } from "../../utils";
@@ -26,7 +26,7 @@ export function Certificates({}: any) {
       institutions: globalInstitutions,
     },
     globalDispatch,
-  ] = useStateValue();
+  ]: any = useStateValue();
   const [owned, switchOwned] = useToggle(false, true);
 
   const initialState = {
@@ -36,13 +36,9 @@ export function Certificates({}: any) {
     loading: false,
     error: null,
   };
-
   const [state, dispatch] = useReduceState(initialState);
-
   const { institutions, certificates, currentModal, loading, error } = state;
-
   const { TrackSidebar, ContentWrapper }: any = useTrackSidebar();
-
   const [certificationSchema, setCertificationSchema]: any = useState({
     title: "",
     emitedBy: {
@@ -204,11 +200,11 @@ export function Certificates({}: any) {
               dispatch({ institutions: data });
             },
             setError: (error: any) => dispatch({ error }),
-            setLoading: (loading: any) => dispatch({ loading }),
+             setLoading: (loading: any) => dispatch({ loading }),
           }).get("institutions");
         },
         setError: (error: any) => dispatch({ error }),
-        setLoading: (loading: any) => dispatch({ loading }),
+         setLoading: (loading: any) => dispatch({ loading }),
       }).get("certificates" /* , { ...requestHeaders } */);
 
     return () => {};
@@ -222,8 +218,7 @@ export function Certificates({}: any) {
         value: institutions.map((i: any) => i.name),
       },
     });
-    globalDispatch({ certificates });
-    globalDispatch({ institutions });
+    globalDispatch({ certificates, institutions });
   }, [certificates, institutions]);
 
   return (

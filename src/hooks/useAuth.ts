@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import { useLocalStorage } from "./useLocalStorage";
-import { getContext, CONTEXTS } from "../contexts";
+import { useStateValue } from "../context";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { URL_API } from "../services";
 
 function useAuth() {
-  const [{ useStateValue }] = getContext(CONTEXTS.Global);
   const [token, setToken] = useLocalStorage("token", "");
   const [apiKey, setApiKey] = useLocalStorage("apiKey", "");
   const [expire, setExpire] = useLocalStorage("expire", 0);
@@ -17,7 +16,7 @@ function useAuth() {
   const [avatar, setAvatar] = useLocalStorage("avatar", "");
   const navigate = useNavigate();
 
-  const [{}, dispatch] = useStateValue();
+  const [{ token: globalToken }, dispatch]: any = useStateValue();
   const notify = () =>
     toast.info("Session Expired!", {
       position: "top-center",

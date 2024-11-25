@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import { getContextValue, CONTEXTS } from "../../contexts";
+import { useStateValue } from "../../context";
 
 export function Banner({
   children,
@@ -8,7 +8,7 @@ export function Banner({
   customeMessage = false,
   ownish = false,
 }: any) {
-  const { username } = getContextValue(CONTEXTS.Global);
+  const [{ username }]: any = useStateValue();
   return (
     <div className={styles.body} style={{ background }}>
       <h1 className={styles.title}>
