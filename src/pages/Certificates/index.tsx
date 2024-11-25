@@ -3,11 +3,11 @@ import { PanelSidebar, innerItems } from "../../components/PanelSidebar";
 import { manyfy, injectAttrsToReactElements, normalize } from "../../utils";
 import { Page } from "../../components/Page";
 import { SidePanel } from "../../components/SidePanel";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useTrackSidebar } from "../../hooks/useTrackSidebar";
 import { Modal } from "../../components/Modal";
 import styles from "./styles.module.css";
-import { useStateValue } from "../../contexts/context";
+import { useStateValue } from "../../context";
 import { runRequest } from "../../services/runRequest";
 import { useToggle } from "../../hooks/useToggle";
 import { Mapfy } from "../../utils";
@@ -26,9 +26,9 @@ export function Certificates({}: any) {
       institutions: globalInstitutions,
     },
     globalDispatch,
-  ] = useStateValue();
-  const [owned, switchOwned] = useToggle(false, true);
+  ]: any = useStateValue();
 
+  const [owned, switchOwned] = useToggle(false, true);
   const initialState = {
     institutions: globalInstitutions,
     certificates: globalCertificates,
@@ -36,13 +36,9 @@ export function Certificates({}: any) {
     loading: false,
     error: null,
   };
-
   const [state, dispatch] = useReduceState(initialState);
-
   const { institutions, certificates, currentModal, loading, error } = state;
-
   const { TrackSidebar, ContentWrapper }: any = useTrackSidebar();
-
   const [certificationSchema, setCertificationSchema]: any = useState({
     title: "",
     emitedBy: {
@@ -222,8 +218,7 @@ export function Certificates({}: any) {
         value: institutions.map((i: any) => i.name),
       },
     });
-    globalDispatch({ certificates });
-    globalDispatch({ institutions });
+    globalDispatch({ certificates, institutions });
   }, [certificates, institutions]);
 
   return (
@@ -241,6 +236,7 @@ export function Certificates({}: any) {
         }}
       >
         <Memo deps={[certificates, loading]}>
+          {(() => console.log("RENDERING CERTIFICATES"))()}
           <div className={styles.main_container}>
             {!loading && (
               <ContentWrapper>

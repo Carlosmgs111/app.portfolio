@@ -2,7 +2,6 @@ import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 import { labelCases } from "../../utils";
 import { AsyncImage } from "loadable-image";
-import { Loader } from "../../components/Loader";
 import { CubeGridLoader } from "../../components/CubeGridLoader";
 
 export const ProjectIndex = ({

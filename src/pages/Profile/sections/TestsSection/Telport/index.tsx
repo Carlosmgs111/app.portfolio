@@ -1,4 +1,4 @@
-import { StateProvider } from "../../../../../contexts/context";
+import { StateProvider } from "../../../../../context";
 import { Provider } from "./Provider";
 
 const initialState = { portal1: "", portal2: "" };

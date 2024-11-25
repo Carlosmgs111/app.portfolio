@@ -3,14 +3,13 @@ import { Banner } from "../../components/Banner";
 import { SidePanel } from "../../components/SidePanel";
 import { PanelSidebar, innerItems } from "../../components/PanelSidebar";
 import { MyState, Settings, ProfileHome, TestsSection } from "./sections";
-import { getContext, CONTEXTS } from "../../contexts";
+import { useStateValue } from "../../context";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import { useState } from "react";
 import { SocketService } from "../../services";
 
 export function Profile({ clearAuth }: any) {
-  const [{ useStateValue }] = getContext(CONTEXTS.Global);
   const [
     {
       token,
@@ -22,7 +21,7 @@ export function Profile({ clearAuth }: any) {
       avatar,
     },
     dispatch,
-  ] = useStateValue();
+  ]: any = useStateValue();
   const [currentContent, setCurrentContent]: any = useState(
     //<Settings {...{ avatar }} />
     <TestsSection />

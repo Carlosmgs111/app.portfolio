@@ -3,13 +3,12 @@ import { useToggle } from "./useToggle";
 import axios from "axios";
 import config from "../config";
 import { URL, URL_API } from "../services/index";
-import { getContext, CONTEXTS } from "../contexts";
+import { useStateValue } from "../context";
 import { decodeJwt } from "jose";
 import { useAuth } from "./useAuth";
 
 function useLogin() {
-  const [{ useStateValue }, ACTIONS] = getContext(CONTEXTS.Global);
-  const [{ token }] = useStateValue();
+  const [{ token }]: any = useStateValue();
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("" /* || config.email */);

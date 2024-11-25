@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useStateValue } from "../../contexts/context";
+import { useStateValue } from "../../context";
 import axios from "axios";
 import { URL_API } from "../../services";
 import { Project, ProjectSkeleton } from "../../containers/Project";
@@ -22,14 +22,9 @@ import { Memo } from "../../components/Memo";
 export function Projects({}: any) {
   const location = useLocation();
   const [
-    {
-      token,
-      language,
-      projects: globalProjects,
-      projectsOptions: globalProjectsOptions,
-    },
+    { token, projects: globalProjects, projectsOptions: globalProjectsOptions },
     globalDispatch,
-  ] = useStateValue();
+  ]: any = useStateValue();
   const { TrackSidebar, ContentWrapper }: any = useTrackSidebar();
   const requestHeaders = headers();
   const initialState = {
@@ -169,23 +164,23 @@ export function Projects({}: any) {
       try {
         const { data } = await axios.get(`${URL_API}/projects`);
         const { projects, kind, state, stack } = data;
-        dispatch({ projects: [...projects] });
-        dispatch({ projectsOptions: { kind, state, stack } });
+        dispatch({
+          projects: [...projects],
+          projectsOptions: { kind, state, stack },
+          loading: false,
+        });
       } catch (e) {
-        dispatch({ loading: false });
-        dispatch({ error: e });
+        dispatch({ loading: false, error: e });
       }
-      dispatch({ loading: false });
     };
     !projects[0] && fetchProjects();
     return () => {
-      dispatch({ projects: [] });
+      dispatch({ projects: [], loading: false, error: null });
     };
   }, []);
   /* // ? this update global state  */
   useEffect(() => {
-    globalDispatch({ projects });
-    globalDispatch({ projectsOptions });
+    globalDispatch({ projects, projectsOptions });
   }, [projects, projectsOptions]);
   /* // ? */
   const fadeAnimation = (element: any) => {
@@ -211,7 +206,6 @@ export function Projects({}: any) {
     }
     element.style.transform = `scale(${scale})`;
   };
-
   return (
     <Page>
       <Helmet>

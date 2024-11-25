@@ -3,6 +3,7 @@ import { CertificateSkeleton } from "./skeleton";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { labelCases } from "../../utils";
 import { AsyncImage } from "loadable-image";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Memo } from "../../components/Memo";
 // import { DefineSchema, getHOCAndTrigger } from "../../components/DefineSchema";
 import {
@@ -10,7 +11,7 @@ import {
   getHOCAndTrigger,
   INPUT_TYPES,
 } from "../../components/DefineForms";
-import { getContextValue, CONTEXTS } from "../../contexts";
+import { useStateValue } from "../../context";
 import { runRequest } from "../../services/runRequest";
 import { useEffect, useState } from "react";
 import { useToggle } from "../../hooks/useToggle";
@@ -38,7 +39,7 @@ export function Certificate({
     tags,
     grantedTo,
   }: any = certificate;
-  const { token, username } = getContextValue(CONTEXTS.Global);
+  // const [{ token, username }]: any = useStateValue();
   const [showCertificate, toggleShowCertificate] = useToggle(false, true);
   const [ref]: any = useNearScreen(
     false,
@@ -136,7 +137,7 @@ export function Certificate({
       >
         {!beingEdited ? (
           <div className={styles.content}>
-            <AsyncImage
+            <LazyLoadImage
               {...{
                 src: image,
                 alt: title,
@@ -145,6 +146,7 @@ export function Certificate({
                 style: {
                   opacity: !details ? 1 : 0,
                 },
+
                 onClick: () =>
                   setCurrentModal({
                     currentModal: (
@@ -153,13 +155,14 @@ export function Certificate({
                           src: image,
                           alt: title,
                           className: `${styles.image} ${styles.zoomed}`,
-                          onClick: () => setCurrentModal(null),
+                          onClick: () =>
+                            setCurrentModal({ currentModal: null }),
                         }}
                       />
                     ),
                   }),
               }}
-            ></AsyncImage>
+            ></LazyLoadImage>
             <div
               {...{
                 className: styles.details,
@@ -210,7 +213,7 @@ export function Certificate({
             ></DefineForms>
           </div>
         )}
-        {token && username === grantedTo && (
+        {/* {token && username === grantedTo && (
           <div className={styles.dashboard}>
             <button
               className={`${styles.button} ${
@@ -233,7 +236,7 @@ export function Certificate({
               {beingEdited ? (uuid ? "Cancelar" : "Limpiar") : "Editar"}
             </button>
           </div>
-        )}
+        )} */}
       </div>
     </Memo>
   );

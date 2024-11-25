@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import Navigation from "../components/Navigation";
 import { Login } from "../components/Login";
-import { useStateValue } from "../contexts/context";
+import { useStateValue } from "../context";
 import { useApp } from "../hooks/useApp";
 import { useToggle } from "../hooks/useToggle";
 import { Modal } from "../components/Modal";
@@ -22,7 +22,7 @@ import { ScrollToTop } from "../components/ScrollToTop";
 export function App() {
   const { clearAuth } = useApp();
   const router = useNavigate();
-  const [{ language, isOnline, token }, dispatch] = useStateValue();
+  const [{ language, isOnline, token }, dispatch]: any = useStateValue();
   // console.log({ token });
   const [showFixed, setShowFixed] = useState(false);
   const [currentModal, setCurrentModal]: any = useState(null);
@@ -90,7 +90,9 @@ export function App() {
       </div>
       <div className={styles.content}>
         <ScrollToTop />
-        <AppBackground />
+        <Memo>
+          <AppBackground />
+        </Memo>
         <Memo>
           <Router>
             <LazyComponent

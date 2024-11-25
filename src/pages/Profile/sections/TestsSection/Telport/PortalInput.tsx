@@ -1,7 +1,7 @@
-import { useStateValue } from "../../../../../contexts/context";
+import { useStateValue } from "../../../../../context";
 
 export const PortalInput = ({ entity }: any) => {
-  const [_, dispatch] = useStateValue();
+  const [_, dispatch]: any = useStateValue();
   return (
     <input
       type="text"

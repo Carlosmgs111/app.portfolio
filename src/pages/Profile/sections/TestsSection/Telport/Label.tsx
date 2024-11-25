@@ -1,6 +1,6 @@
-import { useStateValue } from "../../../../../contexts/context";
+import { useStateValue } from "../../../../../context";
 
 export const Label = ({ entity }: any) => {
-  const [state] = useStateValue();
+  const [state]: any = useStateValue();
   return <label htmlFor="">{state[entity]}</label>;
 };

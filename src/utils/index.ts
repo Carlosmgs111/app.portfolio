@@ -275,18 +275,34 @@ export const runButtonBehavior = (e: any, behaviors: any) => {
   behaviors[buttonId](e);
 };
 
-export const getDispatchSetFunctions = (
+export const getSetFunctions = (
   dispatch: Function,
   actionTypes: Array<string>
 ) => {
-  let functions = {};
+  let setFunctions = {};
   for (let actionType in actionTypes) {
-    functions = {
-      ...functions,
-      [actionType]: (data: any) => dispatch({ [data]: data }),
+    setFunctions = {
+      ...setFunctions,
+      ["set" + actionType.replace(actionType[0], actionType[0].toUpperCase())]:
+        (data: any) => dispatch({ [data]: data }),
     };
   }
-  return functions;
+  return setFunctions;
+};
+
+export const getGetFunctions = (state: any) => {
+  let getFunctions = {};
+  for (let s in state) {
+    getFunctions = {
+      ...getFunctions,
+      ["get" + s.replace(s[0], s[0].toUpperCase())]:
+        () => {
+          const value = state[s];
+          return value;
+        },
+    };
+  }
+  return getFunctions;
 };
 
 export const getSizesDisposition = (i: any) => {

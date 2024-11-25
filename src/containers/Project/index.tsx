@@ -5,7 +5,7 @@ import { useState } from "react";
 import { runButtonBehavior } from "../../utils";
 import { runRequest } from "../../services/runRequest";
 import { headers } from "../../services/configs";
-import { getContextValue, CONTEXTS } from "../../contexts";
+import { useStateValue } from "../../context";
 import { SVGIndexes } from "../../icons";
 import { ProjectSkeleton } from "./Skeleton";
 import { AsyncImage } from "loadable-image";
@@ -46,7 +46,7 @@ export const Project = ({
     stack,
     kind,
   } = project;
-  const { token, username } = getContextValue(CONTEXTS.Global);
+  const[ { token, username }]:any = useStateValue();
   const stateIcons: any = {
     developing: "fa-solid fa-arrows-spin",
     testing: "fa-solid fa-vial",
