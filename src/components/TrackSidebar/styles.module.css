@@ -7,7 +7,7 @@
   border-radius: 0.6rem;
   direction: rtl;
   transition: max-height 0.4s, max-width 0.4s, width 0.4s, scale 0.4s,
-    opacity 0.2s transfrom 0.4s;
+    opacity 0.2s transform 0.4s;
   /* box-shadow: inset 0px 0px 4px 2px #00000033; */
   max-height: 100%;
   max-width: 0;
@@ -16,7 +16,7 @@
   transform: translate(-300px, 0);
   position: sticky;
   gap: 0.4rem;
-  padding: 0.8rem;
+  padding: 0;
 }
 .body::-webkit-scrollbar {
   width: 0.2rem;
@@ -38,6 +38,7 @@
   scale: 1;
   opacity: 1;
   transform: translate(0, 0);
+  padding: 0.8rem;
 }
 .item {
   cursor: hand;

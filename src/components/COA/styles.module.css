@@ -30,7 +30,8 @@
   z-index: 100;
   background-size: 800% !important;
   animation: glowing var(--animation-duration) linear infinite;
-  backdrop-filter: blur(var(--blur-radius)) saturate(180%) brightness(var(--brightness));
+  backdrop-filter: blur(var(--blur-radius)) saturate(180%)
+    brightness(var(--brightness));
   --deg: 45deg;
   --background: linear-gradient(var(--deg), cyan, magenta, blue, magenta, cyan);
   background: var(--background);

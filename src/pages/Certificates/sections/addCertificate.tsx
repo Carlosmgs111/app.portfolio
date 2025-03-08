@@ -10,6 +10,7 @@ export const addCertificate = ({
   certificates,
 }: any) => {
   const requestHeaders = headers();
+  let ping = 0;
   return (
     <div className={styles.dashboard}>
       <DefineForms
@@ -17,23 +18,28 @@ export const addCertificate = ({
           baseSchema: certificationSchema,
           onClickHandler: (params: any) => {
             let { setError, setLoading, data, reset } = params;
+            data = data.map((d: any) => ({ ...d, uuid: uuidv4() }));
+            ping = new Date().getTime();
             runRequest({
               setData: (data: any) => {
+                ping = new Date().getTime() - ping;
                 dispatch({
                   certificates: [
                     ...certificates,
                     ...data.map((c: any) => ({ ...c, visible: true })),
                   ],
                 });
-                dispatch({ currentModal: null });
                 reset();
+                console.log({ ping });
+                dispatch({ $currentModal: null });
+                ping = 0;
               },
               setError: (e: any) =>
                 setError(new Error(e.response.data.message)),
               setLoading,
             }).post(
               `certificates/certificates`,
-              { certificates: [{ ...data[0], uuid: uuidv4() }] },
+              { certificates: [ ...data ] },
               {
                 ...requestHeaders,
               }

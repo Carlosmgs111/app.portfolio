@@ -69,5 +69,8 @@ export const useReduceState = (initialState: any, opts?: Opts) => {
   // const setFunctions = Object.assign({}, getSetFunctions(dispatch, state));
   // const getFunctions = Object.assign({}, getGetFunctions(state));
 
-  return [state, conditionalDispatch, /* { ...setFunctions, ...getFunctions } */];
+  return [
+    state,
+    conditionalDispatch /* { ...setFunctions, ...getFunctions } */,
+  ];
 };

@@ -21,7 +21,7 @@ import { format } from "timeago.js";
 
 export function Certificate({
   initialCertificate,
-  setCurrentModal = () => {},
+  dispatch = () => {},
   updateState,
   institutions,
 }: any) {
@@ -39,7 +39,7 @@ export function Certificate({
     tags,
     grantedTo,
   }: any = certificate;
-  // const [{ token, username }]: any = useStateValue();
+   const [{ token, username }]: any = useStateValue();
   const [showCertificate, toggleShowCertificate] = useToggle(false, true);
   const [ref]: any = useNearScreen(
     false,
@@ -148,7 +148,7 @@ export function Certificate({
                 },
 
                 onClick: () =>
-                  setCurrentModal({
+                  dispatch({
                     currentModal: (
                       <img
                         {...{
@@ -156,7 +156,7 @@ export function Certificate({
                           alt: title,
                           className: `${styles.image} ${styles.zoomed}`,
                           onClick: () =>
-                            setCurrentModal({ currentModal: null }),
+                            dispatch({ currentModal: null }),
                         }}
                       />
                     ),
@@ -213,7 +213,7 @@ export function Certificate({
             ></DefineForms>
           </div>
         )}
-        {/* {token && username === grantedTo && (
+        {token /* && username === grantedTo */ && (
           <div className={styles.dashboard}>
             <button
               className={`${styles.button} ${
@@ -236,7 +236,7 @@ export function Certificate({
               {beingEdited ? (uuid ? "Cancelar" : "Limpiar") : "Editar"}
             </button>
           </div>
-        )} */}
+        )}
       </div>
     </Memo>
   );

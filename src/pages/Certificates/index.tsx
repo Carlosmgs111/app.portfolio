@@ -3,7 +3,7 @@ import { PanelSidebar, innerItems } from "../../components/PanelSidebar";
 import { manyfy, injectAttrsToReactElements, normalize } from "../../utils";
 import { Page } from "../../components/Page";
 import { SidePanel } from "../../components/SidePanel";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useTrackSidebar } from "../../hooks/useTrackSidebar";
 import { Modal } from "../../components/Modal";
 import styles from "./styles.module.css";
@@ -247,7 +247,7 @@ export function Certificates({}: any) {
                       id: certificate.uuid,
                       title: certificate.title,
                       initialCertificate: certificate,
-                      setCurrentModal: dispatch,
+                      dispatch,
                       updateState,
                       institutions,
                     }}

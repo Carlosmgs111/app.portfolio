@@ -24,15 +24,15 @@ export class SocketService {
   };
 
   addClient = (client: any) => {
-    console.log(this.id);
     const token = localStorage.getItem("token")?.replaceAll('"', "");
     let tries = 0;
-    const [alias, address] = Mapfy(client).entries().next().value;
+    const [alias, address]: any = Mapfy(client).entries().next().value;
     this.clients[alias] = connect(`${address}`, {
       path: "/ws",
-      auth: { token },
-      query: { id: this.id },
+      auth: { token }
     });
+    console.log(this.clients[alias])
+    console.log({alias})
     this.clients[alias].connect();
     this.clients[alias].on("connect", () => {
       console.log("Conexión establecida con el servidor.");
@@ -76,6 +76,7 @@ export class SocketService {
       this.extractRemoteHandlersSpecs(payload);
     return new Promise((resolve, reject) => {
       this.clients[client].on(receiveIn, (data: any) => {
+        console.log({data})
         resolve(callback(data));
       });
     });
@@ -83,8 +84,10 @@ export class SocketService {
 
   extractRemoteHandlersSpecs = (object: any, receiverFunc?: any) => {
     let specs = [];
-    const [client, _payload] = Mapfy(object).entries().next().value;
-    const [sendTo, paramsOrCallback] = Mapfy(_payload).entries().next().value;
+    const [client, _payload]: any = Mapfy(object).entries().next().value;
+    const [sendTo, paramsOrCallback]: any = Mapfy(_payload)
+      .entries()
+      .next().value;
     specs = [client, sendTo, paramsOrCallback];
     if (typeof receiverFunc === "string") specs = [...specs, receiverFunc];
     else if (receiverFunc)
@@ -93,11 +96,15 @@ export class SocketService {
   };
 
   extractFunctionSpecs = (object: any) => {
-    let [functionName, callback] = ["function_not_provided", (...[]) => {}];
+    let [functionName, callback]: any = [
+      "function_not_provided",
+      (...[]) => {},
+    ];
     if (object instanceof Function) {
       [functionName, callback] = [object.name, object];
     } else if (callback instanceof Object) {
-      [functionName, callback] = Mapfy(object).entries().next().value;
+      const [f, c]: any = Mapfy(object).entries().next().value;
+      [functionName, callback] = [f, c];
     }
     return [functionName, callback];
   };

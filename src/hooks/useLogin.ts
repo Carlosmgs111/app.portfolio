@@ -6,6 +6,7 @@ import { URL, URL_API } from "../services/index";
 import { useStateValue } from "../context";
 import { decodeJwt } from "jose";
 import { useAuth } from "./useAuth";
+import { v4 as uuidv4 } from "uuid";
 
 function useLogin() {
   const [{ token }]: any = useStateValue();
@@ -18,6 +19,8 @@ function useLogin() {
   const { setAuth } = useAuth();
 
   const signPack: any = { password, username };
+  console.log({ signPack });
+  if (label === "signup") signPack.uuid = uuidv4();
   if (email) signPack.email = email;
 
   async function onClick(e: any) {

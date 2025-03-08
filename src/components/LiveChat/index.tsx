@@ -17,26 +17,24 @@ export const LiveChat = () => {
     counterpartyIsTyping,
   } = useLiveChat();
 
+  console.log({ rooms, chats, currentRoom, counterpartyIsTyping });
+
   const helperMessage = "Hola 👋, como te llamas?";
 
   const headerTabs =
     token &&
-    rooms.map(({ id, parties }: any, key: any) => (
+    rooms.map((roomId: any, key: any) => (
       <button
-        id={id}
+        id={roomId}
         onClick={(e: any) =>
           setCurrentRoom(
-            rooms[
-              rooms.findIndex(
-                (room: any) => String(room.id) === String(e.target.id)
-              )
-            ]
+           roomId
           )
         }
-        className={`${currentRoom?.id === id ? styles.active : ""}`}
+        className={`${currentRoom === roomId ? styles.active : ""}`}
         key={key}
       >
-        {parties[0].partyAlias}
+        {roomId}
       </button>
     ));
 
@@ -51,7 +49,7 @@ export const LiveChat = () => {
           <i className="fa-solid fa-paper-plane"></i>.
         </span>
       )}
-      {chats[currentRoom?.id]?.map(({ message, by }: any, key: any) => (
+      {chats[currentRoom]?.map(({ message, by }: any, key: any) => (
         <li
           className={`
           ${by === "self" ? styles.right : ""} ${

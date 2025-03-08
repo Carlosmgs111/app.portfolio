@@ -103,7 +103,7 @@ export function App() {
                 () => import("../pages/Projects"),
                 "Projects"
               )}
-              path="/projects"
+              path="portfolio/projects"
             />
             <LazyComponent
               fallback={
@@ -142,7 +142,7 @@ export function App() {
                 () => import("../pages/Certificates"),
                 "Certificates"
               )}
-              path="certificates"
+              path="portfolio/certificates"
             />
             <LazyComponent
               fallback={

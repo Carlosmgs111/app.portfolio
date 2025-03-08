@@ -2,7 +2,7 @@ import { useStateValue } from "../context";
 import { SocketService } from "../services";
 import { useEffect, useState } from "react";
 import { generate } from "random-words";
-import { labelCases } from "../utils";
+import { labelCases, listToMap, mapToList } from "../utils";
 import { useDebounce } from "./useDebounce";
 
 export const useLiveChat = () => {
@@ -18,11 +18,12 @@ export const useLiveChat = () => {
   const kind = token ? "host" : "guest";
 
   const register = () => {
+    if (!SocketService.clients["core"].id) return;
     SocketService.sendMessage({
       core: {
         register: [
           {
-            id: SocketService.id,
+            id: SocketService.clients["core"].id,
             alias: labelCases(
               alias || ((): any => generate({ minLength: 5 }))()
             ).CS,
@@ -33,10 +34,14 @@ export const useLiveChat = () => {
     });
     if (token) {
       setAlias("Carlos Muñoz");
-      SocketService.sendMessage({ core: { isOnline: [Boolean(token)] } });
+      SocketService.sendMessage({
+        core: { isOnline: [SocketService.clients["core"].id, Boolean(token)] },
+      });
       SocketService.sendMessage({
         core: {
-          updateAlias: [{ id: SocketService.id, alias: "Carlos Muñoz" }],
+          updateAlias: [
+            { id: SocketService.clients["core"].id, alias: "Carlos Muñoz" },
+          ],
         },
       });
     }
@@ -68,7 +73,7 @@ export const useLiveChat = () => {
     SocketService.onDisconnectionEvent = () => {
       token &&
         SocketService.sendMessage({
-          core: { isOnline: [false] },
+          core: { isOnline: [SocketService.clients["core"].id, false] },
         });
     };
   }, [token]);
@@ -96,10 +101,10 @@ export const useLiveChat = () => {
       },
     });
     if (alias && !token) {
-      const history = chats[currentRoom.id] || [];
+      const history = chats[currentRoom] || [];
       setChats({
         ...chats,
-        [currentRoom.id]: [
+        [currentRoom]: [
           ...history,
           {
             by: "advice",
@@ -111,13 +116,13 @@ export const useLiveChat = () => {
   }, []);
   useEffect(() => {
     if (alias && !token) {
-      const history = chats[currentRoom.id] || [];
+      const history = chats[currentRoom] || [];
       SocketService.sendMessage({
         core: { updateAlias: [{ alias, id: SocketService.id }] },
       });
       setChats({
         ...chats,
-        [currentRoom.id]: [
+        [currentRoom]: [
           ...history,
           {
             by: "advice",
@@ -128,6 +133,7 @@ export const useLiveChat = () => {
     }
   }, [alias]);
   useEffect(() => {
+    console.log("setting response");
     SocketService.receiveMessage({
       core: {
         response: ({ message, room }: any) => {
@@ -139,10 +145,11 @@ export const useLiveChat = () => {
             setCounterpartyIsTyping(false);
             return;
           }
-          const history = chats[room.id] || [];
+          const history = chats[room] || [];
+          console.log({ message });
           setChats({
             ...chats,
-            [room?.id]: [...history, { by: "party", message }],
+            [room]: [...history, { by: "party", message }],
           });
         },
       },
@@ -150,7 +157,7 @@ export const useLiveChat = () => {
   }, [chats, currentRoom]);
 
   const onSubmit = (e: any) => {
-    const history = chats[currentRoom.id] || [];
+    const history = chats[currentRoom] || [];
     e.preventDefault();
     if (alias) {
       SocketService.sendMessage({
@@ -165,7 +172,7 @@ export const useLiveChat = () => {
       });
       setChats({
         ...chats,
-        [currentRoom.id]: [...history, { by: "self", message }],
+        [currentRoom]: [...history, { by: "self", message }],
       });
     }
     if (!alias) {

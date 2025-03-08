@@ -5,11 +5,11 @@ import { COA } from "../COA";
 export const AppBackground = () => {
   const { pathname } = useLocation();
   return (
-    <>
+    <div className={styles.bg}>
       <div className={styles.background}></div>
       <div className={styles.foreground}>
-         <COA />
+        <COA />
       </div>
-    </>
+    </div>
   );
 };

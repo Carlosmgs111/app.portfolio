@@ -88,7 +88,10 @@ export const Portfolio = ({}) => {
   useEffect(() => {
     if (!projectsIndexes[0]) {
       fetch(`${URL_API}/projects`, { method: "GET" })
-        .then((data) => data.json())
+        .then((data) => {
+          console.log({ data });
+          return data.json();
+        })
         .then(({ projects, kind, state, stack }) => {
           setProjectsIndexes(projects);
           dispatch({
@@ -115,6 +118,7 @@ export const Portfolio = ({}) => {
         });
     }
   }, []);
+
   return (
     <div className={styles.page}>
       <Helmet>
@@ -143,7 +147,7 @@ export const Portfolio = ({}) => {
                 ))}
               </LazyComponent>
             </Memo>
-            <Link to={{ pathname: "/projects" }}>
+            <Link to={{ pathname: "/portfolio/projects" }}>
               <i className="fa-solid fa-compass-drafting"></i>
               &nbsp;&nbsp;Consultar Todos Los Proyectos
             </Link>
@@ -183,7 +187,7 @@ export const Portfolio = ({}) => {
                 ))}
               </LazyComponent>
             </Memo>
-            <Link to={{ pathname: "/certificates" }}>
+            <Link to={{ pathname: "/portfolio/certificates" }}>
               <i className="fa-solid fa-award"></i>&nbsp;&nbsp;Consultar Todos
               Los Certificados
             </Link>
