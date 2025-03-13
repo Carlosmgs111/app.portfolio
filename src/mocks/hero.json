@@ -1,62 +1,98 @@
 [
   {
     "faIcon": "fa-solid fa-layer-group",
-    "title": "Arquitectura Escalable",
-    "summary": "Desarrollo basado en patrones de arquitectura modulares y escalables, garantizando su extensibilidad y mantenibilidad a largo plazo."
+    "title": { "es": "Arquitectura Escalable", "en": "Scalable Architecture" },
+    "summary": {
+      "es": "Desarrollo basado en patrones de arquitectura modulares y escalables, garantizando su extensibilidad y mantenibilidad a largo plazo.",
+      "en": "Development based on modular and scalable architecture patterns, ensuring its extensibility and maintainability over time."
+    }
   },
   {
     "faIcon": "fa-solid fa-shield-halved",
-    "title": "Segura por Defecto",
-    "summary": "Accesos protegido por defecto, garantizando la seguridad y privacidad de la informacion."
+    "title": { "es": "Segura por Defecto", "en": "Secure by Default" },
+    "summary": {
+      "es": "Accesos protegidos por defecto, garantizando la seguridad y privacidad de la información.",
+      "en": "Access protected by default, ensuring the security and privacy of the information."
+    }
   },
   {
     "faIcon": "fa-solid fa-code",
-    "title": "Código Limpio",
-    "summary": "Codigo limpio y con buenas practicas de programación, garantizando la extensibilidad y mantenibildad a largo plazo"
+    "title": { "es": "Código Limpio", "en": "Clean Code" },
+    "summary": {
+      "es": "Código limpio y con buenas prácticas de programación, garantizando la extensibilidad y mantenibilidad a largo plazo.",
+      "en": "Clean code with good programming practices, ensuring long-term extensibility and maintainability."
+    }
   },
   {
     "faIcon": "fa-solid fa-puzzle-piece",
-    "title": "Basado en Módulos",
-    "summary": "Servicios, carateristicas y componentes modulares e independientes, con capacidad de despliegue independiente."
+    "title": { "es": "Basado en Módulos", "en": "Module-based" },
+    "summary": {
+      "es": "Servicios, características y componentes modulares e independientes, con capacidad de despliegue independiente.",
+      "en": "Modular and independent services, features, and components with independent deployment capability."
+    }
   },
   {
     "faIcon": "fa-solid fa-rocket",
-    "title": "Prototipado Rápido",
-    "summary": "Desde el concepto hasta la concepcion de un MVP en tiempo record sin comprometer los atributos de calidad."
+    "title": { "es": "Prototipado Rápido", "en": "Rapid Prototyping" },
+    "summary": {
+      "es": "Desde el concepto hasta la concepción de un MVP en tiempo récord sin comprometer los atributos de calidad.",
+      "en": "From concept to the creation of an MVP in record time without compromising quality attributes."
+    }
   },
   {
     "faIcon": "fa-solid fa-wand-magic-sparkles",
-    "title": "Integración con IAs",
-    "summary": "Aprovecha el poder de un variado surtido de modelos de lenguajes para todo proposito."
+    "title": { "es": "Integración con IAs", "en": "Integration with AI" },
+    "summary": {
+      "es": "Aprovecha el poder de un variado surtido de modelos de lenguajes para todo propósito.",
+      "en": "Harness the power of a diverse range of language models for all purposes."
+    }
   },
   {
     "faIcon": "fa-solid fa-palette",
-    "title": "Alta Personalizacion",
-    "summary": "Diseños modernos para todo tipo de proyectos, landing, paginas, compoenentes, etc."
+    "title": { "es": "Alta Personalización", "en": "High Customization" },
+    "summary": {
+      "es": "Diseños modernos para todo tipo de proyectos, landing, páginas, componentes, etc.",
+      "en": "Modern designs for all types of projects, landing pages, components, etc."
+    }
   },
   {
     "faIcon": "fa-solid fa-toggle-off",
-    "title": "Integracion con Panel de Control",
-    "summary": "Acceso rapido a las todas las caracteristicas del proyecto, desde administracion de contenido a manejo de accesos y mas."
+    "title": { "es": "Integración con Panel de Control", "en": "Integration with Control Panel" },
+    "summary": {
+      "es": "Acceso rápido a todas las características del proyecto, desde administración de contenido hasta manejo de accesos y más.",
+      "en": "Quick access to all project features, from content management to access control and more."
+    }
   },
   {
     "faIcon": "fa-solid fa-bolt",
-    "title": "Optimización del Rendimiento",
-    "summary": "Aplicaciones y proyectos con alto rendimiento y bajo consumo de recursos."
+    "title": { "es": "Optimización del Rendimiento", "en": "Performance Optimization" },
+    "summary": {
+      "es": "Aplicaciones y proyectos con alto rendimiento y bajo consumo de recursos.",
+      "en": "Applications and projects with high performance and low resource consumption."
+    }
   },
   {
     "faIcon": "fa-solid fa-mobile-screen-button",
-    "title": "Interfaces Responsivas e Intuitivas",
-    "summary": "Interfaces intuitivas y responsivas para todo tipo de dispositivos y pantallas."
+    "title": { "es": "Interfaces Responsivas e Intuitivas", "en": "Responsive and Intuitive Interfaces" },
+    "summary": {
+      "es": "Interfaces intuitivas y responsivas para todo tipo de dispositivos y pantallas.",
+      "en": "Intuitive and responsive interfaces for all types of devices and screens."
+    }
   },
   {
     "faIcon": "fa-solid fa-clone",
-    "title": "\"Copy and Paste\" de UI/UX",
-    "summary": "Ves alguna interfaz de usuario que te guste, podemos imitarla y adaptarla a las necesidades del proyecto."
+    "title": { "es": "\"Copy and Paste\" de UI/UX", "en": "UI/UX \"Copy and Paste\"" },
+    "summary": {
+      "es": "¿Ves alguna interfaz de usuario que te guste? Podemos imitarla y adaptarla a las necesidades del proyecto.",
+      "en": "See a user interface you like? We can imitate and adapt it to the project's needs."
+    }
   },
   {
     "faIcon": "fa-solid fa-plug",
-    "title": "Facil integracion con otras tecnologias y plataformas.",
-    "summary": "Integracion completa con cualquier tecnologia o plataforma existente, dependiendo de las necesidades del proyecto"
+    "title": { "es": "Fácil Integración con otras Tecnologías y Plataformas", "en": "Easy Integration with Other Technologies and Platforms" },
+    "summary": {
+      "es": "Integración completa con cualquier tecnología o plataforma existente, dependiendo de las necesidades del proyecto.",
+      "en": "Complete integration with any existing technology or platform, depending on the project's needs."
+    }
   }
 ]

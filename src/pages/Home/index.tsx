@@ -2,6 +2,7 @@ import styles from "./styles.module.css";
 import hero from "../../mocks/hero.json";
 import { Helmet } from "react-helmet";
 import { Refs } from "../../components/Refs";
+import { useStateValue } from "../../context";
 
 const Card = ({ faIcon, title, summary, className = "" }: any) => (
   <article className={`${styles.card} ${className}`}>
@@ -13,6 +14,7 @@ const Card = ({ faIcon, title, summary, className = "" }: any) => (
   </article>
 );
 export function Home({}: any) {
+  const [{ language }] = useStateValue();
   return (
     <div className={styles.page}>
       <Helmet>
@@ -26,8 +28,8 @@ export function Home({}: any) {
               id={key}
               key={key}
               faIcon={faIcon}
-              title={title}
-              summary={summary}
+              title={title[language]}
+              summary={summary[language]}
               $useCurrent={(current: any) => {
                 const observer: any = new window.IntersectionObserver(
                   (entries) => {
