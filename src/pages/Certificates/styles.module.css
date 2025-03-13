@@ -8,6 +8,7 @@
   width: 100%;
   max-width: 80rem;
   overflow: hidden;
+  padding: 32rem 0;
 }
 .button {
   margin: auto;

@@ -1,9 +1,10 @@
 .container {
   position: sticky;
-  top: 6rem;
+  top: 10rem;
   left: 0;
   height: 0;
   z-index: 1;
+  max-width: 80rem;
   height: fit-content; /* ? This allows dynamic scrolling when your content is overtaken, in this case by app footer   */
   max-height: 100vh; /* ? This allows dynamic scrolling when your content is overtaken, in this case by app footer */
   display: none;

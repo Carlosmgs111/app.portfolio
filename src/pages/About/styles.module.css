@@ -13,23 +13,22 @@
   border: none;
   height: fit-content;
   min-height: 90rem;
-  width: 100%;
+  width: fit-content;
   max-width: 80rem;
   display: flex;
-  justify-content: left;
+  /* justify-content: left; */
   align-items: center;
   gap: 8rem;
   flex-wrap: wrap;
   transition: 1s ease-in-out;
   transform: translate(30vw, 0);
-  opacity: 0;
 }
 .section.visible {
   transform: translate(0, 0);
   opacity: 1;
 }
 .text {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 100;
   margin: 0;
   white-space: pre-wrap;
@@ -76,7 +75,6 @@
   align-items: center;
   position: relative;
   font-weight: 200;
-  backdrop-filter: blur(0.8rem);
   font-size: 2rem;
   font-family: "Rubik";
   font-weight: 400;
@@ -85,9 +83,7 @@
   transition: 0.8s ease-in-out;
   transform: translate(-30vw, 0);
   opacity: 0;
-  scale: 0;
-  width: 52.8rem !important;
-  padding: 6.4rem 0 !important;
+  width: 52.8rem ;
 }
 .hero h1,
 h2 {
@@ -105,7 +101,6 @@ h2 {
 }
 .hero.visible {
   transform: translate(0, 0);
-  scale: 1;
   opacity: 1;
 }
 .introduction {
@@ -137,7 +132,7 @@ h2 {
 }
 @media screen and (max-width: 800px) {
   .hero {
-    width: 100% !important;
+    width: 100% ;
   }
   .blueprint {
     scale: 1.2;

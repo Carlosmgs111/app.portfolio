@@ -1,13 +1,16 @@
 .navbar_container {
   position: fixed;
-  backdrop-filter: blur(0.4rem) brightness(60%);
+  backdrop-filter: blur(0.2rem) brightness(20%);
   display: flex;
   align-items: center;
   justify-content: center;
   height: fit-content;
   width: 100%;
-  top: 0;
-  left: 0;
+  max-width: 80rem;
+  top: 4rem;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 1.2rem;
   position: relative;
   --deg: 45deg;
   --background: linear-gradient(
@@ -162,6 +165,12 @@
 }
 
 @media screen and (max-width: 800px) {
+  .navbar_container {
+    top: 0;
+    left: 0;
+    transform: translate(0,0);
+    border-radius: 0;
+  }
   .container {
     backdrop-filter: none;
     background-color: #00000065;
