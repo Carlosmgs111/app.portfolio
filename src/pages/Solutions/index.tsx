@@ -1,26 +1,35 @@
-import styles from "./styles.module.css";
-import solutions from "../../mocks/solutions.json";
-import { Helmet } from "react-helmet";
+import { Page } from "../../components/Page";
 import { Refs } from "../../components/Refs";
 import { useStateValue } from "../../context";
+import solutions from "../../mocks/solutions.json";
+import { Memo } from "../../components/Memo";
+import { Orbs } from "../../components/Orbs";
+import styles from "./styles.module.css";
+import colors from "../../mocks/colors.json";
+import { shuffleArray } from "../../utils";
 
-const CardSolution = ({ faIcon, title, summary, className = "" }: any) => (
-  <article className={`${styles.card} ${className}`}>
-    <span>
-      <i className={faIcon}></i>
-      {title}
-    </span>
-    <span>{summary}</span>
-  </article>
-);
-export function Home({}: any) {
+const CardSolution = ({ faIcon, title, summary, className = "" }: any) => {
+  const [colorA, colorB] = shuffleArray(colors.map(({ hex }: any) => hex));
+  return (
+    <article className={`${styles.card} ${className}`}>
+      <Memo>
+        <div className={styles.bg}>
+          <Orbs colors={[colorA, colorB]} qty={15} sizeRange={[35, 60]} />
+        </div>
+      </Memo>
+      <span>
+        <i className={faIcon}></i>
+        {title}
+      </span>
+      <span>{summary}</span>
+    </article>
+  );
+};
+
+export const Solutions = () => {
   const [{ language }] = useStateValue();
   return (
-    <div className={styles.page}>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Home &bull; Carlos Muñoz Gachancipá</title>
-      </Helmet>
+    <Page>
       <section className={styles.quality_attributes}>
         <Refs>
           {solutions.map(({ faIcon, title, summary }: any, key: any) => (
@@ -47,6 +56,6 @@ export function Home({}: any) {
           ))}
         </Refs>
       </section>
-    </div>
+    </Page>
   );
-}
+};

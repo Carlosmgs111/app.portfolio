@@ -1,0 +1,40 @@
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  contain: content;
+  overflow: hidden;
+}
+
+.orb {
+  --base-color: #ffffff;
+  --color-a: #ff00ff;
+  --color-b: #00ffff;
+  --width: 300px;
+  --i-offset-x: calc(var(--width) / 15);
+  --o-offset-x: calc(var(--width) / 30);
+  --color-blur-radius: calc(var(--width) / 3.75);
+  --base-blur-radius: calc(var(--width) / 6);
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  width: var(--width);
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) translateZ(0);
+  background-color: var(--base-color);
+  box-shadow: inset 0 0 var(--base-blur-radius) var(--base-color),
+    inset var(--i-offset-x) 0 var(--color-blur-radius) var(--color-a),
+    inset calc(-1 * var(--i-offset-x)) 0 var(--color-blur-radius) var(--color-b),
+    inset var(--i-offset-x) 0 var(--width) var(--color-a),
+    inset calc(-1 * var(--i-offset-x)) 0 var(--width) var(--color-b),
+    0 0 var(--base-blur-radius) var(--base-color),
+    calc(-1 * var(--o-offset-x)) 0 var(--color-blur-radius) var(--color-a),
+    var(--o-offset-x) 0 var(--color-blur-radius) var(--color-b);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000;
+  filter: blur(0);
+  contain: paint layout;
+  isolation: isolate;
+}

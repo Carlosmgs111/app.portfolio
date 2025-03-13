@@ -151,6 +151,16 @@ export function App() {
               Component={lazyLoad(() => import("../pages/About"), "About")}
               path="about"
             />
+             <LazyComponent
+              fallback={
+                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
+              }
+              Component={lazyLoad(
+                () => import("../pages/Solutions"),
+                "Solutions"
+              )}
+              path="solutions"
+            />
           </Router>
         </Memo>
         <div className={styles.live_chat}>
