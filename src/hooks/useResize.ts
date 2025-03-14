@@ -1,43 +1,34 @@
-import { useEffect, useRef, useCallback } from "react";
+"use client";
+import { useEffect, useRef } from "react";
 
-type ResizeCallback = () => void;
-
-export const useResizeHTMLElement = <T extends HTMLElement>(
-  callback: ResizeCallback,
+// ? apparently this is a good implementation but must
+// ? be implemented a timing control mechanism
+export const useResizeHTMLElement = <LegacyRef>(
+  callback: Function,
   deps: Array<any> = [],
-  throttleMs: number = 100 // Configurable control de tiempo
+  $ref = null
 ) => {
-  const ref = useRef<HTMLDivElement| null>(null);
-  const prevSize = useRef({ width: 0, height: 0 });
-  const resizeObserver = useRef<ResizeObserver | null>(null);
-
-  const throttledCallback = useCallback(() => {
-    const current = ref.current;
-    if (!current) return;
-
-    const { width, height } = current.getBoundingClientRect();
-    if (
-      prevSize.current.width !== width ||
-      prevSize.current.height !== height
-    ) {
-      callback();
-      prevSize.current = { width, height };
-    }
-  }, [callback]);
+  const nativeRef = useRef(null);
+  const ref = $ref || nativeRef;
+  let prevWidth: any, prevHeight: any;
+  let resizeObserver: any;
 
   useEffect(() => {
-    const handleResize = () => {
-      if (resizeObserver.current) resizeObserver.current.disconnect();
-      resizeObserver.current = new ResizeObserver(() => throttledCallback());
-      if (ref.current) resizeObserver.current.observe(ref.current);
-    };
-
-    handleResize(); // Set up the observer initially
-
-    return () => {
-      resizeObserver.current?.disconnect();
-    };
-  }, [throttledCallback, ...deps]); // Ensure dependencies are handled correctly
+    if (!ref.current) return;
+    resizeObserver.observe(ref.current);
+  }, [...deps, ref]);
+  // TODO .WATCH
+  if (typeof window === "undefined") return;
+  try {
+    resizeObserver = new ResizeObserver(async (entries) => {
+      const { width, height } = entries[0].contentRect;
+      if (prevHeight !== height || prevWidth !== width) callback();
+      prevHeight = height;
+      prevWidth = width;
+    });
+  } catch (e) {
+    console.log(e);
+  }
 
   return ref;
 };
