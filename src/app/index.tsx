@@ -78,6 +78,7 @@ export function App() {
   }, [handleKeyPress]);
 
   const { navIndexes }: any = content;
+  const loader = <CubeGridLoader style={{ width: "100%", height: "100vh" }} />;
 
   return (
     <>
@@ -96,26 +97,20 @@ export function App() {
         <Memo>
           <Router>
             <LazyComponent
-              fallback={
-                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-              }
+              fallback={loader}
               Component={lazyLoad(
                 () => import("../pages/Projects"),
                 "Projects"
               )}
-              path="portfolio/projects"
+              path="projects"
             />
             <LazyComponent
-              fallback={
-                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-              }
+              fallback={loader}
               Component={lazyLoad(() => import("../pages/Home"), "Home")}
               path="/"
             />
             <LazyComponent
-              fallback={
-                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-              }
+              fallback={loader}
               Component={lazyLoad(() => import("../pages/Home"), "Home")}
               path="home"
             />
@@ -125,9 +120,7 @@ export function App() {
               {...{ clearAuth }}
             />
             <LazyComponent
-              fallback={
-                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-              }
+              fallback={loader}
               Component={lazyLoad(
                 () => import("../pages/Portfolio"),
                 "Portfolio"
@@ -135,26 +128,20 @@ export function App() {
               path="portfolio"
             />
             <LazyComponent
-              fallback={
-                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-              }
+              fallback={loader}
               Component={lazyLoad(
                 () => import("../pages/Certificates"),
                 "Certificates"
               )}
-              path="portfolio/certificates"
+              path="certificates"
             />
             <LazyComponent
-              fallback={
-                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-              }
+              fallback={loader}
               Component={lazyLoad(() => import("../pages/About"), "About")}
               path="about"
             />
-             <LazyComponent
-              fallback={
-                <CubeGridLoader style={{ width: "100%", height: "100vh" }} />
-              }
+            <LazyComponent
+              fallback={loader}
               Component={lazyLoad(
                 () => import("../pages/Solutions"),
                 "Solutions"

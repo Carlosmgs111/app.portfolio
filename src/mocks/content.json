@@ -16,9 +16,14 @@
   "navIndexes": {
     "es": [
       {
-        "label": "Portafolio",
-        "icon": "fa-solid fa-briefcase",
-        "to": "portfolio"
+        "label": "Projects",
+        "icon": "fa-solid fa-compass-drafting",
+        "to": "projects"
+      },
+      {
+        "label": "Certificates",
+        "icon": "fa-solid fa-award",
+        "to": "certificates"
       },
       {
         "label": "Soluciónes",
@@ -33,9 +38,14 @@
     ],
     "en": [
       {
-        "label": "Portfolio",
-        "icon": "fa-solid fa-briefcase",
-        "to": "portfolio"
+        "label": "Proyectos",
+        "icon": "fa-solid fa-compass-drafting",
+        "to": "projects"
+      },
+      {
+        "label": "Certificados",
+        "icon": "fa-solid fa-award",
+        "to": "certificates"
       },
       {
         "label": "Solutions",

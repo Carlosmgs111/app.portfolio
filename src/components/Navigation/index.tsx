@@ -8,18 +8,29 @@ import { useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ToggleButton } from "../../components/ToggleButton";
 
+const ToRefer = ({ linkRef, pathname, adjustIndicatorSizes }: any) => {
+  linkRef = useResizeHTMLElement(
+    () => {
+      adjustIndicatorSizes(pathname);
+    },
+    [pathname],
+    linkRef
+  );
+};
 export default function Navigation({ className, login, pages }: any) {
-  const [{ token, avatar, language: globalLanguage }, dispatch]: any =
+  const [{ token, avatar}, dispatch]: any =
     useStateValue();
   const { pathname } = useLocation();
   const referencesRefs: any = useRef({});
+  const linkdexes: any = [];
+  let root = <div></div>;
   const [menu, switchMenu] = useToggle(
     { show: false, name: "fas fa-bars p-2 item" },
     { show: true, name: "fas fa-times p-2 item" }
   );
   const [language, toggleLanguage] = useToggle("es", "en");
   const indicatorRef: any = useRef(null);
-  const adjustIndicatorSizes = (pathname: string) => {
+  const adjustIndicatorSizes = () => {
     if (!referencesRefs.current || !indicatorRef.current) return;
 
     const pathKey = pathname.split("/")[1];
@@ -45,13 +56,12 @@ export default function Navigation({ className, login, pages }: any) {
       height: `${offsetHeight}px`,
     });
   };
-  const navbarContainerRef = useResizeHTMLElement(() => {
-    adjustIndicatorSizes(pathname);
-  }, [pathname]);
+  const navbarContainerRef = useResizeHTMLElement(
+    adjustIndicatorSizes, [pathname]);
 
-  useEffect(() => {
-    adjustIndicatorSizes(pathname);
-  }, [pathname]);
+  useEffect(
+    adjustIndicatorSizes
+  , [pathname]);
 
   useEffect(() => {
     if (!referencesRefs.current[pathname.split("/")[1]]) {
@@ -73,7 +83,10 @@ export default function Navigation({ className, login, pages }: any) {
   }, [language]);
 
   return (
-    <div ref={navbarContainerRef} className={styles.navbar_container}>
+    <div
+      ref={navbarContainerRef as React.RefObject<HTMLDivElement>}
+      className={styles.navbar_container}
+    >
       <div className={`${className} ${styles.navbar}`}>
         <div className={styles.navbar_header}>
           <Linkdex

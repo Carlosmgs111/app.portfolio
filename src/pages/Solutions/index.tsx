@@ -6,13 +6,13 @@ import styles from "./styles.module.css";
 
 const CardSolution = ({ faIcon, title, summary, className = "" }: any) => {
   return (
-    <article className={`${styles.card} ${className}`}>
+    <a href="/" className={`${styles.card} ${className}`}>
       <span>
         <i className={faIcon}></i>
         {title}
       </span>
       <span>{summary}</span>
-    </article>
+    </a>
   );
 };
 

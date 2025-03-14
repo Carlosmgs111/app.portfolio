@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // ? apparently this is a good implementation but must
 // ? be implemented a timing control mechanism
@@ -10,7 +10,8 @@ export const useResizeHTMLElement = <LegacyRef>(
 ) => {
   const nativeRef = useRef(null);
   const ref = $ref || nativeRef;
-  let prevWidth: any, prevHeight: any;
+  const [prevWidth, setPrevWidth] = useState(0);
+  const [prevHeight, setPrevHeight]: any = useState(0);
   let resizeObserver: any;
 
   useEffect(() => {
@@ -22,9 +23,10 @@ export const useResizeHTMLElement = <LegacyRef>(
   try {
     resizeObserver = new ResizeObserver(async (entries) => {
       const { width, height } = entries[0].contentRect;
+      console.log({ width, height, prevWidth, prevHeight });
       if (prevHeight !== height || prevWidth !== width) callback();
-      prevHeight = height;
-      prevWidth = width;
+      setPrevHeight(height);
+      setPrevWidth(width);
     });
   } catch (e) {
     console.log(e);
