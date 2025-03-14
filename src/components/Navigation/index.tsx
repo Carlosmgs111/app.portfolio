@@ -54,6 +54,21 @@ export default function Navigation({ className, login, pages }: any) {
   }, [pathname]);
 
   useEffect(() => {
+    if (!referencesRefs.current[pathname.split("/")[1]]) {
+      indicatorRef.current.style.scale = "0";
+      indicatorRef.current.style.opacity = "0";
+      return;
+    }
+    const { offsetLeft, offsetWidth, offsetHeight } =
+      referencesRefs.current[pathname.split("/")[1]].current;
+    indicatorRef.current.style.scale = "1";
+    indicatorRef.current.style.opacity = "1";
+    indicatorRef.current.style.left = `${offsetLeft}px`;
+    indicatorRef.current.style.width = `${offsetWidth}px`;
+    indicatorRef.current.style.height = `${offsetHeight}px`;
+  }, [pathname]);
+
+  useEffect(() => {
     dispatch({ language });
   }, [language]);
 

@@ -2,21 +2,11 @@ import { Page } from "../../components/Page";
 import { Refs } from "../../components/Refs";
 import { useStateValue } from "../../context";
 import solutions from "../../mocks/solutions.json";
-import { Memo } from "../../components/Memo";
-import { Orbs } from "../../components/Orbs";
 import styles from "./styles.module.css";
-import colors from "../../mocks/colors.json";
-import { shuffleArray } from "../../utils";
 
 const CardSolution = ({ faIcon, title, summary, className = "" }: any) => {
-  const [colorA, colorB] = shuffleArray(colors.map(({ hex }: any) => hex));
   return (
     <article className={`${styles.card} ${className}`}>
-      <Memo>
-        <div className={styles.bg}>
-          <Orbs colors={[colorA, colorB]} qty={15} sizeRange={[35, 60]} />
-        </div>
-      </Memo>
       <span>
         <i className={faIcon}></i>
         {title}

@@ -48,7 +48,7 @@
 .card > span {
   gap: 1.8rem;
 }
-.card > span:nth-child(2) {
+.card > span:nth-child(1) {
   width: 100%;
   height: fit-content;
   display: flex;
@@ -58,7 +58,7 @@
   font-weight: 500;
   font-size: 1.6rem;
 }
-.card > span:nth-child(2) > i {
+.card > span:nth-child(1) > i {
   font-size: 3.6rem;
 }
 .bg {
