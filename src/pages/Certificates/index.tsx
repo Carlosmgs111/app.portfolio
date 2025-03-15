@@ -189,23 +189,23 @@ export function Certificates({}: any) {
     });
 
   useEffect(() => {
-    !certificates[0] &&
-      runRequest({
-        setData: async (data: any) => {
-          dispatch({
-            certificates: data.map((d: any) => ({ ...d, visible: true })),
-          });
-          await runRequest({
-            setData: (data: any) => {
-              dispatch({ institutions: data });
-            },
-            setError: (error: any) => dispatch({ error }),
-            setLoading: (loading: any) => dispatch({ loading }),
-          }).get("institutions");
-        },
-        setError: (error: any) => dispatch({ error }),
-        setLoading: (loading: any) => dispatch({ loading }),
-      }).get("certificates" /* , { ...requestHeaders } */);
+    if (certificates.length && institutions.length) return;
+    runRequest({
+      setData: async (data: any) => {
+        dispatch({
+          certificates: data.map((d: any) => ({ ...d, visible: true })),
+        });
+        await runRequest({
+          setData: (data: any) => {
+            dispatch({ institutions: data });
+          },
+          setError: (error: any) => dispatch({ error }),
+          setLoading: (loading: any) => dispatch({ loading }),
+        }).get("institutions");
+      },
+      setError: (error: any) => dispatch({ error }),
+      setLoading: (loading: any) => dispatch({ $loading: loading }),
+    }).get("certificates" /* , { ...requestHeaders } */);
 
     return () => {};
   }, []);

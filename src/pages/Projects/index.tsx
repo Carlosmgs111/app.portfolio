@@ -162,18 +162,21 @@ export function Projects({}: any) {
     const fetchProjects = async () => {
       dispatch({ loading: true });
       try {
-        const { data } = await axios.get(`${URL_API}/projects`);
-        const { projects, kind, state, stack } = data;
-        dispatch({
-          projects: [...projects],
-          projectsOptions: { kind, state, stack },
-          loading: false,
+        const response = await axios.get(`${URL_API}/projects`, {
+          headers: requestHeaders,
         });
-      } catch (e) {
-        dispatch({ loading: false, error: e });
+        const { projects, kind, state, stack } = response.data;
+        dispatch({
+          projects,
+          projectsOptions: { kind, state, stack },
+          $loading: false,
+        });
+      } catch (error) {
+        dispatch({ loading: false, error });
       }
     };
-    !projects[0] && fetchProjects();
+    if (projects.length) return;
+    fetchProjects();
     return () => {
       dispatch({ projects: [], loading: false, error: null });
     };
