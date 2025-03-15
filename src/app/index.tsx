@@ -166,7 +166,7 @@ export function App() {
             <span className={`${isOnline ? styles.online : ""}`}>
               {isOnline
                 ? "Hi, I'm online"
-                : "I'm currently offline, chat with Archie"}
+                : "I'm currently offline"}
             </span>
           </button>
           <div className={`${styles.chat_container} `}>
