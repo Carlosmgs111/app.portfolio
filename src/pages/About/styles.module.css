@@ -4,16 +4,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-x: hidden;
-  position: relative;
   min-height: 100vh;
   height: fit-content;
+  overflow: hidden;
+  width: 100%;
 }
 .section {
   border: none;
   height: fit-content;
   min-height: 90rem;
-  width: fit-content;
   max-width: 80rem;
   display: flex;
   /* justify-content: left; */
@@ -28,13 +27,14 @@
   opacity: 1;
 }
 .text {
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   font-weight: 100;
   margin: 0;
   white-space: pre-wrap;
   filter: drop-shadow(-6px 6px 1px #000000cc);
-  max-width: 60rem;
+  width: 100%;
   border-radius: 2rem;
+  text-justify: pretty;
 }
 .skills {
   display: flex;
@@ -83,7 +83,7 @@
   transition: 0.8s ease-in-out;
   transform: translate(-30vw, 0);
   opacity: 0;
-  width: 52.8rem ;
+  width: 80rem ;
 }
 .hero h1,
 h2 {
