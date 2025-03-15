@@ -9,7 +9,8 @@
   gap: 16rem;
   padding: 16rem 0;
   position: relative;
-}.page {
+}
+.page {
   padding: 16rem 0;
   margin: 0;
   display: flex;
@@ -33,14 +34,6 @@
   align-content: center;
   flex-wrap: wrap;
   z-index: 10;
-  mask-image: linear-gradient(
-    90deg,
-    transparent 3%,
-    black 8%,
-    black 92%,
-    transparent 97%
-  );
-  backdrop-filter: blur(1.2rem);
 }
 .section > div {
   width: inherit;

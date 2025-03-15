@@ -15,47 +15,11 @@ const InfiniteCarousel = lazyLoad(
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Refs } from "../../components/Refs";
-
+import { Introduction } from "../../components/Introduction";
 const Section = ({ children, className }: any) => {
   return (
     <section className={`${styles.section} ${className}`}>{children}</section>
   );
-};
-
-const fadeAnimation = (
-  element: HTMLElement,
-  options: { visibilityThreshold?: number } = {}
-) => {
-  element.style.willChange = "transform, opacity";
-  element.style.transition = "transform 0.1s ease, opacity 0.1s ease";
-  const screenHeight = window.innerHeight;
-  const centerScreen = screenHeight / 2;
-  const visibilityThreshold =
-    options.visibilityThreshold ?? screenHeight * 0.25;
-  const rect = element.getBoundingClientRect();
-  const itemCenter = rect.top + rect.height / 2;
-  const distanceFromCenter = Math.abs(itemCenter - centerScreen);
-  const maxScale = 1;
-  const minScale = 0.6;
-  const maxOpacity = 1;
-  const minOpacity = 0.6;
-  let scale = maxScale;
-  let opacity = maxOpacity;
-  if (!(distanceFromCenter < visibilityThreshold)) {
-    const adjustedDistance = distanceFromCenter - visibilityThreshold;
-    const maxDistance = screenHeight / 2 - visibilityThreshold;
-    scale = Math.max(
-      minScale,
-      maxScale - (adjustedDistance / maxDistance) * (maxScale - minScale)
-    );
-    opacity = Math.max(
-      minOpacity,
-      maxOpacity -
-        (distanceFromCenter / centerScreen) * (maxOpacity - minOpacity)
-    );
-  }
-  element.style.transform = `scale(${scale})`;
-  element.style.opacity = `${opacity}`;
 };
 export function Home({}: any) {
   const [
@@ -73,18 +37,6 @@ export function Home({}: any) {
       en: "Technologies I Master",
     },
   };
-  const setupFadeAnimation = (element: HTMLElement) => {
-    const onScroll = () =>
-      requestAnimationFrame(() => {
-        fadeAnimation(element);
-      });
-    fadeAnimation(element);
-    window.addEventListener("scroll", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
-  };
-
   useEffect(() => {
     if (!projectsIndexes[0]) {
       fetch(`${URL_API}/projects`, { method: "GET" })
@@ -126,12 +78,8 @@ export function Home({}: any) {
         <title>Home &bull; Carlos Muñoz Gachancipá</title>
       </Helmet>
       <Refs>
-        <Section
-          $useCurrent={(current: any) => {
-            const cleanup = setupFadeAnimation(current);
-            return cleanup;
-          }}
-        >
+        <Introduction language={language} />
+        <Section>
           <div>
             <h2>{titles.projects[language]}</h2>
             <Memo deps={[projectsIndexes]}>
@@ -153,13 +101,7 @@ export function Home({}: any) {
             </Link>
           </div>
         </Section>
-        <Section
-          $useCurrent={(current: any) => {
-            const cleanup = setupFadeAnimation(current);
-            return cleanup;
-          }}
-          className={`${styles.section} `}
-        >
+        <Section className={`${styles.section} `}>
           <div>
             <h2>{titles.certifications[language]}</h2>
             <Memo deps={[certificatesIndexes]}>
@@ -193,13 +135,7 @@ export function Home({}: any) {
             </Link>
           </div>
         </Section>
-        <Section
-          $useCurrent={(current: any) => {
-            const cleanup = setupFadeAnimation(current);
-            return cleanup;
-          }}
-          className={`${styles.section}`}
-        >
+        <Section className={`${styles.section}`}>
           <div>
             <h2>{titles.techs[language]}</h2>
             <Memo>
