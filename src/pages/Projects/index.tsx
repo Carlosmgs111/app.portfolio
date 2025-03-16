@@ -231,22 +231,22 @@ export function Projects({}: any) {
               <ContentWrapper>
                 {projects.map((project: any, index: number) => (
                   <Project
-                    $useCurrent={(current: any) => {
-                      let ticking = false;
-                      window.addEventListener("scroll", () => {
-                        if (!ticking) {
-                          window.requestAnimationFrame(() => {
-                            fadeAnimation(current);
-                            ticking = false;
-                          });
-                          ticking = true;
-                        }
-                      });
-                      fadeAnimation(current);
-                      return () => {
-                        window.removeEventListener("scroll", fadeAnimation);
-                      };
-                    }}
+                    // $useCurrent={(current: any) => {
+                    //   let ticking = false;
+                    //   window.addEventListener("scroll", () => {
+                    //     if (!ticking) {
+                    //       window.requestAnimationFrame(() => {
+                    //         fadeAnimation(current);
+                    //         ticking = false;
+                    //       });
+                    //       ticking = true;
+                    //     }
+                    //   });
+                    //   fadeAnimation(current);
+                    //   return () => {
+                    //     window.removeEventListener("scroll", fadeAnimation);
+                    //   };
+                    // }}
                     key={index}
                     {...{
                       id: labelCases(project.name).LS,
