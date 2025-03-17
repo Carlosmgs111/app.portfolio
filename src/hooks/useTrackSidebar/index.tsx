@@ -5,7 +5,7 @@ import { Refs } from "../../components/Refs";
 import { Memo } from "../../components/Memo";
 import { mapToList } from "../../utils";
 
-const ElementWrapped = ({
+const WrappedElement = ({
   children: child,
   indexes,
   index,
@@ -57,7 +57,7 @@ export const useTrackSidebar = () => {
     return (
       <Refs $refs={elementsIndexes}>
         {Children.toArray(children).map((child: any, index) => (
-          <ElementWrapped
+          <WrappedElement
             key={index}
             {...{
               indexes,
@@ -89,7 +89,7 @@ export const useTrackSidebar = () => {
             }}
           >
             {child}
-          </ElementWrapped>
+          </WrappedElement>
         ))}
       </Refs>
     );
