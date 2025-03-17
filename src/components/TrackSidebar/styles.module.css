@@ -43,7 +43,6 @@
 .item {
   cursor: hand;
   padding: 0.8rem;
-  border-radius: 0.4rem;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -51,8 +50,9 @@
   position: relative;
   direction: ltr;
   text-transform: ellipsis;
-  color: var(--main-color-500);
-  transition: 0.4s;
+  color: white;
+  transition: 0.2s;
+  border-bottom: 2px solid transparent;
 }
 .item.expanded {
   padding: 0.8rem 1.6rem;
@@ -77,7 +77,7 @@
   width: fit-content;
 }
 .icon {
-  transition: 0.4s;
+  transition: 0.2s;
 }
 .icon.hidden {
   scale: 0;
@@ -85,11 +85,11 @@
   transform: translate(-30px, 0);
 }
 .item:hover {
-  color: var(--main-color-100);
+  color: var(--main-color-500);
 }
 .item.active {
-  color: var(--moonlit-asteroid-900);
-  background-color: var(--main-color-400);
+  border-bottom: 2px solid var(--main-color-500);
+
 }
 .inner {
   cursor: hand;
@@ -100,7 +100,6 @@
   position: relative;
   direction: ltr;
   color: inherit;
-  transition: 0.4s;
   font-family: "Rubik";
   padding: 0;
   text-overflow: ellipsis;
