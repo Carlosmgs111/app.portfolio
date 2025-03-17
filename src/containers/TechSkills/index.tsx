@@ -81,10 +81,12 @@ export const TechSkills = () => {
   ));
   return (
     <div className={styles.skills}>
-      <InfiniteCarousel timing={20} toRight={true}>
+      <InfiniteCarousel gap={"8px"} timing={20} toRight={true}>
         {firstSlides}
       </InfiniteCarousel>
-      <InfiniteCarousel timing={20}>{secondSlides}</InfiniteCarousel>
+      <InfiniteCarousel gap={"8px"} timing={20}>
+        {secondSlides}
+      </InfiniteCarousel>
     </div>
   );
 };
