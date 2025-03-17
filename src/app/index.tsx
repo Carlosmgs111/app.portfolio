@@ -19,6 +19,44 @@ import { Memo } from "../components/Memo";
 import { AppBackground } from "../components/AppBackground";
 import { ScrollToTop } from "../components/ScrollToTop";
 
+type liveChatButtonProps = {
+  isOnline: boolean;
+  showChat: boolean;
+  toggleShowChat: () => void;
+};
+const LiveChatButton = ({
+  isOnline,
+  showChat,
+  toggleShowChat,
+}: liveChatButtonProps) => (
+  <div className={styles.live_chat}>
+    <button
+      className={`
+${styles.chat_button} 
+${isOnline ? styles.online : ""} 
+${showChat ? styles.hidden : ""}`}
+      onClick={toggleShowChat}
+    >
+      <i
+        className={`fa-regular fa-comment-dots  ${
+          isOnline ? styles.online : ""
+        }`}
+      ></i>
+      <span className={`${isOnline ? styles.online : ""}`}>
+        {isOnline ? "Hi, I'm online" : "I'm currently offline"}
+      </span>
+    </button>
+    <div className={`${styles.chat_container} `}>
+      <div className={showChat ? styles.visible : ""}>
+        <button
+          className={"fa-solid fa-caret-right"}
+          onClick={toggleShowChat}
+        ></button>
+        <LiveChat></LiveChat>
+      </div>
+    </div>
+  </div>
+);
 export function App() {
   const { clearAuth } = useApp();
   const router = useNavigate();
@@ -27,6 +65,7 @@ export function App() {
   const [showFixed, setShowFixed] = useState(false);
   const [currentModal, setCurrentModal]: any = useState(null);
   const [showChat, toggleShowChat] = useToggle(false, true);
+
   useEffect(() => {
     const onScroll = (e: any) => {
       const newShowFixed = window.scrollY > 200;
@@ -150,35 +189,7 @@ export function App() {
             />
           </Router>
         </Memo>
-        <div className={styles.live_chat}>
-          <button
-            className={`
-            ${styles.chat_button} 
-            ${isOnline ? styles.online : ""} 
-            ${showChat ? styles.hidden : ""}`}
-            onClick={toggleShowChat}
-          >
-            <i
-              className={`fa-regular fa-comment-dots  ${
-                isOnline ? styles.online : ""
-              }`}
-            ></i>
-            <span className={`${isOnline ? styles.online : ""}`}>
-              {isOnline
-                ? "Hi, I'm online"
-                : "I'm currently offline"}
-            </span>
-          </button>
-          <div className={`${styles.chat_container} `}>
-            <div className={showChat ? styles.visible : ""}>
-              <button
-                className={"fa-solid fa-caret-right"}
-                onClick={toggleShowChat}
-              ></button>
-              <LiveChat></LiveChat>
-            </div>
-          </div>
-        </div>
+        {/* <LiveChatButton {...{ isOnline, showChat, toggleShowChat }} /> */}
       </div>
       <Modal
         {...{
