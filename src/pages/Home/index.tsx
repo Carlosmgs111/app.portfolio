@@ -31,7 +31,7 @@ export function Home({}: any) {
   const [projectsIndexes, setProjectsIndexes] = useState(globalProjects);
   const titles: any = {
     projects: { es: "Mis Proyectos", en: "My Projects" },
-    certifications: { es: "Mis Certificados", en: "My Certificates" },
+    certificates: { es: "Mis Certificados", en: "My Certificates" },
     techs: {
       es: "Las Tecnologías Que Domino",
       en: "Technologies I Master",
@@ -41,7 +41,6 @@ export function Home({}: any) {
     if (!projectsIndexes[0]) {
       fetch(`${URL_API}/projects`, { method: "GET" })
         .then((data) => {
-          console.log({ data });
           return data.json();
         })
         .then(({ projects, kind, state, stack }) => {
@@ -81,7 +80,12 @@ export function Home({}: any) {
         <Introduction language={language} />
         <Section>
           <div>
-            <h2>{titles.projects[language]}</h2>
+            <Link to={{ pathname: "/projects" }}>
+              <h2>
+                {titles.projects[language]} &nbsp;&nbsp;
+                <i className="fa-solid fa-up-right-from-square"></i>
+              </h2>
+            </Link>
             <Memo deps={[projectsIndexes]}>
               <LazyComponent
                 Component={InfiniteCarousel}
@@ -95,15 +99,16 @@ export function Home({}: any) {
                 ))}
               </LazyComponent>
             </Memo>
-            <Link to={{ pathname: "/portfolio/projects" }}>
-              <i className="fa-solid fa-compass-drafting"></i>
-              &nbsp;&nbsp;Consultar Todos Los Proyectos
-            </Link>
           </div>
         </Section>
         <Section className={`${styles.section} `}>
           <div>
-            <h2>{titles.certifications[language]}</h2>
+            <Link to={{ pathname: "/certificates" }}>
+              <h2>
+                {titles.certificates[language]} &nbsp;&nbsp;
+                <i className="fa-solid fa-up-right-from-square"></i>
+              </h2>
+            </Link>
             <Memo deps={[certificatesIndexes]}>
               <LazyComponent
                 Component={InfiniteCarousel}
@@ -129,10 +134,6 @@ export function Home({}: any) {
                 ))}
               </LazyComponent>
             </Memo>
-            <Link to={{ pathname: "/portfolio/certificates" }}>
-              <i className="fa-solid fa-award"></i>&nbsp;&nbsp;Consultar Todos
-              Los Certificados
-            </Link>
           </div>
         </Section>
         <Section className={`${styles.section}`}>
