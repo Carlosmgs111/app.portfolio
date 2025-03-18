@@ -3,7 +3,6 @@ import { AsyncImage } from "loadable-image";
 import { Link } from "react-router-dom";
 
 export const CertificateIndex = ({ image, url }: any) => {
-  console.log({ url });
   return (
     <div className={styles.body}>
       <AsyncImage

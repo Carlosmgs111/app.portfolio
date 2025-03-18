@@ -16,12 +16,12 @@
   "navIndexes": {
     "es": [
       {
-        "label": "Projects",
+        "label": "Proyectos",
         "icon": "fa-solid fa-compass-drafting",
         "to": "projects"
       },
       {
-        "label": "Certificates",
+        "label": "Certificados",
         "icon": "fa-solid fa-award",
         "to": "certificates"
       },
@@ -38,12 +38,12 @@
     ],
     "en": [
       {
-        "label": "Proyectos",
+        "label": "Projects",
         "icon": "fa-solid fa-compass-drafting",
         "to": "projects"
       },
       {
-        "label": "Certificados",
+        "label": "Certificates",
         "icon": "fa-solid fa-award",
         "to": "certificates"
       },

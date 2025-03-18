@@ -77,7 +77,10 @@ export function Home({}: any) {
         <title>Home &bull; Carlos Muñoz Gachancipá</title>
       </Helmet>
       <Refs>
-        <Introduction language={language} />
+        <Section>
+          <Link to={{ pathname: "/about" }} />
+          <Introduction language={language} />
+        </Section>
         <Section>
           <Link to={{ pathname: "/projects" }} />
           <h2>

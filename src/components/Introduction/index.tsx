@@ -111,26 +111,27 @@ export const Introduction = ({ language }: props) => {
   };
 
   return (
-    <article ref={introductionRef}>
-      <div className={`${styles.hero} ${showIntroduccion && styles.visible}`}>
-        {introduction[language]}
-        <div className={styles.contact}>
-          <a
-            className={styles.contact_button}
-            href="https://github.com/Carlosmgs111"
-            target="_blank"
-          >
-            <i className="fa-brands fa-github-alt"></i>&nbsp;&nbsp;Github
-          </a>
-          <a
-            className={styles.contact_button}
-            href="https://www.linkedin.com/in/cmgs111/"
-            target="_blank"
-          >
-            <i className="fa-brands fa-linkedin-in"></i>
-            &nbsp;&nbsp;Linkedin
-          </a>
-        </div>
+    <article
+      className={`${styles.hero} ${showIntroduccion && styles.visible}`}
+      ref={introductionRef}
+    >
+      {introduction[language]}
+      <div className={styles.contact}>
+        <a
+          className={styles.contact_button}
+          href="https://github.com/Carlosmgs111"
+          target="_blank"
+        >
+          <i className="fa-brands fa-github-alt"></i>&nbsp;&nbsp;Github
+        </a>
+        <a
+          className={styles.contact_button}
+          href="https://www.linkedin.com/in/cmgs111/"
+          target="_blank"
+        >
+          <i className="fa-brands fa-linkedin-in"></i>
+          &nbsp;&nbsp;Linkedin
+        </a>
       </div>
     </article>
   );
