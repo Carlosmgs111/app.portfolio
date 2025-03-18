@@ -79,70 +79,62 @@ export function Home({}: any) {
       <Refs>
         <Introduction language={language} />
         <Section>
-          <div>
-            <Link to={{ pathname: "/projects" }}>
-              <h2>
-                {titles.projects[language]} &nbsp;&nbsp;
-                <i className="fa-solid fa-up-right-from-square"></i>
-              </h2>
-            </Link>
-            <Memo deps={[projectsIndexes]}>
-              <LazyComponent
-                Component={InfiniteCarousel}
-                fallback={<CubeGridLoader />}
-                toRight={true}
-                gap={"8px"}
-                timing={20}
-              >
-                {projectsIndexes.map((project: any, index: any) => (
-                  <ProjectIndex key={index} {...project} />
-                ))}
-              </LazyComponent>
-            </Memo>
-          </div>
+          <Link to={{ pathname: "/projects" }} />
+          <h2>
+            {titles.projects[language]} &nbsp;&nbsp;
+            <i className="fa-solid fa-up-right-from-square"></i>
+          </h2>
+          <Memo deps={[projectsIndexes]}>
+            <LazyComponent
+              Component={InfiniteCarousel}
+              fallback={<CubeGridLoader />}
+              toRight={true}
+              gap={"8px"}
+              timing={20}
+            >
+              {projectsIndexes.map((project: any, index: any) => (
+                <ProjectIndex key={index} {...project} />
+              ))}
+            </LazyComponent>
+          </Memo>
         </Section>
         <Section className={`${styles.section} `}>
-          <div>
-            <Link to={{ pathname: "/certificates" }}>
-              <h2>
-                {titles.certificates[language]} &nbsp;&nbsp;
-                <i className="fa-solid fa-up-right-from-square"></i>
-              </h2>
-            </Link>
-            <Memo deps={[certificatesIndexes]}>
-              <LazyComponent
-                Component={InfiniteCarousel}
-                fallback={<CubeGridLoader />}
-                timing={30}
-                gap={"4px"}
-              >
-                {certificatesIndexes.map((certification: any, index: any) => (
-                  <CertificateIndex key={index} {...certification} />
-                ))}
-              </LazyComponent>
-            </Memo>
-            <Memo deps={[certificatesIndexes]}>
-              <LazyComponent
-                Component={InfiniteCarousel}
-                fallback={<CubeGridLoader />}
-                timing={30}
-                gap={"4px"}
-                toRight={true}
-              >
-                {certificatesIndexes.map((certification: any, index: any) => (
-                  <CertificateIndex key={index} {...certification} />
-                ))}
-              </LazyComponent>
-            </Memo>
-          </div>
+          <Link to={{ pathname: "/certificates" }} />
+          <h2>
+            {titles.certificates[language]} &nbsp;&nbsp;
+            <i className="fa-solid fa-up-right-from-square"></i>
+          </h2>
+          <Memo deps={[certificatesIndexes]}>
+            <LazyComponent
+              Component={InfiniteCarousel}
+              fallback={<CubeGridLoader />}
+              timing={30}
+              gap={"4px"}
+            >
+              {certificatesIndexes.map((certification: any, index: any) => (
+                <CertificateIndex key={index} {...certification} />
+              ))}
+            </LazyComponent>
+          </Memo>
+          <Memo deps={[certificatesIndexes]}>
+            <LazyComponent
+              Component={InfiniteCarousel}
+              fallback={<CubeGridLoader />}
+              timing={30}
+              gap={"4px"}
+              toRight={true}
+            >
+              {certificatesIndexes.map((certification: any, index: any) => (
+                <CertificateIndex key={index} {...certification} />
+              ))}
+            </LazyComponent>
+          </Memo>
         </Section>
         <Section className={`${styles.section}`}>
-          <div>
-            <h2>{titles.techs[language]}</h2>
-            <Memo>
-              <TechSkills></TechSkills>
-            </Memo>
-          </div>
+          <h2>{titles.techs[language]}</h2>
+          <Memo>
+            <TechSkills></TechSkills>
+          </Memo>
         </Section>
       </Refs>
     </div>

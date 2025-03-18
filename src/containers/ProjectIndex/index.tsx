@@ -35,14 +35,14 @@ export const ProjectIndex = ({
             <i className="fa-solid fa-circle-info"></i>&nbsp;&nbsp; Mas
             Informacion
           </Link>
-          <a
+          <Link
             className={`${!codeUri && styles.disabled}`}
             href={codeUri}
             target="_blank"
           >
             <i className="fa-solid fa-code"></i>&nbsp;&nbsp; Ver
             Codigo
-          </a>
+          </Link>
         </div>
       </div>
     </div>

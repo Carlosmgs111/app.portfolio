@@ -11,7 +11,7 @@
   background-position: center;
   flex-direction: row;
   font-family: "Rubik";
-  backdrop-filter: blur(3rem);
+  backdrop-filter: blur(3rem) brightness(220%);
   padding: 3.6rem;
   border-radius: 1.8rem;
 }

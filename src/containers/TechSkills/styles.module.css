@@ -16,10 +16,9 @@
   width: 10rem;
   height: 10rem;
   aspect-ratio: 1/1;
-  backdrop-filter: blur(4rem) brightness(240%);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.493);
   border-radius: 1.8rem;
-  margin: 2rem 0 ;
+  margin: 2rem 0 1rem 0;
 }
 .skill_icon {
   transition: 0.4s;
@@ -38,8 +37,7 @@
   pointer-events: none;
   font-size: 1.4rem;
   border-radius: 1.2rem;
-  padding: 1.2rem;
-  backdrop-filter: blur(4rem) brightness(240%);
+  filter: drop-shadow(0 0 0.4rem rgba(0, 0, 0, 0.493));
 }
 .skill_container:hover {
   z-index: 100;
@@ -47,6 +45,7 @@
 .skill_container:hover .skill_icon {
   scale: 1.2;
   transform: translate(0rem, -2.8rem);
+  filter: drop-shadow(0 0 0.4rem rgba(0, 0, 0, 0.493));
 }
 .skill_container:hover .skill_label {
   transform: translate(0%, 2.8rem);
