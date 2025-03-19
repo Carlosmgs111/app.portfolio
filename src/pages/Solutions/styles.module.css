@@ -12,7 +12,7 @@
 }
 .quality_attributes {
   display: flex;
-  max-width: 80rem;
+  max-width: 90rem;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;

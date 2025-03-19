@@ -227,55 +227,56 @@ export function Certificates({}: any) {
         <meta charSet="utf-8" />
         <title>Certificates &bull; Carlos Muñoz Gachancipá</title>
       </Helmet>
-      <SidePanel
-        {...{
-          // width: "240px",
-          float: false,
-          multi: false,
-          sidebars,
-        }}
-      >
-        <Memo deps={[certificates, loading]}>
-          {(() => console.log("RENDERING CERTIFICATES"))()}
-          <div className={styles.main_container}>
-            {!loading && (
-              <ContentWrapper>
-                {certificates.map((certificate: any, index: number) => (
-                  <Certificate
-                    key={certificate.uuid}
-                    {...{
-                      id: certificate.uuid,
-                      title: certificate.title,
-                      initialCertificate: certificate,
-                      dispatch,
-                      updateState,
-                      institutions,
-                    }}
-                  />
-                ))}
-              </ContentWrapper>
-            )}
-            {loading &&
-              manyfy(
-                <div
-                  style={{
-                    height: "28rem",
-                    width: "48rem",
-                    borderRadius: ".8rem",
-                    overflow: "hidden",
-                  }}
-                >
-                  <CertificateSkeleton />
-                </div>,
-                12
-              ).map((c, index) =>
-                injectAttrsToReactElements([c], { key: index })
+      <div className={styles.body}>
+        <SidePanel
+          {...{
+            // width: "240px",
+            float: false,
+            multi: false,
+            sidebars,
+          }}
+        >
+          <Memo deps={[certificates, loading]}>
+            {(() => console.log("RENDERING CERTIFICATES"))()}
+            <div className={styles.main_container}>
+              {!loading && (
+                <ContentWrapper>
+                  {certificates.map((certificate: any, index: number) => (
+                    <Certificate
+                      key={certificate.uuid}
+                      {...{
+                        id: certificate.uuid,
+                        title: certificate.title,
+                        initialCertificate: certificate,
+                        dispatch,
+                        updateState,
+                        institutions,
+                      }}
+                    />
+                  ))}
+                </ContentWrapper>
               )}
-          </div>
-        </Memo>
-      </SidePanel>
+              {loading &&
+                manyfy(
+                  <div
+                    style={{
+                      height: "28rem",
+                      width: "48rem",
+                      borderRadius: ".8rem",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <CertificateSkeleton />
+                  </div>,
+                  12
+                ).map((c, index) =>
+                  injectAttrsToReactElements([c], { key: index })
+                )}
+            </div>
+          </Memo>
+        </SidePanel>
+      </div>
       {/* // ? ⬇️ Start page support components */}
-
       <Modal
         {...{
           active: false,

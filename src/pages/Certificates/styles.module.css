@@ -6,8 +6,9 @@
   gap: 0.8rem;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 80rem;
-  overflow: hidden;
+}
+.body {
+  width: 90rem;
 }
 .button {
   margin: auto;
@@ -30,5 +31,8 @@
 @media screen and (max-width: 900px) {
   .main_container {
     padding: 0;
+  }
+  .body {
+    width: 100%;
   }
 }

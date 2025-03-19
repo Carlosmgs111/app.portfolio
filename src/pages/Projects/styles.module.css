@@ -1,9 +1,17 @@
 .main_container {
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   display: flex;
+  flex-direction: column;
   gap: 8rem;
   flex-wrap: wrap;
-  width: 100%;
-  max-width: 80rem;
+  width: auto;
+}
+.body {
+  width: 90rem;
+}
+@media screen and (max-width: 900px) {
+  .body {
+    width: 100%;
+  }
 }

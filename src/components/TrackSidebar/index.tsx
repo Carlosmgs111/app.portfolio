@@ -59,6 +59,13 @@ export function TrackSidebar(props: any) {
     [mapToList(items)]
   );
 
+  const expandButtonIcon: string = [
+    "fa solid",
+    expanded
+      ? "fa-down-left-and-up-right-to-center"
+      : "fa-arrows-left-right-to-line",
+  ].join(" ");
+
   return (
     <section
       {...{
@@ -71,9 +78,7 @@ export function TrackSidebar(props: any) {
         <div className={`${styles.header} ${expanded ? styles.expanded : ""}`}>
           <i
             key="0"
-            className={`fa-solid 
-            ${expanded ? "fa-ellipsis-vertical" : "fa-bars"}
-            ${styles.item}`}
+            className={`${expandButtonIcon} ${styles.item}`}
             onClick={switchExpand}
           />
         </div>

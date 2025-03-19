@@ -46,7 +46,7 @@ export const Project = ({
     stack,
     kind,
   } = project;
-  const[ { token, username }]:any = useStateValue();
+  const [{ token, username }]: any = useStateValue();
   const stateIcons: any = {
     developing: "fa-solid fa-arrows-spin",
     testing: "fa-solid fa-vial",
@@ -132,13 +132,7 @@ export const Project = ({
   };
 
   return (
-    <div
-      className={styles.container.concat(
-        " ",
-        !even && styles.container_reversed
-      )}
-      ref={ref}
-    >
+    <div className={styles.container} ref={ref}>
       {!beingEdited ? (
         <>
           <h1 className={styles.title}>{name}</h1>

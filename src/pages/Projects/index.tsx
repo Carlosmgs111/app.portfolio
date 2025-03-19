@@ -215,57 +215,59 @@ export function Projects({}: any) {
         <meta charSet="utf-8" />
         <title>Projects &bull; Carlos Muñoz Gachancipá</title>
       </Helmet>
-      <SidePanel
-        {...{
-          // width: "240px",
-          float: false,
-          multi: false,
-          sidebars,
-        }}
-      >
-        <Memo deps={[projects, loading]}>
-          <div className={styles.main_container}>
-            {loading ? (
-              <ProjectSkeleton />
-            ) : (
-              <ContentWrapper>
-                {projects.map((project: any, index: number) => (
-                  <Project
-                    // $useCurrent={(current: any) => {
-                    //   let ticking = false;
-                    //   window.addEventListener("scroll", () => {
-                    //     if (!ticking) {
-                    //       window.requestAnimationFrame(() => {
-                    //         fadeAnimation(current);
-                    //         ticking = false;
-                    //       });
-                    //       ticking = true;
-                    //     }
-                    //   });
-                    //   fadeAnimation(current);
-                    //   return () => {
-                    //     window.removeEventListener("scroll", fadeAnimation);
-                    //   };
-                    // }}
-                    key={index}
-                    {...{
-                      id: labelCases(project.name).LS,
-                      title: project.name,
-                      initialState: project,
-                      even: index % 2 === 0,
-                      updateState,
-                      setCurrentModal: dispatch,
-                      stateOps,
-                      stackOps,
-                      kindOps,
-                    }}
-                  />
-                ))}
-              </ContentWrapper>
-            )}
-          </div>
-        </Memo>
-      </SidePanel>
+      <div className={styles.body}>
+        <SidePanel
+          {...{
+            // width: "240px",
+            float: false,
+            multi: false,
+            sidebars,
+          }}
+        >
+          <Memo deps={[projects, loading]}>
+            <div className={styles.main_container}>
+              {loading ? (
+                <ProjectSkeleton />
+              ) : (
+                <ContentWrapper>
+                  {projects.map((project: any, index: number) => (
+                    <Project
+                      // $useCurrent={(current: any) => {
+                      //   let ticking = false;
+                      //   window.addEventListener("scroll", () => {
+                      //     if (!ticking) {
+                      //       window.requestAnimationFrame(() => {
+                      //         fadeAnimation(current);
+                      //         ticking = false;
+                      //       });
+                      //       ticking = true;
+                      //     }
+                      //   });
+                      //   fadeAnimation(current);
+                      //   return () => {
+                      //     window.removeEventListener("scroll", fadeAnimation);
+                      //   };
+                      // }}
+                      key={index}
+                      {...{
+                        id: labelCases(project.name).LS,
+                        title: project.name,
+                        initialState: project,
+                        even: index % 2 === 0,
+                        updateState,
+                        setCurrentModal: dispatch,
+                        stateOps,
+                        stackOps,
+                        kindOps,
+                      }}
+                    />
+                  ))}
+                </ContentWrapper>
+              )}
+            </div>
+          </Memo>
+        </SidePanel>
+      </div>
       <Modal
         {...{
           injected: currentModal,

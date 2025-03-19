@@ -1,6 +1,6 @@
 .container {
   border-radius: 0.8rem;
-  width: 26rem;
+  width: 100%;
   height: auto;
   aspect-ratio: 7/4;
   text-align: center;
@@ -176,6 +176,12 @@
   animation: shimmer 3s infinite;
   overflow: hidden;
   content: "";
+}
+
+@media screen and (min-width: 600px) {
+  .container {
+    width: 30rem;
+  }
 }
 @keyframes shimmer {
   100% {

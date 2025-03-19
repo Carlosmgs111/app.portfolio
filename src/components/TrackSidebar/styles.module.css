@@ -33,7 +33,7 @@
 }
 .body.active {
   max-height: calc(100vh - 14rem);
-  max-width: 24rem;
+  max-width: 16rem;
   width: 100%;
   scale: 1;
   opacity: 1;
@@ -41,7 +41,6 @@
   padding: 0.8rem;
 }
 .item {
-  cursor: hand;
   padding: 0.8rem;
   text-decoration: none;
   display: flex;
@@ -53,6 +52,7 @@
   color: white;
   transition: 0.2s;
   border-bottom: 2px solid transparent;
+  width: available;
 }
 .item.expanded {
   padding: 0.8rem 1.6rem;
@@ -88,7 +88,7 @@
   color: var(--main-color-500);
 }
 .item.active {
-  border-bottom: 2px solid var(--main-color-500);
+  border-bottom: 2px solid var(--main-color-300b);
 
 }
 .inner {
