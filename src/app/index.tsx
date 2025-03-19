@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet";
 import { Router } from "../components/Router";
 import { Footer } from "../components/Footer";
 import { LiveChat } from "../components/LiveChat";
-import content from "../mocks/content.json";
+import navIndexes from "../content/navIndexes.json";
 import { URL_API } from "../services";
 import { lazyLoad, LazyComponent } from "../components/LazyComponent";
 import { CubeGridLoader } from "../components/CubeGridLoader";
@@ -116,7 +116,6 @@ export function App() {
     };
   }, [handleKeyPress]);
 
-  const { navIndexes }: any = content;
   const loader = <CubeGridLoader style={{ width: "100%", height: "100vh" }} />;
 
   return (
@@ -126,7 +125,9 @@ export function App() {
         <title>Carlos Muñoz Gachancipá</title>
       </Helmet>
       <div className={styles.header}>
-        <Navigation pages={navIndexes[language]}></Navigation>
+        <Navigation
+          pages={navIndexes}
+        ></Navigation>
       </div>
       <div className={styles.content}>
         <ScrollToTop />

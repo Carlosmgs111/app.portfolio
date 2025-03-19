@@ -1,0 +1,22 @@
+[
+  {
+    "label": { "es": "Proyectos", "en": "Proyectos" },
+    "icon": "fa-solid fa-compass-drafting",
+    "to": "projects"
+  },
+  {
+    "label": { "es": "Certificados", "en": "Certificates" },
+    "icon": "fa-solid fa-award",
+    "to": "certificates"
+  },
+  {
+    "label": { "es": "Soluciónes", "en": "Solutions" },
+    "icon": "fa-regular fa-lightbulb",
+    "to": "solutions"
+  },
+  {
+    "label": { "es": "Sobre Mí", "en": "About Me" },
+    "icon": "fa-solid fa-address-card",
+    "to": "about"
+  }
+]

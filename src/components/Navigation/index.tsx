@@ -7,7 +7,6 @@ import { Linkdex } from "./Linkdex";
 import { useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ToggleButton } from "../../components/ToggleButton";
-import { Memo } from "../Memo";
 
 const ToRefer = ({ linkRef, pathname, adjustIndicatorSizes }: any) => {
   linkRef = useResizeHTMLElement(
@@ -82,84 +81,84 @@ export default function Navigation({ className, login, pages }: any) {
   }, [language]);
 
   return (
-      <div
-        ref={navbarContainerRef as React.RefObject<HTMLDivElement>}
-        className={styles.navbar_container}
-      >
-        <div className={`${className} ${styles.navbar}`}>
-          <div className={styles.navbar_header}>
-            <Linkdex
-              className={styles.banner}
-              onClick={() => menu.show && switchMenu()}
-              to=" "
-            >
-              <LogoSVG></LogoSVG>
-            </Linkdex>
-            <i
-              className={`${menu.name} ${styles.button}`}
-              id="nav-button"
-              onClick={switchMenu}
-            ></i>
-          </div>
-          <nav className={styles.navbar_indexes.concat(" ", className)}>
-            <ul
-              className={`${className} ${styles.itemlist} ${
-                menu.show ? styles.show : ""
-              }`}
-            >
-              <span
-                ref={indicatorRef}
-                id="navbar_indicator"
-                className={styles.indicator}
-              ></span>
-              {pages &&
-                pages.map(({ to, icon, label }: any, index: any) => {
-                  referencesRefs.current[to] = { current: null };
-                  const linkRef = referencesRefs.current[to];
-                  return (
-                    <Linkdex
-                      linkRef={linkRef}
-                      key={index}
-                      to={to}
-                      id={index}
-                      onClick={() => menu.show && switchMenu()}
-                    >
-                      <i className={icon}></i>&nbsp;&nbsp;
-                      {label}
-                    </Linkdex>
-                  );
-                })}
-              {login && (
-                <Linkdex
-                  className={styles.avatar}
-                  to={login.to}
-                  onClick={!token && login?.onClick}
-                >
-                  {token ? (
-                    <img
-                      src={avatar}
-                      onClick={() => menu.show && switchMenu()}
-                      alt="Profile user avatar"
-                    />
-                  ) : (
-                    "Login"
-                  )}
-                </Linkdex>
-              )}
-            </ul>
-          </nav>
+    <div
+      ref={navbarContainerRef as React.RefObject<HTMLDivElement>}
+      className={styles.navbar_container}
+    >
+      <div className={`${className} ${styles.navbar}`}>
+        <div className={styles.navbar_header}>
+          <Linkdex
+            className={styles.banner}
+            onClick={() => menu.show && switchMenu()}
+            to=" "
+          >
+            <LogoSVG></LogoSVG>
+          </Linkdex>
+          <i
+            className={`${menu.name} ${styles.button}`}
+            id="nav-button"
+            onClick={switchMenu}
+          ></i>
         </div>
-        <div className={`${styles.page_settings}  ${menu.show && styles.show}`}>
-          <div className={styles.languages}>
-            <ToggleButton
-              value={language}
-              onChange={toggleLanguage}
-              backgrounds={["var(--main-color-400)"]}
-              labels={["ES", "EN"]}
-              sliders={["fa-solid fa-globe"]}
-            ></ToggleButton>
-          </div>
+        <nav className={styles.navbar_indexes.concat(" ", className)}>
+          <ul
+            className={`${className} ${styles.itemlist} ${
+              menu.show ? styles.show : ""
+            }`}
+          >
+            <span
+              ref={indicatorRef}
+              id="navbar_indicator"
+              className={styles.indicator}
+            ></span>
+            {pages &&
+              pages.map(({ to, icon, label }: any, index: any) => {
+                referencesRefs.current[to] = { current: null };
+                const linkRef = referencesRefs.current[to];
+                return (
+                  <Linkdex
+                    linkRef={linkRef}
+                    key={index}
+                    to={to}
+                    id={index}
+                    onClick={() => menu.show && switchMenu()}
+                  >
+                    <i className={icon}></i>&nbsp;&nbsp;
+                    {label[language]}
+                  </Linkdex>
+                );
+              })}
+            {login && (
+              <Linkdex
+                className={styles.avatar}
+                to={login.to}
+                onClick={!token && login?.onClick}
+              >
+                {token ? (
+                  <img
+                    src={avatar}
+                    onClick={() => menu.show && switchMenu()}
+                    alt="Profile user avatar"
+                  />
+                ) : (
+                  "Login"
+                )}
+              </Linkdex>
+            )}
+          </ul>
+        </nav>
+      </div>
+      <div className={`${styles.page_settings}  ${menu.show && styles.show}`}>
+        <div className={styles.languages}>
+          <ToggleButton
+            value={language}
+            onChange={toggleLanguage}
+            backgrounds={["var(--main-color-400)"]}
+            labels={["ES", "EN"]}
+            sliders={["fa-solid fa-globe"]}
+          ></ToggleButton>
         </div>
       </div>
+    </div>
   );
 }

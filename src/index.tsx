@@ -2,7 +2,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { StateProvider } from "./context";
 import "./index.css";
-import content from "./mocks/content.json";
+import content from "./content/settings.json";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { App } from "./app";

@@ -1,7 +1,7 @@
 import { Page } from "../../components/Page";
 import { Refs } from "../../components/Refs";
 import { useStateValue } from "../../context";
-import solutions from "../../mocks/solutions.json";
+import solutions from "../../content/solutions.json";
 import styles from "./styles.module.css";
 
 const CardSolution = ({ faIcon, title, summary, className = "" }: any) => {

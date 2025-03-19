@@ -1,5 +1,5 @@
 import { useNearScreen } from "../../hooks/useNearScreen";
-import content from "../../mocks/content.json";
+import summary from "../../content/summary.json";
 import styles from "./styles.module.css";
 import { useStateValue } from "../../context";
 import { useToggle } from "../../hooks/useToggle";
@@ -7,7 +7,6 @@ import { Typing } from "../../components/Typing";
 
 export const About = ({}: any) => {
   const [{ language }]: any = useStateValue();
-  const { summary }: any = content;
   const [summaryRef, showSummary] = useNearScreen(false, null, {
     threshold: 0.05,
   });
@@ -51,7 +50,9 @@ export const About = ({}: any) => {
         ref={summaryRef}
         className={`${styles.section} ${showSummary && styles.visible}`}
       >
-        <p className={styles.text}>{summary[language]}</p>
+        <p className={styles.text}>
+          {summary[language as keyof typeof summary]}
+        </p>
       </article>
       <section
         ref={codingRef}
